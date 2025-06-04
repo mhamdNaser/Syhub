@@ -13,6 +13,13 @@
     "not_found": "The page you’re looking for doesn’t exist.",
     "back_to_shopping": "Back to shopping"
   },
+  "gift_card":{
+    "expired": "expired",
+    "expires_on": "expires_on",
+    "card": "card",
+    "use_at_checkout": "use_at_checkout",
+    "add_to_apple_wallet": "add_to_apple_wallet"
+  },
   // from this line
   "general": {
     "password_page": {
