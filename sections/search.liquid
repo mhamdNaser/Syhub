@@ -28,10 +28,10 @@
         {% # Search result items may be an article, a page, or a product. %}
         {% for result in search.results %}
           <div class="search-result">
-            {% assign featured_image = result.featured_image | default: result.image %}
-            {% if featured_image %}
+            {% comment %} {% assign featured_image = result.featured_image | default: result.image %} {% endcomment %}
+            {% comment %} {% if featured_image %}
               {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
-            {% endif %}
+            {% endif %} {% endcomment %}
             <div class="search-result__content">
               <p>
                 {{ result.title | link_to: result.url }}
