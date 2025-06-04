@@ -1,4 +1,19 @@
 {
+  "blog": {
+    "article_comments": "Comments",
+    "comment_form_title": "Leave a comment",
+    "comment_form_name": "Name",
+    "comment_form_email": "Email",
+    "comment_form_body": "Comment",
+    "comment_form_submit": "Post comment",
+    "article_metadata_html": "Posted on {{ date }} by {{ author }}"
+  },
+  "404": {
+    "title": "Page not found",
+    "not_found": "The page you’re looking for doesn’t exist.",
+    "back_to_shopping": "Back to shopping"
+  },
+  // from this line
   "general": {
     "password_page": {
       "login_form_heading": "Enter store using password:",

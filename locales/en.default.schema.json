@@ -1,4 +1,23 @@
 {
+  "general":{
+    "text" : "text",
+    "column": "column",
+    "search": "search",
+    "product": "product",
+    "password": "password",
+    "page": "page",
+    "footer": "footer",
+    "custom_section": "custom_section",
+    "cart": "cart",
+    "blog": "blog",
+    "article": "article",
+    "404": "404"
+  },
+  "blog": {
+    "name": "blog",
+    "comment_form_submit": "comment_form_submit"
+  },
+  // from this line
   "settings_schema": {
     "global": {
       "settings": {

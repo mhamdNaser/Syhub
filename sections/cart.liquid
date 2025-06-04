@@ -4,8 +4,7 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/cart
 {% endcomment %}
-{% comment %} 
-<h1>{{ 'cart.title' | t }}</h1>
+{% comment %} <h1>{{ 'cart.title' | t }}</h1> {% endcomment %}
 
 <form action="{{ routes.cart_url }}" method="post">
   <table>
@@ -16,17 +15,17 @@
         </td>
         <td>
           <p>{{ item.product.title }}</p>
-          {{ 'cart.remove' | t | link_to: item.url_to_remove }}
+          {% comment %} {{ 'cart.remove' | t | link_to: item.url_to_remove }} {% endcomment %}
         </td>
         <td>
           <input type="text" name="updates[]" value="{{ item.quantity }}">
-          <input type="submit" value="{{ 'cart.update' | t }}">
+          {% comment %} <input type="submit" value="{{ 'cart.update' | t }}"> {% endcomment %}
         </td>
       </tr>
     {% endfor %}
   </table>
 
-  <input type="submit" name="checkout" value="{{ 'cart.checkout' | t }}">
+  {% comment %} <input type="submit" name="checkout" value="{{ 'cart.checkout' | t }}"> {% endcomment %}
 </form>
 
 {% schema %}
@@ -34,4 +33,4 @@
   "name": "t:general.cart",
   "settings": []
 }
-{% endschema %} {% endcomment %}
+{% endschema %}
