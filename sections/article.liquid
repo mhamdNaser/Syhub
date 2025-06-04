@@ -6,7 +6,7 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/article
 {% endcomment %}
 
-{% if article.image %}
+{% comment %} {% if article.image %}
   {{ article.image | image_url: width: 1000 | image_tag }}
 {% endif %}
 
@@ -65,4 +65,4 @@
   "name": "t:general.article",
   "settings": []
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
