@@ -65,24 +65,6 @@
     "lift": "Lift",
     "scale": "Scale",
     "subtle_zoom": "Subtle zoom",
-    "alignment": {
-      "left": "Left",
-      "center": "Center",
-      "right": "Right"
-    },
-    "direction": {
-      "horizontal": "Horizontal",
-      "vertical": "Vertical"
-    },
-    "size": {
-      "large": "Large",
-      "small": "Small"
-    },
-    "text_style": {
-      "title": "Title",
-      "subtitle": "Subtitle",
-      "normal": "Normal text"
-    },
   },
   "info":{
     "hover_effects": "Hover effects"
