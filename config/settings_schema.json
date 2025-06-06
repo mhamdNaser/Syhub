@@ -27,6 +27,10 @@
         {
           "value": "max-w-7xl",
           "label": "t:options.wide"
+        },
+        {
+          "value": "w-full",
+          "label": "t:options.full"
         }
       ],
         "default": "max-w-7xl"
