@@ -77,47 +77,6 @@
   },
   // end layout and animations
   {
-    "name": "t:general.layout",
-    "settings": [
-      {
-        "type": "select",
-        "id": "layout_direction",
-        "label": "t:labels.layout_direction",
-        "options": [
-          {
-            "value": "flex-col",
-            "label": "t:options.direction.vertical"
-          },
-          {
-            "value": "flex-row",
-            "label": "t:options.direction.horizontal"
-          }
-        ],
-        "default": "flex-col"
-      },
-      {
-        "type": "range",
-        "id": "grid_gap",
-        "min": 0,
-        "max": 50,
-        "step": 1,
-        "unit": "px",
-        "label": "t:labels.grid_gap",
-        "default": 16
-      },
-      {
-        "type": "range",
-        "id": "grid_item_width",
-        "min": 100,
-        "max": 500,
-        "step": 1,
-        "unit": "% or px",
-        label: 't:labels.grid_item_width',
-        default: 300
-      }
-    ]
-  },
-  {
     "name": "t:general.typography",
     "settings": [
       {
