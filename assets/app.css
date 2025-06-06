@@ -178,6 +178,9 @@
   .static {
     position: static;
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .block {
     display: block;
   }
