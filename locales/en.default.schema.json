@@ -40,7 +40,10 @@
     "sidebar": "Sidebar",
     "text": "Text",
     "theme": "Theme",
-    "typography": "Typography"
+    "typography": "Typography",
+    // new 
+    "animations": "Animation",
+    "page_layout": "Page layout"
   },
   "labels": {
     "alignment": "Alignment",
@@ -58,6 +61,12 @@
     "text_style": "Text style",
     "text": "Text"
   },
+  "settings": {
+    "page_width": "Page width",
+    "page_transition_enabled": "Enable page transition",
+    "transition_to_main_product": "Transition to main product",
+    "card_hover_effect": "Card hover effect",
+  },
   "options": {
     "narrow": "Narrow",
     "normal": "Normal",
@@ -66,22 +75,10 @@
     "scale": "Scale",
     "subtle_zoom": "Subtle zoom",
   },
-  "info":{
+  "info": {
     "hover_effects": "Hover effects"
   },
   "names": {
     "section": "Section"
   },
-  "layout": {
-    "page_layout": "Page layout",
-    "page_width": "Page width"
-  },
-  "animation": {
-    "name": "Animation",
-    "settings": {
-      "page_transition_enabled": "Enable page transition",
-      "transition_to_main_product": "Transition to main product",
-      "card_hover_effect": "Card hover effect",
-    }
-  }
 }

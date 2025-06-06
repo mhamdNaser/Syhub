@@ -9,7 +9,7 @@
   },
   // layout and animations
   {
-    "name": "t:layout.page_layout",
+    "name": "t:general.page_layout",
     "settings": [
       {
         "type": "select",
