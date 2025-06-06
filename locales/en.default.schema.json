@@ -51,6 +51,7 @@
     "transition_to_main_product": "Transition to main product",
     "card_hover_effect": "Card hover effect",
     "page_padding_horizontal": "Page padding (horizontal)",
+    "page_padding_vertical": "Page padding (vertical)",
   },
   "options": {
     "narrow": "Narrow",

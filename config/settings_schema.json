@@ -44,6 +44,16 @@
         "step": 4,
         "default": 16,
         "unit": "px",  
+      },
+      {
+        "type": "range",
+        "id": "page_padding_vertical",
+        "label": "t:settings.page_padding_vertical",
+        "min": 0,
+        "max": 100, // in pixels
+        "step": 4,
+        "default": 0,
+        "unit": "px",  
       }
     ]
   },
