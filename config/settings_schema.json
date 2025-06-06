@@ -14,7 +14,7 @@
       {
         "type": "select",
         "id": "page_width",
-        "label": "t:layout.settings.page_width",
+        "label": "t:layout.page_width",
         "options": [
           {
             "value": "max-w-screen-sm",
