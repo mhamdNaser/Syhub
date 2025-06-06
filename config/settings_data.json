@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "page_width": "max-w-screen-sm",
+    "page_width": "max-w-screen-xl",
     "max_page_width": "90rem",
     "content_for_index": []
   }
