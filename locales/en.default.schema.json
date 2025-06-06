@@ -43,7 +43,8 @@
     "typography": "Typography",
     // new 
     "animations": "Animation",
-    "page_layout": "Page layout"
+    "page_layout": "Page layout",
+    "logo_and_favicon": "Logo and favicon",
   },
   "settings": {
     "page_width": "Page width",
@@ -52,6 +53,9 @@
     "card_hover_effect": "Card hover effect",
     "page_padding_horizontal": "Page padding (horizontal)",
     "page_padding_vertical": "Page padding (vertical)",
+    "default_logo": "Default logo",
+    "inverse_logo": "Inverse logo",
+    "favicon": "Favicon",
   },
   "options": {
     "narrow": "Narrow",
@@ -64,7 +68,8 @@
     "none": "None"
   },
   "info": {
-    "hover_effects": "Hover effects"
+    "hover_effects": "Hover effects",
+    "inverse_logo_info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds.",
   },
   "names": {
     "section": "Section"
