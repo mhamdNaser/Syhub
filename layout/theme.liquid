@@ -10,7 +10,8 @@
     {{ content_for_header }}
   </head>
 
-  <body class="{{ settings.page_width }} {{ settings.card_hover_effect }} px-{{ settings.page_padding_horizontal }}">
+  <body class="{{ settings.page_width }} {{ settings.card_hover_effect }}"
+  style="padding: {{ settings.page_padding_horizontal }}px 0px">
 
     {% # Load the header and footer sections %}
     {% sections 'header-group' %}
