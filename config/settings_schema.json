@@ -34,6 +34,16 @@
         }
       ],
         "default": "max-w-7xl"
+      },
+      {
+        "type": "range",
+        "id": "page_padding_horizontal",
+        "label": "t:settings.page_padding_horizontal",
+        "min": 0,
+        "max": 100, // in pixels
+        "step": 4,
+        "default": 16,
+        "unit": "px",  
       }
     ]
   },
