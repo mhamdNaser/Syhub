@@ -5,7 +5,7 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
 
-{% comment %} <h1>{{ 'collections.title' | t }}</h1> {% endcomment %}
+<h1>{{ 'collections.title' | t }}</h1>
 
 <div
   class="collections {{ section.settings.grid_item_width }}"
@@ -55,7 +55,7 @@
 
 {% schema %}
 {
-  "name": "sections.collections_grid",
+  "name": "t:general.collections_grid",
   "settings": [
     {
       "type": "select",

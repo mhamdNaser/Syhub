@@ -4,7 +4,8 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/search
 {% endcomment %}
-{% comment %} <h1>{{ 'search.title' | t }}</h1> {% endcomment %}
+
+<h1>{{ 'search.title' | t }}</h1>
 
 <form action="{{ routes.search_url }}" method="get" role="search">
   <input
@@ -12,26 +13,26 @@
     size="50"
     name="q"
     value="{{ search.terms | escape }}"
-    {% comment %} placeholder="{{ 'search.placeholder' | t }}" {% endcomment %}
+    placeholder="{{ 'search.placeholder' | t }}"
   >
-  {% comment %} <button type="submit">{{ 'search.submit' | t }}</button> {% endcomment %}
+  <button type="submit">{{ 'search.submit' | t }}</button>
 </form>
 
 {% if search.performed %}
   {% if search.results_count == 0 %}
-    {% comment %} <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p> {% endcomment %}
+    <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
   {% else %}
-    {% comment %} <p>{{ 'search.results_for_html' | t: terms: search.terms, count: search.results_count }}</p> {% endcomment %}
+    <p>{{ 'search.results_for_html' | t: terms: search.terms, count: search.results_count }}</p>
 
     <div class="search-results">
       {% paginate search.results by 20 %}
         {% # Search result items may be an article, a page, or a product. %}
         {% for result in search.results %}
           <div class="search-result">
-            {% comment %} {% assign featured_image = result.featured_image | default: result.image %} {% endcomment %}
-            {% comment %} {% if featured_image %}
+            {% assign featured_image = result.featured_image | default: result.image %}
+            {% if featured_image %}
               {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
-            {% endif %} {% endcomment %}
+            {% endif %}
             <div class="search-result__content">
               <p>
                 {{ result.title | link_to: result.url }}
@@ -63,6 +64,7 @@
 
 {% schema %}
 {
-  "name": "t:general.search"
+  "name": "t:general.search",
+  "settings": []
 }
-{% endschema %} 
+{% endschema %}

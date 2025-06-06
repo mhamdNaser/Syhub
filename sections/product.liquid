@@ -6,9 +6,9 @@
 {% endcomment %}
 
 <div class="product-images">
-  {% comment %} {% for image in product.images %}
+  {% for image in product.images %}
     {% render 'image', class: 'product-image', image: image %}
-  {% endfor %} {% endcomment %}
+  {% endfor %}
 </div>
 
 <div class="product-info">

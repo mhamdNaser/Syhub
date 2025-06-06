@@ -16,8 +16,8 @@
       <h2>
         {{ article.title | link_to: article.url }}
       </h2>
-      {% comment %} {% assign date = article.published_at | time_tag: format: 'date' %}
-      <p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p> {% endcomment %}
+      {% assign date = article.published_at | time_tag: format: 'date' %}
+      <p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
       <p>{{ article.excerpt }}</p>
     </div>
   {% endfor %}
@@ -29,6 +29,7 @@
 
 {% schema %}
 {
-  "name": "t:general.blog"
+  "name": "t:general.blog",
+  "settings": []
 }
 {% endschema %}

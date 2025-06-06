@@ -6,14 +6,6 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/article
 {% endcomment %}
 
-{% comment %}
-  This section is used in the article template to render the article page, which
-  displays the full content of the blog post and can optionally include a
-  comments section for customers.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/article
-{% endcomment %}
-
 {% if article.image %}
   {{ article.image | image_url: width: 1000 | image_tag }}
 {% endif %}
@@ -70,6 +62,7 @@
 
 {% schema %}
 {
-  "name": "t:general.article"
+  "name": "t:general.article",
+  "settings": []
 }
 {% endschema %}
