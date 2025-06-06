@@ -50,6 +50,12 @@
     "text": "Text"
   },
   "options": {
+    "narrow": "Narrow",
+    "normal": "Normal",
+    "wide": "Wide",
+    "lift": "Lift",
+    "scale": "Scale",
+    "subtle_zoom": "Subtle zoom",
     "alignment": {
       "left": "Left",
       "center": "Center",
@@ -58,10 +64,6 @@
     "direction": {
       "horizontal": "Horizontal",
       "vertical": "Vertical"
-    },
-    "page_width": {
-      "narrow": "Narrow",
-      "wide": "Wide"
     },
     "size": {
       "large": "Large",
@@ -72,5 +74,23 @@
       "subtitle": "Subtitle",
       "normal": "Normal text"
     },
+  },
+  "info":{
+    "hover_effects": "Hover effects"
+  },
+  "names": {
+    "section": "Section"
+  },
+  "layout": {
+    "page_layout": "Page layout",
+    "page_width": "Page width"
+  },
+  "animation": {
+    "name": "Animation",
+    "settings": {
+      "page_transition_enabled": "Enable page transition",
+      "transition_to_main_product": "Transition to main product",
+      "card_hover_effect": "Card hover effect",
+    }
   }
 }

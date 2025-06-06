@@ -1,0 +1,25 @@
+{% comment %} {% capture children %}
+    {% content_for 'blocks' %}
+{% endcapture %}
+
+{% render 'section', sections: section, children: children %}
+
+{% schema %}
+    {
+        "name": "t:names.section",
+        "class": "section",
+        "blocks": [
+            {
+                "type": "@app",
+            },
+            {
+                "type": "@theme",
+            },
+            {
+                "type": "_divider",
+            }
+        ]
+        
+    }
+{% endschema %} {% endcomment %}
+

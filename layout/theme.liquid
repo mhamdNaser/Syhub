@@ -14,7 +14,13 @@
     {{ content_for_header }}
   </head>
 
-  <body>
+  <body class="{{ settings.page_width }} {{ settings.card_hover_effect }}">
+
+    {% # Load the header and footer sections %}
+    {% sections 'header-group' %}
+    {% sections 'footer-group' %}
+
+    {% # Render the main content %}
     {% sections 'header-group' %}
 
     {{ content_for_layout }}
