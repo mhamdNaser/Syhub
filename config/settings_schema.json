@@ -14,27 +14,27 @@
       {
         "type": "select",
         "id": "page_width",
-        "label": "t:layout.page_width",
+        "label": "t:settings.page_width",
         "options": [
-          {
-            "value": "max-w-screen-sm",
-            "label": "t:options.narrow"
-          },
-          {
-            "value": "max-w-screen-md",
-            "label": "t:options.normal"
-          },
-          {
-            "value": "max-w-screen-xl",
-            "label": "t:options.wide"
-          }
-        ],
-        "default": "max-w-screen-sm"
+        {
+          "value": "max-w-sm",
+          "label": "t:options.narrow"
+        },
+        {
+          "value": "max-w-md",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "max-w-7xl",
+          "label": "t:options.wide"
+        }
+      ],
+        "default": "max-w-7xl"
       }
     ]
   },
   {
-    "name": "t:animations.name",
+    "name": "t:general.animations",
     "settings": [
       {
         "type": "checkbox",

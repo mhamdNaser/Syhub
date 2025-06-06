@@ -11,6 +11,9 @@
     --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
     --breakpoint-xl: 80rem;
+    --container-sm: 24rem;
+    --container-md: 28rem;
+    --container-7xl: 80rem;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -199,6 +202,12 @@
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
+  .max-w-7xl {
+    max-width: var(--container-7xl);
+  }
+  .max-w-md {
+    max-width: var(--container-md);
+  }
   .max-w-screen-md {
     max-width: var(--breakpoint-md);
   }
@@ -207,6 +216,9 @@
   }
   .max-w-screen-xl {
     max-width: var(--breakpoint-xl);
+  }
+  .max-w-sm {
+    max-width: var(--container-sm);
   }
   .border-collapse {
     border-collapse: collapse;
