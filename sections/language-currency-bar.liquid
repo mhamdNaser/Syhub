@@ -5,7 +5,7 @@
         <a href="{{ section.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition">فيسبوك</a>
       {% endif %}
       {% if section.settings.instagram_url != blank %}
-        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition">تويتر</a>
+        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition">انستغرام</a>
       {% endif %}
     </div>
 
@@ -34,6 +34,7 @@
 {% schema %}
 {
   "name": "t:general.language_currency_bar",
+  "tag": "section",
   "class": "language-currency-bar",
   "settings": [
     {
@@ -46,12 +47,17 @@
     {
       "type": "url",
       "id": "facebook_url",
-      "label": "t:settings.facebook_url",
+      "label": "t:settings.facebook_url"
     },
     {
       "type": "url",
       "id": "instagram_url",
-      "label": "t:settings.instagram_url",
+      "label": "t:settings.instagram_url"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.language_currency_bar"
     }
   ]
 }
