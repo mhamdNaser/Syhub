@@ -1,0 +1,35 @@
+<div class="flex justify-end xl:w-fit w-1/2">
+  <ul class="flex items-center">
+    <li class="ml-2 lg:mx-4 relative inline-block">
+      <div class="relative">
+        <button class="p-0 m-0 flex items-center" id="language-toggle" type="button">
+          <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}</span>
+        </button>
+        <div
+          class="absolute {% if localization.language.iso_code != "en" %} left-0 lg:right-1/2 lg:transform lg:translate-x-1/2{% else %} right-0 lg:left-1/2 lg:transform lg:-translate-x-1/2{% endif %} mt-2 w-48 bg-white rounded shadow-lg z-10 hidden"
+          id="language-menu"
+        >
+          <ul class="py-1">
+            {% form 'localization', class: 'localization-form' %}
+              {% for language in localization.available_languages %}
+                <li>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
+                    href="{{ language.root_url }}"
+                    lang="{{ language.iso_code }}"
+                    data-value="{{ language.iso_code }}"
+                    {% if language.iso_code == localization.language.iso_code %}
+                      aria-current="true" class="active"
+                    {% endif %}
+                  >
+                    {{ language.endonym_name }}
+                  </a>
+                </li>
+              {% endfor %}
+            {% endform %}
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
