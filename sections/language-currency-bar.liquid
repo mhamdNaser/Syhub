@@ -5,27 +5,35 @@
         <a href="{{ section.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition">فيسبوك</a>
       {% endif %}
       {% if section.settings.instagram_url != blank %}
-        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition">انستغرام</a>
+        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition"
+          >انستغرام</a
+        >
       {% endif %}
     </div>
 
     <div class="flex flex-row items-center gap-2">
       {% form 'localization' %}
-        <select name="country_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
-          {% for country in form.available_countries %}
-            <option value="{{ country.iso_code }}" {% if country.iso_code == form.country.iso_code %}selected{% endif %}>
-              {{ country.name }}
-            </option>
-          {% endfor %}
-        </select>
+        <div class="flex items-center gap-2">
+          <select name="country_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
+            {% for country in form.available_countries %}
+              <option
+                value="{{ country.iso_code }}"
+                {% if country.iso_code == form.country.iso_code %}
+                  selected
+                {% endif %}
+              >
+                {{ country.name }}
+              </option>
+            {% endfor %}
+          </select>
 
-        {% render 'language-switcher' %}
+          {% render 'language-switcher' %}
+        </div>
       {% endform %}
     </div>
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
   </div>
 {% endif %}
-
 
 {% schema %}
 {
