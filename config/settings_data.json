@@ -16,7 +16,7 @@
     },
     "content_for_index": [
       {
-        "type": "image-banner",
+        "type": "hello-world",
         "settings": {
           "color_scheme": "scheme_1"
         }
