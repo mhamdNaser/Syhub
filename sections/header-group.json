@@ -10,30 +10,25 @@
 {
   "type": "header",
   "name": "t:general.header",
-  "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "settings": {
-        "text": "Welcome to our store!",
-        "bg_color": "#111827",
-        "text_color": "#ffffff"
-      }
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement_bar",
+      "label": "Show announcement bar",
+      "default": true
     },
-    "language-currency-bar": {
-      "type": "language-currency-bar",
-      "settings": {}
-    },
-    "main-header": {
-      "type": "header",
-      "settings": {
-        "menu": "menu"
-      }
+    {
+      "type": "checkbox",
+      "id": "show_language_currency_bar",
+      "label": "Show language and currency bar",
+      "default": true
     }
-  },
-  "order": [
-    "announcement-bar",
-    "language-currency-bar",
-    "header"
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Header Group",
+      "settings": {}
+    }
   ]
 }
-
