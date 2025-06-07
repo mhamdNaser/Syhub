@@ -1,4 +1,12 @@
 <header class="flex items-center justify-between h-20 px-6">
+  {%- if section.settings.show_announcement_bar -%}
+    {% section 'announcement-bar' %}
+  {%- endif -%}
+
+  {%- if section.settings.show_language_currency_bar -%}
+    {% section 'language-currency-bar' %}
+  {%- endif -%}
+
   <h2 class="text-xl font-semibold">
     {{ shop.name | link_to: routes.root_url }}
   </h2>
@@ -37,9 +45,23 @@
   "name": "t:general.header",
   "settings": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:settings.menu"
+      "type": "checkbox",
+      "id": "show_announcement_bar",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_language_currency_bar",
+      "label": "Show language and currency bar",
+      "default": true
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Header Group",
+      "settings": {}
     }
   ]
 }
