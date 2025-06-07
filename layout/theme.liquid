@@ -39,3 +39,23 @@
     {% sections 'footer-group' %}
   </body>
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('language-toggle');
+    const menu = document.getElementById('language-menu');
+
+    if (toggleButton && menu) {
+      toggleButton.addEventListener('click', function () {
+        menu.classList.toggle('hidden');
+      });
+
+      // إغلاق القائمة عند النقر خارجها
+      document.addEventListener('click', function (e) {
+        if (!menu.contains(e.target) && !toggleButton.contains(e.target)) {
+          menu.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
