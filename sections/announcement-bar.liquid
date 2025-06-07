@@ -1,23 +1,30 @@
-<div class="bg-gray-900 text-white text-sm py-2 text-center">
-  {{ section.settings.announcement_text }}
-</div>
+{% if section.settings.enable_announcement_bar %}
+  <div class="bg-gray-900 text-white text-sm py-2 text-center">
+    {{ section.settings.announcement_text }}
+  </div>
+{% endif %}
 
 {% schema %}
 {
   "name": "Announcement Bar",
+  "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "announcement_text",
-      "label": "t:settings.announcement_text",
-      "default": "Welcome to our store!"
+      "label": "Announcement Text",
+      "default": "t:settings.announcement_text"
     },
     {
       "type": "checkbox",
       "id": "enable_announcement_bar",
       "label": "t:settings.enable_announcement_bar",
-      "default": true,
-      "info": "t:settings.enable_announcement_bar_info"
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default"
     }
   ]
 }
