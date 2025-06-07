@@ -63,6 +63,8 @@
     "instagram_url": "Instagram URL",
     "pinterest_url": "Pinterest URL",
     "announcement_text": "Announcement text",
+    "enable_language_currency_bar": "Enable language and currency bar",
+    "enable_announcement_bar": "Enable announcement bar",
   },
   "options": {
     "narrow": "Narrow",
@@ -77,6 +79,8 @@
   "info": {
     "hover_effects": "Hover effects",
     "inverse_logo_info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds.",
+    "enable_language_currency_bar_info": "This will display a bar at the top of the page allowing users to select their preferred language and currency.",
+    "enable_announcement_bar_info": "This will display a bar at the top of the page for announcements or important messages.",
   },
   "names": {
     "section": "Section"
