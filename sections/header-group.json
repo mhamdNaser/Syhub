@@ -45,14 +45,6 @@
       ]
     }
   ],
-  "locales": {
-    "en": {
-      "name": "Header"
-    },
-    "ar": {
-      "name": "الرأس"
-    }
-  },
   "schema": {
     "name": "t:general.header",
     "settings": [
