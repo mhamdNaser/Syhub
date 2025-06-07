@@ -24,16 +24,16 @@
       "settings": {}
     },
     "main-header": {
-      "type": "main-header",
+      "type": "header",
       "settings": {
-        "menu": "main-menu"
+        "menu": "menu"
       }
     }
   },
   "order": [
     "announcement-bar",
     "language-currency-bar",
-    "main-header"
+    "header"
   ]
 }
 
