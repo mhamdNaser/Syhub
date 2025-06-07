@@ -11,25 +11,26 @@
 
     <div class="flex items-center gap-2">
       {% form 'localization' %}
-        <select name="country_code" class="mr-2 px-2 py-1 rounded">
+        <select name="country_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
           {% for country in form.available_countries %}
             <option value="{{ country.iso_code }}" {% if country.iso_code == form.country.iso_code %}selected{% endif %}>
               {{ country.name }}
             </option>
           {% endfor %}
         </select>
-        <select name="locale_code" class="mr-2 px-2 py-1 rounded">
+
+        <select name="locale_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
           {% for locale in form.available_locales %}
             <option value="{{ locale.iso_code }}" {% if locale.iso_code == form.locale.iso_code %}selected{% endif %}>
               {{ locale.endonym_name }}
             </option>
           {% endfor %}
         </select>
-        <button type="submit" class="ml-2 px-2 py-1 bg-gray-300 rounded hover:bg-gray-400">تطبيق</button>
       {% endform %}
     </div>
   </div>
 {% endif %}
+
 
 {% schema %}
 {
