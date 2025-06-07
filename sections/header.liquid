@@ -1,43 +1,64 @@
-<header class="flex items-center justify-between h-20 px-6">
-  {%- if section.settings.show_announcement_bar -%}
-    {% section 'announcement-bar' %}
-  {%- endif -%}
+<header class="flex flex-col w-full">
 
-  {%- if section.settings.show_language_currency_bar -%}
-    {% section 'language-currency-bar' %}
-  {%- endif -%}
-
-  <h2 class="text-xl font-semibold">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-
-  <nav class="hidden md:flex gap-6">
-    {%- for link in section.settings.menu.links -%}
-      <a href="{{ link.url }}" class="hover:text-primary-600 transition">
-        {{ link.title }}
-      </a>
-    {%- endfor -%}
-  </nav>
-
-  <div class="flex items-center gap-4">
-    {%- if shop.customer_accounts_enabled -%}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {%- endif -%}
-
-    <a href="{{ routes.cart_url }}" class="relative">
-      {{ 'icon-cart.svg' | inline_asset_content }}
-      {%- if cart.item_count > 0 -%}
-        <span
-          class="
-            absolute -top-1 -right-3 inline-flex items-center justify-center
-            rounded-full bg-primary-600 text-white text-xs px-1 leading-none
-          "
-        >
-          {{ cart.item_count }}
-        </span>
-      {%- endif -%}
-    </a>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar bg-blue-600 text-white text-center py-2 text-sm">
+    {% if section.settings.announcement_text != blank %}
+      {{ section.settings.announcement_text }}
+    {% else %}
+      Free shipping on orders over $50!
+    {% endif %}
   </div>
+
+  <!-- Top Bar: Language & Currency Right, Social Links Left -->
+  <div class="top-bar flex justify-between items-center bg-gray-100 py-2 px-4 text-sm">
+    <div class="social-links flex space-x-4">
+      <!-- Example social links, يمكن تعديل حسب حاجتك -->
+      <a href="#" class="hover:text-blue-600">Facebook</a>
+      <a href="#" class="hover:text-blue-600">Twitter</a>
+      <a href="#" class="hover:text-blue-600">Instagram</a>
+    </div>
+
+    <div class="language-currency flex space-x-4">
+      <!-- مثال للعملة واللغة -->
+      <select class="border rounded px-2 py-1 text-sm">
+        <option>USD</option>
+        <option>EUR</option>
+      </select>
+      <select class="border rounded px-2 py-1 text-sm">
+        <option>English</option>
+        <option>العربية</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <div class="main-header flex justify-between items-center py-4 px-6">
+    <h2 class="header__title text-2xl font-bold">
+      {{ shop.name | link_to: routes.root_url }}
+    </h2>
+
+    <nav class="header__menu flex space-x-6">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}" class="hover:text-blue-600">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="header__icons flex items-center space-x-4">
+      {% if shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}">
+          {{ 'icon-account.svg' | inline_asset_content }}
+        </a>
+      {% endif %}
+
+      <a href="{{ routes.cart_url }}" class="relative">
+        {% if cart.item_count > 0 %}
+          <sup class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">{{ cart.item_count }}</sup>
+        {% endif %}
+        {{ 'icon-cart.svg' | inline_asset_content }}
+      </a>
+    </div>
+  </div>
+
 </header>
 
 {% schema %}
@@ -47,7 +68,7 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:settings.menu"
+      "label": "Main Menu"
     }
   ]
 }
