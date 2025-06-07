@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}">
   <head>
-
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -9,22 +8,25 @@
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
       >
     {%- endif -%}
-    
+
     {% # Load and preload the critical CSS %}
     {{ 'app.css' | asset_url | stylesheet_tag: preload: true }}
 
     {% # Social, title, etc. %}
+    {% render 'color-schemes' %}
     {% render 'meta-tags' %}
 
     {{ content_for_header }}
   </head>
 
-  <body class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto"
-  style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px">
-
+  <body
+    class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto"
+    style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
+  >
     {% # Load the header and footer sections %}
-    {% sections 'header-group' %}
-    {% sections 'footer-group' %}
+    <div id="header-group">
+      {% sections 'header-group' %}
+    </div>
 
     {% # Render the main content %}
     {% sections 'header-group' %}
