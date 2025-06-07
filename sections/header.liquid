@@ -1,36 +1,5 @@
 <header class="flex flex-col w-full">
 
-  <!-- Announcement Bar -->
-  <div class="announcement-bar bg-blue-600 text-white text-center py-2 text-sm">
-    {% if section.settings.announcement_text != blank %}
-      {{ section.settings.announcement_text }}
-    {% else %}
-      Free shipping on orders over $50!
-    {% endif %}
-  </div>
-
-  <!-- Top Bar: Language & Currency Right, Social Links Left -->
-  <div class="top-bar flex justify-between items-center bg-gray-100 py-2 px-4 text-sm">
-    <div class="social-links flex space-x-4">
-      <!-- Example social links, يمكن تعديل حسب حاجتك -->
-      <a href="#" class="hover:text-blue-600">Facebook</a>
-      <a href="#" class="hover:text-blue-600">Twitter</a>
-      <a href="#" class="hover:text-blue-600">Instagram</a>
-    </div>
-
-    <div class="language-currency flex space-x-4">
-      <!-- مثال للعملة واللغة -->
-      <select class="border rounded px-2 py-1 text-sm">
-        <option>USD</option>
-        <option>EUR</option>
-      </select>
-      <select class="border rounded px-2 py-1 text-sm">
-        <option>English</option>
-        <option>العربية</option>
-      </select>
-    </div>
-  </div>
-
   <!-- Main Header -->
   <div class="main-header flex justify-between items-center py-4 px-6">
     <h2 class="header__title text-2xl font-bold">
