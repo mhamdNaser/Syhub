@@ -66,29 +66,6 @@
     "announcement_text": "Announcement text",
     "enable_language_currency_bar": "Enable language and currency bar",
     "enable_announcement_bar": "Enable announcement bar",
-    "colors": {
-      "background": {
-        "label": "Background"
-      },
-      "background_gradient": {
-        "label": "Background gradient"
-      },
-      "text": {
-        "label": "Text"
-      },
-      "button_background": {
-        "label": "Primary button"
-      },
-      "button_label": {
-        "label": "Primary button label"
-      },
-      "secondary_button_label": {
-        "label": "Secondary button label"
-      },
-      "shadow": {
-        "label": "Shadow"
-      }
-    }
   },
   "options": {
     "narrow": "Narrow",
@@ -109,4 +86,32 @@
   "names": {
     "section": "Section"
   },
+  "settings_schema": {
+    "colors": {
+      "names": "Colors",
+      "settings": {
+        "background": {
+          "label": "Background"
+        },
+        "background_gradient": {
+          "label": "Background gradient"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "button_background": {
+          "label": "Primary button"
+        },
+        "button_label": {
+          "label": "Primary button label"
+        },
+        "secondary_button_label": {
+          "label": "Secondary button label"
+        },
+        "shadow": {
+          "label": "Shadow"
+        }
+      }
+    }
+  }
 }
