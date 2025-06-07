@@ -9,16 +9,12 @@
  */
 {
   "sections": {
-    "header": {
-      "type": "header-group"
-    },
     "main": {
       "type": "hello-world",
       "settings": {}
     }
   },
   "order": [
-    "header",
     "main"
   ]
 }
