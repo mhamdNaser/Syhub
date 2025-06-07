@@ -1,1 +1,19 @@
-{"current":{"page_width":"max-w-7xl","page_padding_horizontal":36,"max_page_width":"90rem","content_for_index":[]}}
+{
+    "current": {
+        "page_width": "max-w-7xl",
+        "page_padding_horizontal": 36,
+        "max_page_width": "90rem",
+        "color_schemes": {
+            "scheme_1": {
+                "background": "#FFFFFF",
+                "background_gradient": "",
+                "text": "#121212",
+                "button": "#121212",
+                "button_label": "#FFFFFF",
+                "secondary_button_label": "#121212",
+                "shadow": "#121212"
+            }
+        },
+        "content_for_index": []
+    }
+}

@@ -186,7 +186,8 @@
           "secondary_button_border": "secondary_button_label"
         }
       }
-    ]
+    ],
+    "theme_editor_section": "colors"
   },
   // end layout and animations
 ]
