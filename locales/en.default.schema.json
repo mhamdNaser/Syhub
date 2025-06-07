@@ -86,4 +86,41 @@
   "names": {
     "section": "Section"
   },
+  "settings_schema": {
+    "colors": {
+      "names": "Colors",
+      "settings": {
+        "colors": {
+          "background": {
+            "label": "Background"
+          },
+          "background_gradient": {
+            "label": "Background gradient"
+          },
+          "text": {
+            "label": "Text"
+          },
+          "button_background": {
+            "label": "Primary button"
+          },
+          "button_label": {
+            "label": "Primary button label"
+          },
+          "secondary_button_label": {
+            "label": "Secondary button label"
+          },
+          "shadow": {
+            "label": "Shadow"
+          }
+        }
+      },
+      "info": {
+        "colors": {
+          "background_gradient": {
+            "info": "Used as background gradient if defined, otherwise fallback to solid background color."
+          }
+        }
+      }
+    }
+  }
 }
