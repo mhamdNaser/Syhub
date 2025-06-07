@@ -11,61 +11,12 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "settings": {
-        "text": "Welcome to our store!",
-        "bg_color": "#111827",
-        "text_color": "#ffffff"
-      }
-    },
-    "language-currency-bar": {
-      "type": "language-currency-bar",
-      "settings": {}
-    },
-    "main-header": {
+    "header": {
       "type": "header",
-      "settings": {
-        "menu": "menu"
-      }
+      "settings": {}
     }
   },
   "order": [
-    "announcement-bar",
-    "language-currency-bar",
-    "main-header"
+    "header"
   ],
-  "presets": [
-    {
-      "name": "t:general.header",
-      "blocks": [
-        {
-          "type": "@app"
-        }
-      ]
-    }
-  ],
-  "schema": {
-    "name": "t:general.header",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable_announcement_bar",
-        "label": "Enable Announcement Bar",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_language_currency_bar",
-        "label": "Enable Language & Currency Bar",
-        "default": true
-      },
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "Main Navigation Menu",
-        "default": "main-menu"
-      }
-    ]
-  }
 }
