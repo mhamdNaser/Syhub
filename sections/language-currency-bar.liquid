@@ -14,7 +14,7 @@
     <div class="flex flex-row items-center gap-2">
       {% form 'localization' %}
         <div class="flex items-center gap-2">
-          <select name="country_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
+          <select name="country_code" class="mr-2 px-2 py-1 rounded w-1/4" onchange="this.form.submit()">
             {% for country in form.available_countries %}
               <option
                 value="{{ country.iso_code }}"
