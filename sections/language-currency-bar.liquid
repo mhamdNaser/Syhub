@@ -5,9 +5,7 @@
         <a href="{{ section.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition">فيسبوك</a>
       {% endif %}
       {% if section.settings.instagram_url != blank %}
-        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition"
-          >انستغرام</a
-        >
+        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition">انستغرام</a>
       {% endif %}
     </div>
 
@@ -15,24 +13,18 @@
       {% form 'localization' %}
         <select name="country_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
           {% for country in form.available_countries %}
-            <option
-              value="{{ country.iso_code }}"
-              {% if country.iso_code == form.country.iso_code %}
-                selected
-              {% endif %}
-            >
+            <option value="{{ country.iso_code }}" {% if country.iso_code == form.country.iso_code %}selected{% endif %}>
               {{ country.name }}
             </option>
           {% endfor %}
         </select>
 
-        <select name="locale_code" class="mr-2 px-2 py-1 rounded" onchange="this.form.submit()">
-          {% render 'language-switcher' %}
-        </select>
+        {% render 'language-switcher' %}
       {% endform %}
     </div>
   </div>
 {% endif %}
+
 
 {% schema %}
 {
