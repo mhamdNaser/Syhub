@@ -45,6 +45,7 @@
     "animations": "Animation",
     "page_layout": "Page layout",
     "logo_and_favicon": "Logo and favicon",
+    "language_currency_bar": "Language and Currency Bar",
   },
   "settings": {
     "page_width": "Page width",
@@ -56,6 +57,12 @@
     "default_logo": "Default logo",
     "inverse_logo": "Inverse logo",
     "favicon": "Favicon",
+    "menu": "Menu",
+    "facebook_url": "Facebook URL",
+    "twitter_url": "Twitter URL",
+    "instagram_url": "Instagram URL",
+    "pinterest_url": "Pinterest URL",
+    "announcement_text": "Announcement text",
   },
   "options": {
     "narrow": "Narrow",

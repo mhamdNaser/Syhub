@@ -1,0 +1,17 @@
+<div class="bg-gray-900 text-white text-sm py-2 text-center">
+  {{ section.settings.announcement_text }}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "t:settings.announcement_text",
+      "default": "Welcome to our store!"
+    }
+  ]
+}
+{% endschema %}

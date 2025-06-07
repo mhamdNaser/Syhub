@@ -11,12 +11,29 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "header": {
-      "type": "header",
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "text": "Welcome to our store!",
+        "bg_color": "#111827",
+        "text_color": "#ffffff"
+      }
+    },
+    "language-currency-bar": {
+      "type": "language-currency-bar",
       "settings": {}
+    },
+    "main-header": {
+      "type": "main-header",
+      "settings": {
+        "menu": "main-menu"
+      }
     }
   },
   "order": [
-    "header"
-  ],
+    "announcement-bar",
+    "language-currency-bar",
+    "main-header"
+  ]
 }
+

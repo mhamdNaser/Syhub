@@ -1,19 +1,13 @@
 <div class="bg-gray-100 text-sm py-2 px-4 flex justify-between items-center text-gray-700">
-  <!-- Social links (left) -->
   <div class="flex items-center gap-4">
-    {% if settings.facebook_url != blank %}
-      <a href="{{ settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition">
-        <i class="fab fa-facebook"></i> Facebook
-      </a>
+    {% if section.settings.facebook_url != blank %}
+      <a href="{{ section.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition">Facebook</a>
     {% endif %}
-    {% if settings.twitter_url != blank %}
-      <a href="{{ settings.twitter_url }}" target="_blank" class="hover:text-blue-400 transition">
-        <i class="fab fa-twitter"></i> Twitter
-      </a>
+    {% if section.settings.instagram_url != blank %}
+      <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition">Twitter</a>
     {% endif %}
   </div>
 
-  <!-- Language & Currency (right) -->
   <div class="flex items-center gap-2">
     {% form 'localization' %}
       <select name="country_code" class="mr-2 px-2 py-1 rounded">
@@ -34,3 +28,22 @@
     {% endform %}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "t:general.language_currency_bar",
+  "class": "language-currency-bar",
+  "settings": [
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "t:settings.facebook_url",
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "t:settings.instagram_url",
+    }
+  ]
+}
+{% endschema %}
