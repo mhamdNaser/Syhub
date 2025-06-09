@@ -16,7 +16,7 @@
         <div class="flex items-center gap-2">
           {% render 'language-switcher' %}
 
-          <select name="country_code" class="mr-2 px-2 py-1 rounded max-w-fit outline-gray-300" onchange="this.form.submit()">
+          <select name="country_code" class="mr-2 px-2 py-1 rounded max-w-fit border-gray-300" onchange="this.form.submit()">
             {% for country in form.available_countries %}
               <option
                 value="{{ country.iso_code }}"
