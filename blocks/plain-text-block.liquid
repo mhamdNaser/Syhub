@@ -1,20 +1,20 @@
-{% assign scheme = block.settings.color_scheme.settings %}
+{% assign scheme = settings.color_schemes[block.settings.color_scheme].settings %}
 
-<div class="text-{{ block.settings.alignment }} py-2"
+<p
+  class="text-center"
   style="
-    background-color: {{ scheme.background }};
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    font-style: {{ block.settings.font_style }};
     color: {{ scheme.text }};
+    background-color: {{ scheme.background }};
     box-shadow: 0 2px 4px {{ scheme.shadow }};
+    margin: 0;
+    padding: 0.5rem 1rem;
   "
 >
-  <p class="
-    {% if block.settings.font_weight == 'bold' %}font-bold{% elsif block.settings.font_weight == 'light' %}font-light{% else %}font-normal{% endif %}
-    {% if block.settings.font_style == 'italic' %}italic{% endif %}
-    text-[{{ block.settings.font_size }}px]
-  ">
-    {{ block.settings.text | escape }}
-  </p>
-</div>
+  {{ block.settings.text }}
+</p>
 
 {% schema %}
 {
@@ -24,12 +24,12 @@
       "type": "text",
       "id": "text",
       "label": "Text",
-      "default": "This is a plain text block."
+      "default": "This is plain text."
     },
     {
       "type": "range",
       "id": "font_size",
-      "label": "Font Size",
+      "label": "Font Size (px)",
       "default": 16,
       "min": 12,
       "max": 48,
@@ -43,7 +43,7 @@
       "options": [
         { "value": "normal", "label": "Normal" },
         { "value": "bold", "label": "Bold" },
-        { "value": "light", "label": "Light" }
+        { "value": "lighter", "label": "Light" }
       ]
     },
     {
@@ -55,12 +55,6 @@
         { "value": "normal", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
       ]
-    },
-    {
-      "type": "text_alignment",
-      "id": "alignment",
-      "label": "Alignment",
-      "default": "center"
     },
     {
       "type": "color_scheme",
