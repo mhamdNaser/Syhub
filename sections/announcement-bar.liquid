@@ -1,12 +1,32 @@
+{% comment %}
+  Announcement Bar Section
+  This section allows for the display of an announcement bar with customizable blocks.
+{% endcomment %}
+
 {% if section.settings.enable_announcement_bar %}
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'plain-text-block' %}
-        {% render 'plain-text-block', block: block %}
-      {% when 'rich-text-block' %}
-        {% render 'rich-text-block', block: block %}
-    {% endcase %}
-  {% endfor %}
+  <div class="announcement-bar">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'plain-text-block' %}
+          {% assign scheme = block.settings.color_scheme.settings %}
+          <p
+            style="
+              color: {{ scheme.text }};
+              font-size: {{ block.settings.font_size }}px;
+              font-weight: {{ block.settings.font_weight }};
+              font-style: {{ block.settings.font_style }};
+            "
+          >
+            {{ block.settings.text }}
+          </p>
+        {% when 'rich-text-block' %}
+          {% assign scheme = block.settings.color_scheme.settings %}
+          <div style="color: {{ scheme.text }};">
+            {{ block.settings.rich_text }}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
 {% endif %}
 
 {% schema %}
@@ -14,34 +34,13 @@
   "name": "Announcement Bar",
   "tag": "section",
   "max_blocks": 10,
-  "settings": [
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
-    }
-  ],
   "blocks": [
     {
       "type": "plain-text-block",
       "name": "Plain Text Block",
       "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "This is a plain text block."
-        },
-        {
-          "type": "range",
-          "id": "font_size",
-          "label": "Font Size",
-          "default": 16,
-          "min": 12,
-          "max": 48,
-          "step": 1
-        },
+        { "type": "text", "id": "text", "label": "Text", "default": "This is plain text." },
+        { "type": "range", "id": "font_size", "label": "Font Size", "default": 16, "min": 12, "max": 48, "step": 1 },
         {
           "type": "select",
           "id": "font_weight",
@@ -63,41 +62,22 @@
             { "value": "italic", "label": "Italic" }
           ]
         },
-        {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "Color Scheme",
-          "default": "scheme-1"
-        }
+        { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" }
       ]
     },
     {
       "type": "rich-text-block",
       "name": "Rich Text Block",
       "settings": [
-        {
-          "type": "richtext",
-          "id": "rich_text",
-          "label": "Rich Text",
-          "default": "<p>This is a rich text block.</p>"
-        },
-        {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "Color Scheme",
-          "default": "scheme-1"
-        }
+        { "type": "richtext", "id": "rich_text", "label": "Rich Text", "default": "<p>This is rich text.</p>" },
+        { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Announcement Bar",
-      "category": "Announcement",
-      "blocks": [
-        { "type": "plain-text-block" },
-        { "type": "rich-text-block" }
-      ]
+      "name": "Default",
+      "blocks": [{ "type": "plain-text-block" }, { "type": "rich-text-block" }]
     }
   ]
 }
