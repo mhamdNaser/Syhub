@@ -2,12 +2,23 @@
   <div class="bg-gray-100 text-sm max-w-7xl mx-auto flex justify-between text-gray-700 py-4">
     <div class="flex items-center gap-4">
       {% if section.settings.facebook_url != blank %}
-        <a href="{{ section.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition">فيسبوك</a>
-      {% endif %}
-      {% if section.settings.instagram_url != blank %}
-        <a href="{{ section.settings.instagram_url }}" target="_blank" class="hover:text-blue-400 transition"
-          >انستغرام</a
+        <a
+          href="{{ section.settings.facebook_url }}"
+          target="_blank"
+          class="hover:text-blue-600 transition inline-block w-6 h-6"
         >
+          {{ 'facebook.svg' | asset_url | file_url  }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.instagram_url != blank %}
+        <a
+          href="{{ section.settings.instagram_url }}"
+          target="_blank"
+          class="hover:text-pink-500 transition inline-block w-6 h-6"
+        >
+          {{ 'instagram.svg' | asset_url | file_url }}
+        </a>
       {% endif %}
     </div>
 
@@ -16,7 +27,11 @@
         <div class="flex items-center gap-2">
           {% render 'language-switcher' %}
 
-          <select name="country_code" class="mr-2 px-2 py-1 rounded max-w-fit border border-gray-300" onchange="this.form.submit()">
+          <select
+            name="country_code"
+            class="mr-2 px-2 py-1 rounded max-w-fit border border-gray-300"
+            onchange="this.form.submit()"
+          >
             {% for country in form.available_countries %}
               <option
                 value="{{ country.iso_code }}"
