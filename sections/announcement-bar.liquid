@@ -1,7 +1,13 @@
-{% for block in section.blocks %}
-  {% render block.type, block: block %}
-{% endfor %}
-
+{% if section.settings.enable_announcement_bar %}
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'plain-text-block' %}
+        {% render 'plain-text-block', block: block %}
+      {% when 'rich-text-block' %}
+        {% render 'rich-text-block', block: block %}
+    {% endcase %}
+  {% endfor %}
+{% endif %}
 
 {% schema %}
 {
