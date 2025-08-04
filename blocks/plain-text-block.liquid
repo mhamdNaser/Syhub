@@ -1,15 +1,11 @@
-{% assign scheme = settings.color_schemes[block.settings.color_scheme].settings %}
-
 <p
-  class="text-center"
   style="
     font-size: {{ block.settings.font_size }}px;
     font-weight: {{ block.settings.font_weight }};
     font-style: {{ block.settings.font_style }};
-    color: {{ scheme.text }};
     margin: 0;
-    padding: 0.5rem 1rem;
   "
+  class="color-{{ section.settings.color_scheme }}"
 >
   {{ block.settings.text }}
 </p>
@@ -22,12 +18,12 @@
       "type": "text",
       "id": "text",
       "label": "Text",
-      "default": "This is plain text."
+      "default": "This is a plain text block."
     },
     {
       "type": "range",
       "id": "font_size",
-      "label": "Font Size (px)",
+      "label": "Font Size",
       "default": 16,
       "min": 12,
       "max": 48,
@@ -53,12 +49,6 @@
         { "value": "normal", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
       ]
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
     }
   ]
 }
