@@ -1,9 +1,9 @@
 {
     "version": "1.0",
     "name": "Syhub",
-    "settings": {
+    "Default": {
         "logo_width": 70,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-6",
         "page_width": "max-w-7xl",
         "page_padding_horizontal": 36,
         "max_page_width": "90rem",
@@ -76,7 +76,8 @@
                 "shadow": "#bcb7b4"
             }
         }
-    }
+    },
+    
 }
 // {
 //     "current": "Default",
