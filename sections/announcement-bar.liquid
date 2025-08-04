@@ -10,11 +10,41 @@
   "blocks": [
     {
       "type": "plain-text-block",
-      "name": "Plain Text Block"
+      "name": "Plain Text Block",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "This is plain text." },
+        { "type": "range", "id": "font_size", "label": "Font Size", "default": 16, "min": 12, "max": 48, "step": 1 },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "default": "normal",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "lighter", "label": "Light" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "font_style",
+          "label": "Font Style",
+          "default": "normal",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" }
+          ]
+        },
+        { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" }
+      ]
     },
     {
       "type": "rich-text-block",
-      "name": "Rich Text Block"
+      "name": "Rich Text Block",
+      "settings": [
+        { "type": "richtext", "id": "rich_text", "label": "Rich Text", "default": "<p>This is rich text.</p>" },
+        { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" }
+      ]
     }
   ],
   "presets": [
