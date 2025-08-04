@@ -1,3 +1,10 @@
+{% doc %}
+  Renders a text block.
+
+  @example
+  {% content_for 'block', type: 'text', id: 'text' %}
+{% enddoc %}
+
 <p
   style="
     font-size: {{ block.settings.font_size }}px;
@@ -6,6 +13,7 @@
     margin: 0;
     color: {{ settings.color_schemes[block.settings.color_scheme].settings.text }};
   "
+  {{ block.shopify_attributes }}
 >
   {{ block.settings.text }}
 </p>
@@ -16,10 +24,19 @@
   "settings": [
     { "type": "text", "id": "text", "label": "Text", "default": "Plain text block" },
     {
-      "type": "range", "id": "font_size", "label": "Font Size", "min": 12, "max": 48, "step": 1, "default": 16
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "default": 16
     },
     {
-      "type": "select", "id": "font_weight", "label": "Font Weight", "default": "normal",
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "default": "normal",
       "options": [
         { "value": "normal", "label": "Normal" },
         { "value": "bold", "label": "Bold" },
@@ -27,14 +44,33 @@
       ]
     },
     {
-      "type": "select", "id": "font_style", "label": "Font Style", "default": "normal",
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "default": "normal",
       "options": [
         { "value": "normal", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
       ]
     },
     {
-      "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plain Text Block",
+      "category": "Text",
+      "settings": {
+        "text": "This is a plain text block.",
+        "font_size": 16,
+        "font_weight": "normal",
+        "font_style": "normal",
+        "color_scheme": "scheme-1"
+      }
     }
   ]
 }

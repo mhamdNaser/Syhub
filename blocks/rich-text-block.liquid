@@ -1,5 +1,13 @@
+{% doc %}
+  Renders a text block.
+
+  @example
+  {% content_for 'block', type: 'text', id: 'rich_text' %}
+{% enddoc %}
+
 <div
-  style="color: {{ settings.color_schemes[block.settings.color_scheme].settings.text }};"
+  style="    color: {{ settings.color_schemes[block.settings.color_scheme].settings.text }};"
+  {{ block.shopify_attributes }}
 >
   {{ block.settings.rich_text }}
 </div>
@@ -19,6 +27,15 @@
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text Block",
+      "category": "Text",
+      "settings": {
+        "rich_text": "<p>This is a rich text block.</p>"
+      }
     }
   ]
 }
