@@ -7,7 +7,7 @@
           target="_blank"
           class="hover:text-blue-600 transition inline-block w-6 h-6"
         >
-          {{ 'facebook.svg' | asset_url | file_url  }}
+          {% render 'icon-facebook'  %}
         </a>
       {% endif %}
 
@@ -17,7 +17,7 @@
           target="_blank"
           class="hover:text-pink-500 transition inline-block w-6 h-6"
         >
-          {{ 'instagram.svg' | asset_url | file_url }}
+          {% render 'icon-instagram' %}
         </a>
       {% endif %}
     </div>
