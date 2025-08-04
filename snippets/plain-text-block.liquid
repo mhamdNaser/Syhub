@@ -1,0 +1,9 @@
+{% assign scheme = block.settings.color_scheme.settings %}
+<p style="
+  color: {{ scheme.text }};
+  font-size: {{ block.settings.font_size }}px;
+  font-weight: {{ block.settings.font_weight }};
+  font-style: {{ block.settings.font_style }};
+">
+  {{ block.settings.text }}
+</p>
