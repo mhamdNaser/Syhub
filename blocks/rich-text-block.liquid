@@ -1,4 +1,6 @@
-<div class="prose color-{{ section.settings.color_scheme }}">
+<div
+  style="color: {{ settings.color_schemes[block.settings.color_scheme].settings.text }};"
+>
   {{ block.settings.rich_text }}
 </div>
 
@@ -11,6 +13,12 @@
       "id": "rich_text",
       "label": "Rich Text",
       "default": "<p>This is a rich text block.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
     }
   ]
 }
