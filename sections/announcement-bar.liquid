@@ -1,60 +1,27 @@
-{% if section.blocks.size > 0 %}
-  {% assign scheme = section.settings.color_scheme.settings %}
-
-  {% for block in section.blocks %}
-    {% if block.type == "announcement_text" %}
-      <div
-        class="text-sm py-2 text-center"
-        style="
-          background-color: {{ scheme.background }};
-          color: {{ scheme.text }};
-          box-shadow: 0 2px 4px {{ scheme.shadow }};
-        "
-      >
-        {{ block.settings.text }}
-      </div>
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
+{% for block in section.blocks %}
+  {% render block %}
+{% endfor %}
 
 {% schema %}
 {
   "name": "Announcement Bar",
   "tag": "section",
-  "max_blocks": 3,
-  "settings": [
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
-    }
-  ],
+  "max_blocks": 10,
   "blocks": [
     {
-      "type": "announcement_text",
-      "name": "Announcement Text",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Welcome to our store!</p>"
-        }
-      ]
+      "type": "plain-text-block",
+      "name": "Plain Text Block"
+    },
+    {
+      "type": "rich-text-block",
+      "name": "Rich Text Block"
     }
   ],
   "presets": [
     {
       "name": "Default",
-      "blocks": [
-        {
-          "type": "announcement_text"
-        }
-      ]
+      "blocks": [{ "type": "plain-text-block" }, { "type": "rich-text-block" }]
     }
   ]
 }
 {% endschema %}
-
