@@ -1,3 +1,4 @@
+{% assign scheme = settings.color_schemes[block.settings.color_scheme].settings %}
 
 <p
   class="text-center"
@@ -5,6 +6,7 @@
     font-size: {{ block.settings.font_size }}px;
     font-weight: {{ block.settings.font_weight }};
     font-style: {{ block.settings.font_style }};
+    color: {{ scheme.text }};
     margin: 0;
     padding: 0.5rem 1rem;
   "
