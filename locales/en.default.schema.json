@@ -64,6 +64,8 @@
     "instagram_url": "Instagram URL",
     "pinterest_url": "Pinterest URL",
     "announcement_text": "Announcement text",
+    "announcement_text_rich": "Announcement text (rich text)",
+    "announcement_text_rich_enabled": "Enable rich text for announcement",
     "enable_language_currency_bar": "Enable language and currency bar",
     "enable_announcement_bar": "Enable announcement bar",
   },
