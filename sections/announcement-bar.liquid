@@ -1,4 +1,4 @@
-{% if  section.settings.announcement_text_rich_enabled == true %}
+{% if section.settings.announcement_text_rich_enabled == true %}
   {% assign announcement_text = section.settings.announcement_text_rich %}
 {% else %}
   {% assign announcement_text = section.settings.announcement_text %}
@@ -19,9 +19,10 @@
       box-shadow: 0 2px 4px {{ scheme.shadow }};
     "
   >
-    {{ section.settings.announcement_text }}
+    {{ announcement_text }}
   </div>
 {% endif %}
+
 
 {% schema %}
 {
@@ -29,6 +30,12 @@
   "tag": "section",
   "limit": 1,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_announcement_bar",
+      "label": "t:settings.enable_announcement_bar",
+      "default": true
+    },
     {
       "type": "text",
       "id": "announcement_text",
@@ -49,12 +56,6 @@
       "label": "Announcement Text (Rich Text)",
       "default": "<p>t:settings.announcement_text</p>",
       "info": "Use this field for rich text formatting."
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_announcement_bar",
-      "label": "t:settings.enable_announcement_bar",
-      "default": true
     },
     {
       "type": "color_scheme",
