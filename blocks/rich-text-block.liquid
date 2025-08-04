@@ -1,11 +1,7 @@
-{% assign scheme = settings.color_schemes[block.settings.color_scheme].settings %}
 
 <div
   class="rte text-center"
   style="
-    color: {{ scheme.text }};
-    background-color: {{ scheme.background }};
-    box-shadow: 0 2px 4px {{ scheme.shadow }};
     padding: 0.5rem 1rem;
   "
 >
@@ -21,12 +17,6 @@
       "id": "rich_text",
       "label": "Rich Text",
       "default": "<p>This is a <strong>rich</strong> text block.</p>"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
     }
   ]
 }
