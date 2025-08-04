@@ -2,16 +2,6 @@
   {% render block.type, block: block %}
 {% endfor %}
 
-{% if section.settings.enable_announcement_bar %}
-  <div class="announcement-bar" style="background-color: {{ section.settings.background }};">
-    {% if section.settings.text %}
-      <p style="color: {{ section.settings.text }};">{{ section.settings.text }}</p>
-    {% endif %}
-    {% if section.settings.rich_text_enabled %}
-      <div class="rich-text-content">{{ section.settings.rich_text_content }}</div>
-    {% endif %}
-  </div>
-{% endif %}
 
 {% schema %}
 {
@@ -60,7 +50,7 @@
   ],
   "presets": [
     {
-      "name": "Default",
+      "name": "Announcement Bar",
       "blocks": [{ "type": "plain-text-block" }, { "type": "rich-text-block" }]
     }
   ]
