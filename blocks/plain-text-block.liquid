@@ -1,8 +1,30 @@
-<p style="
-  font-size: {{ block.settings.font_size | default: 16 }}px;
-  font-weight: {{ block.settings.font_weight | default: 'normal' }};
-  font-style: {{ block.settings.font_style | default: 'normal' }};
-  margin: 0;
-">
+<div class="text-block text-{{ block.settings.alignment }}">
   {{ block.settings.text }}
-</p>
+</div>
+
+{% schema %}
+{
+  "name": "Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Alignment"
+    },
+  ],
+  "presets": [
+    { "name": "Text" },
+    {
+      "name": "Content",
+      "settings": {
+        "text": "<p>Hello, world!</p>"
+      }
+    }
+  ]
+}
+{% endschema %}
