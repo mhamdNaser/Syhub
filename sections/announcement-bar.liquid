@@ -1,14 +1,6 @@
 {% if section.settings.enable_announcement_bar %}
-  <div
-    style="
-      background-color: {{ settings.color_schemes[section.settings.color_scheme].settings.background }};
-      color: {{ settings.color_schemes[section.settings.color_scheme].settings.text }};
-      box-shadow: 0 2px 4px {{ settings.color_schemes[section.settings.color_scheme].settings.shadow }};
-    "
-  >
-    {% for block in section.blocks %}
-      {% render block %}
-    {% endfor %}
+  <div class="announcement-bar color-{{ section.settings.color_scheme }} py-2 text-center text-sm">
+    {% content_for 'blocks' %}
   </div>
 {% endif %}
 
@@ -16,6 +8,7 @@
 {
   "name": "Announcement Bar",
   "tag": "section",
+  "max_blocks": 10,
   "settings": [
     {
       "type": "checkbox",
@@ -31,10 +24,10 @@
     }
   ],
   "blocks": [
-    { "type": "plain-text-block" },
-    { "type": "rich-text-block" },
     { "type": "@theme" },
-    { "type": "@app" }
+    { "type": "@app" },
+    { "type": "plain-text-block" },
+    { "type": "rich-text-block"},
   ],
   "presets": [
     {
