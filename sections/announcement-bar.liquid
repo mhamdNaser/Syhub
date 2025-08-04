@@ -1,83 +1,71 @@
-{% comment %}
-  Announcement Bar Section
-  This section allows for the display of an announcement bar with customizable blocks.
-{% endcomment %}
+{% if  section.settings.announcement_text_rich_enabled == true %}
+  {% assign announcement_text = section.settings.announcement_text_rich %}
+{% else %}
+  {% assign announcement_text = section.settings.announcement_text %}
+{% endif %}
+
+{% if announcement_text contains 't:' %}
+  {% assign announcement_text = announcement_text | t %}
+{% endif %}
 
 {% if section.settings.enable_announcement_bar %}
-  <div class="announcement-bar">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'plain-text-block' %}
-          {% assign scheme = block.settings.color_scheme.settings %}
-          <p
-            style="
-              color: {{ scheme.text }};
-              font-size: {{ block.settings.font_size }}px;
-              font-weight: {{ block.settings.font_weight }};
-              font-style: {{ block.settings.font_style }};
-            "
-          >
-            {{ block.settings.text }}
-          </p>
-        {% when 'rich-text-block' %}
-          {% assign scheme = block.settings.color_scheme.settings %}
-          <div style="color: {{ scheme.text }};">
-            {{ block.settings.rich_text }}
-          </div>
-      {% endcase %}
-    {% endfor %}
+  {% assign scheme = section.settings.color_scheme.settings %}
+
+  <div
+    class="text-sm py-2 text-center"
+    style="
+      background-color: {{ scheme.background }};
+      color: {{ scheme.text }};
+      box-shadow: 0 2px 4px {{ scheme.shadow }};
+    "
+  >
+    {{ section.settings.announcement_text }}
   </div>
 {% endif %}
 
 {% schema %}
 {
-  "name": "Announcement Bar",
+  "name": "t:general.announcement_bar",
   "tag": "section",
-  "max_blocks": 10,
-  "blocks": [
+  "limit": 1,
+  "settings": [
     {
-      "type": "plain-text-block",
-      "name": "Plain Text Block",
-      "settings": [
-        { "type": "text", "id": "text", "label": "Text", "default": "This is plain text." },
-        { "type": "range", "id": "font_size", "label": "Font Size", "default": 16, "min": 12, "max": 48, "step": 1 },
-        {
-          "type": "select",
-          "id": "font_weight",
-          "label": "Font Weight",
-          "default": "normal",
-          "options": [
-            { "value": "normal", "label": "Normal" },
-            { "value": "bold", "label": "Bold" },
-            { "value": "lighter", "label": "Light" }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "font_style",
-          "label": "Font Style",
-          "default": "normal",
-          "options": [
-            { "value": "normal", "label": "Normal" },
-            { "value": "italic", "label": "Italic" }
-          ]
-        },
-        { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" }
-      ]
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "t:settings.announcement_text",
+      "info": "Use this field for plain text."
+    },
+
+    {
+      "type": "checkbox",
+      "id": "announcement_text_rich_enabled",
+      "label": "Enable Rich Text Formatting",
+      "default": false,
     },
     {
-      "type": "rich-text-block",
-      "name": "Rich Text Block",
-      "settings": [
-        { "type": "richtext", "id": "rich_text", "label": "Rich Text", "default": "<p>This is rich text.</p>" },
-        { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" }
-      ]
+      "type": "richtext",
+      "id": "announcement_text_rich",
+      "label": "Announcement Text (Rich Text)",
+      "default": "<p>t:settings.announcement_text</p>",
+      "info": "Use this field for rich text formatting."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_announcement_bar",
+      "label": "t:settings.enable_announcement_bar",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
     }
   ],
   "presets": [
     {
-      "name": "Announcement Bar",
-      "blocks": [{ "type": "plain-text-block" }, { "type": "rich-text-block" }]
+      "name": "t:general.announcement_bar"
     }
   ]
 }
