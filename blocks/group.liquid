@@ -17,6 +17,7 @@
     --paddingx : {{ block.settings.paddingx }}px;
     --paddingy : {{ block.settings.paddingy }}px;
     --alignment: {{ block.settings.alignment }};
+
   "
   {{ block.shopify_attributes }}
 >
@@ -32,10 +33,11 @@
 
   .group--horizontal {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: var(--alignment);
     align-items: center;
     padding: var(--paddingy) var(--paddingx);
     max-width: 100%;
+    
   }
 
   .group--vertical {

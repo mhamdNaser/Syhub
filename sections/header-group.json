@@ -56,7 +56,7 @@
                 "layout_direction": "group--horizontal",
                 "alignment": "flex-start",
                 "paddingx": 0,
-                "paddingy": 6
+                "paddingy": 11
               },
               "blocks": {
                 "social_icons_block_iigtQg": {
@@ -99,8 +99,8 @@
               "settings": {
                 "layout_direction": "group--horizontal",
                 "alignment": "flex-start",
-                "paddingx": 0,
-                "paddingy": 4
+                "paddingx": 4,
+                "paddingy": 10
               },
               "blocks": {
                 "title_logo_block_jcTKQt": {
@@ -121,17 +121,32 @@
                 "user_icon_block_nzYr6f"
               ]
             },
-            "menu_block_TY7XFK": {
-              "type": "menu-block",
-              "name": "Menu Block",
-              "settings": {},
-              "blocks": {}
+            "group_jy8YYN": {
+              "type": "group",
+              "name": "t:general.row",
+              "settings": {
+                "layout_direction": "group--horizontal",
+                "alignment": "flex-start",
+                "paddingx": 0,
+                "paddingy": 11
+              },
+              "blocks": {
+                "menu_block_nnqGak": {
+                  "type": "menu-block",
+                  "name": "Menu Block",
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "menu_block_nnqGak"
+              ]
             }
           },
           "block_order": [
             "group_AWcwfp",
             "group_Q4yAAj",
-            "menu_block_TY7XFK"
+            "group_jy8YYN"
           ]
         }
       },
