@@ -1,34 +1,150 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "type": "header",
-    "name": "t:general.header",
-    "sections": {
-        "announcement_bar_ab9AHh": {
-            "type": "announcement-bar",
-            "name": "t:general.announcement_bar",
-            "settings": {
-                "announcement_text": "SIGN-IN NOW And Get A 5% Discount Through The Discount Coupon \"BEYOU\"",
-                "enable_announcement_bar": true
-            }
-        },
-        "language_currency_bar_AVFHfe": {
-            "type": "language-currency-bar",
-            "name": "t:general.language_currency_bar",
-            "settings": {
-                "enable_language_currency_bar": true,
-                "facebook_url": "",
-                "instagram_url": ""
-            }
-        },
-        "header": {
-            "type": "header",
-            "settings": {
-                "menu": ""
-            }
+  "type": "header",
+  "name": "t:general.header",
+  "sections": {
+    "announcement_bar_ab9AHh": {
+      "type": "announcement-bar",
+      "blocks": {
+        "plain_text_block_c36rT6": {
+          "type": "plain-text-block",
+          "name": "Plain Text Block",
+          "settings": {
+            "text": "SIGN-IN NOW And Get A 5% Discount Through The Discount Coupon \"BEYOU\"",
+            "font_size": 16,
+            "font_weight": "normal",
+            "font_style": "normal",
+            "color_scheme": "scheme-6"
+          },
+          "blocks": {}
         }
+      },
+      "block_order": [
+        "plain_text_block_c36rT6"
+      ],
+      "name": "t:general.announcement_bar",
+      "settings": {
+        "enable_announcement_bar": true,
+        "color_scheme": "scheme-6"
+      }
     },
-    "order": [
-        "announcement_bar_ab9AHh",
-        "language_currency_bar_AVFHfe",
-        "header"
-    ]
+    "header": {
+      "type": "header",
+      "blocks": {
+        "group_TB8JLK": {
+          "type": "group",
+          "name": "t:general.column",
+          "settings": {
+            "layout_direction": "group--vertical",
+            "alignment": "flex-start",
+            "paddingx": 0,
+            "paddingy": 0
+          },
+          "blocks": {
+            "group_AWcwfp": {
+              "type": "group",
+              "name": "t:general.row",
+              "settings": {
+                "layout_direction": "group--horizontal",
+                "alignment": "flex-start",
+                "paddingx": 0,
+                "paddingy": 6
+              },
+              "blocks": {
+                "social_icons_block_iigtQg": {
+                  "type": "social-icons-block",
+                  "name": "Social Icons Bar",
+                  "settings": {
+                    "facebook_url": "https://www.facebook.com/wjh.al.adltswt.alhq/",
+                    "instagram_url": "https://www.instagram.com/n21_muhammed/"
+                  },
+                  "blocks": {}
+                },
+                "plain_text_block_djLUdd": {
+                  "type": "plain-text-block",
+                  "name": "Plain Text Block",
+                  "settings": {
+                    "text": "Open Doors To A World Of Cosmetic  |  Discover More",
+                    "font_size": 16,
+                    "font_weight": "normal",
+                    "font_style": "normal",
+                    "color_scheme": "scheme-1"
+                  },
+                  "blocks": {}
+                },
+                "language_currency_block_RUbKhi": {
+                  "type": "language-currency-block",
+                  "name": "language currency block",
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "social_icons_block_iigtQg",
+                "plain_text_block_djLUdd",
+                "language_currency_block_RUbKhi"
+              ]
+            },
+            "group_Q4yAAj": {
+              "type": "group",
+              "name": "t:general.row",
+              "settings": {
+                "layout_direction": "group--horizontal",
+                "alignment": "flex-start",
+                "paddingx": 0,
+                "paddingy": 4
+              },
+              "blocks": {
+                "title_logo_block_jcTKQt": {
+                  "type": "title-logo-block",
+                  "name": "Title Logo Block",
+                  "settings": {},
+                  "blocks": {}
+                },
+                "user_icon_block_nzYr6f": {
+                  "type": "user-icon-block",
+                  "name": "User Icon Block",
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "title_logo_block_jcTKQt",
+                "user_icon_block_nzYr6f"
+              ]
+            },
+            "menu_block_TY7XFK": {
+              "type": "menu-block",
+              "name": "Menu Block",
+              "settings": {},
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_AWcwfp",
+            "group_Q4yAAj",
+            "menu_block_TY7XFK"
+          ]
+        }
+      },
+      "block_order": [
+        "group_TB8JLK"
+      ],
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_ab9AHh",
+    "header"
+  ]
 }
