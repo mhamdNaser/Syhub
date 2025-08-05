@@ -1,4 +1,5 @@
 <header class="header max-w-7xl mx-auto">
+  {% content_for 'blocks' %}
   <h2 class="header__title">
     {{ shop.name | link_to: routes.root_url }}
   </h2>
@@ -22,6 +23,7 @@
       {{ 'icon-cart.svg' | inline_asset_content }}
     </a>
   </div>
+  <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
 </header>
 
 {% stylesheet %}
@@ -61,6 +63,17 @@
       "type": "link_list",
       "id": "menu",
       "label": "t:settings.menu"
+    }
+  ],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "presets": [
+    {
+      "name": "Language and Currency Bar",
+      "blocks": [
+        { "type": "language-currency-block", "name": "Language and Currency Block" },
+        { "type": "plain-text-block", "name": "Plain Text Block" },
+        { "type": "social-icons-block", "name": "Social Icons Block" }
+      ]
     }
   ]
 }
