@@ -47,6 +47,8 @@
     "logo_and_favicon": "Logo and favicon",
     "language_currency_bar": "Language and Currency Bar",
     "announcement_bar": "Announcement Bar",
+    "language_currency_block": "Language and Currency Block",
+    "hover_effects": "Hover effects"
   },
   "settings": {
     "page_width": "Page width",

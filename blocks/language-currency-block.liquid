@@ -1,0 +1,41 @@
+{% doc %}
+  Renders a text block.
+
+  @example
+  {% content_for 'block', type: 'text', id: 'language-currency' %}
+{% enddoc %}
+
+
+<div class="flex items-center gap-2" {{ block.shopify_attributes }}>
+  {% form 'localization' %}
+    <div class="flex items-center gap-2">
+      {% render 'language-switcher' %}
+
+      <select
+        name="country_code"
+        class="mr-2 px-2 py-1 rounded max-w-fit border border-gray-300"
+        onchange="this.form.submit()"
+      >
+        {% for country in form.available_countries %}
+          <option
+            value="{{ country.iso_code }}"
+            {% if country.iso_code == form.country.iso_code %}
+              selected
+            {% endif %}
+          >
+            {{ country.iso_code }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  {% endform %}
+</div>
+
+{% schema %}
+{
+  "name": "language currency block",
+  "settings": [
+  ],
+  "presets": [{ "name": "language currency block" }]
+}
+{% endschema %}
