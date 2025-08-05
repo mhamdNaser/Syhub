@@ -1,4 +1,4 @@
-<div class="header__menu mx-auto" {{ block.shopify_attributes }}>
+<div class="header__menu" {{ block.shopify_attributes }}>
   {% for link in section.settings.menu.links %}
     {{ link.title | link_to: link.url }}
   {% endfor %}
@@ -7,6 +7,7 @@
 {% schema %}
 {
   "name": "Menu Block",
+  "class": "m-auto",
   "settings": [],
   "presets": [
     {
