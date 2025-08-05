@@ -12,11 +12,10 @@
 {% enddoc %}
 
 <div
-  class="group {{ block.settings.layout_direction }} w-full"
+  class="group {{ block.settings.layout_direction }}"
   style="
     --padding: {{ block.settings.padding }}px;
     --alignment: {{ block.settings.alignment }};
-    --width:  '100%' ;
   "
   {{ block.shopify_attributes }}
 >
@@ -50,7 +49,7 @@
 {% schema %}
 {
   "name": "t:general.group",
-  "class": "w-full",
+  "class": "w-full justify-between",
   "blocks": [{ "type": "@theme" }],
   "settings": [
     {
