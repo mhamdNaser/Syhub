@@ -1,0 +1,15 @@
+<h2 class="header__title" {{ block.shopify_attributes }}>
+  {{ shop.name | link_to: routes.root_url }}
+</h2>
+
+{% schema %}
+{
+  "name": "Title Logo Block",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Title Logo Block"
+    }
+  ]
+}
+{% endschema %}

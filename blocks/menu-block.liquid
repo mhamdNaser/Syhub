@@ -1,0 +1,17 @@
+<div class="header__menu" {{ block.shopify_attributes }}>
+  {% for link in section.settings.menu.links %}
+    {{ link.title | link_to: link.url }}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Menu Block",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Menu Block"
+    }
+  ]
+}
+{% endschema %}
