@@ -12,9 +12,9 @@
 {% enddoc %}
 
 <div
-  class="group {{ block.settings.layout_direction }}"
+  class="group {{ block.settings.layout_direction }} px-[{{ block.settings.paddingx }}px] py-[{{ block.settings.paddingy }}px]"
   style="
-    --padding: {{ block.settings.padding }}px;
+    --padding: ;
     --alignment: {{ block.settings.alignment }};
   "
   {{ block.shopify_attributes }}
@@ -75,8 +75,18 @@
     },
     {
       "type": "range",
-      "id": "padding",
-      "label": "t:labels.padding",
+      "id": "paddingx",
+      "label": "t:labels.paddingx",
+      "default": 0,
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "paddingy",
+      "label": "t:labels.paddingy",
       "default": 0,
       "min": 0,
       "max": 200,
