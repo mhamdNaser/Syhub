@@ -27,6 +27,7 @@
   .group {
     display: flex;
     flex-wrap: nowrap;
+    overflow: hidden;
     width: 100% important;
   }
 
@@ -36,7 +37,6 @@
     align-items: center;
     padding: var(--paddingy) var(--paddingx);
     max-width: 100%;
-    
   }
 
   .group--vertical {
@@ -93,17 +93,6 @@
       "max": 18,
       "step": 1,
       "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "alignment",
-      "label": "t:labels.alignment",
-      "default": "flex-start",
-      "options": [
-        { "value": "flex-start", "label": "t:options.alignment.left" },
-        { "value": "center", "label": "t:options.alignment.center" },
-        { "value": "flex-end", "label": "t:options.alignment.right" }
-      ]
     }
   ],
   "presets": [
