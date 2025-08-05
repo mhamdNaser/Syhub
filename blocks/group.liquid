@@ -17,7 +17,6 @@
     --paddingx : {{ block.settings.paddingx }}px;
     --paddingy : {{ block.settings.paddingy }}px;
     --alignment: {{ block.settings.alignment }};
-
   "
   {{ block.shopify_attributes }}
 >
@@ -33,7 +32,7 @@
 
   .group--horizontal {
     flex-direction: row;
-    justify-content: var(--alignment);
+    justify-content: space-between;
     align-items: center;
     padding: var(--paddingy) var(--paddingx);
     max-width: 100%;
@@ -94,6 +93,17 @@
       "max": 18,
       "step": 1,
       "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:labels.alignment",
+      "default": "flex-start",
+      "options": [
+        { "value": "flex-start", "label": "t:options.alignment.left" },
+        { "value": "center", "label": "t:options.alignment.center" },
+        { "value": "flex-end", "label": "t:options.alignment.right" }
+      ]
     }
   ],
   "presets": [
