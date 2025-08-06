@@ -20,7 +20,7 @@
     >
       <div class="absolute inset-0 bg-black/40"></div> <!-- خلفية شفافة -->
 
-      <div class="relative z-10 mx-auto w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
+      <div class="relative z-10 justify-center w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
         <form
           action="{{ routes.search_url }}"
           method="get"
@@ -55,7 +55,7 @@
           onclick="this.closest('details').removeAttribute('open')"
         >
           <span class="w-6 h-6">
-            {{- 'icon-close.svg' | inline_asset_content -}}
+            {% render 'icon-close' %}
           </span>
         </button>
       </div>
