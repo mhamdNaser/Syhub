@@ -337,6 +337,9 @@
   .w-full {
     width: 100%;
   }
+  .w-screen {
+    width: 100vw;
+  }
   .max-w-3xl {
     max-width: var(--container-3xl);
   }
