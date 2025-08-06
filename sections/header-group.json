@@ -103,6 +103,12 @@
                 "paddingy": 10
               },
               "blocks": {
+                "search_block_GiTgV7": {
+                  "type": "search-block",
+                  "name": "Search Block",
+                  "settings": {},
+                  "blocks": {}
+                },
                 "title_logo_block_jcTKQt": {
                   "type": "title-logo-block",
                   "name": "Title Logo Block",
@@ -117,6 +123,7 @@
                 }
               },
               "block_order": [
+                "search_block_GiTgV7",
                 "title_logo_block_jcTKQt",
                 "user_icon_block_nzYr6f"
               ]
