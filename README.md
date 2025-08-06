@@ -1,3 +1,5 @@
+npx @tailwindcss/cli -i ./src/input.css -o ./assets/app.css --watch
+
 <h1 align="center" style="position: relative;">
   <br>
     <img src="./assets/shoppy-x-ray.svg" alt="logo" width="200">
