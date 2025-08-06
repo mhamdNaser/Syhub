@@ -16,11 +16,11 @@
                 <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}</span>
               </button>
               <div
-                class="absolute start-0 lg:start-auto lg:left-1/2 lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
+                class="fixed start-0 lg:start-auto lg:left-1/2 lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
                 id="language-menu"
                 dir="{{ localization.language.iso_code == 'ar' or localization.language.iso_code == 'he' ? 'rtl' : 'ltr' }}"
               >
-                <ul class="py-1 h-full z-50">
+                <ul class="py-1">
                   {% form 'localization', class: 'localization-form' %}
                     {% for language in localization.available_languages %}
                       <li>
