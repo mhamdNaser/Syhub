@@ -40,6 +40,7 @@
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --blur-sm: 8px;
@@ -288,11 +289,17 @@
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
+  .h-\[28px\] {
+    height: 28px;
+  }
   .h-\[160\] {
     height: 160;
   }
   .h-\[160px\] {
     height: 160px;
+  }
+  .h-\[280px\] {
+    height: 280px;
   }
   .h-\[320px\] {
     height: 320px;
@@ -381,6 +388,9 @@
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
   }
   .border {
     border-style: var(--tw-border-style);
