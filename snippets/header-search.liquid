@@ -22,12 +22,12 @@
       <!-- خلفية شفافة -->
 
       <div class="relative z-10 w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
-        <div class="flex items-center justify-center mb-4">
+        <div class="flex items-center justify-center mb-4 py-6">
           <form
             action="{{ routes.search_url }}"
             method="get"
             role="search"
-            class="w-full flex items-center justify-center gap-2"
+            class="w-fit flex items-center justify-center border border-gray-300 rounded-xl gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <input
               id="{{ input_id }}"
@@ -35,7 +35,7 @@
               name="q"
               value="{{ search.terms | escape }}"
               placeholder="{{ 'general.search.search' | t }}"
-              class="flex-1 border border-gray-300 rounded-md py-3 px-4 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="flex-1 py-3 px-4 text-lg "
             >
             <!-- زر البحث (داخل الفورم) -->
             <button
