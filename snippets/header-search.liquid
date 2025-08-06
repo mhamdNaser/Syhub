@@ -13,14 +13,14 @@
 
     <!-- المودال عند الفتح -->
     <div
-      class="fixed inset-0 w-full h-80 z-50 bg-white backdrop-blur-sm flex items-center justify-center p-4"
+      class="fixed inset-0 w-full left-0 h-80 z-50 bg-white backdrop-blur-sm flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
       <div class="absolute inset-0 bg-black/40"></div> <!-- خلفية شفافة -->
 
-      <div class="relative z-10 w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
+      <div class="relative z-10 mx-auto w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
         <form
           action="{{ routes.search_url }}"
           method="get"
