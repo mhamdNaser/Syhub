@@ -16,8 +16,9 @@
                 <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}</span>
               </button>
               <div
-                class="absolute {% if localization.language.iso_code != "en" %} left-0 lg:right-1/2 lg:transform lg:translate-x-1/2{% else %} right-0 lg:left-1/2 lg:transform lg:-translate-x-1/2{% endif %} mt-2 w-48 bg-white rounded shadow-lg z-50 hidden"
+                class="absolute start-0 lg:start-auto lg:left-1/2 lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg z-50 hidden text-start"
                 id="language-menu"
+                dir="{{ localization.language.iso_code == 'ar' or localization.language.iso_code == 'he' ? 'rtl' : 'ltr' }}"
               >
                 <ul class="py-1">
                   {% form 'localization', class: 'localization-form' %}
