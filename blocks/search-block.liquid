@@ -5,37 +5,39 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<form
-  action="{{ routes.search_url }}"
-  id="search-box"
-  class="relative w-1/3 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-white rounded-md hidden xl:flex items-center"
->
-  <select
-    class="bg-white uppercase font-bold text-sm p-4 mr-4 text-headerColor rounded-none"
-    name=""
-    id=""
-    onchange="if (this.value) window.location.href = this.value;"
+<div class="search-block">
+  <form
+    action="{{ routes.search_url }}"
+    id="search-box"
+    class="relative w-1/3 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-white rounded-md hidden xl:flex items-center"
   >
-    <option disabled selected>All Collection</option>
-    {% for collection in collections %}
-      {% if collection.all_products_count > 0 %}
-        <option value="{{ collection.url }}">
-          {{ collection.title }}
-        </option>
-      {% endif %}
-    {% endfor %}
-  </select>
-  <input
-    id="search-input"
-    class="focus:outline-none bg-transparent font-semibold text-sm pl-4 text-black"
-    type="text"
-    placeholder="I'm searching for ..."
-    value="{{ search.terms | escape }}"
-  >
-  {% render 'icon-instagram' %}
+    <select
+      class="bg-white uppercase font-bold text-sm p-4 mr-4 text-headerColor rounded-none"
+      name=""
+      id=""
+      onchange="if (this.value) window.location.href = this.value;"
+    >
+      <option disabled selected>All Collection</option>
+      {% for collection in collections %}
+        {% if collection.all_products_count > 0 %}
+          <option value="{{ collection.url }}">
+            {{ collection.title }}
+          </option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    <input
+      id="search-input"
+      class="focus:outline-none bg-transparent font-semibold text-sm pl-4 text-black"
+      type="text"
+      placeholder="I'm searching for ..."
+      value="{{ search.terms | escape }}"
+    >
+    {% render 'icon-instagram' %}
 
-  <div id="search-results" class="hidden absolute top-0 w-full bg-white shadow-md rounded-md mt-14 p-4 z-50"></div>
-</form>
+    <div id="search-results" class="hidden absolute top-0 w-full bg-white shadow-md rounded-md mt-14 p-4 z-50"></div>
+  </form>
+</div>
 
 {% schema %}
 {
