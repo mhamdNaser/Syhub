@@ -7,7 +7,7 @@
           <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}</span>
         </button>
         <div
-          class="absolute z-40 lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
+          class="absolute z-40 h-full lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
           id="language-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
         >
