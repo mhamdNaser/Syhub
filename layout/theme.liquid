@@ -24,12 +24,12 @@
 
   <body>
     {% # Load the header and footer sections %}
-    <div id="header-group">
+    <div id="header-group z-50">
       {% sections 'header-group' %}
     </div>
 
     <div
-      id="main-content"
+      id="main-content z-10"
       class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
