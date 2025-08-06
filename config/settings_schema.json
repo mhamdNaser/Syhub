@@ -131,10 +131,16 @@
         "default": "#FFFFFF"
       },
       {
-        "type": "color_background",
+        "type": "color",
         "id": "background_gradient",
         "label": "t:settings_schema.colors.settings.background_gradient.label",
-        "info": "t:settings_schema.colors.settings.background_gradient.info"
+        "default": "#F0F0F0"
+      },
+      {
+        "type": "color",
+        "id": "header_background",
+        "label": "t:settings_schema.colors.settings.header_background.label",
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
