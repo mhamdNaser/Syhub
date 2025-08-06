@@ -1,3 +1,10 @@
+{% doc %}
+  Renders a text block.
+
+  @example
+  {% content_for 'block', type: 'tools', id: 'tools' %}
+{% enddoc %}
+
 <div class="header__menu" {{ block.shopify_attributes }}>
   {% for link in section.settings.menu.links %}
     {{ link.title | link_to: link.url }}
