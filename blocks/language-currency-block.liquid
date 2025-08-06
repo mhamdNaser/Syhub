@@ -1,4 +1,4 @@
-<div class="flex items-center gap-2" {{ block.shopify_attributes }}>
+<div class="flex items-center gap-2 z-50" {{ block.shopify_attributes }}>
   {% form 'localization' %}
     <div class="flex items-center gap-2">
       <!-- LANGUAGE SELECTOR -->
@@ -42,7 +42,7 @@
           </span>
         </button>
         <div
-          class="fixed z-50 lg:-translate-x-1/2 mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
+          class="fixed lg:-translate-x-1/2 mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
           id="country-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
         >
