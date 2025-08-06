@@ -13,7 +13,7 @@
 
     <!-- المودال عند الفتح -->
     <div
-      class="fixed inset-0 w-full left-0 top-0 z-50 h-[160px] my-4 bg-white flex items-center justify-center"
+      class="fixed inset-0 w-full left-0 z-50 h-[320px] bg-white flex items-center justify-center"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
@@ -22,7 +22,7 @@
       <!-- خلفية شفافة -->
 
       <div class="relative z-40 w-full max-w-3xl">
-        <div class="flex max-w-7xl items-center justify-center mx-auto mb-4 py-6">
+        <div class="flex max-w-7xl items-center justify-center mx-auto mb-4 py-3">
           <form
             action="{{ routes.search_url }}"
             method="get"
