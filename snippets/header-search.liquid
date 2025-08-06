@@ -28,7 +28,7 @@
             action="{{ routes.search_url }}"
             method="get"
             role="search"
-            class="w-1/2 flex items-center justify-between border border-gray-200 rounded-xl outline-0 gap-2 p-4"
+            class="w-1/2 flex items-center justify-between border border-gray-200 rounded-2xl outline-0 gap-2 p-4"
           >
             <input
               id="{{ input_id }}"
@@ -36,7 +36,7 @@
               name="q"
               value="{{ search.terms | escape }}"
               placeholder="{{ 'general.search.search' | t }}"
-              class="flex-1 py-3 px-4 text-lg "
+              class="flex-1 py-3 px-4 text-lg border-0 outline-0"
             >
             <!-- زر البحث (داخل الفورم) -->
             <button
