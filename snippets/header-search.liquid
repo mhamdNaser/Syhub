@@ -18,7 +18,8 @@
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <div class="absolute inset-0 bg-black/40"></div> <!-- خلفية شفافة -->
+      <div class="absolute inset-0 bg-black/40"></div>
+      <!-- خلفية شفافة -->
 
       <div class="relative z-10 w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
         <form
@@ -34,30 +35,19 @@
             value="{{ search.terms | escape }}"
             placeholder="{{ 'general.search.search' | t }}"
             class="flex-1 border border-gray-300 rounded-md py-3 px-4 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
-          <!-- زر البحث (داخل الفورم) -->
-          <button
-            class="text-gray-600 hover:text-blue-600"
-            aria-label="{{ 'general.search.search' | t }}"
           >
-            <span class="w-5 h-5">
-              {{- 'icon-search.svg' | inline_asset_content -}}
+          <!-- زر الإغلاق -->
+          <button
+            type="button"
+            class="absolute top-4 right-4 text-gray-600 hover:text-black"
+            aria-label="{{ 'accessibility.close' | t }}"
+            onclick="this.closest('details').removeAttribute('open')"
+          >
+            <span class="w-6 h-6">
+              {% render 'icon-close' %}
             </span>
           </button>
         </form>
-
-        <!-- زر الإغلاق -->
-        <button
-          type="button"
-          class="absolute top-4 right-4 text-gray-600 hover:text-black"
-          aria-label="{{ 'accessibility.close' | t }}"
-          onclick="this.closest('details').removeAttribute('open')"
-        >
-          <span class="w-6 h-6">
-            {% render 'icon-close' %}
-          </span>
-        </button>
       </div>
     </div>
   </details>
