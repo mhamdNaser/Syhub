@@ -18,7 +18,7 @@
               <div
                 class="fixed lg:start-auto lg:left-0 lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
                 id="language-menu"
-                dir="{{ localization.language.iso_code == 'ar' ? 'rtl' : 'ltr' }}"
+                dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
               >
                 <ul class="py-1">
                   {% form 'localization', class: 'localization-form' %}
