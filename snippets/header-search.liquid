@@ -13,53 +13,53 @@
 
     <!-- المودال عند الفتح -->
     <div
-      class="fixed inset-0 w-full left-0 z-50 bg-white backdrop-blur-sm flex items-center justify-center p-4"
+      class="fixed inset-0 w-full z-50 bg-white backdrop-blur-sm flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
       <div class="absolute inset-0 bg-black/40"></div>
-      <!-- خلفية شفافة -->
 
-      <div class="relative z-10 w-full max-w-3xl h-auto bg-red-500 shadow-2xl rounded-lg p-6">
-        <div class="flex items-center justify-center mb-4 py-6">
-          <form
-            action="{{ routes.search_url }}"
-            method="get"
-            role="search"
-            class="w-fit flex items-center justify-center py-8 border border-gray-300 rounded-xl gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      <!-- محتوى المودال -->
+      <div class="relative z-10 w-full max-w-5xl h-[70vh] bg-white shadow-2xl rounded-2xl p-8 flex flex-col items-center justify-center">
+        
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="w-full max-w-3xl flex items-center gap-4 border border-gray-300 rounded-xl px-4 py-4 bg-white shadow-md"
+        >
+          <input
+            id="{{ input_id }}"
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ 'general.search.search' | t }}"
+            class="w-full py-3 px-4 text-lg border-none focus:outline-none"
           >
-            <input
-              id="{{ input_id }}"
-              type="search"
-              name="q"
-              value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.search' | t }}"
-              class="flex-1 py-3 px-4 text-lg "
-            >
-            <!-- زر البحث (داخل الفورم) -->
-            <button
-              class="text-gray-600 hover:text-blue-600"
-              aria-label="{{ 'general.search.search' | t }}"
-            >
-              <span class="w-5 h-5">
-                {% render 'icon-search' %}
-              </span>
-            </button>
-          </form>
-
-          <!-- زر الإغلاق -->
+          
+          <!-- زر البحث -->
           <button
-            type="button"
-            class="text-gray-600 hover:text-black"
-            aria-label="{{ 'accessibility.close' | t }}"
-            onclick="this.closest('details').removeAttribute('open')"
+            class="text-gray-600 hover:text-blue-600"
+            aria-label="{{ 'general.search.search' | t }}"
           >
-            <span class="w-6 h-6">
-              {% render 'icon-close' %}
+            <span class="w-5 h-5">
+              {% render 'icon-search' %}
             </span>
           </button>
-        </div>
+        </form>
+
+        <!-- زر الإغلاق -->
+        <button
+          type="button"
+          class="absolute top-6 right-6 text-gray-600 hover:text-black"
+          aria-label="{{ 'accessibility.close' | t }}"
+          onclick="this.closest('details').removeAttribute('open')"
+        >
+          <span class="w-6 h-6">
+            {% render 'icon-close' %}
+          </span>
+        </button>
       </div>
     </div>
   </details>
