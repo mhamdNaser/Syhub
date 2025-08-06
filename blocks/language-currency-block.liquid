@@ -5,7 +5,6 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-
 <div class="flex items-center gap-2" {{ block.shopify_attributes }}>
   {% form 'localization' %}
     <div class="flex items-center gap-2">
@@ -23,7 +22,9 @@
               selected
             {% endif %}
           >
-            {{ country.iso_code }}
+            {{- country.name }} |
+            {{ country.currency.iso_code }}
+            {{ country.currency.symbol -}}
           </option>
         {% endfor %}
       </select>
@@ -34,9 +35,7 @@
 {% schema %}
 {
   "name": "language currency block",
-  "settings": [
-
-  ],
+  "settings": [],
   "presets": [{ "name": "language currency block" }]
 }
 {% endschema %}
