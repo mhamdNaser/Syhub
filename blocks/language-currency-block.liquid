@@ -1,4 +1,107 @@
-{% doc %}
+<div class="flex items-center gap-2" {{ block.shopify_attributes }}>
+  {% form 'localization' %}
+    <div class="flex items-center gap-2">
+      <!-- LANGUAGE SELECTOR -->
+      <div class="relative">
+        <button class="p-0 m-0 flex items-center" id="language-toggle" type="button">
+          <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}</span>
+        </button>
+        <div
+          class="fixed lg:-translate-x-1/2 mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
+          id="language-menu"
+          dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+        >
+          <ul class="py-1">
+            {% form 'localization', class: 'localization-form' %}
+              {% for language in localization.available_languages %}
+                <li>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
+                    href="{{ language.root_url }}"
+                    lang="{{ language.iso_code }}"
+                    data-value="{{ language.iso_code }}"
+                    {% if language.iso_code == localization.language.iso_code %}
+                      aria-current="true" class="active"
+                    {% endif %}
+                  >
+                    {{ language.endonym_name }}
+                    {{ language.iso_code }}
+                  </a>
+                </li>
+              {% endfor %}
+            {% endform %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- COUNTRY / CURRENCY SELECTOR -->
+      <div class="relative">
+        <button class="p-0 m-0 flex items-center" id="country-toggle" type="button">
+          <span id="selected-country" class="mx-1">
+            {{ form.country.name }} | {{ form.country.currency.iso_code }}
+          </span>
+        </button>
+        <div
+          class="fixed lg:-translate-x-1/2 mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
+          id="country-menu"
+          dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+        >
+          <ul class="py-1">
+            {% for country in form.available_countries %}
+              <li>
+                <button
+                  name="country_code"
+                  value="{{ country.iso_code }}"
+                  class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  onclick="this.form.submit()"
+                >
+                  {{ country.name }} | {{ country.currency.iso_code }} {{ country.currency.symbol }}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endform %}
+</div>
+
+<!-- TOGGLE SCRIPT -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleLanguage = document.getElementById('language-toggle');
+    const menuLanguage = document.getElementById('language-menu');
+    const toggleCountry = document.getElementById('country-toggle');
+    const menuCountry = document.getElementById('country-menu');
+
+    if (toggleLanguage && menuLanguage) {
+      toggleLanguage.addEventListener('click', function () {
+        menuLanguage.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuLanguage.contains(e.target) && !toggleLanguage.contains(e.target)) {
+          menuLanguage.classList.add('hidden');
+        }
+      });
+    }
+
+    if (toggleCountry && menuCountry) {
+      toggleCountry.addEventListener('click', function () {
+        menuCountry.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuCountry.contains(e.target) && !toggleCountry.contains(e.target)) {
+          menuCountry.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
+
+
+{% comment %} {% doc %}
   Renders a text block.
 
   @example
@@ -86,7 +189,7 @@
       });
     }
   });
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
