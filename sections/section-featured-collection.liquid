@@ -86,44 +86,52 @@
 
 <div class="py-12">
   <div class="relative {{ box_width }} mx-auto px-8 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-extrabold mb-8 {{ collection_title_alignment }}"
-    style="color: {{ title_color }};">
+    <h2 class="text-3xl font-extrabold mb-8 {{ collection_title_alignment }}" style="color: {{ title_color }};">
       {{ section_title }}
     </h2>
 
-    {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-' | append: item_in_row | append: ' gap-2' %}
     {% if swiper %}
-      {% assign layout_class = swiper_class %}
-    {% endif %}
-
-    <div class="{{ layout_class }}">
-      {% if swiper %}
+      <!-- ✅ الحاوية الأساسية للـ swiper -->
+      <div class="swiper {{ my_swiper_class }}">
         <div class="swiper-wrapper">
-      {% endif %}
-
-      {% if featured_collection %}
-        {% for product in featured_collection limit: item_view %}
-          <div class="swiper-slide">
-            {% render 'product-card', product: product %}
-          </div>
-        {% endfor %}
-      {% else %}
-        {% for item in (1..4) %}
-          {% render 'product-card-placeholder' %}
-        {% endfor %}
-      {% endif %}
-
-      {% if swiper %}
+          {% if featured_collection %}
+            {% for product in featured_collection limit: item_view %}
+              <div class="swiper-slide">
+                {% render 'product-card', product: product %}
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for item in (1..4) %}
+              <div class="swiper-slide">
+                {% render 'product-card-placeholder' %}
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
-      {% endif %}
-    </div>
 
-    {% if pagination_row and swiper %}
-      <div class="{{ next_button_class }} swiper-button-next"></div>
-      <div class="{{ prev_button_class }} swiper-button-prev"></div>
+        {% if pagination_row %}
+          <!-- ✅ أزرار التنقل -->
+          <div class="swiper-button-prev {{ prev_button_class }}"></div>
+          <div class="swiper-button-next {{ next_button_class }}"></div>
+        {% endif %}
+      </div>
+    {% else %}
+      <!-- ✅ تخطيط شبكي بدون سوايبر -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ item_in_row }} gap-4">
+        {% if featured_collection %}
+          {% for product in featured_collection limit: item_view %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        {% else %}
+          {% for item in (1..4) %}
+            {% render 'product-card-placeholder' %}
+          {% endfor %}
+        {% endif %}
+      </div>
     {% endif %}
   </div>
-  {%- if collection_url -%}
+
+  {% if collection_url %}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-14 py-10 {{ collection_alignment }}">
       <a
         href="{{ featured_collection_url }}"
@@ -132,8 +140,9 @@
         View All
       </a>
     </div>
-  {%- endif -%}
+  {% endif %}
 </div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -148,15 +157,15 @@
           prevEl: ".{{ prev_button_class }}"
         },
         breakpoints: {
-          "@0.00": {
+          0: {
             slidesPerView: {{ item_in_row_mobile | json }},
             spaceBetween: 5,
           },
-          "@0.75": {
-            slidesPerView: {{ item_in_row_mobile | json }},
+          768: {
+            slidesPerView: {{ item_in_row | json }},
             spaceBetween: 10,
           },
-          "@1.00": {
+          1024: {
             slidesPerView: {{ item_in_row | json }},
             spaceBetween: 20,
           }
@@ -165,6 +174,7 @@
     }
   });
 </script>
+
 
 {% schema %}
 {
