@@ -187,6 +187,227 @@
         }
       }
     ]
-  }
+  },
+  {
+    "name": "t:settings_schema.products.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "productcards_text_alignment",
+        "label": "t:settings_schema.products.settings.productcards_text_alignment.label",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "t:settings_schema.products.settings.productcards_text_alignment.options__1.label"
+          },
+          {
+            "value": "text-center",
+            "label": "t:settings_schema.products.settings.productcards_text_alignment.options__2.label"
+          },
+          {
+            "value": "text-right",
+            "label": "t:settings_schema.products.settings.productcards_text_alignment.options__3.label"
+          }
+        ],
+        "default": "text-left"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.labels.header"
+      },
+      {
+        "id": "show_sale_label",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.labels.show_sale_label.label",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "sale_label_price",
+        "label": "t:settings_schema.products.settings.labels.sale_label_price.label",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:settings_schema.products.settings.labels.sale_label_price.options__1.label"
+          },
+          {
+            "value": "percentage",
+            "label": "t:settings_schema.products.settings.labels.sale_label_price.options__2.label"
+          },
+          {
+            "value": "amount",
+            "label": "t:settings_schema.products.settings.labels.sale_label_price.options__3.label"
+          }
+        ],
+        "default": "percentage"
+      },
+      {
+        "id": "show_stock_label",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.labels.show_stock_label.label",
+        "info": "t:settings_schema.products.settings.labels.show_stock_label.info",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "stock_label_qty",
+        "label": "t:settings_schema.products.settings.labels.stock_label_qty.label",
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "id": "show_price_varies",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.labels.show_price_varies.label",
+        "info": "t:settings_schema.products.settings.labels.show_price_varies.info",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_custom_label",
+        "label": "t:settings_schema.products.settings.labels.product_custom_label.label",
+        "placeholder": "custom.label",
+        "default": "custom.label",
+        "info": "t:settings_schema.products.settings.labels.product_custom_label.info"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.stock.header"
+      },
+      {
+        "id": "show_product_stock",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.stock.show_product_stock.label",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "show_product_stock_qty",
+        "label": "t:settings_schema.products.settings.stock.show_product_stock_qty.label",
+        "info": "t:settings_schema.products.settings.stock.show_product_stock_qty.info",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "default": 20
+      },
+      {
+        "id": "show_product_stock_always",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.stock.show_product_stock_always.label",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.ratings.header"
+      },
+      {
+        "id": "show_product_rating",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.ratings.show_product_rating.label",
+        "info": "t:settings_schema.products.settings.ratings.show_product_rating.info",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.vendor.header"
+      },
+      {
+        "id": "show_vendor",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.vendor.show_vendor.label",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.addtocart.header"
+      },
+      {
+        "id": "show_addtocart",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.addtocart.show_addtocart.label",
+        "info": "t:settings_schema.products.settings.addtocart.show_addtocart.info",
+        "default": false
+      },
+      {
+        "id": "addtocart_button_text",
+        "type": "text",
+        "label": "t:settings_schema.products.settings.addtocart.addtocart_button_text.label",
+        "default": "Add-to-cart"
+      },
+      {
+        "id": "show_input_field",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.addtocart.show_input_field.label",
+        "info": "t:settings_schema.products.settings.addtocart.show_input_field.info",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.preorder.header"
+      },
+      {
+        "id": "show_preorder",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.preorder.show_preorder.label",
+        "info": "t:settings_schema.products.settings.preorder.show_preorder.info",
+        "default": false
+      },
+      {
+        "id": "show_preorder_inventory",
+        "type": "checkbox",
+        "label": "t:settings_schema.products.settings.preorder.show_preorder_inventory.label",
+        "default": true
+      },
+      {
+        "id": "preorder_button_text",
+        "type": "text",
+        "label": "t:settings_schema.products.settings.preorder.preorder_button_text.label",
+        "default": "Pre-order"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.short_product_description.header"
+      },
+      {
+        "type": "select",
+        "id": "product_short_description",
+        "label": "t:settings_schema.products.settings.short_product_description.product_short_description.label",
+        "info": "t:settings_schema.products.settings.short_product_description.product_short_description.info",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:settings_schema.products.settings.short_product_description.product_short_description.options__1.label"
+          },
+          {
+            "value": "product_description",
+            "label": "t:settings_schema.products.settings.short_product_description.product_short_description.options__2.label"
+          },
+          {
+            "value": "custom",
+            "label": "t:settings_schema.products.settings.short_product_description.product_short_description.options__3.label"
+          }
+        ],
+        "default": "product_description"
+      },
+      {
+        "type": "text",
+        "id": "product_short_description_text",
+        "label": "t:settings_schema.products.settings.short_product_description.product_short_description_text.label",
+        "placeholder": "custom.short_description",
+        "info": "t:settings_schema.products.settings.short_product_description.product_short_description_text.info"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.products.settings.titles.header"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_titles_caps",
+        "label": "t:settings_schema.products.settings.titles.product_titles_caps.label"
+      }
+    ]
+  },
   // end layout and animations
 ]
