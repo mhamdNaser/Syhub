@@ -20,9 +20,9 @@
         "type": "range",
         "id": "logo_size",
         "label": "t:settings.logo_size",
-        "min": 24,
-        "max": 250, // in pixels
-        "step": 4,
+        "min": 20,
+        "max": 100,
+        "step": 10,
         "default": 24,
         "unit": "px",
       },
