@@ -17,6 +17,16 @@
         "label": "t:settings.default_logo"
       },
       {
+        "type": "range",
+        "id": "logo_size",
+        "label": "t:settings.logo_size",
+        "min": 24,
+        "max": 250, // in pixels
+        "step": 4,
+        "default": 24,
+        "unit": "px",
+      },
+      {
         "type": "image_picker",
         "id": "logo_inverse",
         "label": "t:settings.inverse_logo",

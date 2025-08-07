@@ -1,6 +1,13 @@
+liquid
+{% comment %}
+  Title Logo Block
+  Displays the shop logo or name in the header.
+{% endcomment %}
+{% assign size = settings.logo_size %}
+
 <h2 class="header__title" {{ block.shopify_attributes }}>
   {% if block.settings.logo == 'logo' %}
-    <img src="{{ settings.logo | image_url }}" alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area" class="header__logo" width="150" height="50">
+    <img src="{{ settings.logo | image_url }}" alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area" class="header__logo" width="{{ size }}" height="50">
   {% elsif block.settings.logo == 'text' %}
     {{ shop.name | link_to: routes.root_url }}
   {% endif %}
