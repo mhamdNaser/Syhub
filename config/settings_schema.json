@@ -21,7 +21,7 @@
         "id": "logo_size",
         "label": "t:settings.logo_size",
         "min": 20,
-        "max": 100,
+        "max": 300,
         "step": 10,
         "default": 20,
         "unit": "px",
