@@ -65,7 +65,7 @@
           <div class="flex space-x-4 mt-2">
             <a href="#" class="text-gray-400 hover:text-black">{% render 'icon-facebook' %}</a>
             <a href="#" class="text-gray-400 hover:text-black">{% render 'icon-instagram' %}</a>
-            <a href="#" class="text-gray-400 hover:text-black">{% render 'icon-twitter' %}</a>
+            <a href="#" class="text-gray-400 hover:text-black">{% render 'icon-whatsapp' %}</a>
           </div>
         </div>
       </div>
@@ -74,25 +74,9 @@
     <div class="flex justify-between items-center mt-8 border-t border-gray-800 pt-4 text-sm text-gray-600">
       <p class="text-left">
         © {{ 'now' | date: '%Y' }}
-        {{ shop.name }}. All Rights Reserved.
-      </p>
-      <p class="text-right">&copy; {{ 'now' | date: '%Y' }} - Theme Version: {{ settings.theme_version }}</p>
-    </div>
-
-    <div class="flex justify-between items-center mt-8 border-t border-gray-800 pt-4 text-sm text-gray-600">
-      <div class="footer__copyright">
-        &copy;
-        {{ 'now' | date: '%Y' }}
         {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-      </div>
-
-      <div class="footer__links">
-        {% for link in section.settings.menu.links %}
-          {{ link.title | link_to: link.url }}
-        {% endfor %}
-      </div>
-
-      <div class="footer__payment">
+      </p>
+      <div class="footer__payment text-right">
         {% if section.settings.show_payment_icons %}
           {% for type in shop.enabled_payment_types %}
             {{ type | payment_type_svg_tag }}
