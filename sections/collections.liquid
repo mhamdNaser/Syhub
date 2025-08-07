@@ -5,7 +5,7 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
 
-<div class="flex flex-col items-center my-8">
+{% comment %} <div class="flex flex-col items-center my-8">
   <h1 class="text-3xl font-medium">
     {{ section.settings.title }}
   </h1>
@@ -55,10 +55,10 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
 
 
-{% comment %} <h1>{{ 'collections.title' | t }}</h1>
+<h1>{{ 'collections.title' | t }}</h1>
 
 <div
   class="collections {{ section.settings.grid_item_width }}"
@@ -133,4 +133,4 @@
   ],
   "presets": [{ "name": "t:general.collections_grid" }]
 }
-{% endschema %} {% endcomment %}
+{% endschema %}
