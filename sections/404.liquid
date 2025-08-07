@@ -5,19 +5,127 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
 
-<h1>{{ '404.title' | t }}</h1>
-
-<p>
-  {{ '404.not_found' | t }}
-</p>
-
-<a href="{{ routes.all_products_collection_url }}">
-  {{ '404.back_to_shopping' | t }}
-</a>
+<div class="max-w-md">
+  <div class="my-4">
+    {%- if section.settings.image != blank -%}
+      <img
+        src="{{ section.settings.image | file_url | replace: 'files/files/', 'files/' }}"
+        alt="404 Image"
+        width="{{ section.settings.image_size }}"
+        height="{{ section.settings.image_size }}"
+        class="max-w-full h-auto mx-auto"
+      >
+    {%- else -%}
+      <img
+        src="{{ 'shopify.png' | asset_url }}"
+        alt="404 Image"
+        width="{{ section.settings.image_size }}"
+        height="{{ section.settings.image_size }}"
+        class="max-w-full h-auto mx-auto"
+      >
+    {%- endif -%}
+  </div>
+  <div class="text-5xl font-bold">{{ section.settings.title }}</div>
+  <div class="my-4">
+    <p class="text-base md:text-xl leading-normal">{{ section.settings.subtext }}</p>
+  </div>
+  {%- if section.settings.button_url == blank -%}
+    {% assign shop_url = shop.secure_url %}
+  {%- else -%}
+    {% assign shop_url = section.settings.button_url %}
+  {%- endif -%}
+  <div class="my-6">
+    <a
+      href="{{ shop_url }}"
+      class="px-4 inline py-3 font-medium shadow {{ section.settings.button_text_class }} {{ section.settings.button_background_class }}"
+    >
+      {{- section.settings.button_label -}}
+    </a>
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "t:general.404",
-  "settings": []
+  "tag": "section",
+  "class": "flex items-center justify-center text-center py-7 h-screen",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "404",
+      "label": "404 Heading Title"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "default": "The page that you're looking for is not found",
+      "label": "404 Subtext Title"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Upload Image"
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "default": "40",
+      "label": "Image Size (px)",
+      "options": [
+        { "value": "40", "label": "small" },
+        { "value": "60", "label": "medium" },
+        { "value": "100", "label": "large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "back to home page",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "select",
+      "id": "button_background_class",
+      "default": "bg-[#334155]",
+      "label": "Button Background Color",
+      "options": [
+        { "value": "bg-[#334155]", "label": "default" },
+        { "value": "bg-blue-500", "label": "Blue" },
+        { "value": "bg-red-500", "label": "Red" },
+        { "value": "bg-green-500", "label": "Green" },
+        { "value": "bg-yellow-500", "label": "Yellow" },
+        { "value": "bg-gray-500", "label": "Gray" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_text_class",
+      "default": "text-white",
+      "label": "Button Text Color",
+      "options": [
+        { "value": "text-white", "label": "white" },
+        { "value": "text-black", "label": "black" },
+        { "value": "text-gray-500", "label": "gray" }
+      ]
+    }
+  ]
 }
 {% endschema %}
