@@ -11,6 +11,45 @@
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "title_d4Mibn": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_H6zHbG": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_selector_bVeFet": {
+          "type": "variant_selector",
+          "settings": {}
+        },
+        "vendor_VUhYJ7": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "quantity_T8rdKd": {
+          "type": "quantity",
+          "settings": {}
+        },
+        "description_4RCYU3": {
+          "type": "description",
+          "settings": {}
+        },
+        "checkout_buttons_G7PVhT": {
+          "type": "checkout_buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_d4Mibn",
+        "price_H6zHbG",
+        "variant_selector_bVeFet",
+        "vendor_VUhYJ7",
+        "quantity_T8rdKd",
+        "description_4RCYU3",
+        "checkout_buttons_G7PVhT"
+      ],
       "settings": {}
     }
   },
