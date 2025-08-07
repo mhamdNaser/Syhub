@@ -76,7 +76,7 @@
         © {{ 'now' | date: '%Y' }}
         {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
       </p>
-      <div class="footer__payment text-right flex items-center gap-3">
+      <div class="footer__payment text-right flex items-center gap-6">
         {% if section.settings.show_payment_icons %}
           {% for type in shop.enabled_payment_types %}
             {{ type | payment_type_svg_tag }}
