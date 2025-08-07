@@ -1,7 +1,7 @@
 {% assign background = section.settings.color_scheme.settings.background %}
 
 <footer
-  class="hidden w-0 xl:w-full xl:flex xl:justify-between m-auto  py-8 px-8 xl:px-24 text-white"
+  class="hidden w-0 xl:w-full xl:flex xl:justify-between m-auto  py-8 px-8 xl:px-24 text-black"
   style="background-color: {{ background }};"
 >
   <div class="w-full mx-auto max-w-7xl">
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div class="flex justify-between items-center mt-8 border-t border-gray-500 pt-4 text-sm text-gray-300">
+    <div class="flex justify-between items-center mt-8 border-t border-gray-800 pt-4 text-sm text-gray-600">
       <p class="text-left">
         © {{ 'now' | date: '%Y' }}
         {{ shop.name }}. All Rights Reserved.
@@ -79,7 +79,7 @@
       <p class="text-right">&copy; {{ 'now' | date: '%Y' }} - Theme Version: {{ settings.theme_version }}</p>
     </div>
 
-    <div class="flex justify-between items-center mt-8 border-t border-gray-500 pt-4 text-sm text-gray-300">
+    <div class="flex justify-between items-center mt-8 border-t border-gray-800 pt-4 text-sm text-gray-600">
       <div class="footer__copyright">
         &copy;
         {{ 'now' | date: '%Y' }}
