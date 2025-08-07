@@ -8,11 +8,20 @@
  * ------------------------------------------------------------
  */
  
- {
+{
   "sections": {
     "main": {
       "type": "404",
-      "settings": {}
+      "settings": {
+        "title": "404",
+        "subtext": "The page that you're looking for is not found",
+        "image": "shopify://shop_images/Luliz_Logo.png",
+        "image_size": "100",
+        "button_label": "back to home page",
+        "button_url": "",
+        "button_background_class": "bg-blue-500",
+        "button_text_class": "text-white"
+      }
     }
   },
   "order": [
