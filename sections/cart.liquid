@@ -132,7 +132,7 @@
   window.cart_drawer_undo_remove_delay = {{ cart_drawer_undo_remove_delay | json }};
 </script>
 
-<script src="{{ 'cart-script' | asset_url }}" defer></script>
+{{ 'cart-script' | asset_url | script_tag }}
 
 
 {% schema %}
