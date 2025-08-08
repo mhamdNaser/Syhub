@@ -1,0 +1,17 @@
+{
+  "type": "mobilenavigator",
+  "name": "t:general.mobilenavigator",
+  "sections": {
+    "footer": {
+      "type": "mobilenavigator",
+      "settings": {
+        "menu": "",
+        "color_scheme": "scheme-6",
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": [
+    "mobilenavigator"
+  ]
+}
