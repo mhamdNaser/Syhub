@@ -126,7 +126,7 @@
   </div>
 {% endif %}
 
-{%- javascript -%}
+<script>
   var enable_cart_drawer_undo_remove = {{ enable_cart_drawer_undo_remove }};
   var enable_cart_drawer_undo_remove_delay = {{ enable_cart_drawer_undo_remove_delay }};
   var cart_drawer_undo_remove_delay = {{ cart_drawer_undo_remove_delay | default: 5 }};
@@ -178,7 +178,7 @@
       }
     }
   });
-{%- endjavascript -%}
+</script>
 
 
 {% schema %}
