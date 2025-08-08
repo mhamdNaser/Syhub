@@ -225,32 +225,32 @@
           }
         }
       }
-    }
-  },
-  "colors": {
-    "name": "Colors",
-    "settings": {
-      "background": {
-        "label": "Background"
-      },
-      "background_gradient": {
-        "label": "Background gradient"
-      },
-      "text": {
-        "label": "Text"
-      },
-      "button_background": {
-        "label": "Primary button"
-      },
-      "button_label": {
-        "label": "Primary button label"
-      },
-      "secondary_button_label": {
-        "label": "Secondary button label"
-      },
-      "shadow": {
-        "label": "Shadow"
+    },
+    "colors": {
+      "name": "Colors",
+      "settings": {
+        "background": {
+          "label": "Background"
+        },
+        "background_gradient": {
+          "label": "Background gradient"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "button_background": {
+          "label": "Primary button"
+        },
+        "button_label": {
+          "label": "Primary button label"
+        },
+        "secondary_button_label": {
+          "label": "Secondary button label"
+        },
+        "shadow": {
+          "label": "Shadow"
+        }
       }
     }
-  }
+  },
 }
