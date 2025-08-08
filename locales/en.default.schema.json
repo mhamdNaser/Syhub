@@ -29,6 +29,7 @@
     "footer": "Footer",
     "group": "Group",
     "header": "Header",
+    "mobilenavigator": "Mobile navigator",
     "layout": "Layout",
     "main": "Main",
     "page": "Page",
@@ -97,6 +98,135 @@
     "section": "Section"
   },
   "settings_schema": {
+    "products": {
+      "name": "Products",
+      "settings": {
+        "productcards_text_alignment": {
+          "label": "Product cards text alignment",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        },
+        "labels": {
+          "header": "Labels",
+          "show_sale_label": {
+            "label": "Show sale label"
+          },
+          "sale_label_price": {
+            "label": "Sale label price",
+            "options__1": {
+              "label": "None"
+            },
+            "options__2": {
+              "label": "Percentage"
+            },
+            "options__3": {
+              "label": "Amount"
+            }
+          },
+          "show_stock_label": {
+            "label": "Show stock label",
+            "info": "Only show stock label when stock is below quantity threshold"
+          },
+          "stock_label_qty": {
+            "label": "Low stock quantity threshold"
+          },
+          "show_price_varies": {
+            "label": "Show 'price varies' label",
+            "info": "Display when variants have different prices"
+          },
+          "product_custom_label": {
+            "label": "Custom product label",
+            "info": "Appears on the product card if custom condition is met"
+          }
+        },
+        "stock": {
+          "header": "Stock",
+          "show_product_stock": {
+            "label": "Show product stock"
+          },
+          "show_product_stock_qty": {
+            "label": "Stock quantity threshold",
+            "info": "Stock will be shown if quantity is below this threshold"
+          },
+          "show_product_stock_always": {
+            "label": "Always show stock"
+          }
+        },
+        "ratings": {
+          "header": "Ratings",
+          "show_product_rating": {
+            "label": "Show product rating",
+            "info": "Display product ratings on cards"
+          }
+        },
+        "vendor": {
+          "header": "Vendor",
+          "show_vendor": {
+            "label": "Show vendor name"
+          }
+        },
+        "addtocart": {
+          "header": "Add to Cart",
+          "show_addtocart": {
+            "label": "Show add to cart button",
+            "info": "Display add to cart button on product cards"
+          },
+          "addtocart_button_text": {
+            "label": "Add to cart button text"
+          },
+          "show_input_field": {
+            "label": "Show quantity input",
+            "info": "Allow users to enter quantity before adding to cart"
+          }
+        },
+        "preorder": {
+          "header": "Pre-order",
+          "show_preorder": {
+            "label": "Enable pre-order",
+            "info": "Allow customers to pre-order out-of-stock items"
+          },
+          "show_preorder_inventory": {
+            "label": "Show inventory when pre-order is active"
+          },
+          "preorder_button_text": {
+            "label": "Pre-order button text"
+          }
+        },
+        "short_product_description": {
+          "header": "Short Product Description",
+          "product_short_description": {
+            "label": "Choose short description source",
+            "info": "Select where the short description comes from",
+            "options__1": {
+              "label": "None"
+            },
+            "options__2": {
+              "label": "Use main product description"
+            },
+            "options__3": {
+              "label": "Use custom text"
+            }
+          },
+          "product_short_description_text": {
+            "label": "Custom short description text",
+            "info": "Displayed as the short description on product cards"
+          }
+        },
+        "titles": {
+          "header": "Product Titles",
+          "product_titles_caps": {
+            "label": "Use capital letters for product titles"
+          }
+        }
+      }
+    },
     "colors": {
       "name": "Colors",
       "settings": {
@@ -123,5 +253,5 @@
         }
       }
     }
-  }
+  },
 }

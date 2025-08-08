@@ -112,7 +112,9 @@
                 "title_logo_block_jcTKQt": {
                   "type": "title-logo-block",
                   "name": "Title Logo Block",
-                  "settings": {},
+                  "settings": {
+                    "logo": "logo"
+                  },
                   "blocks": {}
                 },
                 "user_icon_block_nzYr6f": {

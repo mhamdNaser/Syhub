@@ -1,0 +1,319 @@
+{%- assign box_width = settings.body_width -%}
+
+{% assign featured_collection = null %}
+{% assign featured_collection_url = null %}
+{% assign collection_alignment = '' %}
+{% assign collection_url_button = false %}
+{% assign collection_url = false %}
+{% assign item_view = 4 %}
+{% assign item_in_row = 2 %}
+{% assign item_in_row_mobile = 2 %}
+{% assign pagination_row = false %}
+{% assign swiper = false %}
+{% assign collection_title_alignment = 'text-center' %}
+{% assign section_title = '' %}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'text' %}
+      {% assign section_title = block.settings.title %}
+      {% assign collection_title_alignment = block.settings.title_alignment %}
+      {% assign title_color = block.settings.title_color %}
+    {% when 'collection' %}
+      {% assign featured_collection = block.settings.section_featured_collection.products %}
+      {% assign featured_collection_url = block.settings.section_featured_collection.url %}
+      {% assign swiper = block.settings.swiper_view %}
+      {% assign item_view = block.settings.item_view_in_section %}
+      {% assign item_in_row = block.settings.item_view_in_row %}
+      {% assign item_in_row_mobile = block.settings.item_view_in_row_mobile | default: 2 %}
+      {% assign pagination_row = block.settings.show_pagination_row %}
+      {% assign collection_url = block.settings.collection_url %}
+    {% when 'collection_link' %}
+      {% assign collection_url_button = block.settings.collection_url_button %}
+      {% assign collection_alignment = block.settings.link_alignment %}
+  {% endcase %}
+{% endfor %}
+
+{% assign swiper_class = 'swiper mySwiper-' | append: section.id %}
+{% assign my_swiper_class = 'mySwiper-' | append: section.id %}
+{% assign next_button_class = 'swiper-next-' | append: section.id %}
+{% assign prev_button_class = 'swiper-prev-' | append: section.id %}
+
+
+<style>
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: black;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 10px;
+    z-index: 10;
+  }
+
+  .swiper-button-next {
+    right: 10px;
+  }
+
+  .swiper-button-prev {
+    left: 10px;
+  }
+
+  .swiper-button-next::after {
+    content: '›';
+    color: black;
+    font-size: 42px;
+  }
+
+  .swiper-button-prev::after {
+    content: '‹';
+    color: black;
+    font-size: 42px;
+  }
+</style>
+
+<div class="py-12">
+  <div class="relative {{ box_width }} mx-auto px-8 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-extrabold mb-8 {{ collection_title_alignment }}" style="color: {{ title_color }};">
+      {{ section_title }}
+    </h2>
+
+    {% if swiper %}
+      <!-- ✅ الحاوية الأساسية للـ swiper -->
+      <div class="swiper {{ my_swiper_class }}">
+        <div class="swiper-wrapper">
+          {% if featured_collection %}
+            {% for product in featured_collection limit: item_view %}
+              <div class="swiper-slide">
+                {% render 'product-card', product: product %}
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for item in (1..4) %}
+              <div class="swiper-slide">
+                {% render 'product-card-placeholder' %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {% if pagination_row %}
+          <!-- ✅ أزرار التنقل -->
+          <div class="swiper-button-prev {{ prev_button_class }}"></div>
+          <div class="swiper-button-next {{ next_button_class }}"></div>
+        {% endif %}
+      </div>
+    {% else %}
+      <!-- ✅ تخطيط شبكي بدون سوايبر -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ item_in_row }} gap-4">
+        {% if featured_collection %}
+          {% for product in featured_collection limit: item_view %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        {% else %}
+          {% for item in (1..4) %}
+            {% render 'product-card-placeholder' %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if collection_url %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-14 py-10 {{ collection_alignment }}">
+      <a
+        href="{{ featured_collection_url }}"
+        class="inline-block px-4 py-2 font-bold hover:text-black {% if collection_url_button %} bg-headerColor rounded-lg hover:bg-headerLightColor text-white {% else %} text-gray-600 {% endif %}"
+      >
+        View All
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var swiperContainer = document.querySelector(".{{ my_swiper_class }}");
+    if (swiperContainer) {
+      new Swiper(swiperContainer, {
+        slidesPerView: {{ item_in_row | json }},
+        spaceBetween: 10,
+        loop: false,
+        navigation: {
+          nextEl: ".{{ next_button_class }}",
+          prevEl: ".{{ prev_button_class }}"
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: {{ item_in_row_mobile | json }},
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: {{ item_in_row | json }},
+            spaceBetween: 10,
+          },
+          1024: {
+            slidesPerView: {{ item_in_row | json }},
+            spaceBetween: 20,
+          }
+        },
+      });
+    }
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Featured Collection",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000",
+          "info": "Set the color of the title"
+        },
+        {
+          "type": "select",
+          "id": "title_alignment",
+          "label": "Title Alignment",
+          "options": [
+            {
+              "value": "text-left",
+              "label": "Left"
+            },
+            {
+              "value": "text-center",
+              "label": "Center"
+            },
+            {
+              "value": "text-right",
+              "label": "Right"
+            }
+          ],
+          "default": "text-center",
+          "info": "Choose the alignment of the title"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "section_featured_collection",
+          "label": "Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "swiper_view",
+          "label": "Swiper View",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "item_view_in_section",
+          "default": 4,
+          "min": 4,
+          "max": 12,
+          "step": 1,
+          "label": "Product Number"
+        },
+        {
+          "type": "range",
+          "id": "item_view_in_row",
+          "default": 2,
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "label": "Number Of Displayed Products"
+        },
+        {
+          "type": "range",
+          "id": "item_view_in_row_mobile",
+          "default": 1,
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "label": "Number Of Displayed Products For Mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_pagination_row",
+          "label": "Show Pagination Row",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "collection_url",
+          "label": "Collection Url",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "collection_link",
+      "name": "Collection Url",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "collection_url_button",
+          "label": "Collection Url Button",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "link_alignment",
+          "label": "Collection Link Alignment",
+          "options": [
+            {
+              "value": "text-left",
+              "label": "Left"
+            },
+            {
+              "value": "text-center",
+              "label": "Center"
+            },
+            {
+              "value": "text-right",
+              "label": "Right"
+            }
+          ],
+          "default": "text-center",
+          "info": "alignment of the Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

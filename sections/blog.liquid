@@ -5,31 +5,75 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/blog
 {% endcomment %}
 
-<h1>{{ blog.title }}</h1>
+{% paginate blog.articles by section.settings.number_of_blog_post %}
+  <h1 class="max-w-7xl font-bold text-2xl md:text-4xl mx-auto text-center py-6 my-8 text-gray-800">{{ blog.title }}</h1>
 
-{% paginate blog.articles by 5 %}
-  {% for article in blog.articles %}
-    <div>
-      {% if article.image %}
-        {{ article.image | image_url: width: 1000 | image_tag }}
-      {% endif %}
-      <h2>
-        {{ article.title | link_to: article.url }}
-      </h2>
-      {% assign date = article.published_at | time_tag: format: 'date' %}
-      <p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
-      <p>{{ article.excerpt }}</p>
-    </div>
-  {% endfor %}
+  <div class="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {% for article in blog.articles %}
+      <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative">
+          {% if article.image %}
+            <img
+              src="{{ article.image | image_url: 'medium' }}"
+              alt="{{ article.image.alt }}"
+              class="w-full h-48 object-cover"
+              width="auto"
+              height="auto"
+            >
+          {% else %}
+            {%- assign placeholder_image = 'lifestyle-1' -%}
+            {{ placeholder_image | placeholder_svg_tag: 'w-full h-48 object-cover' }}
+          {% endif %}
+        </div>
+        <div class="p-4">
+          <h2 class="text-lg font-semibold text-gray-900 hover:text-blue-600">
+            <a href="{{ article.url }}">{{ article.title }}</a>
+          </h2>
+          <p class="text-sm text-gray-500 mb-2">
+            {{ article.author }} | {{ article.created_at | date: "%B %d, %Y" }}
+          </p>
+          <p class="text-gray-700 text-sm">
+            {% if article.excerpt.size > 0 %}
+              {{ article.excerpt | strip_html | truncatewords: 30 }}
+            {% else %}
+              {{ article.content | strip_html | truncatewords: 30 }}
+            {% endif %}
+          </p>
+        </div>
+        <div class="p-4 border-t border-gray-200">
+          <a href="{{ article.url }}" class="text-headerColor font-semibold hover:underline">
+            {{ section.settings.read_more }} ..
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 
-  {%- if paginate.pages > 1 -%}
-    {{- paginate | default_pagination -}}
-  {%- endif -%}
+  <div class="max-w-6xl mx-auto">
+    {%- render 'pagination', pagination: paginate -%}
+  </div>
 {% endpaginate %}
+
 
 {% schema %}
 {
   "name": "t:general.blog",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "read_more",
+      "label": "Read More",
+      "default": "read more"
+    },
+    {
+      "type": "range",
+      "id": "number_of_blog_post",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Blog Post Per Page",
+      "default": 3
+    }
+  ]
 }
 {% endschema %}

@@ -12,9 +12,40 @@
     "main": {
       "type": "hello-world",
       "settings": {}
+    },
+    "section_featured_collection_YLh4zD": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_N8JMpy": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "automated-collection",
+            "swiper_view": true,
+            "item_view_in_section": 9,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": true,
+            "collection_url": true
+          }
+        },
+        "collection_link_MqREVV": {
+          "type": "collection_link",
+          "settings": {
+            "collection_url_button": true,
+            "link_alignment": "text-center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_N8JMpy",
+        "collection_link_MqREVV"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "section_featured_collection_YLh4zD"
   ]
 }
