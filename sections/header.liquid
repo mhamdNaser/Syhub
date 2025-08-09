@@ -41,9 +41,75 @@
   "limit": 1,
   "settings": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:settings.menu"
+      "type": "select",
+      "id": "header_position",
+      "label": "Header Position",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky"
+        },
+        {
+          "value": "None",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_border",
+      "label": "Show Menu Border"
+    },
+    {
+      "type": "select",
+      "id": "border_bottom",
+      "label": "t:settings.border_bottom",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:settings.border_bottom.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:settings.border_bottom.solid"
+        },
+        {
+          "value": "dashed",
+          "label": "t:settings.border_bottom.dashed"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "menu_border_width",
+      "label": "Menu Item Border Width",
+      "min": 2,
+      "max": 8,
+      "step": 2,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "menu_border_color",
+      "label": "Menu Item Border Color",
+      "options": [
+        {
+          "value": "red",
+          "label": "Red"
+        },
+        {
+          "value": "green",
+          "label": "Green"
+        },
+        {
+          "value": "blue",
+          "label": "Blue"
+        }
+      ]
     }
   ],
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
