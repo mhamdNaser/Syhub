@@ -32,11 +32,11 @@
 
 <header
   class="
-    header w-full shadow-lg  mb-8 bg-white {{ border_class }}
+    header w-full shadow-lg mb-8 bg-white {{ border_class }}
     {% if section.settings.header_position == 'fixed' %}
       fixed top-0 z-50
     {% elsif section.settings.header_position == 'sticky' %}
-      sticky
+      js-stickybit
     {% endif %}
   "
 >
@@ -44,14 +44,27 @@
     {% content_for 'blocks' %}
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
     <script src="{{ 'search.js' | asset_url }}" defer></script>
-    <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
+    <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
+
+    <script defer>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof stickybits !== 'undefined') {
+          stickybits('.js-stickybit', {
+            stickyBitStickyOffset: 0,
+            useStickyClasses: true
+          });
+        }
+      });
+    </script>
   </div>
 </header>
 
 {% stylesheet %}
-  .header.sticky {
-    position: sticky;
+  .header.js-is-sticky {
+    position: fixed !important;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 50;
   }
   .border-dashed {
@@ -85,6 +98,7 @@
     gap: 1rem;
   }
 {% endstylesheet %}
+
 
 {% schema %}
 {
