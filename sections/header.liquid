@@ -1,9 +1,38 @@
-{% assign menu_border = section.settings.menu_border %}
-{% assign border_bottom = section.settings.border_bottom %}
-{% assign border_width = section.settings.menu_border_width %}
-{% assign border_color = section.settings.menu_border_color %}
+{% assign border_class = '' %}
 
-<header class="header w-full {% if menu_border == true %} border-{{ border_width }} {% endif %} shadow-lg  mb-8 bg-white">
+{% if section.settings.menu_border %}
+  {% assign border_class = 'border-b' %}
+
+  {% case section.settings.menu_border_width %}
+    {% when 2 %}
+      {% assign border_class = border_class | append: ' border-b-2' %}
+    {% when 4 %}
+      {% assign border_class = border_class | append: ' border-b-4' %}
+    {% when 6 %}
+      {% assign border_class = border_class | append: ' border-b-6' %}
+    {% when 8 %}
+      {% assign border_class = border_class | append: ' border-b-8' %}
+  {% endcase %}
+
+  {% case section.settings.menu_border_color %}
+    {% when 'red' %}
+      {% assign border_class = border_class | append: ' border-red-500' %}
+    {% when 'green' %}
+      {% assign border_class = border_class | append: ' border-green-500' %}
+    {% when 'blue' %}
+      {% assign border_class = border_class | append: ' border-blue-500' %}
+  {% endcase %}
+
+  {% if section.settings.border_bottom == 'dashed' %}
+    {% assign border_class = border_class | append: ' border-dashed' %}
+  {% elsif section.settings.border_bottom == 'solid' %}
+    {% assign border_class = border_class | append: ' border-solid' %}
+  {% else %}
+    {% assign border_class = border_class | append: ' border-none' %}
+  {% endif %}
+{% endif %}
+
+<header class="header w-full shadow-lg  mb-8 bg-white {{ border_class }} {% if section.settings.header_position == 'fixed' %}fixed top-0 z-50{% elsif section.settings.header_position == 'sticky' %}sticky top-0 z-50{% endif %}">
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
