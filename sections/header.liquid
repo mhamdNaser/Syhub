@@ -31,14 +31,7 @@
 {% endif %}
 
 <header
-  class="
-     w-full shadow-lg bg-white {{ border_class }}
-    {% if section.settings.header_position == 'fixed' %}
-      fixed top-0 z-50
-    {% elsif section.settings.header_position == 'sticky' %}
-      sticky top-2
-    {% endif %}
-  "
+  class="w-full shadow-lg bg-white {{ border_class }}"
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
@@ -48,13 +41,6 @@
   </div>
 </header>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if ('{{ section.settings.header_position }}' === 'sticky') {
-      stickybits('header', { stickyBitStickyOffset: 0 });
-    }
-  });
-</script>
 {% stylesheet %}
   #header-group {
     position: sticky;
