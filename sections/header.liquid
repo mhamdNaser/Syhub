@@ -30,7 +30,7 @@
   {% endif %}
 {% endif %}
 
-<div
+<header
   id="header-group"
   class="w-full shadow-lg bg-white {{ border_class }}"
   style="
@@ -45,7 +45,7 @@
     <script src="{{ 'search.js' | asset_url }}" defer></script>
     <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
   </div>
-</div>
+</header>
 
 {% stylesheet %}
   .border-dashed {
@@ -55,8 +55,6 @@
     border-style: solid;
   }
   header {
-    overflow: visible !important;
-    transform: none !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
