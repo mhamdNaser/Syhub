@@ -8,7 +8,7 @@
  * ------------------------------------------------------------
  */
  {
-  "type": "footer",
+  "type": "aside",
   "name": "t:general.mobilenavigator",
   "sections": {
     "footer": {
