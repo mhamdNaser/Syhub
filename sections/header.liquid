@@ -32,11 +32,11 @@
 
 <header
   id="header-group"
-  class="
-     w-full shadow-lg bg-white {{ border_class }}
-    {% if section.settings.header_position == 'fixed' %}
-      fixed top-0 z-50
-    {% endif %}
+  class="w-full shadow-lg bg-white {{ border_class }}"
+  style="
+    position: {{ section.settings.header_position }};
+    top: 0;
+    z-index: 50;
   "
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
@@ -48,11 +48,6 @@
 </header>
 
 {% stylesheet %}
-  /* #header-group {
-    position: sticky;
-    top: 0;
-    z-index: 50; للتأكد أنه فوق المحتوى 
-  } */
   .border-dashed {
     border-style: dashed;
   }
