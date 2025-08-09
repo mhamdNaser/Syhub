@@ -14,11 +14,11 @@
 
   {% case section.settings.menu_border_color %}
     {% when 'red' %}
-      {% assign border_class = border_class | append: ' border-b-red-500' %}
+      {% assign border_class = border_class | append: ' border-red-500' %}
     {% when 'green' %}
-      {% assign border_class = border_class | append: ' border-b-green-500' %}
+      {% assign border_class = border_class | append: ' border-green-500' %}
     {% when 'blue' %}
-      {% assign border_class = border_class | append: ' border-b-blue-500' %}
+      {% assign border_class = border_class | append: ' border-blue-500' %}
   {% endcase %}
 
   {% if section.settings.border_bottom == 'dashed' %}
