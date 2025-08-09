@@ -13,12 +13,12 @@
   {% endcase %}
 
   {% case section.settings.menu_border_color %}
-    {% when 'red' %}
-      {% assign border_class = border_class | append: ' border-red-500' %}
-    {% when 'green' %}
-      {% assign border_class = border_class | append: ' border-green-500' %}
-    {% when 'blue' %}
-      {% assign border_class = border_class | append: ' border-blue-500' %}
+    {% when 'pink' %}
+      {% assign border_class = border_class | append: ' border-[#c42764]' %}
+    {% when 'gray' %}
+      {% assign border_class = border_class | append: ' border-gray-500' %}
+    {% when 'black' %}
+      {% assign border_class = border_class | append: ' border-black' %}
   {% endcase %}
 
   {% if section.settings.border_bottom == 'dashed' %}
@@ -193,16 +193,16 @@
       "label": "Menu Item Border Color",
       "options": [
         {
-          "value": "red",
-          "label": "Red"
+          "value": "pink",
+          "label": "pink"
         },
         {
-          "value": "green",
-          "label": "Green"
+          "value": "gray",
+          "label": "Gray"
         },
         {
-          "value": "blue",
-          "label": "Blue"
+          "value": "black",
+          "label": "Black"
         }
       ]
     }
