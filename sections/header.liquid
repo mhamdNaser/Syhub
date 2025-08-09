@@ -1,4 +1,9 @@
-<header class="header w-full shadow-lg  mb-8 bg-white">
+{% assign menu_border = section.settings.menu_border %}
+{% assign border_bottom = section.settings.border_bottom %}
+{% assign border_width = section.settings.menu_border_width %}
+{% assign border_color = section.settings.menu_border_color %}
+
+<header class="header w-full {% if menu_border == true %} border-{{ border_width }} {% endif %} shadow-lg  mb-8 bg-white">
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
@@ -44,6 +49,7 @@
       "type": "select",
       "id": "header_position",
       "label": "Header Position",
+      "default": "none",
       "options": [
         {
           "value": "fixed",
@@ -62,12 +68,14 @@
     {
       "type": "checkbox",
       "id": "menu_border",
-      "label": "Show Menu Border"
+      "label": "Show Menu Border",
+      "default": false
     },
     {
       "type": "select",
       "id": "border_bottom",
       "label": "t:settings.header.border_bottom.name",
+      "default": "none",
       "options": [
         {
           "value": "none",
@@ -84,13 +92,28 @@
       ]
     },
     {
-      "type": "range",
+      "type": "select",
       "id": "menu_border_width",
       "label": "Menu Item Border Width",
-      "min": 2,
-      "max": 8,
-      "step": 2,
-      "default": 2
+      "options": [
+        {
+          "value": "0",
+          "label": "0"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "8",
+          "label": "8"
+        }
+      ],
+      "default": "0"
     },
     {
       "type": "select",
@@ -112,22 +135,22 @@
       ]
     }
   ],
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
-  
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }]
 }
 {% endschema %}
-{% comment %} 
-"presets": [
-    {
-      "name": "Header",
-      "blocks": [
-        { "type": "language-currency-block", "name": "Language and Currency Block" },
-        { "type": "plain-text-block", "name": "Plain Text Block" },
-        { "type": "social-icons-block", "name": "Social Icons Block" },
-        { "type": "user-icon-block", "name": "User Icon Block" },
-        { "type": "menu-block", "name": "Menu Block" },
-        { "type": "title-logo-block", "name": "Title Logo Block" },
-        { "type": "search-block", "name": "Search Block" }
-      ]
-    }
-  ] {% endcomment %}
+{% comment %}
+  "presets": [
+      {
+        "name": "Header",
+        "blocks": [
+          { "type": "language-currency-block", "name": "Language and Currency Block" },
+          { "type": "plain-text-block", "name": "Plain Text Block" },
+          { "type": "social-icons-block", "name": "Social Icons Block" },
+          { "type": "user-icon-block", "name": "User Icon Block" },
+          { "type": "menu-block", "name": "Menu Block" },
+          { "type": "title-logo-block", "name": "Title Logo Block" },
+          { "type": "search-block", "name": "Search Block" }
+        ]
+      }
+    ]
+{% endcomment %}
