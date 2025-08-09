@@ -37,13 +37,12 @@
 
     <div
       id="main-content"
-      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto"
+      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}
     </div>
 
     {% sections 'footer-group' %}
-    {% sections 'aside-group' %}
   </body>
 </html>
