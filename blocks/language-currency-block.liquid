@@ -1,13 +1,13 @@
 <div class="flex items-center gap-2 " {{ block.shopify_attributes }}>
   {% form 'localization' %}
-    <div class="flex items-center gap-2 z-40">
+    <div class="flex items-center gap-2">
       <!-- LANGUAGE SELECTOR -->
       <div class="relative">
         <button class="p-0 m-0 flex items-center" id="language-toggle" type="button">
           <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}</span>
         </button>
         <div
-          class="absolute h-fit {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
+          class="absolute h-fit z-40 {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-48 bg-white rounded shadow-lg hidden text-start"
           id="language-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
         >
@@ -42,7 +42,7 @@
           </span>
         </button>
         <div
-          class="absolute h-fit {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
+          class="absolute h-fit z-40 {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
           id="country-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
         >
