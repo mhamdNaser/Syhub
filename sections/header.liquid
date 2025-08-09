@@ -95,6 +95,12 @@
   }
 {% endstylesheet %}
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    stickybits('#header-group', { stickyBitStickyOffset: 0 });
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:general.header",
