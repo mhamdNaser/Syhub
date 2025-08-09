@@ -42,9 +42,10 @@
           </span>
         </button>
         <div
-          class="absolute  max-h-[80px] overflow-y-auto bg-white z-50 {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
+          class="absolute bg-white z-50 {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
           id="country-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+          style="max-height: 300px; overflow-y: auto;"
         >
           <ul class="py-1">
             {% for country in form.available_countries %}
