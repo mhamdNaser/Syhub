@@ -1,0 +1,38 @@
+{% comment %}
+  Welcome to Shopify theme development!
+{% endcomment %}
+
+<div class="welcome full-width" style="background-image: url('{{ 'home.png' | asset_url }}'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="welcome-content bg-white/70 p-8 rounded-lg">
+    <div>
+      <h1>Hello, World!</h1>
+
+      <p class="welcome-description">
+        The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started.
+        Designed with modularity, maintainability, and Shopify's best practices in mind.
+      </p>
+
+      <p class="welcome-description">
+        Themes shape the online store experience for merchants and their customers. Build fast, flexible themes at scale
+        using Liquid, Shopify's theme templating language, along with HTML, CSS, JavaScript, and JSON.
+      </p>
+    </div>
+    <div class="icon">
+      <img src="{{ 'shoppy-x-ray.svg' | asset_url }}" width="300" height="300" alt="Icon">
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Hello World",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Hello World Template",
+      "category": "Demo"
+    }
+  ]
+}
+{% endschema %}
