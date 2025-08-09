@@ -6,7 +6,7 @@
 {% enddoc %}
 
 <div class="header__menu" {{ block.shopify_attributes }}>
-  {% for link in section.settings.menu.links %}
+  {% for link in block.settings.menu.links %}
     {{ link.title | link_to: link.url }}
   {% endfor %}
 </div>
