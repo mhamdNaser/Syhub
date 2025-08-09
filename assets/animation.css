@@ -1,3 +1,9 @@
+* {
+    overflow: visible !important;
+    transform: none !important;
+}
+
+
 @keyframes myAnim {
     0% {
         opacity: 0;
