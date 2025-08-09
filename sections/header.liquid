@@ -31,7 +31,14 @@
 {% endif %}
 
 <header
-  class="w-full shadow-lg bg-white {{ border_class }}"
+  class="
+     w-full shadow-lg bg-white {{ border_class }}
+    {% if section.settings.header_position == 'fixed' %}
+      fixed top-0 z-50
+    {% elsif section.settings.header_position == 'sticky' %}
+      sticky
+    {% endif %}
+  "
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
@@ -81,11 +88,13 @@
   }
 {% endstylesheet %}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    stickybits('#header-group', { stickyBitStickyOffset: 0 });
-  });
-</script>
+{% if section.settings.header_position == 'sticky' %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      stickybits('#header-group', { stickyBitStickyOffset: 0 });
+    });
+  </script>
+{% endif %}
 
 {% schema %}
 {
