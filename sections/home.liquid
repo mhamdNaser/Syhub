@@ -2,26 +2,36 @@
   Welcome to Shopify theme development!
 {% endcomment %}
 
-<div class="welcome w-screen min-h-80 h-fit" style="background-image: url('{{ 'home.jpg' | asset_url }}'); background-size: center; background-position: center; background-attachment: fixed;">
-  <div class="welcome-content bg-white/70 p-8 rounded-lg text-white">
-    <div class="px-4 py-8 ">
-      <h1 class="text-4xl py-4">Hello, World!</h1>
+{% comment %}
+  Welcome to Shopify theme development!
+{% endcomment %}
 
-      <p class="welcome-description text-3xl py-4">
-        The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started.
-        Designed with modularity, maintainability, and Shopify's best practices in mind.
-      </p>
+<div 
+  class="welcome w-screen min-h-[80vh] flex items-center justify-center text-center"
+  style="background-image: linear-gradient(rgba(255, 192, 203, 0.6), rgba(255, 182, 193, 0.6)), url('{{ 'home.jpg' | asset_url }}'); 
+         background-size: cover; 
+         background-position: center; 
+         background-attachment: fixed;">
+  
+  <div class="welcome-content max-w-4xl bg-white/30 backdrop-blur-md p-10 rounded-2xl shadow-lg">
+    <h1 class="text-5xl font-bold text-pink-900 drop-shadow-md">Hello, World!</h1>
 
-      <p class="welcome-description text-3xl py-4">
-        Themes shape the online store experience for merchants and their customers. Build fast, flexible themes at scale
-        using Liquid, Shopify's theme templating language, along with HTML, CSS, JavaScript, and JSON.
-      </p> 
-      <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-        Get Started
-      </button>
-    </div>
+    <p class="welcome-description text-lg md:text-xl text-pink-800 leading-relaxed mt-6">
+      The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started.
+      Designed with modularity, maintainability, and Shopify's best practices in mind.
+    </p>
+
+    <p class="welcome-description text-lg md:text-xl text-pink-800 leading-relaxed mt-4">
+      Themes shape the online store experience for merchants and their customers. Build fast, flexible themes at scale
+      using Liquid, Shopify's theme templating language, along with HTML, CSS, JavaScript, and JSON.
+    </p> 
+
+    <button class="mt-8 px-8 py-3 bg-pink-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 hover:shadow-xl transition-all duration-300">
+      Get Started
+    </button>
   </div>
 </div>
+
 
 
 {% schema %}
