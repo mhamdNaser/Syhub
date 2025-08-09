@@ -32,7 +32,12 @@
 
 <div
   id="header-container"
-  class="w-full shadow-lg bg-white {{ border_class }}"
+  class="
+    w-full shadow-lg bg-white {{ border_class }}
+    {% if section.settings.header_position == "fixed" %}
+      fixed top-0 z-40
+    {% endif %}
+  "
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
