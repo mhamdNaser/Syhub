@@ -47,12 +47,12 @@
     <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
 
     <script defer>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         if (typeof stickybits !== 'undefined') {
           // تفعيل Stickybits مع الإعدادات المتقدمة
           const stickyInstance = stickybits('.js-stickybit', {
-            stickyBitStickyOffset: 0,       // المسافة من الأعلى (يمكن تعديلها)
-            useStickyClasses: true,          // تستخدم الكلاسات الجاهزة مثل js-is-sticky
+            stickyBitStickyOffset: 0, // المسافة من الأعلى (يمكن تعديلها)
+            useStickyClasses: true, // تستخدم الكلاسات الجاهزة مثل js-is-sticky
             useGetBoundingClientRect: true, // لتحسين الحسابات مع CSS calc أو متغيرات الارتفاع
           });
 
@@ -111,8 +111,6 @@
   }
 {% endstylesheet %}
 
-
-
 {% schema %}
 {
   "name": "t:general.header",
@@ -134,7 +132,7 @@
           "label": "Sticky"
         },
         {
-          "value": "None",
+          "value": "none",
           "label": "None"
         }
       ]
@@ -212,6 +210,7 @@
   "blocks": [{ "type": "@theme" }, { "type": "@app" }]
 }
 {% endschema %}
+
 {% comment %}
   "presets": [
       {
