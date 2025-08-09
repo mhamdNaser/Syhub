@@ -798,6 +798,15 @@
   .border-red-500 {
     border-color: var(--color-red-500);
   }
+  .border-b-blue-500 {
+    border-bottom-color: var(--color-blue-500);
+  }
+  .border-b-green-500 {
+    border-bottom-color: var(--color-green-500);
+  }
+  .border-b-red-500 {
+    border-bottom-color: var(--color-red-500);
+  }
   .bg-\[\#334155\] {
     background-color: #334155;
   }
