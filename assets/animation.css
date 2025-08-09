@@ -1,11 +1,15 @@
 @keyframes myAnim {
-	0% {
-		opacity: 0;
-		transform: translateY(-50px);
-	}
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
 
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#header-group {
+    animation: myAnim 2s ease 0s 1 normal backwards;
 }
