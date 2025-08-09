@@ -115,3 +115,29 @@ body {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+/* Scrollbar لأغلب المتصفحات المبنية على WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* عرض المسطرة */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* خلفية المسار */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c42764; /* لون المسطرة */
+  border-radius: 10px; /* زوايا ناعمة */
+  border: 2px solid #f0f0f0; /* يعطي فراغ حول المسطرة */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a81f52; /* لون أغمق عند التمرير */
+}
+
+/* دعم Firefox */
+* {
+  scrollbar-width: thin; /* نحيف */
+  scrollbar-color: #c42764 #f0f0f0; /* لون المسطرة + لون الخلفية */
+}
