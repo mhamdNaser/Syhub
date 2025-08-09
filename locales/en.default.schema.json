@@ -77,6 +77,15 @@
     "announcement_text_rich_enabled": "Enable rich text for announcement",
     "enable_language_currency_bar": "Enable language and currency bar",
     "enable_announcement_bar": "Enable announcement bar",
+    "header": {
+      "title": "Settings",
+      "border_bottom": {
+        "name": "Border bottom",
+        "none": "None",
+        "solid": "Solid",
+        "dashed": "Dashed",
+      }
+    },
   },
   "options": {
     "narrow": "Narrow",
