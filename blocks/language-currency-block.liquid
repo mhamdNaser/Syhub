@@ -42,7 +42,7 @@
           </span>
         </button>
         <div
-          class="fixed z-40 {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
+          class="absolute h-fit z-40 {% if localization.language.iso_code == 'ar' %} translate-x-1/2 {% else %} -translate-x-1/2 {% endif %} mt-2 w-64 bg-white rounded shadow-lg hidden text-start"
           id="country-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
         >
