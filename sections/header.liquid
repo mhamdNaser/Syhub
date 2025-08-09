@@ -47,6 +47,14 @@
     <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if ('{{ section.settings.header_position }}' === 'sticky') {
+      stickybits('header', { stickyBitStickyOffset: 0 });
+    }
+  });
+</script>
 {% stylesheet %}
   .border-dashed {
     border-style: dashed;
