@@ -16,6 +16,8 @@
   style="
     --paddingx : {{ block.settings.paddingx }}px;
     --paddingy : {{ block.settings.paddingy }}px;
+    --block-position: {{ block.settings.position }};
+    --top-space: {{ block.settings.top_space }}px;
     --alignment: {{ block.settings.alignment }};
   "
   {{ block.shopify_attributes }}
@@ -35,6 +37,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: var(--block-position);
+    top: var(--top-space);
     padding: var(--paddingy) var(--paddingx);
     max-width: 100%;
   }
@@ -73,6 +77,29 @@
         { "value": "center", "label": "t:options.alignment.center" },
         { "value": "flex-end", "label": "t:options.alignment.right" }
       ]
+    },
+    {
+      "visible_if": "{{ block.settings.layout_direction == 'group--horizontal' }}",
+      "type": "select",
+      "id": "position",
+      "label": "t:labels.position",
+      "default": "flex-start",
+      "options": [
+        { "value": "fixed", "label": "t:options.alignment.fixed" },
+        { "value": "sticky", "label": "t:options.alignment.sticky" },
+        { "value": "none", "label": "t:options.alignment.none" }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.layout_direction == 'group--horizontal' }}",
+      "type": "range",
+      "id": "top_space",
+      "label": "t:labels.top_space",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
     },
     {
       "type": "range",
