@@ -36,8 +36,6 @@
      w-full shadow-lg bg-white {{ border_class }}
     {% if section.settings.header_position == 'fixed' %}
       fixed top-0 z-50
-    {% elsif section.settings.header_position == 'sticky' %}
-      sticky
     {% endif %}
   "
 >
@@ -50,11 +48,11 @@
 </header>
 
 {% stylesheet %}
-  #header-group {
+  /* #header-group {
     position: sticky;
     top: 0;
-    z-index: 50; /* للتأكد أنه فوق المحتوى */
-  }
+    z-index: 50; للتأكد أنه فوق المحتوى 
+  } */
   .border-dashed {
     border-style: dashed;
   }
