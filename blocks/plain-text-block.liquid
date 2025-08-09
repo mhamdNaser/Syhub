@@ -6,6 +6,7 @@
 {% enddoc %}
 
 <p
+  class="text-{{ block.settings.text_alignment }} w-full"
   style="
     font-size: {{ block.settings.font_size }}px;
     font-weight: {{ block.settings.font_weight }};
@@ -51,6 +52,26 @@
       "options": [
         { "value": "normal", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
       ]
     },
     {
