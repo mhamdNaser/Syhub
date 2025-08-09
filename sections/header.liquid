@@ -75,7 +75,7 @@
 </header>
 {% stylesheet %}
   .header.js-is-sticky {
-    position: fixed !important;
+    position: sticky !important;
     top: 0;
     left: 0;
     right: 0;
@@ -100,6 +100,7 @@
   header a sup {
     position: absolute;
     left: 100%;
+    overflow: hidden;
     max-width: var(--page-margin);
   }
   header svg {
