@@ -30,12 +30,13 @@
   {% endif %}
 {% endif %}
 
-<div
-  id="header-container"
+<header
   class="
-    w-full shadow-lg bg-white {{ border_class }}
-    {% if section.settings.header_position == "fixed" %}
-      fixed top-0 z-40
+     w-full shadow-lg bg-white {{ border_class }}
+    {% if section.settings.header_position == 'fixed' %}
+      fixed top-0 z-50
+    {% elsif section.settings.header_position == 'sticky' %}
+      sticky
     {% endif %}
   "
 >
@@ -45,16 +46,13 @@
     <script src="{{ 'search.js' | asset_url }}" defer></script>
     <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
   </div>
-</div>
+</header>
 
 {% stylesheet %}
-  #header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  #header-group {
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 50; /* للتأكد أنه فوق المحتوى */
   }
   .border-dashed {
     border-style: dashed;
@@ -62,22 +60,29 @@
   .border-solid {
     border-style: solid;
   }
-  #header-container a {
+  header {
+    overflow: visible !important;
+    transform: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header a {
     position: relative;
     text-decoration: none;
     color: var(--color-foreground);
   }
-  #header-container a sup {
+  header a sup {
     position: absolute;
     left: 100%;
     overflow: hidden;
     max-width: var(--page-margin);
   }
-  #header-container svg {
+  header svg {
     width: 2rem;
   }
-  #header-container .header__menu,
-  #header-container .header__icons {
+  header .header__menu,
+  header .header__icons {
     display: flex;
     gap: 1rem;
   }
@@ -86,7 +91,7 @@
 {% if section.settings.header_position == 'sticky' %}
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      stickybits('#header-container', { stickyBitStickyOffset: 0 });
+      stickybits('.header', { stickyBitStickyOffset: 0 });
     });
   </script>
 {% endif %}
