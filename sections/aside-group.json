@@ -9,10 +9,10 @@
  */
  {
   "type": "aside",
-  "name": "t:general.mobilenavigator",
+  "name": "t:general.aside-group",
   "sections": {
     "footer": {
-      "type": "mobilenavigator",
+      "type": "aside-group",
       "settings": {
         "menu": "",
         "color_scheme": "scheme-6",
@@ -21,6 +21,6 @@
     }
   },
   "order": [
-    "mobilenavigator"
+    "aside-group"
   ]
 }
