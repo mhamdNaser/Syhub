@@ -11,7 +11,17 @@
   "accessibility": {
     "close": "Close",
   },
+  "labels": {
+    "layout_direction": "Layout direction",
+    "alignment": "Alignment",
+    "paddingx": "Horizontal padding",
+    "paddingy": "Vertical padding"
+  },
   "general": {
+    "group": "Group",
+    "column": "Column",
+    "row": "Row",
+    "layout": "Layout",
     "404": "Not found",
     "article": "Article",
     "block": "Block",
@@ -22,21 +32,17 @@
     "collection_card": "Collection card",
     "collections_grid": "Collections grid",
     "colors": "Colors",
-    "column": "Column",
     "content": "Content",
     "custom_section": "Custom section",
     "fonts": "Fonts",
     "footer": "Footer",
-    "group": "Group",
     "header": "Header",
     "mobilenavigator": "Mobile navigator",
-    "layout": "Layout",
     "main": "Main",
     "page": "Page",
     "password": "Password",
     "primary": "Primary",
     "product": "Product",
-    "row": "Row",
     "secondary": "Secondary",
     "section": "Section",
     "settings": "Settings",
@@ -95,7 +101,16 @@
     "lift": "Lift",
     "scale": "Scale",
     "subtle_zoom": "Subtle zoom",
-    "none": "None"
+    "none": "None",
+    "direction": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "alignment": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    }
   },
   "info": {
     "hover_effects": "Hover effects",

@@ -59,10 +59,6 @@
     "results_for_html": "{{ count }} results found for {{ terms }}"
   },
   "general": {
-    "group": "Group",
-    "column": "Column",
-    "row": "Row",
-    "layout": "Layout",
     "search": {
       "search": "Search",
       "reset": "Reset"
@@ -72,21 +68,4 @@
     "close": "Close",
     "loading": "Loading..."
   },
-  "labels": {
-    "layout_direction": "Layout direction",
-    "alignment": "Alignment",
-    "paddingx": "Horizontal padding",
-    "paddingy": "Vertical padding"
-  },
-  "options": {
-    "direction": {
-      "horizontal": "Horizontal",
-      "vertical": "Vertical"
-    },
-    "alignment": {
-      "left": "Left",
-      "center": "Center",
-      "right": "Right"
-    }
-  }
 }
