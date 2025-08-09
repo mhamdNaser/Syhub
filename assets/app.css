@@ -725,6 +725,9 @@
   .overflow-y-scroll {
     overflow-y: scroll;
   }
+  .overflow-y-visible {
+    overflow-y: visible;
+  }
   .rounded {
     border-radius: 0.25rem;
   }

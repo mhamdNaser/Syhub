@@ -27,6 +27,14 @@
     {% render 'meta-tags' %}
 
     {{ content_for_header }}
+
+    {% style %}
+      #header-group {
+        position: sticky;
+        top: 0;
+        z-index: 50; /* للتأكد أنه فوق المحتوى */
+      }
+    {% endstyle %}
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased">
@@ -43,7 +51,7 @@
     </div>
 
     <div
-      class="welcome w-full flex items-center justify-center text-center"
+      class="welcome w-full flex items-center justify-center text-center text-white"
       style="
         background-image: linear-gradient(rgba(255, 192, 203, 0.6), rgba(255, 182, 193, 0.6)), url('{{ 'home.jpg' | asset_url }}');
         background-size: cover;
@@ -78,5 +86,11 @@
     </div>
 
     {% sections 'footer-group' %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        stickybits('#header-group', { stickyBitStickyOffset: 0 });
+      });
+    </script>
   </body>
 </html>
