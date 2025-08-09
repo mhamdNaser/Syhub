@@ -5,16 +5,7 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<div
-  class="
-    header__menu {% if section.settings.header_position == 'fixed' %}
-      fixed top-0 z-50
-    {% elsif section.settings.header_position == 'sticky' %}
-      sticky top-0
-    {% endif %}
-  "
-  {{ block.shopify_attributes }}
->
+<div class="header__menu" {{ block.shopify_attributes }}>
   {% for link in block.settings.menu.links %}
     {{ link.title | link_to: link.url }}
   {% endfor %}

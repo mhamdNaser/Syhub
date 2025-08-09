@@ -32,7 +32,12 @@
 
 <header
   class="
-    header w-full shadow-lg mb-8 bg-white {{ border_class }}
+     w-full shadow-lg bg-white {{ border_class }}
+    {% if section.settings.header_position == 'fixed' %}
+      fixed top-0 z-50
+    {% elsif section.settings.header_position == 'sticky' %}
+      sticky top-0
+    {% endif %}
   "
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
