@@ -32,19 +32,12 @@
 
 <header
   class="
-    header w-full shadow-lg mb-8 bg-white {{ border_class }}
+    w-full shadow-lg mb-8 bg-white {{ border_class }}
     {% if section.settings.header_position == 'fixed' %}
       fixed top-0 z-50
     {% elsif section.settings.header_position == 'sticky' %}
       sticky top-0
     {% endif %}
-  "
-  style="
-    position: sticky !important;
-     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
   "
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
@@ -52,39 +45,9 @@
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
     <script src="{{ 'search.js' | asset_url }}" defer></script>
     <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
-
-    <script defer>
-      document.addEventListener('DOMContentLoaded', function () {
-        if (typeof stickybits !== 'undefined') {
-          // تفعيل Stickybits مع الإعدادات المتقدمة
-          const stickyInstance = stickybits('.js-stickybit', {
-            stickyBitStickyOffset: 0, // المسافة من الأعلى (يمكن تعديلها)
-            useStickyClasses: true, // تستخدم الكلاسات الجاهزة مثل js-is-sticky
-            useGetBoundingClientRect: true, // لتحسين الحسابات مع CSS calc أو متغيرات الارتفاع
-          });
-
-          // تحديث الحسابات عند تغيير حجم النافذة
-          window.addEventListener('resize', () => {
-            stickyInstance.update();
-          });
-
-          // تحديث الحسابات عند تغيير الهش (hash) في الـ URL (اختياري)
-          window.addEventListener('hashchange', () => {
-            stickyInstance.update();
-          });
-        }
-      });
-    </script>
   </div>
 </header>
 {% stylesheet %}
-  .header.js-is-sticky {
-    position: sticky !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-  }
   .border-dashed {
     border-style: dashed;
   }
@@ -216,20 +179,3 @@
   "blocks": [{ "type": "@theme" }, { "type": "@app" }]
 }
 {% endschema %}
-
-{% comment %}
-  "presets": [
-      {
-        "name": "Header",
-        "blocks": [
-          { "type": "language-currency-block", "name": "Language and Currency Block" },
-          { "type": "plain-text-block", "name": "Plain Text Block" },
-          { "type": "social-icons-block", "name": "Social Icons Block" },
-          { "type": "user-icon-block", "name": "User Icon Block" },
-          { "type": "menu-block", "name": "Menu Block" },
-          { "type": "title-logo-block", "name": "Title Logo Block" },
-          { "type": "search-block", "name": "Search Block" }
-        ]
-      }
-    ]
-{% endcomment %}
