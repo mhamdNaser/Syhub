@@ -4,11 +4,11 @@
   {% assign border_class = 'border-b' %}
 
   {% case section.settings.menu_border_width %}
-    {% when "2" %}
+    {% when '2' %}
       {% assign border_class = border_class | append: ' border-b-2' %}
-    {% when "4" %}
+    {% when '4' %}
       {% assign border_class = border_class | append: ' border-b-4' %}
-    {% when "8" %}
+    {% when '8' %}
       {% assign border_class = border_class | append: ' border-b-8' %}
   {% endcase %}
 
@@ -30,7 +30,7 @@
   {% endif %}
 {% endif %}
 
-<header class="header w-full shadow-lg  mb-8 bg-white {{ border_class }} {% if section.settings.header_position == 'fixed' %}fixed top-0 z-50{% elsif section.settings.header_position == 'sticky' %}sticky top-0 z-50{% endif %}">
+<header class="header w-full shadow-lg  mb-8 bg-white {{ border_class }} {% if section.settings.header_position == 'fixed' %} fixed top-0 z-50 {% elsif section.settings.header_position == 'sticky' %} sticky top-0 z-50 {% endif %}">
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
@@ -40,6 +40,12 @@
 </header>
 
 {% stylesheet %}
+  .border-dashed {
+    border-style: dashed;
+  }
+  .border-solid {
+    border-style: solid;
+  }
   header {
     display: flex;
     align-items: center;
