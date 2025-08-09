@@ -6,6 +6,7 @@
 {% enddoc %}
 
 <div
+  class="text-{{ block.settings.text_alignment }}"
   style="    color: {{ settings.color_schemes[block.settings.color_scheme].settings.text }};"
   {{ block.shopify_attributes }}
 >
@@ -27,6 +28,46 @@
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text Size",
+      "default": "medium",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ]
     }
   ],
   "presets": [{ "name": "Rich Text Block" }]
