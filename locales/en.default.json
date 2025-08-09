@@ -67,5 +67,16 @@
   "accessibility": {
     "close": "Close",
     "loading": "Loading..."
-  }
+  },
+  "settings": {
+    "header": {
+      "title": "Settings",
+      "border_bottom": {
+        "name": "Border bottom",
+        "none": "None",
+        "solid": "Solid",
+        "dashed": "Dashed",
+      }
+    },
+  },
 }
