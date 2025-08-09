@@ -28,9 +28,15 @@
     {{ content_for_header }}
   </head>
 
+  {% stylesheet %}
+    .header-group {
+      animation: slideIn 1s ease-in-out;
+    }
+  {% endstylesheet %}
+
   <body>
     {% # Load the header and footer sections %}
-    <div id="header-group" class="overflow-none">
+    <div id="header-group" class="overflow-none ">
       {% sections 'header-group' %}
     </div>
 
