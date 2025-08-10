@@ -56,7 +56,9 @@
     >
       {{ content_for_layout }}
     </div>
-
+    <div id="mobile-foorer" class="fixed bottom-0">
+      {% section 'mobile-header' %}
+    </div>
     {% sections 'footer-group' %}
   </body>
 </html>
