@@ -1,0 +1,47 @@
+<section class="vendor-gallery max-w-7xl mx-auto py-8 px-4">
+  <h2 class="text-2xl font-semibold mb-6">الماركات / الفيندور</h2>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+    {% for block in section.blocks %}
+      {% assign vendor_name = block.settings.vendor_name %}
+      {% assign vendor_image = block.settings.vendor_image %}
+
+      {% if vendor_name and vendor_image %}
+        <a href="/collections/all?vendor={{ vendor_name | url_encode }}" class="block border rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+          <img src="{{ vendor_image | img_url: '400x400' }}" alt="{{ vendor_name }}" class="w-full h-auto object-cover">
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vendor Gallery",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "vendor_block",
+      "name": "Vendor",
+      "settings": [
+        {
+          "type": "text",
+          "id": "vendor_name",
+          "label": "Vendor Name (exact)"
+        },
+        {
+          "type": "image_picker",
+          "id": "vendor_image",
+          "label": "Vendor Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Vendor Gallery",
+      "category": "Collections"
+    }
+  ]
+}
+{% endschema %}
