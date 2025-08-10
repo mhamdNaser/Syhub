@@ -4,6 +4,183 @@
 {%- assign cart_drawer_undo_remove_delay = settings.cart_drawer_undo_remove_delay | default: 5 -%}
 
 {% if cart and cart.item_count > 0 %}
+<div class="p-4 bg-gray-50 min-h-screen">
+  <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6">
+
+    <!-- عنوان الصفحة -->
+    <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+      <h1 class="text-3xl font-bold text-gray-800">🛒 سلة مشترياتك</h1>
+      <a href="{{ routes.all_products_collection_url }}" class="text-blue-600 hover:underline">
+        ← متابعة التسوق
+      </a>
+    </div>
+
+    <!-- شريط الثقة -->
+    <div class="bg-green-50 border border-green-200 text-green-800 p-3 rounded-md text-center mb-6">
+      🔒 الدفع آمن 100% | 🚚 شحن سريع | 💳 طرق دفع متعددة
+    </div>
+
+    <!-- شريط التراجع عن الحذف -->
+    <div id="undo-container" class="bg-gray-800 text-white p-4 rounded shadow-lg mb-6 hidden">
+      تم حذف المنتج
+      <button id="undo-button" class="bg-blue-500 text-white px-2 py-1 ml-2 rounded">تراجع</button>
+      <span id="undo-timer" class="ml-2 text-sm text-gray-300">(5s)</span>
+    </div>
+
+    <!-- نموذج الكارت -->
+    <form action="/cart" method="post" novalidate class="space-y-10">
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse border border-gray-200 rounded-lg overflow-hidden">
+          <thead class="bg-gray-800 text-white">
+            <tr>
+              <th class="p-4 text-left">المنتج</th>
+              <th class="p-4 text-left">السعر</th>
+              <th class="p-4 text-left">الكمية</th>
+              <th class="p-4 text-left">الإجمالي</th>
+              <th class="p-4 text-left">إجراء</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+            <tr class="border-b hover:bg-gray-50">
+              <td class="p-4 flex items-center gap-4">
+                <a href="{{ item.url }}">
+                  {% if item.image %}
+                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" class="w-16 h-16 object-cover rounded">
+                  {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'w-16 h-16 object-cover rounded' }}
+                  {% endif %}
+                </a>
+                <div>
+                  <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-blue-600">{{ item.product.title }}</a>
+                  <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
+                </div>
+              </td>
+              <td class="p-4">{{ item.price | money }}</td>
+              <td class="p-4">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="1" class="w-16 border rounded text-center">
+              </td>
+              <td class="p-4 font-semibold">{{ item.line_price | money }}</td>
+              <td class="p-4">
+                <a href="#" class="text-red-500 hover:underline" data-remove="true" data-key="{{ item.key }}" data-line="{{ forloop.index }}">
+                  🗑 حذف
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ملخص الدفع -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-lg font-semibold">
+          الإجمالي: <span class="text-blue-600">{{ cart.total_price | money }}</span>
+        </div>
+        <button type="submit" name="checkout" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
+          إتمام الشراء →
+        </button>
+      </div>
+    </form>
+
+    <!-- اقتراح منتجات -->
+    <div class="mt-10">
+      <h2 class="text-xl font-bold mb-4">قد يعجبك أيضًا</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {% for product in collections['frontpage'].products limit:4 %}
+        <a href="{{ product.url }}" class="border rounded-lg p-3 hover:shadow-lg transition">
+          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded">
+          <p class="mt-2 text-sm font-semibold text-gray-800">{{ product.title }}</p>
+          <span class="text-blue-600">{{ product.price | money }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% else %}
+<div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
+  <div class="text-center">
+    <h1 class="text-3xl my-4">{{ cart_text }}</h1>
+    <a href="{{ routes.all_products_collection_url }}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">
+      متابعة التسوق
+    </a>
+  </div>
+</div>
+{% endif %}
+
+<!-- سكربت الحذف والتراجع -->
+<script>
+  var enable_cart_drawer_undo_remove = {{ enable_cart_drawer_undo_remove }};
+  var enable_cart_drawer_undo_remove_delay = {{ enable_cart_drawer_undo_remove_delay }};
+  var cart_drawer_undo_remove_delay = {{ cart_drawer_undo_remove_delay | default: 5 }};
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const undoContainer = document.getElementById('undo-container');
+    const undoButton = document.getElementById('undo-button');
+    const undoTimer = document.getElementById('undo-timer');
+    let undoTimeout;
+    let removedItem = null;
+
+    document.querySelectorAll('a[data-remove]').forEach((deleteButton) => {
+      deleteButton.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const itemKey = this.getAttribute('data-key');
+        const lineIndex = this.getAttribute('data-line');
+        removedItem = { key: itemKey, line: lineIndex };
+
+        if (enable_cart_drawer_undo_remove) {
+          undoContainer.style.display = 'flex';
+
+          let countdown = enable_cart_drawer_undo_remove_delay ? cart_drawer_undo_remove_delay : 5;
+          undoTimer.textContent = `(${countdown}s)`;
+
+          undoTimeout = setInterval(() => {
+            countdown--;
+            undoTimer.textContent = `(${countdown}s)`;
+            if (countdown <= 0) {
+              clearInterval(undoTimeout);
+              finalizeRemove();
+            }
+          }, 1000);
+        } else {
+          finalizeRemove();
+        }
+      });
+    });
+
+    undoButton?.addEventListener('click', function () {
+      clearInterval(undoTimeout);
+      undoContainer.style.display = 'none';
+      removedItem = null;
+    });
+
+    function finalizeRemove() {
+      if (removedItem) {
+        window.location.href = `/cart/change?line=${removedItem.line}&quantity=0`;
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:general.cart",
+  "settings": []
+}
+{% endschema %}
+
+
+
+
+{% comment %} {%- assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' -%}
+{%- assign enable_cart_drawer_undo_remove = settings.enable_cart_drawer_undo_remove | default: false -%}
+{%- assign enable_cart_drawer_undo_remove_delay = settings.enable_cart_drawer_undo_remove_delay | default: false -%}
+{%- assign cart_drawer_undo_remove_delay = settings.cart_drawer_undo_remove_delay | default: 5 -%}
+
+{% if cart and cart.item_count > 0 %}
   <div class="p-4 bg-white min-h-screen">
     <div class="max-w-6xl flex flex-col mx-auto shadow-lg rounded-lg p-6">
       <div class="flex items-end justify-between mb-8">
@@ -186,4 +363,4 @@
   "name": "t:general.cart",
   "settings": []
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
