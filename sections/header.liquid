@@ -31,7 +31,7 @@
 {% endif %}
 
 <header
-  id="header-group"
+  id="header-container"
   class="w-full shadow-lg bg-white {{ border_class }}"
   style="
     position: {{ section.settings.header_position }};
@@ -83,7 +83,7 @@
 {% if section.settings.header_position == 'sticky' %}
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      stickybits('#header-group', { stickyBitStickyOffset: 0 });
+      stickybits('#header-container', { stickyBitStickyOffset: 0 });
     });
   </script>
 {% endif %}

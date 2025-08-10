@@ -7,13 +7,13 @@
 
 <div class="flex items-center gap-4" {{ block.shopify_attributes }}>
   {% if block.settings.facebook_url != blank %}
-    <a href="{{ block.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition inline-block w-6 h-6">
+    <a href="{{ block.settings.facebook_url }}" target="_blank" class="hover:text-blue-600 transition inline-block">
       {% render 'icon-facebook' %}
     </a>
   {% endif %}
   
   {% if block.settings.instagram_url != blank %}
-    <a href="{{ block.settings.instagram_url }}" target="_blank" class="hover:text-pink-500 transition inline-block w-6 h-6">
+    <a href="{{ block.settings.instagram_url }}" target="_blank" class="hover:text-pink-500 transition inline-block">
       {% render 'icon-instagram' %}
     </a>
   {% endif %}
