@@ -46,33 +46,7 @@
       {% sections 'header-group' %}
     </div>
 
-    <div
-      class="welcome w-full flex items-center justify-center text-center text-white"
-      style="
-        background-image: linear-gradient(rgba(255, 192, 203, 0.6), rgba(255, 182, 193, 0.6)), url('{{ 'home.jpg' | asset_url }}');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-      "
-    >
-      <div class="welcome-content max-w-4xl py-20 px-10 ">
-        <h1 class="text-5xl font-bold text-pink-900 drop-shadow-md">Hello, World!</h1>
-
-        <p class="welcome-description text-lg md:text-xl text-pink-800 leading-relaxed mt-6">
-          The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started.
-          Designed with modularity, maintainability, and Shopify's best practices in mind.
-        </p>
-
-        <p class="welcome-description text-lg md:text-xl text-pink-800 leading-relaxed mt-4">
-          Themes shape the online store experience for merchants and their customers. Build fast, flexible themes at
-          scale using Liquid, Shopify's theme templating language, along with HTML, CSS, JavaScript, and JSON.
-        </p>
-
-        <button class="mt-8 px-8 py-3 bg-pink-800 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 hover:shadow-xl transition-all duration-300">
-          Get Started
-        </button>
-      </div>
-    </div>
+    
     <div
       id="main-content"
       class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10"
