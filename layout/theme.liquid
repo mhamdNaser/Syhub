@@ -29,7 +29,6 @@
     {{ content_for_header }}
 
     {% style %}
-      
     {% endstyle %}
   </head>
 
@@ -46,10 +45,15 @@
       {% sections 'header-group' %}
     </div>
 
-    
     <div
       id="main-content"
-      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10"
+      class="
+        {% if section.settings.class == 'image-tage' %}
+          w-screen max-w-full px-0
+        {% else %}
+          max-w-4xl px-10
+        {% endif %} {{ settings.card_hover_effect }} mx-auto z-10
+      "
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}
