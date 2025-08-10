@@ -47,12 +47,16 @@
     top: 0;
     z-index: 50;
   }
-  .announcement-bar {
-    transition: height 0.3s ease, top 0.3s ease;
-  }
   .header {
-    position: sticky; /* أو fixed */
-    transition: top 0.3s ease;
+    position: sticky; /* أو fixed حسب حالتك */
+    top: 0;
+    transition: transform 0.3s ease;
+  }
+  .header.hide {
+    pointer-events: none;
+  }
+  .announcement-bar {
+    transition: transform 0.3s ease;
   }
   .border-dashed {
     border-style: dashed;
@@ -101,33 +105,18 @@
 
       if (!announcementBar || !header) return;
 
-      const originalHeaderHeight = header.offsetHeight + 'px';
-      const originalBarHeight = announcementBar.offsetHeight + 'px';
-
-      // بداية: نخزن القيم الأصلية
-      header.style.top = originalBarHeight;
+      // نأخذ ارتفاعاتهم مرة واحدة
+      const totalHeight = announcementBar.offsetHeight + header.offsetHeight;
 
       window.addEventListener('scroll', function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop) {
-          // إخفاء البار
-          announcementBar.style.height = '0';
-          announcementBar.style.overflow = 'hidden';
-
-          // إخفاء الهيدر
-          header.style.height = '0';
-          header.style.overflow = 'hidden';
-          header.style.top = '0';
+          // نزول → نخفي الكل لأعلى
+          header.style.transform = `translateY(-${totalHeight}px)`;
         } else {
-          // إرجاع البار
-          announcementBar.style.height = originalBarHeight;
-          announcementBar.style.overflow = '';
-
-          // إرجاع الهيدر
-          header.style.height = originalHeaderHeight;
-          header.style.overflow = '';
-          header.style.top = originalBarHeight;
+          // صعود → نرجع
+          header.style.transform = 'translateY(0)';
         }
 
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
