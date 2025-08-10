@@ -48,9 +48,10 @@
     z-index: 50;
   }
   .announcement-bar {
-    transition: transform 0.3s ease;
+    transition: height 0.3s ease;
   }
-  .header{
+  .header {
+    position: sticky; /* أو fixed */
     transition: top 0.3s ease;
   }
   .border-dashed {
@@ -63,8 +64,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
-
   }
   header a {
     position: relative;
@@ -100,22 +99,26 @@
       const announcementBar = document.querySelector('.announcement-bar');
       const header = document.querySelector('.header');
 
-      if (!announcementBar || !header) return; // لو ما فيه العناصر، نوقف
+      if (!announcementBar || !header) return;
 
-      // نحفظ قيمة الـ top الأصلية (إذا كانت محددة بالـ CSS)
       const originalTop = window.getComputedStyle(header).top;
+      const announcementHeight = announcementBar.offsetHeight + 'px';
+
+      // تأكد أن الهيدر يبدأ أسفل البار
+      header.style.top = announcementHeight;
 
       window.addEventListener('scroll', function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop) {
-          // التمرير لأسفل → إخفاء البار وضبط الهيدر للأعلى
-          announcementBar.style.transform = 'translateY(-100%)';
+          // إخفاء البار فعليًا وتحريك الهيدر للأعلى
+          announcementBar.style.height = '0';
+          announcementBar.style.overflow = 'hidden';
           header.style.top = '0';
         } else {
-          // التمرير لأعلى → إظهار البار وإعادة مسافة الهيدر
-          announcementBar.style.transform = 'translateY(0)';
-          header.style.top = originalTop;
+          // إظهار البار وإرجاع الهيدر لوضعه الطبيعي
+          announcementBar.style.height = announcementHeight;
+          header.style.top = announcementHeight;
         }
 
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
