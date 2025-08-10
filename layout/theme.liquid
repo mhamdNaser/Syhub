@@ -51,10 +51,10 @@
       id="main-content"
       class="
         {% if section_class == 'image-tage' %}
-          w-screen px-0
+          w-screen
         {% else %}
-          max-w-4xl px-10
-        {% endif %} {{ settings.card_hover_effect }} mx-auto z-10
+          {{ settings.page_width }} {{ settings.card_hover_effect }}
+        {% endif %} mx-auto z-10
       "
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
