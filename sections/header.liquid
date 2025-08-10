@@ -47,15 +47,8 @@
     top: 0;
     z-index: 50;
   }
+  .announcement-bar,
   .header {
-    position: sticky; /* أو fixed حسب حالتك */
-    top: 0;
-    transition: transform 0.3s ease;
-  }
-  .announcement-bar.hide {
-    pointer-events: none;
-  }
-  .announcement-bar {
     transition: transform 0.3s ease;
   }
   .border-dashed {
@@ -105,17 +98,18 @@
 
       if (!announcementBar || !header) return;
 
-      // نأخذ ارتفاعاتهم مرة واحدة
-      const totalHeight = announcementBar.offsetHeight + header.offsetHeight;
+      const barHeight = announcementBar.offsetHeight;
 
       window.addEventListener('scroll', function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop) {
-          // نزول → نخفي الكل لأعلى
-          header.style.transform = `translateY(-${totalHeight}px)`;
+          // نزول → إخفاء البار ورفع الهيدر
+          announcementBar.style.transform = `translateY(-${barHeight}px)`;
+          header.style.transform = `translateY(-${barHeight}px)`;
         } else {
-          // صعود → نرجع
+          // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
+          announcementBar.style.transform = 'translateY(0)';
           header.style.transform = 'translateY(0)';
         }
 
