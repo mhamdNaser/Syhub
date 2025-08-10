@@ -1,0 +1,89 @@
+<section class="featured-product-group max-w-7xl mx-auto py-8 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- المنتج الكبير على اليسار -->
+    {% if section.settings.main_product != blank %}
+      {% assign main_product = all_products[section.settings.main_product] %}
+      {% if main_product %}
+        <div class="main-product">
+          <a href="{{ main_product.url }}">
+            <img
+              src="{{ main_product.featured_image | img_url: '800x800' }}"
+              alt="{{ main_product.title }}"
+              class="w-full h-auto rounded-lg shadow-lg"
+              width=""
+              height=""
+            >
+          </a>
+        </div>
+      {% endif %}
+    {% endif %}
+
+    <!-- القائمة الرأسية على اليمين -->
+    <div class="product-list space-y-4">
+      {% for block in section.blocks %}
+        {% if block.settings.product != blank %}
+          {% assign product = all_products[block.settings.product] %}
+          {% if product %}
+            <div class="flex items-center bg-white rounded-lg shadow p-3">
+              <!-- صورة المنتج -->
+              <a href="{{ product.url }}">
+                <img
+                  src="{{ product.featured_image | img_url: '150x150' }}"
+                  alt="{{ product.title }}"
+                  class="w-16 h-16 rounded mr-4"
+                  width=""
+                  height=""
+                >
+              </a>
+              <!-- الاسم والسعر -->
+              <div class="flex-1">
+                <h3 class="text-sm font-semibold">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                <p class="text-gray-600">{{ product.price | money }}</p>
+              </div>
+              <!-- زر عرض المنتج -->
+              <a href="{{ product.url }}" class="bg-black text-white text-sm px-3 py-1 rounded hover:bg-gray-800">
+                عرض
+              </a>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Product Group",
+  "settings": [
+    {
+      "type": "product",
+      "id": "main_product",
+      "label": "Main Product (Large Image)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Featured Product Group",
+      "category": "Products",
+      "blocks": [{ "type": "product_block" }, { "type": "product_block" }, { "type": "product_block" }]
+    }
+  ]
+}
+{% endschema %}
