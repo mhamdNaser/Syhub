@@ -32,6 +32,8 @@
     {% endstyle %}
   </head>
 
+  {% assign section_class = section.settings.class | default: '' %}
+
   <body class="overflow-x-hidden font-sans antialiased">
     {% comment %}
       Welcome to Shopify theme development!
@@ -48,7 +50,7 @@
     <div
       id="main-content"
       class="
-        {% if section.settings.class == 'image-tage' %}
+        {% if section_class == 'image-tage' %}
           w-screen max-w-full px-0
         {% else %}
           max-w-4xl px-10
