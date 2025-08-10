@@ -50,6 +50,9 @@
   .announcement-bar {
     transition: transform 0.3s ease;
   }
+  .header{
+    transition: top 0.3s ease;
+  }
   .border-dashed {
     border-style: dashed;
   }
@@ -60,7 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: top 0.3s ease;
+    
 
   }
   header a {
@@ -95,7 +98,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       let lastScrollTop = 0;
       const announcementBar = document.querySelector('.announcement-bar');
-      const header = document.querySelector('header');
+      const header = document.querySelector('.header');
 
       if (!announcementBar || !header) return; // لو ما فيه العناصر، نوقف
 
