@@ -1,7 +1,7 @@
 {% case media.media_type %}
   {% when 'image' %}
     <img
-      src="{{ media.preview_image | image_url: 'large' }}"
+      src="{{ media.preview_image | image_url: width: 800 }}"
       alt="{{ media.preview_image.alt }}"
       class="w-full h-full object-cover"
       width="400"
@@ -26,7 +26,7 @@
             {% render 'icon-model-viewer' %}
           </span>
           <img
-            src="{{ media.preview_image | image_url: 'large' }}"
+            src="{{ media.preview_image | image_url: width: 800 }}"
             alt="{{ media.preview_image.alt }}"
             class="w-full h-full object-cover"
             width=""
