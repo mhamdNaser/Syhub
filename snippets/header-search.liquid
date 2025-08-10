@@ -13,7 +13,7 @@
 
     <!-- المودال عند الفتح -->
     <div
-      class="fixed inset-0 w-full left-0 z-50 h-[180px] bg-white flex items-center justify-center"
+      class="fixed inset-0 w-full left-0 z-50 h-[240px] bg-white flex items-center justify-center"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
@@ -21,13 +21,27 @@
       <div class="absolute inset-0"></div>
       <!-- خلفية شفافة -->
 
-      <div class="relative z-40 w-full max-w-3xl">
-        <div class="flex max-w-7xl items-center justify-center mx-auto mb-4 py-3">
+      <div class="relative z-40 w-full max-w-3xl mx-auto">
+        <div class="flex items-center justify-between mb-4 py-3">
+          <!-- لوغو الموقع -->
+          <div class="flex-shrink-0">
+            <a href="/" aria-label="Home">
+              <img
+                src="{{ settings.logo | image_url }}"
+                alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area"
+                class="header__logo"
+                width="{{ size }}"
+                height="50"
+              >
+            </a>
+          </div>
+
+          <!-- فورم البحث بالمنتصف -->
           <form
             action="{{ routes.search_url }}"
             method="get"
             role="search"
-            class="w-3/4 flex items-center justify-between border border-gray-200 rounded-xl outline-0 gap-2 p-4"
+            class="flex-1 mx-6 flex items-center border border-gray-200 rounded-xl p-4 gap-2"
           >
             <input
               id="{{ input_id }}"
@@ -35,29 +49,41 @@
               name="q"
               value="{{ search.terms | escape }}"
               placeholder="{{ 'general.search.search' | t }}"
-              class="flex-1 px-4 text-lg border-0 outline-0 focus:outline-0 focus:border-0"
+              class="flex-grow px-4 text-lg border-0 outline-none"
             >
-            <!-- زر البحث (داخل الفورم) -->
             <button
               class="text-gray-600 hover:text-blue-600"
               aria-label="{{ 'general.search.search' | t }}"
+              type="submit"
             >
-              <span class="w-5 h-5">
-                {% render 'icon-search' %}
-              </span>
+              <span class="w-5 h-5">{% render 'icon-search' %}</span>
             </button>
           </form>
+
+          <!-- الأيقونتان على اليمين -->
+          <div class="flex items-center space-x-4 flex-shrink-0">
+            <div class="header__icons" {{ block.shopify_attributes }}>
+              {% if shop.customer_accounts_enabled %}
+                {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
+              {% endif %}
+
+              <a href="{{ routes.cart_url }}">
+                {% if cart.item_count > 0 %}
+                  <sup>{{ cart.item_count }}</sup>
+                {% endif %}
+                {{ 'icon-cart.svg' | inline_asset_content }}
+              </a>
+            </div>
+          </div>
 
           <!-- زر الإغلاق -->
           <button
             type="button"
-            class="text-gray-600 hover:text-black"
+            class="absolute top-3 right-3 text-gray-600 hover:text-black"
             aria-label="{{ 'accessibility.close' | t }}"
             onclick="this.closest('details').removeAttribute('open')"
           >
-            <span class="w-6 h-6">
-              {% render 'icon-close' %}
-            </span>
+            <span class="w-6 h-6">{% render 'icon-close' %}</span>
           </button>
         </div>
       </div>
