@@ -7,37 +7,37 @@
 <div class="p-4 bg-gray-50 min-h-screen">
   <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6">
 
-    <!-- عنوان الصفحة -->
+    <!-- Page Title -->
     <div class="flex flex-col md:flex-row items-center justify-between mb-6">
-      <h1 class="text-3xl font-bold text-gray-800">🛒 سلة مشترياتك</h1>
+      <h1 class="text-3xl font-bold text-gray-800">🛒 Your Shopping Cart</h1>
       <a href="{{ routes.all_products_collection_url }}" class="text-blue-600 hover:underline">
-        ← متابعة التسوق
+        ← Continue Shopping
       </a>
     </div>
 
-    <!-- شريط الثقة -->
+    <!-- Trust Bar -->
     <div class="bg-green-50 border border-green-200 text-green-800 p-3 rounded-md text-center mb-6">
-      🔒 الدفع آمن 100% | 🚚 شحن سريع | 💳 طرق دفع متعددة
+      🔒 100% Secure Checkout | 🚚 Fast Shipping | 💳 Multiple Payment Methods
     </div>
 
-    <!-- شريط التراجع عن الحذف -->
+    <!-- Undo Remove Bar -->
     <div id="undo-container" class="bg-gray-800 text-white p-4 rounded shadow-lg mb-6 hidden">
-      تم حذف المنتج
-      <button id="undo-button" class="bg-blue-500 text-white px-2 py-1 ml-2 rounded">تراجع</button>
+      Product removed
+      <button id="undo-button" class="bg-blue-500 text-white px-2 py-1 ml-2 rounded">Undo</button>
       <span id="undo-timer" class="ml-2 text-sm text-gray-300">(5s)</span>
     </div>
 
-    <!-- نموذج الكارت -->
+    <!-- Cart Form -->
     <form action="/cart" method="post" novalidate class="space-y-10">
       <div class="overflow-x-auto mb-8">
         <table class="w-full border-collapse border border-gray-200 rounded-lg overflow-hidden">
           <thead class="bg-gray-800 text-white">
             <tr>
-              <th class="p-4 text-left">المنتج</th>
-              <th class="p-4 text-left">السعر</th>
-              <th class="p-4 text-left">الكمية</th>
-              <th class="p-4 text-left">الإجمالي</th>
-              <th class="p-4 text-left">إجراء</th>
+              <th class="p-4 text-left">Product</th>
+              <th class="p-4 text-left">Price</th>
+              <th class="p-4 text-left">Quantity</th>
+              <th class="p-4 text-left">Total</th>
+              <th class="p-4 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,7 +46,7 @@
               <td class="p-4 flex items-center gap-4">
                 <a href="{{ item.url }}">
                   {% if item.image %}
-                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" class="w-16 h-16 object-cover rounded">
+                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" class="w-16 h-16 object-cover rounded" width="auto" height="auto">
                   {% else %}
                   {{ 'product-1' | placeholder_svg_tag: 'w-16 h-16 object-cover rounded' }}
                   {% endif %}
@@ -63,7 +63,7 @@
               <td class="p-4 font-semibold">{{ item.line_price | money }}</td>
               <td class="p-4">
                 <a href="#" class="text-red-500 hover:underline" data-remove="true" data-key="{{ item.key }}" data-line="{{ forloop.index }}">
-                  🗑 حذف
+                  🗑 Remove
                 </a>
               </td>
             </tr>
@@ -72,24 +72,24 @@
         </table>
       </div>
 
-      <!-- ملخص الدفع -->
+      <!-- Checkout Summary -->
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="text-lg font-semibold">
-          الإجمالي: <span class="text-blue-600">{{ cart.total_price | money }}</span>
+          Total: <span class="text-blue-600">{{ cart.total_price | money }}</span>
         </div>
         <button type="submit" name="checkout" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg">
-          إتمام الشراء →
+          Proceed to Checkout →
         </button>
       </div>
     </form>
 
-    <!-- اقتراح منتجات -->
+    <!-- Product Recommendations -->
     <div class="mt-10">
-      <h2 class="text-xl font-bold mb-4">قد يعجبك أيضًا</h2>
+      <h2 class="text-xl font-bold mb-4">You May Also Like</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         {% for product in collections['frontpage'].products limit:4 %}
         <a href="{{ product.url }}" class="border rounded-lg p-3 hover:shadow-lg transition">
-          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded">
+          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded" width="auto" height="auto">
           <p class="mt-2 text-sm font-semibold text-gray-800">{{ product.title }}</p>
           <span class="text-blue-600">{{ product.price | money }}</span>
         </a>
@@ -104,13 +104,13 @@
   <div class="text-center">
     <h1 class="text-3xl my-4">{{ cart_text }}</h1>
     <a href="{{ routes.all_products_collection_url }}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">
-      متابعة التسوق
+      Continue Shopping
     </a>
   </div>
 </div>
 {% endif %}
 
-<!-- سكربت الحذف والتراجع -->
+<!-- Remove & Undo Script -->
 <script>
   var enable_cart_drawer_undo_remove = {{ enable_cart_drawer_undo_remove }};
   var enable_cart_drawer_undo_remove_delay = {{ enable_cart_drawer_undo_remove_delay }};
