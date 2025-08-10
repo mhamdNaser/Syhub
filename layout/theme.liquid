@@ -57,10 +57,11 @@
       {{ content_for_layout }}
     </div>
 
-    {% section 'mobile-navigator' %}
-     <div id="footer-group" class="hidden lg:block">
+    <div id="footer-group" class="hidden lg:block">
       {% sections 'footer-group' %}
     </div>
-    
+    <div id="mobile-navigator" class="block lg:hidden z-50">
+      {% section 'mobile-navigator' %}
+    </div>
   </body>
 </html>
