@@ -32,8 +32,6 @@
     {% endstyle %}
   </head>
 
-  {% assign section_class = section.settings.class | default: '' %}
-
   <body class="overflow-x-hidden font-sans antialiased">
     {% comment %}
       Welcome to Shopify theme development!
@@ -49,18 +47,32 @@
 
     <div
       id="main-content"
-      class="
-        {% if section_class == 'image-tage' %}
-          w-screen
-        {% else %}
-          {{ settings.page_width }} {{ settings.card_hover_effect }}
-        {% endif %} mx-auto z-10
-      "
+      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}
     </div>
 
     {% sections 'footer-group' %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const imageTags = document.querySelectorAll('.image-tage');
+
+        imageTags.forEach((el) => {
+          // حذف أي كلاسات تبدأ بـ max-w- أو w- (حتى ما تتأثر بالعرض المحدد)
+          const classesToRemove = [];
+          el.classList.forEach((cls) => {
+            if (cls.startsWith('max-w-') || cls.startsWith('w-')) {
+              classesToRemove.push(cls);
+            }
+          });
+          classesToRemove.forEach((cls) => el.classList.remove(cls));
+
+          // إضافة كلاس العرض الكامل مع إزالة البادينج الجانبي
+          el.classList.add('w-screen', 'px-0');
+        });
+      });
+    </script>
   </body>
 </html>
