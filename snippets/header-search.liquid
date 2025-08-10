@@ -18,7 +18,16 @@
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <div class="absolute inset-0"></div>
+      <div class="absolute inset-0">
+        <button
+          type="button"
+          class="absolute top-3 right-3 text-gray-600 hover:text-black"
+          aria-label="{{ 'accessibility.close' | t }}"
+          onclick="this.closest('details').removeAttribute('open')"
+        >
+          <span class="w-6 h-6">{% render 'icon-close' %}</span>
+        </button>
+      </div>
       <!-- خلفية شفافة -->
 
       <div class="relative z-40 w-full max-w-3xl mx-auto">
@@ -75,16 +84,6 @@
               </a>
             </div>
           </div>
-
-          <!-- زر الإغلاق -->
-          <button
-            type="button"
-            class="absolute top-3 right-3 text-gray-600 hover:text-black"
-            aria-label="{{ 'accessibility.close' | t }}"
-            onclick="this.closest('details').removeAttribute('open')"
-          >
-            <span class="w-6 h-6">{% render 'icon-close' %}</span>
-          </button>
         </div>
       </div>
     </div>
