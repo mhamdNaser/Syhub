@@ -1,7 +1,21 @@
+<div class="fixed top-0 w-full bg-white flex justify-between">
+  <div>
+    <img
+      src="{{ settings.logo | image_url }}"
+      alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area"
+      class="header__logo"
+      width="180"
+      height="100"
+    >
+  </div>
+  <div>
+    {% render 'icon-menu' %}
+  </div>
+</div>
+
 {% schema %}
 {
-    "name": "Mobile Header",
-    "settings": [],
-    
+  "name": "Mobile Header",
+  "settings": []
 }
-{%  endschema %}
+{% endschema %}
