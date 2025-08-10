@@ -230,6 +230,50 @@
 <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const variantData = JSON.parse(document.querySelector('script[type="application/json"]').textContent);
+  const form = document.getElementById('product-form');
+  const variantInput = form.querySelector('input[name="id"]');
+  const selects = form.querySelectorAll('select[name^="options"]');
+  const priceContainer = document.getElementById('price-{{ section.id }}');
+  const addToCartBtn = form.querySelector('button[name="add"]');
+
+  function updateVariant() {
+    const selectedOptions = Array.from(selects).map(select => select.value);
+    const matchedVariant = variantData.find(variant =>
+      variant.options.every((opt, idx) => opt === selectedOptions[idx])
+    );
+
+    if (matchedVariant) {
+      // تحديث الـ hidden input
+      variantInput.value = matchedVariant.id;
+
+      // تحديث السعر
+      priceContainer.innerHTML = `
+        ${matchedVariant.compare_at_price > matchedVariant.price ? `<span class="text-base text-gray-500 line-through">${Shopify.formatMoney(matchedVariant.compare_at_price)}</span>` : ''}
+        <span class="text-lg text-gray-900">${Shopify.formatMoney(matchedVariant.price)}</span>
+        ${matchedVariant.compare_at_price > matchedVariant.price ? '<span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>' : ''}
+      `;
+
+      // تحديث الزر
+      if (!matchedVariant.available) {
+        addToCartBtn.textContent = 'Sold out';
+        addToCartBtn.disabled = true;
+      } else {
+        addToCartBtn.textContent = 'Add to cart';
+        addToCartBtn.disabled = false;
+      }
+    }
+  }
+
+  selects.forEach(select => {
+    select.addEventListener('change', updateVariant);
+  });
+});
+</script>
+
+
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     try {
       const swiper = new Swiper('.swiper', {
