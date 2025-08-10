@@ -29,7 +29,6 @@
     {{ content_for_header }}
 
     {% style %}
-      
     {% endstyle %}
   </head>
 
@@ -42,11 +41,14 @@
       Welcome to Shopify theme development!
     {% endcomment %}
     {% # Load the header and footer sections %}
-    <div id="header-group">
+    <div id="header-group" class="hidden lg:block">
       {% sections 'header-group' %}
     </div>
 
-    
+    <div id="mobile-header" class="block lg:hidden">
+      {% section 'mobile-header' %}
+    </div>
+
     <div
       id="main-content"
       class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10"
