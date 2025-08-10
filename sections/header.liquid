@@ -48,6 +48,9 @@
 </header>
 
 {% stylesheet %}
+  .announcement-bar {
+    transition: transform 0.3s ease;
+  }
   .border-dashed {
     border-style: dashed;
   }
@@ -84,6 +87,29 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       stickybits('#header-container', { stickyBitStickyOffset: 0 });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let lastScrollTop = 0;
+      const announcementBar = document.querySelector('.announcement-bar');
+
+      if (!announcementBar) return; // إذا ما فيه العنصر، نوقف
+
+      window.addEventListener('scroll', function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+          // التمرير لأسفل → إخفاء
+          announcementBar.style.transform = 'translateY(-100%)';
+        } else {
+          // التمرير لأعلى → إظهار
+          announcementBar.style.transform = 'translateY(0)';
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
     });
   </script>
 {% endif %}
