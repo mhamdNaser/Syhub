@@ -39,7 +39,7 @@
                     <a href="{{ item.url | within: collections.all }}" class="block">
                       {%- if item.image -%}
                         <img
-                          src="{{ item..preview_image | image_url: width: 800 }}"
+                          src="{{ item.preview_image | image_url: width: 800 }}"
                           alt="{{ item.title | escape }}"
                           class="w-20 h-20 object-cover border rounded-md"
                           width="auto"
