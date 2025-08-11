@@ -121,7 +121,7 @@
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-                        {% if option.name | downcase == 'color' or option.name | downcase == 'اللون' %}
+                        {% if option.name | downcase == 'Color' or option.name | downcase == 'اللون' %}
                           <div class="flex gap-2 my-2">
                             {% for value in option.values %}
                               <button
