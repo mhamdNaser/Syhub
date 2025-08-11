@@ -31,7 +31,7 @@
 {% endif %}
 
 <header
-  class="header w-full shadow-lg bg-white {{ border_class }}"
+  class="header w-full shadow-lg bg-white {{ border_class }} {% if section.settings.header_position == 'fixed' %} fixed {% endif %}"
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between py-4">
     {% content_for 'blocks' %}
