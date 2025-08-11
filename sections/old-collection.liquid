@@ -1,0 +1,60 @@
+{% comment %}
+  This section is used in the collection template to render collection page
+  listing all products within a collection.
+
+  https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
+{% endcomment %}
+
+{% assign number_of_product = section.settings.number_of_products_per_page %}
+{%- assign box_width = settings.body_width -%}
+
+<div class="px-6 py-12 max-w-7xl mx-auto">
+  <div class="text-center mb-12">
+    <a href="{{ routes.collections_url }}" class="text-sm text-gray-400 hover:text-gray-600 transition">← Back To Collections</a>
+    <h1 class="text-4xl font-extrabold text-gray-900 mt-4 tracking-tight">{{ collection.title }}</h1>
+    <p class="text-gray-600 mt-2">Discover our exclusive selection of products</p>
+  </div>
+
+  <div class="flex gap-8">
+    <!-- Filter Sidebar -->
+    <aside class="w-1/5 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto bg-white p-6 rounded-lg shadow-md">
+      {%- render 'collection-filter' -%}
+    </aside>
+
+    <!-- Products Grid -->
+    <section class="w-4/5">
+      {% paginate collection.products by number_of_product %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {% for product in collection.products %}
+            {%- render 'product-card', product: product -%}
+          {% else %}
+            <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات تطابق الفلاتر المحددة.</p>
+          {% endfor %}
+        </div>
+        <div class="mt-12 flex justify-center">
+          {%- render 'pagination', pagination: paginate -%}
+        </div>
+      {% endpaginate %}
+    </section>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Template Collection",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Item In Page"
+    },
+    {
+      "type": "number",
+      "id": "number_of_products_per_page",
+      "label": "Number Of Products Per Page",
+      "default": 6
+    }
+  ]
+}
+{% endschema %}
