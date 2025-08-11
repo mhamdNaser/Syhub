@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!searchResults) {
     searchResults = document.createElement("div");
     searchResults.id = "search-results";
-    searchResults.className = "absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg hidden z-50 max-h-[400px] overflow-y-auto";
+    searchResults.className = "absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg hidden z-50 max-h-96 overflow-auto";
     searchBox?.appendChild(searchResults);
   }
 
