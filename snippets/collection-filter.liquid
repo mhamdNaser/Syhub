@@ -17,43 +17,32 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <!-- Filter by Price Range -->
-  {% for filter in collection.filters %}
-    {% if filter.type == 'price_range' %}
-      <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
-          السعر
-          <svg
-            :class="{ 'rotate-180': open }"
-            class="w-4 h-4 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
+  <div x-data="priceFilter()" class="relative bg-gray-100 p-4 rounded shadow-sm">
+    <label class="block text-sm mb-2 font-semibold">السعر من:</label>
+    <input
+      type="number"
+      x-model="minPrice"
+      placeholder="القيمة الدنيا"
+      class="w-full mb-3 px-3 py-2 border rounded"
+      min="0"
+    >
 
-        <ul
-          x-show="open"
-          @click.away="open = false"
-          class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-        >
-          {% for value in filter.values %}
-            <li>
-              <a
-                href="{{ value.url }}"
-                class="block px-4 py-2 hover:bg-indigo-100 {% if value.active %}bg-indigo-200{% endif %}"
-              >
-                {{ value.label }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
-  {% endfor %}
+    <label class="block text-sm mb-2 font-semibold">إلى:</label>
+    <input
+      type="number"
+      x-model="maxPrice"
+      placeholder="القيمة العليا"
+      class="w-full mb-3 px-3 py-2 border rounded"
+      min="0"
+    >
+
+    <button
+      @click="applyFilter"
+      class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
+    >
+      تطبيق
+    </button>
+  </div>
 
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
