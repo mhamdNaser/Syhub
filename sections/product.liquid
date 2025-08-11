@@ -125,6 +125,8 @@
                           {{- option.name -}}
                         </label>
 
+                        {% assign option_name_lc = option.name | downcase %}
+
                         {% if option_name_lc contains 'color'
                           or option_name_lc contains 'Color'
                           or option_name_lc contains 'colour'
