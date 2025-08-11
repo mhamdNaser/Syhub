@@ -1,14 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector("input[type='search']");
   const searchBox = searchInput?.closest("form");
-  
-  // إنشاء عنصر لعرض النتائج إذا لم يكن موجود
+
   let searchResults = document.getElementById("search-results");
   if (!searchResults) {
     searchResults = document.createElement("div");
     searchResults.id = "search-results";
     searchResults.className = "absolute top-full left-0 w-full bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50";
     searchBox?.appendChild(searchResults);
+  }
+
+  // دالة لحساب المسافة الإملائية (Levenshtein)
+  function levenshtein(a, b) {
+    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
+    for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        matrix[i][j] = b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            );
+      }
+    }
+    return matrix[b.length][a.length];
   }
 
   // جلب نتائج البحث
@@ -19,19 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch(
-        `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection,article`
-      );
+      const response = await fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection,article`);
       if (!response.ok) throw new Error("Failed to fetch search results");
 
       const data = await response.json();
       const products = data.resources.results.products || [];
-      const collections = data.resources.results.collections || [];
-      const vendors = data.resources.results.articles || [];
 
       let resultsHTML = "";
 
-      // المنتجات
       if (products.length > 0) {
         resultsHTML += `
           <div class="mb-4">
@@ -47,38 +59,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
               </div>`).join("")}
           </div>`;
-      }
+      } else {
+        // إذا ما في نتائج، نحاول إيجاد اقتراح مشابه
+        const allTitlesResponse = await fetch(`/search/suggest.json?q=a&resources[type]=product`);
+        const allTitlesData = await allTitlesResponse.json();
+        const allTitles = (allTitlesData.resources.results.products || []).map(p => p.title);
 
-      // المجموعات
-      if (collections.length > 0) {
-        resultsHTML += `
-          <div class="mb-4">
-            <h3 class="text-lg font-bold text-black mb-2">Collections</h3>
-            ${collections.map(collection => `
-              <div class="p-2 border-b last:border-none">
-                <a href="${collection.url}" class="block hover:bg-gray-50 p-2 rounded">
-                  ${collection.title}
-                </a>
-              </div>`).join("")}
+        let closestMatch = null;
+        let minDistance = Infinity;
+        for (let title of allTitles) {
+          let dist = levenshtein(query.toLowerCase(), title.toLowerCase());
+          if (dist < minDistance && dist <= 3) { // 3 = مسافة مسموحة للتصحيح
+            minDistance = dist;
+            closestMatch = title;
+          }
+        }
+
+        if (closestMatch) {
+          resultsHTML = `<div class="p-2 text-gray-500">Did you mean: 
+            <span class="text-blue-600 cursor-pointer underline" id="suggested-term">${closestMatch}</span> ?
           </div>`;
+        } else {
+          resultsHTML = `<div class="p-2 text-gray-500">No results found</div>`;
+        }
       }
 
-      // البائعون
-      if (vendors.length > 0) {
-        resultsHTML += `
-          <div class="mb-4">
-            <h3 class="text-lg font-bold text-black mb-2">Vendors</h3>
-            ${vendors.map(vendor => `
-              <div class="p-2 border-b last:border-none">
-                <a href="${vendor.url}" class="block hover:bg-gray-50 p-2 rounded">
-                  ${vendor.title}
-                </a>
-              </div>`).join("")}
-          </div>`;
-      }
-
-      searchResults.innerHTML = resultsHTML || `<div class="p-2 text-gray-500">No results found</div>`;
+      searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
+
+      // في حال ضغط المستخدم على الاقتراح
+      const suggestedTerm = document.getElementById("suggested-term");
+      if (suggestedTerm) {
+        suggestedTerm.addEventListener("click", () => {
+          searchInput.value = suggestedTerm.textContent;
+          fetchSearchResults(suggestedTerm.textContent);
+        });
+      }
 
     } catch (error) {
       console.error("Error fetching search results:", error);
@@ -87,12 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // الاستماع لمدخل البحث
-  searchInput?.addEventListener("input", e => {
-    fetchSearchResults(e.target.value);
-  });
+  searchInput?.addEventListener("input", e => fetchSearchResults(e.target.value));
 
-  // إخفاء النتائج عند النقر خارجها
   document.addEventListener("click", e => {
     if (!searchBox?.contains(e.target)) {
       searchResults.classList.add("hidden");

@@ -160,3 +160,8 @@ Visit our [CONTRIBUTING.md](./CONTRIBUTING.md) for a detailed overview of our pr
 ## License
 
 Skeleton Theme is open-sourced under the [MIT](./LICENSE.md) License.
+
+
+
+<!-- next step -->
+1- make search using Fuse.js
