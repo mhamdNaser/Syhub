@@ -24,7 +24,9 @@
 
 <div class="px-6 py-12 max-w-7xl mx-auto">
   <div class="text-center mb-12">
-    <a href="{{ routes.collections_url }}" class="text-sm text-gray-400 hover:text-gray-600 transition">← Back To Collections</a>
+    <a href="{{ routes.collections_url }}" class="text-sm text-gray-400 hover:text-gray-600 transition"
+      >← Back To Collections</a
+    >
     <h1 class="text-4xl font-extrabold text-gray-900 mt-4 tracking-tight">{{ collection.title }}</h1>
     <p class="text-gray-600 mt-2">Discover our exclusive selection of products</p>
   </div>
@@ -54,25 +56,28 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {% assign skip_card_product_styles = false %}
           {% for product in collection.products %}
-            {% assign lazy_load = forloop.index > 2 %}
-            <div
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ forloop.index }};"
-              {% endif %}
-            >
-              {% render 'product-card',
-                card_product: product,
-                lazy_load: lazy_load,
-                skip_styles: skip_card_product_styles,
-                quick_add: section.settings.quick_add,
-                section_id: section.id
-              %}
-            </div>
-            {% assign skip_card_product_styles = true %}
-          {% else %}
-            <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات تطابق الفلاتر المحددة.</p>
+            {% if forloop.index > 2 %}
+              {% assign lazy_load = true %}
+              <div
+                class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {% render 'product-card',
+                  card_product: product,
+                  lazy_load: lazy_load,
+                  skip_styles: skip_card_product_styles,
+                  quick_add: section.settings.quick_add,
+                  section_id: section.id
+                %}
+              </div>
+              {% assign skip_card_product_styles = true %}
+            {% else %}
+              {% assign lazy_load = false %}
+              <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات تطابق الفلاتر المحددة.</p>
+            {% endif %}
           {% endfor %}
         </div>
 
@@ -130,5 +135,4 @@
     }
   ]
 }
-
 {% endschema %}
