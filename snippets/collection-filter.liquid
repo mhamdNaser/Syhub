@@ -5,7 +5,11 @@
       {% for tag in collection.current_tags %}
         <span class="px-3 py-1 rounded bg-gray-200 text-sm flex items-center gap-2">
           {{ tag }}
-          <a href="{{ collection.url | remove: '?constraint=' | append: collection.current_tags | split: tag | join: '' }}" class="text-red-500 hover:underline">×</a>
+          <a
+            href="{{ collection.url | remove: '?constraint=' | append: collection.current_tags | split: tag | join: '' }}"
+            class="text-red-500 hover:underline"
+            >×</a
+          >
         </span>
       {% endfor %}
       <a href="{{ collection.url }}" class="text-sm text-indigo-600 hover:underline ml-2">Remove all</a>
@@ -13,17 +17,35 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
+  <!-- Filter by Price Range -->
   {% for filter in collection.filters %}
     {% if filter.type == 'price_range' %}
       <div x-data="{ open: false }" class="relative">
         <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
-          Price
-          <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          السعر
+          <svg
+            :class="{ 'rotate-180': open }"
+            class="w-4 h-4 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M19 9l-7 7-7-7"/>
+          </svg>
         </button>
-        <ul x-show="open" @click.away="open = false" class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto">
+
+        <ul
+          x-show="open"
+          @click.away="open = false"
+          class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+        >
           {% for value in filter.values %}
             <li>
-              <a href="{{ value.url }}" class="block px-4 py-2 hover:bg-indigo-100">
+              <a
+                href="{{ value.url }}"
+                class="block px-4 py-2 hover:bg-indigo-100 {% if value.active %}bg-indigo-200{% endif %}"
+              >
                 {{ value.label }}
               </a>
             </li>
@@ -38,12 +60,28 @@
     <div x-data="{ open: false }" class="relative">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
         {{ option.name }}
-        <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        <svg
+          :class="{ 'rotate-180': open }"
+          class="w-4 h-4 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
       </button>
-      <ul x-show="open" @click.away="open = false" class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto">
+      <ul
+        x-show="open"
+        @click.away="open = false"
+        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+      >
         {% for value in option.values %}
           <li>
-            <a href="{{ collection.url }}?options[{{ option.name | handle }}]={{ value | handle }}" class="block px-4 py-2 hover:bg-indigo-100">
+            <a
+              href="{{ collection.url }}?options[{{ option.name | handle }}]={{ value | handle }}"
+              class="block px-4 py-2 hover:bg-indigo-100"
+            >
               {{ value }}
             </a>
           </li>
