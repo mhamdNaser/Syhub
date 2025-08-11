@@ -1,53 +1,70 @@
 <div class="filters space-y-4">
-  <div>
-    <h3 class="font-bold mb-2">Filter by Tags</h3>
-    <ul class="space-y-1">
-      {% for tag in collection.all_tags %}
-        <li>
+  <!-- Filter Selected Tags (Active Filters) -->
+  {% if collection.current_tags.size > 0 or collection.current_filters.size > 0 %}
+    <div class="mb-4 flex flex-wrap gap-2">
+      {% for tag in collection.current_tags %}
+        <span class="px-3 py-1 rounded bg-gray-200 text-sm flex items-center gap-2">
+          {{ tag }}
           <a
-            class="text-blue-500 hover:underline"
-            href="{{ collection.url }}?constraint={{ tag | handle }}"
+            href="{{ collection.url | remove: '?constraint=' | append: collection.current_tags | split: tag | join: '' }}"
+            class="text-red-500 hover:underline"
+            >×</a
           >
-            {{ tag }}
-          </a>
-        </li>
+        </span>
       {% endfor %}
-    </ul>
+      <a href="{{ collection.url }}" class="text-sm text-indigo-600 hover:underline ml-2">Remove all</a>
+    </div>
+  {% endif %}
+
+  <!-- Filter by Price Range -->
+  <div x-data="priceFilter()" class="relative bg-gray-100 p-4 rounded shadow-sm">
+    <label class="block text-sm mb-2 font-semibold">السعر من:</label>
+    <input
+      type="number"
+      x-model="minPrice"
+      placeholder="القيمة الدنيا"
+      class="w-full mb-3 px-3 py-2 border rounded"
+      min="0"
+      @keyup.enter="applyFilter"
+    >
+
+    <label class="block text-sm mb-2 font-semibold">إلى:</label>
+    <input
+      type="number"
+      x-model="maxPrice"
+      placeholder="القيمة العليا"
+      class="w-full mb-3 px-3 py-2 border rounded"
+      min="0"
+      @keyup.enter="applyFilter"
+    >
   </div>
 
-  {% for filter in collection.filters %}
-    {% if filter.type == 'price_range' %}
-      <div>
-        <h3 class="font-bold mb-2">{{ filter.label }}</h3>
-        <ul class="space-y-1">
-          {% for value in filter.values %}
-            <li>
-              <a href="{{ value.url }}" class="text-blue-500 hover:underline">
-                {{ value.label }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
-  {% endfor %}
-
+  <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
-    {% comment %}
-      collection.all_types_options iterates through all unique product options
-      (e.g., 'Color', 'Size') across all products in the collection.
-    {% endcomment %}
-    <div>
-      <h3 class="font-bold mb-2">Filter by {{ option.name }}</h3>
-      <ul class="space-y-1">
+    <div x-data="{ open: false }" class="relative">
+      <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
+        {{ option.name }}
+        <svg
+          :class="{ 'rotate-180': open }"
+          class="w-4 h-4 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <ul
+        x-show="open"
+        @click.away="open = false"
+        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+      >
         {% for value in option.values %}
-          {% comment %}
-            option.values gives you all unique values for that option (e.g., 'Red', 'Blue' for 'Color').
-          {% endcomment %}
           <li>
             <a
-              class="text-blue-500 hover:underline"
               href="{{ collection.url }}?options[{{ option.name | handle }}]={{ value | handle }}"
+              class="block px-4 py-2 hover:bg-indigo-100"
             >
               {{ value }}
             </a>
@@ -57,3 +74,28 @@
     </div>
   {% endfor %}
 </div>
+<script>
+  function priceFilter() {
+    return {
+      minPrice: '',
+      maxPrice: '',
+      applyFilter() {
+        let url = new URL(window.location.href);
+
+        if (this.minPrice) {
+          url.searchParams.set('filter.v.price.gte', this.minPrice);
+        } else {
+          url.searchParams.delete('filter.v.price.gte');
+        }
+
+        if (this.maxPrice) {
+          url.searchParams.set('filter.v.price.lte', this.maxPrice);
+        } else {
+          url.searchParams.delete('filter.v.price.lte');
+        }
+
+        window.location.href = url.toString();
+      },
+    };
+  }
+</script>

@@ -4,61 +4,98 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/search
 {% endcomment %}
+<h1 class="text-2xl font-bold mb-6">{{ 'search.title' | t }}</h1>
 
-<h1>{{ 'search.title' | t }}</h1>
-
-<form action="{{ routes.search_url }}" method="get" role="search">
+<form action="{{ routes.search_url }}" method="get" role="search" class="mb-8 flex items-center gap-2">
   <input
     type="search"
     size="50"
     name="q"
     value="{{ search.terms | escape }}"
     placeholder="{{ 'search.placeholder' | t }}"
+    class="flex-grow border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
   >
-  <button type="submit">{{ 'search.submit' | t }}</button>
+  <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition">
+    {{ 'search.submit' | t }}
+  </button>
 </form>
 
 {% if search.performed %}
   {% if search.results_count == 0 %}
-    <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
+    <p class="text-gray-600 italic">{{ 'search.no_results_html' | t: terms: search.terms }}</p>
   {% else %}
-    <p>{{ 'search.results_for_html' | t: terms: search.terms, count: search.results_count }}</p>
+    <p class="mb-4 text-gray-700 font-medium">
+      {{ 'search.results_for_html' | t: terms: search.terms, count: search.results_count }}
+    </p>
 
-    <div class="search-results">
+    <div class="search-results grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {% paginate search.results by 20 %}
-        {% # Search result items may be an article, a page, or a product. %}
         {% for result in search.results %}
-          <div class="search-result">
-            {% comment %} {% assign featured_image = result.featured_image | default: result.image %} {% endcomment %}
-            {% comment %} {% if featured_image %}
-              {% render 'image', class: 'search-result__image', image: featured_image, url: result.url, width: 400 %}
-            {% endif %} {% endcomment %}
-            <div class="search-result__content">
-              <p>
-                {{ result.title | link_to: result.url }}
-                {% if result.price %}
+          <div class="search-result border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col">
+            
+            {% assign img = result.featured_image | default: result.image %}
+            {% if img %}
+              <a href="{{ result.url }}" class="mb-4 block overflow-hidden rounded-lg shadow-sm">
+                <img src="{{ img | img_url: 'medium' }}" alt="{{ result.title | escape }}" class="w-full h-40 object-cover transition-transform hover:scale-105 rounded-lg" width="auto" height="auto">
+              </a>
+            {% endif %}
+
+            <div class="flex-grow">
+              <a href="{{ result.url }}" class="block text-lg font-semibold text-gray-900 hover:text-blue-600 transition mb-2">
+                {{ result.title }}
+              </a>
+
+              {% if result.price %}
+                <p class="text-blue-700 font-bold text-lg">
                   {{ result.price | money_with_currency }}
-                {% endif %}
-              </p>
+                </p>
+              {% endif %}
+
+              {% if result.excerpt %}
+                <p class="text-gray-600 text-sm mt-2 line-clamp-3">{{ result.excerpt }}</p>
+              {% endif %}
             </div>
           </div>
         {% endfor %}
 
-        {{ paginate | default_pagination }}
+        <div class="pagination col-span-full mt-6 flex justify-center gap-3 text-blue-600">
+          {% if paginate.previous %}
+            <a href="{{ paginate.previous.url }}" class="px-4 py-2 border border-blue-600 rounded hover:bg-blue-100 transition">Previous</a>
+          {% endif %}
+          {% for part in paginate.parts %}
+            {% if part.is_link %}
+              <a href="{{ part.url }}" class="px-4 py-2 border border-blue-600 rounded hover:bg-blue-100 transition">{{ part.title }}</a>
+            {% else %}
+              <span class="px-4 py-2 bg-blue-600 text-white rounded">{{ part.title }}</span>
+            {% endif %}
+          {% endfor %}
+          {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="px-4 py-2 border border-blue-600 rounded hover:bg-blue-100 transition">Next</a>
+          {% endif %}
+        </div>
       {% endpaginate %}
     </div>
   {% endif %}
 {% endif %}
 
 {% stylesheet %}
-  .search-results {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Line clamp for excerpt text */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
   }
-  .search-results .prev,
-  .search-results .page,
-  .search-results .next {
-    grid-column: 1 / -1;
+  
+  /* Responsive grid spacing */
+  .search-results {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  /* Pagination styling */
+  .pagination a, .pagination span {
+    cursor: pointer;
+    user-select: none;
   }
 {% endstylesheet %}
 

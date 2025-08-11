@@ -50,10 +50,10 @@
             action="{{ routes.search_url }}"
             method="get"
             role="search"
-            class="flex-1 mx-6 flex items-center border border-gray-200 rounded-xl p-4 gap-2"
+            class="flex-1 mx-6 flex items-center border border-gray-200 rounded-md p-4 gap-2 relative max-w-3xl"
           >
             <input
-              id="{{ input_id }}"
+              id="search-input"
               type="search"
               name="q"
               value="{{ search.terms | escape }}"
@@ -67,6 +67,9 @@
             >
               <span class="w-5 h-5">{% render 'icon-search' %}</span>
             </button>
+
+            <!-- هنا سيظهر الأوتوكومبليت -->
+            <div id="search-results" class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4  max-h-[480px] overflow-y-auto"></div>
           </form>
 
           <!-- الأيقونتان على اليمين -->
@@ -89,3 +92,4 @@
     </div>
   </details>
 </details-modal>
+<script src="{{ 'search.js' | asset_url }}" defer></script>

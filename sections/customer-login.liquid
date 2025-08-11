@@ -1,0 +1,84 @@
+<div class="h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300 px-6 py-12">
+    <div x-data="{ loginForm: true, pwRecoverForm: false }" class="max-w-md w-full bg-white p-8 rounded-xl shadow-lg">
+        
+        <!-- تسجيل الدخول -->
+        <div x-show="loginForm" class="space-y-6">
+            <h1 class="text-center text-3xl font-bold text-gray-800">Welcome Back</h1>
+
+            <div class="mt-6">
+                {% form 'customer_login' %}
+                    {% if form.errors %}
+                        <div class="border-l-4 border-red-500 bg-red-100 text-red-700 p-4 rounded-lg">
+                            <strong class="font-bold">Error!</strong>
+                            <p>{{ form.errors | default_errors }}</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-4">
+                        <label for="email_address" class="block text-gray-700">Email Address</label>
+                        <input type="email"
+                            name="customer[email]"
+                            id="email_address"
+                            autocomplete="email"
+                            class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-gray-300"
+                            placeholder="Enter your email">
+                    </div>
+
+                    {% if form.password_needed %}
+                        <div class="mb-4">
+                            <label for="password" class="block text-gray-700">Password</label>
+                            <input type="password"
+                                name="customer[password]"
+                                id="password"
+                                autocomplete="current-password"
+                                class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-gray-300"
+                                placeholder="Enter your password">
+                        </div>
+                    {% endif %}
+
+                    <div class="text-sm">
+                        <a x-on:click="loginForm = false; pwRecoverForm = true" href="#" class="text-gray-500 hover:text-gray-800">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full py-2 mt-4 text-white bg-gray-800 hover:bg-gray-900 rounded-lg shadow-md">
+                        Sign in
+                    </button>
+                {% endform %}
+            </div>
+        </div>
+
+        <!-- استعادة كلمة المرور -->
+        <div x-show="pwRecoverForm" class="space-y-6">
+            <h1 class="text-center text-3xl font-bold text-gray-800">Recover Password</h1>
+
+            <div class="mt-6">
+                {% form 'recover_customer_password' %}
+                    {% if form.errors %}
+                        <div class="border-l-4 border-red-500 bg-red-100 text-red-700 p-4 rounded-lg">
+                            <strong class="font-bold">Error!</strong>
+                            <p>{{ form.errors | default_errors }}</p>
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700">Email Address</label>
+                        <input type="email"
+                            name="email"
+                            id="email"
+                            autocomplete="email"
+                            class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-gray-300"
+                            placeholder="Enter your email">
+                    </div>
+
+                    <button type="submit" class="w-full py-2 mt-4 text-white bg-gray-800 hover:bg-gray-900 rounded-lg shadow-md">
+                        Recover Password
+                    </button>
+
+                    <div class="mt-4 text-sm text-center">
+                        <a x-on:click="loginForm = true; pwRecoverForm = false" href="#" class="text-gray-500 hover:text-gray-800">Back to login</a>
+                    </div>
+                {% endform %}
+            </div>
+        </div>
+    </div>
+</div>
