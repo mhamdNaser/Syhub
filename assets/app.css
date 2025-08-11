@@ -518,6 +518,9 @@
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
   }
+  .max-h-\[400px\] {
+    max-height: 400px;
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -790,6 +793,9 @@
   }
   .overflow-x-hidden {
     overflow-x: hidden;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
   }
   .overflow-y-scroll {
     overflow-y: scroll;
