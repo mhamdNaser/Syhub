@@ -6,11 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!searchResults) {
     searchResults = document.createElement("div");
     searchResults.id = "search-results";
-    searchResults.className = "absolute top-full left-0 w-full bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50";
+    searchResults.className = "absolute top-full left-0 w-full bg-white border border-gray-300 rounded-lg shadow-lg hidden z-50 max-h-96 overflow-auto";
     searchBox?.appendChild(searchResults);
   }
 
-  // دالة لحساب المسافة الإملائية (Levenshtein)
   function levenshtein(a, b) {
     const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
     for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return matrix[b.length][a.length];
   }
 
-  // جلب نتائج البحث
   async function fetchSearchResults(query) {
     if (!query.trim()) {
       searchResults.classList.add("hidden");
@@ -44,22 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const products = data.resources.results.products || [];
       const collections = data.resources.results.collections || [];
 
-      // نجمع اقتراحات الكلمات (اسماء منتجات، كولكشن، وبراند)
       let suggestionsSet = new Set();
 
-      // نضيف أسماء الكولكشن أولاً
       collections.forEach(coll => {
         if (coll.title.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(coll.title);
         }
       });
 
-      // نضيف أسماء المنتجات
       products.forEach(prod => {
         if (prod.title.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.title);
         }
-        // نضيف البراند (vendor) إذا متطابق
         if (prod.vendor && prod.vendor.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.vendor);
         }
@@ -69,44 +63,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let resultsHTML = "";
 
-      // قسم الاقتراحات
       if (suggestions.length > 0) {
         resultsHTML += `
-        <div class="mb-4">
-          <h3 class="text-lg font-bold text-black mb-2">Suggestions</h3>
-          <div class="flex flex-wrap gap-2">
+        <div class="mb-4 px-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Suggestions</h3>
+          <div class="flex flex-wrap gap-3">
             ${suggestions.map(sugg => `
-              <button class="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 suggestion-btn" data-term="${sugg}">
+              <button class="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition suggestion-btn shadow-sm font-medium" data-term="${sugg}">
                 ${sugg}
               </button>`).join("")}
           </div>
         </div>`;
       }
 
-      // قسم المنتجات
       if (products.length > 0) {
         resultsHTML += `
-        <div>
-          <h3 class="text-lg font-bold text-black mb-2">Products</h3>
+        <div class="px-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
           ${products.map(product => `
-            <div class="p-2 border-b last:border-none">
-              <a href="${product.url}" class="flex items-center hover:bg-gray-50 p-2 rounded">
-                <img src="${product.featured_image?.url}" alt="${product.title}" class="w-10 h-10 mr-2 object-cover rounded">
-                <div class="flex flex-col">
-                  <p class="text-gray-500 text-sm truncate">${product.vendor}</p>
-                  <span class="text-black font-medium">${product.title}</span>
+            <div class="border-b last:border-none">
+              <a href="${product.url}" class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition-shadow shadow-sm">
+                <div class="flex items-center space-x-3 overflow-hidden">
+                  <img src="${product.featured_image?.url}" alt="${product.title}" class="w-12 h-12 rounded-md object-cover flex-shrink-0">
+                  <div class="flex flex-col min-w-0">
+                    <p class="text-sm text-gray-500 truncate">${product.vendor}</p>
+                    <span class="text-gray-900 font-semibold truncate">${product.title}</span>
+                  </div>
+                </div>
+                <div class="text-right min-w-[80px] flex-shrink-0">
+                  <span class="text-gray-800 font-bold text-base">
+                    ${product.price.currency_symbol || "$"}${(product.price.amount || product.price).toLocaleString()}
+                  </span>
                 </div>
               </a>
             </div>`).join("")}
         </div>`;
       } else if (suggestions.length === 0) {
-        resultsHTML = `<div class="p-2 text-gray-500">No results found</div>`;
+        resultsHTML = `<div class="p-4 text-gray-500 text-center">No results found</div>`;
       }
 
       searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
 
-      // حدث الضغط على اقتراح كلمة
       document.querySelectorAll(".suggestion-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const term = btn.getAttribute("data-term");
@@ -117,11 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (error) {
       console.error("Error fetching search results:", error);
-      searchResults.innerHTML = `<div class="p-2 text-red-500">Error fetching results</div>`;
+      searchResults.innerHTML = `<div class="p-4 text-red-600 text-center">Error fetching results</div>`;
       searchResults.classList.remove("hidden");
     }
   }
-
 
   searchInput?.addEventListener("input", e => fetchSearchResults(e.target.value));
 
