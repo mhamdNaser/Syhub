@@ -1131,6 +1131,9 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .text-\[\#c42764\] {
+    color: #c42764;
+  }
   .text-black {
     color: var(--color-black);
   }
@@ -1306,6 +1309,13 @@
     &:hover {
       @media (hover: hover) {
         scale: 1.02;
+      }
+    }
+  }
+  .hover\:bg-\[\#f2bed2\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #f2bed2;
       }
     }
   }
