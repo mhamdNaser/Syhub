@@ -300,6 +300,12 @@
   .top-24 {
     top: calc(var(--spacing) * 24);
   }
+  .top-\[480\] {
+    top: 480;
+  }
+  .top-\[480px\] {
+    top: 480px;
+  }
   .top-full {
     top: 100%;
   }
