@@ -10,6 +10,7 @@
 {
   "sections": {
     "main": {
+      "type": "home",
       "settings": {}
     },
     "section_featured_collection_YLh4zD": {

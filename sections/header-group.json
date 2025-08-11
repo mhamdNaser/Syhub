@@ -168,7 +168,7 @@
         "header_position": "fixed",
         "menu_border": true,
         "border_bottom": "solid",
-        "menu_border_width": 4,
+        "menu_border_width": "4",
         "menu_border_color": "green"
       }
     }
