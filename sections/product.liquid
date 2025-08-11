@@ -125,10 +125,8 @@
                           {{- option.name -}}
                         </label>
 
-                        {% assign option_name_lc = option.name | downcase %}
-                        {% assign is_color = option_name_lc contains 'color' or option_name_lc contains 'colour' or option_name_lc == 'اللون' %}
+                        {% if option_name_lc contains 'color' or option_name_lc contains 'colour' or option_name_lc == 'اللون' %}
 
-                        {% if is_color %}
                           <!-- دوائر الألوان (مرئية) -->
                           <div class="flex gap-2 my-2 items-center">
                             {% for value in option.values %}
