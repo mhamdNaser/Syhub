@@ -1,32 +1,29 @@
-<div class="filters space-y-8">
-  <!-- Filter by Tags -->
-  {% if collection.all_tags.size > 0 %}
-    <div>
-      <h3 class="font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-2">التصفية حسب الوسوم</h3>
-      <ul class="space-y-2 max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300">
-        {% for tag in collection.all_tags %}
-          <li>
-            <a
-              href="{{ collection.url }}?constraint={{ tag | handle }}"
-              class="text-gray-600 hover:text-indigo-600 transition"
-            >
-              {{ tag }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+<div class="filters space-y-4">
+  <!-- Filter Selected Tags (Active Filters) -->
+  {% if collection.current_tags.size > 0 or collection.current_filters.size > 0 %}
+    <div class="mb-4 flex flex-wrap gap-2">
+      {% for tag in collection.current_tags %}
+        <span class="px-3 py-1 rounded bg-gray-200 text-sm flex items-center gap-2">
+          {{ tag }}
+          <a href="{{ collection.url | remove: '?constraint=' | append: collection.current_tags | split: tag | join: '' }}" class="text-red-500 hover:underline">×</a>
+        </span>
+      {% endfor %}
+      <a href="{{ collection.url }}" class="text-sm text-indigo-600 hover:underline ml-2">Remove all</a>
     </div>
   {% endif %}
 
   <!-- Filter by Price Range -->
   {% for filter in collection.filters %}
     {% if filter.type == 'price_range' %}
-      <div>
-        <h3 class="font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-2">{{ filter.label }}</h3>
-        <ul class="space-y-2">
+      <div x-data="{ open: false }" class="relative">
+        <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
+          Price
+          <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <ul x-show="open" @click.away="open = false" class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto">
           {% for value in filter.values %}
             <li>
-              <a href="{{ value.url }}" class="text-gray-600 hover:text-indigo-600 transition">
+              <a href="{{ value.url }}" class="block px-4 py-2 hover:bg-indigo-100">
                 {{ value.label }}
               </a>
             </li>
@@ -38,15 +35,15 @@
 
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
-    <div>
-      <h3 class="font-semibold text-gray-700 mb-4 border-b border-gray-200 pb-2">التصفية حسب {{ option.name }}</h3>
-      <ul class="space-y-2">
+    <div x-data="{ open: false }" class="relative">
+      <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
+        {{ option.name }}
+        <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <ul x-show="open" @click.away="open = false" class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto">
         {% for value in option.values %}
           <li>
-            <a
-              href="{{ collection.url }}?options[{{ option.name | handle }}]={{ value | handle }}"
-              class="text-gray-600 hover:text-indigo-600 transition"
-            >
+            <a href="{{ collection.url }}?options[{{ option.name | handle }}]={{ value | handle }}" class="block px-4 py-2 hover:bg-indigo-100">
               {{ value }}
             </a>
           </li>
