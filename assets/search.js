@@ -19,10 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
         matrix[i][j] = b[i - 1] === a[j - 1]
           ? matrix[i - 1][j - 1]
           : Math.min(
-              matrix[i - 1][j - 1] + 1,
-              matrix[i][j - 1] + 1,
-              matrix[i - 1][j] + 1
-            );
+            matrix[i - 1][j - 1] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j] + 1
+          );
       }
     }
     return matrix[b.length][a.length];
@@ -36,65 +36,84 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection,article`);
+      const response = await fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection`);
       if (!response.ok) throw new Error("Failed to fetch search results");
 
       const data = await response.json();
+
       const products = data.resources.results.products || [];
+      const collections = data.resources.results.collections || [];
+
+      // نجمع اقتراحات الكلمات (اسماء منتجات، كولكشن، وبراند)
+      let suggestionsSet = new Set();
+
+      // نضيف أسماء الكولكشن أولاً
+      collections.forEach(coll => {
+        if (coll.title.toLowerCase().includes(query.toLowerCase())) {
+          suggestionsSet.add(coll.title);
+        }
+      });
+
+      // نضيف أسماء المنتجات
+      products.forEach(prod => {
+        if (prod.title.toLowerCase().includes(query.toLowerCase())) {
+          suggestionsSet.add(prod.title);
+        }
+        // نضيف البراند (vendor) إذا متطابق
+        if (prod.vendor && prod.vendor.toLowerCase().includes(query.toLowerCase())) {
+          suggestionsSet.add(prod.vendor);
+        }
+      });
+
+      const suggestions = Array.from(suggestionsSet);
 
       let resultsHTML = "";
 
+      // قسم الاقتراحات
+      if (suggestions.length > 0) {
+        resultsHTML += `
+        <div class="mb-4">
+          <h3 class="text-lg font-bold text-black mb-2">Suggestions</h3>
+          <div class="flex flex-wrap gap-2">
+            ${suggestions.map(sugg => `
+              <button class="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 suggestion-btn" data-term="${sugg}">
+                ${sugg}
+              </button>`).join("")}
+          </div>
+        </div>`;
+      }
+
+      // قسم المنتجات
       if (products.length > 0) {
         resultsHTML += `
-          <div class="mb-4">
-            <h3 class="text-lg font-bold text-black mb-2">Products</h3>
-            ${products.map(product => `
-              <div class="p-2 border-b last:border-none">
-                <a href="${product.url}" class="flex items-center hover:bg-gray-50 p-2 rounded">
-                  <img src="${product.featured_image?.url}" alt="${product.title}" class="w-10 h-10 mr-2 object-cover rounded">
-                  <div class="flex flex-col">
-                    <p class="text-gray-500 text-sm truncate">${product.vendor}</p>
-                    <span class="text-black font-medium">${product.title}</span>
-                  </div>
-                </a>
-              </div>`).join("")}
-          </div>`;
-      } else {
-        // إذا ما في نتائج، نحاول إيجاد اقتراح مشابه
-        const allTitlesResponse = await fetch(`/search/suggest.json?q=a&resources[type]=product`);
-        const allTitlesData = await allTitlesResponse.json();
-        const allTitles = (allTitlesData.resources.results.products || []).map(p => p.title);
-
-        let closestMatch = null;
-        let minDistance = Infinity;
-        for (let title of allTitles) {
-          let dist = levenshtein(query.toLowerCase(), title.toLowerCase());
-          if (dist < minDistance && dist <= 3) { // 3 = مسافة مسموحة للتصحيح
-            minDistance = dist;
-            closestMatch = title;
-          }
-        }
-
-        if (closestMatch) {
-          resultsHTML = `<div class="p-2 text-gray-500">Did you mean: 
-            <span class="text-blue-600 cursor-pointer underline" id="suggested-term">${closestMatch}</span> ?
-          </div>`;
-        } else {
-          resultsHTML = `<div class="p-2 text-gray-500">No results found</div>`;
-        }
+        <div>
+          <h3 class="text-lg font-bold text-black mb-2">Products</h3>
+          ${products.map(product => `
+            <div class="p-2 border-b last:border-none">
+              <a href="${product.url}" class="flex items-center hover:bg-gray-50 p-2 rounded">
+                <img src="${product.featured_image?.url}" alt="${product.title}" class="w-10 h-10 mr-2 object-cover rounded">
+                <div class="flex flex-col">
+                  <p class="text-gray-500 text-sm truncate">${product.vendor}</p>
+                  <span class="text-black font-medium">${product.title}</span>
+                </div>
+              </a>
+            </div>`).join("")}
+        </div>`;
+      } else if (suggestions.length === 0) {
+        resultsHTML = `<div class="p-2 text-gray-500">No results found</div>`;
       }
 
       searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
 
-      // في حال ضغط المستخدم على الاقتراح
-      const suggestedTerm = document.getElementById("suggested-term");
-      if (suggestedTerm) {
-        suggestedTerm.addEventListener("click", () => {
-          searchInput.value = suggestedTerm.textContent;
-          fetchSearchResults(suggestedTerm.textContent);
+      // حدث الضغط على اقتراح كلمة
+      document.querySelectorAll(".suggestion-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const term = btn.getAttribute("data-term");
+          searchInput.value = term;
+          fetchSearchResults(term);
         });
-      }
+      });
 
     } catch (error) {
       console.error("Error fetching search results:", error);
@@ -102,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
       searchResults.classList.remove("hidden");
     }
   }
+
 
   searchInput?.addEventListener("input", e => fetchSearchResults(e.target.value));
 
