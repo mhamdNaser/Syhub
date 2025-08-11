@@ -25,6 +25,7 @@
       placeholder="القيمة الدنيا"
       class="w-full mb-3 px-3 py-2 border rounded"
       min="0"
+      @keyup.enter="applyFilter"
     >
 
     <label class="block text-sm mb-2 font-semibold">إلى:</label>
@@ -34,14 +35,8 @@
       placeholder="القيمة العليا"
       class="w-full mb-3 px-3 py-2 border rounded"
       min="0"
+      @keyup.enter="applyFilter"
     >
-
-    <button
-      @click="applyFilter"
-      class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
-    >
-      تطبيق
-    </button>
   </div>
 
   <!-- Filter by Options -->
@@ -79,26 +74,28 @@
     </div>
   {% endfor %}
 </div>
-
 <script>
-function priceFilter() {
-  return {
-    minPrice: '',
-    maxPrice: '',
-    applyFilter() {
-      let url = new URL(window.location.href);
-      if (this.minPrice) {
-        url.searchParams.set('filter.v.price.gte', this.minPrice);
-      } else {
-        url.searchParams.delete('filter.v.price.gte');
-      }
-      if (this.maxPrice) {
-        url.searchParams.set('filter.v.price.lte', this.maxPrice);
-      } else {
-        url.searchParams.delete('filter.v.price.lte');
-      }
-      window.location.href = url.toString();
-    }
+  function priceFilter() {
+    return {
+      minPrice: '',
+      maxPrice: '',
+      applyFilter() {
+        let url = new URL(window.location.href);
+
+        if (this.minPrice) {
+          url.searchParams.set('filter.v.price.gte', this.minPrice);
+        } else {
+          url.searchParams.delete('filter.v.price.gte');
+        }
+
+        if (this.maxPrice) {
+          url.searchParams.set('filter.v.price.lte', this.maxPrice);
+        } else {
+          url.searchParams.delete('filter.v.price.lte');
+        }
+
+        window.location.href = url.toString();
+      },
+    };
   }
-}
 </script>
