@@ -121,30 +121,42 @@
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         <label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name }}</label>
-
-                        <div class="my-2">
-                          <select
-                            name="options[{{ option.name | escape }}]"
-                            id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                            class="w-full border py-3 px-3"
-                          >
+                        {% if option.name | downcase == 'color' or option.name | downcase == 'اللون' %}
+                          <div class="flex gap-2 my-2">
                             {% for value in option.values %}
-                              <option
-                                value="{{ value | escape }}"
-                                {% if option.selected_value == value %}
-                                  selected="selected"
-                                {% endif %}
-                              >
-                                {{ value }}
-                              </option>
+                              <button
+                                type="button"
+                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch {% if option.selected_value == value %}ring-2 ring-black{% endif %}"
+                                style="background-color: {{ value | downcase }};"
+                                data-value="{{ value | escape }}"
+                                data-option-index="{{ forloop.parentloop.index0 }}"
+                              ></button>
                             {% endfor %}
-                          </select>
-                        </div>
-
-                        <script type="application/json">
-                          {{ product.variants | json }}
-                        </script>
+                          </div>
+                        {% else %}
+                          <div class="my-2">
+                            <select
+                              name="options[{{ option.name | escape }}]"
+                              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                              class="w-full border py-3 px-3"
+                            >
+                              {% for value in option.values %}
+                                <option
+                                  value="{{ value | escape }}"
+                                  {% if option.selected_value == value %}
+                                    selected="selected"
+                                  {% endif %}
+                                >
+                                  {{ value }}
+                                </option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        {% endif %}
                       {% endfor %}
+                      <script type="application/json">
+                        {{ product.variants | json }}
+                      </script>
                     </variant-selector>
                   {% endunless %}
                 </div>
