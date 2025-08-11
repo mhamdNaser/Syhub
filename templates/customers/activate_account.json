@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "template": {
+    "main": {
       "type": "customer-activate-account",
       "settings": {}
     }
   },
   "order": [
-    "template"
+    "main"
   ]
 }

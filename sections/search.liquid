@@ -36,7 +36,7 @@
             {% assign img = result.featured_image | default: result.image %}
             {% if img %}
               <a href="{{ result.url }}" class="mb-4 block overflow-hidden rounded-lg shadow-sm">
-                <img src="{{ img | img_url: 'medium' }}" alt="{{ result.title | escape }}" class="w-full h-40 object-cover transition-transform hover:scale-105 rounded-lg">
+                <img src="{{ img | img_url: 'medium' }}" alt="{{ result.title | escape }}" class="w-full h-40 object-cover transition-transform hover:scale-105 rounded-lg" width="auto" height="auto">
               </a>
             {% endif %}
 
