@@ -126,6 +126,7 @@
                         </label>
 
                         {% if option_name_lc contains 'color'
+                          or option_name_lc contains 'Color'
                           or option_name_lc contains 'colour'
                           or option_name_lc == 'اللون'
                         %}
@@ -190,6 +191,7 @@
                   {% endunless %}
                 </div>
 
+              
               {% when 'quantity' %}
                 <div class="my-3">
                   <label for="Quantity-{{ section.id }}">Quantity</label>
