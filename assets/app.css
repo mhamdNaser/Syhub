@@ -897,6 +897,9 @@
   .bg-\[\#334155\] {
     background-color: #334155;
   }
+  .bg-\[\[\#f2bed2\]\] {
+    background-color: [#f2bed2];
+  }
   .bg-black {
     background-color: var(--color-black);
   }
@@ -1312,6 +1315,13 @@
       }
     }
   }
+  .hover\:bg-\[\#c42764\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #c42764;
+      }
+    }
+  }
   .hover\:bg-\[\#f2bed2\] {
     &:hover {
       @media (hover: hover) {
@@ -1428,6 +1438,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-pink-500);
+      }
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
       }
     }
   }

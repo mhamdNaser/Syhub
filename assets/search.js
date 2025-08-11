@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Suggestions</h3>
           <div class="flex flex-wrap gap-3">
             ${suggestions.map(sugg => `
-              <button class="px-4 py-2 bg-blue-50 text-[#c42764] rounded-lg hover:bg-[#f2bed2] transition suggestion-btn shadow-sm font-medium" data-term="${sugg}">
+              <button class="px-4 py-2 bg-[[#f2bed2]] text-[#c42764] rounded-lg hover:bg-[#c42764] hover:text-white transition suggestion-btn shadow-sm font-medium" data-term="${sugg}">
                 ${sugg}
               </button>`).join("")}
           </div>
