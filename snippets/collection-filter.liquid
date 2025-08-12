@@ -17,66 +17,28 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div x-data="{ open: false, minPrice: '', maxPrice: '' }" class="relative">
-    <!-- زر إظهار الفلتر -->
-    <button
-      @click="open = !open"
-      class="flex items-center gap-1 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+  
+  <div x-data="priceFilter()" class="relative flex items-center gap-x-3 bg-gray-100 p-4 rounded shadow-sm">
+    <label class="block text-sm mb-2 font-semibold">from</label>
+    <input
+      type="number"
+      x-model="minPrice"
+      placeholder="from"
+      class="w-full mb-3 px-3 py-2 border rounded"
+      min="0"
+      @keyup.enter="applyFilter"
     >
-      <span class="font-semibold">Price</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4 transform transition-transform duration-200"
-        :class="{ 'rotate-180': open }"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
 
-    <!-- فورم الفلترة -->
-    <div
-      x-show="open"
-      x-transition
-      class="absolute z-10 mt-2 bg-white p-4 rounded shadow w-64 border"
+    <label class="block text-sm mb-2 font-semibold">to</label>
+    <input
+      type="number"
+      x-model="maxPrice"
+      placeholder="to"
+      class="w-full mb-3 px-3 py-2 border rounded"
+      min="0"
+      @keyup.enter="applyFilter"
     >
-      <label class="block text-sm font-semibold mb-1">From</label>
-      <input
-        type="number"
-        x-model="minPrice"
-        placeholder="From"
-        class="w-full mb-3 px-3 py-2 border rounded"
-        min="0"
-        @keyup.enter="applyFilter"
-      >
-
-      <label class="block text-sm font-semibold mb-1">To</label>
-      <input
-        type="number"
-        x-model="maxPrice"
-        placeholder="To"
-        class="w-full mb-3 px-3 py-2 border rounded"
-        min="0"
-        @keyup.enter="applyFilter"
-      >
-    </div>
   </div>
-
-  <script>
-    function priceFilter() {
-      return {
-        minPrice: '',
-        maxPrice: '',
-        applyFilter() {
-          // ضع هنا كود الفلترة حسب منطقك
-          console.log('Filtering from', this.minPrice, 'to', this.maxPrice);
-        },
-      };
-    }
-  </script>
 
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
@@ -113,8 +75,6 @@
     </div>
   {% endfor %}
 </div>
-
-
 <script>
   function priceFilter() {
     return {
