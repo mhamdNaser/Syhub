@@ -16,18 +16,31 @@ document.addEventListener("DOMContentLoaded", () => {
     return text.replace(regex, `<span style="background-color:#f2bed2;">$1</span>`);
   }
 
+  // إحضار الوصف الكامل من صفحة المنتج
   async function fetchProductDescription(handle) {
     try {
       const res = await fetch(`/products/${handle}.json`);
       if (!res.ok) throw new Error("Failed to fetch product details");
       const data = await res.json();
       let desc = data.product?.body_html || "";
-      desc = desc.replace(/<[^>]*>/g, ""); // تنظيف من HTML
+      desc = desc.replace(/<[^>]*>/g, ""); // إزالة أكواد HTML
       return desc;
     } catch (err) {
       console.error("Error fetching product description:", err);
       return "";
     }
+  }
+
+  // استخراج الجملة التي تحتوي الكلمة
+  function extractSentence(text, query) {
+    const sentences = text.split(/(?<=[.?!])\s+/); // تقسيم إلى جمل
+    const lowerQuery = query.toLowerCase();
+    for (let sentence of sentences) {
+      if (sentence.toLowerCase().includes(lowerQuery)) {
+        return sentence.trim();
+      }
+    }
+    return text.length > 80 ? text.slice(0, 80) + "..." : text; // في حال لم نجد الجملة
   }
 
   async function fetchSearchResults(query) {
@@ -43,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) throw new Error("Failed to fetch search results");
 
       const data = await response.json();
-
       const products = data.resources.results.products || [];
       const collections = data.resources.results.collections || [];
 
@@ -65,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const suggestions = Array.from(suggestionsSet);
-
       let resultsHTML = "";
 
       // عرض المقترحات
@@ -82,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
       }
 
-      // عرض المنتجات بدون ديسكربشن مبدئيًا
+      // عرض المنتجات بدون الوصف مبدئيًا
       if (products.length > 0) {
         resultsHTML += `
         <div class="px-4">
@@ -111,18 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
       searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
 
-      // تحميل الوصف لكل منتج بعد عرض النتائج
+      // جلب الديسكربشن لكل منتج بعد العرض
       document.querySelectorAll(".product-item").forEach(async item => {
         const handle = item.getAttribute("data-handle");
-        const desc = await fetchProductDescription(handle);
         const descElement = item.querySelector(".description-placeholder");
+        const fullDesc = await fetchProductDescription(handle);
+
         if (descElement) {
-          let snippet = desc.length > 80 ? desc.slice(0, 80) + "..." : desc;
-          descElement.innerHTML = highlightMatch(snippet, query);
+          const sentence = extractSentence(fullDesc, query);
+          descElement.innerHTML = highlightMatch(sentence, query);
         }
       });
 
-      // تفعيل أزرار المقترحات
+      // تفعيل المقترحات
       document.querySelectorAll(".suggestion-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const term = btn.getAttribute("data-term");
