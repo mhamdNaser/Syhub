@@ -10,21 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     searchBox?.appendChild(searchResults);
   }
 
-  function levenshtein(a, b) {
-    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
-    for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
-    for (let i = 1; i <= b.length; i++) {
-      for (let j = 1; j <= a.length; j++) {
-        matrix[i][j] = b[i - 1] === a[j - 1]
-          ? matrix[i - 1][j - 1]
-          : Math.min(
-            matrix[i - 1][j - 1] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j] + 1
-          );
-      }
-    }
-    return matrix[b.length][a.length];
+  // دالة تظليل الكلمات المطابقة
+  function highlightMatch(text, query) {
+    if (!text) return "";
+    const regex = new RegExp(`(${query})`, "gi");
+    return text.replace(regex, `<span style="background-color:#f2bed2;">$1</span>`);
   }
 
   async function fetchSearchResults(query) {
@@ -34,7 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection`);
+      const response = await fetch(
+        `/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection`
+      );
       if (!response.ok) throw new Error("Failed to fetch search results");
 
       const data = await response.json();
@@ -44,18 +36,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let suggestionsSet = new Set();
 
+      // البحث في الكولكشن
       collections.forEach(coll => {
-        if (coll.title.toLowerCase().includes(query.toLowerCase())) {
+        if (coll.title?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(coll.title);
         }
       });
 
+      // البحث في المنتجات
       products.forEach(prod => {
-        if (prod.title.toLowerCase().includes(query.toLowerCase())) {
+        // البحث في العنوان
+        if (prod.title?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.title);
         }
-        if (prod.vendor && prod.vendor.toLowerCase().includes(query.toLowerCase())) {
+        // البحث في الفيندور
+        if (prod.vendor?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.vendor);
+        }
+        // البحث في الـ description
+        if (prod.description && prod.description.toLowerCase().includes(query.toLowerCase())) {
+          let snippet = prod.description;
+          if (snippet.length > 50) snippet = snippet.slice(0, 50) + "...";
+          suggestionsSet.add(snippet);
         }
       });
 
@@ -63,41 +65,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let resultsHTML = "";
 
+      // جزء المقترحات
       if (suggestions.length > 0) {
         resultsHTML += `
         <div class="mb-4 px-4">
           <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Suggestions</h3>
           <div class="flex flex-wrap gap-3">
             ${suggestions.map(sugg => `
-              <button class="px-4 py-2 bg-[[#f2bed2]] text-[#c42764] rounded-lg hover:bg-[#c42764] hover:text-white transition suggestion-btn shadow-sm font-medium" data-term="${sugg}">
-                ${sugg}
+              <button class="px-4 py-2 bg-[#f2bed2] text-[#c42764] rounded-lg hover:bg-[#c42764] hover:text-white transition suggestion-btn shadow-sm font-medium" data-term="${sugg}">
+                ${highlightMatch(sugg, query)}
               </button>`).join("")}
           </div>
         </div>`;
       }
 
+      // جزء المنتجات
       if (products.length > 0) {
-        resultsHTML += `
-        <div class="px-4">
-          <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
-          ${products.map(product => `
-            <div class="border-b last:border-none">
-              <a href="${product.url}" class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition-shadow shadow-sm">
-                <div class="flex items-center space-x-3 overflow-hidden">
-                  <img src="${product.featured_image?.url}" alt="${product.title}" class="w-12 h-12 rounded-md object-cover flex-shrink-0">
-                  <div class="flex flex-col min-w-0">
-                    <p class="text-sm text-gray-500 truncate">${product.vendor}</p>
-                    <span class="text-gray-900 font-semibold truncate">${product.title}</span>
+        const filteredProducts = products.filter(product =>
+          product.title?.toLowerCase().includes(query.toLowerCase()) ||
+          product.vendor?.toLowerCase().includes(query.toLowerCase()) ||
+          product.description?.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (filteredProducts.length > 0) {
+          resultsHTML += `
+          <div class="px-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
+            ${filteredProducts.map(product => {
+              return `
+              <div class="border-b last:border-none">
+                <a href="${product.url}" class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition-shadow shadow-sm">
+                  <div class="flex items-center space-x-3 overflow-hidden">
+                    <img src="${product.featured_image?.url}" alt="${product.title}" class="w-12 h-12 rounded-md object-cover flex-shrink-0">
+                    <div class="flex flex-col min-w-0">
+                      <p class="text-sm text-gray-500 truncate">${highlightMatch(product.vendor || "", query)}</p>
+                      <span class="text-gray-900 font-semibold truncate">${highlightMatch(product.title, query)}</span>
+                      <span class="text-xs text-gray-400 truncate">${highlightMatch(product.description || "", query)}</span>
+                    </div>
                   </div>
-                </div>
-                <div class="text-right min-w-[80px] flex-shrink-0">
-                  <span class="text-gray-800 font-bold text-base">
-                    ${product.price.currency_symbol || "$"}${(product.price.amount || product.price).toLocaleString()}
-                  </span>
-                </div>
-              </a>
-            </div>`).join("")}
-        </div>`;
+                  <div class="text-right min-w-[80px] flex-shrink-0">
+                    <span class="text-gray-800 font-bold text-base">
+                      ${product.price.currency_symbol || "$"}${(product.price.amount || product.price).toLocaleString()}
+                    </span>
+                  </div>
+                </a>
+              </div>`;
+            }).join("")}
+          </div>`;
+        }
       } else if (suggestions.length === 0) {
         resultsHTML = `<div class="p-4 text-gray-500 text-center">No results found</div>`;
       }
@@ -105,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
 
+      // حدث الضغط على أزرار المقترحات
       document.querySelectorAll(".suggestion-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const term = btn.getAttribute("data-term");
