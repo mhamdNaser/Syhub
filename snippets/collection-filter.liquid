@@ -17,14 +17,18 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <button onclick="togglePriceIcon(this)" class="bg-gray-100 w-full px-4 py-2 flex justify-between items-center">
+  <button onclick="togglePriceSection(this)" class="bg-gray-100 w-full px-4 py-2 flex justify-between items-center">
     <span>Price</span>
     <div>
       <span class="icon-down block">{%- render 'icon-chevron-down' -%}</span>
       <span class="icon-up hidden">{%- render 'icon-chevron-up' -%}</span>
     </div>
   </button>
-  <div x-data="priceFilter()" class="relative hidden items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm">
+  <div
+    id="price-section"
+    x-data="priceFilter()"
+    class="relative hidden items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm"
+  >
     <label class="block text-sm mb-2 font-semibold">from</label>
     <input
       type="number"
@@ -83,13 +87,24 @@
 </div>
 
 <script>
-function togglePriceIcon(button) {
-  const iconDown = button.querySelector('.icon-down');
-  const iconUp = button.querySelector('.icon-up');
+  function togglePriceSection(button) {
+    const iconDown = button.querySelector('.icon-down');
+    const iconUp = button.querySelector('.icon-up');
+    const priceSection = document.getElementById('price-section');
 
-  iconDown.classList.toggle('hidden');
-  iconUp.classList.toggle('hidden');
-}
+    // تبديل الأيقونات
+    iconDown.classList.toggle('hidden');
+    iconUp.classList.toggle('hidden');
+
+    // تبديل ظهور الـ div بين hidden و flex
+    if (priceSection.classList.contains('hidden')) {
+      priceSection.classList.remove('hidden');
+      priceSection.classList.add('flex');
+    } else {
+      priceSection.classList.remove('flex');
+      priceSection.classList.add('hidden');
+    }
+  }
 </script>
 
 <script>
