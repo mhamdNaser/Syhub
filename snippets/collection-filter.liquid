@@ -17,37 +17,39 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <button onclick="togglePriceSection(this)" class="bg-gray-100 w-full px-4 py-2 flex justify-between items-center">
-    <span>Price</span>
-    <div>
-      <span class="icon-down block">{%- render 'icon-chevron-down' -%}</span>
-      <span class="icon-up hidden">{%- render 'icon-chevron-up' -%}</span>
-    </div>
-  </button>
-  <div
-    id="price-section"
-    x-data="priceFilter()"
-    class="relative hidden items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm"
-  >
-    <label class="block text-sm mb-2 font-semibold">from</label>
-    <input
-      type="number"
-      x-model="minPrice"
-      placeholder="from"
-      class="w-full mb-3 px-3 py-2 border rounded"
-      min="0"
-      @keyup.enter="applyFilter"
+  <div class="bg-gray-100 w-full px-4 py-2 text-sm">
+    <button onclick="togglePriceSection(this)" class="w-full flex justify-between items-center">
+      <span>Price</span>
+      <div>
+        <span class="icon-down block">{%- render 'icon-chevron-down' -%}</span>
+        <span class="icon-up hidden">{%- render 'icon-chevron-up' -%}</span>
+      </div>
+    </button>
+    <div
+      id="price-section"
+      x-data="priceFilter()"
+      class="relative hidden items-center gap-x-3 rounded shadow-sm"
     >
+      <label class="block mb-2 font-semibold">from</label>
+      <input
+        type="number"
+        x-model="minPrice"
+        placeholder="from"
+        class="w-full mb-3 px-3 py-2 border rounded"
+        min="0"
+        @keyup.enter="applyFilter"
+      >
 
-    <label class="block text-sm mb-2 font-semibold">to</label>
-    <input
-      type="number"
-      x-model="maxPrice"
-      placeholder="to"
-      class="w-full mb-3 px-3 py-2 border rounded"
-      min="0"
-      @keyup.enter="applyFilter"
-    >
+      <label class="block mb-2 font-semibold">to</label>
+      <input
+        type="number"
+        x-model="maxPrice"
+        placeholder="to"
+        class="w-full mb-3 px-3 py-2 border rounded"
+        min="0"
+        @keyup.enter="applyFilter"
+      >
+    </div>
   </div>
 
   <!-- Filter by Options -->
