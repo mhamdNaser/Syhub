@@ -18,24 +18,32 @@
 
   <!-- Filter by Price Range -->
   <div x-data="{ open: false, minPrice: '', maxPrice: '' }" class="relative">
-  
-  <!-- زر إظهار الفلتر -->
-  <button 
-    @click="open = !open" 
-    class="flex items-center gap-1 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-  >
-    <span class="font-semibold">Price</span>
-    <svg xmlns="http://www.w3.org/2000/svg" 
-         class="h-4 w-4 transform transition-transform duration-200" 
-         :class="{ 'rotate-180': open }" 
-         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M19 9l-7 7-7-7" />
-    </svg>
-  </button>
+    <!-- زر إظهار الفلتر -->
+    <button
+      @click="open = !open"
+      class="flex items-center gap-1 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+    >
+      <span class="font-semibold">Price</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4 transform transition-transform duration-200"
+        :class="{ 'rotate-180': open }"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
   </div>
 
-  <div x-data="priceFilter()" class="relative flex items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm">
+  <div
+    x-show="open"
+    x-transition
+    x-data="priceFilter()"
+    class="relative flex items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm"
+  >
     <label class="block text-sm mb-2 font-semibold">from</label>
     <input
       type="number"
