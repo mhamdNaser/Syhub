@@ -36,33 +36,33 @@
               d="M19 9l-7 7-7-7" />
       </svg>
     </button>
-  </div>
 
-  <div
-    x-show="open"
-    x-transition
-    x-data="priceFilter()"
-    class="relative flex items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm"
-  >
-    <label class="block text-sm mb-2 font-semibold">from</label>
-    <input
-      type="number"
-      x-model="minPrice"
-      placeholder="from"
-      class="w-full mb-3 px-3 py-2 border rounded"
-      min="0"
-      @keyup.enter="applyFilter"
+    <div
+      x-show="open"
+      x-transition
+      x-data="priceFilter()"
+      class="relative flex items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm"
     >
+      <label class="block text-sm mb-2 font-semibold">from</label>
+      <input
+        type="number"
+        x-model="minPrice"
+        placeholder="from"
+        class="w-full mb-3 px-3 py-2 border rounded"
+        min="0"
+        @keyup.enter="applyFilter"
+      >
 
-    <label class="block text-sm mb-2 font-semibold">to</label>
-    <input
-      type="number"
-      x-model="maxPrice"
-      placeholder="to"
-      class="w-full mb-3 px-3 py-2 border rounded"
-      min="0"
-      @keyup.enter="applyFilter"
-    >
+      <label class="block text-sm mb-2 font-semibold">to</label>
+      <input
+        type="number"
+        x-model="maxPrice"
+        placeholder="to"
+        class="w-full mb-3 px-3 py-2 border rounded"
+        min="0"
+        @keyup.enter="applyFilter"
+      >
+    </div>
   </div>
 
   <!-- Filter by Options -->
