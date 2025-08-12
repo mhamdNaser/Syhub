@@ -61,15 +61,15 @@
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
     <div x-data="{ open: false }" class="relative">
-      <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
+      <button id="priceToggleBtn" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
         {{ option.name }}
         <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
+          id="priceArrow"
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 transform transition-transform duration-200"
           fill="none"
-          stroke="currentColor"
-          stroke-width="2"
           viewBox="0 0 24 24"
+          stroke="currentColor"
         >
           <path d="M19 9l-7 7-7-7"/>
         </svg>
@@ -93,6 +93,27 @@
     </div>
   {% endfor %}
 </div>
+
+<script>
+  const toggleBtn = document.getElementById('priceToggleBtn');
+  const priceForm = document.getElementById('PriceForm');
+  const arrowIcon = document.getElementById('priceArrow');
+
+  toggleBtn.addEventListener('click', () => {
+    // قلب السهم
+    arrowIcon.classList.toggle('rotate-180');
+
+    // أظهر أو أخفي الفورم
+    if (priceForm.classList.contains('hidden')) {
+      priceForm.classList.remove('hidden');
+      priceForm.classList.add('flex');
+    } else {
+      priceForm.classList.remove('flex');
+      priceForm.classList.add('hidden');
+    }
+  });
+</script>
+
 <script>
   function priceFilter() {
     return {
