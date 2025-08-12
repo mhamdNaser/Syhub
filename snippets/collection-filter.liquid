@@ -65,6 +65,19 @@
     </div>
   </div>
 
+  <script>
+    function priceFilter() {
+      return {
+        minPrice: '',
+        maxPrice: '',
+        applyFilter() {
+          // ضع هنا كود الفلترة حسب منطقك
+          console.log('Filtering from', this.minPrice, 'to', this.maxPrice);
+        },
+      };
+    }
+  </script>
+
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
     <div x-data="{ open: false }" class="relative">
@@ -127,16 +140,3 @@
     };
   }
 </script>
-
-  <script>
-    function priceFilter() {
-      return {
-        minPrice: '',
-        maxPrice: '',
-        applyFilter() {
-          // ضع هنا كود الفلترة حسب منطقك
-          console.log('Filtering from', this.minPrice, 'to', this.maxPrice);
-        },
-      };
-    }
-  </script>
