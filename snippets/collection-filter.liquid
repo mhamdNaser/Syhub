@@ -17,8 +17,8 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div class="bg-gray-100 w-full px-4 py-1 text-sm">
-    <button onclick="togglePriceSection(this)" class="w-full flex py-1 justify-between items-center">
+  <div class="bg-gray-100 w-full py-1 text-sm">
+    <button onclick="togglePriceSection(this)" class="w-full flex py-1 px-4 justify-between items-center">
       <span>Price</span>
       <div>
         <span class="icon-down block">{%- render 'icon-chevron-down' -%}</span>
@@ -28,7 +28,7 @@
     <div
       id="price-section"
       x-data="priceFilter()"
-      class="relative hidden items-center gap-x-3 border-t-2 border-gray-300 py-1"
+      class="relative hidden items-center gap-x-3 border-t border-white py-1 px-4"
     >
       <label class="block mb-2 font-semibold">from</label>
       <input
