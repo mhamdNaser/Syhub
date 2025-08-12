@@ -100,6 +100,21 @@
     </div>
   {% endfor %}
 </div>
+
+
+<script>
+  function priceFilter() {
+    return {
+      minPrice: '',
+      maxPrice: '',
+      applyFilter() {
+        // ضع هنا كود الفلترة حسب منطقك
+        console.log('Filtering from', this.minPrice, 'to', this.maxPrice);
+      }
+    }
+  }
+</script>
+
 <script>
   function priceFilter() {
     return {
