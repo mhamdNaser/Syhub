@@ -45,15 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // البحث في المنتجات
       products.forEach(prod => {
-        // البحث في العنوان
+        // العنوان
         if (prod.title?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.title);
         }
-        // البحث في الفيندور
+        // الفيندور
         if (prod.vendor?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.vendor);
         }
-        // البحث في الـ description
+        // الوصف
         if (prod.description && prod.description.toLowerCase().includes(query.toLowerCase())) {
           let snippet = prod.description;
           if (snippet.length > 50) snippet = snippet.slice(0, 50) + "...";
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let resultsHTML = "";
 
-      // جزء المقترحات
+      // المقترحات
       if (suggestions.length > 0) {
         resultsHTML += `
         <div class="mb-4 px-4">
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
       }
 
-      // جزء المنتجات
+      // المنتجات
       if (products.length > 0) {
         const filteredProducts = products.filter(product =>
           product.title?.toLowerCase().includes(query.toLowerCase()) ||
@@ -92,6 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="px-4">
             <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
             ${filteredProducts.map(product => {
+              const descSnippet = product.description
+                ? (product.description.length > 80
+                    ? product.description.slice(0, 80) + "..."
+                    : product.description)
+                : "";
               return `
               <div class="border-b last:border-none">
                 <a href="${product.url}" class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition-shadow shadow-sm">
@@ -99,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${product.featured_image?.url}" alt="${product.title}" class="w-12 h-12 rounded-md object-cover flex-shrink-0">
                     <div class="flex flex-col min-w-0">
                       <p class="text-sm text-gray-500 truncate">${highlightMatch(product.vendor || "", query)}</p>
-                      <span class="text-gray-900 font-semibold truncate">${highlightMatch(product.title, query)}</span>
-                      <span class="text-xs text-gray-400 truncate">${highlightMatch(product.description || "", query)}</span>
+                      <span class="text-gray-900 font-semibold">${highlightMatch(product.title, query)}</span>
+                      <p class="text-xs text-gray-500 mt-1">${highlightMatch(descSnippet, query)}</p>
                     </div>
                   </div>
                   <div class="text-right min-w-[80px] flex-shrink-0">
@@ -120,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
 
-      // حدث الضغط على أزرار المقترحات
+      // عند الضغط على المقترحات
       document.querySelectorAll(".suggestion-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const term = btn.getAttribute("data-term");
