@@ -17,11 +17,11 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <button class="bg-gray-100 w-full px-4 py-2 flex justify-between items-center">
+  <button onclick="togglePriceIcon(this)" class="bg-gray-100 w-full px-4 py-2 flex justify-between items-center">
     <span>Price</span>
     <div>
-      <span class="hidden">{%- render 'icon-chevron-down' -%}</span>
-      <span class="block">{%- render 'icon-chevron-up' -%}</span>
+      <span class="icon-down block">{%- render 'icon-chevron-down' -%}</span>
+      <span class="icon-up hidden">{%- render 'icon-chevron-up' -%}</span>
     </div>
   </button>
   <div x-data="priceFilter()" class="relative hidden items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm">
@@ -81,6 +81,17 @@
     </div>
   {% endfor %}
 </div>
+
+<script>
+function togglePriceIcon(button) {
+  const iconDown = button.querySelector('.icon-down');
+  const iconUp = button.querySelector('.icon-up');
+
+  iconDown.classList.toggle('hidden');
+  iconUp.classList.toggle('hidden');
+}
+</script>
+
 <script>
   function priceFilter() {
     return {
