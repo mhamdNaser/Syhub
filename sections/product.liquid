@@ -9,6 +9,11 @@
 {% endcomment %}
 
 {% assign selected_variant = product.selected_or_first_available_variant %}
+{% assign color_map_json = settings.color_map | default: '{}' %}
+{% assign color_map = color_map_json | parse_json %}
+
+{% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
+{% assign color_labels = color_labels_raw | split: ',' %}
 
 <style>
   .thumbnail-slider .swiper-slide {
@@ -126,19 +131,24 @@
                         </label>
 
                         {% assign option_name_lc = option.name | downcase %}
+                        {% assign is_color_option = false %}
+                        {% for label in color_labels %}
+                          {% assign label_lc = label | downcase | strip %}
+                          {% if option_name_lc contains label_lc %}
+                            {% assign is_color_option = true %}
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
 
-                        {% if option_name_lc contains 'color'
-                          or option_name_lc contains 'Color'
-                          or option_name_lc contains 'colour'
-                          or option_name_lc == 'اللون'
-                        %}
+                        {% if is_color_option %}
                           <!-- دوائر الألوان (مرئية) -->
                           <div class="flex gap-2 my-2 items-center">
                             {% for value in option.values %}
+                              {% assign color_hex = color_map[value] | default: value %}
                               <button
                                 type="button"
                                 class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
-                                style="background-color: {{ value | escape }};"
+                                style="background-color: {{ color_hex }};"
                                 data-value="{{ value | escape }}"
                                 data-option-index="{{ optionIndex }}"
                                 aria-label="{{ option.name }}: {{ value }}"
@@ -163,6 +173,7 @@
                               </option>
                             {% endfor %}
                           </select>
+
                         {% else %}
                           <!-- خيارات عادية تظهر كـ select -->
                           <div class="my-2">
@@ -193,7 +204,6 @@
                   {% endunless %}
                 </div>
 
-              
               {% when 'quantity' %}
                 <div class="my-3">
                   <label for="Quantity-{{ section.id }}">Quantity</label>
