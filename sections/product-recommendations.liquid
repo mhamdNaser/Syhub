@@ -12,7 +12,6 @@
     width: 100%;
     height: 100%;
   }
-
   .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -20,7 +19,6 @@
     justify-content: center;
     align-items: center;
   }
-
   .swiper-button-next,
   .swiper-button-prev {
     color: black;
@@ -29,59 +27,86 @@
     padding: 10px;
     z-index: 10;
   }
-
   .swiper-button-next {
     right: 10px;
   }
-
   .swiper-button-prev {
     left: 10px;
   }
 </style>
 
+{%- comment -%}
+  تحديد المنتج المرجعي لعرض الركومنديشن
+{%- endcomment -%}
+{% assign reference_product_id = null %}
+{% if product %}
+  {% assign reference_product_id = product.id %}
+{% elsif cart and cart.items.size > 0 %}
+  {% assign reference_product_id = cart.items.first.product.id %}
+{% endif %}
+
 <div
   class="product-recommendations {{ box_width }} mx-auto"
-  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
+  {% if reference_product_id %}
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ reference_product_id }}&limit=4&intent=related"
+  {% endif %}
 >
-  {%- if recommendations.performed? and recommendations.products_count > 0 -%}
-    <div class="relative max-w-7xl lg:text-3xl text-center mx-auto px-4 sm:px-6 lg:px-8">
+  {% if recommendations.performed? and recommendations.products_count > 0 %}
+    {% assign title_text = recommendations.intent == 'complementary' | if: 'Pair it with', 'You may also like' %}
+    <div class="relative max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-3xl font-extrabold text-gray-900 mb-8">
-        {% if recommendations.intent == 'related' %}
-          <h2>You may also like</h2>
-        {% elsif recommendations.intent == 'complementary' %}
-          <h2>Pair it with</h2>
-        {% endif %}
+        <h2>{{ title_text }}</h2>
       </div>
 
       {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-'
         | append: item_in_row
         | append: ' gap-6'
       %}
-      {% if swiper %}
-        {% assign layout_class = swiper_class %}
-      {% endif %}
+      {% if swiper %}{% assign layout_class = swiper_class %}{% endif %}
 
       <div class="{{ layout_class }}">
-        {% if swiper %}
-          <div class="swiper-wrapper">
-        {% endif %}
-
-        {%- for product in recommendations.products -%}
+        {% if swiper %}<div class="swiper-wrapper">{% endif %}
+        {% for product in recommendations.products %}
           <div class="swiper-slide">
             {%- render 'product-card', product: product -%}
           </div>
         {% endfor %}
-
-        {% if swiper %}
-          </div>
-        {% endif %}
+        {% if swiper %}</div>{% endif %}
       </div>
       {% if pagination_row and swiper %}
         <div class="{{ next_button_class }} swiper-button-next"></div>
         <div class="{{ prev_button_class }} swiper-button-prev"></div>
       {% endif %}
     </div>
-  {%- endif -%}
+
+  {% elsif collections.frontpage.products.size > 0 %}
+    {# إذا ما فيه توصيات نعرض كولكشن احتياطي #}
+    <div class="relative max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-3xl font-extrabold text-gray-900 mb-8">
+        <h2>Recommended for you</h2>
+      </div>
+
+      {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-'
+        | append: item_in_row
+        | append: ' gap-6'
+      %}
+      {% if swiper %}{% assign layout_class = swiper_class %}{% endif %}
+
+      <div class="{{ layout_class }}">
+        {% if swiper %}<div class="swiper-wrapper">{% endif %}
+        {% for product in collections.frontpage.products limit: 4 %}
+          <div class="swiper-slide">
+            {%- render 'product-card', product: product -%}
+          </div>
+        {% endfor %}
+        {% if swiper %}</div>{% endif %}
+      </div>
+      {% if pagination_row and swiper %}
+        <div class="{{ next_button_class }} swiper-button-next"></div>
+        <div class="{{ prev_button_class }} swiper-button-prev"></div>
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
 
 <script>
@@ -91,6 +116,7 @@
     observer.unobserve(productRecommendationsSection);
 
     const url = productRecommendationsSection.dataset.url;
+    if (!url) return; // لو ما فيه منتج مرجعي، ما نستخدم API
 
     fetch(url)
       .then((response) => response.text())
@@ -115,16 +141,12 @@
             },
           });
         }
-
       })
-      .catch((e) => {
-        console.error(e);
-      });
+      .catch(console.error);
   };
 
   const productRecommendationsSection = document.querySelector('.product-recommendations');
   const observer = new IntersectionObserver(handleIntersection, { rootMargin: '0px 0px 200px 0px' });
-
   observer.observe(productRecommendationsSection);
 </script>
 
@@ -132,32 +154,176 @@
 {
   "name": "Product recommendations",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "swiper_view",
-      "label": "Swiper View",
-      "default": false
-    },
-    {
-      "type": "range",
-      "id": "item_in_row",
-      "min": 3,
-      "max": 5,
-      "step": 1,
-      "label": "Item In Row",
-      "default": 3
-    },
-    {
-      "type": "checkbox",
-      "id": "show_pagination_row",
-      "label": "Show Pagination Row",
-      "default": true
-    }
+    { "type": "checkbox", "id": "swiper_view", "label": "Swiper View", "default": false },
+    { "type": "range", "id": "item_in_row", "min": 3, "max": 5, "step": 1, "label": "Item In Row", "default": 3 },
+    { "type": "checkbox", "id": "show_pagination_row", "label": "Show Pagination Row", "default": true }
   ],
-  "presets": [
-    {
-      "name": "Product recommendations"
-    }
-  ]
+  "presets": [{ "name": "Product recommendations" }]
 }
 {% endschema %}
+
+{% comment %}
+  {%- assign box_width = settings.body_width -%}
+  {% assign swiper = section.settings.swiper_view %}
+  {%- assign item_in_row = section.settings.item_in_row -%}
+  {% assign pagination_row = section.settings.show_pagination_row %}
+  {% assign swiper_class = 'swiper mySwiper-' | append: section.id %}
+  {% assign my_swiper_class = 'mySwiper-' | append: section.id %}
+  {% assign next_button_class = 'swiper-next-' | append: section.id %}
+  {% assign prev_button_class = 'swiper-prev-' | append: section.id %}
+
+  <style>
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: black;
+      font-size: 14px;
+      border-radius: 50%;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    .swiper-button-next {
+      right: 10px;
+    }
+
+    .swiper-button-prev {
+      left: 10px;
+    }
+  </style>
+
+  <div
+    class="product-recommendations {{ box_width }} mx-auto"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4&intent=related"
+  >
+    {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+      <div class="relative max-w-7xl lg:text-3xl text-center mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-3xl font-extrabold text-gray-900 mb-8">
+          {% if recommendations.intent == 'related' %}
+            <h2>You may also like</h2>
+          {% elsif recommendations.intent == 'complementary' %}
+            <h2>Pair it with</h2>
+          {% endif %}
+        </div>
+
+        {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-'
+          | append: item_in_row
+          | append: ' gap-6'
+        %}
+        {% if swiper %}
+          {% assign layout_class = swiper_class %}
+        {% endif %}
+
+        <div class="{{ layout_class }}">
+          {% if swiper %}
+            <div class="swiper-wrapper">
+          {% endif %}
+
+          {%- for product in recommendations.products -%}
+            <div class="swiper-slide">
+              {%- render 'product-card', product: product -%}
+            </div>
+          {% endfor %}
+
+          {% if swiper %}
+            </div>
+          {% endif %}
+        </div>
+        {% if pagination_row and swiper %}
+          <div class="{{ next_button_class }} swiper-button-next"></div>
+          <div class="{{ prev_button_class }} swiper-button-prev"></div>
+        {% endif %}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <script>
+    const handleIntersection = (entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+
+      observer.unobserve(productRecommendationsSection);
+
+      const url = productRecommendationsSection.dataset.url;
+
+      fetch(url)
+        .then((response) => response.text())
+        .then((text) => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const recommendations = html.querySelector('.product-recommendations');
+
+          if (recommendations && recommendations.innerHTML.trim().length) {
+            productRecommendationsSection.innerHTML = recommendations.innerHTML;
+          }
+
+          var swiperContainer = document.querySelector(".{{ my_swiper_class }}");
+          if (swiperContainer) {
+            new Swiper(swiperContainer, {
+              slidesPerView: {{ item_in_row | json }},
+              spaceBetween: 20,
+              loop: false,
+              navigation: {
+                nextEl: ".{{ next_button_class }}",
+                prevEl: ".{{ prev_button_class }}"
+              },
+            });
+          }
+
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    };
+
+    const productRecommendationsSection = document.querySelector('.product-recommendations');
+    const observer = new IntersectionObserver(handleIntersection, { rootMargin: '0px 0px 200px 0px' });
+
+    observer.observe(productRecommendationsSection);
+  </script>
+
+  {% schema %}
+  {
+    "name": "Product recommendations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "swiper_view",
+        "label": "Swiper View",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "item_in_row",
+        "min": 3,
+        "max": 5,
+        "step": 1,
+        "label": "Item In Row",
+        "default": 3
+      },
+      {
+        "type": "checkbox",
+        "id": "show_pagination_row",
+        "label": "Show Pagination Row",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product recommendations"
+      }
+    ]
+  }
+  {% endschema %}
+{% endcomment %}
