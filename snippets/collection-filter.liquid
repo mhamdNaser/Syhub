@@ -30,12 +30,12 @@
       x-data="priceFilter()"
       class="relative hidden items-center gap-x-3 border-t border-white py-1 px-4"
     >
-      <label class="block mb-2 font-semibold">from</label>
+      <label class="block font-semibold">from</label>
       <input
         type="number"
         x-model="minPrice"
         placeholder="from"
-        class="w-full mb-3 px-3 py-2 border rounded"
+        class="w-full px-3 py-2 border rounded"
         min="0"
         @keyup.enter="applyFilter"
       >
@@ -45,7 +45,7 @@
         type="number"
         x-model="maxPrice"
         placeholder="to"
-        class="w-full mb-3 px-3 py-2 border rounded"
+        class="w-full px-3 py-2 border rounded"
         min="0"
         @keyup.enter="applyFilter"
       >
