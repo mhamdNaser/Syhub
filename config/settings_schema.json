@@ -199,6 +199,25 @@
     ]
   },
   {
+    "name": "Color mappings",
+    "settings": [
+      {
+        "type": "text",
+        "id": "color_option_labels",
+        "label": "Color Option Labels",
+        "default": "color,colour,اللون",
+        "info": "أدخل الكلمات التي تحدد خيارات اللون، مفصولة بفواصل، مثلاً: color,colour,اللون"
+      },
+      {
+        "type": "textarea",
+        "id": "color_map",
+        "label": "Color Map (JSON format)",
+        "default": "{\"أحمر\": \"#ff0000\", \"أزرق\": \"#0000ff\"}",
+        "info": "أدخل خريطة الألوان بصيغة JSON، مثلاً: {\"أحمر\": \"#ff0000\", \"أزرق\": \"#0000ff\"}"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.products.name",
     "settings": [
       {
@@ -419,5 +438,6 @@
       }
     ]
   },
+
   // end layout and animations
 ]
