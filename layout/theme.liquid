@@ -32,7 +32,7 @@
     {% endstyle %}
   </head>
 
-  <body class="overflow-x-hidden font-sans antialiased">
+  <body class="overflow-x-hidden font-sans antialiased bg-white">
     {% comment %}
       Welcome to Shopify theme development!
     {% endcomment %}
@@ -51,7 +51,7 @@
 
     <div
       id="main-content"
-      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10 bg-white my-6"
+      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10 my-6"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}
