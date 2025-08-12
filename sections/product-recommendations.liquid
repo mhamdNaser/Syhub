@@ -27,50 +27,37 @@
     padding: 10px;
     z-index: 10;
   }
-  .swiper-button-next {
-    right: 10px;
-  }
-  .swiper-button-prev {
-    left: 10px;
-  }
+  .swiper-button-next { right: 10px; }
+  .swiper-button-prev { left: 10px; }
 </style>
 
-{%- comment -%}
-  تحديد المنتج المرجعي لعرض الركومنديشن
-{%- endcomment -%}
-{% assign reference_product_id = null %}
+{% assign reference_product_id = nil %}
 {% if product %}
   {% assign reference_product_id = product.id %}
 {% elsif cart and cart.items.size > 0 %}
   {% assign reference_product_id = cart.items.first.product.id %}
 {% endif %}
 
-<div
+<div 
   class="product-recommendations {{ box_width }} mx-auto"
   {% if reference_product_id %}
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ reference_product_id }}&limit=4&intent=related"
   {% endif %}
 >
-  {% if recommendations.performed? and recommendations.products_count > 0 %}
-    {% assign title_text = recommendations.intent == 'complementary' | if: 'Pair it with', 'You may also like' %}
+  {% if product and recommendations.performed? and recommendations.products_count > 0 %}
     <div class="relative max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-3xl font-extrabold text-gray-900 mb-8">
-        <h2>{{ title_text }}</h2>
+        <h2>{% if recommendations.intent == 'complementary' %}Pair it with{% else %}You may also like{% endif %}</h2>
       </div>
-
-      {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-'
-        | append: item_in_row
-        | append: ' gap-6'
-      %}
+      {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-' | append: item_in_row | append: ' gap-6' %}
       {% if swiper %}{% assign layout_class = swiper_class %}{% endif %}
-
       <div class="{{ layout_class }}">
         {% if swiper %}<div class="swiper-wrapper">{% endif %}
-        {% for product in recommendations.products %}
-          <div class="swiper-slide">
-            {%- render 'product-card', product: product -%}
-          </div>
-        {% endfor %}
+          {% for product in recommendations.products %}
+            <div class="swiper-slide">
+              {%- render 'product-card', product: product -%}
+            </div>
+          {% endfor %}
         {% if swiper %}</div>{% endif %}
       </div>
       {% if pagination_row and swiper %}
@@ -78,27 +65,21 @@
         <div class="{{ prev_button_class }} swiper-button-prev"></div>
       {% endif %}
     </div>
-
-  {% elsif collections.frontpage.products.size > 0 %}
-    {# إذا ما فيه توصيات نعرض كولكشن احتياطي #}
+  {% elsif collections['frontpage'].products.size > 0 and reference_product_id == nil %}
+    <!-- Fallback إذا لا يوجد منتج أو سلة -->
     <div class="relative max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-3xl font-extrabold text-gray-900 mb-8">
         <h2>Recommended for you</h2>
       </div>
-
-      {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-'
-        | append: item_in_row
-        | append: ' gap-6'
-      %}
+      {% assign layout_class = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-' | append: item_in_row | append: ' gap-6' %}
       {% if swiper %}{% assign layout_class = swiper_class %}{% endif %}
-
       <div class="{{ layout_class }}">
         {% if swiper %}<div class="swiper-wrapper">{% endif %}
-        {% for product in collections.frontpage.products limit: 4 %}
-          <div class="swiper-slide">
-            {%- render 'product-card', product: product -%}
-          </div>
-        {% endfor %}
+          {% for product in collections['frontpage'].products limit:4 %}
+            <div class="swiper-slide">
+              {%- render 'product-card', product: product -%}
+            </div>
+          {% endfor %}
         {% if swiper %}</div>{% endif %}
       </div>
       {% if pagination_row and swiper %}
@@ -110,26 +91,26 @@
 </div>
 
 <script>
-  const handleIntersection = (entries, observer) => {
-    if (!entries[0].isIntersecting) return;
+document.addEventListener('DOMContentLoaded', function () {
+  const section = document.querySelector('.product-recommendations');
+  if (!section) return;
 
-    observer.unobserve(productRecommendationsSection);
-
-    const url = productRecommendationsSection.dataset.url;
-    if (!url) return; // لو ما فيه منتج مرجعي، ما نستخدم API
-
+  const url = section.dataset.url;
+  
+  // إذا في صفحة الكارت أو أي مكان بدون recommendations جاهزة
+  if (url && !section.querySelector('.swiper-slide')) {
     fetch(url)
-      .then((response) => response.text())
-      .then((text) => {
-        const html = document.createElement('div');
-        html.innerHTML = text;
-        const recommendations = html.querySelector('.product-recommendations');
+      .then(res => res.text())
+      .then(htmlText => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlText;
+        const newContent = tempDiv.querySelector('.product-recommendations');
 
-        if (recommendations && recommendations.innerHTML.trim().length) {
-          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+        if (newContent && newContent.innerHTML.trim() !== '') {
+          section.innerHTML = newContent.innerHTML;
         }
 
-        var swiperContainer = document.querySelector(".{{ my_swiper_class }}");
+        const swiperContainer = section.querySelector(".{{ my_swiper_class }}");
         if (swiperContainer) {
           new Swiper(swiperContainer, {
             slidesPerView: {{ item_in_row | json }},
@@ -143,11 +124,8 @@
         }
       })
       .catch(console.error);
-  };
-
-  const productRecommendationsSection = document.querySelector('.product-recommendations');
-  const observer = new IntersectionObserver(handleIntersection, { rootMargin: '0px 0px 200px 0px' });
-  observer.observe(productRecommendationsSection);
+  }
+});
 </script>
 
 {% schema %}
@@ -161,6 +139,7 @@
   "presets": [{ "name": "Product recommendations" }]
 }
 {% endschema %}
+
 
 {% comment %}
   {%- assign box_width = settings.body_width -%}
