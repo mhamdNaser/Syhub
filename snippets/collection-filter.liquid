@@ -17,12 +17,12 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div x-data="priceFilter()" class="relative flex items-center bg-gray-100 p-4 rounded shadow-sm">
+  <div x-data="priceFilter()" class="relative flex items-center gap-2 bg-gray-100 p-4 rounded shadow-sm">
     <label class="block text-sm mb-2 font-semibold">from</label>
     <input
       type="number"
       x-model="minPrice"
-      placeholder="القيمة الدنيا"
+      placeholder="from"
       class="w-full mb-3 px-3 py-2 border rounded"
       min="0"
       @keyup.enter="applyFilter"
@@ -32,7 +32,7 @@
     <input
       type="number"
       x-model="maxPrice"
-      placeholder="القيمة العليا"
+      placeholder="to"
       class="w-full mb-3 px-3 py-2 border rounded"
       min="0"
       @keyup.enter="applyFilter"
