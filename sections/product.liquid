@@ -123,6 +123,24 @@
               {% when 'variant_selector' %}
                 <div class="my-3">
                   {% unless product.has_only_default_variant %}
+                    {%- comment -%} نحول نص color_map إلى قاموس {%- endcomment -%}
+                    {% assign color_map_raw = settings.color_map | strip %}
+                    {% assign color_map_pairs = color_map_raw | split: ',' %}
+                    {% assign color_map = hash %}
+                    {% for pair in color_map_pairs %}
+                      {% assign clean_pair = pair | strip %}
+                      {% if clean_pair contains ':' %}
+                        {% assign parts = clean_pair | split: ':' %}
+                        {% assign key = parts[0] | strip %}
+                        {% assign value = parts[1] | strip %}
+                        {% assign color_map = color_map | merge: key: value %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {%- comment -%} نقرأ كلمات خيارات اللون من الإعدادات {%- endcomment -%}
+                    {% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
+                    {% assign color_labels = color_labels_raw | split: ',' %}
+
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         {% assign optionIndex = forloop.index0 %}
@@ -144,7 +162,7 @@
                           <!-- عرض أزرار الألوان -->
                           <div class="flex gap-2 my-2 items-center">
                             {% for value in option.values %}
-                              {% assign color_hex = color_map[value] | default: '#ccc' %}
+                              {% assign color_hex = color_map[value] | default: value %}
                               <button
                                 type="button"
                                 class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
