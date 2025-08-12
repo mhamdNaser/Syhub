@@ -14,7 +14,20 @@
     "logo_inverse": "shopify://shop_images/Luliz_Logo.png",
     "favicon": "shopify://shop_images/Luliz_Logo.png",
     "page_width": "w-full",
+    "color_map": "014 : #B97872,\n07 : #A95A57,\n08 : #9D4840,\n010 : #F15354,\n01 : #E0808E,\n03 : #D8CAC8,\n02 : #A96762,",
     "logo_width": 70,
+    "sections": {
+      "mobile-header": {
+        "type": "mobile-header",
+        "settings": {}
+      },
+      "mobile-navigator": {
+        "type": "mobile-navigator",
+        "settings": {
+          "menu": "main-menu"
+        }
+      }
+    },
     "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
