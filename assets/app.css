@@ -1043,6 +1043,9 @@
   .bg-\[\#f2bed2\] {
     background-color: #f2bed2;
   }
+  .bg-\[\.\.\.\] {
+    background-color: ...;
+  }
   .bg-black {
     background-color: var(--color-black);
   }
