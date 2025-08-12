@@ -17,8 +17,8 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div x-data="{ open: false, minPrice: '', maxPrice: '' }" class="relative">
-    <!-- زر إظهار الفلتر -->
+
+  <div x-data="priceFilter()" class="relative flex flex-col w-full bg-gray-100 px-4 py-2 rounded shadow-sm">
     <button
       @click="open = !open"
       class="flex items-center gap-1 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
@@ -36,13 +36,7 @@
               d="M19 9l-7 7-7-7" />
       </svg>
     </button>
-
-    <div
-      x-show="open"
-      x-transition
-      x-data="priceFilter()"
-      class="relative flex items-center gap-x-3 bg-gray-100 px-4 py-2 rounded shadow-sm"
-    >
+    <div class="flex items-center gap-x-3">
       <label class="block text-sm mb-2 font-semibold">from</label>
       <input
         type="number"
@@ -100,21 +94,6 @@
     </div>
   {% endfor %}
 </div>
-
-
-<script>
-  function priceFilter() {
-    return {
-      minPrice: '',
-      maxPrice: '',
-      applyFilter() {
-        // ضع هنا كود الفلترة حسب منطقك
-        console.log('Filtering from', this.minPrice, 'to', this.maxPrice);
-      }
-    }
-  }
-</script>
-
 <script>
   function priceFilter() {
     return {
