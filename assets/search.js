@@ -10,11 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
     searchBox?.appendChild(searchResults);
   }
 
-  // دالة تظليل الكلمات المطابقة
   function highlightMatch(text, query) {
     if (!text) return "";
     const regex = new RegExp(`(${query})`, "gi");
     return text.replace(regex, `<span style="background-color:#f2bed2;">$1</span>`);
+  }
+
+  async function fetchProductDescription(handle) {
+    try {
+      const res = await fetch(`/products/${handle}.json`);
+      if (!res.ok) throw new Error("Failed to fetch product details");
+      const data = await res.json();
+      let desc = data.product?.body_html || "";
+      desc = desc.replace(/<[^>]*>/g, ""); // تنظيف من HTML
+      return desc;
+    } catch (err) {
+      console.error("Error fetching product description:", err);
+      return "";
+    }
   }
 
   async function fetchSearchResults(query) {
@@ -36,28 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let suggestionsSet = new Set();
 
-      // البحث في الكولكشن
       collections.forEach(coll => {
         if (coll.title?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(coll.title);
         }
       });
 
-      // البحث في المنتجات
       products.forEach(prod => {
-        // العنوان
         if (prod.title?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.title);
         }
-        // الفيندور
         if (prod.vendor?.toLowerCase().includes(query.toLowerCase())) {
           suggestionsSet.add(prod.vendor);
-        }
-        // الوصف
-        if (prod.description && prod.description.toLowerCase().includes(query.toLowerCase())) {
-          let snippet = prod.description;
-          if (snippet.length > 50) snippet = snippet.slice(0, 50) + "...";
-          suggestionsSet.add(snippet);
         }
       });
 
@@ -65,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let resultsHTML = "";
 
-      // المقترحات
+      // عرض المقترحات
       if (suggestions.length > 0) {
         resultsHTML += `
         <div class="mb-4 px-4">
@@ -79,53 +82,47 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
       }
 
-      // المنتجات
+      // عرض المنتجات بدون ديسكربشن مبدئيًا
       if (products.length > 0) {
-        const filteredProducts = products.filter(product =>
-          product.title?.toLowerCase().includes(query.toLowerCase()) ||
-          product.vendor?.toLowerCase().includes(query.toLowerCase()) ||
-          product.description?.toLowerCase().includes(query.toLowerCase())
-        );
-
-        if (filteredProducts.length > 0) {
-          resultsHTML += `
-          <div class="px-4">
-            <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
-            ${filteredProducts.map(product => {
-              const descSnippet = product.description
-                ? (product.description.length > 80
-                    ? product.description.slice(0, 80) + "..."
-                    : product.description)
-                : "";
-              return `
-              <div class="border-b last:border-none">
-                <a href="${product.url}" class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition-shadow shadow-sm">
-                  <div class="flex items-center space-x-3 overflow-hidden">
-                    <img src="${product.featured_image?.url}" alt="${product.title}" class="w-12 h-12 rounded-md object-cover flex-shrink-0">
-                    <div class="flex flex-col min-w-0">
-                      <p class="text-sm text-gray-500 truncate">${highlightMatch(product.vendor || "", query)}</p>
-                      <span class="text-gray-900 font-semibold">${highlightMatch(product.title, query)}</span>
-                      <p class="text-xs text-gray-500 mt-1">${highlightMatch(descSnippet, query)}</p>
-                    </div>
+        resultsHTML += `
+        <div class="px-4">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
+          ${products.map(product => `
+            <div class="border-b last:border-none product-item" data-handle="${product.handle}">
+              <a href="${product.url}" class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition-shadow shadow-sm">
+                <div class="flex items-center space-x-3 overflow-hidden">
+                  <img src="${product.featured_image?.url}" alt="${product.title}" class="w-12 h-12 rounded-md object-cover flex-shrink-0">
+                  <div class="flex flex-col min-w-0">
+                    <p class="text-sm text-gray-500 truncate">${highlightMatch(product.vendor || "", query)}</p>
+                    <span class="text-gray-900 font-semibold">${highlightMatch(product.title, query)}</span>
+                    <p class="text-xs text-gray-400 mt-1 description-placeholder">Loading description...</p>
                   </div>
-                  <div class="text-right min-w-[80px] flex-shrink-0">
-                    <span class="text-gray-800 font-bold text-base">
-                      ${product.price.currency_symbol || "$"}${(product.price.amount || product.price).toLocaleString()}
-                    </span>
-                  </div>
-                </a>
-              </div>`;
-            }).join("")}
-          </div>`;
-        }
-      } else if (suggestions.length === 0) {
-        resultsHTML = `<div class="p-4 text-gray-500 text-center">No results found</div>`;
+                </div>
+                <div class="text-right min-w-[80px] flex-shrink-0">
+                  <span class="text-gray-800 font-bold text-base">
+                    ${product.price.currency_symbol || "$"}${(product.price.amount || product.price).toLocaleString()}
+                  </span>
+                </div>
+              </a>
+            </div>`).join("")}
+        </div>`;
       }
 
       searchResults.innerHTML = resultsHTML;
       searchResults.classList.remove("hidden");
 
-      // عند الضغط على المقترحات
+      // تحميل الوصف لكل منتج بعد عرض النتائج
+      document.querySelectorAll(".product-item").forEach(async item => {
+        const handle = item.getAttribute("data-handle");
+        const desc = await fetchProductDescription(handle);
+        const descElement = item.querySelector(".description-placeholder");
+        if (descElement) {
+          let snippet = desc.length > 80 ? desc.slice(0, 80) + "..." : desc;
+          descElement.innerHTML = highlightMatch(snippet, query);
+        }
+      });
+
+      // تفعيل أزرار المقترحات
       document.querySelectorAll(".suggestion-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const term = btn.getAttribute("data-term");
