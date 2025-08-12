@@ -17,8 +17,8 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div x-data="priceFilter()" class="relative bg-gray-100 p-4 rounded shadow-sm">
-    <label class="block text-sm mb-2 font-semibold">السعر من:</label>
+  <div x-data="priceFilter()" class="relative flex bg-gray-100 p-4 rounded shadow-sm">
+    <label class="block text-sm mb-2 font-semibold">from</label>
     <input
       type="number"
       x-model="minPrice"
@@ -28,7 +28,7 @@
       @keyup.enter="applyFilter"
     >
 
-    <label class="block text-sm mb-2 font-semibold">إلى:</label>
+    <label class="block text-sm mb-2 font-semibold">to</label>
     <input
       type="number"
       x-model="maxPrice"
