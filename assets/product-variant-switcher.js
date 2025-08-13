@@ -20,17 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
-    const selectcolorButtons = document.getElementById(`#color-swatch_${selectedVariant.featured_media.id}`);
-    const colorButtons = document.getElementById(`#color-swatch_`);
-    
     allThumbnails.forEach(thumb => {
       thumb.classList.remove('border', 'border-[#c42764]');
     });
-    colorButtons.forEach(thumb => {
-      thumb.classList.remove('border', 'border-[#c42764]');
-    })
 
-    if (selectcolorButtons) selectcolorButtons.classList.add('border', 'border-[#c42764]');
+    // إزالة البوردر من كل أزرار اللون
+    const colorButtons = document.querySelectorAll('[id^="color-swatch_"]');
+    colorButtons.forEach(btn => {
+      btn.classList.remove('border', 'border-[#c42764]');
+    });
+
+    // إضافة البوردر للزر المحدد
+    const selectedColorButton = document.getElementById(`color-swatch_${selectedVariant.featured_media.id}`);
+    if (selectedColorButton) {
+      selectedColorButton.classList.add('border', 'border-[#c42764]');
+    }
 
     // إضافة البوردر للثامبنيل المختار
     const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`);
