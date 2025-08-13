@@ -136,7 +136,7 @@
                             {% for value in option.values %}
                               <button
                                 type="button"
-                                onclick="setSelectVariant(value)"
+                                onclick="setSelectVariant(value.id)"
                                 class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
                                 style="background-color: {{ value.swatch.color | escape }};"
                                 data-value="{{ value | escape }}"
