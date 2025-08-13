@@ -134,7 +134,8 @@
 
                         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
                           {{ option.name }}
-                          <span id="variantLabel" class="selected-option-value text-gray-700 ml-2"> </span>
+                          <span id="variantLabel" class="selected-option-value text-gray-700 ml-2">
+                          </span>
                         </label>
 
                         {% if option_name_downcase contains 'color'
@@ -305,6 +306,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.thumbnails-swiper', {
       slidesPerView: 3,
+      sli
       spaceBetween: 10,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -317,43 +319,6 @@
         },
       },
     });
-  });
-</script>
-
-<script src="{{ 'product-variant-switcher.js' | asset_url }}" defer></script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // خريطة الميديا -> ترتيبها في السلايدر
-    const mediaIndexMap = {
-      {% for media in product.media %}
-        {{ media.id }}: {{ forloop.index0 }}{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    };
-
-    // نحصل على إنستانس السوايبر للموبايل من الكود القديم
-    const mobileSwiperEl = document.querySelector('.md\\:hidden .swiper') || document.querySelector('.swiper');
-    const getMobileSwiper = () => mobileSwiperEl ? mobileSwiperEl.swiper : null;
-
-    // تعديل updateVariant بحيث يغير الشريحة في الموبايل
-    const originalUpdateVariant = window.updateVariant;
-    window.updateVariant = function (optionValues) {
-      if (typeof originalUpdateVariant === "function") {
-        originalUpdateVariant(optionValues);
-      }
-
-      const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent);
-      const selectedVariant = variantData.find(v => v.options.every((opt, i) => opt === optionValues[i]));
-      if (!selectedVariant) return;
-
-      if (window.innerWidth < 768 && selectedVariant.featured_media?.id) {
-        const idx = mediaIndexMap[selectedVariant.featured_media.id];
-        const swiperInstance = getMobileSwiper();
-        if (swiperInstance && typeof idx !== "undefined") {
-          swiperInstance.slideTo(idx);
-        }
-      }
-    };
   });
 </script>
 
