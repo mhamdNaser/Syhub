@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (productForm) {
-      formInput.value = selectedVariant.id;
+      productForm.value = selectedVariant.id;
     }
 
     if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
