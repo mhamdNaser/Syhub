@@ -101,7 +101,9 @@
 
       <div class="product--information sticky top-5 p-2">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <input type="hidden" name="id" value="{{ default_variant.id }}">
+          <input type="hidden" name="id" 
+            {% comment %} value="{{ default_variant.id }}" {% endcomment %}
+          >
 
           {% for block in section.blocks %}
             {% case block.type %}
