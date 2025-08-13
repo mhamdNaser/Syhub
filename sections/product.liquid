@@ -282,6 +282,7 @@
 <script src="{{ 'product-variant-switcher.js' | asset_url }}" defer></script>
 
 <script>
+  const colorButtons = document.querySelectorAll(".color-swatch");
   // عند الضغط على زر اللون
   colorButtons.forEach((btn) => {
     btn.addEventListener('click', function () {
