@@ -136,7 +136,7 @@
                               <button
                                 type="button"
                                 class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
-                                style="background-color: {{ value | escape }};"
+                                style="background-color: {{ value.swatch.color | escape }};"
                                 data-value="{{ value | escape }}"
                                 data-option-index="{{ optionIndex }}"
                                 aria-label="{{ option.name }}: {{ value }}"
