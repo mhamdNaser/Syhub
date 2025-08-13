@@ -272,6 +272,38 @@
 </div>
 <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 
+<script>
+  function formatMoney(cents, format = "${{amount}}") {
+  if (typeof cents === 'string') {
+    cents = cents.replace('.', '');
+  }
+  let value = '';
+  let placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+  
+  function defaultOption(opt, def) {
+    return typeof opt === 'undefined' ? def : opt;
+  }
+
+  function formatWithDelimiters(number, precision = 2, thousands = ',', decimal = '.') {
+    if (isNaN(number) || number === null) return 0;
+
+    number = (number / 100.0).toFixed(precision);
+
+    let parts = number.split('.');
+    let dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, `$1${thousands}`);
+    let centsPart = parts[1] ? decimal + parts[1] : '';
+
+    return dollars + centsPart;
+  }
+
+  let formatString = format;
+
+  value = formatWithDelimiters(cents);
+
+  return formatString.replace(placeholderRegex, value);
+}
+
+</script>
 {% comment %} سكربت تحديد الفارينت التي سترسل إلى السلة {% endcomment %}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -307,10 +339,10 @@
           priceContainer.innerHTML = `
             ${
               comparePrice > price
-                ? `<span class="text-base text-gray-500 line-through">${Shopify.formatMoney(comparePrice)}</span>`
+                ? `<span class="text-base text-gray-500 line-through">${formatMoney(comparePrice)}</span>`
                 : ''
             }
-            <span class="text-lg text-gray-900">${Shopify.formatMoney(price)}</span>
+            <span class="text-lg text-gray-900">${formatMoney(price)}</span>
             ${
               comparePrice > price
                 ? '<span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>'
