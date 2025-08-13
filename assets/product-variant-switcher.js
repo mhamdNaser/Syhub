@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
     allThumbnails.forEach(thumb => {
       thumb.classList.remove('border', 'border-[#c42764]');
     });
+    colorButtons.forEach(thumb => {
+      thumb.classList.remove('border', 'border-[#c42764]');
+    })
+
+    if (colorButtons) colorButtons.classList.add('border', 'border-[#c42764]');
 
     // إضافة البوردر للثامبنيل المختار
     const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`);
