@@ -58,7 +58,7 @@
           <div id="all-variant-media" class="hidden">
             {% for media in product.media %}
               <div data-media-id="{{ media.id }}" class="overflow-hidden p-2">
-                {% render 'product-media', media: media %}
+                {% render 'product-media', media: media, mediaId : media.id %}
               </div>
             {% endfor %}
           </div>
