@@ -36,13 +36,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // تحديث ID الفارينت
     hiddenInput.value = selectedVariant.id;
 
-    // تحديث عرض القيم بجانب اسم الخيار
+    // تحديث عرض القيم بجانب اسم الخيار (مثل اللون)
     selects.forEach((sel, index) => {
-      const label = sel.closest('div').previousElementSibling; // افتراض أن الـ label قبل select
+      const label = sel.closest('div').previousElementSibling; // نفترض أن الـ label قبل select
       const valueSpan = label.querySelector('.selected-option-value');
       if (valueSpan) valueSpan.textContent = sel.value;
     });
   }
+
+  // تهيئة القيمة الافتراضية عند التحميل (إظهار كل شيء بحسب الفارينت الافتراضية)
+  const defaultOptions = Array.from(selects).map(s => s.value);
+  updateVariant(defaultOptions);
 
   // عند الضغط على زر لون
   colorButtons.forEach(btn => {
