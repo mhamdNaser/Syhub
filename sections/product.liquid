@@ -133,7 +133,7 @@
                         {% assign option_name_downcase = option.name | downcase %}
 
                         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
-                          {{ option.name }}
+                          {{ option.name }} - {{ option.values }}
                         </label>
 
                         {% if option_name_downcase contains 'color'
