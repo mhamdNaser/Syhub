@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       colorLabel.textContent = selectedVariant.title;
     }
 
-    formInput.value.
-
-    if (colorLabel) {
+    if (productForm) {
       formInput.value = selectedVariant.id;
     }
 
