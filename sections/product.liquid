@@ -273,7 +273,7 @@
 <script src="{{ 'product-model.js' | asset_url }}" defer></script>
 
 {% comment %} سكربت تحديد الفارينت التي سترسل إلى السلة {% endcomment %}
-<script>
+{% comment %} <script>
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('product-form');
     if (!form) return;
@@ -338,7 +338,7 @@
     // استدعاء تحديث تلقائي عند تحميل الصفحة
     updateVariant();
   });
-</script>
+</script> {% endcomment %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
