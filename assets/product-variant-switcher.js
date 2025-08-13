@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
-  const thumbnailContainer = document.getElementsByClassName("thumbnail-container")
+  const thumbnailContainer = document.querySelector("thumbnail-container")
 
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
@@ -19,10 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!selectedVariant) return;
 
     if (colorLabel) {
-      colorLabel.textContent = selectedVariant.title; 
+      colorLabel.textContent = selectedVariant.title;
     }
 
-    thumbnailContainer.classList.add('border-[#c42764]')
+    if (thumbnailContainer) {
+      thumbnailContainer.classList.add('border-[#c42764]');
+    }
 
     // تحديث الصورة من الميديا المخفية
     if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (mediaHTML) {
         mainImageContainer.innerHTML = mediaHTML.innerHTML;
         mainImageContainer.setAttribute("data-current-media-id", mediaId);
-        
+
       }
     }
 
