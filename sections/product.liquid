@@ -263,26 +263,6 @@
 <script src="{{ 'product-variant-switcher.js' | asset_url }}" defer></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      try {
-        const swiper = new Swiper('.swiper', {
-          direction: 'horizontal',
-          pagination: {
-            el: '.swiper-pagination',
-          },
-
-          navigation: {
-            prevEl: '.swiper-button-prev',
-            nextEl: '.swiper-button-next',
-          },
-        });
-      } catch (e) {
-        console.log('SwiperJS is not defined');
-      }
-    });
-</script>
-
-<script>
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.thumbnails-swiper', {
       slidesPerView: 3,
