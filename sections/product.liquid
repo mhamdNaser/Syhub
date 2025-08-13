@@ -287,7 +287,10 @@
       try {
         const swiper = new Swiper('.swiper', {
           direction: 'horizontal',
-          initialSlide: {{ optionIndex }}
+          pagination: {
+            el: '.swiper-pagination',
+          },
+
           navigation: {
             prevEl: '.swiper-button-prev',
             nextEl: '.swiper-button-next',
