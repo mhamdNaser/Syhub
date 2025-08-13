@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
-    const colorButtons = document.getElementById("#color-swatch");
+    const selectcolorButtons = document.getElementById(`#color-swatch_${selectedVariant.featured_media.id}`);
+    const colorButtons = document.getElementById(`#color-swatch_`);
+    
     allThumbnails.forEach(thumb => {
       thumb.classList.remove('border', 'border-[#c42764]');
     });
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       thumb.classList.remove('border', 'border-[#c42764]');
     })
 
-    if (colorButtons) colorButtons.classList.add('border', 'border-[#c42764]');
+    if (selectcolorButtons) selectcolorButtons.classList.add('border', 'border-[#c42764]');
 
     // إضافة البوردر للثامبنيل المختار
     const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`);
