@@ -9,6 +9,8 @@
 {% endcomment %}
 
 {% assign selected_variant = product.selected_or_first_available_variant %}
+{% assign first_media = product.media | first %}
+{% assign select_media_or_first = selected_variant.image or first_media %}
 
 <style>
   .thumbnail-slider .swiper-slide {
@@ -48,10 +50,10 @@
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias">
-        {% assign first_media = product.media | first %}
+        
         <div class="hidden md:block">
           <div class="h-100 overflow-hidden p-2">
-            {% render 'product-media', media: first_media %}
+            {% render 'product-media', media: select_media_or_first %}
           </div>
         </div>
         <div class="thumbnail-slider hidden md:block">
