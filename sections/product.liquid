@@ -7,11 +7,6 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 {% endcomment %}
-
-{% assign selected_variant = product.selected_or_first_available_variant %}
-{% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
-{% assign color_labels = color_labels_raw | split: ',' %}
-
 <style>
   .thumbnail-slider .swiper-slide {
     width: fit-content;
@@ -46,14 +41,26 @@
   }
 </style>
 
+{% assign default_variant = product.selected_or_first_available_variant %}
+{% assign slected_variant = blank %}
+
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias">
-        {% assign first_media = product.media | first %}
         <div class="hidden md:block">
-          <div class="h-100 overflow-hidden p-2">
+          {% assign first_media = product.media | first %}
+          <div id="main-product-image" class="overflow-hidden p-2" data-current-media-id="{{ first_media.id }}">
             {% render 'product-media', media: first_media %}
+          </div>
+
+          <!-- صور الميديا المخفية -->
+          <div id="all-variant-media" class="hidden">
+            {% for media in product.media %}
+              <div data-media-id="{{ media.id }}" class="overflow-hidden p-2">
+                {% render 'product-media', media: media %}
+              </div>
+            {% endfor %}
           </div>
         </div>
         <div class="thumbnail-slider hidden md:block">
@@ -61,8 +68,8 @@
             <div class="swiper-wrapper">
               {% for media in product.media offset: 1 %}
                 <div class="swiper-slide">
-                  <div class="thumbnail-container h-[180px] w-[180px] shadow-md border">
-                    {% render 'product-media', media: media %}
+                  <div class="thumbnail-container w-[180px] shadow-md border">
+                    {% render 'product-media', media: media, height: '180px', width: '180px' %}
                   </div>
                 </div>
               {% endfor %}
@@ -94,7 +101,7 @@
 
       <div class="product--information sticky top-5 p-2">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <input type="hidden" name="id" value="{{ selected_variant.id }}">
+          <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
           {% for block in section.blocks %}
             {% case block.type %}
@@ -109,63 +116,38 @@
               {% when 'price' %}
                 <div class="my-3" id="price-{{ section.id }}">
                   <span class="text-base text-gray-500 line-through">
-                    {{- selected_variant.compare_at_price | money -}}
+                    {{- default_variant.compare_at_price | money -}}
                   </span>
-                  <span class="text-lg text-gray-900">{{ selected_variant.price | money }}</span>
+                  <span class="text-lg text-gray-900">{{ default_variant.price | money }}</span>
 
-                  {% if selected_variant.price < selected_variant.compare_at_price %}
+                  {% if default_variant.price < default_variant.compare_at_price %}
                     <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
                   {% endif %}
                 </div>
               {% when 'variant_selector' %}
                 <div class="my-3">
                   {% unless product.has_only_default_variant %}
-                    {%- comment -%} نحول نص color_map إلى قاموس {%- endcomment -%}
-                    {% assign color_map_raw = settings.color_map | strip %}
-                    {% assign color_map_pairs = color_map_raw | split: ',' %}
-                    {% assign color_map = hash %}
-                    {% for pair in color_map_pairs %}
-                      {% assign clean_pair = pair | strip %}
-                      {% if clean_pair contains ':' %}
-                        {% assign parts = clean_pair | split: ':' %}
-                        {% assign key = parts[0] | strip %}
-                        {% assign value = parts[1] | strip %}
-                        {% assign color_map = color_map | merge: key: value %}
-                      {% endif %}
-                    {% endfor %}
-
-                    {%- comment -%} نقرأ كلمات خيارات اللون من الإعدادات {%- endcomment -%}
-                    {% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
-                    {% assign color_labels = color_labels_raw | split: ',' %}
-
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         {% assign optionIndex = forloop.index0 %}
+                        {% assign option_name_downcase = option.name | downcase %}
+
                         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
                           {{ option.name }}
+                          <span id="variantLabel" class="selected-option-value text-gray-700 ml-2">
+                          </span>
                         </label>
 
-                        {% assign option_name_lc = option.name | downcase %}
-                        {% assign is_color_option = false %}
-                        {% for label in color_labels %}
-                          {% assign label_lc = label | downcase | strip %}
-                          {% if option_name_lc contains label_lc %}
-                            {% assign is_color_option = true %}
-                            {% break %}
-                          {% endif %}
-                        {% endfor %}
-
-                        {% if is_color_option %}
+                        {% if option_name_downcase contains 'color'
+                          or option_name_downcase contains 'colour'
+                          or option_name_downcase contains 'اللون'
+                        %}
                           <div class="flex gap-2 my-2 items-center">
                             {% for value in option.values %}
-                              {%- comment -%}
-                                - نفترض أن قيمة value هي إما: #hex, rgb(...)، أو اسم لون صالح.
-                                - نضع القيمة داخل bg-[...] لـ Tailwind JIT.
-                                - نستخدم | escape لتجنب مشاكل.
-                              {%- endcomment -%}
                               <button
                                 type="button"
-                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch bg-[{{ value | escape }}]"
+                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
+                                style="background-color: {{ value.swatch.color | escape }};"
                                 data-value="{{ value | escape }}"
                                 data-option-index="{{ optionIndex }}"
                                 aria-label="{{ option.name }}: {{ value }}"
@@ -245,11 +227,11 @@
                     type="submit"
                     name="add"
                     class="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
-                    {% if selected_variant.available == false %}
+                    {% if default_variant.available == false %}
                       disabled
                     {% endif %}
                   >
-                    {% if selected_variant.available == false %}
+                    {% if default_variant.available == false %}
                       Sold out
                     {% else %}
                       Add to cart
@@ -301,73 +283,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('product-form');
-    if (!form) return;
-
-    // نجيب بيانات الفارينتس من سكريبت JSON داخل الفورم
-    const variantsDataScript = form.querySelector('variant-selector script[type="application/json"]');
-    if (!variantsDataScript) return;
-    const variants = JSON.parse(variantsDataScript.textContent);
-
-    // جميع select خيارات الفارينت
-    const optionSelectors = form.querySelectorAll('select[name^="options"]');
-    const variantIdInput = form.querySelector('input[name="id"]');
-    const priceContainer = document.getElementById('price-{{ section.id }}');
-    const addToCartBtn = form.querySelector('button[name="add"]');
-
-    function updateVariant() {
-      const selectedOptions = Array.from(optionSelectors).map((select) => select.value);
-
-      // نبحث الفارينت المطابق
-      const matchedVariant = variants.find((variant) => variant.options.every((opt, i) => opt === selectedOptions[i]));
-
-      if (matchedVariant) {
-        // تحديث قيمة الـ hidden input
-        variantIdInput.value = matchedVariant.id;
-
-        // تحديث السعر في الصفحة
-        if (priceContainer) {
-          let comparePrice = matchedVariant.compare_at_price || 0;
-          let price = matchedVariant.price;
-
-          priceContainer.innerHTML = `
-            ${
-              comparePrice > price
-                ? `<span class="text-base text-gray-500 line-through">${Shopify.formatMoney(comparePrice)}</span>`
-                : ''
-            }
-            <span class="text-lg text-gray-900">${Shopify.formatMoney(price)}</span>
-            ${
-              comparePrice > price
-                ? '<span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>'
-                : ''
-            }
-          `;
-        }
-
-        // تحديث حالة زر الإضافة للسلة
-        if (addToCartBtn) {
-          if (!matchedVariant.available) {
-            addToCartBtn.textContent = 'Sold out';
-            addToCartBtn.disabled = true;
-          } else {
-            addToCartBtn.textContent = 'Add to cart';
-            addToCartBtn.disabled = false;
-          }
-        }
-      }
-    }
-
-    // حدث عند تغيير أي خيار
-    optionSelectors.forEach((select) => select.addEventListener('change', updateVariant));
-
-    // استدعاء تحديث تلقائي عند تحميل الصفحة
-    updateVariant();
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
     try {
       const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
@@ -403,113 +318,6 @@
         },
       },
     });
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('product-form');
-    if (!form) return;
-
-    const variantsDataScript = form.querySelector('variant-selector script[type="application/json"]');
-    if (!variantsDataScript) return;
-    const variants = JSON.parse(variantsDataScript.textContent || '[]');
-
-    // كل الـ selects (بما فيها الـ hidden للون)
-    const optionSelectors = Array.from(form.querySelectorAll('select[name^="options"]'));
-    const variantIdInput = form.querySelector('input[name="id"]');
-    const priceContainer = document.getElementById('price-{{ section.id }}');
-    const addToCartBtn = form.querySelector('button[name="add"]');
-
-    function updateVariant() {
-      const selectedOptions = optionSelectors.map((s) => s.value);
-      // debug: لو ما اشتغل شغّل السطر التالي في الكونسول
-      // console.log('selectedOptions', selectedOptions);
-
-      const matchedVariant = variants.find((v) => {
-        // كل var.options يجب أن يطابق selectedOptions بالترتيب
-        return v.options.every((opt, i) => opt === selectedOptions[i]);
-      });
-
-      if (matchedVariant) {
-        variantIdInput.value = matchedVariant.id;
-
-        // تحديث السعر
-        if (priceContainer) {
-          let comparePrice = matchedVariant.compare_at_price || 0;
-          let price = matchedVariant.price;
-
-          priceContainer.innerHTML = `
-          ${
-            comparePrice > price
-              ? `<span class="text-base text-gray-500 line-through">${Shopify.formatMoney(comparePrice)}</span>`
-              : ''
-          }
-          <span class="text-lg text-gray-900">${Shopify.formatMoney(price)}</span>
-          ${
-            comparePrice > price
-              ? '<span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>'
-              : ''
-          }
-        `;
-        }
-
-        // تحديث زر الإضافة
-        if (addToCartBtn) {
-          if (!matchedVariant.available) {
-            addToCartBtn.textContent = 'Sold out';
-            addToCartBtn.disabled = true;
-          } else {
-            addToCartBtn.textContent = 'Add to cart';
-            addToCartBtn.disabled = false;
-          }
-        }
-      } else {
-        // لو ما لاقى فارينت — اختياري: تفريغ الـ hidden id
-        // variantIdInput.value = '';
-      }
-    }
-
-    // ربط حدث التغيير على الـ selects
-    optionSelectors.forEach((select) =>
-      select.addEventListener('change', function () {
-        updateVariant();
-        syncSwatchesWithSelects();
-      })
-    );
-
-    // تعامل مع النقر على دوائر اللون
-    const swatches = Array.from(form.querySelectorAll('.color-swatch'));
-    swatches.forEach((swatch) => {
-      swatch.addEventListener('click', function () {
-        const optionIndex = parseInt(this.getAttribute('data-option-index'), 10);
-        const value = this.getAttribute('data-value');
-        const select = optionSelectors[optionIndex];
-        if (select) {
-          select.value = value;
-          // طَرح حدث تغيير حتى يلتقط الـ listeners
-          select.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-        syncSwatchesWithSelects();
-      });
-    });
-
-    function syncSwatchesWithSelects() {
-      swatches.forEach((swatch) => {
-        const optionIndex = parseInt(swatch.getAttribute('data-option-index'), 10);
-        const value = swatch.getAttribute('data-value');
-        const select = optionSelectors[optionIndex];
-        if (select && select.value === value) {
-          swatch.classList.add('ring-2', 'ring-black');
-        } else {
-          swatch.classList.remove('ring-2', 'ring-black');
-        }
-      });
-    }
-
-    // initial sync
-    updateVariant();
-    syncSwatchesWithSelects();
   });
 </script>
 
