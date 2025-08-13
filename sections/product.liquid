@@ -136,7 +136,7 @@
                             {% for value in option.values %}
                               <button
                                 type="button"
-                                onclick="{{ slected_variant ==  values }}"
+                                onclick="setSelectVariant(value)"
                                 class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
                                 style="background-color: {{ value.swatch.color | escape }};"
                                 data-value="{{ value | escape }}"
@@ -145,7 +145,7 @@
                               ></button>
                             {% endfor %}
                           </div>
-                          {{ slected_variant }}
+                          
                           <select
                             name="options[{{ option.name | escape }}]"
                             id="Option-{{ section.id }}-{{ optionIndex }}"
@@ -378,6 +378,12 @@
       },
     });
   });
+</script>
+
+<script>
+  setSelectVariant(value){
+    console.log(value)
+  }
 </script>
 
 {% comment %} سكربت تحديد الفارينت التي سترسل إلى السلة {% endcomment %}
