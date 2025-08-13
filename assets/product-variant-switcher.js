@@ -18,13 +18,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
-    const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`)
+    // إزالة البوردر من كل الثامبنيلز
+    const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
+    allThumbnails.forEach(thumb => {
+      thumb.classList.remove('border', 'border-[#c42764]');
+    });
+
+    // إضافة البوردر للثامبنيل المختار
+    const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`);
+    if (thumbnailContainer) {
+      thumbnailContainer.classList.add('border', 'border-[#c42764]');
+    }
 
     if (colorLabel) {
       colorLabel.textContent = selectedVariant.title;
     }
 
-    thumbnailContainer.classList.add('border', 'border-[#c42764]');
 
 
     // تحديث الصورة من الميديا المخفية
