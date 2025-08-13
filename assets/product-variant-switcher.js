@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
-  const thumbnailContainer = document.querySelector("thumbnail-container")
+  const thumbnailContainer = document.querySelector(".thumbnail-container")
 
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
