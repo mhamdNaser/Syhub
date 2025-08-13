@@ -282,37 +282,6 @@
 <script src="{{ 'product-variant-switcher.js' | asset_url }}" defer></script>
 
 <script>
-  const colorButtons = document.querySelectorAll(".color-swatch");
-  // عند الضغط على زر اللون
-  colorButtons.forEach((btn) => {
-    btn.addEventListener('click', function () {
-      const optionIndex = parseInt(btn.dataset.optionIndex);
-      const selectsArray = Array.from(selects).map((s) => s.value);
-      selectsArray[optionIndex] = btn.dataset.value;
-      selects[optionIndex].value = btn.dataset.value;
-
-      updateVariant(selectsArray);
-
-      // 🔹 تحريك السويبر للصورة الخاصة بالفارينت
-      const selectedVariant = variantData.find((v) => v.options.every((opt, i) => opt === selectsArray[i]));
-
-      if (selectedVariant && selectedVariant.featured_media) {
-        const mediaId = selectedVariant.featured_media.id;
-
-        // نبحث عن ترتيب السلايد اللي يحتوي نفس data-media-id
-        const slides = document.querySelectorAll('.swiper-slide [data-media-id]');
-        slides.forEach((slide, index) => {
-          if (parseInt(slide.getAttribute('data-media-id')) === mediaId) {
-            if (swiper) {
-              swiper.slideTo(index);
-            }
-          }
-        });
-      }
-    });
-  });
-</script>
-<script>
   document.addEventListener('DOMContentLoaded', function () {
     try {
       const swiper = new Swiper('.swiper', {
