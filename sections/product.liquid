@@ -134,8 +134,7 @@
 
                         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
                           {{ option.name }}
-                          <span class="selected-option-value text-gray-700 ml-2">
-                            {% if option.selected_value %}{{ option.selected_value }}{% endif %}
+                          <span id="variantLabel" class="selected-option-value text-gray-700 ml-2">
                           </span>
                         </label>
 

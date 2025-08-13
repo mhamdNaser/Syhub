@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mediaStorage = document.getElementById("all-variant-media");
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
+  const colorLabel = document.getElementById("variantLabel")
 
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
@@ -13,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (!selectedVariant) return;
+
+    if (colorLabel) {
+      colorLabel.textContent = selectedVariant.title; // أو selectedVariant.name حسب ما لديك
+    }
 
     // تحديث الصورة
     if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
