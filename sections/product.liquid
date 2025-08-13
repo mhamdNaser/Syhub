@@ -9,8 +9,6 @@
 {% endcomment %}
 
 {% assign selected_variant = product.selected_or_first_available_variant %}
-{% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
-{% assign color_labels = color_labels_raw | split: ',' %}
 
 <style>
   .thumbnail-slider .swiper-slide {
@@ -120,52 +118,25 @@
               {% when 'variant_selector' %}
                 <div class="my-3">
                   {% unless product.has_only_default_variant %}
-                    {%- comment -%} نحول نص color_map إلى قاموس {%- endcomment -%}
-                    {% assign color_map_raw = settings.color_map | strip %}
-                    {% assign color_map_pairs = color_map_raw | split: ',' %}
-                    {% assign color_map = hash %}
-                    {% for pair in color_map_pairs %}
-                      {% assign clean_pair = pair | strip %}
-                      {% if clean_pair contains ':' %}
-                        {% assign parts = clean_pair | split: ':' %}
-                        {% assign key = parts[0] | strip %}
-                        {% assign value = parts[1] | strip %}
-                        {% assign color_map = color_map | merge: key: value %}
-                      {% endif %}
-                    {% endfor %}
-
-                    {%- comment -%} نقرأ كلمات خيارات اللون من الإعدادات {%- endcomment -%}
-                    {% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
-                    {% assign color_labels = color_labels_raw | split: ',' %}
-
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
                         {% assign optionIndex = forloop.index0 %}
+                        {% assign option_name_downcase = option.name | downcase %}
+
                         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
                           {{ option.name }}
                         </label>
 
-                        {% assign option_name_lc = option.name | downcase %}
-                        {% assign is_color_option = false %}
-                        {% for label in color_labels %}
-                          {% assign label_lc = label | downcase | strip %}
-                          {% if option_name_lc contains label_lc %}
-                            {% assign is_color_option = true %}
-                            {% break %}
-                          {% endif %}
-                        {% endfor %}
-
-                        {% if is_color_option %}
+                        {% if option_name_downcase contains 'color'
+                          or option_name_downcase contains 'colour'
+                          or option_name_downcase contains 'اللون'
+                        %}
                           <div class="flex gap-2 my-2 items-center">
                             {% for value in option.values %}
-                              {%- comment -%}
-                                - نفترض أن قيمة value هي إما: #hex, rgb(...)، أو اسم لون صالح.
-                                - نضع القيمة داخل bg-[...] لـ Tailwind JIT.
-                                - نستخدم | escape لتجنب مشاكل.
-                              {%- endcomment -%}
                               <button
                                 type="button"
-                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch bg-[{{ value | escape }}]"
+                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
+                                style="background-color: {{ value | escape }};"
                                 data-value="{{ value | escape }}"
                                 data-option-index="{{ optionIndex }}"
                                 aria-label="{{ option.name }}: {{ value }}"
