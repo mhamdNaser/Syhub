@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
+    const colorButtons = document.getElementById("#color-swatch");
     allThumbnails.forEach(thumb => {
       thumb.classList.remove('border', 'border-[#c42764]');
     });
