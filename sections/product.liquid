@@ -10,7 +10,11 @@
 
 {% assign selected_variant = product.selected_or_first_available_variant %}
 {% assign first_media = product.media | first %}
-{% assign select_media_or_first = selected_variant.image or first_media %}
+{% assign variant_media = null %}
+{% if selected_variant.featured_media %}
+  {% assign variant_media = product.media | where: 'id', selected_variant.featured_media.id | first %}
+{% endif %}
+{% assign select_media_or_first = variant_media or first_media %}
 
 <style>
   .thumbnail-slider .swiper-slide {
@@ -378,46 +382,49 @@
   });
 </script>
 
+{% comment %} سكربت تبديل الصورة {% endcomment %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // جلب بيانات الفارينتات من سكربت الـ JSON
-    let variantsData = JSON.parse(
-      document.querySelector('variant-selector script[type="application/json"]').textContent
-    );
+document.addEventListener('DOMContentLoaded', function () {
+  const variantsData = JSON.parse(
+    document.querySelector('variant-selector script[type="application/json"]').textContent
+  );
 
-    // عند تغيير أي خيار في الفارينتات
-    document.querySelectorAll('variant-selector select, .color-swatch').forEach((el) => {
-      el.addEventListener('change', updateMainImage);
-      el.addEventListener('click', function (e) {
-        if (this.classList.contains('color-swatch')) {
-          let optionSelect = this.closest('variant-selector').querySelector(
-            `select[id*="Option-"][id$="${this.dataset.optionIndex}"]`
-          );
-          optionSelect.value = this.dataset.value;
-          optionSelect.dispatchEvent(new Event('change'));
-        }
-      });
+  const mainImageContainer = document.getElementById('main-product-image');
+
+  document.querySelectorAll('variant-selector select, .color-swatch').forEach(el => {
+    el.addEventListener('change', handleVariantChange);
+    el.addEventListener('click', function() {
+      if (this.classList.contains('color-swatch')) {
+        const optionSelect = this.closest('variant-selector')
+          .querySelector(`select[id*="Option-"][id$="${this.dataset.optionIndex}"]`);
+        optionSelect.value = this.dataset.value;
+        optionSelect.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+
+  function handleVariantChange() {
+    const selectedOptions = [];
+    document.querySelectorAll('variant-selector select').forEach(sel => {
+      selectedOptions.push(sel.value);
     });
 
-    function updateMainImage() {
-      // جمع قيم الفارينت المختارة بالترتيب
-      let selectedOptions = [];
-      document.querySelectorAll('variant-selector select').forEach((sel) => {
-        selectedOptions.push(sel.value);
-      });
+    const matchedVariant = variantsData.find(v =>
+      v.options.every((opt, idx) => opt === selectedOptions[idx])
+    );
 
-      // إيجاد الفارينت المطابق
-      let matchedVariant = variantsData.find((v) => v.options.every((opt, idx) => opt === selectedOptions[idx]));
-
-      if (matchedVariant && matchedVariant.featured_image) {
-        // استبدال الصورة الرئيسية
-        document.getElementById(
-          'main-product-image'
-        ).innerHTML = `<img src="${matchedVariant.featured_image.src}" alt="${matchedVariant.title}" class="w-full h-auto" />`;
-      }
+    if (matchedVariant && matchedVariant.featured_media) {
+      // استبدال الصورة الرئيسية بعرض product-media
+      fetch(`/products/${matchedVariant.url}?view=media-only&variant=${matchedVariant.id}`)
+        .then(res => res.text())
+        .then(html => {
+          mainImageContainer.innerHTML = html;
+        });
     }
-  });
+  }
+});
 </script>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
