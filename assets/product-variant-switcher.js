@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (mediaHTML) {
         mainImageContainer.innerHTML = mediaHTML.innerHTML;
         mainImageContainer.setAttribute("data-current-media-id", mediaId);
+        swiper.slideTo(mediaId);
       }
     }
 
