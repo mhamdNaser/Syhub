@@ -15,23 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return v.options.every((opt, i) => opt === optionValues[i]);
     });
 
-    let swiper;
-
-     try {
-      swiper = new Swiper('.swiper', {
-        direction: 'horizontal',
-        pagination: {
-          el: '.swiper-pagination',
-        },
-        navigation: {
-          prevEl: '.swiper-button-prev',
-          nextEl: '.swiper-button-next',
-        },
-      });
-    } catch (e) {
-      console.log('SwiperJS is not defined');
-    }
-
     if (!selectedVariant) return;
 
     if (colorLabel) {
@@ -45,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (mediaHTML) {
         mainImageContainer.innerHTML = mediaHTML.innerHTML;
         mainImageContainer.setAttribute("data-current-media-id", mediaId);
-        swiper.slideTo(mediaId)
+        
       }
     }
 
