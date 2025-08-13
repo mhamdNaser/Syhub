@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
-  const thumbnailContainer = document.querySelector(`.thumbnail-container_${mediaId}`)
+
 
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (!selectedVariant) return;
+
+    const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`)
 
     if (colorLabel) {
       colorLabel.textContent = selectedVariant.title;
