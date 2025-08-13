@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       colorLabel.textContent = selectedVariant.title; 
     }
 
-    thumbnailContainer.className('border-[#c42764]')
+    thumbnailContainer.classList.add('border-[#c42764]')
 
     // تحديث الصورة من الميديا المخفية
     if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
