@@ -57,7 +57,7 @@
           <!-- صور الميديا المخفية -->
           <div id="all-variant-media" class="hidden">
             {% for media in product.media %}
-              <div data-media-id="{{ media.id }}">
+              <div data-media-id="{{ media.id }}" class="h-100 overflow-hidden p-2">
                 {% render 'product-media', media: media %}
               </div>
             {% endfor %}
