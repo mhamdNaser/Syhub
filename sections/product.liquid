@@ -42,7 +42,6 @@
 </style>
 
 {% assign default_variant = product.selected_or_first_available_variant %}
-{% assign optionIndex = blank %}
 {% assign slected_variant = blank %}
 
 <div x-data="{ productModalOpen: false }">
@@ -130,7 +129,7 @@
                   {% unless product.has_only_default_variant %}
                     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
                       {% for option in product.options_with_values %}
-                        {{ optionIndex = forloop.index0 }}
+                        {%  assign optionIndex = forloop.index0 %}
                         {% assign option_name_downcase = option.name | downcase %}
 
                         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
