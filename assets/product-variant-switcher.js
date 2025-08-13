@@ -6,17 +6,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const mediaStorage = document.getElementById("all-variant-media");
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
-  const colorLabel = document.getElementById("variantLabel")
+  const colorLabel = document.getElementById("variantLabel");
   const productForm = document.getElementById("product-form");
 
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => v.options.every((opt, i) => opt === optionValues[i]));
     if (!selectedVariant) return;
 
-    if (colorLabel) {
-      colorLabel.textContent = selectedVariant.title;
-    }
+    // تحديث اسم اللون أو الفارينت
+    if (colorLabel) colorLabel.textContent = selectedVariant.title;
 
+    // تحديث الصورة
     if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
       const mediaId = selectedVariant.featured_media.id;
       const mediaHTML = mediaStorage.querySelector(`[data-media-id="${mediaId}"]`);
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    // تحديث السعر
     priceContainer.innerHTML = `
       <span class="text-base text-gray-500 line-through">
         ${selectedVariant.compare_at_price ? Shopify.formatMoney(selectedVariant.compare_at_price) : ""}
@@ -34,19 +35,26 @@ document.addEventListener("DOMContentLoaded", function () {
       ${selectedVariant.price < selectedVariant.compare_at_price ? '<span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>' : ''}
     `;
 
+    // تحديث hidden input
     hiddenInput.value = selectedVariant.id;
+
+    // **تحديث كل selects للقيم المختارة**
+    selects.forEach((sel, i) => {
+      sel.value = optionValues[i];
+    });
   }
 
+  // عند الضغط على زر لون
   colorButtons.forEach(btn => {
     btn.addEventListener("click", function () {
       const optionIndex = parseInt(btn.dataset.optionIndex);
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
-      selects[optionIndex].value = btn.dataset.value;
       updateVariant(selectsArray);
     });
   });
 
+  // عند تغيير أي select
   selects.forEach(sel => {
     sel.addEventListener("change", function () {
       const selectsArray = Array.from(selects).map(s => s.value);
@@ -54,12 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // **تأكيد تحديث hidden input قبل الإرسال**
+  // قبل الإرسال مباشرة
   productForm.addEventListener("submit", function () {
     const selectsArray = Array.from(selects).map(s => s.value);
     updateVariant(selectsArray);
   });
 });
+
 
 
 // document.addEventListener("DOMContentLoaded", function () {
