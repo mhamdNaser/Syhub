@@ -90,4 +90,20 @@ document.addEventListener("DOMContentLoaded", function () {
       updateVariant(selectsArray);
     });
   });
+
+  const thumbnailButtons = document.querySelectorAll('[class^="thumbnail-container_"]');
+  thumbnailButtons.forEach(btn => {
+    btn.addEventListener("click", function () {
+      const mediaId = parseInt(btn.getAttribute("class").match(/thumbnail-container_(\d+)/)[1]);
+      const selectedVariant = variantData.find(v => v.featured_media && v.featured_media.id === mediaId);
+      if (!selectedVariant) return;
+
+      const selectsArray = Array.from(selects).map(s => s.value);
+      selectedVariant.options.forEach((opt, i) => {
+        selectsArray[i] = opt;
+        selects[i].value = opt;
+      });
+      updateVariant(selectsArray);
+    });
+  });
 });
