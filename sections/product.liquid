@@ -50,9 +50,8 @@
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias">
-        
         <div class="hidden md:block">
-          <div class="h-100 overflow-hidden p-2">
+          <div id="main-product-image" class="h-100 overflow-hidden p-2">
             {% render 'product-media', media: select_media_or_first %}
           </div>
         </div>
@@ -376,6 +375,47 @@
         },
       },
     });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // جلب بيانات الفارينتات من سكربت الـ JSON
+    let variantsData = JSON.parse(
+      document.querySelector('variant-selector script[type="application/json"]').textContent
+    );
+
+    // عند تغيير أي خيار في الفارينتات
+    document.querySelectorAll('variant-selector select, .color-swatch').forEach((el) => {
+      el.addEventListener('change', updateMainImage);
+      el.addEventListener('click', function (e) {
+        if (this.classList.contains('color-swatch')) {
+          let optionSelect = this.closest('variant-selector').querySelector(
+            `select[id*="Option-"][id$="${this.dataset.optionIndex}"]`
+          );
+          optionSelect.value = this.dataset.value;
+          optionSelect.dispatchEvent(new Event('change'));
+        }
+      });
+    });
+
+    function updateMainImage() {
+      // جمع قيم الفارينت المختارة بالترتيب
+      let selectedOptions = [];
+      document.querySelectorAll('variant-selector select').forEach((sel) => {
+        selectedOptions.push(sel.value);
+      });
+
+      // إيجاد الفارينت المطابق
+      let matchedVariant = variantsData.find((v) => v.options.every((opt, idx) => opt === selectedOptions[idx]));
+
+      if (matchedVariant && matchedVariant.featured_image) {
+        // استبدال الصورة الرئيسية
+        document.getElementById(
+          'main-product-image'
+        ).innerHTML = `<img src="${matchedVariant.featured_image.src}" alt="${matchedVariant.title}" class="w-full h-auto" />`;
+      }
+    }
   });
 </script>
 
