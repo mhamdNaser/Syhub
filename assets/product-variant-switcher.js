@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (thumbnailContainer) {
-      thumbnailContainer.classList.add('border-[#c42764]');
+      thumbnailContainer.classList.add(' border border-[#c42764] ');
     }
 
     // تحديث الصورة من الميديا المخفية

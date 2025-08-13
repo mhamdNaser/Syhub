@@ -68,7 +68,7 @@
             <div class="swiper-wrapper">
               {% for media in product.media offset: 1 %}
                 <div class="swiper-slide">
-                  <button class="thumbnail-container shadow-md border">
+                  <button class="thumbnail-container shadow-md">
                     {% render 'product-media', media: media, height: '180px', width: '180px', mediaId: media.id %}
                   </button>
                 </div>
