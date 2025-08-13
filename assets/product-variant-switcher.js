@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent);
   const colorButtons = document.querySelectorAll(".color-swatch");
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       colorLabel.textContent = selectedVariant.title; // أو selectedVariant.name حسب ما لديك
     }
 
-    // تحديث الصورة
+    // تحديث الصورة من الميديا المخفية
     if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
       const mediaId = selectedVariant.featured_media.id;
       const mediaHTML = mediaStorage.querySelector(`[data-media-id="${mediaId}"]`);
@@ -40,13 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // تحديث ID الفارينت
     hiddenInput.value = selectedVariant.id;
-
-    // تحديث عرض القيم بجانب اسم الخيار
-    selects.forEach((sel, index) => {
-      const label = sel.closest('div').previousElementSibling; // افتراض أن الـ label قبل select
-      const valueSpan = label.querySelector('.selected-option-value');
-      if (valueSpan) valueSpan.textContent = sel.value;
-    });
   }
 
   // عند الضغط على زر لون
