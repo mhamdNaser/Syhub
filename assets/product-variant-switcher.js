@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
 
+  // الدالة لتحديث كل شيء
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
       return v.options.every((opt, i) => opt === optionValues[i]);
@@ -43,6 +44,23 @@ document.addEventListener("DOMContentLoaded", function () {
       if (valueSpan) valueSpan.textContent = sel.value;
     });
   }
+
+  // دالة لتحديث القيم عند التحميل (فارينت افتراضية)
+  function initDefaultVariant() {
+    const defaultVariantId = hiddenInput.value;
+    const defaultVariant = variantData.find(v => v.id == defaultVariantId);
+    if (!defaultVariant) return;
+
+    defaultVariant.options.forEach((val, i) => {
+      selects[i].value = val; // تحديث القوائم
+    });
+
+    const optionsArray = defaultVariant.options;
+    updateVariant(optionsArray);
+  }
+
+  // تفعيل القيمة الافتراضية عند التحميل
+  initDefaultVariant();
 
   // عند الضغط على زر لون
   colorButtons.forEach(btn => {
