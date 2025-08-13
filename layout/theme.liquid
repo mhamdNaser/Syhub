@@ -17,11 +17,13 @@
     {{ 'animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
 
+    {# 👇 نحمل shopify_common.js أولًا بدون defer #}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
     <link rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css">
     <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
     {% comment %} <script src="https://cdn.tailwindcss.com" defer></script> {% endcomment %}
 
     {% # Social, title, etc. %}
@@ -29,9 +31,6 @@
     {% render 'meta-tags' %}
 
     {{ content_for_header }}
-
-    {% style %}
-    {% endstyle %}
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased">
