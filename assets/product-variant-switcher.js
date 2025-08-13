@@ -32,13 +32,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // تحديث السعر
-    priceContainer.innerHTML = `
+    if (priceContainer) {
+      priceContainer.innerHTML = `
       <span class="text-base text-gray-500 line-through">
         ${selectedVariant.compare_at_price ? Shopify.formatMoney(selectedVariant.compare_at_price) : ""}
       </span>
       <span class="text-lg text-gray-900">${Shopify.formatMoney(selectedVariant.price)}</span>
       ${selectedVariant.price < selectedVariant.compare_at_price ? '<span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>' : ''}
     `;
+    }
 
     // تحديث ID الفارينت
     hiddenInput.value = selectedVariant.id;
