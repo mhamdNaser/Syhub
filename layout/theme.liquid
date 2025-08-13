@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css">
     <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
 
     {% # Social, title, etc. %}
     {% render 'color-schemes' %}
@@ -51,7 +52,7 @@
 
     <div
       id="main-content"
-      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10"
+      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10 my-6"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}

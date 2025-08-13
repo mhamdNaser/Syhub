@@ -9,9 +9,6 @@
 {% endcomment %}
 
 {% assign selected_variant = product.selected_or_first_available_variant %}
-{% assign color_map_json = settings.color_map | default: '{}' %}
-{% assign color_map = color_map_json | parse_json %}
-
 {% assign color_labels_raw = settings.color_option_labels | default: 'color,colour,اللون' %}
 {% assign color_labels = color_labels_raw | split: ',' %}
 
@@ -159,14 +156,16 @@
                         {% endfor %}
 
                         {% if is_color_option %}
-                          <!-- عرض أزرار الألوان -->
                           <div class="flex gap-2 my-2 items-center">
                             {% for value in option.values %}
-                              {% assign color_hex = color_map[value] | default: value %}
+                              {%- comment -%}
+                                - نفترض أن قيمة value هي إما: #hex, rgb(...)، أو اسم لون صالح.
+                                - نضع القيمة داخل bg-[...] لـ Tailwind JIT.
+                                - نستخدم | escape لتجنب مشاكل.
+                              {%- endcomment -%}
                               <button
                                 type="button"
-                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch"
-                                style="background-color: {{ color_hex }};"
+                                class="w-8 h-8 rounded-full border border-gray-300 cursor-pointer color-swatch bg-[{{ value | escape }}]"
                                 data-value="{{ value | escape }}"
                                 data-option-index="{{ optionIndex }}"
                                 aria-label="{{ option.name }}: {{ value }}"
@@ -174,7 +173,6 @@
                             {% endfor %}
                           </div>
 
-                          <!-- select مخفي -->
                           <select
                             name="options[{{ option.name | escape }}]"
                             id="Option-{{ section.id }}-{{ optionIndex }}"
@@ -193,7 +191,6 @@
                           </select>
 
                         {% else %}
-                          <!-- خيارات عادية -->
                           <div class="my-2">
                             <select
                               name="options[{{ option.name | escape }}]"
