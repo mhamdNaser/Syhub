@@ -1,10 +1,8 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent);
   const colorButtons = document.querySelectorAll(".color-swatch");
   const selects = document.querySelectorAll('variant-selector select');
   const mainImageContainer = document.getElementById("main-product-image");
-  const mediaStorage = document.getElementById("all-variant-media");
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
 
@@ -15,14 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
-    // تحديث الصورة من الميديا المخفية
-    if (selectedVariant.featured_media && selectedVariant.featured_media.id) {
-      const mediaId = selectedVariant.featured_media.id;
-      const mediaHTML = mediaStorage.querySelector(`[data-media-id="${mediaId}"]`);
-      if (mediaHTML) {
-        mainImageContainer.innerHTML = mediaHTML.innerHTML;
-        mainImageContainer.setAttribute("data-current-media-id", mediaId);
-      }
+    // تحديث الصورة
+    if (selectedVariant.featured_image) {
+      fetch(selectedVariant.featured_image.src)
+      .then(() => {
+        mainImageContainer.innerHTML = `
+          <img src="${selectedVariant.featured_image.src}" alt="${selectedVariant.featured_image.alt}" class="w-full h-auto" />
+        `;
+      });
     }
 
     // تحديث السعر
@@ -50,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // عند تغيير أي قائمة
-  selects.forEach((sel) => {
+  selects.forEach((sel, index) => {
     sel.addEventListener("change", function () {
       const selectsArray = Array.from(selects).map(s => s.value);
       updateVariant(selectsArray);
