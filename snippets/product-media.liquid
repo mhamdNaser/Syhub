@@ -3,7 +3,7 @@
     <img
       src="{{ media.preview_image | image_url: width: 800 }}"
       alt="{{ media.preview_image.alt }}"
-      class="w-full h-[400px] object-cover"
+      class="w-full h-[400px] object-center"
       width="400"
       height="400"
     >
@@ -29,8 +29,8 @@
             src="{{ media.preview_image | image_url: width: 800 }}"
             alt="{{ media.preview_image.alt }}"
             class="w-full h-full object-cover"
-            width="400"
-            height="400"
+            width="auto"
+            height="auto"
           >
         </button>
       </div>
