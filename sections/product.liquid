@@ -382,51 +382,8 @@
   });
 </script>
 
-{% comment %} سكربت تبديل الصورة {% endcomment %}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const variantsData = JSON.parse(
-    document.querySelector('variant-selector script[type="application/json"]').textContent
-  );
-
-  const mainImageContainer = document.getElementById('main-product-image');
-
-  document.querySelectorAll('variant-selector select, .color-swatch').forEach(el => {
-    el.addEventListener('change', handleVariantChange);
-    el.addEventListener('click', function() {
-      if (this.classList.contains('color-swatch')) {
-        const optionSelect = this.closest('variant-selector')
-          .querySelector(`select[id*="Option-"][id$="${this.dataset.optionIndex}"]`);
-        optionSelect.value = this.dataset.value;
-        optionSelect.dispatchEvent(new Event('change'));
-      }
-    });
-  });
-
-  function handleVariantChange() {
-    const selectedOptions = [];
-    document.querySelectorAll('variant-selector select').forEach(sel => {
-      selectedOptions.push(sel.value);
-    });
-
-    const matchedVariant = variantsData.find(v =>
-      v.options.every((opt, idx) => opt === selectedOptions[idx])
-    );
-
-    if (matchedVariant && matchedVariant.featured_media) {
-      // استبدال الصورة الرئيسية بعرض product-media
-      fetch(`/products/${matchedVariant.url}?view=media-only&variant=${matchedVariant.id}`)
-        .then(res => res.text())
-        .then(html => {
-          mainImageContainer.innerHTML = html;
-        });
-    }
-  }
-});
-</script>
-
-
-<script>
+{% comment %} سكربت تحديد الفارينت التي سترسل إلى السلة {% endcomment %}
+{% comment %} <script>
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('product-form');
     if (!form) return;
@@ -531,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateVariant();
     syncSwatchesWithSelects();
   });
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
