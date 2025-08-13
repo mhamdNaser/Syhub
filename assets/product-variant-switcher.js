@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`);
     if (thumbnailContainer) {
       thumbnailContainer.classList.add('border', 'border-[#c42764]');
+
+      // for move swiper to select variant slider
       if (window.thumbnailsSwiper) {
         const slideIndex = Array.from(thumbnailsSwiper.slides).findIndex(slide =>
           slide.contains(thumbnailContainer)
