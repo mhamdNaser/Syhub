@@ -93,9 +93,9 @@
               href="#"
               onclick="
                 event.preventDefault();
-                const url = new URL(window.location.pathname + window.location.search, window.location.origin);
-                url.searchParams.set('filter.v.option.color', '{{ value | handle }}');
-                window.location.href = url.toString();
+                let searchParams = new URLSearchParams(window.location.search);
+                searchParams.set('filter.v.option.color', '{{ value | handle }}');
+                window.location.href = window.location.pathname + '?' + searchParams.toString();
               "
               class="block px-4 py-2 hover:bg-indigo-100"
             >
@@ -165,50 +165,51 @@
 </script>
 
 <script>
-    function priceFilter() {
+      function priceFilter() {
     return {
       minPrice: '',
       maxPrice: '',
       applyFilter() {
-        const url = new URL(window.location.pathname + window.location.search, window.location.origin);
+        let searchParams = new URLSearchParams(window.location.search);
 
         if (this.minPrice) {
-          url.searchParams.set('filter.v.price.gte', this.minPrice);
+          searchParams.set('filter.v.price.gte', this.minPrice);
         } else {
-          url.searchParams.delete('filter.v.price.gte');
+          searchParams.delete('filter.v.price.gte');
         }
 
         if (this.maxPrice) {
-          url.searchParams.set('filter.v.price.lte', this.maxPrice);
+          searchParams.set('filter.v.price.lte', this.maxPrice);
         } else {
-          url.searchParams.delete('filter.v.price.lte');
+          searchParams.delete('filter.v.price.lte');
         }
 
-        window.location.href = url.toString();
+        window.location.href = window.location.pathname + '?' + searchParams.toString();
       },
     };
   }
-    {% comment %} function priceFilter() {
-      return {
-        minPrice: '',
-        maxPrice: '',
-        applyFilter() {
-          let url = new URL(window.location.href);
 
-          if (this.minPrice) {
-            url.searchParams.set('filter.v.price.gte', this.minPrice);
-          } else {
-            url.searchParams.delete('filter.v.price.gte');
-          }
+      {% comment %} function priceFilter() {
+        return {
+          minPrice: '',
+          maxPrice: '',
+          applyFilter() {
+            let url = new URL(window.location.href);
 
-          if (this.maxPrice) {
-            url.searchParams.set('filter.v.price.lte', this.maxPrice);
-          } else {
-            url.searchParams.delete('filter.v.price.lte');
-          }
+            if (this.minPrice) {
+              url.searchParams.set('filter.v.price.gte', this.minPrice);
+            } else {
+              url.searchParams.delete('filter.v.price.gte');
+            }
 
-          window.location.href = url.toString();
-        },
-      };
-    } {% endcomment %}
+            if (this.maxPrice) {
+              url.searchParams.set('filter.v.price.lte', this.maxPrice);
+            } else {
+              url.searchParams.delete('filter.v.price.lte');
+            }
+
+            window.location.href = url.toString();
+          },
+        };
+      } {% endcomment %}
 </script>
