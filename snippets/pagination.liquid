@@ -4,7 +4,7 @@
     {%- if pagination.previous -%}
       <a
         href="{{ pagination.previous.url }}"
-        class="px-4 py-2 bg-headerColor hover:bg-headerLightColor text-white hover:text-headerColor font-medium rounded-md shadow-md transition duration-200"
+        class="px-4 py-2 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] font-medium rounded-md shadow-md transition duration-200"
       >
         {{ pagination.previous.title }}
       </a>
@@ -14,13 +14,13 @@
       {% if part.is_link %}
         <a
           href="{{ part.url }}"
-          class="px-4 py-2 bg-headerColor hover:bg-headerLightColor text-white hover:text-headerColor font-medium rounded-md shadow-md transition duration-200"
+          class="px-4 py-2 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] font-medium rounded-md shadow-md transition duration-200"
         >
           {{ part.title }}
         </a>
       {%- else -%}
         <span
-          class="px-4 py-2 bg-headerLightColor text-white hover:text-headerColor font-medium rounded-md shadow-md transition duration-200"
+          class="px-4 py-2 bg-[#f2bed2] text-white hover:text-[#c42764] font-medium rounded-md shadow-md transition duration-200"
         >
           {{ part.title }}
         </span>
@@ -30,7 +30,7 @@
     {%- if pagination.next -%}
       <a
         href="{{ pagination.next.url }}"
-        class="px-4 py-2 bg-headerColor hover:bg-headerLightColor text-white hover:text-headerColor font-medium rounded-md shadow-md transition duration-200"
+        class="px-4 py-2 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] font-medium rounded-md shadow-md transition duration-200"
       >
         {{ pagination.next.title }}
       </a>

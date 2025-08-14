@@ -1,0 +1,86 @@
+<form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
+  <label for="SortBy" class="mr-2 font-medium text-gray-700">{{ productNumber }} products</label>
+  <select
+    id="SortBy"
+    class="border-none outline-none px-3 py-2 text-gray-700 focus:outline-none focus:border-none"
+    onchange="applySort(this)"
+  >
+    <option
+      value="manual"
+      {% if collection.sort_by == 'manual' or collection.sort_by == blank %}
+        selected
+      {% endif %}
+    >
+      Featured
+    </option>
+    <option
+      value="best-selling"
+      {% if collection.sort_by == 'best-selling' %}
+        selected
+      {% endif %}
+    >
+      Best selling
+    </option>
+    <option
+      value="title-ascending"
+      {% if collection.sort_by == 'title-ascending' %}
+        selected
+      {% endif %}
+    >
+      Alphabetically, A-Z
+    </option>
+    <option
+      value="title-descending"
+      {% if collection.sort_by == 'title-descending' %}
+        selected
+      {% endif %}
+    >
+      Alphabetically, Z-A
+    </option>
+    <option
+      value="price-ascending"
+      {% if collection.sort_by == 'price-ascending' %}
+        selected
+      {% endif %}
+    >
+      Price, low to high
+    </option>
+    <option
+      value="price-descending"
+      {% if collection.sort_by == 'price-descending' %}
+        selected
+      {% endif %}
+    >
+      Price, high to low
+    </option>
+    <option
+      value="created-ascending"
+      {% if collection.sort_by == 'created-ascending' %}
+        selected
+      {% endif %}
+    >
+      Date, old to new
+    </option>
+    <option
+      value="created-descending"
+      {% if collection.sort_by == 'created-descending' %}
+        selected
+      {% endif %}
+    >
+      Date, new to old
+    </option>
+  </select>
+</form>
+
+<script>
+  function applySort(select) {
+    // نحتفظ بكل الفلاتر الموجودة في URL
+    const searchParams = new URLSearchParams(window.location.search);
+
+    // نضيف أو نحدث sort_by
+    searchParams.set('sort_by', select.value);
+
+    // نعيد توجيه الصفحة مع كل الفلاتر
+    window.location.href = window.location.pathname + '?' + searchParams.toString();
+  }
+</script>

@@ -49,7 +49,8 @@
 
     <div
       id="main-content"
-      class="{{ settings.page_width }} {{ settings.card_hover_effect }} mx-auto z-10 my-6"
+      {% comment %} {{ settings.card_hover_effect }} {% endcomment %}
+      class="{{ settings.page_width }} mx-auto z-10 my-6"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}
@@ -61,7 +62,6 @@
     <div id="mobile-navigator" class="block lg:hidden z-50">
       {% section 'mobile-navigator' %}
     </div>
-
-    <script src="{{ 'product-variant-switcher.js' | asset_url }}" defer></script>
+    <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
   </body>
 </html>
