@@ -1,10 +1,9 @@
-<form method="get" id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
+<form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
   <label for="SortBy" class="mr-2 font-medium text-gray-700">{{ productNumber }} products</label>
   <select
-    name="sort_by"
     id="SortBy"
     class="border-none outline-none px-3 py-2 text-gray-700 focus:outline-none focus:border-none"
-    onchange="this.form.submit()"
+    onchange="applySort(this)"
   >
     <option
       value="manual"
@@ -75,13 +74,13 @@
 
 <script>
   function applySort(select) {
-    // نحتفظ بكل الباراميترات الموجودة
+    // نحتفظ بكل الفلاتر الموجودة في URL
     const searchParams = new URLSearchParams(window.location.search);
 
     // نضيف أو نحدث sort_by
     searchParams.set('sort_by', select.value);
 
-    // نعيد توجيه الصفحة
+    // نعيد توجيه الصفحة مع كل الفلاتر
     window.location.href = window.location.pathname + '?' + searchParams.toString();
   }
 </script>
