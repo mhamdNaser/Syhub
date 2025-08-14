@@ -199,7 +199,11 @@
         class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
       >
         {% for value in availability_array %}
-          {% assign label = value == '1' ? 'In Stock' : 'Out of Stock' %}
+          {% if value == '1' %}
+            {% assign label = 'In Stock' %}
+          {% else %}
+            {% assign label = 'Out of Stock' %}
+          {% endif %}
           <li>
             <a
               href="#"
