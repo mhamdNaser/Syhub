@@ -65,7 +65,49 @@
       {% endif %}
     {% endfor %}
   {% endfor %}
+
   {% assign color_array = color_values | split: ',' | uniq | compact %}
+
+  {% if color_array.size > 0 %}
+    <div x-data="{ open: false }" class="relative text-sm">
+      <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
+        Colors
+      </button>
+      <ul
+        x-show="open"
+        @click.away="open = false"
+        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+      >
+        {% for value in color_array %}
+          {% assign bg_color = '#cccccc' %}
+          {% for pair in color_map %}
+            {% assign parts = pair | split: ':' %}
+            {% if parts[0] == value %}
+              {% assign bg_color = parts[1] %}
+            {% endif %}
+          {% endfor %}
+          <li>
+            <a
+              href="#"
+              onclick="
+                event.preventDefault();
+                let searchParams = new URLSearchParams(window.location.search);
+                searchParams.set('filter.v.option.color', '{{ value | handle }}');
+                if(!searchParams.has('sort_by')) {
+                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                }
+                window.location.href = window.location.pathname + '?' + searchParams.toString();
+              "
+              class="block px-4 py-2 hover:bg-indigo-100"
+            >
+              <span class="h-[22px] w-[22px] rounded-full border" style="background-color: {{ bg_color }};"></span>
+              {{ value }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
 
   {% if color_array.size > 0 %}
     <div x-data="{ open: false }" class="relative text-sm">
@@ -106,7 +148,7 @@
                 class="h-[22px] w-[22px] "
                 style="background-color: {{ value | escape }};"
               ></span>
-              {{ value.Color }}
+              {{ value }}
             </a>
           </li>
         {% endfor %}
