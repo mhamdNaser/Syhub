@@ -72,3 +72,16 @@
     </option>
   </select>
 </form>
+
+<script>
+  function applySort(select) {
+    // نحتفظ بكل الباراميترات الموجودة
+    const searchParams = new URLSearchParams(window.location.search);
+
+    // نضيف أو نحدث sort_by
+    searchParams.set('sort_by', select.value);
+
+    // نعيد توجيه الصفحة
+    window.location.href = window.location.pathname + '?' + searchParams.toString();
+  }
+</script>
