@@ -563,6 +563,12 @@
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
+  .h-\[22\] {
+    height: 22;
+  }
+  .h-\[22px\] {
+    height: 22px;
+  }
   .h-\[80\] {
     height: 80;
   }
@@ -670,6 +676,12 @@
   }
   .w-64 {
     width: calc(var(--spacing) * 64);
+  }
+  .w-\[22\] {
+    width: 22;
+  }
+  .w-\[22px\] {
+    width: 22px;
   }
   .w-\[80\] {
     width: 80;
