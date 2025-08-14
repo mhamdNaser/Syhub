@@ -229,12 +229,14 @@
   {% comment %} Category Filter {% endcomment %}
   {% assign category_values = '' %}
   {% for product in collection.all_products %}
-    {% for tag in product.tags %}
-      {% unless category_values contains tag %}
-        {% assign category_values = category_values | append: tag | append: ',' %}
+    {% assign cat = product.product_type %}
+    {% if cat != blank %}
+      {% unless category_values contains cat %}
+        {% assign category_values = category_values | append: cat | append: ',' %}
       {% endunless %}
-    {% endfor %}
+    {% endif %}
   {% endfor %}
+
   {% assign category_array = category_values | split: ',' | uniq | compact %}
 
   {% if category_array.size > 0 %}
