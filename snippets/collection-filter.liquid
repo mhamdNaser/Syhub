@@ -238,46 +238,57 @@
   {% assign category_array = category_values | split: ',' | uniq | compact %}
 
   {% if category_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm">
-      <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
-        Category
-        <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
+    {% assign category_values = '' %}
+    {% for product in collection.all_products %}
+      {% assign cat = product.product_type %}
+      {% unless category_values contains cat %}
+        {% assign category_values = category_values | append: cat | append: ',' %}
+      {% endunless %}
+    {% endfor %}
+    {% assign category_array = category_values | split: ',' | uniq | compact %}
+
+    {% if category_array.size > 0 %}
+      <div x-data="{ open: false }" class="relative text-sm">
+        <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
+          Category
+          <svg
+            :class="{ 'rotate-180': open }"
+            class="w-4 h-4 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <ul
+          x-show="open"
+          @click.away="open = false"
+          class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
         >
-          <path d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-      >
-        {% for value in category_array %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.v.category', '{{ value | handle }}');
-                if (!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+          {% for value in category_array %}
+            <li>
+              <a
+                href="#"
+                onclick="
+                  event.preventDefault();
+                  let searchParams = new URLSearchParams(window.location.search);
+                  searchParams.set('filter.v.category', '{{ value | handle }}');
+                  if (!searchParams.has('sort_by')) {
+                    searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                  }
+                  window.location.href = window.location.pathname + '?' + searchParams.toString();
+                "
+                class="block px-4 py-2 hover:bg-indigo-100"
+              >
+                {{ value }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
   {% endif %}
 
   <!-- Denominations Filter -->
