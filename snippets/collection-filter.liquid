@@ -199,7 +199,6 @@
         class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
       >
         {% for value in availability_array %}
-          {% assign label = value == '1' ? 'In Stock' : 'Out of Stock' %}
           <li>
             <a
               href="#"
@@ -214,7 +213,7 @@
               "
               class="block px-4 py-2 hover:bg-indigo-100"
             >
-              {{ label }}
+              {{ value }}
             </a>
           </li>
         {% endfor %}
