@@ -95,6 +95,9 @@
                 event.preventDefault();
                 let searchParams = new URLSearchParams(window.location.search);
                 searchParams.set('filter.v.option.color', '{{ value | handle }}');
+                if(!searchParams.has('sort_by')) {
+                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                }
                 window.location.href = window.location.pathname + '?' + searchParams.toString();
               "
               class="block px-4 py-2 hover:bg-indigo-100"
@@ -119,19 +122,38 @@
     <div x-data="{ open: false }" class="relative text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
         Brand
-        <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg
+          :class="{ 'rotate-180': open }"
+          class="w-4 h-4 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
           <path d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
-      <ul x-show="open" @click.away="open = false" class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto">
+      <ul
+        x-show="open"
+        @click.away="open = false"
+        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+      >
         {% for value in vendor_array %}
           <li>
-            <a href="#" onclick="
-              event.preventDefault();
-              let searchParams = new URLSearchParams(window.location.search);
-              searchParams.set('filter.p.vendor', '{{ value  }}');
-              window.location.href = window.location.pathname + '?' + searchParams.toString();
-            " class="block px-4 py-2 hover:bg-indigo-100">
+            <a
+              href="#"
+              onclick="
+                event.preventDefault();
+                let searchParams = new URLSearchParams(window.location.search);
+                searchParams.set('filter.p.vendor', '{{ value  }}');
+
+                if(!searchParams.has('sort_by')) {
+                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                }
+                window.location.href = window.location.pathname + '?' + searchParams.toString();
+              "
+              class="block px-4 py-2 hover:bg-indigo-100"
+            >
               {{ value }}
             </a>
           </li>
@@ -198,7 +220,43 @@
 </script>
 
 <script>
-      function priceFilter() {
+  function priceFilter() {
+    return {
+      minPrice: '',
+      maxPrice: '',
+      applyFilter() {
+        // نحتفظ بكل الفلاتر الموجودة في URL
+        let searchParams = new URLSearchParams(window.location.search);
+
+        // تحديث أو حذف فلتر السعر الأدنى
+        if (this.minPrice) {
+          searchParams.set('filter.v.price.gte', this.minPrice);
+        } else {
+          searchParams.delete('filter.v.price.gte');
+        }
+
+        // تحديث أو حذف فلتر السعر الأعلى
+        if (this.maxPrice) {
+          searchParams.set('filter.v.price.lte', this.maxPrice);
+        } else {
+          searchParams.delete('filter.v.price.lte');
+        }
+
+        // الاحتفاظ بالسورت أو إضافة القيمة الافتراضية
+        if (!searchParams.has('sort_by')) {
+          searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+        }
+
+        // تحويل كل الفلاتر إلى URL والانتقال للرابط
+        window.location.href = window.location.pathname + '?' + searchParams.toString();
+      },
+    };
+  }
+</script>
+
+
+{% comment %} <script>
+  function priceFilter() {
     return {
       minPrice: '',
       maxPrice: '',
@@ -221,4 +279,4 @@
       },
     };
   }
-</script>
+</script> {% endcomment %}
