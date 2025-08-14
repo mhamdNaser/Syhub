@@ -27,12 +27,12 @@
     <!-- Products Grid -->
     <section class="w-3/4">
       <div class="flex items-center justify-between text-center py-3 border-b border-[#c42764]">
+        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">{{ collection.title }}</h1>
         <a
           href="{{ routes.collections_url }}"
           class="text-sm text-gray-400 hover:text-gray-600 transition"
           >← Back To Collections</a
         >
-        <h1 class="text-4xl font-bold text-gray-900 tracking-tight">{{ collection.title }}</h1>
       </div>
       {% render 'collection-sort' %}
       {% paginate collection.products by number_of_product %}
