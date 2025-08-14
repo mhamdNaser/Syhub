@@ -93,7 +93,7 @@
               href="#"
               onclick="
                 event.preventDefault();
-                const url = new URL(window.location.href);
+                const url = new URL(window.location.pathname + window.location.search, window.location.origin);
                 url.searchParams.set('filter.v.option.color', '{{ value | handle }}');
                 window.location.href = url.toString();
               "
@@ -165,12 +165,12 @@
 </script>
 
 <script>
-  function priceFilter() {
+    function priceFilter() {
     return {
       minPrice: '',
       maxPrice: '',
       applyFilter() {
-        let url = new URL(window.location.href);
+        const url = new URL(window.location.pathname + window.location.search, window.location.origin);
 
         if (this.minPrice) {
           url.searchParams.set('filter.v.price.gte', this.minPrice);
@@ -188,4 +188,27 @@
       },
     };
   }
+    {% comment %} function priceFilter() {
+      return {
+        minPrice: '',
+        maxPrice: '',
+        applyFilter() {
+          let url = new URL(window.location.href);
+
+          if (this.minPrice) {
+            url.searchParams.set('filter.v.price.gte', this.minPrice);
+          } else {
+            url.searchParams.delete('filter.v.price.gte');
+          }
+
+          if (this.maxPrice) {
+            url.searchParams.set('filter.v.price.lte', this.maxPrice);
+          } else {
+            url.searchParams.delete('filter.v.price.lte');
+          }
+
+          window.location.href = url.toString();
+        },
+      };
+    } {% endcomment %}
 </script>
