@@ -178,6 +178,8 @@
   {% assign availability_array = availability_values | split: ',' | uniq | compact %}
 
   {% if availability_array.size > 0 %}
+    {% assign availability_array = '1,0' | split: ',' %}
+
     <div x-data="{ open: false }" class="relative text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
         Availability
@@ -198,6 +200,11 @@
         class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
       >
         {% for value in availability_array %}
+          {% if value == '1' %}
+            {% assign label = 'In Stock' %}
+          {% else %}
+            {% assign label = 'Out of Stock' %}
+          {% endif %}
           <li>
             <a
               href="#"
@@ -212,7 +219,7 @@
               "
               class="block px-4 py-2 hover:bg-indigo-100"
             >
-              {{ value }}
+              {{ label }}
             </a>
           </li>
         {% endfor %}
