@@ -8,7 +8,7 @@
 {% assign number_of_product = section.settings.number_of_products_per_page %}
 {%- assign box_width = settings.body_width -%}
 
-<div class="px-6 py-12 max-w-7xl mx-auto">
+<div class="px-6 py-12 {{ box_width }} mx-auto">
   <div class="flex gap-8">
     <!-- Filter Sidebar -->
     <aside class="w-1/4 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto bg-white p-6 rounded-lg shadow-md">
