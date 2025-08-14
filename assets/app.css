@@ -1720,6 +1720,12 @@
       }
     }
   }
+  .focus\:border-none {
+    &:focus {
+      --tw-border-style: none;
+      border-style: none;
+    }
+  }
   .focus\:border-gray-500 {
     &:focus {
       border-color: var(--color-gray-500);
