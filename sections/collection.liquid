@@ -34,7 +34,9 @@
           >← Back To Collections</a
         >
       </div>
-      {% render 'collection-sort' , productNumber: collection.products_count %}
+      <div class="mb-4">
+        {% render 'collection-sort' , productNumber: collection.products_count %}
+      </div>
       {% paginate collection.products by number_of_product %}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {% for product in collection.products %}
