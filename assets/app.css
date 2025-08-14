@@ -1528,6 +1528,13 @@
       }
     }
   }
+  .hover\:bg-\[\#f2bed2\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #f2bed2;
+      }
+    }
+  }
   .hover\:bg-blue-100 {
     &:hover {
       @media (hover: hover) {
