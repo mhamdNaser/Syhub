@@ -129,7 +129,7 @@
             <a href="#" onclick="
               event.preventDefault();
               let searchParams = new URLSearchParams(window.location.search);
-              searchParams.set('filter.v.vendor', '{{ value | handle }}');
+              searchParams.set('filter.p.vendor', '{{ value | handle }}');
               window.location.href = window.location.pathname + '?' + searchParams.toString();
             " class="block px-4 py-2 hover:bg-indigo-100">
               {{ value }}
