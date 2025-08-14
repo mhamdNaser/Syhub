@@ -25,15 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // إزالة البوردر من كل أزرار اللون
+    // إزالة البوردر من كل أزرار اللون
     const colorButtons = document.querySelectorAll('[id^="color-swatch_"]');
     colorButtons.forEach(btn => {
-      btn.classList.remove('border', 'border-[#c42764]');
+      btn.classList.remove('border-4', 'border-[#c42764]');
     });
 
     // إضافة البوردر للزر المحدد
     const selectedColorButton = document.getElementById(`color-swatch_${selectedVariant.featured_media.id}`);
     if (selectedColorButton) {
-      selectedColorButton.classList.add('border', 'border-[#c42764]');
+      selectedColorButton.classList.add('border-4', 'border-[#c42764]');
     }
 
     // إضافة البوردر للثامبنيل المختار
