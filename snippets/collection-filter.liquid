@@ -282,7 +282,7 @@
   {% endif %}
 
   <!-- Denominations Filter -->
-  {% assign denomination_values = '' %}
+  {% comment %} {% assign denomination_values = '' %}
   {% for product in collection.all_products %}
     {% assign val = product.metafields.custom.Denominations | default: '' %}
     {% if val != blank %}
@@ -291,16 +291,10 @@
       {% endunless %}
     {% endif %}
   {% endfor %}
-
   {% assign denomination_array = denomination_values | split: ',' | uniq | compact %}
-
   <div x-data="{ open: false }" class="relative text-sm">
     <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
       Denominations
-      {% for product in collection.all_products %}
-        {{ product.title }} - {{ product.metafields.custom.Denominations | default: 'Empty' -}}
-        <br>
-      {% endfor %}
 
       <svg
         :class="{ 'rotate-180': open }"
@@ -342,10 +336,10 @@
         <li class="px-4 py-2 text-gray-500">No denominations available</li>
       {% endif %}
     </ul>
-  </div>
+  </div> {% endcomment %}
 
   <!-- Product type Filter -->
-  {% assign type_values = '' %}
+  {% comment %} {% assign type_values = '' %}
   {% for product in collection.all_products %}
     {% assign val = product.product_type | default: '' %}
     {% if val != '' %}
@@ -354,7 +348,7 @@
       {% endunless %}
     {% endif %}
   {% endfor %}
-  {% assign type_array = type_values | split: ',' | uniq | compact %}
+  {% assign type_array = type_values | split: ',' | uniq | compact %} {% endcomment %}
 
   {% if type_array.size > 0 %}
     <div x-data="{ open: false }" class="relative text-sm">
