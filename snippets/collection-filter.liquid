@@ -265,7 +265,7 @@
               onclick="
                 event.preventDefault();
                 let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.p.tag', '{{ value | handle }}');
+                searchParams.set('filter.p.tag', '{{ value  }}');
                 if (!searchParams.has('sort_by')) {
                   searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
                 }
