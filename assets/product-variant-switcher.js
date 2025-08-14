@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // إزالة البوردر من كل أزرار اللون
-    // إزالة البوردر من كل أزرار اللون
     const colorButtons = document.querySelectorAll('[id^="color-swatch_"]');
     colorButtons.forEach(btn => {
       btn.classList.remove('border-4', 'border-[#c42764]');
