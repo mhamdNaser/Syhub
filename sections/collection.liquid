@@ -32,7 +32,7 @@
           class="text-sm text-gray-400 hover:text-gray-600 transition"
           >← Back To Collections</a
         >
-        <h1 class="text-4xl font-extrabold text-gray-900 mt-4 tracking-tight">{{ collection.title }}</h1>
+        <h1 class="text-4xl font-bold text-gray-900 tracking-tight">{{ collection.title }}</h1>
       </div>
       {% render 'collection-sort' %}
       {% paginate collection.products by number_of_product %}
