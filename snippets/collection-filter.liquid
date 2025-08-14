@@ -102,7 +102,11 @@
               "
               class="block px-4 py-2 hover:bg-indigo-100"
             >
-            <span class="h-[22px] w-[22px] bg-[{{ value.swatch.color | escape }}] "></span> {{ value }}
+              <span
+                class="h-[22px] w-[22px] "
+                style="background-color: {{ value.swatch.color | escape }};"
+              ></span>
+              {{ value }}
             </a>
           </li>
         {% endfor %}
@@ -282,73 +286,77 @@
   {% endif %}
 
   <!-- Denominations Filter -->
-  {% comment %} {% assign denomination_values = '' %}
-  {% for product in collection.all_products %}
-    {% assign val = product.metafields.custom.Denominations | default: '' %}
-    {% if val != blank %}
-      {% unless denomination_values contains val %}
-        {% assign denomination_values = denomination_values | append: val | append: ',' %}
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
-  {% assign denomination_array = denomination_values | split: ',' | uniq | compact %}
-  <div x-data="{ open: false }" class="relative text-sm">
-    <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
-      Denominations
-
-      <svg
-        :class="{ 'rotate-180': open }"
-        class="w-4 h-4 transition-transform"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-      >
-        <path d="M19 9l-7 7-7-7"/>
-      </svg>
-    </button>
-    <ul
-      x-show="open"
-      @click.away="open = false"
-      class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-    >
-      {% if denomination_array.size > 0 %}
-        {% for value in denomination_array %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.v.denomination', '{{ value | handle }}');
-                if (!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
-          </li>
-        {% endfor %}
-      {% else %}
-        <li class="px-4 py-2 text-gray-500">No denominations available</li>
+  {% comment %}
+    {% assign denomination_values = '' %}
+    {% for product in collection.all_products %}
+      {% assign val = product.metafields.custom.Denominations | default: '' %}
+      {% if val != blank %}
+        {% unless denomination_values contains val %}
+          {% assign denomination_values = denomination_values | append: val | append: ',' %}
+        {% endunless %}
       {% endif %}
-    </ul>
-  </div> {% endcomment %}
+    {% endfor %}
+    {% assign denomination_array = denomination_values | split: ',' | uniq | compact %}
+    <div x-data="{ open: false }" class="relative text-sm">
+      <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
+        Denominations
+
+        <svg
+          :class="{ 'rotate-180': open }"
+          class="w-4 h-4 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <ul
+        x-show="open"
+        @click.away="open = false"
+        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+      >
+        {% if denomination_array.size > 0 %}
+          {% for value in denomination_array %}
+            <li>
+              <a
+                href="#"
+                onclick="
+                  event.preventDefault();
+                  let searchParams = new URLSearchParams(window.location.search);
+                  searchParams.set('filter.v.denomination', '{{ value | handle }}');
+                  if (!searchParams.has('sort_by')) {
+                    searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                  }
+                  window.location.href = window.location.pathname + '?' + searchParams.toString();
+                "
+                class="block px-4 py-2 hover:bg-indigo-100"
+              >
+                {{ value }}
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="px-4 py-2 text-gray-500">No denominations available</li>
+        {% endif %}
+      </ul>
+    </div>
+  {% endcomment %}
 
   <!-- Product type Filter -->
-  {% comment %} {% assign type_values = '' %}
-  {% for product in collection.all_products %}
-    {% assign val = product.product_type | default: '' %}
-    {% if val != '' %}
-      {% unless type_values contains val %}
-        {% assign type_values = type_values | append: val | append: ',' %}
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
-  {% assign type_array = type_values | split: ',' | uniq | compact %} {% endcomment %}
+  {% comment %}
+    {% assign type_values = '' %}
+    {% for product in collection.all_products %}
+      {% assign val = product.product_type | default: '' %}
+      {% if val != '' %}
+        {% unless type_values contains val %}
+          {% assign type_values = type_values | append: val | append: ',' %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% assign type_array = type_values | split: ',' | uniq | compact %}
+  {% endcomment %}
 
   {% if type_array.size > 0 %}
     <div x-data="{ open: false }" class="relative text-sm">
