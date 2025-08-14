@@ -1605,6 +1605,13 @@
       }
     }
   }
+  .hover\:text-\[\#c42764\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #c42764;
+      }
+    }
+  }
   .hover\:text-black {
     &:hover {
       @media (hover: hover) {
