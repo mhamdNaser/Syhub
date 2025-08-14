@@ -21,13 +21,15 @@
     <!-- Filter Sidebar -->
 
     <aside class="w-1/4 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto bg-white p-6 rounded-lg shadow-md">
-      <img
-        src="{{ collection.image.src | image_url: width: 800 }}"
-        alt="{{ collection.title }}"
-        title="{{ collection.description }}"
-        width=""
-        height=""
-      >
+      {%- if collection.image.src != blank -%}
+        <img
+          src="{{ collection.image.src | image_url: width: 800 }}"
+          alt="{{ collection.title }}"
+          title="{{ collection.description }}"
+          width=""
+          height=""
+        >
+      {%- endif -%}
       {%- render 'collection-filter' -%}
     </aside>
 
