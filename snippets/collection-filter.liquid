@@ -199,13 +199,14 @@
         class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
       >
         {% for value in availability_array %}
+          {% assign label = value == '1' ? 'In Stock' : 'Out of Stock' %}
           <li>
             <a
               href="#"
               onclick="
                 event.preventDefault();
                 let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.v.availability', '{{ value | handle }}');
+                searchParams.set('filter.v.availability', '{{ value }}');
                 if (!searchParams.has('sort_by')) {
                   searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
                 }
@@ -213,7 +214,7 @@
               "
               class="block px-4 py-2 hover:bg-indigo-100"
             >
-              {{ value }}
+              {{ label }}
             </a>
           </li>
         {% endfor %}
