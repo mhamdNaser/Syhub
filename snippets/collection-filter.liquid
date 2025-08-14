@@ -285,12 +285,13 @@
   {% assign denomination_values = '' %}
   {% for product in collection.all_products %}
     {% assign val = product.metafields.custom.denomination | default: '' %}
-    {% if val != '' %}
+    {% if val != blank %}
       {% unless denomination_values contains val %}
         {% assign denomination_values = denomination_values | append: val | append: ',' %}
       {% endunless %}
     {% endif %}
   {% endfor %}
+
   {% assign denomination_array = denomination_values | split: ',' | uniq | compact %}
 
   {% if denomination_array.size > 0 %}
@@ -313,25 +314,29 @@
         @click.away="open = false"
         class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
       >
-        {% for value in denomination_array %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.v.denomination', '{{ value | handle }}');
-                if (!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
-          </li>
-        {% endfor %}
+        {% if denomination_array.size > 0 %}
+          {% for value in denomination_array %}
+            <li>
+              <a
+                href="#"
+                onclick="
+                  event.preventDefault();
+                  let searchParams = new URLSearchParams(window.location.search);
+                  searchParams.set('filter.v.denomination', '{{ value | handle }}');
+                  if (!searchParams.has('sort_by')) {
+                    searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                  }
+                  window.location.href = window.location.pathname + '?' + searchParams.toString();
+                "
+                class="block px-4 py-2 hover:bg-indigo-100"
+              >
+                {{ value }}
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="px-4 py-2 text-gray-500">No denominations available</li>
+        {% endif %}
       </ul>
     </div>
   {% endif %}
