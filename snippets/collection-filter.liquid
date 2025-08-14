@@ -52,6 +52,55 @@
     </div>
   </div>
 
+  <!-- Filter by Color (Variants) -->
+  {% assign color_values = '' %}
+  {% for product in collection.products %}
+    {% for option in product.options_with_values %}
+      {% if option.name == 'Color' %}
+        {% for value in option.values %}
+          {% unless color_values contains value %}
+            {% assign color_values = color_values | append: value | append: ',' %}
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  {% assign color_array = color_values | split: ',' | uniq | compact %}
+
+  {% if color_array.size > 0 %}
+    <div x-data="{ open: false }" class="relative">
+      <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
+        Colors
+        <svg
+          :class="{ 'rotate-180': open }"
+          class="w-4 h-4 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <ul
+        x-show="open"
+        @click.away="open = false"
+        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+      >
+        {% for value in color_array %}
+          <li>
+            <a
+              href="{{ collection.url }}?options[color]={{ value | handle }}"
+              class="block px-4 py-2 hover:bg-indigo-100"
+            >
+              {{ value }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
     <div x-data="{ open: false }" class="relative">
