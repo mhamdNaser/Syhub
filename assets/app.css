@@ -1034,6 +1034,9 @@
   .border-red-700 {
     border-color: var(--color-red-700);
   }
+  .border-b-\[\#c42764\] {
+    border-bottom-color: #c42764;
+  }
   .bg-\[\#334155\] {
     background-color: #334155;
   }
