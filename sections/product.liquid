@@ -49,8 +49,8 @@
 {% assign slected_variant = blank %}
 
 <div x-data="{ productModalOpen: false }">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="max-w-6xl mx-auto ">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 overflow-visible">
       <div class="product--medias" >
         <div>
           {% assign first_media = product.media | first %}
