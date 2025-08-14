@@ -104,7 +104,7 @@
             >
               <span
                 class="h-[22px] w-[22px] "
-                style="background-color: {{ value | downcase  }};"
+                style="background-color: {{ value.swatch.color | escape }};"
               ></span>
               {{ value }}
             </a>
