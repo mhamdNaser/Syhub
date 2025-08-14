@@ -104,9 +104,9 @@
             >
               <span
                 class="h-[22px] w-[22px] "
-                style="background-color: {{ value.swatch.color | escape }};"
+                style="background-color: {{ value | escape }};"
               ></span>
-              {{ value }}
+              {{ value.color }}
             </a>
           </li>
         {% endfor %}
