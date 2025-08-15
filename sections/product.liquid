@@ -106,7 +106,7 @@
                   {% endif %}
                 </div>
               {% when 'variant_selector' %}
-                {% content_for 'variant-selector', product: product %}
+                {% content_for 'variant-selector', closest.product: product %}
 
               {% when 'quantity' %}
                 <div class="my-3">
