@@ -80,12 +80,16 @@
         </div>
       </div>
 
-      <div class="product--information px-4 bg-white rounded-2xl shadow-lg">
+      <div class="product--information px-4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
           {% for block in section.blocks %}
             {% case block.type %}
+              {% when 'title' %}
+                <div class="my-3">
+                  <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
+                </div>
               {% when 'vendor' %}
                 <div class="my-3 flex items-center gap-2">
                   {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
@@ -102,10 +106,7 @@
                     </span>
                   {% endif %}
                 </div>
-              {% when 'title' %}
-                <div class="my-3">
-                  <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
-                </div>
+              
               {% when 'price' %}
                 <div class="my-3" id="price-{{ section.id }}">
                   <span class="text-base text-gray-500 line-through">
