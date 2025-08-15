@@ -90,7 +90,7 @@
                 <div class="my-3 flex items-center gap-2">
                   {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
                     <img
-                      src="{{ block.settings.vendor_image | file_url | image_url: width: 50, height: 50  }}"
+                      src="{{ block.settings.vendor_image | image_url: width: 50, height: 50  }}"
                       alt="{{ product.vendor }}"
                       class="h-10 w-10 object-cover rounded-full"
                       width=""
