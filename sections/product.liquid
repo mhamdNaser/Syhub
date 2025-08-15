@@ -176,8 +176,7 @@
                 </div>
               {% when 'sku' %}
                 {% if default_variant.sku != blank %}
-                  <span class="text-gray-400 text-sm">
-                    {{ default_variant.sku }}
+                  <span class="text-gray-400 text-sm" id="container-sku">
                   </span>
                 {% endif %}
               {% else %}

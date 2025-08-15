@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
+  const sku = document.getElementById("container-sku")
 
 
   function updateVariant(optionValues) {
@@ -17,6 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (!selectedVariant) return;
+
+    if (sku) {
+      sku.textContent = selectedVariant.sku
+      
+    }
 
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
