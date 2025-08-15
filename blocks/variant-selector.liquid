@@ -4,7 +4,7 @@
   ويستخدم {{ closest.product }} للحصول على المنتج الحالي تلقائيًا
 {% endcomment %}
 
-{% assign product = block.settings.product %}
+{% assign product = closest.product %}
 
 <div class="my-3">
   {% unless product.has_only_default_variant %}
