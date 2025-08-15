@@ -6,7 +6,7 @@
     <img
       src="{{ media.preview_image | image_url: width: 800 }}"
       alt="{{ media.preview_image.alt }}"
-      class="w-full h-[{{ img_height }}] object-center"
+      class="w-[{{ img_width }}] h-[{{ img_height }}] object-center"
       width="400"
       height="400"
       data-media-id="{{ media.id }}"
