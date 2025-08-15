@@ -49,15 +49,9 @@
 {% assign slected_variant = blank %}
 
 <div x-data="{ productModalOpen: false }">
-<<<<<<< HEAD
-  <div class="max-w-6xl mx-auto ">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 overflow-visible">
-      <div class="product--medias" >
-=======
   <div class="max-w-6xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias sticky top-0 bg-white">
->>>>>>> 0d5f993a5a7a9e83dfe36b178fd16f9e13ea09af
         <div>
           {% assign first_media = product.media | first %}
           <div id="main-product-image" class="overflow-hidden p-2" data-current-media-id="{{ first_media.id }}">
@@ -90,11 +84,7 @@
         </div>
       </div>
 
-<<<<<<< HEAD
-      <div class="product--information p-2">
-=======
       <div class="product--information px-4">
->>>>>>> 0d5f993a5a7a9e83dfe36b178fd16f9e13ea09af
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
