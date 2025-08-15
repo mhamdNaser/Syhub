@@ -86,7 +86,8 @@
 
       <div class="product--information px-4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <div>
+          <div class="flex">
+            {{ section.blocks.settings.vendor_name | default: product.vendor }}
             <button
               type="button"
               onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
