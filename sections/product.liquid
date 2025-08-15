@@ -88,7 +88,7 @@
             {% case block.type %}
               {% when 'vendor' %}
                 <div class="my-3 flex items-center gap-2">
-                  {% if block.settings.vendor_image != blank %}
+                  {% if block.settings.vendor_image == "image" and block.settings.vendor_image != blank %}
                     <img
                       src="{{ block.settings.vendor_image | image_url: '100x' }}"
                       alt="{{ product.vendor }}"
@@ -232,6 +232,21 @@
           "type": "image_picker",
           "id": "vendor_image",
           "label": "Vendor Image"
+        },
+        {
+          "type": "select",
+          "id": "vendor_image",
+          "label": "Vendor Image",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "image",
+              "label": "Image"
+            }
+          ]
         }
       ]
     },
