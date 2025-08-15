@@ -15,6 +15,7 @@
     "favicon": "shopify://shop_images/Luliz_Logo.png",
     "page_width": "w-full",
     "color_map": "014 : #B97872,\n07 : #A95A57,\n08 : #9D4840,\n010 : #F15354,\n01 : #E0808E,\n03 : #D8CAC8,\n02 : #A96762,",
+    "productcards_text_alignment": "text-center",
     "logo_width": 70,
     "sections": {
       "mobile-header": {
