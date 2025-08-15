@@ -83,7 +83,7 @@
       <div class="product--information sticky top-5 p-2">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
-          {% content_for 'blocks', closest.product: product %}
+
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'vendor' %}
@@ -104,6 +104,82 @@
                   {% if default_variant.price < default_variant.compare_at_price %}
                     <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
                   {% endif %}
+                </div>
+              {% when 'variant_selector' %}
+                <div class="my-3">
+                  {% unless product.has_only_default_variant %}
+                    <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+                      {% for option in product.options_with_values %}
+                        {%  assign optionIndex = forloop.index0 %}
+                        {% assign option_name_downcase = option.name | downcase %}
+
+                        <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
+                          {{ option.name }}
+                          <span id="variantLabel" class="selected-option-value text-gray-700 ml-2"> </span>
+                        </label>
+
+                        {% if option_name_downcase contains 'color'
+                          or option_name_downcase contains 'colour'
+                          or option_name_downcase contains 'اللون'
+                        %}
+                          <div class="flex gap-2 my-2 items-center">
+                            {% for value in option.values %}
+                              <button
+                                type="button"
+                                id="color-swatch_{{ value.id | escape }}"
+                                class="w-8 h-8 rounded-full cursor-pointer color-swatch"
+                                style="background-color: {{ value.swatch.color | escape }};"
+                                data-value="{{ value | escape }}"
+                                data-option-index="{{ optionIndex }}"
+                                aria-label="{{ option.name }}: {{ value }}"
+                              ></button>
+                            {% endfor %}
+                          </div>
+
+                          <select
+                            name="options[{{ option.name | escape }}]"
+                            id="Option-{{ section.id }}-{{ optionIndex }}"
+                            class="sr-only"
+                          >
+                            {% for value in option.values %}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}
+                                  selected
+                                {% endif %}
+                              >
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+
+                        {% else %}
+                          <div class="my-2">
+                            <select
+                              name="options[{{ option.name | escape }}]"
+                              id="Option-{{ section.id }}-{{ optionIndex }}"
+                              class="w-full border py-3 px-3"
+                            >
+                              {% for value in option.values %}
+                                <option
+                                  value="{{ value | escape }}"
+                                  {% if option.selected_value == value %}
+                                    selected
+                                  {% endif %}
+                                >
+                                  {{ value }}
+                                </option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+
+                      <script type="application/json">
+                        {{ product.variants | json }}
+                      </script>
+                    </variant-selector>
+                  {% endunless %}
                 </div>
 
               {% when 'quantity' %}
@@ -209,6 +285,42 @@
 {% schema %}
 {
   "name": "Product",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }]
+  "blocks": [
+    {
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "checkout_buttons",
+      "name": "Checkout Buttons",
+      "limit": 1
+    }
+  ]
 }
 {% endschema %}
