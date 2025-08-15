@@ -83,7 +83,7 @@
       <div class="product--information sticky top-5 p-2">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
-          {% content_for 'blocks', closest.product: product %}
+          {% render 'variant_selector', product: product %}
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'vendor' %}
@@ -211,8 +211,8 @@
   "name": "Product",
   "blocks": [
     {
-      "type": "variant_selector",
-      "name": "Variant Selector",
+      "type": "product-variant",
+      "name": "Product Variant",
       "limit": 1
     }
   ]

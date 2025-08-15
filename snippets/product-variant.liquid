@@ -1,5 +1,5 @@
 <!-- blocks/variant-selector.liquid -->
-{% assign p = block.settings.product %}
+{% assign p = product %}
 
 <div class="my-3">
   {% unless p.has_only_default_variant %}
@@ -48,19 +48,9 @@
 {% schema %}
 {
   "name": "Variant Selector",
-  "settings": [
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
-    }
-  ],
   "presets": [
     {
       "name": "Variant Selector",
-      "settings": {
-        "product": "{{ closest.product }}"
-      }
     }
   ]
 }
