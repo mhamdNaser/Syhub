@@ -27,6 +27,8 @@
     "show_vendor": false,
     "show_addtocart": true,
     "show_input_field": true,
+    "show_preorder": false,
+    "show_preorder_inventory": false,
     "logo_width": 70,
     "sections": {
       "mobile-header": {
