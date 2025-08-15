@@ -55,14 +55,14 @@
         <div>
           {% assign first_media = product.media | first %}
           <div id="main-product-image" class="overflow-hidden p-2" data-current-media-id="{{ first_media.id }}">
-            {% render 'product-media', media: first_media %}
+            {% render 'product-media', media: first_media, height: '320px', width: '320px' %}
           </div>
 
           <!-- صور الميديا المخفية -->
           <div id="all-variant-media" class="hidden">
             {% for media in product.media %}
               <div data-media-id="{{ media.id }}" class="overflow-hidden p-2">
-                {% render 'product-media', media: media, mediaId: media.id %}
+                {% render 'product-media', media: media, mediaId: media.id, height: '320px', width: '320px' %}
               </div>
             {% endfor %}
           </div>
