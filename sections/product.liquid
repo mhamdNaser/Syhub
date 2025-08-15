@@ -106,7 +106,7 @@
                     </span>
                   {% endif %}
                 </div>
-              
+
               {% when 'price' %}
                 <div class="my-3" id="price-{{ section.id }}">
                   <span class="text-base text-gray-500 line-through">
@@ -224,12 +224,7 @@
 {% schema %}
 {
   "name": "Product",
-  "blocks": [{"type": "@theme"}],
-}
-{% endschema %}
-
-
-{% comment %} "blocks": [ 
+  "blocks": [
     {
       "type": "vendor",
       "name": "Vendor",
@@ -288,4 +283,5 @@
       "limit": 1
     }
   ]
-    {% endcomment %}
+}
+{% endschema %}
