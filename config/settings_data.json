@@ -21,6 +21,8 @@
     "show_stock_label": false,
     "stock_label_qty": 19,
     "show_price_varies": false,
+    "show_product_stock": false,
+    "show_product_stock_qty": 33,
     "logo_width": 70,
     "sections": {
       "mobile-header": {
