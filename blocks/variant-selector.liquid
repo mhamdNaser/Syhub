@@ -5,7 +5,6 @@
 {% endcomment %}
 
 {% assign product = block.settings.product %}
-{% assign default_variant = product.selected_or_first_available_variant %}
 
 <div class="my-3">
   {% unless product.has_only_default_variant %}
