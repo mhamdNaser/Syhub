@@ -1,32 +1,23 @@
-{% comment %}
-  Variant Selector Block
-  هذا البلوك يعرض خيارات الفارينت لمنتج مرتبط به
-  ويستخدم {{ closest.product }} للحصول على المنتج الحالي تلقائيًا
-{% endcomment %}
-
-{% assign product = closest.product %}
+<!-- blocks/variant-selector.liquid -->
+{% assign p = block.settings.product %}
 
 <div class="my-3">
-  {% unless product.has_only_default_variant %}
-    <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
-      {% for option in product.options_with_values %}
+  {% unless p.has_only_default_variant %}
+    <variant-selector data-url="{{ p.url }}" data-section="{{ section.id }}">
+      {% for option in p.options_with_values %}
         {% assign optionIndex = forloop.index0 %}
         {% assign option_name_downcase = option.name | downcase %}
 
         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
           {{ option.name }}
-          <span id="variantLabel" class="selected-option-value text-gray-700 ml-2"></span>
+          <span class="selected-option-value text-gray-700 ml-2"></span>
         </label>
 
-        {% if option_name_downcase contains 'color'
-          or option_name_downcase contains 'colour'
-          or option_name_downcase contains 'اللون'
-        %}
+        {% if option_name_downcase contains 'color' or option_name_downcase contains 'colour' or option_name_downcase contains 'اللون' %}
           <div class="flex gap-2 my-2 items-center">
             {% for value in option.values %}
               <button
                 type="button"
-                id="color-swatch_{{ value.id | escape }}"
                 class="w-8 h-8 rounded-full cursor-pointer color-swatch"
                 style="background-color: {{ value.swatch.color | escape }};"
                 data-value="{{ value | escape }}"
@@ -35,49 +26,21 @@
               ></button>
             {% endfor %}
           </div>
-
-          <select
-            name="options[{{ option.name | escape }}]"
-            id="Option-{{ section.id }}-{{ optionIndex }}"
-            class="sr-only"
-          >
+          <select name="options[{{ option.name | escape }}]" id="Option-{{ section.id }}-{{ optionIndex }}" class="sr-only">
             {% for value in option.values %}
-              <option
-                value="{{ value | escape }}"
-                {% if option.selected_value == value %}
-                  selected
-                {% endif %}
-              >
-                {{ value }}
-              </option>
+              <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
             {% endfor %}
           </select>
-
         {% else %}
           <div class="my-2">
-            <select
-              name="options[{{ option.name | escape }}]"
-              id="Option-{{ section.id }}-{{ optionIndex }}"
-              class="w-full border py-3 px-3"
-            >
+            <select name="options[{{ option.name | escape }}]" id="Option-{{ section.id }}-{{ optionIndex }}" class="w-full border py-3 px-3">
               {% for value in option.values %}
-                <option
-                  value="{{ value | escape }}"
-                  {% if option.selected_value == value %}
-                    selected
-                  {% endif %}
-                >
-                  {{ value }}
-                </option>
+                <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
               {% endfor %}
             </select>
           </div>
         {% endif %}
       {% endfor %}
-
-      <script type="application/json">
-        {{ product.variants | json }}
-      </script>
     </variant-selector>
   {% endunless %}
 </div>
