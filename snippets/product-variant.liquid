@@ -13,7 +13,10 @@
           <span class="selected-option-value text-gray-700 ml-2"></span>
         </label>
 
-        {% if option_name_downcase contains 'color' or option_name_downcase contains 'colour' or option_name_downcase contains 'اللون' %}
+        {% if option_name_downcase contains 'color'
+          or option_name_downcase contains 'colour'
+          or option_name_downcase contains 'اللون'
+        %}
           <div class="flex gap-2 my-2 items-center">
             {% for value in option.values %}
               <button
@@ -26,16 +29,38 @@
               ></button>
             {% endfor %}
           </div>
-          <select name="options[{{ option.name | escape }}]" id="Option-{{ section.id }}-{{ optionIndex }}" class="sr-only">
+          <select
+            name="options[{{ option.name | escape }}]"
+            id="Option-{{ section.id }}-{{ optionIndex }}"
+            class="sr-only"
+          >
             {% for value in option.values %}
-              <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+              <option
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}
+                  selected
+                {% endif %}
+              >
+                {{ value }}
+              </option>
             {% endfor %}
           </select>
         {% else %}
           <div class="my-2">
-            <select name="options[{{ option.name | escape }}]" id="Option-{{ section.id }}-{{ optionIndex }}" class="w-full border py-3 px-3">
+            <select
+              name="options[{{ option.name | escape }}]"
+              id="Option-{{ section.id }}-{{ optionIndex }}"
+              class="w-full border py-3 px-3"
+            >
               {% for value in option.values %}
-                <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}
+                    selected
+                  {% endif %}
+                >
+                  {{ value }}
+                </option>
               {% endfor %}
             </select>
           </div>
@@ -44,14 +69,3 @@
     </variant-selector>
   {% endunless %}
 </div>
-
-{% schema %}
-{
-  "name": "Variant Selector",
-  "presets": [
-    {
-      "name": "Variant Selector",
-    }
-  ]
-}
-{% endschema %}
