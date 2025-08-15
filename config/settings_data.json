@@ -29,6 +29,7 @@
     "show_input_field": true,
     "show_preorder": false,
     "show_preorder_inventory": false,
+    "product_titles_caps": true,
     "logo_width": 70,
     "sections": {
       "mobile-header": {
