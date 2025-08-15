@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
+    sku.textContent = ''
     if (sku) {
       sku.textContent = selectedVariant.sku
-      
     }
 
     // إزالة البوردر من كل الثامبنيلز
