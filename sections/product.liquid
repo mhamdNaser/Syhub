@@ -83,7 +83,7 @@
       <div class="product--information sticky top-5 p-2">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
-          {% render 'product-variant', product: product %}
+
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'vendor' %}
@@ -105,7 +105,8 @@
                     <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
                   {% endif %}
                 </div>
-
+              {% when 'variant_selector' %}
+                {% render 'product-variant', product: product %}
               {% when 'quantity' %}
                 <div class="my-3">
                   <label for="Quantity-{{ section.id }}">Quantity</label>
@@ -211,8 +212,38 @@
   "name": "Product",
   "blocks": [
     {
-      "type": "product-variant",
-      "name": "Product Variant",
+      "type": "vendor",
+      "name": "Vendor",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "checkout_buttons",
+      "name": "Checkout Buttons",
       "limit": 1
     }
   ]
