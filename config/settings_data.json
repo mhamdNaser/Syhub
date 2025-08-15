@@ -25,6 +25,8 @@
     "show_product_stock_qty": 33,
     "show_product_rating": false,
     "show_vendor": false,
+    "show_addtocart": true,
+    "show_input_field": true,
     "logo_width": 70,
     "sections": {
       "mobile-header": {
