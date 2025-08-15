@@ -87,8 +87,19 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'vendor' %}
-                <div class="my-3">
-                  <span class="text-xs text-gray-500">{{ product.vendor }}</span>
+                <div class="my-3 flex items-center gap-2">
+                  {% if block.settings.vendor_image != blank %}
+                    <img
+                      src="{{ block.settings.vendor_image | image_url: '100x' }}"
+                      alt="{{ product.vendor }}"
+                      class="h-10 w-10 object-cover rounded-full"
+                      width=""
+                      height=""
+                    >
+                  {% endif %}
+                  <span class="text-xs text-gray-500">
+                    {{ block.settings.vendor_name | default: product.vendor }}
+                  </span>
                 </div>
               {% when 'title' %}
                 <div class="my-3">
@@ -106,7 +117,7 @@
                   {% endif %}
                 </div>
               {% when 'product-variant' %}
-                {% render 'product-variant' product : product %}
+                {% render 'product-variant', product: product %}
 
               {% when 'quantity' %}
                 <div class="my-3">
@@ -215,7 +226,14 @@
     {
       "type": "vendor",
       "name": "Vendor",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "vendor_image",
+          "label": "Vendor Image"
+        }
+      ]
     },
     {
       "type": "title",
