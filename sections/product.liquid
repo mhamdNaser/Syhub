@@ -83,7 +83,7 @@
       <div class="product--information sticky top-5 p-2">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
-
+          {% content_for 'blocks', closest.product: product %}
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'vendor' %}
@@ -105,8 +105,6 @@
                     <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
                   {% endif %}
                 </div>
-              {% when 'variant_selector' %}
-                {% content_for 'blocks', closest.product: product %}
 
               {% when 'quantity' %}
                 <div class="my-3">
