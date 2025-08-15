@@ -224,7 +224,12 @@
 {% schema %}
 {
   "name": "Product",
-  "blocks": [
+  "blocks": [{"type": "@theme"}],
+}
+{% endschema %}
+
+
+{% comment %} "blocks": [ 
     {
       "type": "vendor",
       "name": "Vendor",
@@ -283,5 +288,4 @@
       "limit": 1
     }
   ]
-}
-{% endschema %}
+    {% endcomment %}
