@@ -86,14 +86,14 @@
 
       <div class="product--information px-4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <div class="flex">
+          <div class="flex justify-start gap-4">
             {{ section.blocks.settings.vendor_name | default: product.vendor }}
             <button
               type="button"
               onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
-              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              class=""
             >
-              Copy Product URL
+              Share
             </button>
           </div>
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
