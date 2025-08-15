@@ -8,7 +8,7 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 {% endcomment %}
 <style>
-  .product--medias{
+  .product--medias {
     position: sticky;
     top: 0px;
   }
@@ -86,6 +86,15 @@
 
       <div class="product--information px-4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+          <div>
+            <button
+              type="button"
+              onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
+              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              Copy Product URL
+            </button>
+          </div>
           <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
           {% for block in section.blocks %}
