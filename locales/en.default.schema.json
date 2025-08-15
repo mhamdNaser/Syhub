@@ -122,8 +122,8 @@
     "section": "Section"
   },
   "settings_schema": {
-    "products": {
-      "name": "Products",
+    "productCard": {
+      "name": "Product Card",
       "settings": {
         "productcards_text_alignment": {
           "label": "Product cards text alignment",
