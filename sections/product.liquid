@@ -209,6 +209,14 @@
 {% schema %}
 {
   "name": "Product",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }]
+  "blocks": [
+    {
+      "type": "variant_selector",
+      "name": "Variant Selector",
+      "limit": 1
+    },
+    { "type": "@theme" },
+    { "type": "@app" }
+  ]
 }
 {% endschema %}
