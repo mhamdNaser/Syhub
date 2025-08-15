@@ -7,7 +7,7 @@
 
       {% if vendor_name and vendor_image %}
         <a href="/collections/all?vendor={{ vendor_name | url_encode }}" class="block border rounded-lg overflow-hidden shadow hover:shadow-lg transition">
-          <img src="{{ vendor_image | img_url: '400x400' }}" alt="{{ vendor_name }}" class="w-full h-auto object-cover">
+          <img src="{{ vendor_image | img_url: '400x400' }}" alt="{{ vendor_name }}" class="w-full h-auto object-cover" width="" height="">
         </a>
       {% endif %}
     {% endfor %}
