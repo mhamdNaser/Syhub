@@ -12,16 +12,16 @@
     "main": {
       "type": "product",
       "blocks": {
-        "title_bBQbQJ": {
-          "type": "title",
-          "settings": {}
-        },
         "vendor_DCGKh8": {
           "type": "vendor",
           "settings": {
             "vendor_image": "shopify://shop_images/Luliz_Logo.png",
             "vendor_type": "image"
           }
+        },
+        "title_bBQbQJ": {
+          "type": "title",
+          "settings": {}
         },
         "price_HrdwKV": {
           "type": "price",
@@ -57,8 +57,8 @@
         }
       },
       "block_order": [
-        "title_bBQbQJ",
         "vendor_DCGKh8",
+        "title_bBQbQJ",
         "price_HrdwKV",
         "sku_PzLWCN",
         "guarantee_wi6VJH",
