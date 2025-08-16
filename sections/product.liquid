@@ -180,6 +180,23 @@
                     {{ default_variant.sku }}
                   </span>
                 {% endif %}
+              {% when 'guarantee' %}
+                <div class="my-3 flex items-center gap-2">
+                  {% if block.settings.guarantee_title != blank %}
+                    <h1>{{ block.settings.guarantee_title }}</h1>
+                    <img
+                      src="{{ block.settings.guarantee_image | image_url: width: 50, height: 50  }}"
+                      alt="{{ block.settings.guarantee_title }}"
+                      class="h-10 w-10 object-cover rounded-full"
+                      width=""
+                      height=""
+                    >
+                  {% else %}
+                    <span class="text-xs text-gray-500">
+                      {{ block.settings.guarantee_description }}
+                    </span>
+                  {% endif %}
+                </div>
               {% else %}
 
             {% endcase %}
@@ -271,6 +288,28 @@
               "label": "Image"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "guarantee",
+      "name": "Guarantee",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "guarantee_title",
+          "label": "Guarantee Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "guarantee_image",
+          "label": "Guarantee Image"
+        },
+        {
+          "type": "richtext",
+          "id": "guarantee_description",
+          "label": "Guarantee Description"
         }
       ]
     },
