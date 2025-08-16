@@ -6,12 +6,12 @@
 {% enddoc %}
 
 <div class="header__menu relative" {{ block.shopify_attributes }}>
-  <ul class="flex items-center space-x-6">
+  <ul class="flex items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
         <li class="relative group">
           <button
-            class="flex items-center gap-x-1 text-sm text-gray-600 hover:text-black"
+            class="flex items-center gap-x-1 text-sm"
             id="list-toggle-{{ link.title | handleize }}"
           >
             {{ link.title }}
@@ -24,7 +24,7 @@
                 <li>
                   <a
                     href="{{ childlink.url }}"
-                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    class="block px-4 py-2"
                   >
                     {{ childlink.title }}
                   </a>
@@ -37,7 +37,7 @@
         <li>
           <a
             href="{{ link.url }}"
-            class="text-sm text-gray-600 hover:text-black"
+            class="text-sm"
           >
             {{ link.title }}
           </a>
