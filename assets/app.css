@@ -598,6 +598,9 @@
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
   }
+  .max-h-\[100px\] {
+    max-height: 100px;
+  }
   .max-h-\[480px\] {
     max-height: 480px;
   }
@@ -714,6 +717,9 @@
   }
   .max-w-7xl {
     max-width: var(--container-7xl);
+  }
+  .max-w-\[100px\] {
+    max-width: 100px;
   }
   .max-w-full {
     max-width: 100%;
