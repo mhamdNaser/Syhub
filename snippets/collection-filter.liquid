@@ -84,7 +84,6 @@
         class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
       >
         {% for value in color_array %}
-          {% assign bg_color = '#cccccc' %}
           {% for pair in color_map %}
             {% assign parts = pair | split: ':' %}
             {% if parts[0] == value %}
