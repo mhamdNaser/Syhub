@@ -983,6 +983,14 @@
     border-style: var(--tw-border-style);
     border-width: 4px;
   }
+  .border-e {
+    border-inline-end-style: var(--tw-border-style);
+    border-inline-end-width: 1px;
+  }
+  .border-e-0 {
+    border-inline-end-style: var(--tw-border-style);
+    border-inline-end-width: 0px;
+  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
