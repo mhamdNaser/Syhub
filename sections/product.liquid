@@ -50,8 +50,7 @@
 
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-6xl mx-auto">
-
-     {% comment %} {% render 'bread-crumb' %} {% endcomment %}
+    {% comment %} {% render 'bread-crumb' %} {% endcomment %}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias sticky top-0">
         <div>
@@ -177,11 +176,11 @@
                   </button>
                 </div>
               {% when 'sku' %}
-                {% if default_variant.sku != blank %}
-                  <span class="text-gray-400 text-sm" id="container-sku">
+                <span class="text-gray-400 text-sm" id="container-sku">
+                  {% if default_variant.sku != blank %}
                     {{ default_variant.sku }}
-                  </span>
-                {% endif %}
+                  {% endif %}
+                </span>
               {% else %}
 
             {% endcase %}
