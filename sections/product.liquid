@@ -112,9 +112,9 @@
                 <div class="my-3 flex items-center gap-2">
                   {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
                     <img
-                      src="{{ block.settings.vendor_image | image_url: width: 50, height: 50  }}"
+                      src="{{ block.settings.vendor_image | image_url: width: 100, height: 100  }}"
                       alt="{{ product.vendor }}"
-                      class="h-10 w-10 object-cover rounded-full"
+                      class="h-12 w-12 object-cover rounded-full"
                       width=""
                       height=""
                     >
@@ -189,7 +189,7 @@
                     <img
                       src="{{ block.settings.guarantee_image | image_url: width: 100, height: 100  }}"
                       alt="{{ block.settings.guarantee_title }}"
-                      class="h-10 w-10 object-cover rounded-full"
+                      class="h-12 w-12 object-cover rounded-full"
                       width=""
                       height=""
                     >
