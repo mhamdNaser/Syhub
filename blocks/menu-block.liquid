@@ -5,11 +5,56 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<div class="header__menu" {{ block.shopify_attributes }}>
-  {% for link in block.settings.menu.links %}
-    {{ link.title | link_to: link.url }}
-  {% endfor %}
+<div class="header__menu relative" {{ block.shopify_attributes }}>
+  <ul class="flex items-center space-x-6">
+    {% for link in block.settings.menu.links %}
+      {% if link.links != blank %}
+        <li class="relative group">
+          <button
+            class="flex items-center gap-x-1 text-sm text-gray-600 hover:text-black"
+            id="list-toggle-{{ link.title | handleize }}"
+          >
+            {{ link.title }}
+            {% render 'icon-chevron-down' %}
+          </button>
+          <div
+            class="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded w-48 z-20"
+          >
+            <ul class="py-1">
+              {% for childlink in link.links %}
+                <li>
+                  <a
+                    href="{{ childlink.url }}"
+                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    {{ childlink.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </li>
+      {% else %}
+        <li>
+          <a
+            href="{{ link.url }}"
+            class="text-sm text-gray-600 hover:text-black"
+          >
+            {{ link.title }}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </div>
+
+{% comment %}
+  <div class="header__menu" {{ block.shopify_attributes }}>
+    {% for link in block.settings.menu.links %}
+      {{ link.title | link_to: link.url }}
+    {% endfor %}
+  </div>
+{% endcomment %}
 
 {% schema %}
 {
