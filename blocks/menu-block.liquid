@@ -44,7 +44,7 @@
                       <ul class="mt-2 space-y-1">
                         {% for grandchild in childlink.links %}
                           <li>
-                            <a href="{{ grandchild.url }}" class="text-xs text-gray-600 hover:text-black block pl-2">
+                            <a href="{{ grandchild.url }}" class="flex text-xs text-gray-600 hover:text-black pl-2">
                               <img
                                 src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
                                 alt="{{ grandchild.title }}"
