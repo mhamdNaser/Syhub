@@ -22,9 +22,9 @@
             class="absolute top-full left-0 -translate-x-1/2 w-screen hidden group-hover:block bg-white shadow-lg z-20"
           >
             <div class="max-w-6xl mx-auto px-8 py-6">
-              <div class="grid grid-cols-4 gap-8 border-e-0 border-[#c42764]">
+              <div class="grid grid-cols-4 gap-8 border-e-0">
                 {% for childlink in link.links %}
-                  <div class="text-left">
+                  <div class="text-left border-[#c42764]">
                     <a href="{{ childlink.url }}" class="flex items-cente gap-x-2 mb-2">
                       {% if childlink.object.featured_image %}
                         <img
