@@ -53,26 +53,17 @@
   </div>
 
   <!-- Filter by Color (Variants) -->
-  {% assign color_map = settings.color_map | split: ',' %}
-
-  {% assign color_values = '' %}
-  {% for product in collection.all_products %}
-    {% for option in product.options_with_values %}
-      {% if option.name == 'Color' %}
-        {% for value in option.values %}
-          {% unless color_values contains value %}
-            {% assign color_values = color_values | append: value | append: ',' %}
-          {% endunless %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-
+  {% assign color_map_array = color_map | split: ',' %}
   {% assign color_array = color_values | split: ',' | uniq | compact %}
+
   {% if color_array.size > 0 %}
     <div x-data="{ open: false }" class="relative text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
-        Colors
+        <span>Color</span>
+        <div>
+          <span x-show="!open" class="icon-down">{%- render 'icon-chevron-down' -%}</span>
+          <span x-show="open" class="icon-up">{%- render 'icon-chevron-up' -%}</span>
+        </div>
       </button>
       <ul
         x-show="open"
@@ -81,10 +72,12 @@
       >
         {% for value in color_array %}
           {% assign bg_color = '#cccccc' %}
-          {% for pair in color_map %}
+          {% for pair in color_map_array %}
             {% assign parts = pair | split: ':' %}
-            {% if parts[0] == value %}
-              {% assign bg_color = parts[1] %}
+            {% assign key = parts[0] | strip %}
+            {% assign hex = parts[1] | strip %}
+            {% if key == value %}
+              {% assign bg_color = hex %}
             {% endif %}
           {% endfor %}
           <li>
@@ -99,7 +92,7 @@
                 }
                 window.location.href = window.location.pathname + '?' + searchParams.toString();
               "
-              class="block px-4 py-2 hover:bg-indigo-100"
+              class="block px-4 py-2 hover:bg-indigo-100 flex items-center gap-2"
             >
               <span class="h-[22px] w-[22px] rounded-full border" style="background-color: {{ bg_color }};"></span>
               {{ value }}
