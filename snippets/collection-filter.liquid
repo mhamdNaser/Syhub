@@ -72,7 +72,7 @@
   {% if color_array.size > 0 %}
     <div x-data="{ open: false }" class="relative text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
-        <span>Price</span>
+        <span>Colors</span>
         <div>
           <span x-show="!open" class="icon-down">{%- render 'icon-chevron-down' -%}</span>
           <span x-show="open" class="icon-up">{%- render 'icon-chevron-up' -%}</span>
