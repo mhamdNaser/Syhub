@@ -53,7 +53,8 @@
   </div>
 
   <!-- Filter by Color (Variants) -->
-  {% assign color_map_array = settings.color_map | split: ',' %}
+  {% comment %} {% assign color_map_array = color_map | split: ',' | compact %} {% endcomment %}
+  {% assign color_map_array = settings.color_map | split: ',' | compact %}
   {% assign color_array = color_values | split: ',' | uniq | compact %}
 
   {% if color_array.size > 0 %}
