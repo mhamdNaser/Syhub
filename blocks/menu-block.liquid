@@ -25,12 +25,12 @@
               <div class="grid grid-cols-4 gap-8 border-e-0 border-[#c42764]">
                 {% for childlink in link.links %}
                   <div class="text-left">
-                    <a href="{{ childlink.url }}" class="group block mb-2">
+                    <a href="{{ childlink.url }}" class="flex items-center mb-2">
                       {% if childlink.object.featured_image %}
                         <img
                           src="{{ childlink.object.featured_image | img_url: '100x100' }}"
                           alt="{{ childlink.title }}"
-                          class="w-8 h-8 object-cover rounded shadow-sm mb-2"
+                          class="w-6 h-6 object-cover rounded shadow-sm mb-2"
                           width=""
                           height=""
                         >
@@ -48,7 +48,7 @@
                               <img
                                 src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
                                 alt="{{ grandchild.title }}"
-                                class="w-8 h-8 object-cover rounded shadow-sm mb-2"
+                                class="w-6 h-6 object-cover rounded shadow-sm mb-2"
                                 width=""
                                 height=""
                               >
