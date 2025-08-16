@@ -5,10 +5,77 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<div class="header__menu" {{ block.shopify_attributes }}>
-  {% for link in block.settings.menu.links %}
-    {{ link.title | link_to: link.url }}
-  {% endfor %}
+<div class="header__menu relative" {{ block.shopify_attributes }}>
+  <ul class="flex items-center space-x-6 text-gray-600 hover:text-black">
+    {% for link in block.settings.menu.links %}
+      {% if link.links != blank %}
+        <li class="relative group">
+          <button
+            class="flex items-center gap-x-1 text-sm font-medium"
+            id="list-toggle-{{ link.title | handleize }}"
+          >
+            {{ link.title }}
+          </button>
+
+          <!-- Mega menu container -->
+          <div
+            class="absolute top-full translate-y-2 left-0 -translate-x-1/2 w-screen hidden group-hover:block bg-white shadow-lg z-20"
+          >
+            <div class="max-w-6xl mx-auto px-8 py-6">
+              <div class="grid grid-cols-4 gap-8">
+                {% for childlink in link.links %}
+                  <div class="text-left border-r border-[#c42764]">
+                    <a href="{{ childlink.url }}" class="flex items-cente gap-x-2 mb-2 font-semibold">
+                      {% if childlink.object.featured_image %}
+                        <img
+                          src="{{ childlink.object.featured_image | img_url: '100x100' }}"
+                          alt="{{ childlink.title }}"
+                          class="w-6 h-6 object-cover rounded shadow-sm mb-2"
+                          width=""
+                          height=""
+                        >
+                      {% endif %}
+                      <span class="block text-sm">
+                        {{ childlink.title }}
+                      </span>
+                    </a>
+
+                    {% if childlink.links != blank %}
+                      <ul class="mt-2 space-y-1">
+                        {% for grandchild in childlink.links %}
+                          <li>
+                            <a href="{{ grandchild.url }}" class="flex gap-x-2 text-xs">
+                              <img
+                                src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
+                                alt="{{ grandchild.title }}"
+                                class="w-6 h-6 object-cover rounded shadow-sm mb-2"
+                                width=""
+                                height=""
+                              >
+                              {{ grandchild.title }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </li>
+      {% else %}
+        <li>
+          <a
+            href="{{ link.url }}"
+            class="text-sm"
+          >
+            {{ link.title }}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 </div>
 
 {% schema %}

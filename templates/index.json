@@ -10,7 +10,12 @@
 {
   "sections": {
     "main": {
-      "type": "",
+      "type": "main",
+      "settings": {}
+    },
+    "section_banner_jenBMr": {
+      "type": "section-banner",
+      "name": "Image Banner",
       "settings": {}
     },
     "section_featured_collection_YLh4zD": {
@@ -46,6 +51,7 @@
   },
   "order": [
     "main",
+    "section_banner_jenBMr",
     "section_featured_collection_YLh4zD"
   ]
 }

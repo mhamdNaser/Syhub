@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
-    sku.textContent = ''
     if (sku) {
+      sku.textContent = ''
       sku.textContent = selectedVariant.sku
     }
 

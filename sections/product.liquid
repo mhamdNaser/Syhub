@@ -50,6 +50,8 @@
 
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-6xl mx-auto">
+
+     {% render 'bread-crumb' %}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias sticky top-0">
         <div>
@@ -86,15 +88,16 @@
 
       <div class="product--information px-4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <div class="flex justify-start gap-4 text-sm">
-            <span class=" text-gray-400">
+          <div class="flex justify-start gap-4 text-sm  text-gray-400">
+            <span>
               {{ section.blocks.settings.vendor_name | default: product.vendor }}
             </span>
             <button
               type="button"
               onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
-              class=""
+              class="flex gap-2 items-center hover:text-black"
             >
+              {% render 'icon-share' %}
               Share
             </button>
           </div>

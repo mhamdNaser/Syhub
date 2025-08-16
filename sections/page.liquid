@@ -4,10 +4,12 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/page
 {% endcomment %}
-
-<h1>{{ page.title }}</h1>
-
-{{ page.content }}
+<div class="flex flex-col item-center">
+  <h1 class="text-3xl font-medium text-center my-6 md:my-12">{{ page.title }}</h1>
+  <div class="max-w-6xl mx-auto">
+    {{ page.content }}
+  </div>
+</div>
 
 {% schema %}
 {
