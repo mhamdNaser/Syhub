@@ -19,7 +19,8 @@
         "vendor_DCGKh8": {
           "type": "vendor",
           "settings": {
-            "vendor_type": "text"
+            "vendor_image": "shopify://shop_images/Luliz_Logo.png",
+            "vendor_type": "image"
           }
         },
         "price_HrdwKV": {
