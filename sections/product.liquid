@@ -88,8 +88,8 @@
 
       <div class="product--information px-4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <div class="flex justify-start gap-4 text-sm">
-            <span class=" text-gray-400">
+          <div class="flex justify-start gap-4 text-sm  text-gray-400">
+            <span>
               {{ section.blocks.settings.vendor_name | default: product.vendor }}
             </span>
             <button
