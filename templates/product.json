@@ -26,6 +26,10 @@
           "type": "price",
           "settings": {}
         },
+        "sku_PzLWCN": {
+          "type": "sku",
+          "settings": {}
+        },
         "product_variant_hcWX3J": {
           "type": "product-variant",
           "settings": {}
@@ -47,6 +51,7 @@
         "title_bBQbQJ",
         "vendor_DCGKh8",
         "price_HrdwKV",
+        "sku_PzLWCN",
         "product_variant_hcWX3J",
         "quantity_bQNMJy",
         "description_3zXyTq",
