@@ -15,7 +15,7 @@
         "vendor_DCGKh8": {
           "type": "vendor",
           "settings": {
-            "vendor_image": "shopify://shop_images/Luliz_Logo.png",
+            "vendor_image": "shopify://shop_images/logo.png",
             "vendor_type": "image"
           }
         },
