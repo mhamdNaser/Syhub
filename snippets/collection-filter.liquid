@@ -77,7 +77,8 @@
           <span x-show="!open" class="icon-down">{%- render 'icon-chevron-down' -%}</span>
           <span x-show="open" class="icon-up">{%- render 'icon-chevron-up' -%}</span>
         </div>
-        {{ color_array }}
+        <script> console.log({{ color_array }})</script>
+        
       </button>
       <ul
         x-show="open"
