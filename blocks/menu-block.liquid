@@ -16,25 +16,26 @@
           >
             {{ link.title }}
           </button>
+
           <!-- Mega menu container -->
           <div
-            class="absolute top-full mt-2 left-0 -translate-x-1/2 w-screen hidden group-hover:block bg-white shadow-lg z-20"
+            class="absolute top-full left-0 w-screen hidden group-hover:block bg-white shadow-lg z-20"
           >
             <div class="max-w-6xl mx-auto px-8 py-6">
               <div class="grid grid-cols-4 gap-8">
                 {% for childlink in link.links %}
-                  <div class="text-center">
-                    <a href="{{ childlink.url }}" class="group block">
+                  <div class="text-left">
+                    <a href="{{ childlink.url }}" class="group block mb-2">
                       {% if childlink.object.featured_image %}
                         <img
-                          src="{{ childlink.object.featured_image | img_url: '200x200' }}"
+                          src="{{ childlink.object.featured_image | img_url: '100x100' }}"
                           alt="{{ childlink.title }}"
-                          class="w-20 h-20 mx-auto object-cover rounded shadow-sm"
+                          class="w-16 h-16 object-cover rounded shadow-sm mb-2"
                           width=""
                           height=""
                         >
                       {% endif %}
-                      <span class="mt-2 block text-sm text-gray-700 group-hover:text-black font-medium">
+                      <span class="block text-sm text-gray-800 group-hover:text-black font-semibold">
                         {{ childlink.title }}
                       </span>
                     </a>
@@ -43,7 +44,7 @@
                       <ul class="mt-2 space-y-1">
                         {% for grandchild in childlink.links %}
                           <li>
-                            <a href="{{ grandchild.url }}" class="text-xs text-gray-500 hover:text-black block">
+                            <a href="{{ grandchild.url }}" class="text-xs text-gray-600 hover:text-black block pl-2">
                               {{ grandchild.title }}
                             </a>
                           </li>
