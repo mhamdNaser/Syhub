@@ -15,10 +15,9 @@
             id="list-toggle-{{ link.title | handleize }}"
           >
             {{ link.title }}
-            {% render 'icon-chevron-down' %}
           </button>
           <div
-            class="absolute top-0 w-screen hidden group-hover:block bg-white shadow-lg rounded z-20"
+            class="absolute top-0 left-0 w-screen hidden group-hover:block bg-white shadow-lg rounded z-20"
           >
             <ul class="py-1">
               {% for childlink in link.links %}
