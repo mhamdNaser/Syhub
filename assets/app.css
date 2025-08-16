@@ -754,6 +754,10 @@
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .translate-y-2 {
+    --tw-translate-y: calc(var(--spacing) * 2);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .translate-y-\[-2px\] {
     --tw-translate-y: -2px;
     translate: var(--tw-translate-x) var(--tw-translate-y);
