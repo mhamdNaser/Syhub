@@ -104,19 +104,6 @@
             </div>
           </div>
           <div class="bg-white border-0 p-4" id="product-information_{{ product.title }}">
-            <div class="flex justify-start gap-4 text-sm  text-gray-400">
-              <span>
-                {{ section.blocks.settings.vendor_name | default: product.vendor }}
-              </span>
-              <button
-                type="button"
-                onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
-                class="flex gap-2 items-center hover:text-black"
-              >
-                {% render 'icon-share' %}
-                Share
-              </button>
-            </div>
             <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
             {% for block in section.blocks %}
@@ -124,6 +111,19 @@
                 {% when 'title' %}
                   <div class="my-3 font-extrabold">
                     <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
+                  </div>
+                  <div class="flex justify-start gap-4 text-sm  text-gray-400">
+                    <span>
+                      {{ section.blocks.settings.vendor_name | default: product.vendor }}
+                    </span>
+                    <button
+                      type="button"
+                      onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
+                      class="flex gap-2 items-center hover:text-black"
+                    >
+                      {% render 'icon-share' %}
+                      Share
+                    </button>
                   </div>
                 {% when 'vendor' %}
                   <div class="my-3 flex justify-center items-center gap-2 p-6">
