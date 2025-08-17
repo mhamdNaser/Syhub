@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = selectedVariant.sku
     }
 
-    const allcolorButtons = document.querySelectorAll('[class^="color-swatch_"]');
+    const allcolorButtons = document.querySelectorAll('.color-swatch');
     allcolorButtons.forEach(btnbor => {
       btnbor.classList.remove('border', 'border-[#c42764]');
     });
