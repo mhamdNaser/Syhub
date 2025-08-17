@@ -25,11 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = selectedVariant.sku
     }
 
-    const allcolorButtons = document.querySelectorAll('.color-swatch');
-    allcolorButtons.forEach(btnbor => {
-      btnbor.classList.remove('border', 'border-[#c42764]');
-    });
-
     // if (variantQuantity) {
     //   console.log("Updating quantity to:", selectedVariant);
     //   variantQuantity.textContent = selectedVariant.inventory_quantity;
@@ -93,6 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // عند الضغط على زر لون
   colorButtons.forEach(btn => {
     btn.addEventListener("click", function () {
+      const allcolorButtons = document.querySelectorAll('.color-swatch');
+      allcolorButtons.forEach(btnbor => {
+        btnbor.classList.remove('border', 'border-[#c42764]');
+      });
       const optionIndex = parseInt(btn.dataset.optionIndex);
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
