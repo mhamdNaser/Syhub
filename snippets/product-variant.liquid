@@ -22,14 +22,13 @@
                 id="color-swatch_{{ value.id | escape }}"
                 class="w-8 h-8 rounded-full cursor-pointer bg-center bg-cover color-swatch"
                 style="
-                  background-image: url('{{ value.swatch.image.src | img_url }};
-                  {% comment %} {% if display_type == 'color' %}
-                    background-color: {{ value.swatch.color | escape }};
-                  {% else %}
+                  {% if display_type == 'image' %}
                     background-image: url('{{ value.swatch.image | img_url }}');
                     background-size: cover;
                     background-repeat: no-repeat;
-                  {% endif %} {% endcomment %}
+                  {% else %}
+                    background-color: {{ value.swatch.color | escape }};
+                  {% endif %}
                 "
                 data-value="{{ value | escape }}"
                 data-option-index="{{ optionIndex }}"
