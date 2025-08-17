@@ -91,14 +91,14 @@
             <div>
               <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
             </div>
-            <div class="flex justify-start gap-4 text-sm  text-gray-400 hover:text-[#c42764] hover:font-semibold">
+            <div class="flex justify-start gap-4 text-sm  text-gray-400">
               <span>
                 {{ section.blocks.settings.vendor_name | default: product.vendor }}
               </span>
               <button
                 type="button"
                 onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
-                class="flex gap-2 items-center hover:text-black"
+                class="flex gap-2 items-center hover:text-[#c42764] hover:font-semibold"
               >
                 {% render 'icon-share' %}
                 Share
