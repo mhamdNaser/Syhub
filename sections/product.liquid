@@ -47,7 +47,6 @@
 
 {% assign default_variant = product.selected_or_first_available_variant %}
 {% assign slected_variant = blank %}
-{% assign nowproduct = blank %}
 
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-7xl mx-auto">
@@ -88,7 +87,6 @@
 
       <div class="product--information px-4 md:max-w-2/5">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          {{ nowproduct = product }}
           <div class="flex flex-col mb-3" id="product-title_{{ product.title }}">
             <h1 class="text-3xl text-gray-900 font-extrabold uppercase">{{ product.title }}</h1>
             <div class="flex justify-start gap-4 text-sm  text-gray-400">
@@ -157,9 +155,11 @@
                   </div>
                 {% when 'product-variant' %}
                   {% render 'product-variant', product: product, display_type: block.settings.variant_display_type %}
-                  {% comment %} <div id="variant-quantity" data-quantity="{{ default_variant.inventory_quantity }}">
-                    {{ default_variant.inventory_quantity }}
-                  </div> {% endcomment %}
+                  {% comment %}
+                    <div id="variant-quantity" data-quantity="{{ default_variant.inventory_quantity }}">
+                      {{ default_variant.inventory_quantity }}
+                    </div>
+                  {% endcomment %}
                 {% when 'quantity' %}
                   <div class="my-3">
                     <label for="Quantity-{{ section.id }}">Quantity</label>
@@ -262,8 +262,8 @@
   </div>
 </div>
 <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-<script>
-  var product = {{ nowproduct }}
+<script id="product-data" type="application/json">
+  {{ product | json }}
 </script>
 <script src="{{ 'product-variant-switcher.js' | asset_url }}" defer></script>
 

@@ -13,12 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const variantQuantity = document.getElementById("variant-quantity")
 
 
+  const product = JSON.parse(document.getElementById("product-data").textContent);
+  console.log(product); // كل بيانات البرودكت
+
+
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
       return v.options.every((opt, i) => opt === optionValues[i]);
     });
 
-    console.log(product);
 
     if (!selectedVariant) return;
 
