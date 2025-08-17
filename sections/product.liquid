@@ -85,123 +85,143 @@
         </div>
       </div>
 
-      <div class="product--information px-4 bg-white border-0 md:max-w-2/5">
+      <div class="product--information px-4 md:max-w-2/5">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-          <div class="flex justify-start gap-4 text-sm  text-gray-400">
-            <span>
-              {{ section.blocks.settings.vendor_name | default: product.vendor }}
-            </span>
-            <button
-              type="button"
-              onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
-              class="flex gap-2 items-center hover:text-black"
-            >
-              {% render 'icon-share' %}
-              Share
-            </button>
+          <div class="flex flex-col" id="product-title_{{ product.title }}">
+            <div class="my-3">
+              <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
+            </div>
+            <div class="flex justify-start gap-4 text-sm  text-gray-400">
+              <span>
+                {{ section.blocks.settings.vendor_name | default: product.vendor }}
+              </span>
+              <button
+                type="button"
+                onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
+                class="flex gap-2 items-center hover:text-black"
+              >
+                {% render 'icon-share' %}
+                Share
+              </button>
+            </div>
           </div>
-          <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
+          <div class="bg-white border-0 p-4" id="product-information_{{ product.title }}">
+            <div class="flex justify-start gap-4 text-sm  text-gray-400">
+              <span>
+                {{ section.blocks.settings.vendor_name | default: product.vendor }}
+              </span>
+              <button
+                type="button"
+                onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
+                class="flex gap-2 items-center hover:text-black"
+              >
+                {% render 'icon-share' %}
+                Share
+              </button>
+            </div>
+            <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
-          {% for block in section.blocks %}
-            {% case block.type %}
-              {% when 'title' %}
-                <div class="my-3">
-                  <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
-                </div>
-              {% when 'vendor' %}
-                <div class="my-3 flex justify-center items-center gap-2 p-6">
-                  {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
-                    <img
-                      src="{{ block.settings.vendor_image | image_url }}"
-                      alt="{{ product.vendor }}"
-                      class="object-contain max-w-24 max-h-24"
-                      width=""
-                      height=""
-                    >
-                  {% else %}
-                    <span class="text-xs text-gray-500">
-                      {{ block.settings.vendor_name | default: product.vendor }}
-                    </span>
-                  {% endif %}
-                </div>
-
-              {% when 'price' %}
-                <div class="my-3" id="price-{{ section.id }}">
-                  <span class="text-base text-gray-500 line-through">
-                    {{- default_variant.compare_at_price | money -}}
-                  </span>
-                  <span class="text-lg text-gray-900">{{ default_variant.price | money }}</span>
-
-                  {% if default_variant.price < default_variant.compare_at_price %}
-                    <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
-                  {% endif %}
-                </div>
-              {% when 'product-variant' %}
-                {% render 'product-variant', product: product %}
-
-              {% when 'quantity' %}
-                <div class="my-3">
-                  <label for="Quantity-{{ section.id }}">Quantity</label>
-
-                  <div class="my-2">
-                    <input
-                      type="number"
-                      name="quantity"
-                      id="Quantity-{{ section.id }}"
-                      value="1"
-                      min="1"
-                      class="w-full border px-3 py-3"
-                    >
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'title' %}
+                  <div class="my-3">
+                    <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
                   </div>
-                </div>
-              {% when 'description' %}
-                <div class="my-3">
-                  <p class="text-gray-700">{{ product.description }}</p>
-                </div>
-
-              {% when 'checkout_buttons' %}
-                <div class="my-3">
-                  <button
-                    type="submit"
-                    name="add"
-                    class="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
-                    {% if default_variant.available == false %}
-                      disabled
-                    {% endif %}
-                  >
-                    {% if default_variant.available == false %}
-                      Sold out
+                {% when 'vendor' %}
+                  <div class="my-3 flex justify-center items-center gap-2 p-6">
+                    {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
+                      <img
+                        src="{{ block.settings.vendor_image | image_url }}"
+                        alt="{{ product.vendor }}"
+                        class="object-contain max-w-36 max-h-36"
+                        width=""
+                        height=""
+                      >
                     {% else %}
-                      Add to cart
+                      <span class="text-xs text-gray-500">
+                        {{ block.settings.vendor_name | default: product.vendor }}
+                      </span>
                     {% endif %}
-                  </button>
-                </div>
-              {% when 'sku' %}
-                {% if default_variant.sku != blank %}
-                  <span class="text-gray-400 text-sm" id="container-sku">
-                    {{ default_variant.sku }}
-                  </span>
-                {% endif %}
-              {% when 'guarantee' %}
-                <div class="my-3 flex flex-col justify-center items-center gap-y-4 border-neutral-400 shadow-md bg-neutral-50 px-4 py-3">
-                  {% if block.settings.guarantee_title != blank %}
-                    <h1>{{ block.settings.guarantee_title }}</h1>
-                    <img
-                      src="{{ block.settings.guarantee_image | image_url: width: 100, height: 100  }}"
-                      alt="{{ block.settings.guarantee_title }}"
-                      class="h-24 w-24 object-cover rounded-full"
-                      width=""
-                      height=""
+                  </div>
+
+                {% when 'price' %}
+                  <div class="my-3" id="price-{{ section.id }}">
+                    <span class="text-base text-gray-500 line-through">
+                      {{- default_variant.compare_at_price | money -}}
+                    </span>
+                    <span class="text-lg text-gray-900">{{ default_variant.price | money }}</span>
+
+                    {% if default_variant.price < default_variant.compare_at_price %}
+                      <span class="px-5 py-1 text-sm font-bold bg-red-500 rounded-full text-white mx-4">Sale</span>
+                    {% endif %}
+                  </div>
+                {% when 'product-variant' %}
+                  {% render 'product-variant', product: product %}
+
+                {% when 'quantity' %}
+                  <div class="my-3">
+                    <label for="Quantity-{{ section.id }}">Quantity</label>
+
+                    <div class="my-2">
+                      <input
+                        type="number"
+                        name="quantity"
+                        id="Quantity-{{ section.id }}"
+                        value="1"
+                        min="1"
+                        class="w-full border px-3 py-3"
+                      >
+                    </div>
+                  </div>
+                {% when 'description' %}
+                  <div class="my-3">
+                    <p class="text-gray-700">{{ product.description }}</p>
+                  </div>
+
+                {% when 'checkout_buttons' %}
+                  <div class="my-3">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-700 rounded-sm my-2"
+                      {% if default_variant.available == false %}
+                        disabled
+                      {% endif %}
                     >
-                    <span class="text-xs text-gray-500 max-w-5xl">
-                      {{ block.settings.guarantee_description }}
+                      {% if default_variant.available == false %}
+                        Sold out
+                      {% else %}
+                        Add to cart
+                      {% endif %}
+                    </button>
+                  </div>
+                {% when 'sku' %}
+                  {% if default_variant.sku != blank %}
+                    <span class="text-gray-400 text-sm" id="container-sku">
+                      {{ default_variant.sku }}
                     </span>
                   {% endif %}
-                </div>
-              {% else %}
+                {% when 'guarantee' %}
+                  <div class="my-3 flex flex-col justify-center items-center gap-y-4 border-neutral-400 shadow-md bg-neutral-50 px-4 py-3">
+                    {% if block.settings.guarantee_title != blank %}
+                      <h1>{{ block.settings.guarantee_title }}</h1>
+                      <img
+                        src="{{ block.settings.guarantee_image | image_url: width: 100, height: 100  }}"
+                        alt="{{ block.settings.guarantee_title }}"
+                        class="h-24 w-24 object-cover rounded-full"
+                        width=""
+                        height=""
+                      >
+                      <span class="text-xs text-gray-500 max-w-5xl">
+                        {{ block.settings.guarantee_description }}
+                      </span>
+                    {% endif %}
+                  </div>
+                {% else %}
 
-            {% endcase %}
-          {% endfor %}
+              {% endcase %}
+            {% endfor %}
+          </div>
         {% endform %}
       </div>
     </div>
