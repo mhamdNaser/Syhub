@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = selectedVariant.sku
     }
 
+
+
     // if (variantQuantity) {
     //   console.log("Updating quantity to:", selectedVariant);
     //   variantQuantity.textContent = selectedVariant.inventory_quantity;
@@ -104,6 +106,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
       selects[optionIndex].value = btn.dataset.value;
+      updateVariant(selectsArray);
+    });
+  });
+
+  // عند عمل hover على زر اللون
+  colorButtons.forEach(btn => {
+    btn.addEventListener("mouseenter", function () {
+      const optionIndex = parseInt(btn.dataset.optionIndex);
+      const selectsArray = Array.from(selects).map(s => s.value);
+      selectsArray[optionIndex] = btn.dataset.value;
       updateVariant(selectsArray);
     });
   });
