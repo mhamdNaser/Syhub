@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (variantQuantity) {
-      console.log("Updating quantity to:", selectedVariant.inventory_quantity);
+      console.log("Updating quantity to:", selectedVariant);
       variantQuantity.textContent = selectedVariant.inventory_quantity;
       variantQuantity.setAttribute("data-quantity", selectedVariant.inventory_quantity);
     }
