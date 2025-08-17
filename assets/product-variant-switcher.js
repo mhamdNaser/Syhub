@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return v.options.every((opt, i) => opt === optionValues[i]);
     });
 
+    console.log(variantData);
+
     if (!selectedVariant) return;
 
     if (sku) {
