@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = selectedVariant.sku
     }
 
-    if (variantQuantity) {
-      console.log("Updating quantity to:", selectedVariant);
-      variantQuantity.textContent = selectedVariant.inventory_quantity;
-      variantQuantity.setAttribute("data-quantity", selectedVariant.inventory_quantity);
-    }
+    // if (variantQuantity) {
+    //   console.log("Updating quantity to:", selectedVariant);
+    //   variantQuantity.textContent = selectedVariant.inventory_quantity;
+    //   variantQuantity.setAttribute("data-quantity", selectedVariant.inventory_quantity);
+    // }
 
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
