@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return v.options.every((opt, i) => opt === optionValues[i]);
     });
 
-    console.log(variantData);
+    console.log(product);
 
     if (!selectedVariant) return;
 
