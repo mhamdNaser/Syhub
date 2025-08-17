@@ -17,7 +17,7 @@
         %}
           <div class="flex gap-2 my-2 items-center">
             {% for value in option.values %}
-              {{ display_type }}
+              
               <button
                 type="button"
                 id="color-swatch_{{ value.id | escape }}"
@@ -34,7 +34,7 @@
                 data-value="{{ value | escape }}"
                 data-option-index="{{ optionIndex }}"
                 aria-label="{{ option.name }}: {{ value }}"
-              ></button>
+              >{{ display_type }}</button>
             {% endfor %}
           </div>
 
