@@ -1704,6 +1704,14 @@
       }
     }
   }
+  .hover\:font-semibold {
+    &:hover {
+      @media (hover: hover) {
+        --tw-font-weight: var(--font-weight-semibold);
+        font-weight: var(--font-weight-semibold);
+      }
+    }
+  }
   .hover\:text-\[\#c42764\] {
     &:hover {
       @media (hover: hover) {
