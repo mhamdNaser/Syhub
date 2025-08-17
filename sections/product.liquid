@@ -52,7 +52,7 @@
   <div class="max-w-7xl mx-auto">
     {% render 'bread-crumb' %}
     <div class="flex md:flex-row flex-col gap-6 relative overflow-visible">
-      <div class="product--medias sticky top-0 md:max-w-3/5">
+      <div class="product--medias sticky top-0 md:w-3/5">
         <div class="mb-3 bg-white shadow-2xl">
           {% assign first_media = product.media | first %}
           <div id="main-product-image" class="overflow-hidden" data-current-media-id="{{ first_media.id }}">
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <div class="product--information px-4 md:max-w-2/5">
+      <div class="product--information px-4 md:w-2/5">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <div class="flex flex-col mb-3" id="product-title_{{ product.title }}">
             <h1 class="text-3xl text-gray-900 font-extrabold uppercase">{{ product.title }}</h1>
