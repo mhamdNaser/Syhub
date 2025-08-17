@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
   const sku = document.getElementById("container-sku")
+  const variantQuantity = document.getElementById("variant-quantity")
 
 
   function updateVariant(optionValues) {
@@ -22,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sku) {
       sku.textContent = ''
       sku.textContent = selectedVariant.sku
+    }
+
+    if (variantQuantity) {
+      variantQuantity.textContent = selectedVariant.variantQuantity
     }
 
     // إزالة البوردر من كل الثامبنيلز

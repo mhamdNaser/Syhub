@@ -22,7 +22,7 @@
                 class="w-8 h-8 rounded-full cursor-pointer bg-center bg-cover color-swatch"
                 style="
                   {% if display_type == 'image' %}
-                    background-image: url('{{ value.variant.featured_media | img_url }}');
+                    background-image: url('{{ value.variant.featured_media | img_url  }}');
                     background-size: cover;
                     background-repeat: no-repeat;
                   {% else %}
