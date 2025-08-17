@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   const product = JSON.parse(document.getElementById("product-data").textContent);
-  console.log(product.variants); // كل بيانات البرودكت
+  console.log(product.variants.first); // كل بيانات البرودكت
 
 
   function updateVariant(optionValues) {
