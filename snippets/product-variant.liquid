@@ -4,7 +4,6 @@
       {% for option in product.options_with_values %}
         {% assign optionIndex = forloop.index0 %}
         {% assign option_name_downcase = option.name | downcase %}
-        {% assign display_type = block.settings.variant_display_type %}
 
         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
           {{ option.name }}

@@ -154,7 +154,7 @@
                     {% endif %}
                   </div>
                 {% when 'product-variant' %}
-                  {% render 'product-variant', product: product %}
+                  {% render 'product-variant', product: product , display_type: block.settings.variant_display_type %}
 
                 {% when 'quantity' %}
                   <div class="my-3">
