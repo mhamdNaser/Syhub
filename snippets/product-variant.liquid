@@ -25,7 +25,9 @@
                   {% if display_type == 'color' %}
                     background-color: {{ value.swatch.color | escape }};
                   {% else %}
-                    background-image: url('{{ value.swatch.image | img_url: '100x100' }}');
+                    background-image: url('{{ value.swatch.image | img_url }}');
+                    background-size: cover;
+                    background-repeat: no-repeat;
                   {% endif %}
                 "
                 data-value="{{ value | escape }}"
