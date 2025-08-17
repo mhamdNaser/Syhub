@@ -155,7 +155,7 @@
                   </div>
                 {% when 'product-variant' %}
                   {% render 'product-variant', product: product, display_type: block.settings.variant_display_type %}
-                  <div id="variant-quantity">
+                  <div id="variant-quantity" data-quantity="{{ default_variant.inventory_quantity }}">
                     {{ default_variant.inventory_quantity }}
                   </div>
                 {% when 'quantity' %}

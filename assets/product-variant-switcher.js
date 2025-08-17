@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (variantQuantity) {
-      sku.textContent = ''
+      variantQuantity.textContent = ''
       variantQuantity.textContent = selectedVariant.inventory_quantity
     }
 
