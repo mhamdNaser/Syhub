@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // عند الضغط على زر لون
   colorButtons.forEach(btn => {
     btn.addEventListener("click", function () {
+      colorButtons.classList.remove('border', 'border-[#c42764]');
       const optionIndex = parseInt(btn.dataset.optionIndex);
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
@@ -102,9 +103,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // عند عمل hover على زر اللون
   colorButtons.forEach(btn => {
     btn.addEventListener("mouseenter", function () {
+      colorButtons.classList.remove('border', 'border-[#c42764]');
       const optionIndex = parseInt(btn.dataset.optionIndex);
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
+      btn.classList.add('border', 'border-[#c42764]');
       updateVariant(selectsArray);
     });
   });
