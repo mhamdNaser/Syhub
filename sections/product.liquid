@@ -67,24 +67,8 @@
               </div>
             {% endfor %}
           </div>
-
-          <div class="thumbnail-slider block md:hidden">
-            <div class="swiper thumbnails-swiper">
-              <div class="swiper-wrapper">
-                {% for media in product.media offset: 1 %}
-                  <div class="swiper-slide">
-                    <button class="thumbnail-container_{{ media.id }} shadow-md">
-                      {% render 'product-media', media: media, height: '180px', width: '180px', mediaId: media.id %}
-                    </button>
-                  </div>
-                {% endfor %}
-              </div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          </div>
         </div>
-        <div class="thumbnail-slider hidden md:block">
+        <div class="thumbnail-slider hidden md:block bg-white md:bg-none">
           <div class="swiper thumbnails-swiper">
             <div class="swiper-wrapper">
               {% for media in product.media offset: 1 %}
