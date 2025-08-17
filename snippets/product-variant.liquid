@@ -4,6 +4,7 @@
       {% for option in product.options_with_values %}
         {% assign optionIndex = forloop.index0 %}
         {% assign option_name_downcase = option.name | downcase %}
+        {% assign display_type = block.settings.variant_display_type %}
 
         <label class="block mb-2 font-bold" for="Option-{{ section.id }}-{{ optionIndex }}">
           {{ option.name }}
@@ -20,7 +21,12 @@
                 type="button"
                 id="color-swatch_{{ value.id | escape }}"
                 class="w-8 h-8 rounded-full cursor-pointer color-swatch"
-                style="background-color: {{ value.swatch.color | escape }};"
+                style="
+                  {% if display_type == 'color' %} background-color: {{ value.swatch.color | escape }};
+                   {% else %}
+                    background-image: {{ value.swatch.image | img_url  }} ;
+                  {% endif %}
+                "
                 data-value="{{ value | escape }}"
                 data-option-index="{{ optionIndex }}"
                 aria-label="{{ option.name }}: {{ value }}"
