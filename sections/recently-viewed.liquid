@@ -1,0 +1,22 @@
+<div class="recently-viewed max-w-7xl mx-auto py-8">
+  <h2 class="text-2xl font-bold mb-4">Recently Viewed</h2>
+  <div id="recently-viewed-products" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+
+    if (viewedProducts.length > 0) {
+      let container = document.getElementById('recently-viewed-products');
+
+      viewedProducts.forEach(function (handle) {
+        fetch(`/products/${handle}?view=card`)
+          .then((response) => response.text())
+          .then((data) => {
+            container.insertAdjacentHTML('beforeend', data);
+          });
+      });
+    }
+  });
+</script>

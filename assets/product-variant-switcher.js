@@ -10,11 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
   const sku = document.getElementById("container-sku")
-  const variantQuantity = document.getElementById("variant-quantity")
-
-
-  const product = JSON.parse(document.getElementById("product-data").textContent);
-  console.log(product.inventory_quantity); // كل بيانات البرودكت
 
 
   function updateVariant(optionValues) {
@@ -29,12 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = ''
       sku.textContent = selectedVariant.sku
     }
-
-    // if (variantQuantity) {
-    //   console.log("Updating quantity to:", selectedVariant);
-    //   variantQuantity.textContent = selectedVariant.inventory_quantity;
-    //   variantQuantity.setAttribute("data-quantity", selectedVariant.inventory_quantity);
-    // }
 
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
