@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (variantQuantity) {
-      variantQuantity.textContent = selectedVariant.quantity
+      sku.textContent = ''
+      variantQuantity.textContent = selectedVariant.inventory_quantity
     }
 
     // إزالة البوردر من كل الثامبنيلز
