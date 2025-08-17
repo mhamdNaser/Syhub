@@ -104,6 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // عند عمل hover على زر اللون
   colorButtons.forEach(btn => {
     btn.addEventListener("mouseenter", function () {
+      const allcolorButtons = document.querySelectorAll('.color-swatch');
+      allcolorButtons.forEach(btnbor => {
+        btnbor.classList.remove('border', 'border-[#c42764]');
+      });
       const optionIndex = parseInt(btn.dataset.optionIndex);
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
