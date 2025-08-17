@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
       selects[optionIndex].value = btn.dataset.value;
+      btn.classList.add('border', 'border-[#c42764]');
       updateVariant(selectsArray);
     });
   });
