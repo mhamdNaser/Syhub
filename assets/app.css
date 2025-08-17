@@ -699,6 +699,12 @@
   .max-w-1\/4 {
     max-width: calc(1/4 * 100%);
   }
+  .max-w-2 {
+    max-width: calc(var(--spacing) * 2);
+  }
+  .max-w-2\/5 {
+    max-width: calc(2/5 * 100%);
+  }
   .max-w-2xl {
     max-width: var(--container-2xl);
   }
@@ -707,6 +713,9 @@
   }
   .max-w-3\/4 {
     max-width: calc(3/4 * 100%);
+  }
+  .max-w-3\/5 {
+    max-width: calc(3/5 * 100%);
   }
   .max-w-3xl {
     max-width: var(--container-3xl);
