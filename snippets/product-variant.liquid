@@ -24,7 +24,7 @@
                 style="
                   {% if display_type == 'color' %} background-color: {{ value.swatch.color | escape }};
                    {% else %}
-                    background-image: {{ value.swatch.image | img_url  }} ;
+                    background-image: {{ value.swatch.image | img_url: width: 100, height: 100  }} ;
                   {% endif %}
                 "
                 data-value="{{ value | escape }}"
