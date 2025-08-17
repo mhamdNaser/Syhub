@@ -12,15 +12,16 @@
     "main": {
       "type": "product",
       "blocks": {
-        "title_bBQbQJ": {
-          "type": "title",
-          "settings": {}
-        },
         "vendor_DCGKh8": {
           "type": "vendor",
           "settings": {
-            "vendor_type": "text"
+            "vendor_image": "shopify://shop_images/logo.png",
+            "vendor_type": "image"
           }
+        },
+        "title_bBQbQJ": {
+          "type": "title",
+          "settings": {}
         },
         "price_HrdwKV": {
           "type": "price",
@@ -29,6 +30,14 @@
         "sku_PzLWCN": {
           "type": "sku",
           "settings": {}
+        },
+        "guarantee_wi6VJH": {
+          "type": "guarantee",
+          "settings": {
+            "guarantee_title": "Your Guarantee",
+            "guarantee_image": "shopify://shop_images/brandvip_original_badge_430x_92b88575-32b3-45a5-9d1a-86c511156d2f.avif",
+            "guarantee_description": "<p>✔️ 100% Original Product – Cash on Delivery – Easy Returns</p>"
+          }
         },
         "product_variant_hcWX3J": {
           "type": "product-variant",
@@ -48,10 +57,11 @@
         }
       },
       "block_order": [
-        "title_bBQbQJ",
         "vendor_DCGKh8",
+        "title_bBQbQJ",
         "price_HrdwKV",
         "sku_PzLWCN",
+        "guarantee_wi6VJH",
         "product_variant_hcWX3J",
         "quantity_bQNMJy",
         "description_3zXyTq",

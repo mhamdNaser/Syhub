@@ -50,20 +50,19 @@
 
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-7xl mx-auto">
-
      {% render 'bread-crumb' %}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="product--medias sticky top-0">
-        <div>
+        <div class="mb-3">
           {% assign first_media = product.media | first %}
-          <div id="main-product-image" class="overflow-hidden p-2" data-current-media-id="{{ first_media.id }}">
+          <div id="main-product-image" class="overflow-hidden" data-current-media-id="{{ first_media.id }}">
             {% render 'product-media', media: first_media, height: '220px', width: '220px' %}
           </div>
 
           <!-- صور الميديا المخفية -->
           <div id="all-variant-media" class="hidden">
             {% for media in product.media %}
-              <div data-media-id="{{ media.id }}" class="overflow-hidden p-2">
+              <div data-media-id="{{ media.id }}" class="overflow-hidden">
                 {% render 'product-media', media: media, mediaId: media.id, height: '220px', width: '220px' %}
               </div>
             {% endfor %}
@@ -86,7 +85,7 @@
         </div>
       </div>
 
-      <div class="product--information px-4">
+      <div class="product--information px-4 bg-white border-0">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <div class="flex justify-start gap-4 text-sm  text-gray-400">
             <span>
@@ -110,12 +109,12 @@
                   <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
                 </div>
               {% when 'vendor' %}
-                <div class="my-3 flex items-center gap-2">
+                <div class="my-3 flex justify-center items-center gap-2 p-6">
                   {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
                     <img
-                      src="{{ block.settings.vendor_image | image_url: width: 50, height: 50  }}"
+                      src="{{ block.settings.vendor_image | image_url: width: 300, height: 300 }}"
                       alt="{{ product.vendor }}"
-                      class="h-10 w-10 object-cover rounded-full"
+                      class="object-contain max-w-24 max-h-24"
                       width=""
                       height=""
                     >
@@ -183,6 +182,22 @@
                     {{ default_variant.sku }}
                   </span>
                 {% endif %}
+              {% when 'guarantee' %}
+                <div class="my-3 flex flex-col justify-center items-center gap-y-4 border-neutral-400 shadow-md bg-neutral-50 px-4 py-3">
+                  {% if block.settings.guarantee_title != blank %}
+                    <h1>{{ block.settings.guarantee_title }}</h1>
+                    <img
+                      src="{{ block.settings.guarantee_image | image_url: width: 100, height: 100  }}"
+                      alt="{{ block.settings.guarantee_title }}"
+                      class="h-24 w-24 object-cover rounded-full"
+                      width=""
+                      height=""
+                    >
+                    <span class="text-xs text-gray-500 max-w-5xl">
+                      {{ block.settings.guarantee_description }}
+                    </span>
+                  {% endif %}
+                </div>
               {% else %}
 
             {% endcase %}
@@ -274,6 +289,28 @@
               "label": "Image"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "guarantee",
+      "name": "Guarantee",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "guarantee_title",
+          "label": "Guarantee Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "guarantee_image",
+          "label": "Guarantee Image"
+        },
+        {
+          "type": "richtext",
+          "id": "guarantee_description",
+          "label": "Guarantee Description"
         }
       ]
     },
