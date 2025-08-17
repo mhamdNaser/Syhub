@@ -17,12 +17,14 @@
         %}
           <div class="flex gap-2 my-2 items-center">
             {% for value in option.values %}
-              
               <button
                 type="button"
                 id="color-swatch_{{ value.id | escape }}"
                 class="w-8 h-8 rounded-full cursor-pointer color-swatch"
-                style="background-image: url('{{ value.swatch.image | img_url }};
+                style="
+                  background-image: url('{{ value.swatch.image | img_url }};
+                  background-size: cover;
+                  background-repeat: no-repeat;
                   {% comment %} {% if display_type == 'color' %}
                     background-color: {{ value.swatch.color | escape }};
                   {% else %}
