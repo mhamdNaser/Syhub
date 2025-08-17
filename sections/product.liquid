@@ -51,7 +51,7 @@
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-7xl mx-auto">
      {% render 'bread-crumb' %}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 w-3/4">
       <div class="product--medias sticky top-0">
         <div class="mb-3">
           {% assign first_media = product.media | first %}
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <div class="product--information px-4 bg-white border-0">
+      <div class="product--information px-4 bg-white border-0 w-1/4">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <div class="flex justify-start gap-4 text-sm  text-gray-400">
             <span>
