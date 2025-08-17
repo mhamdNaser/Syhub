@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = selectedVariant.sku
     }
 
-    colorButtons.classList.remove('border', 'border-[#c42764]');
+    const allcolorButtons = document.querySelectorAll('[class^="color-swatch_"]');
+    allcolorButtons.forEach(btnbor => {
+      btnbor.classList.remove('border', 'border-[#c42764]');
+    });
 
     // if (variantQuantity) {
     //   console.log("Updating quantity to:", selectedVariant);
