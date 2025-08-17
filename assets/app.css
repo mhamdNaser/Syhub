@@ -1934,9 +1934,19 @@
       width: 100%;
     }
   }
+  .md\:max-w-2\/5 {
+    @media (width >= 48rem) {
+      max-width: calc(2/5 * 100%);
+    }
+  }
   .md\:max-w-3\/4 {
     @media (width >= 48rem) {
       max-width: calc(3/4 * 100%);
+    }
+  }
+  .md\:max-w-3\/5 {
+    @media (width >= 48rem) {
+      max-width: calc(3/5 * 100%);
     }
   }
   .md\:max-w-7xl {
