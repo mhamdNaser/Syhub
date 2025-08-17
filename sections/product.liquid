@@ -51,7 +51,7 @@
 <div x-data="{ productModalOpen: false }">
   <div class="max-w-7xl mx-auto">
      {% render 'bread-crumb' %}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="flex md:flex-row flex-col gap-3">
       <div class="product--medias sticky top-0 ">
         <div class="mb-3 bg-white">
           {% assign first_media = product.media | first %}
