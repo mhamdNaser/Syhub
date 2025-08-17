@@ -108,6 +108,22 @@
 
             {% for block in section.blocks %}
               {% case block.type %}
+                {% when 'vendor' %}
+                  <div class="my-3 flex justify-center items-center gap-2 p-6">
+                    {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
+                      <img
+                        src="{{ block.settings.vendor_image | image_url }}"
+                        alt="{{ product.vendor }}"
+                        class="object-contain max-w-36 max-h-36"
+                        width=""
+                        height=""
+                      >
+                    {% else %}
+                      <span class="text-xs text-gray-500">
+                        {{ block.settings.vendor_name | default: product.vendor }}
+                      </span>
+                    {% endif %}
+                  </div>
                 {% when 'title' %}
                   <div class="my-3 font-extrabold">
                     <h1 class="text-3xl text-gray-900 uppercase">{{ product.title }}</h1>
@@ -124,22 +140,6 @@
                       {% render 'icon-share' %}
                       Share
                     </button>
-                  </div>
-                {% when 'vendor' %}
-                  <div class="my-3 flex justify-center items-center gap-2 p-6">
-                    {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
-                      <img
-                        src="{{ block.settings.vendor_image | image_url }}"
-                        alt="{{ product.vendor }}"
-                        class="object-contain max-w-36 max-h-36"
-                        width=""
-                        height=""
-                      >
-                    {% else %}
-                      <span class="text-xs text-gray-500">
-                        {{ block.settings.vendor_name | default: product.vendor }}
-                      </span>
-                    {% endif %}
                   </div>
 
                 {% when 'price' %}
