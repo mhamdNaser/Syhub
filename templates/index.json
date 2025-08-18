@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "main",
+      "type": "template",
       "settings": {}
     },
     "section_banner_jenBMr": {
@@ -50,7 +50,7 @@
     }
   },
   "order": [
-    "main",
+    "template",
     "section_banner_jenBMr",
     "section_featured_collection_YLh4zD"
   ]
