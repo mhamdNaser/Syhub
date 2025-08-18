@@ -1,0 +1,30 @@
+<div class="same-vendor-products max-w-7xl mx-auto py-8">
+  <h2 class="text-2xl font-bold mb-4">More from {{ product.vendor }}</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    {% assign vendor_products = collections.all.products | where: "vendor", product.vendor %}
+    {% for p in vendor_products %}
+      {% if p.id != product.id %}
+        <div class="product-card border p-4">
+          <a href="{{ p.url }}">
+            <img src="{{ p.featured_image | img_url: 'medium' }}" alt="{{ p.title }}" class="w-full mb-2"/>
+            <h3 class="text-lg font-semibold mb-1">{{ p.title }}</h3>
+            <p class="text-gray-700">{{ p.price | money }}</p>
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Same Vendor Products",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Same Vendor Products",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

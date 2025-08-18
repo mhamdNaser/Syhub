@@ -41,7 +41,9 @@
         },
         "product_variant_hcWX3J": {
           "type": "product-variant",
-          "settings": {}
+          "settings": {
+            "variant_display_type": "color"
+          }
         },
         "quantity_bQNMJy": {
           "type": "quantity",
@@ -77,10 +79,16 @@
         "item_in_row": 4,
         "show_pagination_row": true
       }
+    },
+    "recently_viewed_VMKhAU": {
+      "type": "recently-viewed",
+      "name": "Recently Viewed",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "product_recommendations_mCUedn"
+    "product_recommendations_mCUedn",
+    "recently_viewed_VMKhAU"
   ]
 }
