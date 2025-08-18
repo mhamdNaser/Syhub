@@ -1,5 +1,5 @@
 <div class="recently-viewed max-w-7xl mx-auto py-8">
-  <h2 class="text-2xl font-bold mb-4">Recently Viewed</h2>
+  <h2 class="text-2xl font-bold mb-6 text-center">Recently Viewed</h2>
   
   <!-- Swiper wrapper -->
   <div class="swiper recently-viewed-swiper">
@@ -8,15 +8,13 @@
     </div>
 
     <!-- Navigation -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next text-gray-700 hover:text-gray-900"></div>
+    <div class="swiper-button-prev text-gray-700 hover:text-gray-900"></div>
     
     <!-- Pagination (اختياري) -->
     <div class="swiper-pagination mt-4"></div>
   </div>
 </div>
-
-<script src="{{ 'recently-viewed.js' | asset_url }}" defer></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -31,11 +29,18 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(product => {
           const productHtml = `
             <div class="swiper-slide">
-              <div class="product-card border p-4">
-                <a href="/products/${product.handle}">
-                  <img src="${product.images[0]}" alt="${product.title}" class="w-full h-60 mb-2"/>
-                  <h3 class="text-lg font-semibold mb-1">${product.title}</h3>
-                  <p class="text-gray-700">${(product.price / 100).toFixed(2)} USD</p>
+              <div class="product-card border rounded-lg p-4 shadow-sm hover:shadow-lg transition-all h-[350px] flex flex-col">
+                <a href="/products/${product.handle}" class="flex flex-col h-full">
+                  <div class="flex-shrink-0 mb-4">
+                    <img src="${product.images[0]}" alt="${product.title}" class="w-full h-40 object-cover rounded-md"/>
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-lg font-semibold mb-2 line-clamp-2">${product.title}</h3>
+                    <p class="text-gray-700 font-medium">${(product.price / 100).toFixed(2)} USD</p>
+                  </div>
+                  <div class="mt-4">
+                    <button class="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition-colors">View Product</button>
+                  </div>
                 </a>
               </div>
             </div>
@@ -75,16 +80,3 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 </script>
-
-{% schema %}
-{
-  "name": "Recently Viewed Products",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Recently Viewed",
-      "category": "Products"
-    }
-  ]
-}
-{% endschema %}
