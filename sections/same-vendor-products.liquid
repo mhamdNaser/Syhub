@@ -10,7 +10,7 @@
           <div class="swiper-slide">
             <div class="product-card border p-4">
               <a href="{{ p.url }}">
-                <img src="{{ p.featured_image | img_url: 'medium' }}" alt="{{ p.title }}" class="w-full mb-2"/>
+                <img src="{{ p.featured_image | img_url: 'medium' }}" alt="{{ p.title }}" class="w-full h-60 mb-2" width="" height="">
                 <h3 class="text-lg font-semibold mb-1">{{ p.title }}</h3>
                 <p class="text-gray-700">{{ p.price | money }}</p>
               </a>
@@ -28,10 +28,6 @@
     <div class="swiper-pagination mt-4"></div>
   </div>
 </div>
-
-<!-- Swiper JS & CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
