@@ -80,7 +80,7 @@
     }
   },
   "order": [
-    "template",
+    "main",
     "product_recommendations_mCUedn"
   ]
 }
