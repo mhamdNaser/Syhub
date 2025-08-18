@@ -13,7 +13,7 @@
       // إزالة التكرارات
       let uniqueProducts = [...new Set(viewedProducts)];
 
-      // عرض فقط آخر 6 منتجات، والأحدث بالأول
+      // عرض فقط آخر 6 منتجات
       uniqueProducts.slice(0, 6).forEach(function (handle) {
         fetch(`/products/${handle}?view=card`)
           .then((response) => response.text())
@@ -22,7 +22,7 @@
           });
       });
     } else {
-      // إخفاء السكشن إذا ما في منتجات محفوظة
+      // إخفاء السكشن إذا ما في منتجات
       document.querySelector('.recently-viewed').style.display = 'none';
     }
   });
