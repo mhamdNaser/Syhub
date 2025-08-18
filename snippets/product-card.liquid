@@ -181,13 +181,13 @@
                 <div class="flex flex-col h-full">
                   <button
                     type="button"
-                    class="increment w-8 bg-white text-[#c42764] font-bold rounded-tr hover:bg-[#c42764] hover:text-white"
+                    class="increment w-8 bg-white text-[#c42764] font-bold hover:bg-[#c42764] hover:text-white"
                   >
                     +
                   </button>
                   <button
                     type="button"
-                    class="decrement w-8 bg-white text-[#c42764] font-bold rounded-br hover:bg-[#c42764] hover:text-white"
+                    class="decrement w-8 bg-white text-[#c42764] font-bold hover:bg-[#c42764] hover:text-white"
                   >
                     −
                   </button>
@@ -198,7 +198,7 @@
               <button
                 type="button"
                 name="add"
-                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
+                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
                 @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
               >
                 {% render 'icon-cart' %}
@@ -207,7 +207,7 @@
               <button
                 type="submit"
                 name="add"
-                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
+                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
               >
                 {% render 'icon-cart' %}
               </button>
