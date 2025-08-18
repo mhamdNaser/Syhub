@@ -1,35 +1,82 @@
 <div class="recently-viewed max-w-7xl mx-auto py-8">
-  <h2 class="text-2xl font-bold mb-4">Recently Viewed</h2>
-  <div id="recently-viewed-products" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+  <h2 class="text-2xl font-bold mb-6 text-center">Recently Viewed</h2>
+  
+  <!-- Swiper wrapper -->
+  <div class="swiper recently-viewed-swiper">
+    <div class="swiper-wrapper" id="recently-viewed-products">
+      <!-- الكاردات ستضاف بالـ JS -->
+    </div>
+
+    <!-- Navigation -->
+    <div class="swiper-button-next text-gray-700 hover:text-gray-900"></div>
+    <div class="swiper-button-prev text-gray-700 hover:text-gray-900"></div>
+    
+    <!-- Pagination (اختياري) -->
+    <div class="swiper-pagination mt-4"></div>
+  </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+document.addEventListener('DOMContentLoaded', function () {
+  let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+  const container = document.getElementById('recently-viewed-products');
 
-    if (viewedProducts.length > 0) {
-      let container = document.getElementById('recently-viewed-products');
+  if (viewedProducts.length > 0) {
+    let uniqueProducts = [...new Set(viewedProducts)];
+    uniqueProducts.slice(0, 6).forEach(function (handle) {
+      fetch(`/products/${handle}.js`)
+        .then(response => response.json())
+        .then(product => {
+          const productHtml = `
+            <div class="swiper-slide">
+              <div class="product-card bg-white rounded-lg p-4 shadow-sm hover:shadow-lg transition-all h-[350px] flex flex-col">
+                <a href="/products/${product.handle}" class="flex flex-col h-full">
+                  <div class="flex-shrink-0 mb-4">
+                    <img src="${product.images[0]}" alt="${product.title}" class="w-full h-40 object-cover rounded-md"/>
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="text-lg font-semibold mb-2 line-clamp-2">${product.title}</h3>
+                    <p class="text-gray-700 font-medium">${(product.price / 100).toFixed(2)} USD</p>
+                  </div>
+                  <div class="mt-4">
+                    <button class="w-full bg-[#c42764] text-white py-2 rounded-md hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors">View Product</button>
+                  </div>
+                </a>
+              </div>
+            </div>
+          `;
+          container.insertAdjacentHTML('beforeend', productHtml);
+        })
+        .catch(err => console.error('Error fetching product:', handle, err));
+    });
 
-      viewedProducts.forEach(function (handle) {
-        fetch(`/products/${handle}?view=card`)
-          .then((response) => response.text())
-          .then((data) => {
-            container.insertAdjacentHTML('beforeend', data);
-          });
-      });
-    }
-  });
+    // بعد تحميل كل الكاردات، نعمل تهيئة الـ Swiper
+    const checkSwiper = setInterval(() => {
+      if (container.children.length > 0) {
+        new Swiper('.recently-viewed-swiper', {
+          slidesPerView: 2,
+          spaceBetween: 20,
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, spaceBetween: 24 },
+            1024: { slidesPerView: 4, spaceBetween: 24 },
+          }
+        });
+        clearInterval(checkSwiper);
+      }
+    }, 100);
+
+  } else {
+    document.querySelector('.recently-viewed').style.display = 'none';
+  }
+});
 </script>
-
-{% schema %}
-{
-  "name": "Recently Viewed Products",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Recently Viewed",
-      "category": "Products"
-    }
-  ]
-}
-{% endschema %}
