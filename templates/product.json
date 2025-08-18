@@ -84,11 +84,17 @@
       "type": "recently-viewed",
       "name": "Recently Viewed",
       "settings": {}
+    },
+    "same_vendor_products_pBJqd6": {
+      "type": "same-vendor-products",
+      "name": "Same Vendor Products",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "product_recommendations_mCUedn",
-    "recently_viewed_VMKhAU"
+    "recently_viewed_VMKhAU",
+    "same_vendor_products_pBJqd6"
   ]
 }
