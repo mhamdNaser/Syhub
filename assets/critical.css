@@ -33,6 +33,21 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type=number] {
   -moz-appearance: textfield; /* Firefox */
+  
+  /* اللون الزهري */
+  background-color: #f2bed2; 
+  border: 1px solid #c42764;
+  color: #c42764;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+/* عند التركيز */
+input[type=number]:focus {
+  outline: none;
+  border-color: #c42764;
+  box-shadow: 0 0 5px #f2bed2;
 }
