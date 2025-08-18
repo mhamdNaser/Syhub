@@ -168,29 +168,30 @@
 
           {% else %}
             {%- if input_field -%}
-              <div class="quantity-wrapper flex items-center gap-2">
-                <button
-                  type="button"
-                  class="decrement w-10 h-10 bg-gray-200 text-xl font-bold rounded hover:bg-gray-300"
-                >
-                  −
-                </button>
-
+              <div class="quantity-wrapper flex items-center">
                 <input
                   type="number"
                   id="Quantity-{{ product.variants.first.id }}"
                   name="quantity"
                   value="1"
                   min="1"
-                  class="quantity-input w-16 h-10 border text-center rounded"
+                  class="quantity-input w-20 h-12 border text-center rounded-l"
                 >
 
-                <button
-                  type="button"
-                  class="increment w-10 h-10 bg-gray-200 text-xl font-bold rounded hover:bg-gray-300"
-                >
-                  +
-                </button>
+                <div class="flex flex-col">
+                  <button
+                    type="button"
+                    class="increment w-8 h-6 bg-[#f2bed2] text-gray-800 font-bold rounded-tr hover:bg-[#c42764] hover:text-white"
+                  >
+                    +
+                  </button>
+                  <button
+                    type="button"
+                    class="decrement w-8 h-6 bg-[#f2bed2] text-gray-800 font-bold rounded-br hover:bg-[#c42764] hover:text-white"
+                  >
+                    −
+                  </button>
+                </div>
               </div>
             {%- endif -%}
             {%- if cart_drawer -%}
@@ -301,17 +302,17 @@
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const wrapper = document.querySelector(".quantity-wrapper");
-    const input = wrapper.querySelector(".quantity-input");
-    const incrementBtn = wrapper.querySelector(".increment");
-    const decrementBtn = wrapper.querySelector(".decrement");
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.querySelector('.quantity-wrapper');
+    const input = wrapper.querySelector('.quantity-input');
+    const incrementBtn = wrapper.querySelector('.increment');
+    const decrementBtn = wrapper.querySelector('.decrement');
 
-    incrementBtn.addEventListener("click", () => {
+    incrementBtn.addEventListener('click', () => {
       input.stepUp();
     });
 
-    decrementBtn.addEventListener("click", () => {
+    decrementBtn.addEventListener('click', () => {
       if (input.value > input.min) {
         input.stepDown();
       }
