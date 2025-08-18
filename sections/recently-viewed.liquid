@@ -1,42 +1,81 @@
 <div class="recently-viewed max-w-7xl mx-auto py-8">
   <h2 class="text-2xl font-bold mb-4">Recently Viewed</h2>
-  <div id="recently-viewed-products" class="grid grid-cols-2 md:grid-cols-4 gap-6"></div>
+  
+  <!-- Swiper wrapper -->
+  <div class="swiper recently-viewed-swiper">
+    <div class="swiper-wrapper" id="recently-viewed-products">
+      <!-- الكاردات ستضاف بالـ JS -->
+    </div>
+
+    <!-- Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    
+    <!-- Pagination (اختياري) -->
+    <div class="swiper-pagination mt-4"></div>
+  </div>
 </div>
 
 <script src="{{ 'recently-viewed.js' | asset_url }}" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+document.addEventListener('DOMContentLoaded', function () {
+  let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+  const container = document.getElementById('recently-viewed-products');
 
-    if (viewedProducts.length > 0) {
-      let container = document.getElementById('recently-viewed-products');
-
-      // إزالة التكرارات
-      let uniqueProducts = [...new Set(viewedProducts)];
-
-      // عرض فقط آخر 6 منتجات
-      uniqueProducts.slice(0, 6).forEach(function (handle) {
-        fetch(`/products/${handle}.js`)
-          .then((response) => response.json())
-          .then((product) => {
-            const productHtml = `
-            <div class="product-card border p-4">
-              <a href="/products/${product.handle}">
-                <img src="${product.images[0]}" alt="${product.title}" class="w-full mb-2"/>
-                <h3 class="text-lg font-semibold mb-1">${product.title}</h3>
-                <p class="text-gray-700">${(product.price / 100).toFixed(2)} USD</p>
-              </a>
+  if (viewedProducts.length > 0) {
+    let uniqueProducts = [...new Set(viewedProducts)];
+    uniqueProducts.slice(0, 6).forEach(function (handle) {
+      fetch(`/products/${handle}.js`)
+        .then(response => response.json())
+        .then(product => {
+          const productHtml = `
+            <div class="swiper-slide">
+              <div class="product-card border p-4">
+                <a href="/products/${product.handle}">
+                  <img src="${product.images[0]}" alt="${product.title}" class="w-full mb-2"/>
+                  <h3 class="text-lg font-semibold mb-1">${product.title}</h3>
+                  <p class="text-gray-700">${(product.price / 100).toFixed(2)} USD</p>
+                </a>
+              </div>
             </div>
           `;
-            container.insertAdjacentHTML('beforeend', productHtml);
-          })
-          .catch((err) => console.error('Error fetching product:', handle, err));
-      });
-    } else {
-      // إخفاء السكشن إذا ما في منتجات
-      document.querySelector('.recently-viewed').style.display = 'none';
-    }
-  });
+          container.insertAdjacentHTML('beforeend', productHtml);
+        })
+        .catch(err => console.error('Error fetching product:', handle, err));
+    });
+
+    // بعد تحميل كل الكاردات، نعمل تهيئة الـ Swiper
+    const checkSwiper = setInterval(() => {
+      if (container.children.length > 0) {
+        new Swiper('.recently-viewed-swiper', {
+          slidesPerView: 2,
+          spaceBetween: 20,
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, spaceBetween: 24 },
+            1024: { slidesPerView: 4, spaceBetween: 24 },
+          }
+        });
+        clearInterval(checkSwiper);
+      }
+    }, 100);
+
+  } else {
+    document.querySelector('.recently-viewed').style.display = 'none';
+  }
+});
 </script>
 
 {% schema %}
