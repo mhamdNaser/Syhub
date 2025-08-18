@@ -309,12 +309,14 @@
     const decrementBtn = wrapper.querySelector('.decrement');
 
     incrementBtn.addEventListener('click', () => {
-      input.stepUp();
+      let currentValue = parseInt(input.value) || 1;
+      input.value = currentValue + 1;
     });
 
     decrementBtn.addEventListener('click', () => {
-      if (input.value > input.min) {
-        input.stepDown();
+      let currentValue = parseInt(input.value) || 1;
+      if (currentValue > parseInt(input.min)) {
+        input.value = currentValue - 1;
       }
     });
   });
