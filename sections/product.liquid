@@ -205,9 +205,7 @@
                   </div>
 
                 {% when 'sku' %}
-                  {% if default_variant.sku != blank %}
-                    <span class="text-gray-400 text-sm" id="container-sku">{{ default_variant.sku }}</span>
-                  {% endif %}
+                  <span class="text-gray-400 text-sm" id="container-sku">{{ default_variant.sku }}</span>
 
                 {% when 'guarantee' %}
                   <div class="my-3 flex flex-col justify-center items-center gap-y-4 border-neutral-400 shadow-md bg-neutral-50 px-4 py-3">
