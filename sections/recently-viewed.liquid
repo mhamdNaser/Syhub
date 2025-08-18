@@ -28,9 +28,9 @@
           .then((response) => response.json())
           .then((product) => {
             const productHtml = `
-            <div class="swiper-slide">
+            <div class="swiper-slide lg:w-60">
               <div class="product-card bg-white rounded-lg p-4 shadow-sm hover:shadow-lg transition-all h-[350px] flex flex-col">
-                <a href="/products/${product.handle}" class="flex flex-col h-full lg:w-60">
+                <a href="/products/${product.handle}" class="flex flex-col h-full">
                   <div class="flex-shrink-0 mb-4">
                     <img src="${product.images[0]}" alt="${product.title}" class="w-full h-40 object-cover rounded-md"/>
                   </div>
