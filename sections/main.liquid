@@ -1,19 +1,16 @@
 <div>
-    {% content_for 'blocks' %}
+  {% content_for 'blocks' %}
 </div>
 
 {% schema %}
+{
+  "name": "Main",
+  "settings": [],
+  "blocks": [
     {
-        "name": "main",
-        "class": "",
-        "settings": [
-        
-        ],
-        "blocks": [
-            {
-                "type": "default",
-                "name": "Block"
-            }
-        ]
+      "type": "default",
+      "name": "Block"
     }
+  ]
+}
 {% endschema %}
