@@ -157,7 +157,7 @@
       </p>
 
       {% if add_to_cart_button %}
-        <div class="flex justify-between items-center border border-[#c42764] mt-4 text-xs">
+        <div class="flex justify-between border border-[#c42764] mt-4 text-xs">
           {% if show_preorder and product.variants.first.inventory_policy == 'continue' %}
             <button
               class="w-full h-full py-3 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] rounded-sm"
@@ -198,7 +198,7 @@
               <button
                 type="button"
                 name="add"
-                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
+                class="flex justify-center items-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
                 @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
               >
                 {% render 'icon-cart' %}
@@ -207,7 +207,7 @@
               <button
                 type="submit"
                 name="add"
-                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
+                class="flex justify-center items-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
               >
                 {% render 'icon-cart' %}
               </button>
