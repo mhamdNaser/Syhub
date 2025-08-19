@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
   const sku = document.getElementById("container-sku")
+  const product = JSON.parse(document.querySelector('script[type="application/json"][data-product-json]').textContent);
 
 
   function updateVariant(optionValues) {
