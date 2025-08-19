@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   toggles.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      e.stopPropagation(); // 🔥 مهم جداً عشان ما يقفل القائمة مباشرة
+      e.stopPropagation(); // 🔥 ضروري حتى ما يتسكر على طول
 
       const targetId = btn.getAttribute("data-target");
       const menu = document.getElementById(targetId);
@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
 // document.addEventListener("DOMContentLoaded", function () {
 //   /** -------------------------------
 //    * Burger menu open/close (mobile)
