@@ -116,10 +116,10 @@
             {{ link.title }}
             {% render 'icon-chevron-down' %}
           </button>
-          <div class="w-full border-t bg-white text-white z-10" id="menu-{{ link.title | handleize }}">
+          <div class="w-full border-t bg-white text-[#c42764] z-10" id="menu-{{ link.title | handleize }}">
             <ul>
               {% for childlink in link.links %}
-                <li class="hover:bg-gray-200 hover:text-[#c42764]">
+                <li class="hover:bg-[#c42764] hover:text-white">
                   <a class="block py-2 px-8" href="{{ childlink.url }}">
                     {{ childlink.title }}
                   </a>
