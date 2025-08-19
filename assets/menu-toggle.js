@@ -7,21 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeBtns = document.querySelectorAll(".mobile-navbar-close");
   const backdrops = document.querySelectorAll(".mobile-navbar-backdrop");
 
-  // open
   mobileBurger.forEach((btn) => {
     btn.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
     });
   });
 
-  // close
   closeBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       mobileMenu.classList.add("hidden");
     });
   });
 
-  // backdrop click
   backdrops.forEach((bg) => {
     bg.addEventListener("click", () => {
       mobileMenu.classList.add("hidden");
@@ -29,43 +26,49 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /** -------------------------------
-   * Sub-menus (desktop + mobile)
+   * Sub-menus (desktop hover + mobile click)
    * ------------------------------- */
   const toggles = document.querySelectorAll(".js-toggle-menu");
 
   toggles.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = btn.getAttribute("data-target");
-      const menu = document.getElementById(targetId);
+    const targetId = btn.getAttribute("data-target");
+    const menu = document.getElementById(targetId);
+    if (!menu) return;
 
-      if (!menu) return;
-
-      // إغلاق باقي القوائم
-      document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
-        if (openMenu !== menu) {
-          openMenu.classList.add("hidden");
-          openMenu.classList.remove("js-menu-open");
-        }
-      });
-
-      // toggle للقائمة الحالية
-      menu.classList.toggle("hidden");
-      menu.classList.toggle("js-menu-open");
+    // عرض القائمة عند الهوفر على الزر
+    btn.addEventListener("mouseenter", () => {
+      menu.classList.remove("hidden");
+      menu.classList.add("js-menu-open");
     });
-  });
 
-  // إغلاق عند الضغط خارج القوائم الفرعية
-  document.addEventListener("click", (e) => {
-    if (
-      !e.target.closest(".js-toggle-menu") &&
-      !e.target.closest(".js-menu-open")
-    ) {
-      document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
-        openMenu.classList.add("hidden");
-        openMenu.classList.remove("js-menu-open");
-      });
-    }
+    // إخفاء القائمة عند الخروج من الزر أو القائمة
+    btn.addEventListener("mouseleave", () => {
+      setTimeout(() => {
+        if (!menu.matches(':hover') && !btn.matches(':hover')) {
+          menu.classList.add("hidden");
+          menu.classList.remove("js-menu-open");
+        }
+      }, 200); // تأخير بسيط لتجنب الإغلاق الفوري
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      menu.classList.add("hidden");
+      menu.classList.remove("js-menu-open");
+    });
+
+    menu.addEventListener("mouseenter", () => {
+      menu.classList.remove("hidden");
+      menu.classList.add("js-menu-open");
+    });
+
+    // للـ mobile، ابقِ الكليك موجود إذا أحببت
+    btn.addEventListener("click", (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("js-menu-open");
+      }
+    });
   });
 
   /** -------------------------------
