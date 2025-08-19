@@ -9,9 +9,9 @@
   <ul class="flex items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
-        <li class="relative group">
+        <li class="relative">
           <button
-            class="flex items-center gap-x-1 text-sm font-medium"
+            class="flex items-center gap-x-1 text-sm font-medium group"
             id="list-toggle-{{ link.title | handleize }}"
           >
             {{ link.title }}
