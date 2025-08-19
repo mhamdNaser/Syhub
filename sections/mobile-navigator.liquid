@@ -117,6 +117,20 @@
   </nav>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const burger = document.querySelector(".mobile-footer-burger");
+  const menu   = document.querySelector(".mobile-footer-menu");
+
+  if (burger && menu) {
+    burger.addEventListener("click", () => {
+      console.log("Burger clicked ✅"); // للتأكد بالكونسول
+      menu.classList.toggle("hidden");
+    });
+  }
+});
+</script>
+
 
 {% schema %}
 {
