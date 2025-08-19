@@ -1,7 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const variantData = [];
+  var variantData = [];
   const scriptTag = document.querySelector('variant-selector script[type="application/json"]');
   const colorButtons = document.querySelectorAll(".color-swatch");
   const selects = document.querySelectorAll('variant-selector select');
