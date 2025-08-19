@@ -1,8 +1,8 @@
-{% liquid 
+{% liquid
   if section.settings.menu.links == blank
-      assign main_menu_linklist = linklists[section.settings.menu].links
+    assign main_menu_linklist = linklists[section.settings.menu].links
   else
-      assign main_menu_linklist = section.settings.menu.links
+    assign main_menu_linklist = section.settings.menu.links
   endif
 %}
 
@@ -28,23 +28,27 @@
       <span class="text-xs">Cart</span>
     </a>
     <!-- User Icon -->
-    {% comment %} <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-home' %}
-      <span class="text-xs">home</span>
-    </a> {% endcomment %}
+    {% comment %}
+      <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
+        {% render 'icon-home' %}
+        <span class="text-xs">home</span>
+      </a>
+    {% endcomment %}
 
-    {% comment %} {%- if shop.customer_accounts_enabled -%}
-      <a href="#" class="flex flex-col items-center hover:text-white">
-        {% render 'icon-user' %}
-        <span class="text-xs">Account</span>
-      </a>
-    {%- else -%}
-      <!-- Favorites Icon -->
-      <a href="#" class="flex flex-col items-center hover:text-white">
-        {% render 'icon-favorite' %}
-        <span class="text-xs">Favorites</span>
-      </a>
-    {% endif %} {% endcomment %}
+    {% comment %}
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="#" class="flex flex-col items-center hover:text-white">
+          {% render 'icon-user' %}
+          <span class="text-xs">Account</span>
+        </a>
+      {%- else -%}
+        <!-- Favorites Icon -->
+        <a href="#" class="flex flex-col items-center hover:text-white">
+          {% render 'icon-favorite' %}
+          <span class="text-xs">Favorites</span>
+        </a>
+      {% endif %}
+    {% endcomment %}
 
     <!-- space in center bar -->
     <span class="flex flex-col items-center hover:text-white"> </span>
@@ -61,10 +65,12 @@
     </div>
 
     <!-- Cart Icon -->
-    {% comment %} <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-cart' %}
-      <span class="text-xs">Cart</span>
-    </a> {% endcomment %}
+    {% comment %}
+      <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
+        {% render 'icon-cart' %}
+        <span class="text-xs">Cart</span>
+      </a>
+    {% endcomment %}
 
     <!-- Search Icon -->
     <div class="flex flex-col items-center hover:text-white">
@@ -96,10 +102,9 @@
       {% if link.links != blank %}
         <li class="relative w-full">
           <button
-            class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
-            id="list-toggle-{{ link.title }}"
+            class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 js-toggle-menu {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
             data-target="menu-{{ link.title | handleize }}"
-            href="{{ link.url }}"
+            type="button"
           >
             {{ link.title }}
             {% render 'icon-chevron-down' %}

@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (scriptTag) {
     variantData = JSON.parse(scriptTag.textContent);
-    // تابع شغلك هون عادي
   } else {
     console.warn("⚠️ not avaialble script[type='application/json'] داخل variant-selector");
   }
