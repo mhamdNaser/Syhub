@@ -86,7 +86,10 @@
             {{ link.title }}
             {% render 'icon-chevron-down' %}
           </button>
-          <div class="w-full border-t bg-white text-[#c42764] z-10 hidden" id="footer-menu-{{ link.title | handleize }}">
+          <div
+            class="w-full border-t bg-white text-[#c42764] z-10 hidden"
+            id="footer-menu-{{ link.title | handleize }}"
+          >
             <ul>
               {% for childlink in link.links %}
                 <li class="hover:bg-[#c42764] hover:text-white">
@@ -118,19 +121,31 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const burger = document.querySelector(".mobile-footer-burger");
-  const menu   = document.querySelector(".mobile-footer-menu");
+  document.addEventListener('DOMContentLoaded', function () {
+    const burger = document.querySelector('.mobile-footer-burger');
+    const menu = document.querySelector('.mobile-footer-menu');
+    const close = document.querySelector('.mobile-footer-close');
+    const backdrop = document.querySelector('.mobile-footer-backdrop');
 
-  if (burger && menu) {
-    burger.addEventListener("click", () => {
-      console.log("Burger clicked ✅"); // للتأكد بالكونسول
-      menu.classList.toggle("hidden");
-    });
-  }
-});
+    if (burger && menu) {
+      burger.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    if (close && menu) {
+      close.addEventListener('click', () => {
+        menu.classList.add('hidden');
+      });
+    }
+
+    if (backdrop && menu) {
+      backdrop.addEventListener('click', () => {
+        menu.classList.add('hidden');
+      });
+    }
+  });
 </script>
-
 
 {% schema %}
 {
