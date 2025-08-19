@@ -91,13 +91,40 @@
             id="footer-menu-{{ link.title | handleize }}"
           >
             <ul>
-              {% for childlink in link.links %}
-                <li>
-                  <a class="block py-2 px-8" href="{{ childlink.url }}">
-                    {{ childlink.title }}
-                  </a>
-                </li>
-              {% endfor %}
+              <ul>
+                {% for childlink in link.links %}
+                  <li>
+                    {% if childlink.links != blank %}
+                      <button
+                        class="text-sm px-10 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu"
+                        data-target="footer-menu-{{ childlink.title | handleize }}"
+                        type="button"
+                      >
+                        {{ childlink.title }}
+                        {% render 'icon-chevron-down' %}
+                      </button>
+                      <div
+                        class="w-full ms-5 bg-white text-gray-800 z-10 hidden"
+                        id="footer-menu-{{ childlink.title | handleize }}"
+                      >
+                        <ul>
+                          {% for grandchild in childlink.links %}
+                            <li>
+                              <a class="block py-2 px-12" href="{{ grandchild.url }}">
+                                {{ grandchild.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    {% else %}
+                      <a class="block py-2 px-8" href="{{ childlink.url }}">
+                        {{ childlink.title }}
+                      </a>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
             </ul>
           </div>
         </li>

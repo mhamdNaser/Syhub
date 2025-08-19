@@ -407,6 +407,9 @@
   .ms-3 {
     margin-inline-start: calc(var(--spacing) * 3);
   }
+  .ms-5 {
+    margin-inline-start: calc(var(--spacing) * 5);
+  }
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
@@ -1243,6 +1246,9 @@
   }
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
+  }
+  .px-12 {
+    padding-inline: calc(var(--spacing) * 12);
   }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
