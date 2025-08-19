@@ -35,36 +35,53 @@ document.addEventListener("DOMContentLoaded", function () {
     const menu = document.getElementById(targetId);
     if (!menu) return;
 
-    // عرض القائمة عند الهوفر على الزر
+    // Desktop hover
     btn.addEventListener("mouseenter", () => {
-      menu.classList.remove("hidden");
-      menu.classList.add("js-menu-open");
+      if (window.innerWidth > 768) {
+        menu.classList.remove("hidden");
+        menu.classList.add("js-menu-open");
+      }
     });
 
-    // إخفاء القائمة عند الخروج من الزر أو القائمة
     btn.addEventListener("mouseleave", () => {
-      setTimeout(() => {
-        if (!menu.matches(':hover') && !btn.matches(':hover')) {
-          menu.classList.add("hidden");
-          menu.classList.remove("js-menu-open");
-        }
-      }, 200); // تأخير بسيط لتجنب الإغلاق الفوري
-    });
-
-    menu.addEventListener("mouseleave", () => {
-      menu.classList.add("hidden");
-      menu.classList.remove("js-menu-open");
+      if (window.innerWidth > 768) {
+        setTimeout(() => {
+          if (!menu.matches(":hover") && !btn.matches(":hover")) {
+            menu.classList.add("hidden");
+            menu.classList.remove("js-menu-open");
+          }
+        }, 200);
+      }
     });
 
     menu.addEventListener("mouseenter", () => {
-      menu.classList.remove("hidden");
-      menu.classList.add("js-menu-open");
+      if (window.innerWidth > 768) {
+        menu.classList.remove("hidden");
+        menu.classList.add("js-menu-open");
+      }
     });
 
-    // للـ mobile، ابقِ الكليك موجود إذا أحببت
+    menu.addEventListener("mouseleave", () => {
+      if (window.innerWidth > 768) {
+        menu.classList.add("hidden");
+        menu.classList.remove("js-menu-open");
+      }
+    });
+
+    // Mobile click
     btn.addEventListener("click", (e) => {
       if (window.innerWidth <= 768) {
         e.preventDefault();
+
+        // إغلاق باقي القوائم الفرعية
+        document.querySelectorAll(".mobile-menu .js-menu-open").forEach((openMenu) => {
+          if (openMenu !== menu) {
+            openMenu.classList.add("hidden");
+            openMenu.classList.remove("js-menu-open");
+          }
+        });
+
+        // Toggle القائمة الحالية
         menu.classList.toggle("hidden");
         menu.classList.toggle("js-menu-open");
       }
