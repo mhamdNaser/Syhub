@@ -1,7 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent);
+  const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent || '[]');
   const colorButtons = document.querySelectorAll(".color-swatch");
   const selects = document.querySelectorAll('variant-selector select');
   const mainImageContainer = document.getElementById("main-product-image");
