@@ -1,24 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const accountToggle = document.getElementById('account-toggle');
-    const accountMenu = document.getElementById('account-menu');
-    const languageToggle = document.getElementById('language-toggle');
-    const languageMenu = document.getElementById('language-menu');
-  
-    // Toggle account menu
-    accountToggle.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent this click from closing the menu
-      accountMenu.classList.toggle('hidden');
-    });
-  
-    // Toggle language menu
-    languageToggle.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent this click from closing the menu
-      languageMenu.classList.toggle('hidden');
-    });
-  
-    // Close both menus if clicked outside
-    document.addEventListener('click', function () {
-      accountMenu.classList.add('hidden');
-      languageMenu.classList.add('hidden');
+document.addEventListener("DOMContentLoaded", () => {
+  const toggles = document.querySelectorAll(".js-toggle-menu");
+
+  toggles.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = btn.getAttribute("data-target");
+      const menu = document.getElementById(targetId);
+
+      if (!menu) return;
+
+      // إغلاق باقي القوائم قبل فتح الجديد
+      document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
+        if (openMenu !== menu) {
+          openMenu.classList.add("hidden");
+          openMenu.classList.remove("js-menu-open");
+        }
+      });
+
+      // toggle للقائمة الحالية
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("js-menu-open");
     });
   });
+
+  // إغلاق عند الضغط خارج القائمة
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".js-toggle-menu") && !e.target.closest(".js-menu-open")) {
+      document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
+        openMenu.classList.add("hidden");
+        openMenu.classList.remove("js-menu-open");
+      });
+    }
+  });
+});

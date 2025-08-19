@@ -11,15 +11,17 @@
       {% if link.links != blank %}
         <li class="relative">
           <button
-            class="flex items-center gap-x-1 text-sm font-medium group"
+            class="flex items-center gap-x-1 text-sm font-medium js-toggle-menu"
             id="list-toggle-{{ link.title | handleize }}"
+            data-target="menu-{{ link.title | handleize }}"
           >
             {{ link.title }}
           </button>
 
           <!-- Mega menu container -->
           <div
-            class="absolute top-full translate-y-2 left-0 -translate-x-1/2 w-screen hidden group-hover:block bg-white shadow-lg z-20"
+            id="menu-{{ link.title | handleize }}"
+            class="absolute top-full translate-y-2 left-0 -translate-x-1/2 w-screen hidden bg-white shadow-lg z-20"
           >
             <div class="max-w-6xl mx-auto px-8 py-6">
               <div class="grid grid-cols-4 gap-8">
