@@ -29,38 +29,50 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /** -------------------------------
-   * Sub-menus toggle (mobile)
+   * Sub-menus (desktop + mobile)
    * ------------------------------- */
   const toggles = document.querySelectorAll(".js-toggle-menu");
 
   toggles.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      e.stopPropagation(); // مهم حتى ما يقفل مباشرة
+      // e.stopPropagation(); // 🔥 ضروري حتى ما يتسكر على طول
 
       const targetId = btn.getAttribute("data-target");
-      const submenu = document.getElementById(targetId);
+      const menu = document.getElementById(targetId);
 
-      if (!submenu) return;
+      if (!menu) return;
 
-      // toggle فقط الكلاس hidden للقائمة الفرعية
-      submenu.classList.toggle("hidden");
+      // إغلاق باقي القوائم
+      document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
+        if (openMenu !== menu) {
+          openMenu.classList.add("hidden");
+          openMenu.classList.remove("js-menu-open");
+          openMenu.previousElementSibling?.classList.remove("active-submenu");
+        }
+      });
+
+      // toggle للقائمة الحالية
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("js-menu-open");
+
+      // تفعيل/إلغاء تفعيل الزر نفسه (ستايل مثلاً تغيير لون أو تدوير سهم)
+      btn.classList.toggle("active-submenu");
     });
   });
 
-  // إغلاق عند الضغط خارج القائمة
+  // إغلاق عند الضغط خارج القوائم الفرعية
   document.addEventListener("click", (e) => {
-    toggles.forEach((btn) => {
-      const targetId = btn.getAttribute("data-target");
-      const submenu = document.getElementById(targetId);
-      if (
-        submenu &&
-        !submenu.contains(e.target) &&
-        !btn.contains(e.target)
-      ) {
-        submenu.classList.add("hidden");
-      }
-    });
+    if (
+      !e.target.closest(".js-toggle-menu") &&
+      !e.target.closest(".js-menu-open")
+    ) {
+      document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
+        openMenu.classList.add("hidden");
+        openMenu.classList.remove("js-menu-open");
+        openMenu.previousElementSibling?.classList.remove("active-submenu");
+      });
+    }
   });
 
   /** -------------------------------
@@ -125,8 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //   toggles.forEach((btn) => {
 //     btn.addEventListener("click", (e) => {
 //       e.preventDefault();
-//       e.stopPropagation(); // 🔥 ضروري حتى ما يتسكر على طول
-
 //       const targetId = btn.getAttribute("data-target");
 //       const menu = document.getElementById(targetId);
 
@@ -137,16 +147,12 @@ document.addEventListener("DOMContentLoaded", function () {
 //         if (openMenu !== menu) {
 //           openMenu.classList.add("hidden");
 //           openMenu.classList.remove("js-menu-open");
-//           openMenu.previousElementSibling?.classList.remove("active-submenu");
 //         }
 //       });
 
 //       // toggle للقائمة الحالية
 //       menu.classList.toggle("hidden");
 //       menu.classList.toggle("js-menu-open");
-
-//       // تفعيل/إلغاء تفعيل الزر نفسه (ستايل مثلاً تغيير لون أو تدوير سهم)
-//       btn.classList.toggle("active-submenu");
 //     });
 //   });
 
@@ -159,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //       document.querySelectorAll(".js-menu-open").forEach((openMenu) => {
 //         openMenu.classList.add("hidden");
 //         openMenu.classList.remove("js-menu-open");
-//         openMenu.previousElementSibling?.classList.remove("active-submenu");
 //       });
 //     }
 //   });
