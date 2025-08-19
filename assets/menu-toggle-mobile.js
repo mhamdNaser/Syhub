@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mobileBurger = document.querySelectorAll(".mobile-footer-burger");
   const mobileMenu = document.querySelector(".mobile-footer-menu");
   const closeBtns = document.querySelectorAll(".mobile-footer-close");
+  const backdrops = document.querySelectorAll(".mobile-footer-backdrop");
 
   mobileBurger.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -15,19 +16,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Sub-menus
+  backdrops.forEach((bg) => {
+    bg.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+
+  // Sub-menus (footer)
   const toggles = document.querySelectorAll(".js-toggle-footer-menu");
   toggles.forEach((btn) => {
     const targetId = btn.getAttribute("data-target");
     const menu = document.getElementById(targetId);
-
-    if (!menu) {
-      console.warn("⚠️ ما لقيت قائمة بالـ id:", targetId);
-      return;
-    }
+    if (!menu) return;
 
     btn.addEventListener("click", () => {
-      console.log("✅ ضغطت على الزر:", targetId);
       menu.classList.toggle("hidden");
     });
   });
