@@ -177,6 +177,25 @@
   });
 </script>
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+
+    submenuToggles.forEach((btn) => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('data-target');
+        const submenu = document.getElementById(targetId);
+
+        if (submenu) {
+          submenu.classList.toggle('hidden');
+        }
+      });
+    });
+  });
+</script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const searchToggle = document.getElementById('search-toggle');
