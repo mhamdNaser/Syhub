@@ -96,14 +96,14 @@
       {% if link.links != blank %}
         <li class="relative w-full">
           <button
-            class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
+            class="text-sm px-8 flex flex-row items-center justify-between group w-full h-12 {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
             id="list-toggle-{{ link.title }}"
             href="{{ link.url }}"
           >
             {{ link.title }}
             {% render 'icon-chevron-down' %}
           </button>
-          <div class="w-full border-t bg-white text-white z-10 hidden" id="list-menu">
+          <div class="w-full border-t bg-white text-white z-10 hidden group-hover:block" id="list-menu">
             <ul>
               {% for childlink in link.links %}
                 <li class="hover:bg-gray-200 hover:text-headerColor">
