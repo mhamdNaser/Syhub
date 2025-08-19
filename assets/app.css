@@ -1966,6 +1966,11 @@
       margin-block: calc(var(--spacing) * 16);
     }
   }
+  .md\:block {
+    @media (width >= 48rem) {
+      display: block;
+    }
+  }
   .md\:flex {
     @media (width >= 48rem) {
       display: flex;
