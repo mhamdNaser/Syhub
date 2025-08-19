@@ -1304,6 +1304,9 @@
   .py-20 {
     padding-block: calc(var(--spacing) * 20);
   }
+  .py-36 {
+    padding-block: calc(var(--spacing) * 36);
+  }
   .pt-4 {
     padding-top: calc(var(--spacing) * 4);
   }
