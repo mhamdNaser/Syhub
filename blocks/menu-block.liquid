@@ -9,17 +9,19 @@
   <ul class="flex items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
-        <li class="relative group">
+        <li class="relative">
           <button
-            class="flex items-center gap-x-1 text-sm font-medium"
+            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu"
             id="list-toggle-{{ link.title | handleize }}"
+            data-target="header-menu-{{ link.title | handleize }}"
           >
             {{ link.title }}
           </button>
 
           <!-- Mega menu container -->
           <div
-            class="absolute top-full translate-y-2 left-0 -translate-x-1/2 w-screen hidden group-hover:block bg-white shadow-lg z-20"
+            id="header-menu-{{ link.title | handleize }}"
+            class="absolute top-full translate-y-2 left-0 mt-1 -translate-x-1/2 w-screen hidden bg-white shadow-lg z-20"
           >
             <div class="max-w-6xl mx-auto px-8 py-6">
               <div class="grid grid-cols-4 gap-8">
@@ -31,8 +33,6 @@
                           src="{{ childlink.object.featured_image | img_url: '100x100' }}"
                           alt="{{ childlink.title }}"
                           class="w-6 h-6 object-cover rounded shadow-sm mb-2"
-                          width=""
-                          height=""
                         >
                       {% endif %}
                       <span class="block text-sm">
@@ -49,8 +49,6 @@
                                 src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
                                 alt="{{ grandchild.title }}"
                                 class="w-6 h-6 object-cover rounded shadow-sm mb-2"
-                                width=""
-                                height=""
                               >
                               {{ grandchild.title }}
                             </a>
@@ -66,10 +64,7 @@
         </li>
       {% else %}
         <li>
-          <a
-            href="{{ link.url }}"
-            class="text-sm"
-          >
+          <a href="{{ link.url }}" class="text-sm">
             {{ link.title }}
           </a>
         </li>
@@ -77,6 +72,7 @@
     {% endfor %}
   </ul>
 </div>
+
 
 {% schema %}
 {
@@ -91,7 +87,8 @@
   ],
   "presets": [
     {
-      "name": "Menu Block"
+      "name": "Menu Block",
+      "category": "Header",
     }
   ]
 }

@@ -1,15 +1,22 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent);
+  var variantData = [];
+  const scriptTag = document.querySelector('variant-selector script[type="application/json"]');
   const colorButtons = document.querySelectorAll(".color-swatch");
   const selects = document.querySelectorAll('variant-selector select');
   const mainImageContainer = document.getElementById("main-product-image");
   const mediaStorage = document.getElementById("all-variant-media");
   const priceContainer = document.getElementById("price-{{ section.id }}");
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
-  const colorLabel = document.getElementById("variantLabel")
-  const sku = document.getElementById("container-sku")
+  const colorLabel = document.getElementById("variantLabel");
+  const sku = document.getElementById("container-sku");
+
+  if (scriptTag) {
+    variantData = JSON.parse(scriptTag.textContent);
+  } else {
+    console.warn("⚠️ not avaialble script[type='application/json'] داخل variant-selector");
+  }
 
 
   function updateVariant(optionValues) {
@@ -19,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     if (!selectedVariant) return;
+
+    // const product = JSON.parse(document.getElementById("product-data").textContent);
+    // console.log("Selected product:", product);
+    // console.log("Selected Variant:", selectedVariant.id);
 
     if (sku) {
       sku.textContent = ''

@@ -1,24 +1,51 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const accountToggle = document.getElementById('account-toggle');
-    const accountMenu = document.getElementById('account-menu');
-    const languageToggle = document.getElementById('language-toggle');
-    const languageMenu = document.getElementById('language-menu');
-  
-    // Toggle account menu
-    accountToggle.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent this click from closing the menu
-      accountMenu.classList.toggle('hidden');
+document.addEventListener("DOMContentLoaded", function () {
+  const toggles = document.querySelectorAll(".js-toggle-header-menu");
+
+  toggles.forEach((btn) => {
+    const targetId = btn.getAttribute("data-target");
+    const menu = document.getElementById(targetId);
+    if (!menu) return;
+
+    // Desktop hover
+    btn.addEventListener("mouseenter", () => {
+      if (window.innerWidth > 768) {
+        menu.classList.remove("hidden");
+        menu.classList.add("js-menu-open");
+      }
     });
-  
-    // Toggle language menu
-    languageToggle.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent this click from closing the menu
-      languageMenu.classList.toggle('hidden');
+
+    btn.addEventListener("mouseleave", () => {
+      if (window.innerWidth > 768) {
+        setTimeout(() => {
+          if (!menu.matches(":hover") && !btn.matches(":hover")) {
+            menu.classList.add("hidden");
+            menu.classList.remove("js-menu-open");
+          }
+        }, 200);
+      }
     });
-  
-    // Close both menus if clicked outside
-    document.addEventListener('click', function () {
-      accountMenu.classList.add('hidden');
-      languageMenu.classList.add('hidden');
+
+    menu.addEventListener("mouseenter", () => {
+      if (window.innerWidth > 768) {
+        menu.classList.remove("hidden");
+        menu.classList.add("js-menu-open");
+      }
+    });
+
+    menu.addEventListener("mouseleave", () => {
+      if (window.innerWidth > 768) {
+        menu.classList.add("hidden");
+        menu.classList.remove("js-menu-open");
+      }
+    });
+
+    // Mobile click
+    btn.addEventListener("click", (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("js-menu-open");
+      }
     });
   });
+});

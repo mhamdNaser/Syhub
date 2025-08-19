@@ -11,6 +11,24 @@
   "sections": {
     "main": {
       "type": "main",
+      "blocks": {
+        "plain_text_block_yeabDM": {
+          "type": "plain-text-block",
+          "name": "Plain Text Block",
+          "settings": {
+            "text": "Plain text block",
+            "font_size": 31,
+            "font_weight": "bold",
+            "font_style": "italic",
+            "text_alignment": "center",
+            "color_scheme": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "plain_text_block_yeabDM"
+      ],
       "settings": {}
     },
     "section_banner_jenBMr": {
@@ -47,11 +65,26 @@
       ],
       "name": "Featured Collection",
       "settings": {}
+    },
+    "section_image_KU97Lt": {
+      "type": "section-image",
+      "name": "Image With Text Section",
+      "settings": {
+        "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d.jpg",
+        "section_image_title": "This is only test",
+        "text_alignment": "text-center",
+        "section_image_description": "Image Description",
+        "section_image_button": true,
+        "section_border": false,
+        "button_text": "Show More",
+        "section_product": "the-archived-snowboard"
+      }
     }
   },
   "order": [
     "main",
     "section_banner_jenBMr",
-    "section_featured_collection_YLh4zD"
+    "section_featured_collection_YLh4zD",
+    "section_image_KU97Lt"
   ]
 }
