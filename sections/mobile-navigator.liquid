@@ -147,6 +147,64 @@
   </nav>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    /** -------------------------------
+     * Mobile menu open/close
+     * ------------------------------- */
+    const mobileBurger = document.querySelector('.mobile-navbar-burger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileClose = document.querySelector('.mobile-navbar-close');
+    const backdrop = document.querySelector('.mobile-navbar-backdrop');
+
+    if (mobileBurger) {
+      mobileBurger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    if (mobileClose) {
+      mobileClose.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    }
+
+    /** -------------------------------
+     * Mobile sub-menu toggle
+     * ------------------------------- */
+    const mobileToggles = document.querySelectorAll('.mobile-menu .js-toggle-menu');
+
+    mobileToggles.forEach((btn) => {
+      const targetId = btn.getAttribute('data-target');
+      const submenu = document.getElementById(targetId);
+
+      if (!submenu) return;
+
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // إغلاق باقي القوائم الفرعية
+        document.querySelectorAll('.mobile-menu .js-menu-open').forEach((openMenu) => {
+          if (openMenu !== submenu) {
+            openMenu.classList.add('hidden');
+            openMenu.classList.remove('js-menu-open');
+          }
+        });
+
+        // toggle للقائمة الحالية
+        submenu.classList.toggle('hidden');
+        submenu.classList.toggle('js-menu-open');
+      });
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "Mobile Navigational Bar",
