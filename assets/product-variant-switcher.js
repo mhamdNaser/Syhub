@@ -1,15 +1,25 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const variantData = JSON.parse(document.querySelector('variant-selector script[type="application/json"]').textContent || '[]');
-  const colorButtons = document.querySelectorAll(".color-swatch");
-  const selects = document.querySelectorAll('variant-selector select');
-  const mainImageContainer = document.getElementById("main-product-image");
-  const mediaStorage = document.getElementById("all-variant-media");
-  const priceContainer = document.getElementById("price-{{ section.id }}");
-  const hiddenInput = document.querySelector('#product-form input[name="id"]');
-  const colorLabel = document.getElementById("variantLabel")
-  const sku = document.getElementById("container-sku")
+  const scriptTag = document.querySelector('variant-selector script[type="application/json"]');
+
+  if (scriptTag) {
+    const variantData = JSON.parse(scriptTag.textContent);
+    console.log("Variant Data:", variantData);
+
+    const colorButtons = document.querySelectorAll(".color-swatch");
+    const selects = document.querySelectorAll('variant-selector select');
+    const mainImageContainer = document.getElementById("main-product-image");
+    const mediaStorage = document.getElementById("all-variant-media");
+    const priceContainer = document.getElementById("price-{{ section.id }}");
+    const hiddenInput = document.querySelector('#product-form input[name="id"]');
+    const colorLabel = document.getElementById("variantLabel");
+    const sku = document.getElementById("container-sku");
+
+    // تابع شغلك هون عادي
+  } else {
+    console.warn("⚠️ مافي script[type='application/json'] داخل variant-selector");
+  }
 
 
   function updateVariant(optionValues) {
