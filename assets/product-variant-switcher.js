@@ -1,6 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  const variantData = [];
   const scriptTag = document.querySelector('variant-selector script[type="application/json"]');
   const colorButtons = document.querySelectorAll(".color-swatch");
   const selects = document.querySelectorAll('variant-selector select');
@@ -12,8 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sku = document.getElementById("container-sku");
 
   if (scriptTag) {
-    const variantData = JSON.parse(scriptTag.textContent);
-    console.log("Variant Data:", variantData);
+    variantData = JSON.parse(scriptTag.textContent);
     // تابع شغلك هون عادي
   } else {
     console.warn("⚠️ not avaialble script[type='application/json'] داخل variant-selector");
