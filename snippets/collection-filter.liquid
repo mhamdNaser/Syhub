@@ -319,9 +319,9 @@
     // تبديل ظهور الـ div بين hidden و flex
     if (priceSection.classList.contains('hidden')) {
       priceSection.classList.remove('hidden');
-      priceSection.classList.add('flex');
+      priceSection.classList.add('flex flex-col');
     } else {
-      priceSection.classList.remove('flex');
+      priceSection.classList.remove('flex flex-col');
       priceSection.classList.add('hidden');
     }
   }
