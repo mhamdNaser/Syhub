@@ -17,7 +17,7 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div class="bg-gray-100 text-sm">
+  <div class="bg-gray-100 text-sm px-4">
     <button onclick="togglePriceSection(this)" class="w-full flex py-1 justify-between items-center">
       <span>Price</span>
       <div>
@@ -64,7 +64,7 @@
   {% assign vendor_array = vendor_values | split: ',' | uniq | compact %}
 
   {% if vendor_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100">
+    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
       <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
         Brand
         <svg
@@ -124,7 +124,7 @@
   {% if availability_array.size > 0 %}
     {% assign availability_array = '1,0' | split: ',' %}
 
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100">
+    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
       <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
         Availability
         <svg
@@ -183,7 +183,7 @@
   {% assign category_array = category_values | split: ',' | uniq | compact %}
 
   {% if category_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100">
+    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
       <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
         Category
         <svg
@@ -228,7 +228,7 @@
 
 
   {% if type_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100">
+    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
       <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
         Product type
         <svg
@@ -272,7 +272,7 @@
 
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100">
+    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
       <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
         {{ option.name }}
         <svg
