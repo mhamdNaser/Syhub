@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   toggles.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      // e.stopPropagation(); // 🔥 ضروري حتى ما يتسكر على طول
+      e.stopPropagation(); // 🔥 منع الـ click من الوصول للـ document
 
       const targetId = btn.getAttribute("data-target");
       const menu = document.getElementById(targetId);
@@ -53,10 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       // toggle للقائمة الحالية
-      menu.classList.toggle("hidden");
-      menu.classList.toggle("js-menu-open");
+      menu.classList.remove("hidden");
+      menu.classList.add("js-menu-open");
 
-      // تفعيل/إلغاء تفعيل الزر نفسه (ستايل مثلاً تغيير لون أو تدوير سهم)
+      // تفعيل/إلغاء تفعيل الزر نفسه (ستايل مثل تغيير لون أو تدوير سهم)
       btn.classList.toggle("active-submenu");
     });
   });
