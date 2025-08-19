@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const hiddenInput = document.querySelector('#product-form input[name="id"]');
   const colorLabel = document.getElementById("variantLabel")
   const sku = document.getElementById("container-sku")
-  const product = JSON.parse(document.querySelector('script[type="application/json"][data-product-json]').textContent);
 
 
   function updateVariant(optionValues) {
@@ -21,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
-    console.log("Selected Variant:", product.variants);
+    const product = JSON.parse(document.getElementById("product-data").textContent);
+    console.log("Selected Variant:", product);
 
     if (sku) {
       sku.textContent = ''
