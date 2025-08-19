@@ -6,6 +6,13 @@
   endif
 %}
 
+{% stylesheet %}
+  .js-toggle-menu.active-submenu svg {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
+{% endstylesheet %}
+
 <!-- Footer Navigation for small screens -->
 <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-lg lg:hidden z-50 h-fit">
   <!-- search box dropdown for small screens -->
