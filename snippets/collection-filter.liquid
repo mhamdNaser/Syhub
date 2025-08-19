@@ -124,7 +124,7 @@
   {% if availability_array.size > 0 %}
     {% assign availability_array = '1,0' | split: ',' %}
 
-    <div x-data="{ open: false }" class="relative text-sm">
+    <div x-data="{ open: false }" class="relative w-1/6 text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
         Availability
         <svg
@@ -183,7 +183,7 @@
   {% assign category_array = category_values | split: ',' | uniq | compact %}
 
   {% if category_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm">
+    <div x-data="{ open: false }" class="relative w-1/6 text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
         Category
         <svg
@@ -228,7 +228,7 @@
 
 
   {% if type_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm">
+    <div x-data="{ open: false }" class="relative w-1/6 text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-1 bg-gray-100 rounded shadow-sm">
         Product type
         <svg
@@ -272,7 +272,7 @@
 
   <!-- Filter by Options -->
   {% for option in collection.all_types_options %}
-    <div x-data="{ open: false }" class="relative">
+    <div x-data="{ open: false }" class="relative w-1/6 text-sm">
       <button @click="open = !open" class="flex justify-between w-full px-4 py-2 bg-gray-100 rounded shadow-sm">
         {{ option.name }}
         <svg
