@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
+    console.log("Selected Variant:", product.variants);
+
     if (sku) {
       sku.textContent = ''
       sku.textContent = selectedVariant.sku
