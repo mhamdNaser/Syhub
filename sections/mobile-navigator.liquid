@@ -65,73 +65,80 @@
 <div class="mobile-footer-menu relative z-50 hidden">
   <div class="mobile-footer-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
   <nav
-    class="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-sm pt-6 bg-white shadow-md overflow-y-auto list-none"
+    class="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-sm pt-6 bg-white shadow-lg overflow-y-auto list-none rounded-tr-2xl rounded-br-2xl"
   >
-    <div class="flex items-center mb-8 px-5">
-      <a class="mr-auto text-xl font-bold leading-none" href="#">
+    <!-- Header -->
+    <div class="flex items-center mb-8 px-5 border-b border-gray-200 pb-4">
+      <a class="mr-auto text-xl font-bold leading-none text-[#c42764]" href="#">
         {{ shop.name }}
       </a>
-      <button class="mobile-footer-close">
+      <button class="mobile-footer-close hover:scale-110 transition-transform">
         {% render 'icon-close' %}
       </button>
     </div>
+
+    <!-- Menu -->
     {% for link in main_menu_linklist %}
       {% if link.links != blank %}
         <li class="relative w-full">
           <button
-            class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
+            class="group text-sm px-6 flex flex-row items-center justify-between w-full h-12 border-b border-gray-100 hover:bg-gray-50 transition-colors js-toggle-footer-menu {% if link.active or link.child_active %}text-white font-bold bg-[#c42764]{% endif %}"
             data-target="footer-menu-{{ link.title | handleize }}"
             type="button"
           >
-            {{ link.title }}
-            {% render 'icon-chevron-down' %}
+            <span>{{ link.title }}</span>
+            <span class="transform transition-transform group-[.open]:rotate-180">
+              {% render 'icon-chevron-down' %}
+            </span>
           </button>
+
           <div
-            class="w-full ms-3 bg-white text-gray-800 z-10 hidden"
+            class="submenu w-full bg-white text-gray-700 hidden overflow-hidden transition-all duration-300"
             id="footer-menu-{{ link.title | handleize }}"
           >
-            <ul>
-              <ul>
-                {% for childlink in link.links %}
-                  <li>
-                    {% if childlink.links != blank %}
-                      <button
-                        class="text-sm px-10 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu"
-                        data-target="footer-menu-{{ childlink.title | handleize }}"
-                        type="button"
-                      >
-                        {{ childlink.title }}
+            <ul class="pl-4 border-l border-gray-200">
+              {% for childlink in link.links %}
+                <li>
+                  {% if childlink.links != blank %}
+                    <button
+                      class="group text-sm px-6 flex flex-row items-center justify-between w-full h-11 hover:bg-gray-50 transition-colors js-toggle-footer-menu"
+                      data-target="footer-menu-{{ childlink.title | handleize }}"
+                      type="button"
+                    >
+                      <span>{{ childlink.title }}</span>
+                      <span class="transform transition-transform group-[.open]:rotate-180">
                         {% render 'icon-chevron-down' %}
-                      </button>
-                      <div
-                        class="w-full ms-5 bg-white text-gray-800 z-10 hidden"
-                        id="footer-menu-{{ childlink.title | handleize }}"
-                      >
-                        <ul>
-                          {% for grandchild in childlink.links %}
-                            <li>
-                              <a class="block py-2 px-12" href="{{ grandchild.url }}">
-                                {{ grandchild.title }}
-                              </a>
-                            </li>
-                          {% endfor %}
-                        </ul>
-                      </div>
-                    {% else %}
-                      <a class="block py-2 px-8" href="{{ childlink.url }}">
-                        {{ childlink.title }}
-                      </a>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
+                      </span>
+                    </button>
+
+                    <div
+                      class="submenu w-full bg-gray-50 text-gray-600 hidden overflow-hidden transition-all duration-300"
+                      id="footer-menu-{{ childlink.title | handleize }}"
+                    >
+                      <ul class="pl-6 border-l border-gray-200">
+                        {% for grandchild in childlink.links %}
+                          <li>
+                            <a class="block py-2 px-6 hover:text-[#c42764] transition-colors" href="{{ grandchild.url }}">
+                              {{ grandchild.title }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% else %}
+                    <a class="block py-2 px-6 hover:text-[#c42764] transition-colors" href="{{ childlink.url }}">
+                      {{ childlink.title }}
+                    </a>
+                  {% endif %}
+                </li>
+              {% endfor %}
             </ul>
           </div>
         </li>
       {% else %}
-        <li class="w-full px-8 {% if link.active == true %}text-white font-bold bg-[#c42764]{% endif %}">
+        <li class="w-full">
           <a
-            class="text-sm flex justify-start items-center text-gray-400 hover:text-gray-500 w-full h-12"
+            class="text-sm flex items-center px-6 h-12 border-b border-gray-100 hover:bg-gray-50 transition-colors {% if link.active %}text-white font-bold bg-[#c42764]{% else %}text-gray-500{% endif %}"
             href="{{ link.url }}"
           >
             {{ link.title }}
@@ -139,13 +146,16 @@
         </li>
       {% endif %}
     {% endfor %}
-    <div class="mt-auto bg-[#c42764] py-3">
-      <p class="text-xs text-center text-gray-400">
-        <span>Copyright © 2024</span>
+
+    <!-- Footer -->
+    <div class="mt-auto bg-[#c42764] py-3 rounded-t-xl">
+      <p class="text-xs text-center text-gray-100 tracking-wide">
+        © 2024 {{ shop.name }}
       </p>
     </div>
   </nav>
 </div>
+
 
 {% schema %}
 {
