@@ -72,76 +72,74 @@
       "default": "scheme-1"
     }
   ],
-  "presets": [
-    { "name": "Plain Text Block" }
-  ],
-  "group": "header"
+  "presets": [{ "name": "Plain Text Block", "category": "Text" }]
 }
 {% endschema %}
 
-
-{% comment %} {% schema %}
-{
-  "name": "Plain Text Block",
-  "settings": [
-    { "type": "text", "id": "text", "label": "Text", "default": "Plain text block" },
-    {
-      "type": "range",
-      "id": "font_size",
-      "label": "Font Size",
-      "min": 12,
-      "max": 48,
-      "step": 1,
-      "default": 16
-    },
-    {
-      "type": "select",
-      "id": "font_weight",
-      "label": "Font Weight",
-      "default": "normal",
-      "options": [
-        { "value": "normal", "label": "Normal" },
-        { "value": "bold", "label": "Bold" },
-        { "value": "lighter", "label": "Light" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "font_style",
-      "label": "Font Style",
-      "default": "normal",
-      "options": [
-        { "value": "normal", "label": "Normal" },
-        { "value": "italic", "label": "Italic" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "text_alignment",
-      "label": "Text Alignment",
-      "default": "left",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
-    }
-  ],
-  "presets": [{ "name": "Plain Text Block" }]
-}
-{% endschema %} {% endcomment %}
+{% comment %}
+  {% schema %}
+  {
+    "name": "Plain Text Block",
+    "settings": [
+      { "type": "text", "id": "text", "label": "Text", "default": "Plain text block" },
+      {
+        "type": "range",
+        "id": "font_size",
+        "label": "Font Size",
+        "min": 12,
+        "max": 48,
+        "step": 1,
+        "default": 16
+      },
+      {
+        "type": "select",
+        "id": "font_weight",
+        "label": "Font Weight",
+        "default": "normal",
+        "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "bold", "label": "Bold" },
+          { "value": "lighter", "label": "Light" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_style",
+        "label": "Font Style",
+        "default": "normal",
+        "options": [
+          { "value": "normal", "label": "Normal" },
+          { "value": "italic", "label": "Italic" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color Scheme",
+        "default": "scheme-1"
+      }
+    ],
+    "presets": [{ "name": "Plain Text Block" }]
+  }
+  {% endschema %}
+{% endcomment %}
