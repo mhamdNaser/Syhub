@@ -1,4 +1,4 @@
-<script>
+
 document.addEventListener("DOMContentLoaded", () => {
   // عناصر البحث
   const desktopSearchInput = document.querySelector("input[type='search']:not(#mobile-search-input)");
@@ -187,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-</script>
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   const searchInput = document.querySelector("input[type='search']");
