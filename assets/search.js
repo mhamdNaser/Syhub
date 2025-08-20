@@ -3,6 +3,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector("input[type='search']");
   const searchBox = searchInput?.closest("form");
+  const mobileSearchBtn = document.getElementById("mobile-search-btn");
+  const mobileSearchOverlay = document.getElementById("mobile-search-overlay");
+  const mobileSearchClose = document.getElementById("mobile-search-close");
+  const mobileSearchInput = document.getElementById("mobile-search-input");
+  const mobileSearchResults = document.getElementById("mobile-search-results");
+
+
+  function openMobileSearch() {
+    mobileSearchOverlay.classList.remove("hidden");
+    mobileSearchInput.focus();
+  }
+
+  // دالة إغلاق المودال
+  function closeMobileSearch() {
+    mobileSearchOverlay.classList.add("hidden");
+    mobileSearchInput.value = "";
+    mobileSearchResults.innerHTML = "";
+  }
+
+  mobileSearchBtn?.addEventListener("click", openMobileSearch);
+  mobileSearchClose?.addEventListener("click", closeMobileSearch);
 
   let searchResults = document.getElementById("search-results");
   if (!searchResults) {
