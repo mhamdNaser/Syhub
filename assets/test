@@ -28,72 +28,52 @@
   </div>
 
   <div
-    class="container mx-auto px-4 py-2 flex justify-around items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
+    class="container mx-auto px-4 py-2 flex justify-between items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
   >
-    <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-cart' %}
-      <span class="text-xs">Cart</span>
-    </a>
-    <!-- User Icon -->
-    {% comment %}
-      <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
+    <!-- Left Icon -->
+    <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
+      <a href="{{ routes.root_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
         {% render 'icon-home' %}
         <span class="text-xs">home</span>
       </a>
-    {% endcomment %}
 
-    {% comment %}
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="#" class="flex flex-col items-center hover:text-white">
-          {% render 'icon-user' %}
-          <span class="text-xs">Account</span>
-        </a>
-      {%- else -%}
-        <!-- Favorites Icon -->
-        <a href="#" class="flex flex-col items-center hover:text-white">
-          {% render 'icon-favorite' %}
-          <span class="text-xs">Favorites</span>
-        </a>
-      {% endif %}
-    {% endcomment %}
-
-    <!-- space in center bar -->
-    <span class="flex flex-col items-center hover:text-white"> </span>
+      <a href="#" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-user' %}
+        <span class="text-xs">Account</span>
+      </a>
+    </div>
+    
 
     <!-- Center Circular Icon -->
     <div
       class="absolute bg-white -top-10 left-1/2 transform -translate-x-1/2 rounded-full border-b border-gray-200 p-4 flex items-center justify-center"
     >
-      <button class="flex mobile-footer-burger border-none rounded-md focus:outline-none flex-col items-center">
+      <button class="flex mobile-navbar-burger border-none rounded-md focus:outline-none flex-col items-center">
         <div class="bg-[#c42764] h-10 w-10 rounded-full justify-center items-center flex">
           {% render 'icon-menu' %}
         </div>
       </button>
     </div>
 
-    <!-- Cart Icon -->
-    {% comment %}
-      <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
-        {% render 'icon-cart' %}
-        <span class="text-xs">Cart</span>
-      </a>
-    {% endcomment %}
-
-    <!-- Search Icon -->
-    <div class="flex flex-col items-center hover:text-white">
+    <!-- Right Icon -->
+    <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
       <button
         id="search-toggle"
-        class="border-none rounded-md focus:outline-none flex flex-col items-center hover:text-white"
+        class="border-none w-1/2 rounded-md focus:outline-none flex flex-col items-center hover:text-white"
       >
         {% render 'icon-search' %}
         <span class="text-xs">Search</span>
       </button>
+      <a href="{{ routes.cart_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-cart' %}
+        <span class="text-xs">Cart</span>
+      </a>
     </div>
   </div>
 </footer>
 
-<div class="mobile-footer-menu relative z-50 hidden">
-  <div class="mobile-footer-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+<div class="mobile-menu relative z-50 hidden">
+  <div class="mobile-navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
   <nav
     class="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-sm pt-6 bg-white shadow-md overflow-y-auto list-none"
   >
@@ -101,7 +81,7 @@
       <a class="mr-auto text-xl font-bold leading-none" href="#">
         {{ shop.name }}
       </a>
-      <button class="mobile-footer-close">
+      <button class="mobile-navbar-close">
         {% render 'icon-close' %}
       </button>
     </div>
@@ -146,17 +126,3 @@
     </div>
   </nav>
 </div>
-
-{% schema %}
-{
-  "name": "Mobile Navigational Bar",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Mobile Menu",
-      "default": "main-menu"
-    }
-  ]
-}
-{% endschema %}
