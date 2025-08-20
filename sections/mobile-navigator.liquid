@@ -31,7 +31,7 @@
     class="container mx-auto px-4 py-2 flex justify-between items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
   >
     <!-- Left Icon -->
-    <div class="flex w-2/5">
+    <div class="flex justify-between w-2/5">
       <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
         {% render 'icon-home' %}
         <span class="text-xs">home</span>
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Search Icon -->
-    <div class="flex w-2/5 items-center hover:text-white">
+    <div class="flex justify-between w-2/5 items-center hover:text-white">
       <button
         id="search-toggle"
         class="border-none rounded-md focus:outline-none flex flex-col items-center hover:text-white"
