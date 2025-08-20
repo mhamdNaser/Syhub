@@ -30,32 +30,18 @@
   <div
     class="container mx-auto px-4 py-2 flex justify-around items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
   >
-    <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-cart' %}
-      <span class="text-xs">Cart</span>
-    </a>
-    <!-- User Icon -->
-    {% comment %}
-      <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
+    <!-- Left Icon -->
+    <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
+      <a href="{{ routes.root_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
         {% render 'icon-home' %}
         <span class="text-xs">home</span>
       </a>
-    {% endcomment %}
 
-    {% comment %}
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="#" class="flex flex-col items-center hover:text-white">
-          {% render 'icon-user' %}
-          <span class="text-xs">Account</span>
-        </a>
-      {%- else -%}
-        <!-- Favorites Icon -->
-        <a href="#" class="flex flex-col items-center hover:text-white">
-          {% render 'icon-favorite' %}
-          <span class="text-xs">Favorites</span>
-        </a>
-      {% endif %}
-    {% endcomment %}
+      <a href="#" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-user' %}
+        <span class="text-xs">Account</span>
+      </a>
+    </div>
 
     <!-- space in center bar -->
     <span class="flex flex-col items-center hover:text-white"> </span>
@@ -71,23 +57,19 @@
       </button>
     </div>
 
-    <!-- Cart Icon -->
-    {% comment %}
-      <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
-        {% render 'icon-cart' %}
-        <span class="text-xs">Cart</span>
-      </a>
-    {% endcomment %}
-
     <!-- Search Icon -->
-    <div class="flex flex-col items-center hover:text-white">
+    <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
       <button
         id="search-toggle"
-        class="border-none rounded-md focus:outline-none flex flex-col items-center hover:text-white"
+        class="border-none w-1/2 rounded-md focus:outline-none flex flex-col items-center hover:text-white"
       >
         {% render 'icon-search' %}
         <span class="text-xs">Search</span>
       </button>
+      <a href="{{ routes.cart_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-cart' %}
+        <span class="text-xs">Cart</span>
+      </a>
     </div>
   </div>
 </footer>
