@@ -38,7 +38,7 @@
       <div class="relative">
         <button class="p-0 m-0 flex items-center" id="country-toggle" type="button">
           <span id="selected-country" class="mx-1">
-            {{ localization.country.name }} | {{ localization.country.currency.iso_code }}
+            {{ localization.country.name }} | {{ localization.country.iso_code }}
           </span>
         </button>
         <div
@@ -56,7 +56,7 @@
                   class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
                   onclick="this.form.submit()"
                 >
-                  {{ country.name }} | {{ country.currency.iso_code }} {{ country.currency.symbol }}
+                  {{ country.name }} | {{ country.iso_code }}
                 </button>
               </li>
             {% endfor %}

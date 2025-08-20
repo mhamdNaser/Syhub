@@ -33,6 +33,8 @@
                           src="{{ childlink.object.featured_image | img_url: '100x100' }}"
                           alt="{{ childlink.title }}"
                           class="w-6 h-6 object-cover rounded shadow-sm mb-2"
+                          width=""
+                          height=""
                         >
                       {% endif %}
                       <span class="block text-sm">
@@ -49,6 +51,8 @@
                                 src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
                                 alt="{{ grandchild.title }}"
                                 class="w-6 h-6 object-cover rounded shadow-sm mb-2"
+                                width=""
+                                height=""
                               >
                               {{ grandchild.title }}
                             </a>

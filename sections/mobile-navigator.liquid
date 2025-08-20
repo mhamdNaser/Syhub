@@ -16,24 +16,51 @@
 <!-- Footer Navigation for small screens -->
 <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-lg lg:hidden z-50 h-fit">
   <!-- search box dropdown for small screens -->
-  <div id="mobile-footer-search-box" class="container mx-auto px-4 py-8 bg-[#c42764] text-white hidden xl:hidden">
-    <div class="flex items-center text-white">
-      <textarea
-        class="focus:outline-none border-gray-300 bg-transparent font-semibold text-sm pl-4 w-full"
-        type="text"
+  <div id="mobile-search-overlay" class="fixed inset-0 bg-white z-50 hidden flex flex-col">
+    <!-- هيدر البحث -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <input
+        id="mobile-search-input"
+        type="search"
+        class="flex-1 border-none focus:outline-none text-gray-800 text-base"
         placeholder="I'm searching for ..."
-      ></textarea>
-      {% render 'icon-search' %}
+      >
+      <button id="mobile-search-close" class="ml-4 text-gray-500">
+        {% render 'icon-close' %}
+      </button>
     </div>
+
+    <!-- مكان النتائج -->
+    <div id="mobile-search-results" class="flex-1 overflow-auto p-4"></div>
   </div>
+  {% comment %}
+    <div id="mobile-search-box" class="container mx-auto px-4 py-8 bg-[#c42764] text-white hidden xl:hidden">
+      <div class="flex items-center text-white">
+        <textarea
+          class="focus:outline-none border-gray-300 bg-transparent font-semibold text-sm pl-4 w-full"
+          type="text"
+          placeholder="I'm searching for ..."
+        ></textarea>
+        {% render 'icon-search' %}
+      </div>
+    </div>
+  {% endcomment %}
 
   <div
-    class="container mx-auto px-4 py-2 flex justify-around items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
+    class="container mx-auto px-4 py-2 flex justify-between items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
   >
-    <a href="{{ routes.cart_url }}" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-cart' %}
-      <span class="text-xs">Cart</span>
-    </a>
+    <!-- Left Icon -->
+    <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
+      <a href="{{ routes.root_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-home' %}
+        <span class="text-xs">home</span>
+      </a>
+
+      <a href="#" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-user' %}
+        <span class="text-xs">Account</span>
+      </a>
+    </div>
 
     <!-- space in center bar -->
     <span class="flex flex-col items-center hover:text-white"> </span>
@@ -50,14 +77,15 @@
     </div>
 
     <!-- Search Icon -->
-    <div class="flex flex-col items-center hover:text-white">
-      <button
-        id="footer-search-toggle"
-        class="border-none rounded-md focus:outline-none flex flex-col items-center hover:text-white"
-      >
+    <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
+      <button id="mobile-search-btn" class="flex flex-col w-1/2 items-center">
         {% render 'icon-search' %}
         <span class="text-xs">Search</span>
       </button>
+      <a href="{{ routes.cart_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
+        {% render 'icon-cart' %}
+        <span class="text-xs">Cart</span>
+      </a>
     </div>
   </div>
 </footer>
@@ -65,80 +93,70 @@
 <div class="mobile-footer-menu relative z-50 hidden">
   <div class="mobile-footer-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
   <nav
-    class="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-sm pt-6 bg-white shadow-lg overflow-y-auto list-none rounded-tr-2xl rounded-br-2xl"
+    class="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-sm pt-6 bg-white shadow-md overflow-y-auto list-none"
   >
-    <!-- Header -->
-    <div class="flex items-center mb-8 px-5 border-b border-gray-200 pb-4">
-      <a class="mr-auto text-xl font-bold leading-none text-[#c42764]" href="#">
+    <div class="flex items-center mb-8 px-5">
+      <a class="mr-auto text-xl font-bold leading-none" href="#">
         {{ shop.name }}
       </a>
-      <button class="mobile-footer-close hover:scale-110 transition-transform">
+      <button class="mobile-footer-close">
         {% render 'icon-close' %}
       </button>
     </div>
-
-    <!-- Menu -->
     {% for link in main_menu_linklist %}
       {% if link.links != blank %}
         <li class="relative w-full">
           <button
-            class="group text-sm px-6 flex flex-row items-center justify-between w-full h-12 border-b border-gray-100 hover:bg-gray-50 transition-colors js-toggle-footer-menu {% if link.active or link.child_active %}text-white font-bold bg-[#c42764]{% endif %}"
-            data-target="footer-menu-{{ link.title | handleize }}"
+            class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
+            data-target="menu-{{ link.title | handleize }}"
             type="button"
           >
-            <span>{{ link.title }}</span>
-            <span class="transform transition-transform group-[.open]:rotate-180">
-              {% render 'icon-chevron-down' %}
-            </span>
+            {{ link.title }}
+            {% render 'icon-chevron-down' %}
           </button>
-
-          <div
-            class="submenu w-full bg-white text-gray-700 hidden overflow-hidden transition-all duration-300"
-            id="footer-menu-{{ link.title | handleize }}"
-          >
-            <ul class="pl-4 border-l border-gray-200">
+          <div class="w-full border-t bg-white text-[#c42764] z-10 hidden" id="menu-{{ link.title | handleize }}">
+            <ul>
               {% for childlink in link.links %}
-                <li>
-                  {% if childlink.links != blank %}
+                {% if childlink.links != blank %}
+                  <li class="relative">
                     <button
-                      class="group text-sm px-6 flex flex-row items-center justify-between w-full h-11 hover:bg-gray-50 transition-colors js-toggle-footer-menu"
-                      data-target="footer-menu-{{ childlink.title | handleize }}"
+                      class="text-sm px-12 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu"
+                      data-target="menu-{{ childlink.title | handleize }}"
                       type="button"
                     >
-                      <span>{{ childlink.title }}</span>
-                      <span class="transform transition-transform group-[.open]:rotate-180">
-                        {% render 'icon-chevron-down' %}
-                      </span>
+                      {{ childlink.title }}
+                      {% render 'icon-chevron-down' %}
                     </button>
-
                     <div
-                      class="submenu w-full bg-gray-50 text-gray-600 hidden overflow-hidden transition-all duration-300"
-                      id="footer-menu-{{ childlink.title | handleize }}"
+                      class="w-full border-t bg-white text-[#c42764] z-10 hidden"
+                      id="menu-{{ childlink.title | handleize }}"
                     >
-                      <ul class="pl-6 border-l border-gray-200">
+                      <ul>
                         {% for grandchild in childlink.links %}
-                          <li>
-                            <a class="block py-2 px-6 hover:text-[#c42764] transition-colors" href="{{ grandchild.url }}">
+                          <li class="hover:bg-[#c42764] hover:text-white">
+                            <a class="block py-2 px-12" href="{{ grandchild.url }}">
                               {{ grandchild.title }}
                             </a>
                           </li>
                         {% endfor %}
                       </ul>
                     </div>
-                  {% else %}
-                    <a class="block py-2 px-6 hover:text-[#c42764] transition-colors" href="{{ childlink.url }}">
+                  </li>
+                {% else %}
+                  <li class="hover:bg-[#c42764] hover:text-white">
+                    <a class="block py-2 px-8" href="{{ childlink.url }}">
                       {{ childlink.title }}
                     </a>
-                  {% endif %}
-                </li>
+                  </li>
+                {% endif %}
               {% endfor %}
             </ul>
           </div>
         </li>
       {% else %}
-        <li class="w-full">
+        <li class="w-full px-8 {% if link.active == true %}text-white font-bold bg-[#c42764]{% endif %}">
           <a
-            class="text-sm flex items-center px-6 h-12 border-b border-gray-100 hover:bg-gray-50 transition-colors {% if link.active %}text-white font-bold bg-[#c42764]{% else %}text-gray-500{% endif %}"
+            class="text-sm flex justify-start items-center text-gray-400 hover:text-gray-500 w-full h-12"
             href="{{ link.url }}"
           >
             {{ link.title }}
@@ -146,16 +164,13 @@
         </li>
       {% endif %}
     {% endfor %}
-
-    <!-- Footer -->
-    <div class="mt-auto bg-[#c42764] py-3 rounded-t-xl">
-      <p class="text-xs text-center text-gray-100 tracking-wide">
-        © 2024 {{ shop.name }}
+    <div class="mt-auto bg-[#c42764] py-3">
+      <p class="text-xs text-center text-gray-400">
+        <span>Copyright © 2024</span>
       </p>
     </div>
   </nav>
 </div>
-
 
 {% schema %}
 {
