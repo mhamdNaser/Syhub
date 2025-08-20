@@ -1,11 +1,18 @@
-<div>
+<div class="section-main" style="background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});">
   {% content_for 'blocks' %}
 </div>
 
 {% schema %}
 {
   "name": "Main",
-  "settings": [],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "This image will be used as the background for the section."
+    }
+  ],
   "presets": [
     {
       "name": "Main",
