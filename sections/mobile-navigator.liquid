@@ -40,20 +40,10 @@
       <span class="text-xs">home</span>
     </a>
 
-    {% comment %}
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="#" class="flex flex-col items-center hover:text-white">
-          {% render 'icon-user' %}
-          <span class="text-xs">Account</span>
-        </a>
-      {%- else -%}
-        <!-- Favorites Icon -->
-        <a href="#" class="flex flex-col items-center hover:text-white">
-          {% render 'icon-favorite' %}
-          <span class="text-xs">Favorites</span>
-        </a>
-      {% endif %}
-    {% endcomment %}
+    <a href="#" class="flex flex-col items-center hover:text-white">
+      {% render 'icon-user' %}
+      <span class="text-xs">Account</span>
+    </a>
 
     <!-- space in center bar -->
     <span class="flex flex-col items-center hover:text-white"> </span>
