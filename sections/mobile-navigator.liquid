@@ -28,18 +28,21 @@
   </div>
 
   <div
-    class="container mx-auto px-4 py-2 flex justify-around items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
+    class="container mx-auto px-4 py-2 flex justify-between items-center relative bg-[#c42764] text-white rounded-t-3xl shadow-lg"
   >
-    <!-- User Icon -->
-    <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-home' %}
-      <span class="text-xs">home</span>
-    </a>
+    <!-- Left Icon -->
+    <div class="flex w-2/5">
+      <a href="{{ routes.root_url }}" class="flex flex-col items-center hover:text-white">
+        {% render 'icon-home' %}
+        <span class="text-xs">home</span>
+      </a>
 
-    <a href="#" class="flex flex-col items-center hover:text-white">
-      {% render 'icon-user' %}
-      <span class="text-xs">Account</span>
-    </a>
+      <a href="#" class="flex flex-col items-center hover:text-white">
+        {% render 'icon-user' %}
+        <span class="text-xs">Account</span>
+      </a>
+    </div>
+    
 
     <!-- Center Circular Icon -->
     <div
@@ -53,7 +56,7 @@
     </div>
 
     <!-- Search Icon -->
-    <div class="flex items-center hover:text-white">
+    <div class="flex w-2/5 items-center hover:text-white">
       <button
         id="search-toggle"
         class="border-none rounded-md focus:outline-none flex flex-col items-center hover:text-white"
