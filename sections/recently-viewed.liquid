@@ -1,6 +1,6 @@
 <div class="recently-viewed max-w-7xl mx-auto py-8">
   <h2 class="text-2xl font-bold mb-6 text-center">Recently Viewed</h2>
-  
+
   <!-- Swiper wrapper -->
   <div class="swiper recently-viewed-swiper">
     <div class="swiper-wrapper" id="recently-viewed-products">
@@ -10,24 +10,24 @@
     <!-- Navigation -->
     <div class="swiper-button-next text-gray-700 hover:text-gray-900"></div>
     <div class="swiper-button-prev text-gray-700 hover:text-gray-900"></div>
-    
+
     <!-- Pagination (اختياري) -->
     <div class="swiper-pagination mt-4"></div>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-  const container = document.getElementById('recently-viewed-products');
+  document.addEventListener('DOMContentLoaded', function () {
+    let viewedProducts = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+    const container = document.getElementById('recently-viewed-products');
 
-  if (viewedProducts.length > 0) {
-    let uniqueProducts = [...new Set(viewedProducts)];
-    uniqueProducts.slice(0, 6).forEach(function (handle) {
-      fetch(`/products/${handle}.js`)
-        .then(response => response.json())
-        .then(product => {
-          const productHtml = `
+    if (viewedProducts.length > 0) {
+      let uniqueProducts = [...new Set(viewedProducts)];
+      uniqueProducts.slice(0, 6).forEach(function (handle) {
+        fetch(`/products/${handle}.js`)
+          .then((response) => response.json())
+          .then((product) => {
+            const productHtml = `
             <div class="swiper-slide">
               <div class="product-card lg:w-60 bg-white rounded-lg p-4 shadow-sm hover:shadow-lg transition-all h-[350px] flex flex-col">
                 <a href="/products/${product.handle}" class="flex flex-col h-full">
@@ -45,38 +45,50 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
           `;
-          container.insertAdjacentHTML('beforeend', productHtml);
-        })
-        .catch(err => console.error('Error fetching product:', handle, err));
-    });
+            container.insertAdjacentHTML('beforeend', productHtml);
+          })
+          .catch((err) => console.error('Error fetching product:', handle, err));
+      });
 
-    // بعد تحميل كل الكاردات، نعمل تهيئة الـ Swiper
-    const checkSwiper = setInterval(() => {
-      if (container.children.length > 0) {
-        new Swiper('.recently-viewed-swiper', {
-          slidesPerView: 2,
-          spaceBetween: 20,
-          loop: true,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          breakpoints: {
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 3, spaceBetween: 24 },
-            1024: { slidesPerView: 4, spaceBetween: 24 },
-          }
-        });
-        clearInterval(checkSwiper);
-      }
-    }, 100);
-
-  } else {
-    document.querySelector('.recently-viewed').style.display = 'none';
-  }
-});
+      // بعد تحميل كل الكاردات، نعمل تهيئة الـ Swiper
+      const checkSwiper = setInterval(() => {
+        if (container.children.length > 0) {
+          new Swiper('.recently-viewed-swiper', {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            loop: true,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            breakpoints: {
+              640: { slidesPerView: 2, spaceBetween: 20 },
+              768: { slidesPerView: 3, spaceBetween: 24 },
+              1024: { slidesPerView: 4, spaceBetween: 24 },
+            },
+          });
+          clearInterval(checkSwiper);
+        }
+      }, 100);
+    } else {
+      document.querySelector('.recently-viewed').style.display = 'none';
+    }
+  });
 </script>
+
+{% schema %}
+{
+  "name": "Recently Viewed",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Recently Viewed",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
