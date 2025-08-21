@@ -1,13 +1,11 @@
 <!-- RANDOM PRODUCT POPUP -->
-{% assign image_link = blank %}
-
 <div
   id="corner-popup"
   class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
   <!-- product image -->
   <div class="w-20 h-20 flex-shrink-0">
-    <img id="popup-product-image" src="{{ image_link | img_url: 'medium' }}" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
+    <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
   </div>
 
   <!-- product info -->
@@ -24,34 +22,34 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // اختيار منتج عشوائي من جميع المنتجات
     const products = {{ collections.all.products | json }};
     if (products.length === 0) return;
 
     const randomIndex = Math.floor(Math.random() * products.length);
     const product = products[randomIndex];
 
-    // عناصر البوب آب
     const popup = document.getElementById('corner-popup');
     const imgEl = document.getElementById('popup-product-image');
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
 
-    // ضبط بيانات المنتج
-    image_link = product.featured_image ? product.featured_image.src : '';
+    // تعيين الصورة مباشرة من الجافاسكربت
+    if (product.featured_image && product.featured_image.src) {
+      imgEl.src = product.featured_image.src;
+    } else {
+      imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}'; // صورة افتراضية
+    }
+
     imgEl.alt = product.title;
     titleEl.textContent = product.title;
     descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
 
-    // اظهار البوب آب بعد ثانية
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
-    // عند الضغط على البوب آب تحويل المستخدم للمنتج
     popup.addEventListener('click', () => {
       window.location.href = product.url;
     });
 
-    // اختيار وقت عشوائي سابق (مثل 2-10 دقائق)
     const minutesAgo = Math.floor(Math.random() * 9) + 2;
     document.getElementById('popup-time').textContent = `${minutesAgo} minutes ago`;
   });
