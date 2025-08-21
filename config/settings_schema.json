@@ -516,6 +516,12 @@
       },
       {
         "type": "text",
+        "id": "popup_product_button_text",
+        "label": "t:settings_schema.popup.settings.popup_product_button_text.label",
+        "default": "View Product",
+      },
+      {
+        "type": "text",
         "id": "copon_code",
         "label": "t:settings_schema.popup.settings.copon_code.label",
         "info": "t:settings_schema.popup.settings.copon_code.info",

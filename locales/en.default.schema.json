@@ -314,6 +314,10 @@
           "label": "Popup product",
           "info": "Select a product to display in the popup"
         },
+        "popup_product_button_text": {
+          "label": "Popup button text",
+          "info": "Text for the button inside the popup"
+        },
         "popup_vertical_padding": {
           "label": "Vertical padding",
           "info": "Adjust the vertical padding inside the popup"
