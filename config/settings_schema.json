@@ -578,7 +578,6 @@
         "type": "text",
         "id": "popup_random_product_content",
         "label": "t:settings_schema.random_product_popup.settings.popup_random_product_content.label",
-        "default": "",
       }
     ]
   }
