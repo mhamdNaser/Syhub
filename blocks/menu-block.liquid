@@ -6,7 +6,7 @@
 {% enddoc %}
 
 <div class="header__menu relative w-full" {{ block.shopify_attributes }}>
-  <ul class="flex justify-between items-center space-x-6 text-gray-600 hover:text-black">
+  <ul class="flex {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
         <li class="relative">
