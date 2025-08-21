@@ -34,21 +34,31 @@
         {{ settings.popup_content }}
       </p>
 
-      <!-- كود الكوبون -->
-      <div class="flex items-center justify-center gap-2 mb-4">
-        <div
-          id="popup-coupon"
-          class="border border-gray-400 rounded-lg px-4 py-2 font-bold tracking-widest"
-        >
-          {{ settings.copon_code }}
+      <!-- coupon or product area -->
+      {% if settings.popup_show_once == 'product' %}
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <a
+            class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg px-4 py-2"
+            href="{{ settings.popup_product | product_url }}">
+            {{ settings.popup_product_button_text }}
+          </a>
         </div>
-        <button
-          id="popup-copy"
-          class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg px-4 py-2"
-        >
-          Copy
-        </button>
-      </div>
+      {% else %}
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <div
+            id="popup-coupon"
+            class="border border-gray-400 rounded-lg px-4 py-2 font-bold tracking-widest"
+          >
+            {{ settings.copon_code }}
+          </div>
+          <button
+            id="popup-copy"
+            class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg px-4 py-2"
+          >
+            Copy
+          </button>
+        </div>
+      {% endif %}
 
       <!-- عدم العرض مجدداً -->
       <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
