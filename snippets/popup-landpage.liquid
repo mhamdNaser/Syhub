@@ -38,7 +38,8 @@
         <div class="flex items-center justify-center gap-2 mb-4">
           <a
             class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg px-4 py-2"
-            href="{{ all_products[settings.popup_product].url }}">
+            href="{{ all_products[settings.popup_product].url }}"
+          >
             {{ settings.popup_product_button_text }}
           </a>
         </div>
@@ -59,7 +60,7 @@
         </div>
       {% endif %}
 
-    <!-- Do not show again -->
+      <!-- Do not show again -->
       <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
         <input type="checkbox" id="popup-hide">
         Do not show it anymore
@@ -78,20 +79,22 @@
     const couponEl = document.getElementById('popup-coupon');
     const copyBtn = document.getElementById('popup-copy');
 
-    // Check if the user previously chose not to show the popup
-    if (!localStorage.getItem('hidePopup')) {
+    // تحقق إذا ظهرت في هذه الجلسة
+    if (!sessionStorage.getItem('popupShown')) {
       popup.classList.remove('hidden');
+      sessionStorage.setItem('popupShown', 'true');
     }
 
-    // Close the popup
+    // إغلاق البوب آب
     closeBtn.addEventListener('click', () => {
       popup.classList.add('hidden');
       if (hideCheck && hideCheck.checked) {
+        // إذا بدك خيار "لا تظهر مجدداً أبداً" يبقى على localStorage
         localStorage.setItem('hidePopup', 'true');
       }
     });
 
-    // Copy code button (only if coupon exists)
+    // زر نسخ الكود (فقط إذا الكوبون موجود)
     if (copyBtn && couponEl) {
       const coupon = couponEl.innerText.trim();
       copyBtn.addEventListener('click', () => {
@@ -103,4 +106,3 @@
     }
   });
 </script>
-
