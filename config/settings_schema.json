@@ -557,6 +557,30 @@
         "info": "t:settings_schema.popup.settings.popup_element_gap.info"
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.random_product_popup.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_random_product_popup",
+        "label": "t:settings_schema.random_product_popup.settings.enable_random_product_popup.label",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "random_product_popup_title",
+        "label": "t:settings_schema.random_product_popup.settings.random_product_popup_title.label",
+        "default": "Discover a Random Product!",
+        "info": "t:settings_schema.random_product_popup.settings.random_product_popup_title.info"
+      },
+      {
+        "type": "text",
+        "id": "popup_random_product_content",
+        "label": "t:settings_schema.random_product_popup.settings.popup_random_product_content.label",
+        "default": "Check out this amazing product that others are loving!",
+      }
+    ]
   }
   // end layout and animations
 ]

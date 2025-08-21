@@ -36,6 +36,7 @@
     {%- if settings.enable_popup == true -%}
       {% render 'popup-landpage' %}
     {%- endif -%}
+
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
@@ -60,6 +61,11 @@
     <div id="mobile-navigator" class="block md:hidden z-50">
       {% section 'mobile-navigator' %}
     </div>
+
+    {% if settings.enable_random_product_popup %}
+      {% render 'popup-random-product' %}
+    {% endif %}
+
     <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
   </body>
 </html>
