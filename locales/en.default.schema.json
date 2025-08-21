@@ -278,26 +278,28 @@
       }
     },
     "popup": {
-      "name": "popup",
+      "name": "Popup",
       "settings": {
-        "popup_enabled": {
-          "label": "Enable popup",
-          "info": "Show a popup on the page"
+        "enable_popup": {
+          "label": "Enable popup"
+        },
+        "popup_show_once": {
+          "label": "Show popup on",
+          "options__1": {
+            "label": "Coupon"
+          },
+          "options__2": {
+            "label": "Product"
+          }
         },
         "popup_title": {
-          "label": "Popup title",
-          "info": "Title displayed in the popup"
+          "label": "Popup title"
         },
         "popup_content": {
-          "label": "Popup content",
-          "info": "Content displayed in the popup"
+          "label": "Popup content"
         },
-        "popup_button_text": {
-          "label": "Popup button text",
-          "info": "Text for the button in the popup"
-        },
-        "popup_background_color": {
-          "label": "Popup background color"
+        "copon_code": {
+          "label": "Coupon code"
         }
       }
     }
