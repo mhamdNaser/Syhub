@@ -1798,6 +1798,13 @@
       }
     }
   }
+  .hover\:text-\[\#2b2c2d\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #2b2c2d;
+      }
+    }
+  }
   .hover\:text-\[\#c42764\] {
     &:hover {
       @media (hover: hover) {
