@@ -276,6 +276,30 @@
           "label": "Shadow"
         }
       }
+    },
+    "popup": {
+      "name": "popup",
+      "settings": {
+        "popup_enabled": {
+          "label": "Enable popup",
+          "info": "Show a popup on the page"
+        },
+        "popup_title": {
+          "label": "Popup title",
+          "info": "Title displayed in the popup"
+        },
+        "popup_content": {
+          "label": "Popup content",
+          "info": "Content displayed in the popup"
+        },
+        "popup_button_text": {
+          "label": "Popup button text",
+          "info": "Text for the button in the popup"
+        },
+        "popup_background_color": {
+          "label": "Popup background color"
+        }
+      }
     }
   },
 }

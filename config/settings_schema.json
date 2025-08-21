@@ -7,7 +7,7 @@
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
-  // layout and animations
+  // logo and favicon settings
   {
     "name": "t:general.logo_and_favicon",
     "settings": [
@@ -39,6 +39,7 @@
       }
     ]
   },
+  // layout page width and padding
   {
     "name": "t:general.page_layout",
     "settings": [
@@ -88,6 +89,7 @@
       }
     ]
   },
+  // layout and animations
   {
     "name": "t:general.animations",
     "settings": [
@@ -130,6 +132,7 @@
       }
     ]
   },
+  // colors and color schemes
   {
     "name": "t:settings_schema.colors.name",
     "settings": [
@@ -198,6 +201,7 @@
       }
     ]
   },
+  // color mappings for product options
   {
     "name": "Color mappings",
     "settings": [
@@ -217,6 +221,7 @@
       }
     ]
   },
+  // product card settings
   {
     "name": "t:settings_schema.productCard.name",
     "settings": [
@@ -438,6 +443,49 @@
       }
     ]
   },
-
+  // main popup settings
+  {
+    "name": "t:settings_schema.popup.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_popup",
+        "label": "t:settings_schema.popup.settings.enable_popup.label",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "popup_show_once",
+        "label": "t:settings_schema.popup.settings.popup_show_once.label",
+        "options": [
+          {
+            "value": "copon",
+            "label": "t:settings_schema.popup.settings.popup_show_once.options__1.label"
+          },
+          {
+            "value": "product",
+            "label": "t:settings_schema.popup.settings.popup_show_once.options__2.label"
+          }
+        ],
+      },
+      {
+        "type": "text",
+        "id": "popup_title",
+        "label": "t:settings_schema.popup.settings.popup_title.label",
+        "default": "Welcome to our store!"
+      },
+      {
+        "type": "textarea",
+        "id": "popup_content",
+        "label": "t:settings_schema.popup.settings.popup_content.label",
+        "default": "<p>Subscribe to our newsletter for the latest updates.</p>"
+      },
+      {
+        "type": "text",
+        "id": "copon_code",
+        "label": "t:settings_schema.popup.settings.copon_code.label",
+      }
+    ]
+  }
   // end layout and animations
 ]
