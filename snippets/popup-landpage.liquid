@@ -7,7 +7,7 @@
     <!-- زر الإغلاق -->
     <button 
       id="popup-close" 
-      class="absolute top-3 right-3 text-gray-600 hover:text-black h-10 w-10 bg-white rounded-full -mt-4 -mr-4"
+      class="absolute top-3 right-3 text-gray-600 hover:text-black h-10 w-10 bg-white rounded-full -mt-8 -mr-8"
       aria-label="Close"
     >
       ✕
@@ -16,7 +16,7 @@
     <!-- صورة -->
     <div class="mb-4">
       <img 
-        src="{{ settings.popup_image | image_url }}" 
+        src="{{ settings.popup_image | image_url : width: 600, height: 400 }}" 
         alt="Popup Banner" 
         class="rounded-lg w-full object-contain"
         width=""
