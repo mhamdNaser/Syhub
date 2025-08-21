@@ -472,23 +472,27 @@
         "type": "image_picker",
         "id": "popup_image",
         "label": "t:settings_schema.popup.settings.popup_image.label",
+        "info": "t:settings_schema.popup.settings.popup_image.info"
       },
       {
         "type": "text",
         "id": "popup_title",
         "label": "t:settings_schema.popup.settings.popup_title.label",
-        "default": "Welcome to our store!"
+        "default": "Welcome to our store!",
+        "info": "t:settings_schema.popup.settings.popup_title.info"
       },
       {
         "type": "textarea",
         "id": "popup_content",
         "label": "t:settings_schema.popup.settings.popup_content.label",
-        "default": "<p>Subscribe to our newsletter for the latest updates.</p>"
+        "default": "<p>Subscribe to our newsletter for the latest updates.</p>",
+        "info": "t:settings_schema.popup.settings.popup_content.info"
       },
       {
         "type": "text",
         "id": "copon_code",
         "label": "t:settings_schema.popup.settings.copon_code.label",
+        "info": "t:settings_schema.popup.settings.copon_code.info",
       },
       {
         "type": "range",
@@ -498,6 +502,7 @@
         "max": 100,
         "step": 2,
         "default": 8,
+        "info": "t:settings_schema.popup.settings.popup_horizontal_padding.info"
       },
       {
         "type": "range",
@@ -507,6 +512,7 @@
         "max": 100,
         "step": 2,
         "default": 8,
+        "info": "t:settings_schema.popup.settings.popup_vertical_padding.info"
       },
       {
         "type": "range",
@@ -516,6 +522,7 @@
         "max": 50,
         "step": 2,
         "default": 4,
+        "info": "t:settings_schema.popup.settings.popup_element_gap.info"
       }
     ]
   }

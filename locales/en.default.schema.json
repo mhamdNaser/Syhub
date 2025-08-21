@@ -281,7 +281,8 @@
       "name": "Popup",
       "settings": {
         "enable_popup": {
-          "label": "Enable popup"
+          "label": "Enable popup",
+          "info": "Show or hide the popup on the page"
         },
         "popup_show_once": {
           "label": "Show popup on",
@@ -290,30 +291,37 @@
           },
           "options__2": {
             "label": "Product"
-          }
-        },
-        "popup_title": {
-          "label": "Popup title"
+          },
+          "info": "Choose where the popup should be displayed"
         },
         "popup_image": {
           "label": "Popup image",
-          "default": "popup-image.jpg"
+          "info": "Upload an image to display inside the popup"
+        },
+        "popup_title": {
+          "label": "Popup title",
+          "info": "Title text displayed at the top of the popup"
         },
         "popup_content": {
-          "label": "Popup content"
+          "label": "Popup content",
+          "info": "Content or message displayed inside the popup"
         },
         "copon_code": {
-          "label": "Coupon code"
+          "label": "Coupon code",
+          "info": "Enter the discount coupon code"
         },
-        "popup_vertical_padding":{
+        "popup_vertical_padding": {
           "label": "Vertical padding",
+          "info": "Adjust the vertical padding inside the popup"
         },
         "popup_horizontal_padding": {
           "label": "Horizontal padding",
+          "info": "Adjust the horizontal padding inside the popup"
         },
         "popup_element_gap": {
           "label": "Element gap",
-        },
+          "info": "Space between popup elements"
+        }
       }
     }
   },
