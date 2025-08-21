@@ -310,6 +310,10 @@
           "label": "Coupon code",
           "info": "Enter the discount coupon code"
         },
+        "popup_product": {
+          "label": "Popup product",
+          "info": "Select a product to display in the popup"
+        },
         "popup_vertical_padding": {
           "label": "Vertical padding",
           "info": "Adjust the vertical padding inside the popup"
