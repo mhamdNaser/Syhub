@@ -21,36 +21,48 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // اختيار منتج عشوائي من جميع المنتجات
-    const products = {{ collections.all.products | json }};
-    if (products.length === 0) return;
+document.addEventListener('DOMContentLoaded', function () {
+  const products = {{ collections.all.products | json }};
+  if (products.length === 0) return;
 
+  const popup = document.getElementById('corner-popup');
+  const imgEl = document.getElementById('popup-product-image');
+  const titleEl = document.getElementById('popup-product-title');
+  const descEl = document.getElementById('popup-product-description');
+  const timeEl = document.getElementById('popup-time');
+
+  // وظيفة لتحديث البوب آب مع منتج جديد ووقت عشوائي
+  function updatePopup() {
     const randomIndex = Math.floor(Math.random() * products.length);
     const product = products[randomIndex];
 
-    // عناصر البوب آب
-    const popup = document.getElementById('corner-popup');
-    const imgEl = document.getElementById('popup-product-image');
-    const titleEl = document.getElementById('popup-product-title');
-    const descEl = document.getElementById('popup-product-description');
-
-    // ضبط بيانات المنتج
-    imgEl.src = product.featured_image ? product.featured_image.src : '';
+    imgEl.src = product.featured_image ? product.featured_image.src : '{{ "placeholder-image.png" | asset_url }}';
     imgEl.alt = product.title;
     titleEl.textContent = product.title;
     descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
 
-    // اظهار البوب آب بعد ثانية
-    setTimeout(() => popup.classList.remove('hidden'), 1000);
+    const minutesAgo = Math.floor(Math.random() * 9) + 2; // 2-10 دقائق
+    timeEl.textContent = `${minutesAgo} minutes ago`;
+
+    popup.classList.remove('hidden');
 
     // عند الضغط على البوب آب تحويل المستخدم للمنتج
-    popup.addEventListener('click', () => {
-      window.location.href = product.url;
-    });
+    popup.onclick = () => window.location.href = product.url;
+  }
 
-    // اختيار وقت عشوائي سابق (مثل 2-10 دقائق)
-    const minutesAgo = Math.floor(Math.random() * 9) + 2;
-    document.getElementById('popup-time').textContent = `${minutesAgo} minutes ago`;
-  });
+  // أول ظهور بعد ثانية واحدة
+  setTimeout(updatePopup, 1000);
+
+  // تحديث البوب آب كل فترة عشوائية بين 2-10 دقائق
+  function scheduleNextPopup() {
+    const delayMinutes = Math.floor(Math.random() * 9) + 2;
+    const delayMs = delayMinutes * 60 * 1000;
+    setTimeout(() => {
+      updatePopup();
+      scheduleNextPopup();
+    }, delayMs);
+  }
+
+  scheduleNextPopup();
+});
 </script>
