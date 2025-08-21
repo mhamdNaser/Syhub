@@ -6,10 +6,14 @@
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <span class="svg-wrapper w-6 h-6 border border-neutral-400 rounded-3xl">
-        <span class="w-6 h-6">search Products</span>
-        {% render 'icon-search' %}
-      </span>
+      <div class="flex justify-between border border-neutral-400 rounded-3xl">
+        {% comment %} {{ 'general.search.search' | t }} {% endcomment %}
+        search Products
+        <span class="svg-wrapper w-6 h-6">
+          <span class="w-6 h-6"></span>
+          {% render 'icon-search' %}
+        </span>
+      </div>
     </summary>
 
     <!-- المودال عند الفتح -->
@@ -70,7 +74,10 @@
             </button>
 
             <!-- هنا سيظهر الأوتوكومبليت -->
-            <div id="search-results" class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4  max-h-[480px] overflow-y-auto"></div>
+            <div
+              id="search-results"
+              class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4  max-h-[480px] overflow-y-auto"
+            ></div>
           </form>
 
           <!-- الأيقونتان على اليمين -->
