@@ -33,11 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const product = products[randomIndex];
 
     // رابط الصورة الآمن
-    if (product.featured_image || product.featured_image.src) {
-      imgEl.src = product.featured_image.src | img_url: 'medium';
-    } else {
-      imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
-    }
+    imgEl.src = (product.featured_image && product.featured_image.src) 
+    ? product.featured_image.src | img_url: 'medium' 
+    : '{{ "Luliz_Logo.png" | asset_url }}';
     imgEl.alt = product.title;
 
     titleEl.textContent = product.title;
