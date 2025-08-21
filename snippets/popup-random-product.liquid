@@ -1,3 +1,4 @@
+<!-- POPUP HTML -->
 <div
   id="corner-popup"
   class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
@@ -17,9 +18,12 @@
   </div>
 </div>
 
+<!-- POPUP SCRIPT -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const products = {{ collections.all.products | json }};
+  // إرسال بيانات المنتجات مع رابط الصورة مباشرة
+  const products = {{ collections.all.products | map: "id" | map: "product" | json }};
+  
   if (!products || products.length === 0) return;
 
   const popup = document.getElementById('corner-popup');
@@ -32,14 +36,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomIndex = Math.floor(Math.random() * products.length);
     const product = products[randomIndex];
 
-    // رابط الصورة الآمن
-    imgEl.src = (product.featured_image && product.featured_image.src) 
-    ? product.featured_image.src | img_url: 'medium' 
-    : '{{ "Luliz_Logo.png" | asset_url }}';
+    // رابط الصورة الافتراضي
+    imgEl.src = (product.featured_image && product.featured_image.src)
+      ? product.featured_image.src
+      : '{{ "Luliz_Logo.png" | asset_url }}';
     imgEl.alt = product.title;
 
     titleEl.textContent = product.title;
-    descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
+    descEl.textContent = product.description 
+      ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) 
+      : '';
 
     const minutesAgo = Math.floor(Math.random() * 9) + 2; // 2-10 دقائق
     timeEl.textContent = `${minutesAgo} minutes ago`;
@@ -48,10 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
     popup.onclick = () => window.location.href = product.url;
   }
 
+  // أول ظهور بعد ثانية واحدة
   setTimeout(updatePopup, 1000);
 
+  // جدولة ظهور البوب آب بعد فترات عشوائية لاحقًا
   function scheduleNextPopup() {
-    const delayMinutes = Math.floor(Math.random() * 9) + 2;
+    const delayMinutes = Math.floor(Math.random() * 9) + 2; // 2-10 دقائق
     const delayMs = delayMinutes * 60 * 1000;
     setTimeout(() => {
       updatePopup();
