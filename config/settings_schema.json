@@ -489,6 +489,24 @@
         "type": "text",
         "id": "copon_code",
         "label": "t:settings_schema.popup.settings.copon_code.label",
+      },
+      {
+        "type": "range",
+        "id": "popup_horizontal_padding",
+        "label": "t:settings_schema.popup.settings.popup_horizontal_padding.label",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 8,
+      },
+      {
+        "type": "range",
+        "id": "popup_vertical_padding",
+        "label": "t:settings_schema.popup.settings.popup_vertical_padding.label",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 8,
       }
     ]
   }
