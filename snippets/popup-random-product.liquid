@@ -37,7 +37,7 @@
     if (product.featured_image && product.featured_image.src) {
       imgEl.src = product.featured_image.src;
     } else {
-      imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}'; // صورة افتراضية
+      imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
     }
 
     imgEl.alt = product.title;

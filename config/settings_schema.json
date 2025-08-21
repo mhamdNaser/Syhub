@@ -565,7 +565,7 @@
         "type": "checkbox",
         "id": "enable_random_product_popup",
         "label": "t:settings_schema.random_product_popup.settings.enable_random_product_popup.label",
-        "default": false
+        "default":true
       },
       {
         "type": "text",
@@ -578,7 +578,7 @@
         "type": "text",
         "id": "popup_random_product_content",
         "label": "t:settings_schema.random_product_popup.settings.popup_random_product_content.label",
-        "default": "Check out this amazing product that others are loving!",
+        "default": "",
       }
     ]
   }
