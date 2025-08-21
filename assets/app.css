@@ -1683,6 +1683,13 @@
       }
     }
   }
+  .group-hover\:text-\[\#c42764\] {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        color: #c42764;
+      }
+    }
+  }
   .last\:border-none {
     &:last-child {
       --tw-border-style: none;
