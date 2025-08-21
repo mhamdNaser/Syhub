@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const product = products[randomIndex];
 
     // رابط الصورة الآمن
-    imgEl.src = product.featured_image && product.featured_image.src ? product.featured_image : '{{ "placeholder-image.png" | asset_url }}';
+    if (!product.featured_image || !product.featured_image.src) {
+      imgEl.src = '{{ "placeholder-image.png" | asset_url }}';
+    } else {
+      imgEl.src = product.featured_image.src | img_url: 'medium';
+    }
     imgEl.alt = product.title;
 
     titleEl.textContent = product.title;
