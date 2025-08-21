@@ -311,6 +311,9 @@
         "popup_horizontal_padding": {
           "label": "Horizontal padding",
         },
+        "popup_element_gap": {
+          "label": "Element gap",
+        },
       }
     }
   },
