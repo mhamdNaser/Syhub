@@ -23,7 +23,6 @@
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
-    {% comment %} <script src="https://cdn.tailwindcss.com" defer></script> {% endcomment %}
 
     {% # Social, title, etc. %}
     {% render 'color-schemes' %}
@@ -33,13 +32,10 @@
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased">
-    {% comment %}
-      Welcome to Shopify theme development!
-    {% endcomment %}
-
-    {% comment %}
-      Welcome to Shopify theme development!
-    {% endcomment %}
+    {% comment %} popup container {% endcomment %}
+    {%- if settings.enable_popup == true -%}
+      {% render 'popup-landpage' %}
+    {%- endif -%}
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}

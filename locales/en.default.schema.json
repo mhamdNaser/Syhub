@@ -295,6 +295,10 @@
         "popup_title": {
           "label": "Popup title"
         },
+        "popup_image": {
+          "label": "Popup image",
+          "default": "popup-image.jpg"
+        },
         "popup_content": {
           "label": "Popup content"
         },
