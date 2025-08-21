@@ -565,7 +565,7 @@
         "type": "checkbox",
         "id": "enable_random_product_popup",
         "label": "t:settings_schema.random_product_popup.settings.enable_random_product_popup.label",
-        "default":true
+        "default": true
       },
       {
         "type": "text",
