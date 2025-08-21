@@ -469,6 +469,26 @@
         ],
       },
       {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "t:settings_schema.popup.settings.text_alignment.label",
+        "info": "t:settings_schema.popup.settings.text_alignment.info",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "t:settings_schema.popup.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "text-center",
+            "label": "t:settings_schema.popup.settings.text_alignment.options__2.label"
+          },
+          {
+            "value": "text-right",
+            "label": "t:settings_schema.popup.settings.text_alignment.options__3.label"
+          }
+        ],
+      },
+      {
         "type": "image_picker",
         "id": "popup_image",
         "label": "t:settings_schema.popup.settings.popup_image.label",
