@@ -31,6 +31,10 @@
     "show_preorder": false,
     "show_preorder_inventory": false,
     "product_titles_caps": true,
+    "enable_popup": true,
+    "popup_text_alignment": "text-center",
+    "popup_image": "shopify://shop_images/Luliz_Logo.png",
+    "copon_code": "dfg213",
     "logo_width": 70,
     "sections": {
       "mobile-header": {
