@@ -470,9 +470,9 @@
       },
       {
         "type": "select",
-        "id": "text_alignment",
-        "label": "t:settings_schema.popup.settings.text_alignment.label",
-        "info": "t:settings_schema.popup.settings.text_alignment.info",
+        "id": "popup_text_alignment",
+        "label": "t:settings_schema.popup.settings.popup_text_alignment.label",
+        "info": "t:settings_schema.popup.settings.popup_text_alignment.info",
         "options": [
           {
             "value": "text-left",

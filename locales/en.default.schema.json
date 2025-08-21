@@ -322,7 +322,7 @@
           "label": "Element gap",
           "info": "Space between popup elements"
         },
-        "text_alignment": {
+        "popup_text_alignment": {
           "label": "Text alignment",
           "info": "Choose how text is aligned within the popup",
           "options__1": {
