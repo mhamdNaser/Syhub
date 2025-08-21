@@ -472,7 +472,6 @@
         "type": "image_picker",
         "id": "popup_image",
         "label": "t:settings_schema.popup.settings.popup_image.label",
-        "default": "popup-image.jpg",
       },
       {
         "type": "text",
