@@ -1,14 +1,11 @@
-<!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
   class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
-  <!-- product image -->
   <div class="w-20 h-20 flex-shrink-0">
-    <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
+    <img id="popup-product-image" class="object-cover w-20 h-20 rounded" alt="Product">
   </div>
 
-  <!-- product info -->
   <div class="flex-1 flex flex-col justify-between">
     <div>
       <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
@@ -23,7 +20,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const products = {{ collections.all.products | json }};
-  if (products.length === 0) return;
+  if (!products || products.length === 0) return;
 
   const popup = document.getElementById('corner-popup');
   const imgEl = document.getElementById('popup-product-image');
@@ -31,13 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const descEl = document.getElementById('popup-product-description');
   const timeEl = document.getElementById('popup-time');
 
-  // وظيفة لتحديث البوب آب مع منتج جديد ووقت عشوائي
   function updatePopup() {
     const randomIndex = Math.floor(Math.random() * products.length);
     const product = products[randomIndex];
 
-    imgEl.src = product.featured_image ? product.featured_image.src : '{{ "placeholder-image.png" | asset_url }}';
+    // رابط الصورة الآمن
+    imgEl.src = product.featured_image && product.featured_image.src ? product.featured_image.src : '{{ "placeholder-image.png" | asset_url }}';
     imgEl.alt = product.title;
+
     titleEl.textContent = product.title;
     descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
 
@@ -45,15 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
     timeEl.textContent = `${minutesAgo} minutes ago`;
 
     popup.classList.remove('hidden');
-
-    // عند الضغط على البوب آب تحويل المستخدم للمنتج
     popup.onclick = () => window.location.href = product.url;
   }
 
-  // أول ظهور بعد ثانية واحدة
   setTimeout(updatePopup, 1000);
 
-  // تحديث البوب آب كل فترة عشوائية بين 2-10 دقائق
   function scheduleNextPopup() {
     const delayMinutes = Math.floor(Math.random() * 9) + 2;
     const delayMs = delayMinutes * 60 * 1000;
