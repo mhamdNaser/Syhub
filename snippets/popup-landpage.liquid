@@ -1,90 +1,90 @@
-<div 
-  id="popup-landpage" 
+<div
+  id="popup-landpage"
   class="fixed inset-0 flex items-center justify-center bg-black/60 z-50 hidden"
 >
   <div class="bg-white max-w-md w-full rounded-lg shadow-xl relative">
-    
     <!-- زر الإغلاق -->
-    <button 
-      id="popup-close" 
+    <button
+      id="popup-close"
       class="absolute top-3 right-3 text-gray-600 hover:text-black h-10 w-10 bg-white rounded-full -mt-8 -mr-8"
       aria-label="Close"
     >
       ✕
     </button>
 
-    <!-- صورة -->
-    <div class="mb-4 border-b border-gray-200 rounded-lg overflow-hidden">
-      <img 
-        src="{{ settings.popup_image | image_url }}" 
-        alt="Popup Banner" 
-        class="object-contain h-full w-full"
-        width=""
-        height=""
-      >
-    </div>
-
-    <!-- العنوان -->
-    <h2 class="text-xl font-bold text-center mb-2">
-      {{ settings.popup_title }}
-    </h2>
-
-    <!-- النص -->
-    <p class="text-gray-700 text-center mb-4">
-      {{ settings.popup_content }}
-    </p>
-
-    <!-- كود الكوبون -->
-    <div class="flex items-center justify-center gap-2 mb-4">
-      <div 
-        id="popup-coupon" 
-        class="border border-gray-400 rounded-lg px-4 py-2 font-bold tracking-widest"
-      >
-        {{ settings.copon_code }}
+    <div class="flex flex-col gap-y-{{ settings.popup_element_gap }} py-{{ settings.popup_vertical_padding }} px-{{ settings.popup_horizontal_padding }}">
+      <!-- صورة -->
+      <div class="mb-4 border-b border-gray-200 rounded-lg overflow-hidden">
+        <img
+          src="{{ settings.popup_image | image_url }}"
+          alt="Popup Banner"
+          class="object-contain h-full w-full"
+          width=""
+          height=""
+        >
       </div>
-      <button 
-        id="popup-copy" 
-        class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg px-4 py-2"
-      >
-        Copy
-      </button>
+
+      <!-- العنوان -->
+      <h2 class="text-xl font-bold text-center mb-2">
+        {{ settings.popup_title }}
+      </h2>
+
+      <!-- النص -->
+      <p class="text-gray-700 text-center mb-4">
+        {{ settings.popup_content }}
+      </p>
+
+      <!-- كود الكوبون -->
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <div
+          id="popup-coupon"
+          class="border border-gray-400 rounded-lg px-4 py-2 font-bold tracking-widest"
+        >
+          {{ settings.copon_code }}
+        </div>
+        <button
+          id="popup-copy"
+          class="bg-pink-600 hover:bg-pink-700 text-white rounded-lg px-4 py-2"
+        >
+          Copy
+        </button>
+      </div>
+
+      <!-- عدم العرض مجدداً -->
+      <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+        <input type="checkbox" id="popup-hide">
+        Do not show it anymore
+      </label>
     </div>
-
-    <!-- عدم العرض مجدداً -->
-    <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-      <input type="checkbox" id="popup-hide">
-      Do not show it anymore
-    </label>
-
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const popup = document.getElementById("popup-landpage");
-    const closeBtn = document.getElementById("popup-close");
-    const copyBtn = document.getElementById("popup-copy");
-    const coupon = document.getElementById("popup-coupon").innerText.trim();
-    const hideCheck = document.getElementById("popup-hide");
+  document.addEventListener('DOMContentLoaded', function () {
+    const popup = document.getElementById('popup-landpage');
+    const closeBtn = document.getElementById('popup-close');
+    const copyBtn = document.getElementById('popup-copy');
+    const coupon = document.getElementById('popup-coupon').innerText.trim();
+    const hideCheck = document.getElementById('popup-hide');
 
     // تحقق إذا كان المستخدم اختار عدم عرض البوب آب سابقاً
-    if (!localStorage.getItem("hidePopup")) {
-      popup.classList.remove("hidden");
+    if (!localStorage.getItem('hidePopup')) {
+      popup.classList.remove('hidden');
     }
 
     // إغلاق البوب آب
-    closeBtn.addEventListener("click", () => {
-      popup.classList.add("hidden");
+    closeBtn.addEventListener('click', () => {
+      popup.classList.add('hidden');
       if (hideCheck.checked) {
-        localStorage.setItem("hidePopup", "true");
+        localStorage.setItem('hidePopup', 'true');
       }
     });
 
     // زر نسخ الكود
-    copyBtn.addEventListener("click", () => {
+    copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(coupon).then(() => {
-        copyBtn.innerText = "Copied!";
-        setTimeout(() => (copyBtn.innerText = "Copy"), 2000);
+        copyBtn.innerText = 'Copied!';
+        setTimeout(() => (copyBtn.innerText = 'Copy'), 2000);
       });
     });
   });

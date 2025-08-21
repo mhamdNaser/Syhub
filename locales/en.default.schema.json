@@ -304,7 +304,13 @@
         },
         "copon_code": {
           "label": "Coupon code"
-        }
+        },
+        "popup_vertical_padding":{
+          "label": "Vertical padding",
+        },
+        "popup_horizontal_padding": {
+          "label": "Horizontal padding",
+        },
       }
     }
   },
