@@ -1,23 +1,32 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
-  <!-- product image -->
-  <div class="w-20 h-20 flex-shrink-0">
-    <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
-  </div>
+  <!-- عنوان البوب أب -->
+  <p class="text-sm text-gray-500 mb-2">{{ settings.random_product_popup_title }}</p>
 
-  <!-- product info -->
-  <div class="flex-1 flex flex-col justify-between">
-    <div>
-      <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
-      <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
+  <!-- الصورة + المعلومات -->
+  <div class="flex items-start gap-3">
+    <!-- صورة المنتج -->
+    <div class="w-20 h-20 flex-shrink-0">
+      <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
+    </div>
+
+    <!-- معلومات المنتج -->
+    <div class="flex-1 flex flex-col">
+      <h3 id="popup-product-title" class="font-bold text-gray-800 mb-1 truncate"></h3>
       <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
     </div>
   </div>
-  <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
-  {% comment %} <span class="">{{ settings.popup_random_product_content }}</span> {% endcomment %}
+
+  <!-- الوقت -->
+  <p class="text-xs text-gray-400 mt-3"><span id="popup-time">8 minutes ago</span> · view</p>
+
+  <!-- النص الإضافي -->
+  {% if settings.popup_random_product_content != blank %}
+    <span class="block text-xs text-gray-500 mt-1">{{ settings.popup_random_product_content }}</span>
+  {% endif %}
 </div>
 
 <script>
@@ -28,31 +37,36 @@
     const randomIndex = Math.floor(Math.random() * products.length);
     const product = products[randomIndex];
 
-    console.log(product);
-
     const popup = document.getElementById('corner-popup');
     const imgEl = document.getElementById('popup-product-image');
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
+    const timeEl = document.getElementById('popup-time');
 
-    // تعيين الصورة مباشرة من الجافاسكربت
-    if (product.featured_image) {
-      imgEl.src = product.featured_image;
+    // صورة المنتج
+    if (product.featured_image && product.featured_image.src) {
+      imgEl.src = product.featured_image.src;
     } else {
       imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
     }
-
     imgEl.alt = product.title;
-    titleEl.textContent = product.title;
-    descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
 
+    // عنوان + وصف
+    titleEl.textContent = product.title;
+    descEl.textContent = product.description 
+      ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) 
+      : '';
+
+    // وقت وهمي
+    const minutesAgo = Math.floor(Math.random() * 9) + 2;
+    timeEl.textContent = `${minutesAgo} minutes ago`;
+
+    // إظهار البوب أب بعد ثانية
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
+    // عند الضغط على البوب أب يفتح صفحة المنتج
     popup.addEventListener('click', () => {
       window.location.href = product.url;
     });
-
-    const minutesAgo = Math.floor(Math.random() * 9) + 2;
-    document.getElementById('popup-time').textContent = `${minutesAgo} minutes ago`;
   });
 </script>
