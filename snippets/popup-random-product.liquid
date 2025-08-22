@@ -45,7 +45,7 @@
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
     const timeEl = document.getElementById('popup-time');
-    const closeBtn = document.getElementById('popup-close');
+    {% comment %} const closeBtn = document.getElementById('popup-close'); {% endcomment %}
 
 
     // صورة المنتج
@@ -72,9 +72,9 @@
     // عند الضغط على البوب أب يفتح صفحة المنتج
     const productUrl = `/products/${product.handle}`; // الرابط الصحيح
     popup.addEventListener('click', (e) => {
-      if (e.target !== closeBtn) {
+      {% comment %} if (e.target !== closeBtn) { {% endcomment %}
         window.location.href = productUrl;
-      } 
+      {% comment %} }  {% endcomment %}
     });
 
     {% comment %} closeBtn.addEventListener('click', (e) => {
