@@ -74,7 +74,7 @@
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
     // عند الضغط على البوب أب يفتح صفحة المنتج
-    const productUrl = `/${product.handle}`; // الرابط الصحيح
+    const productUrl = `products/${product.handle}`; // الرابط الصحيح
     popup.addEventListener('click', (e) => {
       {% comment %} if (e.target !== closeBtn) { {% endcomment %}
         window.location.href = productUrl;
