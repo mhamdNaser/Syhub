@@ -76,9 +76,9 @@
     // عند الضغط على البوب أب يفتح صفحة المنتج
     const productUrl = `/${product.handle}`; // الرابط الصحيح
     popup.addEventListener('click', (e) => {
-      if (e.target !== closeBtn) {
+      {% comment %} if (e.target !== closeBtn) { {% endcomment %}
         window.location.href = productUrl;
-      }
+      {% comment %} } {% endcomment %}
     });
 });
 </script>
