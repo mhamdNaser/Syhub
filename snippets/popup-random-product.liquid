@@ -44,7 +44,7 @@
     const timeEl = document.getElementById('popup-time');
 
     // صورة المنتج
-    if (product.featured_image && product.featured_image.src) {
+    if (product.featured_image) {
       imgEl.src = product.featured_image;
     } else {
       imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
