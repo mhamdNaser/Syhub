@@ -3,32 +3,21 @@
   id="corner-popup"
   class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
-  {% form 'product', all_products.first, id: 'product-form', novalidate: 'novalidate' %}
-    <!-- product image -->
-    <div class="w-20 h-20 flex-shrink-0">
-      <img
-        id="popup-product-image"
-        src=""
-        alt="Product"
-        class="object-cover w-full h-full rounded"
-        width="80"
-        height="80"
-      >
-    </div>
+  <!-- product image -->
+  <div class="w-20 h-20 flex-shrink-0">
+    <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
+  </div>
 
-    <!-- product info -->
-    <div class="flex-1 flex flex-col justify-between">
-      <div>
-        <p id="popup-fixed-title" class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
-        <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
-        <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
-      </div>
-      <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
+  <!-- product info -->
+  <div class="flex-1 flex flex-col justify-between">
+    <div>
+      <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
+      <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
+      <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
     </div>
-
-    <!-- مهم: نخزن الـ variant id عشان الفورم يشتغل -->
-    <input type="hidden" name="id" id="popup-variant-id" value="">
-  {% endform %}
+  </div>
+  <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
+  {% comment %} <span class="">{{ settings.popup_random_product_content }}</span> {% endcomment %}
 </div>
 
 <script>
@@ -36,48 +25,32 @@
     const products = {{ collections.all.products | json }};
     if (products.length === 0) return;
 
+    const randomIndex = Math.floor(Math.random() * products.length);
+    const product = products[randomIndex];
+
     const popup = document.getElementById('corner-popup');
     const imgEl = document.getElementById('popup-product-image');
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
-    const timeEl = document.getElementById('popup-time');
-    const variantInput = document.getElementById('popup-variant-id');
 
-    function showRandomProduct() {
-      const randomIndex = Math.floor(Math.random() * products.length);
-      const product = products[randomIndex];
-
-      // صورة المنتج
-      if (product.featured_image && product.featured_image.src) {
-        imgEl.src = product.featured_image.src;
-      } else {
-        imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
-      }
-      imgEl.alt = product.title;
-
-      // عنوان + وصف
-      titleEl.textContent = product.title;
-      descEl.textContent = product.description 
-        ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) 
-        : '';
-
-      // variant id (مهم عشان الفورم يضيف المنتج للكارت)
-      if (product.variants && product.variants.length > 0) {
-        variantInput.value = product.variants[0].id;
-      }
-
-      // وقت وهمي للعرض
-      const minutesAgo = Math.floor(Math.random() * 9) + 2;
-      timeEl.textContent = `${minutesAgo} minutes ago`;
+    // تعيين الصورة مباشرة من الجافاسكربت
+    if (product.featured_image && product.featured_image.src) {
+      imgEl.src = product.featured_image.src;
+    } else {
+      imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
     }
 
-    // أول مرة
-    showRandomProduct();
+    imgEl.alt = product.title;
+    titleEl.textContent = product.title;
+    descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
 
-    // إظهار البوب أب بعد ثانية
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
-    // كل 10 ثواني غيّر المنتج
-    setInterval(showRandomProduct, 10000);
+    popup.addEventListener('click', () => {
+      window.location.href = product.url;
+    });
+
+    const minutesAgo = Math.floor(Math.random() * 9) + 2;
+    document.getElementById('popup-time').textContent = `${minutesAgo} minutes ago`;
   });
 </script>
