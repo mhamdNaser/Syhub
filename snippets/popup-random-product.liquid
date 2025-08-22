@@ -34,9 +34,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // لو المستخدم سبق وضغط على زر الإغلاق، ما نعرض البوب أب
-    if (sessionStorage.getItem('popupClosed')) return;
-
     const products = {{ collections.all.products | json }};
     if (products.length === 0) return;
 
@@ -50,8 +47,13 @@
     const timeEl = document.getElementById('popup-time');
     const closeBtn = document.getElementById('popup-close');
 
+
     // صورة المنتج
-    imgEl.src = product.featured_image || '{{ "Luliz_Logo.png" | asset_url }}';
+    if (product.featured_image) {
+      imgEl.src = product.featured_image;
+    } else {
+      imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
+    }
     imgEl.alt = product.title;
 
     // عنوان + وصف
@@ -60,26 +62,24 @@
       ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) 
       : '';
 
-    // وقت وهمي بين 2 و 10 دقائق
-    const minutesAgo = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
+    // وقت وهمي
+    const minutesAgo = Math.floor(Math.random() * 9) + 2;
     timeEl.textContent = `${minutesAgo} minutes ago`;
 
     // إظهار البوب أب بعد ثانية
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
-    // رابط المنتج
-    const productUrl = `/products/${product.handle}`;
+    // عند الضغط على البوب أب يفتح صفحة المنتج
+    const productUrl = `/products/${product.handle}`; // الرابط الصحيح
     popup.addEventListener('click', (e) => {
       if (e.target !== closeBtn) {
         window.location.href = productUrl;
-      }
+      } 
     });
 
-    // زر الإغلاق: يخزن في sessionStorage بدل يعطي hidden فقط
     closeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      sessionStorage.setItem('popupClosed', 'true'); // حفظ حالة الإغلاق
       popup.classList.add('hidden');
     });
-  });
+});
 </script>
