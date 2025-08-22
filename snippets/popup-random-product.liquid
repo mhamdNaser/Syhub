@@ -1,68 +1,83 @@
-<div id="corner-popup" class="fixed bottom-4 left-4 z-50"></div>
+<!-- RANDOM PRODUCT POPUP -->
+<div
+  id="corner-popup"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
+>
+  {% form 'product', all_products.first, id: 'product-form', novalidate: 'novalidate' %}
+    <!-- product image -->
+    <div class="w-20 h-20 flex-shrink-0">
+      <img
+        id="popup-product-image"
+        src=""
+        alt="Product"
+        class="object-cover w-full h-full rounded"
+        width="80"
+        height="80"
+      >
+    </div>
+
+    <!-- product info -->
+    <div class="flex-1 flex flex-col justify-between">
+      <div>
+        <p id="popup-fixed-title" class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
+        <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
+        <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
+      </div>
+      <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
+    </div>
+
+    <!-- مهم: نخزن الـ variant id عشان الفورم يشتغل -->
+    <input type="hidden" name="id" id="popup-variant-id" value="">
+  {% endform %}
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const products = {{ collections.all.products | json }};
-    if (!products || products.length === 0) return;
+    if (products.length === 0) return;
 
     const popup = document.getElementById('corner-popup');
+    const imgEl = document.getElementById('popup-product-image');
+    const titleEl = document.getElementById('popup-product-title');
+    const descEl = document.getElementById('popup-product-description');
+    const timeEl = document.getElementById('popup-time');
+    const variantInput = document.getElementById('popup-variant-id');
 
-    // نعمل لوب على كل المنتجات
-    products.forEach((product, index) => {
-      // ننضف وصف المنتج من الـ HTML ونقصه
-      const shortDesc = product.description 
-        ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80)
+    function showRandomProduct() {
+      const randomIndex = Math.floor(Math.random() * products.length);
+      const product = products[randomIndex];
+
+      // صورة المنتج
+      if (product.featured_image && product.featured_image.src) {
+        imgEl.src = product.featured_image.src;
+      } else {
+        imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
+      }
+      imgEl.alt = product.title;
+
+      // عنوان + وصف
+      titleEl.textContent = product.title;
+      descEl.textContent = product.description 
+        ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) 
         : '';
 
-      // نبني HTML لكل منتج
-      const productHTML = `
-        <div class="bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer mb-3 hidden product-popup" data-url="${product.url}">
-          <!-- product image -->
-          <div class="w-20 h-20 flex-shrink-0">
-            <img src="${product.featured_image ? product.featured_image.src + `| img_url` : '{{ "Luliz_Logo.png" | asset_url }}'}" 
-                 alt="${product.title}" 
-                 class="object-cover w-full h-full rounded" 
-                 width="80" height="80">
-          </div>
+      // variant id (مهم عشان الفورم يضيف المنتج للكارت)
+      if (product.variants && product.variants.length > 0) {
+        variantInput.value = product.variants[0].id;
+      }
 
-          <!-- product info -->
-          <div class="flex-1 flex flex-col justify-between">
-            <div>
-              <p class="text-sm text-gray-500">{{ settings.random_product_popup_title | escape }}</p>
-              <h3 class="font-bold text-gray-800 truncate">${product.title}</h3>
-              <p class="text-gray-600 text-sm line-clamp-2">${shortDesc}</p>
-            </div>
-            <p class="text-xs text-gray-400 mt-2"><span>${Math.floor(Math.random() * 9) + 2} minutes ago</span> · view</p>
-          </div>
-        </div>
-      `;
-
-      // نضيف البلوك داخل الـ popup
-      popup.insertAdjacentHTML("beforeend", productHTML);
-    });
-
-    // نجيب كل البوب أب ونخليهم يظهروا واحد ورا الثاني
-    const popups = document.querySelectorAll('.product-popup');
-    let current = 0;
-
-    function showNextPopup() {
-      // نخفي الكل
-      popups.forEach(p => p.classList.add('hidden'));
-
-      // نظهر واحد فقط
-      popups[current].classList.remove('hidden');
-
-      // عند الضغط على أي بوب أب يفتح رابط المنتج
-      popups[current].addEventListener('click', () => {
-        window.location.href = popups[current].dataset.url;
-      });
-
-      // نغير للمنتج التالي كل 5 ثواني
-      current = (current + 1) % popups.length;
-      setTimeout(showNextPopup, 5000);
+      // وقت وهمي للعرض
+      const minutesAgo = Math.floor(Math.random() * 9) + 2;
+      timeEl.textContent = `${minutesAgo} minutes ago`;
     }
 
-    // نبدأ العرض بعد ثانية
-    setTimeout(showNextPopup, 1000);
+    // أول مرة
+    showRandomProduct();
+
+    // إظهار البوب أب بعد ثانية
+    setTimeout(() => popup.classList.remove('hidden'), 1000);
+
+    // كل 10 ثواني غيّر المنتج
+    setInterval(showRandomProduct, 10000);
   });
 </script>
