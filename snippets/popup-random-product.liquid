@@ -1,11 +1,8 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 relative"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
-  <!-- زر الإغلاق -->
-  {% comment %} <button id="popup-close" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">✕</button> {% endcomment %}
-
   <!-- عنوان البوب أب -->
   <p class="text-sm text-gray-500 mb-2">{{ settings.random_product_popup_title }}</p>
 
@@ -13,7 +10,14 @@
   <div class="flex items-start gap-3">
     <!-- صورة المنتج -->
     <div class="w-20 h-20 flex-shrink-0">
-      <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
+      <img
+        id="popup-product-image"
+        src=""
+        alt="Product"
+        class="object-cover w-full h-full rounded"
+        width="80"
+        height="80"
+      >
     </div>
 
     <!-- معلومات المنتج -->
@@ -24,7 +28,7 @@
   </div>
 
   <!-- الوقت -->
-  <p class="text-xs text-gray-400 mt-3"><span id="popup-time"></span> · view</p>
+  <p class="text-xs text-gray-400 mt-3"><span id="popup-time">8 minutes ago</span> · view</p>
 
   <!-- النص الإضافي -->
   {% if settings.popup_random_product_content != blank %}
@@ -45,8 +49,8 @@
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
     const timeEl = document.getElementById('popup-time');
-    {% comment %} const closeBtn = document.getElementById('popup-close'); {% endcomment %}
 
+    console.log(product);
 
     // صورة المنتج
     if (product.featured_image) {
@@ -74,12 +78,7 @@
     popup.addEventListener('click', (e) => {
       {% comment %} if (e.target !== closeBtn) { {% endcomment %}
         window.location.href = productUrl;
-      {% comment %} }  {% endcomment %}
+      {% comment %} } {% endcomment %}
     });
-
-    {% comment %} closeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      popup.classList.add('hidden');
-    }); {% endcomment %}
 });
 </script>
