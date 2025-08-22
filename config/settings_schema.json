@@ -7,7 +7,7 @@
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
-  // layout and animations
+  // logo and favicon settings
   {
     "name": "t:general.logo_and_favicon",
     "settings": [
@@ -39,6 +39,7 @@
       }
     ]
   },
+  // layout page width and padding
   {
     "name": "t:general.page_layout",
     "settings": [
@@ -88,6 +89,7 @@
       }
     ]
   },
+  // layout and animations
   {
     "name": "t:general.animations",
     "settings": [
@@ -130,6 +132,7 @@
       }
     ]
   },
+  // colors and color schemes
   {
     "name": "t:settings_schema.colors.name",
     "settings": [
@@ -198,6 +201,7 @@
       }
     ]
   },
+  // color mappings for product options
   {
     "name": "Color mappings",
     "settings": [
@@ -217,6 +221,7 @@
       }
     ]
   },
+  // product card settings
   {
     "name": "t:settings_schema.productCard.name",
     "settings": [
@@ -438,6 +443,143 @@
       }
     ]
   },
-
+  // main popup settings
+  {
+    "name": "t:settings_schema.popup.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_popup",
+        "label": "t:settings_schema.popup.settings.enable_popup.label",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "popup_show_once",
+        "label": "t:settings_schema.popup.settings.popup_show_once.label",
+        "options": [
+          {
+            "value": "copon",
+            "label": "t:settings_schema.popup.settings.popup_show_once.options__1.label"
+          },
+          {
+            "value": "product",
+            "label": "t:settings_schema.popup.settings.popup_show_once.options__2.label"
+          }
+        ],
+      },
+      {
+        "type": "select",
+        "id": "popup_text_alignment",
+        "label": "t:settings_schema.popup.settings.popup_text_alignment.label",
+        "info": "t:settings_schema.popup.settings.popup_text_alignment.info",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "t:settings_schema.popup.settings.popup_text_alignment.options__1.label"
+          },
+          {
+            "value": "text-center",
+            "label": "t:settings_schema.popup.settings.popup_text_alignment.options__2.label"
+          },
+          {
+            "value": "text-right",
+            "label": "t:settings_schema.popup.settings.popup_text_alignment.options__3.label"
+          }
+        ],
+      },
+      {
+        "type": "image_picker",
+        "id": "popup_image",
+        "label": "t:settings_schema.popup.settings.popup_image.label",
+        "info": "t:settings_schema.popup.settings.popup_image.info"
+      },
+      {
+        "type": "text",
+        "id": "popup_title",
+        "label": "t:settings_schema.popup.settings.popup_title.label",
+        "default": "Welcome to our store!",
+        "info": "t:settings_schema.popup.settings.popup_title.info"
+      },
+      {
+        "type": "textarea",
+        "id": "popup_content",
+        "label": "t:settings_schema.popup.settings.popup_content.label",
+        "default": "<p>Subscribe to our newsletter for the latest updates.</p>",
+        "info": "t:settings_schema.popup.settings.popup_content.info"
+      },
+      {
+        "type": "product",
+        "id": "popup_product",
+        "label": "t:settings_schema.popup.settings.popup_product.label",
+        "info": "t:settings_schema.popup.settings.popup_product.info"
+      },
+      {
+        "type": "text",
+        "id": "popup_product_button_text",
+        "label": "t:settings_schema.popup.settings.popup_product_button_text.label",
+        "default": "View Product",
+      },
+      {
+        "type": "text",
+        "id": "copon_code",
+        "label": "t:settings_schema.popup.settings.copon_code.label",
+        "info": "t:settings_schema.popup.settings.copon_code.info",
+      },
+      {
+        "type": "range",
+        "id": "popup_horizontal_padding",
+        "label": "t:settings_schema.popup.settings.popup_horizontal_padding.label",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 8,
+        "info": "t:settings_schema.popup.settings.popup_horizontal_padding.info"
+      },
+      {
+        "type": "range",
+        "id": "popup_vertical_padding",
+        "label": "t:settings_schema.popup.settings.popup_vertical_padding.label",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 8,
+        "info": "t:settings_schema.popup.settings.popup_vertical_padding.info"
+      },
+      {
+        "type": "range",
+        "id": "popup_element_gap",
+        "label": "t:settings_schema.popup.settings.popup_element_gap.label",
+        "min": 0,
+        "max": 50,
+        "step": 2,
+        "default": 4,
+        "info": "t:settings_schema.popup.settings.popup_element_gap.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.random_product_popup.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_random_product_popup",
+        "label": "t:settings_schema.random_product_popup.settings.enable_random_product_popup.label",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "random_product_popup_title",
+        "label": "t:settings_schema.random_product_popup.settings.random_product_popup_title.label",
+        "default": "Discover a Random Product!",
+        "info": "t:settings_schema.random_product_popup.settings.random_product_popup_title.info"
+      },
+      {
+        "type": "text",
+        "id": "popup_random_product_content",
+        "label": "t:settings_schema.random_product_popup.settings.popup_random_product_content.label",
+      }
+    ]
+  }
   // end layout and animations
 ]

@@ -276,6 +276,93 @@
           "label": "Shadow"
         }
       }
+    },
+    "popup": {
+      "name": "Popup",
+      "settings": {
+        "enable_popup": {
+          "label": "Enable popup",
+          "info": "Show or hide the popup on the page"
+        },
+        "popup_show_once": {
+          "label": "Show popup on",
+          "options__1": {
+            "label": "Coupon"
+          },
+          "options__2": {
+            "label": "Product"
+          },
+          "info": "Choose where the popup should be displayed"
+        },
+        "popup_image": {
+          "label": "Popup image",
+          "info": "Upload an image to display inside the popup"
+        },
+        "popup_title": {
+          "label": "Popup title",
+          "info": "Title text displayed at the top of the popup"
+        },
+        "popup_content": {
+          "label": "Popup content",
+          "info": "Content or message displayed inside the popup"
+        },
+        "copon_code": {
+          "label": "Coupon code",
+          "info": "Enter the discount coupon code"
+        },
+        "popup_product": {
+          "label": "Popup product",
+          "info": "Select a product to display in the popup"
+        },
+        "popup_product_button_text": {
+          "label": "Popup button text",
+          "info": "Text for the button inside the popup"
+        },
+        "popup_vertical_padding": {
+          "label": "Vertical padding",
+          "info": "Adjust the vertical padding inside the popup"
+        },
+        "popup_horizontal_padding": {
+          "label": "Horizontal padding",
+          "info": "Adjust the horizontal padding inside the popup"
+        },
+        "popup_element_gap": {
+          "label": "Element gap",
+          "info": "Space between popup elements"
+        },
+        "popup_text_alignment": {
+          "label": "Text alignment",
+          "info": "Choose how text is aligned within the popup",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        },
+      }
+    },
+    "random_product_popup": {
+      "name": "Random Product Popup",
+      "settings": {
+        "enable_random_product_popup": {
+          "label": "Enable random product popup",
+          "info": "Show or hide the random product popup on the page"
+        },
+        "random_product_popup_title": {
+          "label": "Popup title",
+          "info": "Title text displayed at the top of the random product popup",
+          "default": "Discover a Random Product!"
+        },
+        "popup_random_product_content": {
+          "label": "Popup content",
+          "info": "Content or message displayed inside the random product popup",
+          "default": "Check out this amazing product that others are loving!"
+        }
+      }
     }
   },
 }

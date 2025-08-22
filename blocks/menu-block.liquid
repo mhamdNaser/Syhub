@@ -5,8 +5,8 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<div class="header__menu relative" {{ block.shopify_attributes }}>
-  <ul class="flex items-center space-x-6 text-gray-600 hover:text-black">
+<div class="header__menu relative w-full" {{ block.shopify_attributes }}>
+  <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
         <li class="relative">
@@ -81,12 +81,36 @@
 {% schema %}
 {
   "name": "Menu Block",
-  "class": "mx-auto",
+  "class": "mx-auto w-full",
   "settings": [
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:settings.menu"
+      "label": "menu"
+    },
+    {
+      "type": "select",
+      "id": "menu_width",
+      "label": "menu_width",
+      "options": [
+        {
+          "value": "w-full",
+          "label": "full"
+        },
+        {
+          "value": "w-fit",
+          "label": "fit"
+        }
+      ],
+    },
+    {
+      "type": "range",
+      "id": "menu_horizontal_padding",
+      "label": "menu_horizontal_padding",
+      "min": 0,
+      "max": 12,
+      "step": 2,
+      "default": 0,
     }
   ],
   "presets": [
