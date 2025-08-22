@@ -65,8 +65,6 @@
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
     // عند الضغط على البوب أب يفتح صفحة المنتج
-    popup.addEventListener('click', () => {
-      window.location.href = product.url;
-    });
+    popup.setAttribute('href', product.url);
   });
 </script>
