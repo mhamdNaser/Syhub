@@ -45,7 +45,7 @@
 
     // صورة المنتج
     if (product.featured_image && product.featured_image.src) {
-      imgEl.src = product.featured_image.src;
+      imgEl.src = product.featured_image;
     } else {
       imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
     }
