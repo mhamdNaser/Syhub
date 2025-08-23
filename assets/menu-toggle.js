@@ -1,39 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const toggles = document.querySelectorAll(".js-toggle-header-menu");
+  const togglesGrandchild = document.querySelectorAll(".js-toggle-grandchild");
 
-  toggles.forEach((btn) => {
-    const targetId = btn.getAttribute("data-target");
-    const menu = document.getElementById(targetId);
-    if (!menu) return;
+  togglesGrandchild.forEach((btn) => {
+    const submenu = btn.nextElementSibling; // الـ ul يلي الجراند تشايلد
+    if (!submenu) return;
 
-    // Desktop hover
-    btn.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) {
-        menu.classList.remove("hidden");
-      }
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) {
-        setTimeout(() => {
-          if (!menu.matches(":hover") && !btn.matches(":hover")) {
-            menu.classList.add("hidden");
-          }
-        }, 200);
-      }
-    });
-
-    menu.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768) {
-        menu.classList.add("hidden");
-      }
-    });
-
-    // Mobile click
     btn.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        menu.classList.toggle("hidden");
+      e.preventDefault();
+      const isOpen = !submenu.classList.contains("hidden");
+      
+      // إغلاق كل القوائم المفتوحة قبل فتح هذه
+      document.querySelectorAll(".js-toggle-grandchild + ul").forEach((el) => {
+        el.classList.add("hidden");
+      });
+
+      if (!isOpen) {
+        submenu.classList.remove("hidden");
       }
     });
   });
