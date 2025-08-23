@@ -15,7 +15,7 @@
       {% if link.links != blank %}
         <li class="relative">
           <button
-            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu lightline"
+            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu {{ block.settings.item_hover_effect }}"
             id="list-toggle-{{ link.title | handleize }}"
             data-target="header-menu-{{ link.title | handleize }}"
           >
@@ -32,7 +32,7 @@
         </li>
       {% else %}
         <li>
-          <a href="{{ link.url }}" class="text-sm lightline">
+          <a href="{{ link.url }}" class="text-sm {{ block.settings.item_hover_effect }}">
             {{ link.title }}
           </a>
         </li>
