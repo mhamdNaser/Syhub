@@ -12,22 +12,98 @@
     "main": {
       "type": "main",
       "blocks": {
-        "plain_text_block_yeabDM": {
-          "type": "plain-text-block",
-          "name": "Plain Text Block",
+        "group_Ur97Qd": {
+          "type": "group",
+          "name": "t:general.row",
           "settings": {
-            "text": "Plain text block",
-            "font_size": 31,
-            "font_weight": "bold",
-            "font_style": "italic",
-            "text_alignment": "center",
-            "color_scheme": ""
+            "layout_direction": "group--horizontal",
+            "alignment": "flex-start",
+            "paddingx": 3,
+            "paddingy": 18
           },
-          "blocks": {}
+          "blocks": {
+            "group_BNpXkR": {
+              "type": "group",
+              "name": "t:general.column",
+              "settings": {
+                "layout_direction": "group--vertical",
+                "alignment": "center",
+                "paddingx": 0,
+                "paddingy": 0
+              },
+              "blocks": {
+                "image_block_qNatcb": {
+                  "type": "image-block",
+                  "name": "Custom Image Block",
+                  "settings": {
+                    "image": "shopify://shop_images/Luliz_Logo.png",
+                    "alt_text": "Image description",
+                    "image_width": 400,
+                    "image_height": 300,
+                    "object_fit": "contain",
+                    "image_alignment": "right",
+                    "max_width": 800,
+                    "border_radius": 100,
+                    "border_width": 1,
+                    "border_style": "dashed",
+                    "border_color": "#c48282"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_block_qNatcb"
+              ]
+            },
+            "group_dHjFgX": {
+              "type": "group",
+              "name": "t:general.column",
+              "settings": {
+                "layout_direction": "group--vertical",
+                "alignment": "flex-start",
+                "paddingx": 0,
+                "paddingy": 0
+              },
+              "blocks": {
+                "plain_text_block_VjRRJC": {
+                  "type": "plain-text-block",
+                  "name": "Plain Text Block",
+                  "settings": {
+                    "text": "Plain text block",
+                    "font_size": 48,
+                    "font_weight": "bold",
+                    "font_style": "italic",
+                    "text_alignment": "left",
+                    "color_scheme": ""
+                  },
+                  "blocks": {}
+                },
+                "rich_text_block_NmJgUm": {
+                  "type": "rich-text-block",
+                  "name": "Rich Text Block",
+                  "settings": {
+                    "rich_text": "<p>The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability,</p>",
+                    "color_scheme": "",
+                    "text_alignment": "left",
+                    "text_size": "large"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "plain_text_block_VjRRJC",
+                "rich_text_block_NmJgUm"
+              ]
+            }
+          },
+          "block_order": [
+            "group_BNpXkR",
+            "group_dHjFgX"
+          ]
         }
       },
       "block_order": [
-        "plain_text_block_yeabDM"
+        "group_Ur97Qd"
       ],
       "settings": {}
     },
