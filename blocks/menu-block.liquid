@@ -46,7 +46,9 @@
                       {% endif %}
                       {{ childlink.title }}
                     </div>
-                    {% render 'icon-chevron-right' %}
+                    {% if childlink.links != blank %}
+                      {% render 'icon-chevron-right' %}
+                    {% endif %}
                   </button>
 
                   {% if childlink.links != blank %}
@@ -55,7 +57,7 @@
                         <li>
                           <a
                             href="{{ grandchild.url }}"
-                            class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100"
+                            class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 text-nowrap"
                           >
                             {% if grandchild.object.featured_image %}
                               <img

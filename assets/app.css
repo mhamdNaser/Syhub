@@ -1608,6 +1608,12 @@
     --tw-tracking: var(--tracking-widest);
     letter-spacing: var(--tracking-widest);
   }
+  .text-nowrap {
+    text-wrap: nowrap;
+  }
+  .text-wrap {
+    text-wrap: wrap;
+  }
   .overflow-ellipsis {
     text-overflow: ellipsis;
   }
