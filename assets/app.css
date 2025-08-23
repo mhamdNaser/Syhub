@@ -377,6 +377,9 @@
   .left-6 {
     left: calc(var(--spacing) * 6);
   }
+  .left-full {
+    left: 100%;
+  }
   .z-10 {
     z-index: 10;
   }
@@ -813,6 +816,12 @@
   }
   .min-w-\[80px\] {
     min-width: 80px;
+  }
+  .min-w-\[200px\] {
+    min-width: 200px;
+  }
+  .min-w-\[220px\] {
+    min-width: 220px;
   }
   .min-w-\[250px\] {
     min-width: 250px;
@@ -1795,6 +1804,13 @@
   }
   .backface-hidden {
     backface-visibility: hidden;
+  }
+  .group-hover\:block {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        display: block;
+      }
+    }
   }
   .group-hover\:scale-105 {
     &:is(:where(.group):hover *) {

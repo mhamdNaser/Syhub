@@ -9,53 +9,52 @@
   <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
-        <li>
+        <li class="relative">
           <button
             class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu"
             id="list-toggle-{{ link.title | handleize }}"
             data-target="header-menu-{{ link.title | handleize }}"
           >
             {{ link.title }}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
           </button>
-        </li>
 
-        <!-- Mega menu container خارج li -->
-        <div
-          id="header-menu-{{ link.title | handleize }}"
-          class="absolute top-full left-0 mt-3 w-screen hidden bg-white shadow-lg z-20"
-          style="transition: all 0.3s ease-in-out;"
-        >
-          <div class="max-w-6xl mx-auto px-8 py-6">
-            <div class="grid grid-cols-4 gap-8">
+          <!-- Drop-down بدل Mega Menu -->
+          <div
+            id="header-menu-{{ link.title | handleize }}"
+            class="absolute top-full left-0 mt-2 min-w-[220px] hidden bg-white border border-gray-200 rounded-lg shadow-lg z-20"
+            style="transition: all 0.2s ease-in-out;"
+          >
+            <ul class="py-2">
               {% for childlink in link.links %}
-                <div class="text-left border-r border-[#c42764] last:border-r-0">
-                  <a href="{{ childlink.url }}" class="flex items-center gap-x-2 mb-2 font-semibold">
+                <li class="group relative">
+                  <a href="{{ childlink.url }}" class="flex items-center gap-x-2 px-4 py-2 text-sm hover:bg-gray-100">
                     {% if childlink.object.featured_image %}
                       <img
-                        src="{{ childlink.object.featured_image | img_url: '100x100' }}"
+                        src="{{ childlink.object.featured_image | img_url: '50x50' }}"
                         alt="{{ childlink.title }}"
-                        class="w-6 h-6 object-cover rounded shadow-sm"
-                        width=""
-                        height=""
+                        class="w-5 h-5 object-cover rounded"
                       >
                     {% endif %}
-                    <span class="block text-sm">
-                      {{ childlink.title }}
-                    </span>
+                    {{ childlink.title }}
                   </a>
 
                   {% if childlink.links != blank %}
-                    <ul class="mt-2 space-y-1">
+                    <!-- Sub-menu -->
+                    <ul class="absolute top-0 left-full ml-1 min-w-[200px] hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-lg py-2">
                       {% for grandchild in childlink.links %}
                         <li>
-                          <a href="{{ grandchild.url }}" class="flex gap-x-2 text-xs">
+                          <a
+                            href="{{ grandchild.url }}"
+                            class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100"
+                          >
                             {% if grandchild.object.featured_image %}
                               <img
-                                src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
+                                src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
                                 alt="{{ grandchild.title }}"
-                                class="w-6 h-6 object-cover rounded shadow-sm"
-                                width=""
-                                height=""
+                                class="w-4 h-4 object-cover rounded"
                               >
                             {% endif %}
                             {{ grandchild.title }}
@@ -64,11 +63,11 @@
                       {% endfor %}
                     </ul>
                   {% endif %}
-                </div>
+                </li>
               {% endfor %}
-            </div>
+            </ul>
           </div>
-        </div>
+        </li>
       {% else %}
         <li>
           <a href="{{ link.url }}" class="text-sm">
@@ -79,8 +78,6 @@
     {% endfor %}
   </ul>
 </div>
-
-
 
 {% schema %}
 {
@@ -105,7 +102,7 @@
           "value": "w-fit",
           "label": "fit"
         }
-      ],
+      ]
     },
     {
       "type": "range",
@@ -114,13 +111,13 @@
       "min": 0,
       "max": 12,
       "step": 2,
-      "default": 0,
+      "default": 0
     }
   ],
   "presets": [
     {
       "name": "Menu Block",
-      "category": "Header",
+      "category": "Header"
     }
   ]
 }

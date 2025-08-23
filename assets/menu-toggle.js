@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("mouseenter", () => {
       if (window.innerWidth > 768) {
         menu.classList.remove("hidden");
-        menu.classList.add("js-menu-open");
       }
     });
 
@@ -19,23 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
           if (!menu.matches(":hover") && !btn.matches(":hover")) {
             menu.classList.add("hidden");
-            menu.classList.remove("js-menu-open");
           }
         }, 200);
-      }
-    });
-
-    menu.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) {
-        menu.classList.remove("hidden");
-        menu.classList.add("js-menu-open");
       }
     });
 
     menu.addEventListener("mouseleave", () => {
       if (window.innerWidth > 768) {
         menu.classList.add("hidden");
-        menu.classList.remove("js-menu-open");
       }
     });
 
@@ -44,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.innerWidth <= 768) {
         e.preventDefault();
         menu.classList.toggle("hidden");
-        menu.classList.toggle("js-menu-open");
       }
     });
   });
