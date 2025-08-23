@@ -24,7 +24,7 @@
           <!-- Drop-down بدل Mega Menu -->
           <div
             id="header-menu-{{ link.title | handleize }}"
-            class="absolute top-full left-0 mt-2 min-w-[220px] hidden bg-white border border-gray-200 rounded-lg shadow-lg z-20"
+            class="absolute top-full left-0 mt-3 min-w-[220px] hidden bg-white border border-gray-200 rounded-lg shadow-lg z-20"
             style="transition: all 0.2s ease-in-out;"
           >
             <ul class="py-2">
@@ -40,6 +40,8 @@
                         src="{{ childlink.object.featured_image | img_url: '50x50' }}"
                         alt="{{ childlink.title }}"
                         class="w-5 h-5 object-cover rounded"
+                        width=""
+                        height=""
                       >
                     {% endif %}
                     {{ childlink.title }}
@@ -47,7 +49,7 @@
 
                   {% if childlink.links != blank %}
                     <!-- Sub-menu: تظهر فقط عند hover على الـ a.peer -->
-                    <ul class="absolute top-0 left-full ml-1 min-w-[200px] hidden peer-hover:block bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                    <ul class="absolute top-0 left-full min-w-[200px] hidden peer-hover:block bg-white border border-gray-200 rounded-lg shadow-lg py-2">
                       {% for grandchild in childlink.links %}
                         <li>
                           <a
@@ -59,6 +61,8 @@
                                 src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
                                 alt="{{ grandchild.title }}"
                                 class="w-4 h-4 object-cover rounded"
+                                width=""
+                                height=""
                               >
                             {% endif %}
                             {{ grandchild.title }}
