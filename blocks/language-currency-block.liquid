@@ -34,35 +34,68 @@
         </div>
       </div>
 
-      <!-- COUNTRY / CURRENCY SELECTOR -->
+      <!-- CURRENCY SELECTOR -->
       <div class="relative">
-        <button class="p-0 m-0 flex items-center" id="country-toggle" type="button">
-          <span id="selected-country" class="mx-1">
-            {{ localization.country.name }} | {{ localization.country.iso_code }}
+        <button class="p-0 m-0 flex items-center" id="currency-toggle" type="button">
+          <span id="selected-currency" class="mx-1">
+            {{ localization.country.currency.iso_code }}
           </span>
         </button>
         <div
-          class="absolute bg-white z-50 mt-2 w-64 rounded shadow-lg hidden text-start"
-          id="country-menu"
-          dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+          class="absolute bg-white z-50 mt-2 w-48 rounded shadow-lg hidden text-start"
+          id="currency-menu"
           style="max-height: 300px; overflow-y: auto;"
         >
           <ul class="py-1">
-            {% for country in form.available_countries %}
-              <li>
-                <button
-                  name="country_code"
-                  value="{{ country.iso_code }}"
-                  class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                  onclick="this.form.submit()"
-                >
-                  {{ country.name }} | {{ country.iso_code }}
-                </button>
-              </li>
-            {% endfor %}
+            {% form 'localization', class: 'localization-form' %}
+              {% for country in form.available_countries %}
+                <li>
+                  <button
+                    name="country_code"
+                    value="{{ country.iso_code }}"
+                    class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                    onclick="this.form.submit()"
+                  >
+                    {{ country.currency.iso_code }} — {{ country.currency.symbol }}
+                  </button>
+                </li>
+              {% endfor %}
+            {% endform %}
           </ul>
         </div>
       </div>
+
+      <!-- COUNTRY / CURRENCY SELECTOR -->
+      {% comment %}
+        <div class="relative">
+          <button class="p-0 m-0 flex items-center" id="country-toggle" type="button">
+            <span id="selected-country" class="mx-1">
+              {{ localization.country.name }} | {{ localization.country.iso_code }}
+            </span>
+          </button>
+          <div
+            class="absolute bg-white z-50 mt-2 w-64 rounded shadow-lg hidden text-start"
+            id="country-menu"
+            dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+            style="max-height: 300px; overflow-y: auto;"
+          >
+            <ul class="py-1">
+              {% for country in form.available_countries %}
+                <li>
+                  <button
+                    name="country_code"
+                    value="{{ country.iso_code }}"
+                    class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                    onclick="this.form.submit()"
+                  >
+                    {{ country.name }} | {{ country.iso_code }}
+                  </button>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endcomment %}
     </div>
   {% endform %}
 </div>
@@ -101,12 +134,10 @@
   });
 </script>
 
-
-
 {% schema %}
 {
   "name": "language currency block",
   "settings": [],
-  "presets": [{ "name": "language currency block", "category": "Header" }],
+  "presets": [{ "name": "language currency block", "category": "Header" }]
 }
 {% endschema %}
