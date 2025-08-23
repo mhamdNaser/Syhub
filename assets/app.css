@@ -319,6 +319,12 @@
   .top-24 {
     top: calc(var(--spacing) * 24);
   }
+  .top-\[360\] {
+    top: 360;
+  }
+  .top-\[360px\] {
+    top: 360px;
+  }
   .top-full {
     top: 100%;
   }
