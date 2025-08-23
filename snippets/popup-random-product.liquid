@@ -1,7 +1,7 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden overflow-hidden h-32"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs z-50 hidden overflow-hidden h-32"
 >
   <!-- close button -->
   <button
@@ -16,7 +16,7 @@
   <div class="flex-1 flex flex-col justify-between h-full">
     <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
 
-    <div id="product-card" class="flex items-center space-x-3 mt-2 overflow-hidden">
+    <div id="product-card" class="flex items-center space-x-3 mt-2 overflow-hidden cursor-pointer">
       <img
         id="popup-product-image"
         src=""
