@@ -16,7 +16,6 @@
 
 .hover-underline {
   position: relative;
-  display: inline-block;
 }
 
 .hover-underline::after,
