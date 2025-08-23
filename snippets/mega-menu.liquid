@@ -1,56 +1,56 @@
 <div
   id="header-menu-{{ link.title | handleize }}"
-  class="absolute top-full left-0 mt-3 min-w-[220px] hidden bg-white border border-gray-200 shadow-lg z-20"
+  class="mega-menu absolute top-full left-0 mt-3 hidden bg-white border border-gray-200 shadow-lg z-20"
   style="transition: all 0.2s ease-in-out;"
 >
-    <ul class="grid grid-cols-4 gap-4 py-4 relative">
-  {% for childlink in link.links %}
-    <li class="relative group">
-      <a
-        href="{{ childlink.url }}"
-        class="flex items-center justify-between px-4 py-2 text-sm font-medium hover:bg-gray-100 js-toggle-grandchild"
-      >
-        <div class="flex items-center gap-x-2">
-          {% if childlink.object.featured_image %}
-            <img
-              src="{{ childlink.object.featured_image | img_url: '50x50' }}"
-              alt="{{ childlink.title }}"
-              class="w-5 h-5 object-cover rounded"
-              width=""
-              height=""
-            >
-          {% endif %}
-          {{ childlink.title }}
-        </div>
-        {% if childlink.links != blank %}
-          {% render 'icon-chevron-down' %}
-        {% endif %}
-      </a>
-
-      {% if childlink.links != blank %}
-        <ul class="absolute top-full left-0 hidden w-64 bg-white border border-gray-200 shadow-lg py-2 z-50 group-hover:block">
-          {% for grandchild in childlink.links %}
-            <li>
-              <a
-                href="{{ grandchild.url }}"
-                class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 whitespace-nowrap"
+  <ul class="mega-menu__list grid grid-cols-4 gap-4 py-4 relative">
+    {% for childlink in link.links %}
+      <li class="mega-menu__item relative group">
+        <a
+          href="{{ childlink.url }}"
+          class="mega-menu__link flex items-center justify-between px-4 py-2 text-sm font-medium hover:bg-gray-100 js-toggle-grandchild"
+        >
+          <div class="flex items-center gap-x-2">
+            {% if childlink.object.featured_image %}
+              <img
+                src="{{ childlink.object.featured_image | img_url: '50x50' }}"
+                alt="{{ childlink.title }}"
+                class="mega-menu__icon w-5 h-5 object-cover rounded"
+                width=""
+                height=""
               >
-                {% if grandchild.object.featured_image %}
-                  <img
-                    src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
-                    alt="{{ grandchild.title }}"
-                    class="w-4 h-4 object-cover rounded"
-                    width=""
-                    height=""
-                  >
-                {% endif %}
-                {{ grandchild.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
+            {% endif %}
+            {{ childlink.title }}
+          </div>
+          {% if childlink.links != blank %}
+            {% render 'icon-chevron-down' %}
+          {% endif %}
+        </a>
+
+        {% if childlink.links != blank %}
+          <ul class="mega-menu__submenu absolute top-full left-0 hidden w-64 bg-white border border-gray-200 shadow-lg py-2 z-50 group-hover:block">
+            {% for grandchild in childlink.links %}
+              <li>
+                <a
+                  href="{{ grandchild.url }}"
+                  class="mega-menu__sublink flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 whitespace-nowrap"
+                >
+                  {% if grandchild.object.featured_image %}
+                    <img
+                      src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
+                      alt="{{ grandchild.title }}"
+                      class="mega-menu__subicon w-4 h-4 object-cover rounded"
+                      width=""
+                        height=""
+                    >
+                  {% endif %}
+                  {{ grandchild.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 </div>

@@ -1,38 +1,64 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Toggle المينيو الرئيسي
   const mainToggles = document.querySelectorAll(".js-toggle-header-menu");
 
   mainToggles.forEach((btn) => {
     const menu = document.getElementById(btn.dataset.target);
     if (!menu) return;
 
-    // Click لفتح/إغلاق على الموبايل
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      menu.classList.toggle("hidden");
-    });
+    const isMegaMenu = menu.classList.contains("mega-menu");
 
-    // Hover للحفاظ على القائمة مفتوحة أثناء المؤشر داخلها (ديسكتوب)
-    btn.addEventListener("mouseenter", () => {
-      if (window.innerWidth > 768) menu.classList.remove("hidden");
-    });
+    // === كلاسيك ===
+    if (!isMegaMenu) {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        menu.classList.toggle("hidden");
+      });
 
-    btn.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768)
-        setTimeout(() => {
-          if (!menu.matches(":hover") && !btn.matches(":hover")) menu.classList.add("hidden");
-        }, 150);
-    });
+      btn.addEventListener("mouseenter", () => {
+        if (window.innerWidth > 768) menu.classList.remove("hidden");
+      });
 
-    menu.addEventListener("mouseleave", () => {
-      if (window.innerWidth > 768)
-        setTimeout(() => {
-          if (!menu.matches(":hover") && !btn.matches(":hover")) menu.classList.add("hidden");
-        }, 150);
-    });
+      btn.addEventListener("mouseleave", () => {
+        if (window.innerWidth > 768)
+          setTimeout(() => {
+            if (!menu.matches(":hover") && !btn.matches(":hover")) menu.classList.add("hidden");
+          }, 150);
+      });
+
+      menu.addEventListener("mouseleave", () => {
+        if (window.innerWidth > 768)
+          setTimeout(() => {
+            if (!menu.matches(":hover") && !btn.matches(":hover")) menu.classList.add("hidden");
+          }, 150);
+      });
+    }
+
+    // === ميجا مينو ===
+    else {
+      if (window.innerWidth > 768) {
+        // hover يفتح ويغلق
+        btn.addEventListener("mouseenter", () => menu.classList.remove("hidden"));
+        btn.addEventListener("mouseleave", () => {
+          setTimeout(() => {
+            if (!menu.matches(":hover") && !btn.matches(":hover")) menu.classList.add("hidden");
+          }, 150);
+        });
+        menu.addEventListener("mouseleave", () => {
+          setTimeout(() => {
+            if (!menu.matches(":hover") && !btn.matches(":hover")) menu.classList.add("hidden");
+          }, 150);
+        });
+      } else {
+        // click للموبايل
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          menu.classList.toggle("hidden");
+        });
+      }
+    }
   });
 
-  // Toggle Child → Grandchild
+  // === Toggle Grandchild (يعمل مع الكلاسيك والميجا) ===
   const childToggles = document.querySelectorAll(".js-toggle-grandchild");
 
   childToggles.forEach((btn) => {
@@ -40,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const submenu = parentLi.querySelector("ul");
     if (!submenu) return;
 
-    // Click لفتح/إغلاق الـ Grandchild
+    // Click لفتح/إغلاق على الموبايل
     btn.addEventListener("click", (e) => {
       if (window.innerWidth <= 768) {
         e.preventDefault();
@@ -48,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // الحفاظ على القائمة مفتوحة أثناء hover
+    // Hover للديسكتوب
     const keepOpen = () => submenu.classList.remove("hidden");
     btn.addEventListener("mouseenter", keepOpen);
     submenu.addEventListener("mouseenter", keepOpen);
