@@ -106,7 +106,21 @@
     const toggleLanguage = document.getElementById('language-toggle');
     const menuLanguage = document.getElementById('language-menu');
     const toggleCountry = document.getElementById('country-toggle');
+    const toggleCurrency = document.getElementById('currency-toggle');
     const menuCountry = document.getElementById('country-menu');
+    const menuCurrency = document.getElementById('currency-menu');
+
+    if (toggleCurrency && menuCurrency) {
+      toggleCurrency.addEventListener('click', function () {
+        menuCurrency.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuCurrency.contains(e.target) && !toggleCurrency.contains(e.target)) {
+          menuCurrency.classList.add('hidden');
+        }
+      });
+    }
 
     if (toggleLanguage && menuLanguage) {
       toggleLanguage.addEventListener('click', function () {
