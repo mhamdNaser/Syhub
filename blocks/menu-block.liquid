@@ -29,8 +29,9 @@
               {% for childlink in link.links %}
                 <li class="relative">
                   <!-- Parent link -->
-                  <button
+                  <a
                     type="button"
+                    href="{{ childlink.url }}"
                     class="flex items-center gap-x-2 justify-between w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
                     aria-expanded="false"
                   >
@@ -49,7 +50,7 @@
                     {% if childlink.links != blank %}
                       {% render 'icon-chevron-right' %}
                     {% endif %}
-                  </button>
+                  </a>
 
                   {% if childlink.links != blank %}
                     <ul class="absolute top-0 left-full -translate-y-2  min-w-[200px] hidden bg-white border border-gray-200 shadow-lg py-2">
