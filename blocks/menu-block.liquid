@@ -21,7 +21,7 @@
 
           <!-- Drop-down بدل Mega Menu -->
           {% if block.settings.menu_style == "mega-menu" %}
-            test
+            {% render 'mega-menu' %}
           {% else %}
             {% render 'classic-menu', link: link %}
           {% endif %}
