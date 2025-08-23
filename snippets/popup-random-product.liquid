@@ -9,7 +9,15 @@
   <!-- product info -->
   <div class="flex-1 flex flex-col justify-between">
     <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
-    <div>
+    <div class="flex items-center space-x-3 mt-2">
+      <img
+        id="popup-product-image"
+        src=""
+        alt="Product Image"
+        class="w-12 h-12 object-cover rounded"
+        width=""
+        height=""
+      >
       <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
       <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
     </div>
@@ -36,7 +44,7 @@
 
     // صورة المنتج
     if (product.featured_image) {
-      imgEl.src = product.featured_image.src;
+      imgEl.src = product.featured_image;
     } else {
       imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
     }
