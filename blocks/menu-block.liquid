@@ -22,7 +22,7 @@
           <!-- Drop-down بدل Mega Menu -->
           <div
             id="header-menu-{{ link.title | handleize }}"
-            class="absolute top-full left-0 mt-3 min-w-[220px] hidden bg-white border border-gray-200 rounded-lg shadow-lg z-20"
+            class="absolute top-full left-0 mt-3 min-w-[220px] hidden bg-white border border-gray-200 shadow-lg z-20"
             style="transition: all 0.2s ease-in-out;"
           >
             <ul class="py-2">
@@ -50,7 +50,7 @@
                   </button>
 
                   {% if childlink.links != blank %}
-                    <ul class="absolute top-0 left-full ml-1 min-w-[200px] hidden bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                    <ul class="absolute top-0 left-full ml-1 min-w-[200px] hidden bg-white border border-gray-200 shadow-lg py-2">
                       {% for grandchild in childlink.links %}
                         <li>
                           <a
