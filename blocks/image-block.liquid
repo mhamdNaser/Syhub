@@ -25,6 +25,8 @@
         object-fit: {{ block.settings.object_fit }};
       "
       loading="lazy"
+      width=""
+      height=""
     >
   {% else %}
     <div class="bg-gray-200 w-full h-[{{ block.settings.image_height }}px] flex items-center justify-center text-gray-500">
@@ -135,8 +137,6 @@
       "default": "#000000"
     }
   ],
-  "presets": [
-    { "name": "Custom Image Block", "category": "Image" }
-  ]
+  "presets": [{ "name": "Custom Image Block", "category": "Image" }]
 }
 {% endschema %}
