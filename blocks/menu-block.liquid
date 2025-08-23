@@ -29,8 +29,12 @@
           >
             <ul class="py-2">
               {% for childlink in link.links %}
-                <li class="group relative">
-                  <a href="{{ childlink.url }}" class="flex items-center gap-x-2 px-4 py-2 text-sm hover:bg-gray-100">
+                <li class="relative">
+                  <!-- Parent link -->
+                  <a
+                    href="{{ childlink.url }}"
+                    class="flex items-center gap-x-2 px-4 py-2 text-sm hover:bg-gray-100 peer"
+                  >
                     {% if childlink.object.featured_image %}
                       <img
                         src="{{ childlink.object.featured_image | img_url: '50x50' }}"
@@ -42,8 +46,8 @@
                   </a>
 
                   {% if childlink.links != blank %}
-                    <!-- Sub-menu -->
-                    <ul class="absolute top-0 left-full ml-1 min-w-[200px] hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                    <!-- Sub-menu: تظهر فقط عند hover على الـ a.peer -->
+                    <ul class="absolute top-0 left-full ml-1 min-w-[200px] hidden peer-hover:block bg-white border border-gray-200 rounded-lg shadow-lg py-2">
                       {% for grandchild in childlink.links %}
                         <li>
                           <a

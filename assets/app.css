@@ -1840,6 +1840,13 @@
       }
     }
   }
+  .peer-hover\:block {
+    &:is(:where(.peer):hover ~ *) {
+      @media (hover: hover) {
+        display: block;
+      }
+    }
+  }
   .last\:border-r-0 {
     &:last-child {
       border-right-style: var(--tw-border-style);
