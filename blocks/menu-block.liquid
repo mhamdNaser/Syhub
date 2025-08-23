@@ -5,7 +5,7 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<div class="header__menu relative w-full" {{ block.shopify_attributes }}>
+<div class="header__menu w-full" {{ block.shopify_attributes }}>
   <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
@@ -22,7 +22,7 @@
         <!-- Mega menu container خارج li -->
         <div
           id="header-menu-{{ link.title | handleize }}"
-          class="absolute top-full left-0 mt-1 w-screen hidden bg-white shadow-lg z-20"
+          class="absolute left-0 w-screen hidden bg-white shadow-lg z-20"
         >
           <div class="max-w-6xl mx-auto px-8 py-6">
             <div class="grid grid-cols-4 gap-8">
