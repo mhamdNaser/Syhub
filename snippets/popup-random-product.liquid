@@ -1,29 +1,33 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden overflow-hidden h-32"
 >
   <!-- product info -->
-  <div class="flex-1 flex flex-col justify-between">
+  <div class="flex-1 flex flex-col justify-between h-full">
     <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
-    <div class="flex items-center space-x-3 mt-2">
+
+    <div class="flex items-center space-x-3 mt-2 overflow-hidden">
       <img
         id="popup-product-image"
         src=""
         alt="Product Image"
-        class="w-12 h-12 object-cover rounded"
+        class="w-12 h-12 object-cover rounded flex-shrink-0"
         width=""
         height=""
       >
-      <div class="flex-1 flex flex-col justify-between px-4">
-        <h3 id="popup-product-title" class="font-bold text-gray-800 truncate overflow-ellipsis"></h3>
-        <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2 overflow-ellipsis"></p>
+      <div class="flex-1 flex flex-col justify-between px-4 overflow-hidden">
+        <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
+        <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
       </div>
     </div>
-    <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
+
+    <p class="text-xs text-gray-400 mt-2">
+      <span id="popup-time">8 minutes ago</span> · view
+    </p>
   </div>
-  {% comment %} <span class="">{{ settings.popup_random_product_content }}</span> {% endcomment %}
 </div>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
