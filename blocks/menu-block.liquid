@@ -6,33 +6,7 @@
 {% enddoc %}
 
 {% stylesheet %}
-  .hover-underline {
-    position: relative;
-  }
-
-  .hover-underline::after,
-  .hover-underline::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: #c42764;
-    bottom: -5px;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s ease-out;
-  }
-
-  /* .hover-underline::before {
-  top: -5px;
-  transform-origin: left;
-} */
-
-  .hover-underline:hover::after,
-  .hover-underline:hover::before {
-    transform: scaleX(1);
-  }
+  
 {% endstylesheet %}
 
 <div class="header__menu relative w-full" {{ block.shopify_attributes }}>
@@ -41,7 +15,7 @@
       {% if link.links != blank %}
         <li class="relative">
           <button
-            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu hover-underline"
+            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu lightline"
             id="list-toggle-{{ link.title | handleize }}"
             data-target="header-menu-{{ link.title | handleize }}"
           >
