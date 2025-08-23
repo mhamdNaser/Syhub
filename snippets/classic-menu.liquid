@@ -1,0 +1,59 @@
+<div
+  id="header-menu-{{ link.title | handleize }}"
+  class="absolute top-full left-0 mt-3 min-w-[220px] hidden bg-white border border-gray-200 shadow-lg z-20"
+  style="transition: all 0.2s ease-in-out;"
+>
+  <ul class="py-2">
+    {% for childlink in link.links %}
+      <li class="relative">
+        <!-- Parent link -->
+        <a
+          type="button"
+          href="{{ childlink.url }}"
+          class="flex items-center gap-x-2 justify-between w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
+          aria-expanded="false"
+        >
+          <div class="flex items-center gap-x-2 flex-1">
+            {% if childlink.object.featured_image %}
+              <img
+                src="{{ childlink.object.featured_image | img_url: '50x50' }}"
+                alt="{{ childlink.title }}"
+                class="w-4 h-4 object-cover rounded"
+                width=""
+                height=""
+              >
+            {% endif %}
+            {{ childlink.title }}
+          </div>
+          {% if childlink.links != blank %}
+            {% render 'icon-chevron-right' %}
+          {% endif %}
+        </a>
+
+        {% if childlink.links != blank %}
+          <ul class="absolute top-0 left-full -translate-y-2  min-w-[200px] hidden bg-white border border-gray-200 shadow-lg py-2">
+            {% for grandchild in childlink.links %}
+              <li>
+                <a
+                  href="{{ grandchild.url }}"
+                  class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 text-nowrap"
+                >
+                  {% if grandchild.object.featured_image %}
+                    <img
+                      src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
+                      alt="{{ grandchild.title }}"
+                      class="w-4 h-4 object-cover rounded"
+                      width=""
+                      height=""
+                    >
+                  {% endif %}
+                  {{ grandchild.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
