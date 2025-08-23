@@ -10,13 +10,13 @@
 
   <!-- product info -->
   <div class="flex-1 flex flex-col justify-between">
+    <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
     <div>
-      <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
       <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
       <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
     </div>
+    <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
   </div>
-  <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
   {% comment %} <span class="">{{ settings.popup_random_product_content }}</span> {% endcomment %}
 </div>
 
