@@ -1617,6 +1617,9 @@
   .overflow-ellipsis {
     text-overflow: ellipsis;
   }
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
   .text-\[\#c42764\] {
     color: #c42764;
   }
