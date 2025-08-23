@@ -1,39 +1,38 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs z-50 hidden overflow-hidden h-32"
 >
-  <!-- عنوان البوب أب -->
-  <p class="text-sm text-gray-500 mb-2">{{ settings.random_product_popup_title }}</p>
+  <!-- close button -->
+  <button
+    id="popup-close-btn"
+    class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 focus:outline-none cursor-pointer"
+    onclick="document.getElementById('corner-popup').classList.add('hidden')"
+    aria-label="Close"
+  >
+    {% render 'icon-close' %}
+  </button>
+  <!-- product info -->
+  <div class="flex-1 flex flex-col justify-between h-full">
+    <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
 
-  <!-- الصورة + المعلومات -->
-  <div class="flex items-start gap-3">
-    <!-- صورة المنتج -->
-    <div class="w-20 h-20 flex-shrink-0">
+    <div id="product-card" class="flex items-center space-x-3 mt-2 overflow-hidden cursor-pointer">
       <img
         id="popup-product-image"
         src=""
-        alt="Product"
-        class="object-cover w-full h-full rounded"
-        width="80"
-        height="80"
+        alt="Product Image"
+        class="w-12 h-12 object-cover rounded flex-shrink-0"
+        width=""
+        height=""
       >
+      <div class="flex-1 flex flex-col justify-between px-4 overflow-hidden">
+        <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
+        <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-1"></p>
+      </div>
     </div>
 
-    <!-- معلومات المنتج -->
-    <div class="flex-1 flex flex-col">
-      <h3 id="popup-product-title" class="font-bold text-gray-800 mb-1 truncate"></h3>
-      <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
-    </div>
+    <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
   </div>
-
-  <!-- الوقت -->
-  <p class="text-xs text-gray-400 mt-3"><span id="popup-time">8 minutes ago</span> · view</p>
-
-  <!-- النص الإضافي -->
-  {% if settings.popup_random_product_content != blank %}
-    <span class="block text-xs text-gray-500 mt-1">{{ settings.popup_random_product_content }}</span>
-  {% endif %}
 </div>
 
 <script>
@@ -49,8 +48,8 @@
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
     const timeEl = document.getElementById('popup-time');
+    const productEl = document.getElementById('product-card');
 
-    console.log(product);
 
     // صورة المنتج
     if (product.featured_image) {
@@ -75,10 +74,8 @@
 
     // عند الضغط على البوب أب يفتح صفحة المنتج
     const productUrl = `/products/${product.handle}`; // الرابط الصحيح
-    popup.addEventListener('click', (e) => {
-      {% comment %} if (e.target !== closeBtn) { {% endcomment %}
+    productEl.addEventListener('click', (e) => {
         window.location.href = productUrl;
-      {% comment %} } {% endcomment %}
     });
 });
 </script>

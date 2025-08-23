@@ -1,0 +1,142 @@
+{% doc %}
+  Renders an image block with full style controls.
+
+  @example
+  {% content_for 'block', type: 'image', id: 'image' %}
+{% enddoc %}
+
+<div
+  class="w-full flex justify-{{ block.settings.image_alignment }}"
+  style="
+    max-width: {{ block.settings.max_width }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+    border: {{ block.settings.border_width }}px {{ block.settings.border_style }} {{ block.settings.border_color }};
+    overflow: hidden;
+  "
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.image != blank %}
+    <img
+      src="{{ block.settings.image | image_url: width: block.settings.image_width }}"
+      alt="{{ block.settings.alt_text | escape }}"
+      style="
+        width: {{ block.settings.image_width }}px;
+        height: {{ block.settings.image_height }}px;
+        object-fit: {{ block.settings.object_fit }};
+      "
+      loading="lazy"
+      width=""
+      height=""
+    >
+  {% else %}
+    <div class="bg-gray-200 w-full h-[{{ block.settings.image_height }}px] flex items-center justify-center text-gray-500">
+      No image selected
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Image Block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Alt Text",
+      "default": "Image description"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image Width (px)",
+      "min": 50,
+      "max": 1200,
+      "step": 50,
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image Height (px)",
+      "min": 50,
+      "max": 1200,
+      "step": 50,
+      "default": 300
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Image Fit",
+      "default": "cover",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" },
+        { "value": "none", "label": "None" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_alignment",
+      "label": "Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Container Width (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "default": "solid",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "double", "label": "Double" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [{ "name": "Custom Image Block", "category": "Image" }]
+}
+{% endschema %}

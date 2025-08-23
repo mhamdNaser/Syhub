@@ -5,70 +5,34 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
+{% stylesheet %}
+  
+{% endstylesheet %}
+
 <div class="header__menu relative w-full" {{ block.shopify_attributes }}>
   <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
         <li class="relative">
           <button
-            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu"
+            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu {{ block.settings.item_hover_effect }}"
             id="list-toggle-{{ link.title | handleize }}"
             data-target="header-menu-{{ link.title | handleize }}"
           >
             {{ link.title }}
+            {% render 'icon-chevron-down' %}
           </button>
 
-          <!-- Mega menu container -->
-          <div
-            id="header-menu-{{ link.title | handleize }}"
-            class="absolute top-full translate-y-2 left-0 mt-1 -translate-x-1/2 w-screen hidden bg-white shadow-lg z-20"
-          >
-            <div class="max-w-6xl mx-auto px-8 py-6">
-              <div class="grid grid-cols-4 gap-8">
-                {% for childlink in link.links %}
-                  <div class="text-left border-r border-[#c42764]">
-                    <a href="{{ childlink.url }}" class="flex items-cente gap-x-2 mb-2 font-semibold">
-                      {% if childlink.object.featured_image %}
-                        <img
-                          src="{{ childlink.object.featured_image | img_url: '100x100' }}"
-                          alt="{{ childlink.title }}"
-                          class="w-6 h-6 object-cover rounded shadow-sm mb-2"
-                          width=""
-                          height=""
-                        >
-                      {% endif %}
-                      <span class="block text-sm">
-                        {{ childlink.title }}
-                      </span>
-                    </a>
-
-                    {% if childlink.links != blank %}
-                      <ul class="mt-2 space-y-1">
-                        {% for grandchild in childlink.links %}
-                          <li>
-                            <a href="{{ grandchild.url }}" class="flex gap-x-2 text-xs">
-                              <img
-                                src="{{ grandchild.object.featured_image | img_url: '100x100' }}"
-                                alt="{{ grandchild.title }}"
-                                class="w-6 h-6 object-cover rounded shadow-sm mb-2"
-                                width=""
-                                height=""
-                              >
-                              {{ grandchild.title }}
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    {% endif %}
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
+          <!-- Drop-down بدل Mega Menu -->
+          {% if block.settings.menu_style == 'mega-menu' %}
+            {% render 'mega-menu', link: link %}
+          {% else %}
+            {% render 'classic-menu', link: link %}
+          {% endif %}
         </li>
       {% else %}
         <li>
-          <a href="{{ link.url }}" class="text-sm">
+          <a href="{{ link.url }}" class="text-sm {{ block.settings.item_hover_effect }}">
             {{ link.title }}
           </a>
         </li>
@@ -77,16 +41,50 @@
   </ul>
 </div>
 
-
 {% schema %}
 {
   "name": "Menu Block",
-  "class": "mx-auto w-full",
+  "class": "mx-auto w-screen relative",
   "settings": [
     {
       "type": "link_list",
       "id": "menu",
       "label": "menu"
+    },
+    {
+      "type": "select",
+      "id": "menu_style",
+      "label": "menu_style",
+      "default": "classic-menu",
+      "options": [
+        {
+          "value": "classic-menu",
+          "label": "classic-menu"
+        },
+        {
+          "value": "mega-menu",
+          "label": "mega-menu"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "item_hover_effect",
+      "label": "item_hover_effect",
+      "options": [
+        {
+          "value": "lightline",
+          "label": "light underline"
+        },
+        {
+          "value": "hover-underline",
+          "label": "underline"
+        },
+        {
+          "value": "hover-doubleline",
+          "label": "doubleline"
+        }
+      ]
     },
     {
       "type": "select",
@@ -101,7 +99,7 @@
           "value": "w-fit",
           "label": "fit"
         }
-      ],
+      ]
     },
     {
       "type": "range",
@@ -110,13 +108,13 @@
       "min": 0,
       "max": 12,
       "step": 2,
-      "default": 0,
+      "default": 0
     }
   ],
   "presets": [
     {
       "name": "Menu Block",
-      "category": "Header",
+      "category": "Header"
     }
   ]
 }
