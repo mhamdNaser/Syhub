@@ -33,19 +33,21 @@
                   <!-- Parent link -->
                   <button
                     type="button"
-                    class="flex items-center gap-x-2 w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
+                    class="flex items-center gap-x-2 justify-between w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
                     aria-expanded="false"
                   >
-                    {% if childlink.object.featured_image %}
-                      <img
-                        src="{{ childlink.object.featured_image | img_url: '50x50' }}"
-                        alt="{{ childlink.title }}"
-                        class="w-5 h-5 object-cover rounded"
-                        width=""
-                        height=""
-                      >
-                    {% endif %}
-                    {{ childlink.title }}
+                    <div class="flex items-center gap-x-2 flex-1">
+                      {% if childlink.object.featured_image %}
+                        <img
+                          src="{{ childlink.object.featured_image | img_url: '50x50' }}"
+                          alt="{{ childlink.title }}"
+                          class="w-4 h-4 object-cover rounded"
+                          width=""
+                          height=""
+                        >
+                      {% endif %}
+                      {{ childlink.title }}
+                    </div>
                     {% render 'icon-chevron-right' %}
                   </button>
 
