@@ -1,7 +1,6 @@
-<ul class="grid grid-cols-4 gap-4 py-4">
+<ul class="grid grid-cols-4 gap-4 py-4 relative">
   {% for childlink in link.links %}
     <li class="relative group">
-      <!-- Parent link -->
       <a
         href="{{ childlink.url }}"
         class="flex items-center justify-between px-4 py-2 text-sm font-medium hover:bg-gray-100 js-toggle-grandchild"
@@ -24,7 +23,7 @@
       </a>
 
       {% if childlink.links != blank %}
-        <ul class="absolute top-full left-0 hidden w-64 bg-white border border-gray-200 shadow-lg py-2 group-hover:block">
+        <ul class="absolute top-full left-0 hidden w-64 bg-white border border-gray-200 shadow-lg py-2 z-50 group-hover:block">
           {% for grandchild in childlink.links %}
             <li>
               <a
