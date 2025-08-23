@@ -301,6 +301,12 @@
   .top-4 {
     top: calc(var(--spacing) * 4);
   }
+  .top-7 {
+    top: calc(var(--spacing) * 7);
+  }
+  .top-7\/12 {
+    top: calc(7/12 * 100%);
+  }
   .top-20 {
     top: calc(var(--spacing) * 20);
   }
