@@ -32,10 +32,10 @@
   transition: transform 0.4s ease-out;
 }
 
-.hover-underline::before {
+/* .hover-underline::before {
   top: -5px;
   transform-origin: left;
-}
+} */
 
 .hover-underline:hover::after,
 .hover-underline:hover::before {
