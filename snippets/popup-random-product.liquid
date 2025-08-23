@@ -1,7 +1,7 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg overflow-ellipsis p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
   <!-- عنوان البوب أب -->
   <p class="text-sm text-gray-500 mb-2">{{ settings.random_product_popup_title }}</p>
@@ -11,7 +11,7 @@
     <p class="text-sm text-gray-500">{{ settings.random_product_popup_title }}</p>
     <div>
       <h3 id="popup-product-title" class="font-bold text-gray-800 truncate"></h3>
-      <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2"></p>
+      <p id="popup-product-description" class="text-gray-600 text-sm line-clamp-2 overflow-ellipsis"></p>
     </div>
     <p class="text-xs text-gray-400 mt-2"><span id="popup-time">8 minutes ago</span> · view</p>
   </div>
