@@ -1,12 +1,10 @@
 <!-- RANDOM PRODUCT POPUP -->
 <div
   id="corner-popup"
-  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg flex items-center gap-3 p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
+  class="fixed bottom-4 left-4 bg-white rounded-lg shadow-lg overflow-ellipsis p-4 w-80 max-w-xs cursor-pointer z-50 hidden"
 >
-  <!-- product image -->
-  <div class="w-20 h-20 flex-shrink-0">
-    <img id="popup-product-image" src="" alt="Product" class="object-cover w-full h-full rounded" width="80" height="80">
-  </div>
+  <!-- عنوان البوب أب -->
+  <p class="text-sm text-gray-500 mb-2">{{ settings.random_product_popup_title }}</p>
 
   <!-- product info -->
   <div class="flex-1 flex flex-col justify-between">
@@ -32,25 +30,37 @@
     const imgEl = document.getElementById('popup-product-image');
     const titleEl = document.getElementById('popup-product-title');
     const descEl = document.getElementById('popup-product-description');
+    const timeEl = document.getElementById('popup-time');
 
-    // تعيين الصورة مباشرة من الجافاسكربت
-    if (product.featured_image && product.featured_image.src) {
-      imgEl.src = product.featured_image.src;
+    console.log(product);
+
+    // صورة المنتج
+    if (product.featured_image) {
+      imgEl.src = product.featured_image;
     } else {
       imgEl.src = '{{ "Luliz_Logo.png" | asset_url }}';
     }
-
     imgEl.alt = product.title;
-    titleEl.textContent = product.title;
-    descEl.textContent = product.description ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) : '';
 
+    // عنوان + وصف
+    titleEl.textContent = product.title;
+    descEl.textContent = product.description 
+      ? product.description.replace(/(<([^>]+)>)/gi, "").substring(0, 80) 
+      : '';
+
+    // وقت وهمي
+    const minutesAgo = Math.floor(Math.random() * 9) + 2;
+    timeEl.textContent = `${minutesAgo} minutes ago`;
+
+    // إظهار البوب أب بعد ثانية
     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
-    popup.addEventListener('click', () => {
-      window.location.href = product.url;
+    // عند الضغط على البوب أب يفتح صفحة المنتج
+    const productUrl = `/products/${product.handle}`; // الرابط الصحيح
+    popup.addEventListener('click', (e) => {
+      {% comment %} if (e.target !== closeBtn) { {% endcomment %}
+        window.location.href = productUrl;
+      {% comment %} } {% endcomment %}
     });
-
-    const minutesAgo = Math.floor(Math.random() * 9) + 2;
-    document.getElementById('popup-time').textContent = `${minutesAgo} minutes ago`;
-  });
+});
 </script>
