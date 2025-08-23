@@ -1735,6 +1735,12 @@
       }
     }
   }
+  .last\:border-r-0 {
+    &:last-child {
+      border-right-style: var(--tw-border-style);
+      border-right-width: 0px;
+    }
+  }
   .last\:border-none {
     &:last-child {
       --tw-border-style: none;
