@@ -1,8 +1,7 @@
 <div
   class="welcome w-full flex items-center justify-center text-center text-white {{ section.settings.color_scheme }}"
   style="
-    background-image: linear-gradient(rgba(255, 192, 203, 0.6), rgba(255, 182, 193, 0.6)), 
-    url('{{ section.settings.image | image_url: width: 1800 }}');
+    background-image: url('{{ section.settings.image | image_url: width: 1800 }}');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -22,8 +21,8 @@
     {% endif %}
 
     {% if section.settings.button_text != blank %}
-      <a 
-        href="{{ section.settings.button_link }}" 
+      <a
+        href="{{ section.settings.button_link }}"
         class="mt-8 inline-block px-8 py-3 bg-pink-800 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 hover:shadow-xl transition-all duration-300"
       >
         {{ section.settings.button_text }}
@@ -58,7 +57,7 @@
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link",
+      "label": "Button Link"
     },
     {
       "type": "text",
