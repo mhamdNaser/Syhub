@@ -115,6 +115,11 @@
         "direction_cotainer": "flex-col"
       }
     },
+    "section_banner_9Him9q": {
+      "type": "section-banner",
+      "name": "Image Banner",
+      "settings": {}
+    },
     "section_image_KU97Lt": {
       "type": "section-image",
       "name": "Image With Text Section",
@@ -213,6 +218,7 @@
   },
   "order": [
     "main",
+    "section_banner_9Him9q",
     "section_image_KU97Lt",
     "section_image_text_eUCyLi",
     "section_featured_collection_YLh4zD",
