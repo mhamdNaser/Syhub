@@ -8,7 +8,6 @@
     background-attachment: fixed;
   "
 >
-  {% content_for 'blocks' %}
   <div class="welcome-content max-w-4xl py-20 px-10">
     {% if section.settings.heading != blank %}
       <h1 class="text-5xl font-bold text-pink-900 drop-shadow-md">
@@ -74,7 +73,6 @@
       "default": "scheme-1"
     }
   ],
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "presets": [
     {
       "name": "Image Banner",
