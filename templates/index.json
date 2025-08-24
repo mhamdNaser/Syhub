@@ -121,6 +121,7 @@
                     "button_alignment": "center",
                     "padding_x": 6,
                     "padding_y": 2,
+                    "margin_y": 2,
                     "border_radius": "xl"
                   },
                   "blocks": {}
