@@ -1,7 +1,22 @@
+{% stylesheet %}
+  .transition-menu {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    pointer-events: none; /* يمنع الضغط على العنصر وهو مخفي */
+  }
+
+  .transition-menu.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+{% endstylesheet %}
+
 <ul
   id="header-menu-{{ link.title | handleize }}"
-  class="absolute top-full left-0 mt-3 min-w-[220px] opacity-0 scale-95 invisible bg-white border border-gray-200 shadow-lg z-20 py-2 transition-all duration-300 ease-out"
-  {% comment %} style="transition: all 0.2s ease-in-out;" {% endcomment %}
+  class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
+  style="transition: all 0.2s ease-in-out;"
 >
   {% for childlink in link.links %}
     <li class="relative">
@@ -30,7 +45,7 @@
       </a>
 
       {% if childlink.links != blank %}
-        <ul class="absolute top-0 left-full -translate-y-2  min-w-[200px] hidden bg-white border border-gray-200 shadow-lg py-2">
+        <ul class="absolute top-0 left-full -translate-y-2  min-w-[200px] transition-menu bg-white border border-gray-200 shadow-lg py-2">
           {% for grandchild in childlink.links %}
             <li>
               <a

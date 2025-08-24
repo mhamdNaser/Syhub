@@ -36,45 +36,43 @@ document.addEventListener("DOMContentLoaded", function () {
   // Toggle Child → Grandchild
   const childToggles = document.querySelectorAll(".js-toggle-grandchild");
 
+  // Toggle Child → Grandchild
   childToggles.forEach((btn) => {
     const parentLi = btn.closest("li");
     const submenu = parentLi.querySelector("ul");
     if (!submenu) return;
 
-    // Click لفتح/إغلاق الـ Grandchild
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      const isOpen = !submenu.classList.contains("hidden");
+      const isOpen = submenu.classList.contains("show");
 
-      // إغلاق جميع القوائم الفرعية الأخرى
+      // إغلاق جميع القوائم الأخرى
       document.querySelectorAll(".js-toggle-grandchild").forEach((otherBtn) => {
         const otherLi = otherBtn.closest("li");
         const otherSub = otherLi.querySelector("ul");
-        if (otherSub && otherSub !== submenu) otherSub.classList.add("hidden");
+        if (otherSub && otherSub !== submenu) otherSub.classList.remove("show");
       });
 
-      if (isOpen) submenu.classList.add("hidden");
-      else submenu.classList.remove("hidden");
+      if (isOpen) submenu.classList.remove("show");
+      else submenu.classList.add("show");
     });
 
-    // الحفاظ على القائمة مفتوحة طالما المؤشر داخلها
-    const keepOpen = () => {
-      submenu.classList.remove("hidden");
+    // الحفاظ على القائمة مفتوحة أثناء المؤشر
+    const keepOpen = () => submenu.classList.add("show");
+    const hideSubmenu = () => {
+      setTimeout(() => {
+        if (!submenu.matches(":hover") && !btn.matches(":hover")) {
+          submenu.classList.remove("show");
+        }
+      }, 150);
     };
 
     submenu.addEventListener("mouseenter", keepOpen);
     btn.addEventListener("mouseenter", keepOpen);
 
-    const hideSubmenu = () => {
-      setTimeout(() => {
-        if (!submenu.matches(":hover") && !btn.matches(":hover")) {
-          submenu.classList.add("hidden");
-        }
-      }, 150);
-    };
-
     parentLi.addEventListener("mouseleave", hideSubmenu);
     submenu.addEventListener("mouseleave", hideSubmenu);
   });
+
 });
 
