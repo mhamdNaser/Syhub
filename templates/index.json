@@ -112,6 +112,33 @@
       "name": "Image Banner",
       "settings": {}
     },
+    "section_image_KU97Lt": {
+      "type": "section-image",
+      "name": "Image With Text Section",
+      "settings": {
+        "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d.jpg",
+        "section_image_title": "This is only test",
+        "text_alignment": "text-center",
+        "section_image_description": "Image Description",
+        "section_image_button": true,
+        "section_border": false,
+        "button_text": "Show More",
+        "section_product": "the-archived-snowboard"
+      }
+    },
+    "section_image_text_eUCyLi": {
+      "type": "section-image-text",
+      "name": "Image Attachment Section",
+      "settings": {
+        "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d_c37c0659-d227-4477-8ef1-51f1afc2bcf8.jpg",
+        "section_image_title": "Image Title",
+        "text_alignment": "text-center",
+        "section_image_description": "Image Description",
+        "section_image_button": true,
+        "button_text": "Show More",
+        "section_product": "test-24"
+      }
+    },
     "section_featured_collection_YLh4zD": {
       "type": "section-featured-collection",
       "blocks": {
@@ -142,25 +169,52 @@
       "name": "Featured Collection",
       "settings": {}
     },
-    "section_image_KU97Lt": {
-      "type": "section-image",
-      "name": "Image With Text Section",
+    "section_image_background_aeUgj9": {
+      "type": "section-image-background",
+      "name": "Image with Overlay",
       "settings": {
         "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d.jpg",
-        "section_image_title": "This is only test",
+        "section_image_title": "Image Title",
         "text_alignment": "text-center",
         "section_image_description": "Image Description",
         "section_image_button": true,
-        "section_border": false,
         "button_text": "Show More",
-        "section_product": "the-archived-snowboard"
+        "section_product": "selling-plans-ski-wax"
       }
+    },
+    "vendor_gallery_agkEPT": {
+      "type": "vendor-gallery",
+      "blocks": {
+        "vendor_block_YrQcT9": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
+            "vendor_image": "shopify://shop_images/Luliz_Logo.png"
+          }
+        },
+        "vendor_block_pbEHr4": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
+            "vendor_image": "shopify://shop_images/Syria_hub.png"
+          }
+        }
+      },
+      "block_order": [
+        "vendor_block_YrQcT9",
+        "vendor_block_pbEHr4"
+      ],
+      "name": "Vendor Gallery",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "section_banner_jenBMr",
+    "section_image_KU97Lt",
+    "section_image_text_eUCyLi",
     "section_featured_collection_YLh4zD",
-    "section_image_KU97Lt"
+    "section_image_background_aeUgj9",
+    "vendor_gallery_agkEPT"
   ]
 }
