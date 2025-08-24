@@ -1,21 +1,16 @@
 <div class="w-full flex justify-{{ block.settings.button_alignment }}" {{ block.shopify_attributes }}>
   {% assign final_link = block.settings.button_link %}
-  
+
   {% if block.settings.product != blank %}
     {% assign final_link = block.settings.product.url %}
   {% elsif block.settings.collection != blank %}
     {% assign final_link = block.settings.collection.url %}
   {% endif %}
-  
+
   {% if block.settings.button_text != blank and final_link != blank %}
-    <a 
-      href="{{ final_link }}" 
-      class="px-{{ block.settings.padding_x }} py-{{ block.settings.padding_y }} rounded-{{ block.settings.border_radius }} font-semibold transition"
-      style="
-        background-color: {{ block.settings.button_bg }};
-        color: {{ block.settings.button_text_color }};
-        font-size: {{ block.settings.button_font_size }}px;
-      "
+    <a
+      href="{{ final_link }}"
+      class="px-{{ block.settings.padding_x }} font-[{{ block.settings.button_font_size }}] text-[{{ block.settings.button_text_color }}] bg-[{{ block.settings.button_bg }}] py-{{ block.settings.padding_y }} rounded-{{ block.settings.border_radius }} font-semibold transition"
     >
       {{ block.settings.button_text }}
     </a>
@@ -107,8 +102,6 @@
       "default": 6
     }
   ],
-  "presets": [
-    { "name": "Custom Button Block", "category": "Button" }
-  ]
+  "presets": [{ "name": "Custom Button Block", "category": "Button" }]
 }
 {% endschema %}
