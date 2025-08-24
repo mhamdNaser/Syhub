@@ -12,7 +12,7 @@
 {% enddoc %}
 
 <div
-  class="group {{ block.settings.layout_direction }}"
+  class="group {{ block.settings.layout_direction }} {{ block.settings.width }}"
   style="
     --paddingx : {{ block.settings.paddingx }}px;
     --paddingy : {{ block.settings.paddingy }}px;
@@ -92,6 +92,19 @@
       "max": 18,
       "step": 1,
       "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:labels.width",
+      "default": "w-full",
+      "options": [
+        { "value": "max-w-5xl", "label": "medium" },
+        { "value": "max-w-7xl", "label": "large" },
+        { "value": "w-full", "label": "full" },
+        { "value": "w-auto", "label": "auto" },
+        { "value": "w-fit", "label": "fit" }
+      ]
     }
   ],
   "presets": [
