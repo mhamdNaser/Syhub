@@ -93,13 +93,17 @@
       "default": 2
     },
     {
-      "type": "range",
+      "type": "select",
       "id": "border_radius",
       "label": "Border Radius (px)",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "default": 6
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "md", "label": "Small" },
+        { "value": "lg", "label": "Medium" },
+        { "value": "xl", "label": "Large" },
+        { "value": "3xl", "label": "Extra Large" },
+        { "value": "full", "label": "Full" }
+      ]
     }
   ],
   "presets": [{ "name": "Custom Button Block", "category": "Button" }]
