@@ -1,15 +1,15 @@
 {% stylesheet %}
   .transition-menu {
     opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-    pointer-events: none; /* يمنع الضغط على العنصر وهو مخفي */
+    transform: translateY(-10px) scale(0.95); /* انزلاق خفيف للأعلى */
+    transition: opacity 0.35s ease, transform 0.35s ease; /* أبطأ وأكثر نعومة */
+    pointer-events: none; /* منع الضغط أثناء الإخفاء */
   }
 
   .transition-menu.show {
     opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    pointer-events: auto; /* السماح بالضغط عند الفتح */
   }
 {% endstylesheet %}
 
