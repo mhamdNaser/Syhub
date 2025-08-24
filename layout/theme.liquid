@@ -47,10 +47,10 @@
     <div id="mobile-header" class="block md:hidden">
       {% section 'mobile-header' %}
     </div>
-    
+
 
     <div
-      id="main-content color-{{ settings.color_scheme }}"
+      id="main-content {{ settings.color_scheme }}"
       {% comment %} {{ settings.card_hover_effect }} {% endcomment %}
       class="{{ settings.page_width }} mx-auto z-10 my-6"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
