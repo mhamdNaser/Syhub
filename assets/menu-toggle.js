@@ -79,7 +79,6 @@
 // });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------
   // Main menu toggle
@@ -93,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Click → Toggle على الموبايل
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+      menu.offsetHeight; // Force reflow لتشغيل الترانزيشن
       menu.classList.toggle("show");
     });
 
@@ -125,12 +125,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const submenu = parentLi.querySelector("ul");
     if (!submenu) return;
 
-    // Click → Toggle submenus
+    // Click → Toggle
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+
+      // Force reflow
+      submenu.offsetHeight;
+
       const isOpen = submenu.classList.contains("show");
 
-      // إغلاق جميع القوائم الأخرى في نفس المستوى
+      // إغلاق القوائم الأخرى في نفس المستوى
       parentLi.parentElement.querySelectorAll("ul").forEach((otherSub) => {
         if (otherSub !== submenu) otherSub.classList.remove("show");
       });
