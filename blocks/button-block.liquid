@@ -1,4 +1,4 @@
-<div class="w-full flex justify-{{ block.settings.button_alignment }}" {{ block.shopify_attributes }}>
+<div class="w-full flex my-{{ block.settings.margin_y }} justify-{{ block.settings.button_alignment }}" {{ block.shopify_attributes }}>
   {% assign final_link = block.settings.button_link %}
   
   {% if block.settings.product != blank %}
@@ -96,6 +96,15 @@
       "max": 6,
       "step": 1,
       "default": 2
+    },
+    {
+        "type": "range",
+        "id": "margin_y",
+        "label": "Margin Y",
+        "min": 0,
+        "max": 50,
+        "step": 2,
+        "default": 0
     },
     {
       "type": "select",
