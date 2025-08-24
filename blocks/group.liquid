@@ -12,7 +12,7 @@
 {% enddoc %}
 
 <div
-  class="group {{ block.settings.layout_direction }} {{ block.settings.width_container }}"
+  class="group {{ block.settings.layout_direction }} {{ block.settings.width_container }} "
   style="
     --paddingx : {{ block.settings.paddingx }}px;
     --paddingy : {{ block.settings.paddingy }}px;
@@ -59,6 +59,18 @@
       "options": [
         { "value": "group--horizontal", "label": "t:options.direction.horizontal" },
         { "value": "group--vertical", "label": "t:options.direction.vertical" }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.layout_direction == 'group--horizontal' }}",
+      "type": "select",
+      "id": "alignment",
+      "label": "t:labels.alignment",
+      "default": "flex-start",
+      "options": [
+        { "value": "ml-0", "label": "t:options.alignment.left" },
+        { "value": "mx-auto", "label": "t:options.alignment.center" },
+        { "value": "mr-0", "label": "t:options.alignment.right" }
       ]
     },
     {
