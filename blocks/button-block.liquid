@@ -1,0 +1,114 @@
+<div class="w-full flex justify-{{ block.settings.button_alignment }}" {{ block.shopify_attributes }}>
+  {% assign final_link = block.settings.button_link %}
+  
+  {% if block.settings.product != blank %}
+    {% assign final_link = block.settings.product.url %}
+  {% elsif block.settings.collection != blank %}
+    {% assign final_link = block.settings.collection.url %}
+  {% endif %}
+  
+  {% if block.settings.button_text != blank and final_link != blank %}
+    <a 
+      href="{{ final_link }}" 
+      class="px-{{ block.settings.padding_x }} py-{{ block.settings.padding_y }} rounded-{{ block.settings.border_radius }} font-semibold transition"
+      style="
+        background-color: {{ block.settings.button_bg }};
+        color: {{ block.settings.button_text_color }};
+        font-size: {{ block.settings.button_font_size }}px;
+      "
+    >
+      {{ block.settings.button_text }}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Button Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Custom Link (optional)"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product (optional)"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection (optional)"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font Size (px)",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "label": "Padding X",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Padding Y",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "presets": [
+    { "name": "Custom Button Block", "category": "Button" }
+  ]
+}
+{% endschema %}
