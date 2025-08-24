@@ -252,31 +252,124 @@
       }
     },
     "colors": {
-      "name": "Colors",
-      "settings": {
-        "background": {
-          "label": "Background"
-        },
-        "background_gradient": {
-          "label": "Background gradient"
-        },
-        "text": {
-          "label": "Text"
-        },
-        "button_background": {
-          "label": "Primary button"
-        },
-        "button_label": {
-          "label": "Primary button label"
-        },
-        "secondary_button_label": {
-          "label": "Secondary button label"
-        },
-        "shadow": {
-          "label": "Shadow"
-        }
-      }
+  "name": "Colors",
+  "settings": {
+    "background": {
+      "label": "Background"
     },
+    "background_gradient": {
+      "label": "Background gradient"
+    },
+    "text": {
+      "label": "Text"
+    },
+    "foreground_heading": {
+      "label": "Headings"
+    },
+
+    "primary": {
+      "label": "Primary"
+    },
+    "primary_hover": {
+      "label": "Primary hover"
+    },
+    "border": {
+      "label": "Border"
+    },
+    "shadow": {
+      "label": "Shadow"
+    },
+
+    "primary_button_background": {
+      "label": "Primary button background"
+    },
+    "primary_button_text": {
+      "label": "Primary button text"
+    },
+    "primary_button_border": {
+      "label": "Primary button border"
+    },
+    "primary_button_hover_background": {
+      "label": "Primary button hover background"
+    },
+    "primary_button_hover_text": {
+      "label": "Primary button hover text"
+    },
+    "primary_button_hover_border": {
+      "label": "Primary button hover border"
+    },
+
+    "secondary_button_background": {
+      "label": "Secondary button background"
+    },
+    "secondary_button_text": {
+      "label": "Secondary button text"
+    },
+    "secondary_button_border": {
+      "label": "Secondary button border"
+    },
+    "secondary_button_hover_background": {
+      "label": "Secondary button hover background"
+    },
+    "secondary_button_hover_text": {
+      "label": "Secondary button hover text"
+    },
+    "secondary_button_hover_border": {
+      "label": "Secondary button hover border"
+    },
+
+    "input_background": {
+      "label": "Input background"
+    },
+    "input_text_color": {
+      "label": "Input text"
+    },
+    "input_border_color": {
+      "label": "Input border"
+    },
+    "input_hover_background": {
+      "label": "Input hover background"
+    },
+
+    "variant_background_color": {
+      "label": "Variant background"
+    },
+    "variant_text_color": {
+      "label": "Variant text"
+    },
+    "variant_border_color": {
+      "label": "Variant border"
+    },
+    "variant_hover_background_color": {
+      "label": "Variant hover background"
+    },
+    "variant_hover_text_color": {
+      "label": "Variant hover text"
+    },
+    "variant_hover_border_color": {
+      "label": "Variant hover border"
+    },
+
+    "selected_variant_background_color": {
+      "label": "Selected variant background"
+    },
+    "selected_variant_text_color": {
+      "label": "Selected variant text"
+    },
+    "selected_variant_border_color": {
+      "label": "Selected variant border"
+    },
+    "selected_variant_hover_background_color": {
+      "label": "Selected variant hover background"
+    },
+    "selected_variant_hover_text_color": {
+      "label": "Selected variant hover text"
+    },
+    "selected_variant_hover_border_color": {
+      "label": "Selected variant hover border"
+    }
+  }
+},
     "popup": {
       "name": "Popup",
       "settings": {
