@@ -101,8 +101,9 @@
           <img
             src="{{ settings.logo | image_url }}"
             alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area"
-            class="header__logo"
-            width="{{ size }}"
+            class="footer-logo h-12 object-contain"
+            {% assign size = '200x' %}
+            width="200"
             height="50"
           >
         {% else %}
