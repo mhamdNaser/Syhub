@@ -1,4 +1,4 @@
-<div class="section-main h-fit" style="background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});">
+<div class="section-main h-fit {{ section.settings.direction_cotainer }}" style="background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});">
   {% content_for 'blocks' %}
 </div>
 
@@ -11,6 +11,15 @@
       "id": "background_image",
       "label": "Background Image",
       "info": "This image will be used as the background for the section."
+    },
+    {
+      "type": "select",
+      "id": "direction_cotainer",
+      "label": "Direction Container",
+      "options": [
+        { "value": "flex-col", "label": "Column" },
+        { "value": "flex-row", "label": "Row" }
+      ],
     }
   ],
   "presets": [

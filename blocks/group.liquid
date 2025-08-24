@@ -12,7 +12,7 @@
 {% enddoc %}
 
 <div
-  class="group {{ block.settings.layout_direction }}"
+  class="group {{ block.settings.layout_direction }} {{ block.settings.width_container }} {{ block.settings.alignment_horizontal }}"
   style="
     --paddingx : {{ block.settings.paddingx }}px;
     --paddingy : {{ block.settings.paddingy }}px;
@@ -28,7 +28,7 @@
     display: flex;
     flex-wrap: nowrap;
     /* overflow: hidden; */
-    width: 100% important;
+    /* width: 100% important; */
   }
 
   .group--horizontal {
@@ -36,7 +36,7 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--paddingy) var(--paddingx);
-    max-width: 100%;
+    /* max-width: 100%; */
   }
 
   .group--vertical {
@@ -60,6 +60,18 @@
       "options": [
         { "value": "group--horizontal", "label": "t:options.direction.horizontal" },
         { "value": "group--vertical", "label": "t:options.direction.vertical" }
+      ]
+    },
+    {
+      "visible_if": "{{ block.settings.layout_direction == 'group--horizontal' }}",
+      "type": "select",
+      "id": "alignment_horizontal",
+      "label": "t:labels.alignment",
+      "default": "mx-auto",
+      "options": [
+        { "value": "ml-0", "label": "t:options.alignment.left" },
+        { "value": "mx-auto", "label": "t:options.alignment.center" },
+        { "value": "mr-0", "label": "t:options.alignment.right" }
       ]
     },
     {
@@ -93,6 +105,19 @@
       "max": 18,
       "step": 1,
       "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "width_container",
+      "label": "t:labels.width",
+      "default": "w-full",
+      "options": [
+        { "value": "max-w-5xl", "label": "medium" },
+        { "value": "max-w-7xl", "label": "large" },
+        { "value": "w-full", "label": "full" },
+        { "value": "w-auto", "label": "auto" },
+        { "value": "w-fit", "label": "fit" }
+      ]
     }
   ],
   "presets": [

@@ -255,25 +255,148 @@
       "name": "Colors",
       "settings": {
         "background": {
-          "label": "Background"
+          "label": "Background",
+          "info": "This sets the main background color for your theme"
         },
         "background_gradient": {
-          "label": "Background gradient"
+          "label": "Background gradient",
+          "info": "This sets the gradient overlay for the background"
         },
         "text": {
-          "label": "Text"
+          "label": "Text",
+          "info": "This sets the default text color across your store"
         },
-        "button_background": {
-          "label": "Primary button"
+        "foreground_heading": {
+          "label": "Headings",
+          "info": "This color is used for all heading elements"
         },
-        "button_label": {
-          "label": "Primary button label"
+        "primary": {
+          "label": "Primary",
+          "info": "This is the main primary color used for highlights"
         },
-        "secondary_button_label": {
-          "label": "Secondary button label"
+        "primary_hover": {
+          "label": "Primary hover",
+          "info": "This is the primary color when hovered"
+        },
+        "border": {
+          "label": "Border",
+          "info": "Color used for borders in the theme"
         },
         "shadow": {
-          "label": "Shadow"
+          "label": "Shadow",
+          "info": "Color used for shadows in elements"
+        },
+        "primary_button_background": {
+          "label": "Primary button background",
+          "info": "Background color for primary buttons"
+        },
+        "primary_button_text": {
+          "label": "Primary button text",
+          "info": "Text color for primary buttons"
+        },
+        "primary_button_border": {
+          "label": "Primary button border",
+          "info": "Border color for primary buttons"
+        },
+        "primary_button_hover_background": {
+          "label": "Primary button hover background",
+          "info": "Background color for primary buttons on hover"
+        },
+        "primary_button_hover_text": {
+          "label": "Primary button hover text",
+          "info": "Text color for primary buttons on hover"
+        },
+        "primary_button_hover_border": {
+          "label": "Primary button hover border",
+          "info": "Border color for primary buttons on hover"
+        },
+        "secondary_button_background": {
+          "label": "Secondary button background",
+          "info": "Background color for secondary buttons"
+        },
+        "secondary_button_text": {
+          "label": "Secondary button text",
+          "info": "Text color for secondary buttons"
+        },
+        "secondary_button_border": {
+          "label": "Secondary button border",
+          "info": "Border color for secondary buttons"
+        },
+        "secondary_button_hover_background": {
+          "label": "Secondary button hover background",
+          "info": "Background color for secondary buttons on hover"
+        },
+        "secondary_button_hover_text": {
+          "label": "Secondary button hover text",
+          "info": "Text color for secondary buttons on hover"
+        },
+        "secondary_button_hover_border": {
+          "label": "Secondary button hover border",
+          "info": "Border color for secondary buttons on hover"
+        },
+        "input_background": {
+          "label": "Input background",
+          "info": "Background color for input fields"
+        },
+        "input_text_color": {
+          "label": "Input text",
+          "info": "Text color inside input fields"
+        },
+        "input_border_color": {
+          "label": "Input border",
+          "info": "Border color of input fields"
+        },
+        "input_hover_background": {
+          "label": "Input hover background",
+          "info": "Background color for input fields when hovered"
+        },
+        "variant_background_color": {
+          "label": "Variant background",
+          "info": "Background color for product variants"
+        },
+        "variant_text_color": {
+          "label": "Variant text",
+          "info": "Text color for product variants"
+        },
+        "variant_border_color": {
+          "label": "Variant border",
+          "info": "Border color for product variants"
+        },
+        "variant_hover_background_color": {
+          "label": "Variant hover background",
+          "info": "Background color when hovering over variants"
+        },
+        "variant_hover_text_color": {
+          "label": "Variant hover text",
+          "info": "Text color when hovering over variants"
+        },
+        "variant_hover_border_color": {
+          "label": "Variant hover border",
+          "info": "Border color when hovering over variants"
+        },
+        "selected_variant_background_color": {
+          "label": "Selected variant background",
+          "info": "Background color for selected variants"
+        },
+        "selected_variant_text_color": {
+          "label": "Selected variant text",
+          "info": "Text color for selected variants"
+        },
+        "selected_variant_border_color": {
+          "label": "Selected variant border",
+          "info": "Border color for selected variants"
+        },
+        "selected_variant_hover_background_color": {
+          "label": "Selected variant hover background",
+          "info": "Background color for selected variants on hover"
+        },
+        "selected_variant_hover_text_color": {
+          "label": "Selected variant hover text",
+          "info": "Text color for selected variants on hover"
+        },
+        "selected_variant_hover_border_color": {
+          "label": "Selected variant hover border",
+          "info": "Border color for selected variants on hover"
         }
       }
     },
