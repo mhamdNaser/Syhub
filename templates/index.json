@@ -115,29 +115,6 @@
         "direction_cotainer": "flex-col"
       }
     },
-    "section_banner_jenBMr": {
-      "type": "section-banner",
-      "blocks": {
-        "plain_text_block_6ghGFx": {
-          "type": "plain-text-block",
-          "name": "Plain Text Block",
-          "settings": {
-            "text": "Plain text block",
-            "font_size": 37,
-            "font_weight": "bold",
-            "font_style": "normal",
-            "text_alignment": "left",
-            "color_scheme": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "plain_text_block_6ghGFx"
-      ],
-      "name": "Image Banner",
-      "settings": {}
-    },
     "section_image_KU97Lt": {
       "type": "section-image",
       "name": "Image With Text Section",
@@ -236,7 +213,6 @@
   },
   "order": [
     "main",
-    "section_banner_jenBMr",
     "section_image_KU97Lt",
     "section_image_text_eUCyLi",
     "section_featured_collection_YLh4zD",
