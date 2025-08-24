@@ -86,12 +86,6 @@
         "step": 4,
         "default": 0,
         "unit": "px",
-      },
-      {
-        "type": "color_scheme",
-        "id": "color_scheme",
-        "label": "Color Scheme",
-        "default": "scheme-1"
       }
     ]
   },
