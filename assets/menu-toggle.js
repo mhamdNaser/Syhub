@@ -78,8 +78,8 @@
 //   });
 // });
 
-
 document.addEventListener("DOMContentLoaded", function () {
+
   // ---------------------------
   // Main menu toggle
   // ---------------------------
@@ -92,8 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Click → Toggle على الموبايل
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      menu.offsetHeight; // Force reflow لتشغيل الترانزيشن
-      menu.classList.toggle("show");
+      toggleMenu(menu);
     });
 
     // Hover → فقط للديسكتوب
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.innerWidth > 768)
         setTimeout(() => {
           if (!menu.matches(":hover") && !btn.matches(":hover")) {
-            menu.classList.remove("show");
+            closeMenu(menu);
           }
         }, 150);
     };
@@ -128,18 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Click → Toggle
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-
-      // Force reflow
-      submenu.offsetHeight;
-
-      const isOpen = submenu.classList.contains("show");
-
-      // إغلاق القوائم الأخرى في نفس المستوى
-      parentLi.parentElement.querySelectorAll("ul").forEach((otherSub) => {
-        if (otherSub !== submenu) otherSub.classList.remove("show");
-      });
-
-      submenu.classList.toggle("show", !isOpen);
+      toggleMenu(submenu, parentLi.parentElement);
     });
 
     // Hover → فقط للديسكتوب
@@ -150,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.innerWidth > 768)
         setTimeout(() => {
           if (!submenu.matches(":hover") && !btn.matches(":hover")) {
-            submenu.classList.remove("show");
+            closeMenu(submenu);
           }
         }, 150);
     };
@@ -160,4 +148,33 @@ document.addEventListener("DOMContentLoaded", function () {
     submenu.addEventListener("mouseenter", showSubmenu);
     submenu.addEventListener("mouseleave", hideSubmenu);
   });
+
+  // ---------------------------
+  // Functions for animation
+  // ---------------------------
+  function toggleMenu(menu, parentScope = null) {
+    // Force reflow لإعادة تشغيل الانيميشن
+    menu.offsetHeight;
+
+    const isOpen = menu.classList.contains("show");
+
+    // إغلاق القوائم الأخرى إذا تم تمرير parentScope
+    if (parentScope) {
+      parentScope.querySelectorAll("ul").forEach((other) => {
+        if (other !== menu) closeMenu(other);
+      });
+    }
+
+    if (isOpen) closeMenu(menu);
+    else menu.classList.add("show");
+  }
+
+  function closeMenu(menu) {
+    menu.classList.remove("show");
+    menu.classList.add("hide");
+    menu.addEventListener("animationend", () => {
+      menu.classList.remove("hide");
+    }, { once: true });
+  }
+
 });
