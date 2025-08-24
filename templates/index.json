@@ -17,9 +17,11 @@
           "name": "t:general.row",
           "settings": {
             "layout_direction": "group--horizontal",
+            "alignment_horizontal": "mx-auto",
             "alignment": "flex-start",
             "paddingx": 3,
-            "paddingy": 18
+            "paddingy": 18,
+            "width_container": "max-w-7xl"
           },
           "blocks": {
             "group_BNpXkR": {
@@ -27,9 +29,11 @@
               "name": "t:general.column",
               "settings": {
                 "layout_direction": "group--vertical",
+                "alignment_horizontal": "mx-auto",
                 "alignment": "center",
-                "paddingx": 0,
-                "paddingy": 0
+                "paddingx": 18,
+                "paddingy": 0,
+                "width_container": "max-w-7xl"
               },
               "blocks": {
                 "image_block_qNatcb": {
@@ -38,13 +42,13 @@
                   "settings": {
                     "image": "shopify://shop_images/Luliz_Logo.png",
                     "alt_text": "Image description",
-                    "image_width": 400,
+                    "image_width": 500,
                     "image_height": 300,
                     "object_fit": "contain",
                     "image_alignment": "right",
                     "max_width": 800,
                     "border_radius": 100,
-                    "border_width": 1,
+                    "border_width": 0,
                     "border_style": "dashed",
                     "border_color": "#c48282"
                   },
@@ -60,9 +64,11 @@
               "name": "t:general.column",
               "settings": {
                 "layout_direction": "group--vertical",
+                "alignment_horizontal": "mx-auto",
                 "alignment": "flex-start",
                 "paddingx": 0,
-                "paddingy": 0
+                "paddingy": 0,
+                "width_container": "max-w-7xl"
               },
               "blocks": {
                 "plain_text_block_VjRRJC": {
@@ -74,7 +80,7 @@
                     "font_weight": "bold",
                     "font_style": "italic",
                     "text_alignment": "left",
-                    "color_scheme": ""
+                    "color_scheme": "scheme-2"
                   },
                   "blocks": {}
                 },
@@ -105,10 +111,30 @@
       "block_order": [
         "group_Ur97Qd"
       ],
-      "settings": {}
+      "settings": {
+        "direction_cotainer": "flex-col"
+      }
     },
     "section_banner_jenBMr": {
       "type": "section-banner",
+      "blocks": {
+        "plain_text_block_6ghGFx": {
+          "type": "plain-text-block",
+          "name": "Plain Text Block",
+          "settings": {
+            "text": "Plain text block",
+            "font_size": 37,
+            "font_weight": "bold",
+            "font_style": "normal",
+            "text_alignment": "left",
+            "color_scheme": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "plain_text_block_6ghGFx"
+      ],
       "name": "Image Banner",
       "settings": {}
     },
