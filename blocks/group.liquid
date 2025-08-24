@@ -1,22 +1,22 @@
 {% doc %}
-  Renders a group of blocks with configurable layout direction, gap,
-  alignment, padding, and max dimensions.
+  Renders a group of blocks with configurable layout direction, gap and
+  alignment.
 
-  All settings apply to one dimension to reduce configuration complexity.
+  All settings apply to only one dimension to reduce configuration complexity.
+
+  This component is a wrapper concerned only with rendering its children in
+  the specified layout direction with appropriate padding and alignment.
+
+  @example
+  {% content_for 'block', type: 'group', id: 'group' %}
 {% enddoc %}
 
 <div
   class="group {{ block.settings.layout_direction }}"
   style="
-    --padding-top: {{ block.settings.padding_top }}px;
-    --padding-bottom: {{ block.settings.padding_bottom }}px;
-    --padding-left: {{ block.settings.padding_left }}px;
-    --padding-right: {{ block.settings.padding_right }}px;
+    --paddingx : {{ block.settings.paddingx }}px;
+    --paddingy : {{ block.settings.paddingy }}px;
     --alignment: {{ block.settings.alignment }};
-    --justify: {{ block.settings.justify }};
-    --gap: {{ block.settings.gap }}px;
-    --max-width: {{ block.settings.max_width }}%;
-    --max-height: {{ block.settings.max_height }}px;
   "
   {{ block.shopify_attributes }}
 >
@@ -24,28 +24,26 @@
 </div>
 
 {% stylesheet %}
-.group {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100% !important;
-  gap: var(--gap, 0px);
-  max-width: var(--max-width, 100%);
-  max-height: var(--max-height, none);
-}
+  .group {
+    display: flex;
+    flex-wrap: nowrap;
+    /* overflow: hidden; */
+    width: 100% important;
+  }
 
-.group--horizontal {
-  flex-direction: row;
-  justify-content: var(--justify, space-between);
-  align-items: var(--alignment, center);
-  padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);
-}
+  .group--horizontal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--paddingy) var(--paddingx);
+    max-width: 100%;
+  }
 
-.group--vertical {
-  flex-direction: column;
-  justify-content: var(--justify, flex-start);
-  align-items: var(--alignment, flex-start);
-  padding: var(--padding-top) var(--padding-right) var(--padding-bottom) var(--padding-left);
-}
+  .group--vertical {
+    flex-direction: column;
+    align-items: var(--alignment);
+    padding: var(--paddingy) var(--paddingx);
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -77,87 +75,23 @@
       ]
     },
     {
-      "type": "select",
-      "id": "justify",
-      "label": "t:labels.justify",
-      "default": "flex-start",
-      "options": [
-        { "value": "flex-start", "label": "t:options.justify.start" },
-        { "value": "center", "label": "t:options.justify.center" },
-        { "value": "flex-end", "label": "t:options.justify.end" },
-        { "value": "space-between", "label": "t:options.justify.space_between" },
-        { "value": "space-around", "label": "t:options.justify.space_around" },
-        { "value": "space-evenly", "label": "t:options.justify.space_evenly" }
-      ]
-    },
-    {
       "type": "range",
-      "id": "gap",
-      "label": "t:labels.gap",
+      "id": "paddingx",
+      "label": "t:labels.paddingx",
       "default": 0,
       "min": 0,
-      "max": 50,
+      "max": 18,
       "step": 1,
       "unit": "px"
     },
     {
       "type": "range",
-      "id": "padding_top",
-      "label": "t:labels.padding_top",
+      "id": "paddingy",
+      "label": "t:labels.paddingy",
       "default": 0,
       "min": 0,
-      "max": 50,
+      "max": 18,
       "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "t:labels.padding_bottom",
-      "default": 0,
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_left",
-      "label": "t:labels.padding_left",
-      "default": 0,
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "padding_right",
-      "label": "t:labels.padding_right",
-      "default": 0,
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "label": "t:labels.max_width",
-      "default": 100,
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%"
-    },
-    {
-      "type": "range",
-      "id": "max_height",
-      "label": "t:labels.max_height",
-      "default": 0,
-      "min": 0,
-      "max": 1000,
-      "step": 10,
       "unit": "px"
     }
   ],
@@ -168,14 +102,8 @@
       "settings": {
         "layout_direction": "group--vertical",
         "alignment": "flex-start",
-        "justify": "flex-start",
-        "gap": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_left": 0,
-        "padding_right": 0,
-        "max_width": 100,
-        "max_height": 0
+        "paddingx": 0,
+        "paddingy": 0
       }
     },
     {
@@ -183,15 +111,8 @@
       "category": "t:general.layout",
       "settings": {
         "layout_direction": "group--horizontal",
-        "alignment": "center",
-        "justify": "space-between",
-        "gap": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_left": 0,
-        "padding_right": 0,
-        "max_width": 100,
-        "max_height": 0
+        "paddingy": 0,
+        "paddingx": 0
       }
     }
   ]
