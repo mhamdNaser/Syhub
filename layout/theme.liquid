@@ -33,7 +33,7 @@
     {{ content_for_header }}
   </head>
 
-  <body class="overflow-x-hidden font-sans antialiased">
+  <body class="overflow-x-hidden font-sans antialiased bg-white">
     {% comment %} popup container {% endcomment %}
     {%- if settings.enable_popup == true -%}
       {% render 'popup-landpage' %}
@@ -52,7 +52,7 @@
     <div
       id="main-content"
       {{ settings.card_hover_effect }}
-      class="{{ settings.page_width }} mx-auto z-10 my-6 bg-white"
+      class="{{ settings.page_width }} mx-auto z-10 my-6"
       style="padding: {{ settings.page_padding_vertical }}px {{ settings.page_padding_horizontal }}px"
     >
       {{ content_for_layout }}
