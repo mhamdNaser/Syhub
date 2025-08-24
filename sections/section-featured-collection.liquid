@@ -12,6 +12,168 @@
 {% assign swiper = false %}
 {% assign collection_title_alignment = 'text-center' %}
 {% assign section_title = '' %}
+{% assign title_color = '#000000' %}
+{% assign title_font_size = 32 %}
+{% assign box_shadow_class = '' %}
+
+{% if settings.box_shadow != 'none' %}
+  {% assign box_shadow_class = 'shadow-' | append: settings.box_shadow %}
+{% endif %}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'text' %}
+      {% assign section_title = block.settings.title %}
+      {% assign collection_title_alignment = block.settings.title_alignment %}
+      {% assign title_color = block.settings.title_color %}
+      {% assign title_font_size = block.settings.title_font_size %}
+    {% when 'collection' %}
+      {% assign featured_collection = block.settings.section_featured_collection.products %}
+      {% assign featured_collection_url = block.settings.section_featured_collection.url %}
+      {% assign swiper = block.settings.swiper_view %}
+      {% assign item_view = block.settings.item_view_in_section %}
+      {% assign item_in_row = block.settings.item_view_in_row %}
+      {% assign item_in_row_mobile = block.settings.item_view_in_row_mobile | default: 2 %}
+      {% assign pagination_row = block.settings.show_pagination_row %}
+      {% assign collection_url = block.settings.collection_url %}
+    {% when 'collection_link' %}
+      {% assign collection_url_button = block.settings.collection_url_button %}
+      {% assign collection_alignment = block.settings.link_alignment %}
+  {% endcase %}
+{% endfor %}
+
+{% assign swiper_class = 'swiper mySwiper-' | append: section.id %}
+{% assign my_swiper_class = 'mySwiper-' | append: section.id %}
+{% assign next_button_class = 'swiper-next-' | append: section.id %}
+{% assign prev_button_class = 'swiper-prev-' | append: section.id %}
+
+
+<style>
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: black;
+    font-size: 14px;
+    border-radius: 50%;
+    padding: 10px;
+    z-index: 10;
+  }
+
+  .swiper-button-next { right: 10px; }
+  .swiper-button-prev { left: 10px; }
+
+  .swiper-button-next::after { content: '›'; font-size: 42px; color: black; }
+  .swiper-button-prev::after { content: '‹'; font-size: 42px; color: black; }
+</style>
+
+<div class="py-{{ settings.section_padding_top }} sm:py-{{ settings.section_padding_bottom }}" style="background-color: {{ settings.background_color }};">
+  <div class="relative {{ box_width }} mx-auto px-8 sm:px-6 lg:px-8">
+    <h2 class="font-extrabold mb-8 {{ collection_title_alignment }}" style="color: {{ title_color }}; font-size: {{ title_font_size }}px;">
+      {{ section_title }}
+    </h2>
+
+    {% if swiper %}
+      <div class="swiper {{ my_swiper_class }}">
+        <div class="swiper-wrapper">
+          {% if featured_collection %}
+            {% for product in featured_collection limit: item_view %}
+              <div class="swiper-slide {{ box_shadow_class }}">
+                {% render 'product-card', product: product %}
+              </div>
+            {% endfor %}
+          {% else %}
+            {% for item in (1..4) %}
+              <div class="swiper-slide {{ box_shadow_class }}">
+                {% render 'product-card-placeholder' %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {% if pagination_row %}
+          <div class="swiper-button-prev {{ prev_button_class }}"></div>
+          <div class="swiper-button-next {{ next_button_class }}"></div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ item_in_row }} gap-4">
+        {% if featured_collection %}
+          {% for product in featured_collection limit: item_view %}
+            <div class="{{ box_shadow_class }}">
+              {% render 'product-card', product: product %}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% for item in (1..4) %}
+            <div class="{{ box_shadow_class }}">
+              {% render 'product-card-placeholder' %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if collection_url %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-14 py-10 {{ collection_alignment }}">
+      <a href="{{ featured_collection_url }}"
+         class="inline-block px-4 py-2 font-bold hover:text-black {% if collection_url_button %} bg-headerColor rounded-lg hover:bg-headerLightColor text-white {% else %} text-gray-600 {% endif %}">
+        View All
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var swiperContainer = document.querySelector(".{{ my_swiper_class }}");
+  if (swiperContainer) {
+    new Swiper(swiperContainer, {
+      slidesPerView: {{ item_in_row | json }},
+      spaceBetween: 10,
+      loop: false,
+      navigation: {
+        nextEl: ".{{ next_button_class }}",
+        prevEl: ".{{ prev_button_class }}"
+      },
+      breakpoints: {
+        0: { slidesPerView: {{ item_in_row_mobile | json }}, spaceBetween: 5 },
+        768: { slidesPerView: {{ item_in_row | json }}, spaceBetween: 10 },
+        1024: { slidesPerView: {{ item_in_row | json }}, spaceBetween: 20 }
+      }
+    });
+  }
+});
+</script>
+
+
+
+{% comment %} {%- assign box_width = settings.body_width -%}
+
+{% assign featured_collection = null %}
+{% assign featured_collection_url = null %}
+{% assign collection_alignment = '' %}
+{% assign collection_url_button = false %}
+{% assign collection_url = false %}
+{% assign item_view = 4 %}
+{% assign item_in_row = 2 %}
+{% assign item_in_row_mobile = 2 %}
+{% assign pagination_row = false %}
+{% assign swiper = false %}
+{% assign collection_title_alignment = 'text-center' %}
+{% assign section_title = '' %}
 
 {% for block in section.blocks %}
   {% case block.type %}
@@ -173,10 +335,10 @@
       });
     }
   });
-</script>
+</script> {% endcomment %}
 
 
-{% schema %}
+{% comment %} {% schema %}
 {
   "name": "Featured Collection",
   "blocks": [
@@ -316,4 +478,174 @@
     }
   ]
 }
+{% endschema %} {% endcomment %}
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff",
+      "info": "Set the background color for the section"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding Top",
+      "default": 48,
+      "min": 0,
+      "max": 200,
+      "step": 4
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding Bottom",
+      "default": 48,
+      "min": 0,
+      "max": 200,
+      "step": 4
+    },
+    {
+      "type": "select",
+      "id": "box_shadow",
+      "label": "Add Shadow to Product Cards",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "sm", "label": "Small" },
+        { "value": "md", "label": "Medium" },
+        { "value": "lg", "label": "Large" }
+      ],
+      "default": "none"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Featured Collection",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "title_alignment",
+          "label": "Title Alignment",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" },
+            { "value": "text-right", "label": "Right" }
+          ],
+          "default": "text-center"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Title Font Size (px)",
+          "default": 32,
+          "min": 16,
+          "max": 60,
+          "step": 2
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "section_featured_collection",
+          "label": "Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "swiper_view",
+          "label": "Swiper View",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "item_view_in_section",
+          "default": 4,
+          "min": 4,
+          "max": 12,
+          "step": 1,
+          "label": "Number of Products in Section"
+        },
+        {
+          "type": "range",
+          "id": "item_view_in_row",
+          "default": 2,
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "label": "Number of Products Per Row"
+        },
+        {
+          "type": "range",
+          "id": "item_view_in_row_mobile",
+          "default": 1,
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "label": "Products Per Row on Mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_pagination_row",
+          "label": "Show Navigation Buttons",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "collection_url",
+          "label": "Enable Collection Link",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "collection_link",
+      "name": "Collection URL Button",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "collection_url_button",
+          "label": "Show As Button",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "link_alignment",
+          "label": "Link Alignment",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" },
+            { "value": "text-right", "label": "Right" }
+          ],
+          "default": "text-center"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
 {% endschema %}
+
