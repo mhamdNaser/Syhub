@@ -1,4 +1,10 @@
-<div class="section-main py-{{ section.settings.padding_y }} {{ section.settings.direction_cotainer }}" style="background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});">
+<div
+  class="section-main {{ section.settings.direction_cotainer }}"
+  style="
+    background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});
+    padding: {{ section.settings.padding_y }}px 0;
+  "
+>
   {% content_for 'blocks' %}
 </div>
 
@@ -28,7 +34,7 @@
       "options": [
         { "value": "flex-col", "label": "Column" },
         { "value": "flex-row", "label": "Row" }
-      ],
+      ]
     }
   ],
   "presets": [
