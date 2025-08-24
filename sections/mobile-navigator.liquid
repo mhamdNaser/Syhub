@@ -97,7 +97,17 @@
   >
     <div class="flex items-center mb-8 px-5">
       <a class="mr-auto text-xl font-bold leading-none" href="#">
-        {{ shop.name }}
+        {% if settings.logo != blank %}
+          <img
+            src="{{ settings.logo | image_url }}"
+            alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area"
+            class="header__logo"
+            width="{{ size }}"
+            height="50"
+          >
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
       </a>
       <button class="mobile-footer-close">
         {% render 'icon-close' %}
@@ -120,7 +130,7 @@
                 {% if childlink.links != blank %}
                   <li class="relative">
                     <button
-                      class="text-sm px-12 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu"
+                      class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu"
                       data-target="menu-{{ childlink.title | handleize }}"
                       type="button"
                     >
