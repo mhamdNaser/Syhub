@@ -45,9 +45,11 @@
           "name": "t:general.column",
           "settings": {
             "layout_direction": "group--vertical",
+            "alignment_horizontal": "mx-auto",
             "alignment": "flex-start",
             "paddingx": 0,
-            "paddingy": 0
+            "paddingy": 0,
+            "width_container": "w-full"
           },
           "blocks": {
             "group_AWcwfp": {
@@ -55,9 +57,11 @@
               "name": "t:general.row",
               "settings": {
                 "layout_direction": "group--horizontal",
+                "alignment_horizontal": "mx-auto",
                 "alignment": "flex-start",
                 "paddingx": 0,
-                "paddingy": 11
+                "paddingy": 11,
+                "width_container": "w-full"
               },
               "blocks": {
                 "social_icons_block_iigtQg": {
@@ -78,7 +82,7 @@
                     "font_weight": "normal",
                     "font_style": "normal",
                     "text_alignment": "left",
-                    "color_scheme": "scheme-1"
+                    "color_scheme": "scheme-2"
                   },
                   "blocks": {}
                 },
@@ -100,9 +104,11 @@
               "name": "t:general.row",
               "settings": {
                 "layout_direction": "group--horizontal",
+                "alignment_horizontal": "mx-auto",
                 "alignment": "flex-start",
                 "paddingx": 4,
-                "paddingy": 10
+                "paddingy": 10,
+                "width_container": "w-full"
               },
               "blocks": {
                 "search_block_GiTgV7": {
@@ -137,9 +143,11 @@
               "name": "t:general.row",
               "settings": {
                 "layout_direction": "group--horizontal",
+                "alignment_horizontal": "mx-auto",
                 "alignment": "flex-start",
                 "paddingx": 0,
-                "paddingy": 11
+                "paddingy": 11,
+                "width_container": "w-full"
               },
               "blocks": {
                 "menu_block_nnqGak": {
