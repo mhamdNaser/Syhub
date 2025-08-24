@@ -1,4 +1,4 @@
-<div class="section-main h-fit {{ section.settings.direction_cotainer }}" style="background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});">
+<div class="section-main h-fit py-{{ section.settings.padding_y }} {{ section.settings.direction_cotainer }}" style="background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});">
   {% content_for 'blocks' %}
 </div>
 
@@ -11,6 +11,15 @@
       "id": "background_image",
       "label": "Background Image",
       "info": "This image will be used as the background for the section."
+    },
+    {
+      "type": "range",
+      "id": "padding-y",
+      "label": "Vertical Padding",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 2
     },
     {
       "type": "select",
