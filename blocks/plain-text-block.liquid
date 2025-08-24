@@ -6,13 +6,12 @@
 {% enddoc %}
 
 <p
-  class="text-{{ block.settings.text_alignment }} w-full"
+  class="text-{{ block.settings.text_alignment }} w-full color-{{ block.settings.color_scheme }}"
   style="
     font-size: {{ block.settings.font_size }}px;
     font-weight: {{ block.settings.font_weight }};
     font-style: {{ block.settings.font_style }};
     margin: 0;
-    color: {{ settings.color_schemes[block.settings.color_scheme].settings.text }};
   "
   {{ block.shopify_attributes }}
 >
