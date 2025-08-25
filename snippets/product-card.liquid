@@ -85,7 +85,11 @@
             </span>
           </div>
         {% endif %}
-        {% if show_stock_available and stock > show_stock_qty %}
+        {% if show_stock and stock < stock_qty %}
+          <div class="absolute bottom-0 w-full bg-neutral-200 text-black text-center py-1">
+            <span class="text-sm"> {{ 'productCard.laststock' | t }} </span>
+          </div>
+        {% elsif show_stock_available and stock > show_stock_qty %}
           <div class="absolute bottom-0 w-full bg-neutral-200 text-black text-center py-1">
             <span class="text-sm"> {{ stock }} </span>
           </div>
@@ -93,7 +97,7 @@
       </a>
     {% else %}
       <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
-        <span class="text-gray-500">No Image</span>
+        <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
       </div>
     {% endif %}
 

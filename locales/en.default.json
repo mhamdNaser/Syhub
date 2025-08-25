@@ -68,4 +68,8 @@
     "close": "Close",
     "loading": "Loading..."
   },
+  "productCard": {
+    "laststock": "Last stock!",
+    "no_image": "No Image"
+  }
 }
