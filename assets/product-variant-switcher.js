@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const sku = document.getElementById("container-sku");
 
 
-  console.log("Selected product:", product);
-
   if (scriptTag) {
     variantData = JSON.parse(scriptTag.textContent);
   } else {
