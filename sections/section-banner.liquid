@@ -1,14 +1,17 @@
-<div
-  class="welcome w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}"
-  style="
-    background-image: url('{{ section.settings.image | image_url: width: 1800 }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    {% comment %} background-attachment: fixed; {% endcomment %}
-  "
->
-  <div class="welcome-content max-w-4xl py-20 px-10">
+<div class="welcome relative w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}">
+  <!-- الخلفية -->
+  <div
+    class="absolute inset-0"
+    style="
+      background-image: url('{{ section.settings.image | image_url: width: 1800 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    "
+  ></div>
+
+  <!-- المحتوى -->
+  <div class="welcome-content relative max-w-4xl py-20 px-10 text-white">
     {% if section.settings.heading != blank %}
       <h1 class="text-5xl font-bold drop-shadow-md">
         {{ section.settings.heading }}
