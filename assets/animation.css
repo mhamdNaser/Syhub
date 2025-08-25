@@ -161,9 +161,6 @@
 .hover-zoom {
   height: 300px;
   overflow: hidden;
-  border-radius: 1em;
-  border: 0.5em solid var(--lab__border-color);
-  transition: box-shadow 0.25s ease-in-out;
 }
 
 .hover-zoom--empty {
