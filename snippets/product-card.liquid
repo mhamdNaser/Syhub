@@ -68,17 +68,13 @@
         {% endif %}
 
         {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
-        {% if show_stock and stock < stock_qty %}
-          <div class="absolute right-2 top-2">
-            <span class="px-4 py-1 text-xs font-bold block rounded-full text-white  bg-yellow-500 "> Last stock! </span>
-          </div>
         {% comment %} {% elsif show_stock_available and stock > show_stock_qty %}
           <div class="absolute right-2 top-2">
             <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
               {{ stock }}
             </span>
           </div> {% endcomment %}
-        {%- elsif show_stock_always -%}
+        {%- if show_stock_always -%}
           <div class="absolute right-2 top-2">
             <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
               {{ stock }}
@@ -90,7 +86,7 @@
             <span class="text-sm"> {{ 'productCard.laststock' | t }} </span>
           </div>
         {% elsif show_stock_available and stock > show_stock_qty %}
-          <div class="absolute bottom-0 w-full bg-neutral-100 text-black text-center py-1">
+          <div class="absolute bottom-0 w-full bg-yellow-500  text-black text-center py-1">
             <span class="text-sm"> {{ stock }} </span>
           </div>
         {% endif %}
