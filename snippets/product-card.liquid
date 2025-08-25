@@ -42,7 +42,7 @@
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
     {% liquid
       if  product.featured_image != blank
-        assign image_style = "hover-zoom {{ settings.productcards_image_style }}"
+        assign image_style = "hover-zoom" {{ settings.productcards_image_style }}
       else
         assign image_style = 'hover-zoom hover-zoom--empty'
       endif
