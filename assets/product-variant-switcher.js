@@ -28,10 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!selectedVariant) return;
 
-    const product = JSON.parse(document.getElementById("product-data").textContent);
-    console.log("Selected product:", product);
-    console.log("Selected Variant:", selectedVariant.id);
-
     if (sku) {
       sku.textContent = ''
       sku.textContent = selectedVariant.sku
