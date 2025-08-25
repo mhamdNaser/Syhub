@@ -798,6 +798,12 @@
   .min-w-0 {
     min-width: calc(var(--spacing) * 0);
   }
+  .min-w-1 {
+    min-width: calc(var(--spacing) * 1);
+  }
+  .min-w-1\/4 {
+    min-width: calc(1/4 * 100%);
+  }
   .min-w-\[80px\] {
     min-width: 80px;
   }
@@ -809,6 +815,9 @@
   }
   .min-w-\[250px\] {
     min-width: 250px;
+  }
+  .min-w-fit {
+    min-width: fit-content;
   }
   .flex-1 {
     flex: 1;
