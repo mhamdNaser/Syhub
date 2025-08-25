@@ -40,9 +40,16 @@
 
 <div class="lg:w-60 h-fit rounded-lg bg-white p-4 overflow-hidden">
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+    {% liquid
+      if  product.featured_image != blank
+        assign image_style = "hover-zoom {{ settings.productcards_image_style }}"
+      else
+        assign image_style = 'hover-zoom hover-zoom--empty'
+      endif
+    %}
     <input type="hidden" name="id" value="{{ product.variants.first.id }}">
     {% if product.featured_image %}
-      <a href="{{ product.url | within: collection }}" class="block relative hover-zoom hover-zoom--basic">
+      <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
         <img
           src="{{ product.featured_image.src | img_url: 'medium' }}"
           alt="{{ product.featured_image.alt | escape }}"
