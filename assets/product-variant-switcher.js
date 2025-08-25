@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const colorLabel = document.getElementById("variantLabel");
   const sku = document.getElementById("container-sku");
 
+
+  console.log("Selected product:", product);
+
   if (scriptTag) {
     variantData = JSON.parse(scriptTag.textContent);
   } else {
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!selectedVariant) return;
 
     // const product = JSON.parse(document.getElementById("product-data").textContent);
-    console.log("Selected product:", product);
+    // console.log("Selected product:", product);
     // console.log("Selected Variant:", selectedVariant.id);
 
     if (sku) {
