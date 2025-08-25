@@ -72,12 +72,12 @@
           <div class="absolute right-2 top-2">
             <span class="px-4 py-1 text-xs font-bold block rounded-full text-white  bg-yellow-500 "> Last stock! </span>
           </div>
-        {% elsif show_stock_available and stock > show_stock_qty %}
+        {% comment %} {% elsif show_stock_available and stock > show_stock_qty %}
           <div class="absolute right-2 top-2">
             <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
               {{ stock }}
             </span>
-          </div>
+          </div> {% endcomment %}
         {%- elsif show_stock_always -%}
           <div class="absolute right-2 top-2">
             <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
