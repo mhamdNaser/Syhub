@@ -248,6 +248,40 @@
           "product_titles_caps": {
             "label": "Use capital letters for product titles"
           }
+        },
+        "style": {
+          "header": "Style",
+          "image_hover_style": {
+            "label": "Image hover style",
+            "info": "Choose the effect applied when hovering over product images.",
+            "options__1": {
+              "label": "Basic zoom"
+            },
+            "options__2": {
+              "label": "Quick zoom"
+            },
+            "options__3": {
+              "label": "Point zoom"
+            },
+            "options__4": {
+              "label": "Zoom and rotate"
+            },
+            "options__5": {
+              "label": "Brightness"
+            },
+            "options__6": {
+              "label": "Horizontal pan"
+            },
+            "options__7": {
+              "label": "Vertical pan"
+            },
+            "options__8": {
+              "label": "Blur"
+            },
+            "options__9": {
+              "label": "Colorize"
+            }
+          }
         }
       }
     },
