@@ -112,6 +112,20 @@ document.addEventListener('DOMContentLoaded', function () {
               nextEl: ".{{ next_button_class }}",
               prevEl: ".{{ prev_button_class }}"
             },
+            breakpoints: {
+              0: {
+                slidesPerView: 1,
+              },
+              640: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 3,
+              },
+              1024: {
+                slidesPerView: {{ item_in_row | json }},
+              },
+            }
           });
         }
       })
