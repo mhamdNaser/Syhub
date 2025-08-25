@@ -65,7 +65,7 @@
             "label": "t:options.full"
           }
         ],
-        "default": "max-w-7xl"
+        "default": "max-w-5xl"
       },
       {
         "type": "range",
@@ -539,6 +539,55 @@
         "type": "checkbox",
         "id": "product_titles_caps",
         "label": "t:settings_schema.productCard.settings.titles.product_titles_caps.label"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.productCard.settings.style.header"
+      },
+      {
+        "type": "select",
+        "id": "image_hover_style",
+        "label": "t:settings_schema.productCard.settings.style.image_hover_style.label",
+        "info": "t:settings_schema.productCard.settings.style.image_hover_style.info",
+        "default": "hover-zoom--basic",
+        "options": [
+          {
+            "value": "hover-zoom--basic",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__1.label"
+          },
+          {
+            "value": "hover-zoom--quick-zoom",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__2.label"
+          },
+          {
+            "value": "hover-zoom--point-zoom",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__3.label"
+          },
+          {
+            "value": "hover-zoom--zoom-n-rotate",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__4.label"
+          },
+          {
+            "value": "hover-zoom--brightness",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__5.label"
+          },
+          {
+            "value": "hover-zoom--zoom-n-pan-h",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__6.label"
+          },
+          {
+            "value": "hover-zoom--zoom-n-pan-v",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__7.label"
+          },
+          {
+            "value": "hover-zoom--blur",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__8.label"
+          },
+          {
+            "value": "hover-zoom--colorize",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__9.label"
+          }
+        ]
       }
     ]
   },

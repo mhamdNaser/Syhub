@@ -40,9 +40,16 @@
 
 <div class="lg:w-60 h-fit rounded-lg bg-white p-4 overflow-hidden">
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+    {% liquid
+      if product.featured_image
+        assign image_style = 'hover-zoom ' | append: settings.image_hover_style
+      else
+        assign image_style = 'hover-zoom hover-zoom--empty'
+      endif
+    %}
     <input type="hidden" name="id" value="{{ product.variants.first.id }}">
     {% if product.featured_image %}
-      <a href="{{ product.url | within: collection }}" class="block relative">
+      <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
         <img
           src="{{ product.featured_image.src | img_url: 'medium' }}"
           alt="{{ product.featured_image.alt | escape }}"
@@ -68,27 +75,37 @@
         {% endif %}
 
         {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
-        {% if show_stock and stock < stock_qty %}
-          <div class="absolute right-2 top-2">
-            <span class="px-4 py-1 text-xs font-bold block rounded-full text-white  bg-yellow-500 "> Last stock! </span>
-          </div>
-        {% elsif show_stock_available and stock > show_stock_qty %}
-          <div class="absolute right-2 top-2">
-            <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
-              {{ stock }}
+        {% liquid
+          if show_stock and stock < stock_qty
+            assign stock_label = 'productCard.laststock' | t
+            assign bg_color = 'bg-[#c42764]'
+          elsif show_stock_always
+            assign stock_label = stock
+            assign bg_color = 'bg-yellow-400'
+          elsif show_stock_available and stock > show_stock_qty
+            assign stock_label = stock
+            assign bg_color = 'bg-yellow-400'
+          else
+            assign stock_label = ''
+          endif
+        %}
+        <div class="absolute bottom-0 w-full flex justify-end">
+          <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group {{ bg_color }} text-white  rounded-tl-full overflow-hidden">
+            <!-- الطبقة البيضاء الشفافة -->
+            <div
+              class="absolute inset-0 bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
+            ></div>
+
+            <!-- المحتوى -->
+            <span class="relative z-10 text-xs font-bold text-nowrap">
+              {{ stock_label }}
             </span>
           </div>
-        {%- elsif show_stock_always -%}
-          <div class="absolute right-2 top-2">
-            <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
-              {{ stock }}
-            </span>
-          </div>
-        {% endif %}
+        </div>
       </a>
     {% else %}
       <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
-        <span class="text-gray-500">No Image</span>
+        <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
       </div>
     {% endif %}
 
@@ -184,7 +201,7 @@
                 class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
                 @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
               >
-                {% render 'icon-cart'  %}
+                {% render 'icon-cart' %}
               </button>
             {%- else -%}
               <button
@@ -284,6 +301,7 @@
   });
 </script>
 
+{% comment %} update quantity and send to cart {% endcomment %}
 <script>
   function addToCart(productId) {
     let formData = {
