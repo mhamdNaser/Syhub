@@ -70,9 +70,9 @@
         {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
         {% liquid
           if show_stock and stock < stock_qty
-            or show_stock_always
               assign stock_label = {{ 'productCard.laststock' | t }}
           elsif show_stock_available and stock > show_stock_qty
+              or show_stock_always
               assign  = stock
           else
               assign stock_label = ''
