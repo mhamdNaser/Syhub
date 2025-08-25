@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // const product = JSON.parse(document.getElementById("product-data").textContent);
     // console.log("Selected product:", product);
-    console.log("Selected Variant:", selectedVariant);
+    console.log("Selected Variant:", optionValues);
 
     if (sku) {
       sku.textContent = ''
