@@ -1,5 +1,5 @@
 <div
-  class="welcome w-full flex items-center justify-center text-center {{ section.settings.color_scheme }}"
+  class="welcome w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}"
   style="
     background-image: url('{{ section.settings.image | image_url: width: 1800 }}');
     background-size: cover;
@@ -9,13 +9,13 @@
 >
   <div class="welcome-content max-w-4xl py-20 px-10">
     {% if section.settings.heading != blank %}
-      <h1 class="text-5xl font-bold color-{{ section.settings.color_scheme }} drop-shadow-md">
+      <h1 class="text-5xl font-bold drop-shadow-md">
         {{ section.settings.heading }}
       </h1>
     {% endif %}
 
     {% if section.settings.subheading != blank %}
-      <p class="welcome-description text-lg md:text-xl color-{{ section.settings.color_scheme }} leading-relaxed mt-6">
+      <p class="welcome-description text-lg md:text-xl leading-relaxed mt-6">
         {{ section.settings.subheading }}
       </p>
     {% endif %}
@@ -23,7 +23,7 @@
     {% if section.settings.button_text != blank %}
       <a
         href="{{ section.settings.button_link }}"
-        class="mt-8 inline-block px-8 py-3 color-{{ section.settings.color_scheme }} text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 hover:shadow-xl transition-all duration-300"
+        class="mt-8 inline-block px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 hover:shadow-xl transition-all duration-300"
       >
         {{ section.settings.button_text }}
       </a>

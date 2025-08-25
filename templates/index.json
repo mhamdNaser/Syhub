@@ -18,7 +18,7 @@
         "subheading": "Discover our collection of amazing products.",
         "button_link": "",
         "button_text": "Shop Now",
-        "color_scheme": ""
+        "color_scheme": "scheme-6"
       }
     },
     "main": {
@@ -106,11 +106,31 @@
                     "text_size": "large"
                   },
                   "blocks": {}
+                },
+                "button_block_A4HPhD": {
+                  "type": "button-block",
+                  "name": "Custom Button Block",
+                  "settings": {
+                    "button_text": "Shop Now",
+                    "button_link": "",
+                    "product": "test-24",
+                    "collection": "",
+                    "button_bg": "#e53d7c",
+                    "button_text_color": "#ffffff",
+                    "button_font_size": 16,
+                    "button_alignment": "center",
+                    "padding_x": 6,
+                    "padding_y": 2,
+                    "margin_y": 2,
+                    "border_radius": "xl"
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "plain_text_block_VjRRJC",
-                "rich_text_block_NmJgUm"
+                "rich_text_block_NmJgUm",
+                "button_block_A4HPhD"
               ]
             }
           },

@@ -85,6 +85,11 @@
             </span>
           </div>
         {% endif %}
+        {% if show_stock_available and stock > show_stock_qty %}
+          <div class="absolute bottom-0 w-full bg-neutral-300 text-black text-center py-4">
+            <span class=""> {{ stock }} </span>
+          </div>
+        {% endif %}
       </a>
     {% else %}
       <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
