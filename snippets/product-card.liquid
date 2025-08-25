@@ -41,8 +41,8 @@
 <div class="lg:w-60 h-fit rounded-lg bg-white p-4 overflow-hidden">
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
     {% liquid
-      if  product.featured_image != blank
-        assign image_style = "hover-zoom" {{ settings.productcards_image_style }}
+      if product.featured_image
+        assign image_style = 'hover-zoom ' | append: settings.image_hover_style
       else
         assign image_style = 'hover-zoom hover-zoom--empty'
       endif
