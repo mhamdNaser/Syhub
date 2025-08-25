@@ -1,10 +1,7 @@
 <div
   class="section-main {{ section.settings.direction_cotainer }}"
   style="
-    background-image: url({{ section.settings.background_image }});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    background-image: url({{ section.settings.background_image | img_url: '2048x2048' }});
     padding: {{ section.settings.padding_y }}px 0px;
   "
 >
