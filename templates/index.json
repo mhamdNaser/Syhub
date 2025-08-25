@@ -13,7 +13,7 @@
       "type": "section-banner",
       "name": "Image Banner",
       "settings": {
-        "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d_c37c0659-d227-4477-8ef1-51f1afc2bcf8.jpg",
+        "image": "shopify://shop_images/Banner-01_1-min.webp",
         "heading": "Welcome to Our Store",
         "subheading": "Discover our collection of amazing products.",
         "button_link": "",
@@ -144,6 +144,7 @@
         "group_Ur97Qd"
       ],
       "settings": {
+        "padding_y": 10,
         "direction_cotainer": "flex-col"
       }
     },
