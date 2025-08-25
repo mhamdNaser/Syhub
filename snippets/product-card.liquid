@@ -68,28 +68,19 @@
         {% endif %}
 
         {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
-        {% comment %} {% elsif show_stock_available and stock > show_stock_qty %}
-          <div class="absolute right-2 top-2">
-            <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
-              {{ stock }}
-            </span>
-          </div> {% endcomment %}
-        {%- if show_stock_always -%}
-          <div class="absolute right-2 top-2">
-            <span class="px-4 py-1 text-xs font-bold block rounded-full text-white bg-blue-400 opacity-90">
-              {{ stock }}
-            </span>
+        {% liquid
+          if show_stock and stock < stock_qty
+            or show_stock_available and stock > show_stock_qty
+            or show_stock_always
+              assign stock_label = {{ 'productCard.laststock' | t }}
+          elsif show_stock_available and stock > show_stock_qty
+              assign  = stock
+          else
+              assign stock_label = ''
+        %}
+          <div class="absolute bottom-0 right-0 w-1/4 bg-[#c42764] opacity-30 text-black text-center py-1">
+            <span class="text-sm"> {{ stock_label }} </span>
           </div>
-        {% endif %}
-        {% if show_stock and stock < stock_qty %}
-          <div class="absolute bottom-0 w-full bg-[#c42764] opacity-30 text-black text-center py-1">
-            <span class="text-sm"> {{ 'productCard.laststock' | t }} </span>
-          </div>
-        {% elsif show_stock_available and stock > show_stock_qty %}
-          <div class="absolute bottom-0 w-full bg-yellow-500 opacity-30 text-black text-center py-1">
-            <span class="text-sm"> {{ stock }} </span>
-          </div>
-        {% endif %}
       </a>
     {% else %}
       <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
@@ -189,7 +180,7 @@
                 class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
                 @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
               >
-                {% render 'icon-cart'  %}
+                {% render 'icon-cart' %}
               </button>
             {%- else -%}
               <button
