@@ -1623,6 +1623,9 @@
       color: var(--color-gray-300);
     }
   }
+  .opacity-15 {
+    opacity: 15%;
+  }
   .opacity-25 {
     opacity: 25%;
   }
@@ -1975,6 +1978,13 @@
     &:hover {
       @media (hover: hover) {
         text-decoration-line: underline;
+      }
+    }
+  }
+  .hover\:opacity-100 {
+    &:hover {
+      @media (hover: hover) {
+        opacity: 100%;
       }
     }
   }
