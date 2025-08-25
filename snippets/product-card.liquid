@@ -71,9 +71,10 @@
         {% liquid
           if show_stock and stock < stock_qty
               assign stock_label = {{ 'productCard.laststock' | t }}
-          elsif show_stock_available and stock > show_stock_qty
-              or show_stock_always
-              assign  = stock
+          elsif show_stock_always
+              assign stock_label  = stock
+          elsif show_stock_available and stock > show_stock_qty 
+              assign stock_label  = stock
           else
               assign stock_label = ''
         %}
