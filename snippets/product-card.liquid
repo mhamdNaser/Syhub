@@ -70,23 +70,21 @@
         {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
         {% liquid
           if show_stock and stock < stock_qty
-            assign stock_label = 'productCard.laststock' | t
-            assign bg_color = '196 , 39 , 100'
+              assign stock_label = 'productCard.laststock' | t 
+              assign bg_color = "bg-[#c42764]"
           elsif show_stock_always
-            assign stock_label = stock
-            assign bg_color = '255 , 185 , 0'
-          elsif show_stock_available and stock > show_stock_qty
-            assign stock_label = stock
-            assign bg_color = '255 , 185 , 0'
+              assign stock_label  = stock
+              assign bg_color = 'bg-yellow-400'
+          elsif show_stock_available and stock > show_stock_qty 
+              assign stock_label  = stock
+              assign bg_color = 'bg-yellow-400'
           else
-            assign stock_label = ''
+              assign stock_label = ''
           endif
         %}
-        <div
-          class="absolute bottom-0 right-0 w-1/4 min-w-fit rounded-tl-full overflow-hidden bg-[rgba({{ bg_color }} , 0.2)] hover:bg-[rgba({{ bg_color }} , 1)] text-white text-center p-1"
-        >
-          <span class="text-sm font-bold text-nowrap"> {{ stock_label }} </span>
-        </div>
+          <div class="absolute bottom-0 right-0 w-1/4 min-w-fit rounded-tl-full overflow-hidden {{ bg_color }} text-white text-center p-1">
+            <span class="text-sm font-bold text-nowrap"> {{ stock_label }} </span>
+          </div>
       </a>
     {% else %}
       <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
@@ -286,6 +284,7 @@
   });
 </script>
 
+{% comment %} update quantity and send to cart {% endcomment %}
 <script>
   function addToCart(productId) {
     let formData = {
