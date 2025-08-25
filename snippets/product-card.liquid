@@ -71,15 +71,18 @@
         {% liquid
           if show_stock and stock < stock_qty
               assign stock_label = 'productCard.laststock' | t 
+              assign bg_color = "bg-[#c42764]"
           elsif show_stock_always
               assign stock_label  = stock
+              assign bg_color = 'bg-yellow-400'
           elsif show_stock_available and stock > show_stock_qty 
               assign stock_label  = stock
+              assign bg_color = 'bg-yellow-400'
           else
               assign stock_label = ''
           endif
         %}
-          <div class="absolute bottom-0 right-0 w-1/4 rounded-tl-full bg-[#c42764] text-black text-center py-1">
+          <div class="absolute bottom-0 right-0 w-1/4 rounded-tl-full {{ bg_color }} text-white text-center py-1">
             <span class="text-sm"> {{ stock_label }} </span>
           </div>
       </a>
