@@ -1,24 +1,32 @@
 <div class="same-vendor-products max-w-7xl mx-auto py-8">
   <h2 class="text-2xl font-bold mb-6 text-center">More from {{ product.vendor }}</h2>
-  
+
   <!-- Swiper wrapper -->
   <div class="swiper same-vendor-swiper">
     <div class="swiper-wrapper">
-      {% assign vendor_products = collections.all.products | where: "vendor", product.vendor %}
+      {% assign vendor_products = collections.all.products | where: 'vendor', product.vendor %}
       {% for p in vendor_products %}
         {% if p.id != product.id %}
           <div class="swiper-slide">
             <div class="product-card lg:w-60 bg-white rounded-lg p-4 shadow-sm hover:shadow-lg transition-all h-[350px] flex flex-col">
               <a href="{{ p.url }}" class="flex flex-col h-full">
                 <div class="flex-shrink-0 mb-4">
-                  <img src="{{ p.featured_image | img_url: 'medium' }}" alt="{{ p.title }}" class="w-full h-40 object-cover rounded-md" width="" height="">
+                  <img
+                    src="{{ p.featured_image | img_url: 'medium' }}"
+                    alt="{{ p.title }}"
+                    class="w-full h-40 object-cover rounded-md"
+                    width=""
+                    height=""
+                  >
                 </div>
                 <div class="flex-grow">
                   <h3 class="text-lg font-semibold mb-2 line-clamp-2">{{ p.title }}</h3>
                   <p class="text-gray-700 font-medium">{{ p.price | money }}</p>
                 </div>
                 <div class="mt-4">
-                  <button class="w-full py-2 rounded-md bg-[#c42764] text-white hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors">View Product</button>
+                  <button class="w-full py-2 rounded-md bg-[#c42764] text-white hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors">
+                    View Product
+                  </button>
                 </div>
               </a>
             </div>
@@ -30,14 +38,14 @@
     <!-- Navigation -->
     <div class="swiper-button-next text-gray-700 hover:text-gray-900"></div>
     <div class="swiper-button-prev text-gray-700 hover:text-gray-900"></div>
-    
+
     <!-- Pagination (اختياري) -->
     <div class="swiper-pagination mt-4"></div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.same-vendor-swiper', {
       slidesPerView: 2,
       spaceBetween: 20,
@@ -51,14 +59,14 @@
         clickable: true,
       },
       breakpoints: {
+        0: { slidesPerView: 1 },
         640: { slidesPerView: 2, spaceBetween: 20 },
         768: { slidesPerView: 3, spaceBetween: 24 },
         1024: { slidesPerView: 4, spaceBetween: 24 },
-      }
+      },
     });
   });
 </script>
-
 
 {% schema %}
 {
