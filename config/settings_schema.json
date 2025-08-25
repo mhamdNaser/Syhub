@@ -587,7 +587,7 @@
             "value": "hover-zoom--colorize",
             "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__9.label"
           }
-        ],
+        ]
       }
     ]
   },
