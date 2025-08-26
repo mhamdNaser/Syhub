@@ -1,7 +1,7 @@
 {% assign section_image = section.settings.image %}
-{% assign button_text = section.settings.button_text %}
+{% assign text_position = section.settings.text_position %}
 {% liquid
-  if button_text == 'inside'
+  if text_position == 'inside'
     assign main_class = 'w-full mx-auto'
     assign imagebox_width = ''
   else
@@ -9,12 +9,12 @@
     assign imagebox_width = 'md:w-1/2'
   endif
 %}
+{% assign button_text = section.settings.button_text %}
 {% assign section_image_title = section.settings.section_image_title %}
 {% assign section_image_description = section.settings.section_image_description %}
 {% assign section_image_button = section.settings.section_image_button %}
 {% assign section_product_url = section.settings.section_product.url %}
 {% assign text_alignment = section.settings.text_alignment %}
-{% assign text_position = section.settings.text_position %}
 {% assign section_border = section.settings.section_border %}
 
 <article>
@@ -27,7 +27,6 @@
           {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
         "
       >
-        {%- comment -%} صورة {%- endcomment -%}
         <div class="relative w-full {{ imagebox_width }}">
           <figure class="relative">
             <picture>
