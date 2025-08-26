@@ -13,18 +13,26 @@
     <div class="w-full mx-auto">
       <div
         class="
-          flex 
-          {% if text_position == 'right' %} md:flex-row  {% endif %}
-          {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
-          {% if text_position == 'top' %} flex-col-reverse {% endif %}
-          {% if text_position == 'left' %} flex-col  {% endif %}
+          flex
+          {% if text_position == 'right' %}
+            md:flex-row
+          {% elsif text_position == 'left' %}
+            md:flex-row-reverse
+          {% elsif text_position == 'top' %}
+           flex-col-reverse
+          {% elsif text_position == 'left' %}
+           flex-col
+           {% endif %}
         "
       >
         {%- comment -%} صورة {%- endcomment -%}
-        <div class="relative w-full 
-          {% if text_position == 'right' %} md:w-1/2 {% endif %}
-          {% if text_position == 'left' %} md:w-1/2 {% endif %}
-           ">
+        <div
+          class="
+            relative w-full
+            {% if text_position == 'right' %} md:w-1/2 {% endif %}
+            {% if text_position == 'left' %} md:w-1/2 {% endif %}
+          "
+        >
           <figure class="relative">
             <picture>
               {% if section_image %}
