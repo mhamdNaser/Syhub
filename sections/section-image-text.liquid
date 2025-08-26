@@ -1,40 +1,31 @@
 {% assign section_image = section.settings.image %}
-{% assign text_position = section.settings.text_position %}
-{% liquid
-  if text_position == 'inside'
-    assign main_class = 'w-full mx-auto'
-    assign imagebox_width = ''
-  else
-    assign main_class = 'w-full md:max-w-7xl mx-auto'
-    assign imagebox_width = 'md:w-1/2'
-  endif
-%}
-{% assign button_text = section.settings.button_text %}
 {% assign section_image_title = section.settings.section_image_title %}
 {% assign section_image_description = section.settings.section_image_description %}
 {% assign section_image_button = section.settings.section_image_button %}
 {% assign section_product_url = section.settings.section_product.url %}
+{% assign button_text = section.settings.button_text %}
 {% assign text_alignment = section.settings.text_alignment %}
+{% assign text_position = section.settings.text_position %}
 {% assign section_border = section.settings.section_border %}
 
 <article>
   <div class="w-full py-12">
-    <div class="{{ main_class }}">
-      <div
-        class="
-          flex flex-col
-          {% if text_position == 'right' %} md:flex-row {% endif %}
-          {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
-        "
-      >
-        <div class="relative w-full {{ imagebox_width }} rounded-l-4xl overflow-hidden">
+    <div class="w-full md:max-w-7xl mx-auto">
+      <div class="
+        flex flex-col
+        {% if text_position == 'right' %} md:flex-row {% endif %}
+        {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
+      ">
+        
+        {%- comment -%} صورة {%- endcomment -%}
+        <div class="relative w-full md:w-1/2">
           <figure class="relative">
             <picture>
               {% if section_image %}
                 <img
                   src="{{ section_image | file_url | replace: 'files/files/', 'files/' }}"
-                  width="auto"
-                  height="auto"
+                  width="640"
+                  height="500"
                   alt="Image description"
                   class="object-cover w-full h-[500px] rounded-md"
                   loading="lazy"
@@ -49,10 +40,7 @@
                 <h2 class="text-2xl font-bold drop-shadow">{{ section_image_title }}</h2>
                 <p class="mt-2">{{ section_image_description }}</p>
                 {% if section_image_button %}
-                  <a
-                    href="{{ section_product_url }}"
-                    class="mt-4 bg-white text-black px-4 py-2 rounded-lg font-semibold"
-                  >
+                  <a href="{{ section_product_url }}" class="mt-4 bg-white text-black px-4 py-2 rounded-lg font-semibold">
                     {{ button_text }}
                   </a>
                 {% endif %}
@@ -88,6 +76,18 @@
       "label": "Choose an image"
     },
     {
+      "type": "text",
+      "id": "section_image_title",
+      "label": "Image Title",
+      "default": "Image Title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_image_description",
+      "label": "Image Description",
+      "default": "Write your description here"
+    },
+    {
       "type": "select",
       "id": "text_position",
       "label": "Text Position",
@@ -100,19 +100,6 @@
       ],
       "default": "bottom"
     },
-    {
-      "type": "text",
-      "id": "section_image_title",
-      "label": "Image Title",
-      "default": "Image Title"
-    },
-    {
-      "type": "textarea",
-      "id": "section_image_description",
-      "label": "Image Description",
-      "default": "Write your description here"
-    },
-
     {
       "type": "select",
       "id": "text_alignment",
