@@ -5,31 +5,75 @@
 {% assign section_product_url = section.settings.section_product.url %}
 {% assign button_text = section.settings.button_text %}
 {% assign text_alignment = section.settings.text_alignment %}
+{% assign text_position = section.settings.text_position %}
+{% assign section_border = section.settings.section_border %}
 
-<article class="relative w-full h-[500px] flex items-center justify-center text-white overflow-hidden my-8">
-    <div class="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed" style="background-image: url('{{ section_image | file_url | replace: 'files/files/', 'files/' }}');">
-      <span class="absolute inset-0 bg-black opacity-50"></span>
+<article>
+  <div class="w-full py-12">
+    <div class="w-full md:max-w-7xl mx-auto">
+      <div class="
+        flex flex-col
+        {% if text_position == 'right' %} md:flex-row {% endif %}
+        {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
+      ">
+        
+        {%- comment -%} صورة {%- endcomment -%}
+        <div class="relative w-full md:w-1/2">
+          <figure class="relative">
+            <picture>
+              {% if section_image %}
+                <img
+                  src="{{ section_image | file_url | replace: 'files/files/', 'files/' }}"
+                  width="640"
+                  height="500"
+                  alt="Image description"
+                  class="object-cover w-full h-[500px] rounded-md"
+                  loading="lazy"
+                >
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'w-full h-48 object-cover rounded-md' }}
+              {% endif %}
+            </picture>
+
+            {% if text_position == 'inside' %}
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+                <h2 class="text-2xl font-bold drop-shadow">{{ section_image_title }}</h2>
+                <p class="mt-2">{{ section_image_description }}</p>
+                {% if section_image_button %}
+                  <a href="{{ section_product_url }}" class="mt-4 bg-white text-black px-4 py-2 rounded-lg font-semibold">
+                    {{ button_text }}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          </figure>
+        </div>
+
+        {%- comment -%} النص (برا الصورة) {%- endcomment -%}
+        {% unless text_position == 'inside' %}
+          <div class="w-full md:w-1/2 flex flex-col justify-center p-6 {{ text_alignment }}">
+            <h2 class="text-2xl font-bold">{{ section_image_title }}</h2>
+            <p class="mt-2 text-gray-600">{{ section_image_description }}</p>
+            {% if section_image_button %}
+              <a href="{{ section_product_url }}" class="mt-4 text-blue-600 font-semibold">
+                {{ button_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endunless %}
+      </div>
     </div>
-    <div class="relative z-10 text-center p-6 max-w-screen-xl mx-auto {{ text_alignment }}">
-      <h2 class="text-2xl md:text-3xl font-bold">{{ section_image_title }}</h2>
-      <p class="mt-2 text-lg">{{ section_image_description }}</p>
-      {%- if section_image_button -%}
-        <a href="{{ section_product_url }}" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md">
-          {{ button_text }}
-        </a>
-      {%- endif -%}
-    </div>
-  </article>
+  </div>
+</article>
 
 {% schema %}
 {
-  "name": "Image Attachment Section",
+  "name": "Image With Flexible Text",
   "settings": [
     {
       "id": "image",
       "type": "image_picker",
-      "label": "Choose an image for this section",
-      "info": "Image Height Must Be 500px"
+      "label": "Choose an image"
     },
     {
       "type": "text",
@@ -38,43 +82,46 @@
       "default": "Image Title"
     },
     {
+      "type": "textarea",
+      "id": "section_image_description",
+      "label": "Image Description",
+      "default": "Write your description here"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text Position",
+      "options": [
+        { "value": "top", "label": "Above Image" },
+        { "value": "bottom", "label": "Below Image" },
+        { "value": "left", "label": "Left of Image" },
+        { "value": "right", "label": "Right of Image" },
+        { "value": "inside", "label": "Inside Image" }
+      ],
+      "default": "bottom"
+    },
+    {
       "type": "select",
       "id": "text_alignment",
       "label": "Text Alignment",
       "options": [
-        {
-          "value": "text-left",
-          "label": "Left"
-        },
-        {
-          "value": "text-center",
-          "label": "Center"
-        },
-        {
-          "value": "text-right",
-          "label": "Right"
-        }
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-right", "label": "Right" }
       ],
-      "default": "text-center",
-      "info": "Choose the alignment of the Text"
-    },
-    {
-      "type": "textarea",
-      "id": "section_image_description",
-      "label": "Section Image Description",
-      "default": "Image Description"
+      "default": "text-center"
     },
     {
       "type": "checkbox",
       "id": "section_image_button",
-      "label": "Section Image Button",
+      "label": "Enable Button",
       "default": true
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Show More"
+      "default": "Learn More"
     },
     {
       "type": "product",
@@ -84,7 +131,7 @@
   ],
   "presets": [
     {
-      "name": "Image Attachment Section"
+      "name": "Image With Flexible Text"
     }
   ]
 }
