@@ -155,7 +155,7 @@
         "image": "shopify://shop_images/banner-3--750-1920.jpg",
         "section_image_title": "Image Title",
         "section_image_description": "Write your description here",
-        "text_position": "left",
+        "text_position": "top",
         "text_alignment": "text-left",
         "section_image_button": true,
         "button_text": "Learn More",
