@@ -12,21 +12,7 @@
   <div class="w-full py-12">
     <div class="w-full mx-auto">
       <div
-        class="
-          flex
-          {% case text_position %}
-            {% when 'right' %}
-              md:flex-row
-            {% when 'left' %}
-              md:flex-row-reverse
-            {% when 'top' %}
-              flex-col
-            {% when 'bottom' %}
-              flex-col-reverse
-            {% else %}
-              flex-col
-          {% endcase %}
-        "
+        class="flex flex-col"
       >
         {%- comment -%} صورة {%- endcomment -%}
         <div
