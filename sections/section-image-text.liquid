@@ -11,14 +11,18 @@
 <article>
   <div class="w-full py-12">
     <div class="w-full mx-auto">
-      <div class="
-        flex flex-col
-        {% if text_position == 'right' %} md:flex-row {% endif %}
-        {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
-      ">
-        
+      <div
+        class="
+          flex flex-col
+          {% if text_position == 'right' %} md:flex-row {% endif %}
+          {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
+        "
+      >
         {%- comment -%} صورة {%- endcomment -%}
-        <div class="relative w-full">
+        <div class="relative w-full 
+          {% if text_position == 'right' %} md:w-1/2 {% endif %}
+          {% if text_position == 'left' %} md:w-1/2 {% endif %}
+           ">
           <figure class="relative">
             <picture>
               {% if section_image %}
@@ -40,7 +44,10 @@
                 <h2 class="text-2xl font-bold drop-shadow">{{ section_image_title }}</h2>
                 <p class="mt-2">{{ section_image_description }}</p>
                 {% if section_image_button %}
-                  <a href="{{ section_product_url }}" class="mt-4 bg-white text-black px-4 py-2 rounded-lg font-semibold">
+                  <a
+                    href="{{ section_product_url }}"
+                    class="mt-4 bg-white text-black px-4 py-2 rounded-lg font-semibold"
+                  >
                     {{ button_text }}
                   </a>
                 {% endif %}
