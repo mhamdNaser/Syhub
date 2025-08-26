@@ -13,9 +13,9 @@
     <div class="w-full mx-auto">
       <div
         class="
-          flex flex-col
-          {% if text_position == 'right' %} md:flex-row {% endif %}
-          {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
+          flex 
+          {% if text_position == 'right' %} md:flex-row {% else %} flex-col {% endif %}
+          {% if text_position == 'left' %} md:flex-row-reverse {% else %} flex-col {% endif %}
         "
       >
         {%- comment -%} صورة {%- endcomment -%}
