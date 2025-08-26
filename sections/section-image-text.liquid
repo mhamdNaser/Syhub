@@ -33,7 +33,7 @@
 
 <article>
   <div class="w-full py-12">
-    <div class="w-full mx-auto ">
+    <div class="w-full mx-auto">
       <div
         class="
           flex
@@ -54,7 +54,7 @@
         {%- comment -%} صورة {%- endcomment -%}
         <div
           class="
-            relative w-full
+            relative w-full {{ image_rounded }}
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "
