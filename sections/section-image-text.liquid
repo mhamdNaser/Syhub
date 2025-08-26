@@ -14,8 +14,10 @@
       <div
         class="
           flex 
-          {% if text_position == 'right' %} md:flex-row {% else %} flex-col {% endif %}
-          {% if text_position == 'left' %} md:flex-row-reverse {% else %} flex-col {% endif %}
+          {% if text_position == 'right' %} md:flex-row  {% endif %}
+          {% if text_position == 'left' %} md:flex-row-reverse {% endif %}
+          {% if text_position == 'top' %} flex-col-reverse {% endif %}
+          {% if text_position == 'left' %} flex-col  {% endif %}
         "
       >
         {%- comment -%} صورة {%- endcomment -%}
