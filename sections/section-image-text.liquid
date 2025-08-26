@@ -12,12 +12,26 @@
   <div class="w-full py-12">
     <div class="w-full mx-auto">
       <div
-        class="flex flex-col-reverse"
+        class="
+          flex
+          {% case text_position %}
+            {% when 'right' %}
+              md:flex-row
+            {% when 'left' %}
+              md:flex-row-reverse
+            {% when 'top' %}
+              flex-col
+            {% when 'bottom' %}
+              flex-col-reverse
+            {% else %}
+              flex-col
+          {% endcase %}
+        "
       >
         {%- comment -%} صورة {%- endcomment -%}
         <div
           class="
-            relative 
+            relative w-full
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "
@@ -57,7 +71,7 @@
 
         {%- comment -%} النص (برا الصورة) {%- endcomment -%}
         {% unless text_position == 'inside' %}
-          <div class=" md:w-1/2 flex flex-col justify-center p-6 {{ text_alignment }}">
+          <div class="w-full md:w-1/2 flex flex-col justify-center p-6 {{ text_alignment }}">
             <h2 class="text-2xl font-bold">{{ section_image_title }}</h2>
             <p class="mt-2 text-gray-600">{{ section_image_description }}</p>
             {% if section_image_button %}
