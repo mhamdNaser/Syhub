@@ -7,10 +7,33 @@
 {% assign text_alignment = section.settings.text_alignment %}
 {% assign text_position = section.settings.text_position %}
 {% assign section_border = section.settings.section_border %}
+{%- assign image_corner = section.settings.image_rounded_corners -%}
+{%- liquid
+  case image_corner
+    when 'lt'
+      assign image_rounded = 'rounded-tl-' | append: section.settings.image_rounded
+    when 'rt'
+      assign image_rounded = 'rounded-tr-' | append: section.settings.image_rounded
+    when 'lb'
+      assign image_rounded = 'rounded-bl-' | append: section.settings.image_rounded
+    when 'rb'
+      assign image_rounded = 'rounded-br-' | append: section.settings.image_rounded
+    when 'l'
+      assign image_rounded = 'rounded-l-' | append: section.settings.image_rounded
+    when 'r'
+      assign image_rounded = 'rounded-r-' | append: section.settings.image_rounded
+    when 't'
+      assign image_rounded = 'rounded-t-' | append: section.settings.image_rounded
+    when 'b'
+      assign image_rounded = 'rounded-b-' | append: section.settings.image_rounded
+    when 'all'
+      assign image_rounded = 'rounded-' | append: section.settings.image_rounded
+  endcase
+-%}
 
 <article>
   <div class="w-full py-12">
-    <div class="w-full mx-auto">
+    <div class="w-full mx-auto ">
       <div
         class="
           flex
@@ -96,16 +119,16 @@
       "label": "Choose an image"
     },
     {
-      "type": "text",
-      "id": "section_image_title",
-      "label": "Image Title",
-      "default": "Image Title"
-    },
-    {
-      "type": "textarea",
-      "id": "section_image_description",
-      "label": "Image Description",
-      "default": "Write your description here"
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "top", "label": "Above Text" },
+        { "value": "bottom", "label": "Below Text" },
+        { "value": "left", "label": "Left of Text" },
+        { "value": "right", "label": "Right of Text" }
+      ],
+      "default": "bottom"
     },
     {
       "type": "select",
@@ -119,6 +142,51 @@
         { "value": "inside", "label": "Inside Image" }
       ],
       "default": "bottom"
+    },
+    {
+      "type": "select",
+      "id": "image_rounded",
+      "label": "Image Corner Radius",
+      "options": [
+        { "value": "sm", "label": "Small" },
+        { "value": "md", "label": "Medium" },
+        { "value": "lg", "label": "Large" },
+        { "value": "xl", "label": "Extra Large" },
+        { "value": "2xl", "label": "2X Large" },
+        { "value": "3xl", "label": "3X Large" },
+        { "value": "4xl", "label": "4X Large" },
+        { "value": "full", "label": "Full" }
+      ],
+      "default": "md"
+    },
+    {
+      "type": "select",
+      "id": "image_rounded_corners",
+      "label": "Image Corner Radius",
+      "options": [
+        { "value": "lt", "label": "left top" },
+        { "value": "rt", "label": "right top" },
+        { "value": "lb", "label": "left bottom" },
+        { "value": "rb", "label": "right bottom" },
+        { "value": "l", "label": "left" },
+        { "value": "r", "label": "right" },
+        { "value": "t", "label": "top" },
+        { "value": "b", "label": "bottom" },
+        { "value": "all", "label": "all" }
+      ],
+      "default": "md"
+    },
+    {
+      "type": "text",
+      "id": "section_image_title",
+      "label": "Image Title",
+      "default": "Image Title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_image_description",
+      "label": "Image Description",
+      "default": "Write your description here"
     },
     {
       "type": "select",
