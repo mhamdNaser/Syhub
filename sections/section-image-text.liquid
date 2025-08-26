@@ -1,7 +1,7 @@
 {% assign section_image = section.settings.image %}
 {% assign button_text = section.settings.button_text %}
 {% liquid
-  if section_image == null
+  if button_text == 'inside'
     assign main_class = 'w-full md:max-w-7xl mx-auto'
     assign imagebox_width = 'md:w-1/2'
     else
