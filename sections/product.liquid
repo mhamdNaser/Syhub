@@ -130,7 +130,7 @@
                 onclick="navigator.clipboard.writeText('{{ shop.url }}{{ product.url }}').then(() => { alert('Product URL copied!'); })"
                 class="flex gap-2 items-center hover:text-[#c42764] hover:font-semibold"
               >
-                {% render 'icon-share' %}
+                {% render 'icons', icon: 'share' %}
                 Share
               </button>
             </div>

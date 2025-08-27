@@ -10,7 +10,7 @@
         {% comment %} {{ 'general.search.search' | t }} {% endcomment %}
         <span class="space-x-24"> search Products </span>
         <span class="svg-wrapper w-6 h-6 ms-16 group-hover:text-[#c42764]">
-          {% render 'icon-search' %}
+          {% render 'icons', icon: 'icon-search' , icon_size: '24' %}
         </span>
       </div>
     </summary>
@@ -29,7 +29,7 @@
           aria-label="{{ 'accessibility.close' | t }}"
           onclick="this.closest('details').removeAttribute('open')"
         >
-          <span class="w-6 h-6">{% render 'icon-close' %}</span>
+          <span class="w-6 h-6">{% render 'icons', icon: 'icon-close' , icon_size: '24' %}</span>
         </button>
       </div>
       <!-- خلفية شفافة -->
@@ -69,7 +69,7 @@
               aria-label="{{ 'general.search.search' | t }}"
               type="submit"
             >
-              <span class="w-5 h-5">{% render 'icon-search' %}</span>
+              <span class="w-5 h-5">{%- render 'icons' , icon: 'icon-search' , icon_size: '24' %}</span>
             </button>
 
             <!-- هنا سيظهر الأوتوكومبليت -->
@@ -83,14 +83,14 @@
           <div class="flex items-center space-x-4 flex-shrink-0">
             <div class="header__icons" {{ block.shopify_attributes }}>
               {% if shop.customer_accounts_enabled %}
-                {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
+                {%- render 'icons' , icon: 'icon-user' -%}
               {% endif %}
 
               <a href="{{ routes.cart_url }}">
                 {% if cart.item_count > 0 %}
                   <sup>{{ cart.item_count }}</sup>
                 {% endif %}
-                {{ 'icon-cart.svg' | inline_asset_content }}
+                {%- render 'icons' , icon: 'cart' -%}
               </a>
             </div>
           </div>

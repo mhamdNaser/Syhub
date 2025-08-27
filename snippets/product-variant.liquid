@@ -1,4 +1,4 @@
-<div class="my-3">
+<div>
   {% unless product.has_only_default_variant %}
     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
       {% for option in product.options_with_values %}
@@ -14,7 +14,7 @@
           or option_name_downcase contains 'colour'
           or option_name_downcase contains 'اللون'
         %}
-          <div class="flex gap-2 my-2 items-center">
+          <div class="flex gap-2 items-center">
             {% for value in option.values %}
               <button
                 type="button"
@@ -54,11 +54,11 @@
           </select>
 
         {% else %}
-          <div class="my-2">
+          <div class="mt-2">
             <select
               name="options[{{ option.name | escape }}]"
               id="Option-{{ section.id }}-{{ optionIndex }}"
-              class="w-full border py-3 px-3"
+              class="w-full border py-1 px-3"
             >
               {% for value in option.values %}
                 <option

@@ -1,14 +1,14 @@
-{% assign section_image = section.settings.image %}
-{% assign section_image_title = section.settings.section_image_title %}
-{% assign section_image_description = section.settings.section_image_description %}
-{% assign section_image_button = section.settings.section_image_button %}
-{% assign section_product_url = section.settings.section_product.url %}
-{% assign button_text = section.settings.button_text %}
-{% assign text_alignment = section.settings.text_alignment %}
-{% assign text_position = section.settings.text_position %}
-{% assign section_border = section.settings.section_border %}
-{%- assign image_corner = section.settings.image_rounded_corners -%}
-{%- liquid
+{% liquid
+  assign section_image = section.settings.image
+  assign section_image_title = section.settings.section_image_title
+  assign section_image_description = section.settings.section_image_description
+  assign section_image_button = section.settings.section_image_button
+  assign section_product_url = section.settings.section_product.url
+  assign button_text = section.settings.button_text
+  assign text_alignment = section.settings.text_alignment
+  assign text_position = section.settings.text_position
+  assign section_border = section.settings.section_border
+  assign image_corner = section.settings.image_rounded_corners
   case image_corner
     when 'lt'
       assign image_rounded = 'rounded-tl-' | append: section.settings.image_rounded
@@ -54,7 +54,7 @@
         {%- comment -%} صورة {%- endcomment -%}
         <div
           class="
-            relative w-full {{ image_rounded }}
+            relative w-full overflow-hidden {{ image_rounded }}
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "

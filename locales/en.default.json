@@ -71,5 +71,10 @@
   "productCard": {
     "laststock": "Last stock!",
     "no_image": "No Image"
+  },
+  "sections": {
+    "collection": {
+      "view_all": "View All"
+    }
   }
 }

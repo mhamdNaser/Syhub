@@ -4,36 +4,35 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
+{% liquid
+  if section.settings.image != blank
+    assign image_url = section.settings.image | file_url | replace: 'files/files/', 'files/'
+  else
+    assign image_url = 'Luliz_Logo.png' | asset_url
+  endif
+  assign button_url = section.settings.button_url
+  if button_url == blank
+    assign shop_url = shop.secure_url
+  else
+    assign shop_url = section.settings.button_url
+  endif
+%}
 
 <div class="max-w-md">
   <div class="my-4">
-    {%- if section.settings.image != blank -%}
-      <img
-        src="{{ section.settings.image | file_url | replace: 'files/files/', 'files/' }}"
-        alt="404 Image"
-        width="{{ section.settings.image_size }}"
-        height="{{ section.settings.image_size }}"
-        class="max-w-full h-auto mx-auto"
-      >
-    {%- else -%}
-      <img
-        src="{{ 'Luliz_Logo.png' | asset_url }}"
-        alt="404 Image"
-        width="{{ section.settings.image_size }}"
-        height="{{ section.settings.image_size }}"
-        class="max-w-full h-auto mx-auto"
-      >
-    {%- endif -%}
+    <img
+      src="{{ image_url }}"
+      srcset="{{ image_url }} 2x"
+      alt="404 Image"
+      width="{{ section.settings.image_size }}"
+      height="{{ section.settings.image_size }}"
+      class="max-w-full h-auto mx-auto"
+    >
   </div>
   <div class="text-5xl font-bold">{{ section.settings.title }}</div>
   <div class="my-4">
     <p class="text-base md:text-xl leading-normal">{{ section.settings.subtext }}</p>
   </div>
-  {%- if section.settings.button_url == blank -%}
-    {% assign shop_url = shop.secure_url %}
-  {%- else -%}
-    {% assign shop_url = section.settings.button_url %}
-  {%- endif -%}
   <div class="my-6">
     <a
       href="{{ shop_url }}"
