@@ -229,7 +229,7 @@
                   class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
                   @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
                 >
-                  {% render 'icon-cart' %}
+                  {%- render 'icons' , icon: 'cart' %}
                 </button>
               {%- else -%}
                 <button
@@ -237,7 +237,7 @@
                   name="add"
                   class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
                 >
-                  {% render 'icon-cart' %}
+                  {%- render 'icons' , icon: 'cart' %}
                 </button>
               {%- endif -%}
             {% endif %}
