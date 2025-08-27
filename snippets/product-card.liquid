@@ -255,7 +255,7 @@
           {% endfor %}
 
           {% if enable_color_swatches and color_option_index != -1 %}
-            {% assign color_swatch_hexes = settings.swatchColors | newline_to_br | split: '<br />' %}
+            {% assign color_swatch_hexes = settings.color_map | newline_to_br | split: '<br />' %}
             <div class="swiper mySwiper mt-2 w-4/5 mx-auto">
               <div class="swiper-wrapper">
                 {% for variant in product.variants %}
