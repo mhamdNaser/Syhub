@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
           spaceBetween: 20,
         },
         1440: {
-          slidesPerView: slidesPerView,
+          slidesPerView: slidesPerView ,
           spaceBetween: 20,
+        },
       },
     });
   });
