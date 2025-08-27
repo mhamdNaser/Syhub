@@ -69,7 +69,7 @@
               aria-label="{{ 'general.search.search' | t }}"
               type="submit"
             >
-              <span class="w-5 h-5">{% render 'icon-search' %}</span>
+              <span class="w-5 h-5">{%- render 'icons' , icon: 'icon-search' %}</span>
             </button>
 
             <!-- هنا سيظهر الأوتوكومبليت -->
@@ -83,14 +83,14 @@
           <div class="flex items-center space-x-4 flex-shrink-0">
             <div class="header__icons" {{ block.shopify_attributes }}>
               {% if shop.customer_accounts_enabled %}
-                {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
+                {%- render 'icons' , icon: 'icon-user' -%}
               {% endif %}
 
               <a href="{{ routes.cart_url }}">
                 {% if cart.item_count > 0 %}
                   <sup>{{ cart.item_count }}</sup>
                 {% endif %}
-                {{ 'icon-cart.svg' | inline_asset_content }}
+                {%- render 'icons' , icon: 'cart' -%}
               </a>
             </div>
           </div>
