@@ -224,7 +224,7 @@
         {% endif %}
 
         {% if settings.enable_color_swatches %}
-          {% render 'product-variant', product: product, display_type: block.settings.variant_display_type %}
+          {% render 'product-variant', product: product, display_type: 'image' %}
         {% endif %}
       </div>
     {% endform %}
