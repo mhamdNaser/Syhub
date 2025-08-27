@@ -180,6 +180,12 @@
           {% endif %}
         </p>
 
+        {% if settings.enable_color_swatches %}
+          <div class="mt-2 container text-sm">
+            {% render 'product-variant', product: product, display_type: 'color' %}
+          </div>
+        {% endif %}
+
         {% if add_to_cart_button %}
           <div class="flex justify-between items-center border border-[#c42764] mt-4 text-xs">
             {% if show_preorder and product.variants.first.inventory_policy == 'continue' %}
@@ -221,10 +227,6 @@
               {%- endif -%}
             {% endif %}
           </div>
-        {% endif %}
-
-        {% if settings.enable_color_swatches %}
-          {% render 'product-variant', product: product, display_type: 'image' %}
         {% endif %}
       </div>
     {% endform %}
