@@ -44,7 +44,7 @@
 
   # تخزين المنتجات المحدودة لتجنب إعادة الجلب
   if featured_collection 
-    assign featured_products = featured_collection | slice: 0, item_view
+    assign featured_products = featured_collection | slice: 10, item_view
   else 
     assign featured_products = ''
   endif 
