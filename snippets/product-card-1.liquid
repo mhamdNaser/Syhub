@@ -58,59 +58,60 @@
       {% liquid
         if product.featured_image
           assign image_style = 'hover-zoom ' | append: settings.image_hover_style
+          assign image_src = product.featured_image.src
+          assign image_alt = product.featured_image.alt
         else
           assign image_style = 'hover-zoom hover-zoom--empty'
+          assign no_image_message = 'productCard.no_image' | t
         endif
       %}
 
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
-      {% if product.featured_image %}
-        <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
-          <img
-            src="{{ product.featured_image.src | img_url: 'medium' }}"
-            alt="{{ product.featured_image.alt | escape }}"
-            class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 ease-in-out hover:scale-105"
-            loading="lazy"
-            width=""
-            height=""
-          >
-          {% if sale_label and product.price < product.compare_at_price %}
-            <div class="absolute left-2 top-2">
-              {% assign discount_amount = product.compare_at_price | minus: product.price %}
-              {% assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price %}
-              <span class="px-5 py-1 text-xs font-bold bg-red-500 rounded-full text-white">
-                {% case sale_label_price %}
-                  {% when 'amount' %}
-                    -{{ discount_amount | money }}
-                  {% when 'percentage' %}
-                    -{{ discount_percentage }}%
-                  {% else %}
-                    sale
-                {% endcase %}
-              </span>
-            </div>
-          {% endif %}
-          <div class="absolute bottom-0 w-full flex justify-end">
-            <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group {{ bg_color }} text-white rounded-tl-full overflow-hidden">
-              <!-- الطبقة البيضاء الشفافة -->
-              
-                <div
-                  class="absolute inset-0 bg-white hidden opacity-0 transition-opacity duration-300 group-hover:opacity-0"
-                ></div>
-
-              <!-- المحتوى -->
-              <span class="relative z-10 text-xs font-bold text-nowrap">
-                {{ stock_label }}
-              </span>
-            </div>
+      <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
+        <img
+          src="{{ image_src | img_url: 'medium' }}"
+          alt="{{ image_alt | escape }}"
+          class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 ease-in-out hover:scale-105"
+          loading="lazy"
+          width=""
+          height=""
+        >
+        {% if sale_label and product.price < product.compare_at_price %}
+          <div class="absolute left-2 top-2">
+            {% assign discount_amount = product.compare_at_price | minus: product.price %}
+            {% assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price %}
+            <span class="px-5 py-1 text-xs font-bold bg-red-500 rounded-full text-white">
+              {% case sale_label_price %}
+                {% when 'amount' %}
+                  -{{ discount_amount | money }}
+                {% when 'percentage' %}
+                  -{{ discount_percentage }}%
+                {% else %}
+                  sale
+              {% endcase %}
+            </span>
           </div>
-        </a>
-      {% else %}
-        <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
-          <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
+        {% endif %}
+        <div class="absolute bottom-0 w-full flex justify-end">
+          <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group {{ bg_color }} text-white rounded-tl-full overflow-hidden">
+            <!-- الطبقة البيضاء الشفافة -->
+
+            <div
+              class="absolute inset-0 bg-white hidden opacity-0 transition-opacity duration-300 group-hover:opacity-0"
+            ></div>
+
+            <!-- المحتوى -->
+            <span class="relative z-10 text-xs font-bold text-nowrap">
+              {{ stock_label }}
+            </span>
+          </div>
         </div>
-      {% endif %}
+      </a>
+
+      <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
+        <span class="text-gray-500">{{ no_image_message }}</span>
+      </div>
 
       <div class="{{ text_alignment }}">
         {% if show_vendor %}
