@@ -39,327 +39,254 @@
 </style>
 
 <div class="lg:w-60 h-fit rounded-lg bg-white p-4 overflow-hidden">
-  {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-    {% liquid
-      if product.featured_image
-        assign image_style = 'hover-zoom ' | append: settings.image_hover_style
-      else
-        assign image_style = 'hover-zoom hover-zoom--empty'
-      endif
-    %}
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-    {% if product.featured_image %}
-      <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
-        <img
-          src="{{ product.featured_image.src | img_url: 'medium' }}"
-          alt="{{ product.featured_image.alt | escape }}"
-          class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 ease-in-out hover:scale-105"
-          width="auto"
-          height="auto"
+  {% if product %}
+    {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+      {% liquid
+        if product.featured_image
+          assign image_style = 'hover-zoom ' | append: settings.image_hover_style
+        else
+          assign image_style = 'hover-zoom hover-zoom--empty'
+        endif
+      %}
+
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+
+      {% if product.featured_image %}
+        <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
+          <img
+            src="{{ product.featured_image.src | img_url: 'medium' }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            class="w-full h-48 object-cover rounded-md mb-4 transition-transform duration-300 ease-in-out hover:scale-105"
+            loading="lazy"
+            width=""
+            height=""
+          >
+          {% if sale_label and product.price < product.compare_at_price %}
+            <div class="absolute left-2 top-2">
+              {% assign discount_amount = product.compare_at_price | minus: product.price %}
+              {% assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price %}
+              <span class="px-5 py-1 text-xs font-bold bg-red-500 rounded-full text-white">
+                {% case sale_label_price %}
+                  {% when 'amount' %}
+                    -{{ discount_amount | money }}
+                  {% when 'percentage' %}
+                    -{{ discount_percentage }}%
+                  {% else %}
+                    sale
+                {% endcase %}
+              </span>
+            </div>
+          {% endif %}
+          {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
+          {% liquid
+            if show_stock and stock < stock_qty
+              assign stock_label = 'productCard.laststock' | t
+              assign bg_color = 'bg-[#c42764]'
+            elsif show_stock_always
+              assign stock_label = stock
+              assign bg_color = 'bg-yellow-400'
+            elsif show_stock_available and stock > show_stock_qty
+              assign stock_label = stock
+              assign bg_color = 'bg-yellow-400'
+            else
+              assign stock_label = ''
+            endif
+          %}
+          <div class="absolute bottom-0 w-full flex justify-end">
+            <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group {{ bg_color }} text-white  rounded-tl-full overflow-hidden">
+              <!-- الطبقة البيضاء الشفافة -->
+              <div
+                class="absolute inset-0 bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
+              ></div>
+
+              <!-- المحتوى -->
+              <span class="relative z-10 text-xs font-bold text-nowrap">
+                {{ stock_label }}
+              </span>
+            </div>
+          </div>
+        </a>
+      {% else %}
+        <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
+          <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
+        </div>
+      {% endif %}
+
+      <div class="{{ text_alignment }}">
+        {% if show_vendor %}
+          <span class="text-xs text-gray-500 block truncate">
+            {% if product.vendor contains 'color:' %}
+              <span
+                class="inline-block w-4 h-4 rounded-full"
+                style="background-color: {{ product.vendor | remove: 'color:' }};"
+              ></span>
+            {% else %}
+              {{ product.vendor }}
+            {% endif %}
+          </span>
+        {% endif %}
+
+        <a
+          href="{{ product.url | within: collection }}"
+          title="{{ product.title | escape }}"
+          class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate {% if product_titles_caps %} uppercase {% endif %}"
         >
-        {% if sale_label and product.price < product.compare_at_price %}
-          <div class="absolute left-2 top-2">
-            {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
-            {%- assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price -%}
-            <span class="px-5 py-1 text-xs font-bold bg-red-500 rounded-full text-white">
-              {%- case sale_label_price -%}
-                {%- when 'amount' -%}
-                  -{{ discount_amount | money }}
-                {%- when 'percentage' -%}
-                  -{{ discount_percentage }}%
-                {%- else -%}
-                  sale
-              {%- endcase -%}
-            </span>
+          {{ product.title }}
+        </a>
+
+        {% if product_short_description == 'product_description' %}
+          <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+            {% if product.description != blank %}
+              {{ product.description }}
+            {% else %}
+              this product has not description
+            {% endif %}
+          </div>
+        {% elsif product_short_description == 'custom' %}
+          <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+            {{ product_short_description_text }}
           </div>
         {% endif %}
 
-        {%- assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity -%}
-        {% liquid
-          if show_stock and stock < stock_qty
-            assign stock_label = 'productCard.laststock' | t
-            assign bg_color = 'bg-[#c42764]'
-          elsif show_stock_always
-            assign stock_label = stock
-            assign bg_color = 'bg-yellow-400'
-          elsif show_stock_available and stock > show_stock_qty
-            assign stock_label = stock
-            assign bg_color = 'bg-yellow-400'
-          else
-            assign stock_label = ''
-          endif
-        %}
-        <div class="absolute bottom-0 w-full flex justify-end">
-          <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group {{ bg_color }} text-white  rounded-tl-full overflow-hidden">
-            <!-- الطبقة البيضاء الشفافة -->
-            <div
-              class="absolute inset-0 bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
-            ></div>
+        {% if show_rating %}
+          <div class="mt-2 flex w-full justify-center items-center text-xs">
+            {% assign full_stars = product.metafields.reviews.rating | floor %}
+            {% assign half_star = product.metafields.reviews.rating | modulo: 1 %}
+            {% assign empty_stars = 5 | minus: full_stars | minus: half_star | floor %}
 
-            <!-- المحتوى -->
-            <span class="relative z-10 text-xs font-bold text-nowrap">
-              {{ stock_label }}
-            </span>
-          </div>
-        </div>
-      </a>
-    {% else %}
-      <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
-        <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
-      </div>
-    {% endif %}
+            {% for i in (1..full_stars) %}
+              <span class="text-yellow-500">★</span>
+            {% endfor %}
 
-    <div class="{{ text_alignment }}">
-      {% if show_vendor %}
-        <span class="text-xs text-gray-500 block truncate">
-          {% if product.vendor contains 'color:' %}
-            <span
-              class="inline-block w-4 h-4 rounded-full"
-              style="background-color: {{ product.vendor | remove: 'color:' }};"
-            ></span>
-          {% else %}
-            {{ product.vendor }}
-          {% endif %}
-        </span>
-      {% endif %}
-      <a
-        href="{{ product.url | within: collection }}"
-        title="{{ product.title | escape }}"
-        class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate {% if product_titles_caps %} uppercase {% endif %}"
-      >
-        {{ product.title }}
-      </a>
+            {% if half_star > 0 %}
+              <span class="text-yellow-500">☆</span>
+            {% endif %}
 
-      {%- if product_short_description == 'product_description' -%}
-        <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
-          {%- if product.description != blank -%}
-            {{ product.description }}
-          {%- else -%}
-            this product has not description
-          {%- endif -%}
-        </div>
-      {%- elsif product_short_description == 'custom' -%}
-        <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
-          {{ product_short_description_text }}
-        </div>
-      {%- endif -%}
-
-      {%- if show_rating -%}
-        <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs">
-          {% assign full_stars = product.metafields.reviews.rating | floor %}
-          {% assign half_star = product.metafields.reviews.rating | modulo: 1 %}
-          {% assign empty_stars = 5 | minus: full_stars | minus: half_star | floor %}
-
-          {% for i in (1..full_stars) %}
-            <span class="text-yellow-500">★</span>
-          {% endfor %}
-
-          {% if half_star > 0 %}
-            <span class="text-yellow-500">☆</span>
-          {% endif %}
-
-          {% for i in (1..empty_stars) %}
-            <span class="text-gray-300">☆</span>
-          {% endfor %}
-        </div>
-      {%- endif -%}
-
-      <p class="text-xs font-bold text-gray-700 mt-2">
-        {% if show_price %}
-          {% if product.compare_at_price > product.price %}
-            <span class="text-xs text-red-500 line-through">{{ product.compare_at_price | money }}</span>
-          {% endif %}
-          <span class="text-xs text-gray-900">{{ product.price | money }}</span>
-        {% endif %}
-      </p>
-
-      {% if add_to_cart_button %}
-        <div class="flex justify-between items-center border border-[#c42764] mt-4 text-xs">
-          {% if show_preorder and product.variants.first.inventory_policy == 'continue' %}
-            <button
-              class="w-full h-full py-3 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] rounded-sm"
-              title="{% if show_preorder_inventory %}Available for pre-order: {{ product.variants.first.inventory_quantity }} pieces{% endif %}"
-            >
-              {{ preorder_label }}
-            </button>
-
-          {% else %}
-            {%- if input_field -%}
-              <input
-                type="number"
-                id="Quantity-{{ product.variants.first.id }}"
-                name="quantity"
-                value="1"
-                min="1"
-                class="w-1/3 h-full align-middle outline-none text-center justify-center items-center"
-              >
-            {%- endif -%}
-            {%- if cart_drawer -%}
-              <button
-                type="button"
-                name="add"
-                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
-                @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
-              >
-                {% render 'icon-cart' %}
-              </button>
-            {%- else -%}
-              <button
-                type="submit"
-                name="add"
-                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
-              >
-                {% render 'icon-cart' %}
-              </button>
-            {%- endif -%}
-          {% endif %}
-        </div>
-      {% endif %}
-
-      {% if settings.swatchType == 'variantImage' %}
-        <!-- عرض صورة الفارينت -->
-        <div class="swiper mySwiper mt-2 w-4/5 mx-auto">
-          <div class="swiper-wrapper">
-            {% for variant in product.variants %}
-              <div class="swiper-slide">
-                <img
-                  src="{{ variant.featured_image | img_url: '100x100' }}"
-                  alt="{{ variant.title }}"
-                  class="rounded-full border border-gray-300 mx-auto"
-                  width="100px"
-                  height="100px"
-                >
-              </div>
+            {% for i in (1..empty_stars) %}
+              <span class="text-gray-300">☆</span>
             {% endfor %}
           </div>
-        </div>
-      {% else %}
-        {%- assign color_option_index = -1 -%}
-        {% assign color_option_index = -1 %}
-        {% for option_name in product.options %}
-          {% if option_name == 'Color' or option_name == settings.color_swatch_name %}
-            {% assign color_option_index = forloop.index0 %}
-          {% endif %}
-        {% endfor %}
+        {% endif %}
 
-        {% if enable_color_swatches and color_option_index != -1 %}
-          {% assign color_swatch_hexes = settings.swatchColors | newline_to_br | split: '<br />' %}
+        <p class="text-xs font-bold text-gray-700 mt-2">
+          {% if show_price %}
+            {% if product.compare_at_price > product.price %}
+              <span class="text-xs text-red-500 line-through">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="text-xs text-gray-900">{{ product.price | money }}</span>
+          {% endif %}
+        </p>
+
+        {% if add_to_cart_button %}
+          <div class="flex justify-between items-center border border-[#c42764] mt-4 text-xs">
+            {% if show_preorder and product.variants.first.inventory_policy == 'continue' %}
+              <button
+                class="w-full h-full py-3 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] rounded-sm"
+                title="{% if show_preorder_inventory %}Available for pre-order: {{ product.variants.first.inventory_quantity }} pieces{% endif %}"
+              >
+                {{ preorder_label }}
+              </button>
+
+            {% else %}
+              {%- if input_field -%}
+                <input
+                  type="number"
+                  id="Quantity-{{ product.variants.first.id }}"
+                  name="quantity"
+                  value="1"
+                  min="1"
+                  class="w-1/3 h-full align-middle outline-none text-center justify-center items-center"
+                >
+              {%- endif -%}
+              {%- if cart_drawer -%}
+                <button
+                  type="button"
+                  name="add"
+                  class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
+                  @click="addToCart('{{ product.variants.first.id }}'); openCart = true"
+                >
+                  {% render 'icon-cart' %}
+                </button>
+              {%- else -%}
+                <button
+                  type="submit"
+                  name="add"
+                  class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %} "
+                >
+                  {% render 'icon-cart' %}
+                </button>
+              {%- endif -%}
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if settings.swatchType == 'variantImage' %}
+          <!-- عرض صورة الفارينت -->
           <div class="swiper mySwiper mt-2 w-4/5 mx-auto">
             <div class="swiper-wrapper">
               {% for variant in product.variants %}
-                {% assign color_name = variant.options[color_option_index] | downcase %}
-                {% assign color_hex = '' %}
-
-                {% for color_entry in color_swatch_hexes %}
-                  {% assign color_parts = color_entry | split: ':' %}
-                  {% assign color_key = color_parts[0] | strip | downcase %}
-                  {% assign color_value = color_parts[1] | strip %}
-
-                  {% if color_name == color_key %}
-                    {% assign color_hex = color_value %}
-                  {% endif %}
-                {% endfor %}
-
-                {% if color_hex == '' %}
-                  {% assign color_hex = color_name %}
-                {% endif %}
-
                 <div class="swiper-slide">
-                  <span
-                    class="w-8 h-8 rounded-full border border-gray-300 block mx-auto"
-                    style=" background-color: {{ color_hex }};"
-                    title="{{ color_name }}"
-                  ></span>
+                  <img
+                    src="{{ variant.featured_image | img_url: '100x100' }}"
+                    alt="{{ variant.title }}"
+                    class="rounded-full border border-gray-300 mx-auto"
+                    width="100px"
+                    height="100px"
+                  >
                 </div>
               {% endfor %}
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
           </div>
+        {% else %}
+          {%- assign color_option_index = -1 -%}
+          {% assign color_option_index = -1 %}
+          {% for option_name in product.options %}
+            {% if option_name == 'Color' or option_name == settings.color_swatch_name %}
+              {% assign color_option_index = forloop.index0 %}
+            {% endif %}
+          {% endfor %}
+
+          {% if enable_color_swatches and color_option_index != -1 %}
+            {% assign color_swatch_hexes = settings.swatchColors | newline_to_br | split: '<br />' %}
+            <div class="swiper mySwiper mt-2 w-4/5 mx-auto">
+              <div class="swiper-wrapper">
+                {% for variant in product.variants %}
+                  {% assign color_name = variant.options[color_option_index] | downcase %}
+                  {% assign color_hex = '' %}
+
+                  {% for color_entry in color_swatch_hexes %}
+                    {% assign color_parts = color_entry | split: ':' %}
+                    {% assign color_key = color_parts[0] | strip | downcase %}
+                    {% assign color_value = color_parts[1] | strip %}
+
+                    {% if color_name == color_key %}
+                      {% assign color_hex = color_value %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if color_hex == '' %}
+                    {% assign color_hex = color_name %}
+                  {% endif %}
+
+                  <div class="swiper-slide">
+                    <span
+                      class="w-8 h-8 rounded-full border border-gray-300 block mx-auto"
+                      style=" background-color: {{ color_hex }};"
+                      title="{{ color_name }}"
+                    ></span>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          {% endif %}
         {% endif %}
-      {% endif %}
+      </div>
+    {% endform %}
+  {% else %}
+    <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
+      <span class="text-gray-500">Product not available</span>
     </div>
-  {% endform %}
+  {% endif %}
 </div>
-
-<script>
-  var variantsize = {{ product.variants.size }} + 1;
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.mySwiper', {
-      slidesPerView: 6,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-      breakpoints: {
-        640: { slidesPerView: 4 },
-        768: { slidesPerView: 4 },
-        1024: { slidesPerView: {% if product.variants.size >= 6 %} 6 {% else %} variantsize {% endif %} },
-      },
-    });
-  });
-</script>
-
-{% comment %} update quantity and send to cart {% endcomment %}
-<script>
-  function addToCart(productId) {
-    let formData = {
-      id: productId,
-      quantity: document.getElementById('Quantity-{{ product.variants.first.id }}').value,
-    };
-
-    fetch('/cart.js')
-      .then((response) => response.json())
-      .then((cart) => {
-        let existingItem = cart.items.find((item) => item.id === productId);
-
-        if (existingItem) {
-          let updatedQuantity = existingItem.quantity + 1;
-
-          fetch('/cart/update.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              updates: {
-                [productId]: updatedQuantity,
-              },
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log('Cart updated:', data);
-              updateCartUI();
-            })
-            .catch((error) => console.error('Error updating cart:', error));
-        } else {
-          fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log('Product added:', data);
-              updateCartUI();
-            })
-            .catch((error) => console.error('Error adding to cart:', error));
-        }
-      })
-      .catch((error) => console.error('Error fetching cart:', error));
-  }
-
-  function updateCartUI() {
-    fetch('/cart.js')
-      .then((response) => response.json())
-      .then((cart) => {
-        console.log('Updated cart:', cart);
-        openCart = true;
-      })
-      .catch((error) => console.error('Error updating UI:', error));
-  }
-</script>
