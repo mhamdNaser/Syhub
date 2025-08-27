@@ -54,7 +54,7 @@
         {%- comment -%} صورة {%- endcomment -%}
         <div
           class="
-            relative w-full {{ image_rounded }}
+            relative w-full overflow-hidden {{ image_rounded }}
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "
