@@ -30,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
         1074: {
           slidesPerView: slidesPerView - 1,
           spaceBetween: 20,
-        }
+        },
+        1440: {
+          slidesPerView: slidesPerView,
+          spaceBetween: 20,
       },
     });
   });
