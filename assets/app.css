@@ -1624,6 +1624,9 @@
       color: var(--color-gray-300);
     }
   }
+  .opacity-0 {
+    opacity: 0%;
+  }
   .opacity-25 {
     opacity: 25%;
   }
