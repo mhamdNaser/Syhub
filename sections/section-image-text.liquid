@@ -6,7 +6,18 @@
   assign section_product_url = section.settings.section_product.url
   assign button_text = section.settings.button_text
   assign text_alignment = section.settings.text_alignment
-  assign text_position = section.settings.text_position
+  case section.settings.text_position
+    when 'right'
+      assign text_position = 'md:flex-row'
+    when 'left'
+      assign text_position = 'md:flex-row-reverse'
+    when 'top'
+      assign text_position = 'flex-col-reverse'
+    when 'bottom'
+      assign text_position = 'flex-col'
+    else
+      assign text_position = 'flex-col'
+  endcase
   assign section_border = section.settings.section_border
   assign image_corner = section.settings.image_rounded_corners
   case image_corner
@@ -35,21 +46,7 @@
   <div class="w-full py-12">
     <div class="w-full mx-auto">
       <div
-        class="
-          flex
-          {% case text_position %}
-            {% when 'right' %}
-              md:flex-row
-            {% when 'left' %}
-              md:flex-row-reverse
-            {% when 'top' %}
-              flex-col-reverse
-            {% when 'bottom' %}
-              flex-col
-            {% else %}
-              flex-col
-          {% endcase %}
-        "
+        class="{{ text_position }} flex"
       >
         {%- comment -%} صورة {%- endcomment -%}
         <div
