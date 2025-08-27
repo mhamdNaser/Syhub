@@ -39,7 +39,7 @@
 </style>
 
 <div class="lg:w-60 h-fit rounded-lg bg-white p-4 overflow-hidden">
-  {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+  {% comment %} {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %} {% endcomment %}
     {% liquid
       if product.featured_image
         assign image_style = 'hover-zoom ' | append: settings.image_hover_style
@@ -279,7 +279,7 @@
         {% endif %}
       {% endif %}
     </div>
-  {% endform %}
+  {% comment %} {% endform %} {% endcomment %}
 </div>
 
 <script>
