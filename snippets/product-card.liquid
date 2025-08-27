@@ -223,72 +223,8 @@
           </div>
         {% endif %}
 
-        {% if settings.swatchType == 'variantImage' %}
-          <!-- عرض صورة الفارينت -->
-          <div
-            class="swiper {{ my_swiper_class }} mt-2 w-4/5 mx-auto"
-            data-next-btn="{{ next_button_class }}"
-            data-prev-btn="{{ prev_button_class }}"
-            data-slides-per-view="{{ item_in_row }}"
-          >
-            <div class="swiper-wrapper">
-              {% for variant in product.variants %}
-                <div class="swiper-slide">
-                  <img
-                    src="{{ variant.featured_image | img_url: '100x100' }}"
-                    alt="{{ variant.title }}"
-                    class="rounded-full border border-gray-300 mx-auto"
-                    width="100px"
-                    height="100px"
-                  >
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        {% else %}
-          {%- assign color_option_index = -1 -%}
-          {% assign color_option_index = -1 %}
-          {% for option_name in product.options %}
-            {% if option_name == 'Color' or option_name == settings.color_swatch_name %}
-              {% assign color_option_index = forloop.index0 %}
-            {% endif %}
-          {% endfor %}
-
-          {% if enable_color_swatches and color_option_index != -1 %}
-            {% assign color_swatch_hexes = settings.color_map | newline_to_br | split: '<br />' %}
-            <div class="swiper mySwiper mt-2 w-4/5 mx-auto">
-              <div class="swiper-wrapper">
-                {% for variant in product.variants %}
-                  {% assign color_name = variant.options[color_option_index] | downcase %}
-                  {% assign color_hex = '' %}
-
-                  {% for color_entry in color_swatch_hexes %}
-                    {% assign color_parts = color_entry | split: ':' %}
-                    {% assign color_key = color_parts[0] | strip | downcase %}
-                    {% assign color_value = color_parts[1] | strip %}
-
-                    {% if color_name == color_key %}
-                      {% assign color_hex = color_value %}
-                    {% endif %}
-                  {% endfor %}
-
-                  {% if color_hex == '' %}
-                    {% assign color_hex = color_name %}
-                  {% endif %}
-
-                  <div class="swiper-slide">
-                    <span
-                      class="w-8 h-8 rounded-full border border-gray-300 block mx-auto"
-                      style=" background-color: {{ color_hex }};"
-                      title="{{ color_name }}"
-                    ></span>
-                  </div>
-                {% endfor %}
-              </div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
-            </div>
-          {% endif %}
+        {% if settings.enable_color_swatches %}
+          {% render 'product-variant', product: product, display_type: block.settings.variant_display_type %}
         {% endif %}
       </div>
     {% endform %}
