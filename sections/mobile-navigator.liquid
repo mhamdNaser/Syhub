@@ -26,7 +26,7 @@
         placeholder="I'm searching for ..."
       >
       <button id="mobile-search-close" class="ml-4 text-gray-500">
-        {% render 'icon-close' %}
+        {%- render 'icons' , icon: 'icon-close' %}
       </button>
     </div>
 
@@ -52,12 +52,12 @@
     <!-- Left Icon -->
     <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
       <a href="{{ routes.root_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
-        {% render 'icon-home' %}
+        {%- render 'icons' , icon: 'icon-home' %}
         <span class="text-xs">home</span>
       </a>
 
       <a href="#" class="flex flex-col w-1/2 items-center hover:text-white">
-        {% render 'icon-user' %}
+        {%- render 'icons' , icon: 'icon-user' %}
         <span class="text-xs">Account</span>
       </a>
     </div>
@@ -71,7 +71,7 @@
     >
       <button class="flex mobile-footer-burger border-none rounded-md focus:outline-none flex-col items-center">
         <div class="bg-[#c42764] h-10 w-10 rounded-full justify-center items-center flex">
-          {% render 'icon-menu' %}
+          {%- render 'icons' , icon: 'icon-menu' %}
         </div>
       </button>
     </div>
@@ -79,11 +79,11 @@
     <!-- Search Icon -->
     <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
       <button id="mobile-search-btn" class="flex flex-col w-1/2 items-center">
-        {% render 'icon-search' %}
+        {%- render 'icons' , icon: 'icon-search' %}
         <span class="text-xs">Search</span>
       </button>
       <a href="{{ routes.cart_url }}" class="flex flex-col w-1/2 items-center hover:text-white">
-        {% render 'icon-cart' %}
+        {%- render 'icons' , icon: 'icon-cart' %}
         <span class="text-xs">Cart</span>
       </a>
     </div>
@@ -111,7 +111,7 @@
         {% endif %}
       </a>
       <button class="mobile-footer-close">
-        {% render 'icon-close' %}
+        {%- render 'icons' , icon: 'icon-close' %}
       </button>
     </div>
     {% for link in main_menu_linklist %}
@@ -123,7 +123,7 @@
             type="button"
           >
             {{ link.title }}
-            {% render 'icon-chevron-down' %}
+            {%- render 'icons' , icon: 'icon-chevron-down' %}
           </button>
           <div class="w-full border-t bg-white text-[#c42764] z-10 hidden" id="menu-{{ link.title | handleize }}">
             <ul>
@@ -136,7 +136,7 @@
                       type="button"
                     >
                       {{ childlink.title }}
-                      {% render 'icon-chevron-down' %}
+                      {%- render 'icons' , icon: 'icon-chevron-down' %}
                     </button>
                     <div
                       class="w-full border-t bg-white text-[#c42764] z-10 hidden"
