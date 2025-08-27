@@ -42,6 +42,9 @@
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       {% liquid
+        assign my_swiper_class = 'mySwiper-' | append: product.id
+        assign next_button_class = 'swiper-next-' | append: product.id
+        assign prev_button_class = 'swiper-prev-' | append: product.id
         if product.featured_image
           assign image_style = 'hover-zoom ' | append: settings.image_hover_style
         else
@@ -222,7 +225,12 @@
 
         {% if settings.swatchType == 'variantImage' %}
           <!-- عرض صورة الفارينت -->
-          <div class="swiper mySwiper mt-2 w-4/5 mx-auto">
+          <div
+            class="swiper {{ my_swiper_class }} mt-2 w-4/5 mx-auto"
+            data-next-btn="{{ next_button_class }}"
+            data-prev-btn="{{ prev_button_class }}"
+            data-slides-per-view="{{ item_in_row }}"
+          >
             <div class="swiper-wrapper">
               {% for variant in product.variants %}
                 <div class="swiper-slide">
