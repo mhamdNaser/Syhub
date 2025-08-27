@@ -1,4 +1,4 @@
-<div class="my-3">
+<div>
   {% unless product.has_only_default_variant %}
     <variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
       {% for option in product.options_with_values %}
