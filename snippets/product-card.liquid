@@ -60,9 +60,10 @@
           assign image_style = 'hover-zoom ' | append: settings.image_hover_style
           assign image_src = product.featured_image.src
           assign image_alt = product.featured_image.alt
+          assign no_image_message = ''
         else
           assign image_style = 'hover-zoom hover-zoom--empty'
-          assign no_image_message = '<div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4"><span class="text-gray-500">{{ 'productCard.no_image' | t }}</span></div>'
+          assign no_image_message = 'productCard.no_image' | t
         endif
       %}
 
@@ -108,7 +109,12 @@
           </div>
         </div>
       </a>
-      {{ no_image_message }}
+
+      {% if no_image_message != '' %}
+        <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
+          <span class="text-gray-500">{{ no_image_message }}</span>
+        </div>
+      {% endif %}
 
       <div class="{{ text_alignment }}">
         {% if show_vendor %}
