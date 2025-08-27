@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[class*='mySwiper-']").forEach(function (swiperContainer) {
     const classList = swiperContainer.className.split(" ");
     const mySwiperClass = classList.find(c => c.startsWith("mySwiper-"));
-    const nextBtn = ".swiper-next-" + mySwiperClass.split("-")[1];
-    const prevBtn = ".swiper-prev-" + mySwiperClass.split("-")[1];
+    const nextBtn = swiperContainer.dataset.nextBtn;
+    const prevBtn = swiperContainer.dataset.prevBtn;
 
     // جلب بيانات من attributes لو حبيت تمرر بيانات مختلفة لكل سكشن
     const slidesPerView = parseInt(swiperContainer.dataset.slidesPerView) || 2;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           spaceBetween: 20,
         },
         1440: {
-          slidesPerView: slidesPerView ,
+          slidesPerView: slidesPerView,
           spaceBetween: 20,
         },
       },

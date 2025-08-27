@@ -63,11 +63,23 @@
     z-index: 10;
   }
 
-  .swiper-button-next { right: 10px; }
-  .swiper-button-prev { left: 10px; }
+  .swiper-button-next {
+    right: 10px;
+  }
+  .swiper-button-prev {
+    left: 10px;
+  }
 
-  .swiper-button-next::after { content: '›'; color: black; font-size: 42px; }
-  .swiper-button-prev::after { content: '‹'; color: black; font-size: 42px; }
+  .swiper-button-next::after {
+    content: '›';
+    color: black;
+    font-size: 42px;
+  }
+  .swiper-button-prev::after {
+    content: '‹';
+    color: black;
+    font-size: 42px;
+  }
 </style>
 
 <div class="py-12">
@@ -77,9 +89,13 @@
     </h2>
 
     {% if swiper %}
-      <div class="swiper {{ my_swiper_class }}"
-           data-slides-per-view="{{ item_in_row }}"
-           data-slides-per-view-mobile="{{ item_in_row_mobile }}">
+      <div
+        class="swiper {{ my_swiper_class }}"
+        data-next-btn="{{ next_button_class }}"
+        data-prev-btn="{{ prev_button_class }}"
+        data-slides-per-view="{{ item_in_row }}"
+        data-slides-per-view-mobile="{{ item_in_row_mobile }}"
+      >
         <div class="swiper-wrapper">
           {% if featured_collection %}
             {% for product in featured_collection limit: item_view %}
@@ -131,25 +147,24 @@
 
 {% if featured_collection %}
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "ItemList",
-    "itemListElement": [
-      {% for product in featured_collection limit: item_view %}
-        {
-          "@type": "ListItem",
-          "position": {{ forloop.index }},
-          "url": "{{ shop.url }}{{ product.url }}"
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  }
+    {
+      "@context": "https://schema.org/",
+      "@type": "ItemList",
+      "itemListElement": [
+        {% for product in featured_collection limit: item_view %}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "url": "{{ shop.url }}{{ product.url }}"
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
   </script>
 {% endif %}
 
 <!-- ربط ملف السويبر الخارجي -->
 <script src="{{ 'swiper-init.js' | asset_url }}" defer></script>
-
 
 {% schema %}
 {
