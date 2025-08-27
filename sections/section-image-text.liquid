@@ -1,12 +1,14 @@
-{% assign section_image = section.settings.image %}
-{% assign section_image_title = section.settings.section_image_title %}
-{% assign section_image_description = section.settings.section_image_description %}
-{% assign section_image_button = section.settings.section_image_button %}
-{% assign section_product_url = section.settings.section_product.url %}
-{% assign button_text = section.settings.button_text %}
-{% assign text_alignment = section.settings.text_alignment %}
-{% assign text_position = section.settings.text_position %}
-{% assign section_border = section.settings.section_border %}
+{% liquid
+  assign section_image = section.settings.image
+  assign section_image_title = section.settings.section_image_title
+  assign section_image_description = section.settings.section_image_description
+  assign section_image_button = section.settings.section_image_button
+  assign section_product_url = section.settings.section_product.url
+  assign button_text = section.settings.button_text
+  assign text_alignment = section.settings.text_alignment
+  assign text_position = section.settings.text_position
+  assign section_border = section.settings.section_border
+%}
 
 <article>
   <div class="w-full py-12">
