@@ -181,8 +181,23 @@
         </p>
 
         {% if settings.enable_color_swatches %}
-          <div class="mt-2 flex justify-center text-sm">
-            {% render 'product-variant', product: product, display_type: 'color' %}
+          <div x-data="{ open: false }" class="text-center">
+            <button
+              type="button"
+              @click="open = !open"
+              class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm"
+            >
+              <span x-show="!open">Show Colors</span>
+              <span x-show="open">Hide Colors</span>
+            </button>
+
+            <div
+              x-show="open"
+              x-transition
+              class="mt-2 flex justify-center text-sm"
+            >
+              {% render 'product-variant', product: product, display_type: 'color' %}
+            </div>
           </div>
         {% endif %}
 
