@@ -325,6 +325,12 @@
     "name": "t:settings_schema.productCard.name",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "enable_color_swatches",
+        "label": "enable color swatches",
+        "default": true
+      },
+      {
         "type": "select",
         "id": "productcards_text_alignment",
         "label": "t:settings_schema.productCard.settings.productcards_text_alignment.label",
