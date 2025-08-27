@@ -8,7 +8,28 @@
   assign text_alignment = section.settings.text_alignment
   assign text_position = section.settings.text_position
   assign section_border = section.settings.section_border
-%}
+  assign image_corner = section.settings.image_rounded_corners
+  case image_corner
+    when 'lt'
+      assign image_rounded = 'rounded-tl-' | append: section.settings.image_rounded
+    when 'rt'
+      assign image_rounded = 'rounded-tr-' | append: section.settings.image_rounded
+    when 'lb'
+      assign image_rounded = 'rounded-bl-' | append: section.settings.image_rounded
+    when 'rb'
+      assign image_rounded = 'rounded-br-' | append: section.settings.image_rounded
+    when 'l'
+      assign image_rounded = 'rounded-l-' | append: section.settings.image_rounded
+    when 'r'
+      assign image_rounded = 'rounded-r-' | append: section.settings.image_rounded
+    when 't'
+      assign image_rounded = 'rounded-t-' | append: section.settings.image_rounded
+    when 'b'
+      assign image_rounded = 'rounded-b-' | append: section.settings.image_rounded
+    when 'all'
+      assign image_rounded = 'rounded-' | append: section.settings.image_rounded
+  endcase
+-%}
 
 <article>
   <div class="w-full py-12">
@@ -16,21 +37,24 @@
       <div
         class="
           flex
-          {% if text_position == 'right' %}
-            md:flex-row
-          {% elsif text_position == 'left' %}
-            md:flex-row-reverse
-          {% elsif text_position == 'top' %}
-           flex-col-reverse
-          {% else %}
-           flex-col
-          {% endif %}
+          {% case text_position %}
+            {% when 'right' %}
+              md:flex-row
+            {% when 'left' %}
+              md:flex-row-reverse
+            {% when 'top' %}
+              flex-col-reverse
+            {% when 'bottom' %}
+              flex-col
+            {% else %}
+              flex-col
+          {% endcase %}
         "
       >
         {%- comment -%} صورة {%- endcomment -%}
         <div
           class="
-            relative w-full
+            relative w-full {{ image_rounded }}
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "
@@ -43,11 +67,11 @@
                   width="640"
                   height="500"
                   alt="Image description"
-                  class="object-cover w-full h-[500px] rounded-md"
+                  class="object-cover w-full h-[500px]"
                   loading="lazy"
                 >
               {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'w-full h-48 object-cover rounded-md' }}
+                {{ 'product-1' | placeholder_svg_tag: 'w-full h-48 object-cover' }}
               {% endif %}
             </picture>
 
@@ -95,18 +119,6 @@
       "label": "Choose an image"
     },
     {
-      "type": "text",
-      "id": "section_image_title",
-      "label": "Image Title",
-      "default": "Image Title"
-    },
-    {
-      "type": "textarea",
-      "id": "section_image_description",
-      "label": "Image Description",
-      "default": "Write your description here"
-    },
-    {
       "type": "select",
       "id": "text_position",
       "label": "Text Position",
@@ -118,6 +130,51 @@
         { "value": "inside", "label": "Inside Image" }
       ],
       "default": "bottom"
+    },
+    {
+      "type": "select",
+      "id": "image_rounded",
+      "label": "Image Corner Radius",
+      "options": [
+        { "value": "sm", "label": "Small" },
+        { "value": "md", "label": "Medium" },
+        { "value": "lg", "label": "Large" },
+        { "value": "xl", "label": "Extra Large" },
+        { "value": "2xl", "label": "2X Large" },
+        { "value": "3xl", "label": "3X Large" },
+        { "value": "4xl", "label": "4X Large" },
+        { "value": "full", "label": "Full" }
+      ],
+      "default": "md"
+    },
+    {
+      "type": "select",
+      "id": "image_rounded_corners",
+      "label": "Image Corner Radius",
+      "options": [
+        { "value": "lt", "label": "left top" },
+        { "value": "rt", "label": "right top" },
+        { "value": "lb", "label": "left bottom" },
+        { "value": "rb", "label": "right bottom" },
+        { "value": "l", "label": "left" },
+        { "value": "r", "label": "right" },
+        { "value": "t", "label": "top" },
+        { "value": "b", "label": "bottom" },
+        { "value": "all", "label": "all" }
+      ],
+      "default": "all"
+    },
+    {
+      "type": "text",
+      "id": "section_image_title",
+      "label": "Image Title",
+      "default": "Image Title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_image_description",
+      "label": "Image Description",
+      "default": "Write your description here"
     },
     {
       "type": "select",
