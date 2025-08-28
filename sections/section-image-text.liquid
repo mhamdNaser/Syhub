@@ -18,9 +18,14 @@
     else
       assign text_position = 'flex-col'
   endcase
-  assign image_border_class = 'border-' | append: section.settings.image_border_size | append: section.settings.image_border_style
+  if section.settings.image_border == 'all'
+    assign image_border_class = 'border-' | append: section.settings.image_border_size
+  else
+    assign image_border_class = 'border-' | append: section.settings.image_border | append: section.settings.image_border_size
+  endif
+  assign image_border_class = image_border_class | append: section.settings.image_border_style
   if section.settings.image_border_color != '#ffffff'
-    assign image_border_class = image_border_class | append: ' border-['  | append: section.settings.image_border_color | append: ']'
+    assign image_border_class = image_border_class | append: ' border-[' | append: section.settings.image_border_color | append: ']'
   endif
   assign image_padding_class = 'p-' | append: section.settings.image_padding
   assign image_corner = section.settings.image_rounded_corners
@@ -151,13 +156,25 @@
     },
     {
       "type": "select",
+      "id": "image_border",
+      "label": "Image Border",
+      "options": [
+        { "value": "l", "label": "Left" },
+        { "value": "r", "label": "Right" },
+        { "value": "t", "label": "Top" },
+        { "value": "b", "label": "Bottom" },
+        { "value": "all", "label": "All" }
+      ]
+    },
+    {
+      "type": "select",
       "id": "image_border_style",
       "label": "Image Border Style",
       "options": [
-        {"value": "border-solid" , "label": "Solid"},
-        {"value": "border-dashed" , "label": "Dashed"},
-        {"value": "border-dotted" , "label": "Dotted"},
-        {"value": "border-double" , "label": "Double"},
+        { "value": "border-solid", "label": "Solid" },
+        { "value": "border-dashed", "label": "Dashed" },
+        { "value": "border-dotted", "label": "Dotted" },
+        { "value": "border-double", "label": "Double" }
       ]
     },
     {
