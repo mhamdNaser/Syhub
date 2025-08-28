@@ -8,9 +8,9 @@
   assign text_alignment = section.settings.text_alignment
   case section.settings.text_position
     when 'right'
-      assign text_position = 'md:flex-row'
+      assign text_position = 'md:flex-row flex-col'
     when 'left'
-      assign text_position = 'md:flex-row-reverse'
+      assign text_position = 'md:flex-row-reverse flex-col'
     when 'top'
       assign text_position = 'flex-col-reverse'
     when 'bottom'
