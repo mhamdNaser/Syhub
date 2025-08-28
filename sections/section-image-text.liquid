@@ -21,7 +21,7 @@
   assign section_border_class = 'border-' | append: section.settings.section_border | append: 'border-solid'
   if section.settings.image_border_color != '#ffffff'
     assign section_border_class = section_border_class | append: 'border-' | append: section.settings.image_border_color 
-  end
+  endif
   assign image_padding_class = 'p-' | append: section.settings.image_padding
   assign image_corner = section.settings.image_rounded_corners
   case image_corner
