@@ -133,7 +133,7 @@
     {
       "type": "select",
       "id": "image_rounded",
-      "label": "Image Corner Radius",
+      "label": "Image Border Radius",
       "options": [
         { "value": "sm", "label": "Small" },
         { "value": "md", "label": "Medium" },
@@ -145,6 +145,23 @@
         { "value": "full", "label": "Full" }
       ],
       "default": "md"
+    },
+    {
+      "type": "select",
+      "id": "image_rounded_corners",
+      "label": "Image Corner Sides",
+      "options": [
+        { "value": "lt", "label": "Left Top" },
+        { "value": "rt", "label": "Right Top" },
+        { "value": "lb", "label": "Left Bottom" },
+        { "value": "rb", "label": "Right Bottom" },
+        { "value": "l", "label": "Left" },
+        { "value": "r", "label": "Right" },
+        { "value": "t", "label": "Top" },
+        { "value": "b", "label": "Bottom" },
+        { "value": "all", "label": "All" }
+      ],
+      "default": "all"
     },
     {
       "type": "range",
