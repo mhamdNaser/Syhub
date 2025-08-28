@@ -19,6 +19,9 @@
       assign text_position = 'flex-col'
   endcase
   assign section_border = section.settings.section_border
+  assign section_border_class = 'border-' | append: section_border
+  assign image_padding = section.settings.image_padding
+  assign image_padding_class = 'p-' | append: image_padding
   assign image_corner = section.settings.image_rounded_corners
   case image_corner
     when 'lt'
@@ -57,7 +60,7 @@
           "
         >
           <figure class="relative">
-            <picture>
+            <picture class="{{ image_padding_class }} {{ section_border_class }} block">
               {% if section_image %}
                 <img
                   src="{{ section_image | file_url | replace: 'files/files/', 'files/' }}"
@@ -143,6 +146,24 @@
         { "value": "full", "label": "Full" }
       ],
       "default": "md"
+    },
+    {
+      "type": "range",
+      "id": "section_border",
+      "label": "Section Padding",
+      "min": 0,
+      "max": 12,
+      "step": 2,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "label": "Image Padding",
+      "min": 0,
+      "max": 12,
+      "step": 2,
+      "default": 0
     },
     {
       "type": "select",
