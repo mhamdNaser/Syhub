@@ -120,23 +120,15 @@
 {
   "name": "Image With Flexible Text",
   "settings": [
+
+    {
+      "type": "header",
+      "content": "📷 Image Settings"
+    },
     {
       "id": "image",
       "type": "image_picker",
       "label": "Choose an image"
-    },
-    {
-      "type": "select",
-      "id": "text_position",
-      "label": "Text Position",
-      "options": [
-        { "value": "top", "label": "Above Image" },
-        { "value": "bottom", "label": "Below Image" },
-        { "value": "left", "label": "Left of Image" },
-        { "value": "right", "label": "Right of Image" },
-        { "value": "inside", "label": "Inside Image" }
-      ],
-      "default": "bottom"
     },
     {
       "type": "select",
@@ -153,6 +145,61 @@
         { "value": "full", "label": "Full" }
       ],
       "default": "md"
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "label": "Image Padding",
+      "min": 0,
+      "max": 8,
+      "step": 2,
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "📝 Text Settings"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text Position",
+      "options": [
+        { "value": "top", "label": "Above Image" },
+        { "value": "bottom", "label": "Below Image" },
+        { "value": "left", "label": "Left of Image" },
+        { "value": "right", "label": "Right of Image" },
+        { "value": "inside", "label": "Inside Image" }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "text",
+      "id": "section_image_title",
+      "label": "Image Title",
+      "default": "Image Title"
+    },
+    {
+      "type": "textarea",
+      "id": "section_image_description",
+      "label": "Image Description",
+      "default": "Write your description here"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-right", "label": "Right" }
+      ],
+      "default": "text-center"
+    },
+
+    {
+      "type": "header",
+      "content": "🎨 Border Settings"
     },
     {
       "type": "select",
@@ -186,60 +233,16 @@
     {
       "type": "range",
       "id": "image_border_size",
-      "label": "Image border",
+      "label": "Image Border Size",
       "min": 0,
       "max": 8,
       "step": 2,
       "default": 2
     },
+
     {
-      "type": "range",
-      "id": "image_padding",
-      "label": "Image Padding",
-      "min": 0,
-      "max": 8,
-      "step": 2,
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "image_rounded_corners",
-      "label": "Image Corner Radius",
-      "options": [
-        { "value": "lt", "label": "left top" },
-        { "value": "rt", "label": "right top" },
-        { "value": "lb", "label": "left bottom" },
-        { "value": "rb", "label": "right bottom" },
-        { "value": "l", "label": "left" },
-        { "value": "r", "label": "right" },
-        { "value": "t", "label": "top" },
-        { "value": "b", "label": "bottom" },
-        { "value": "all", "label": "all" }
-      ],
-      "default": "all"
-    },
-    {
-      "type": "text",
-      "id": "section_image_title",
-      "label": "Image Title",
-      "default": "Image Title"
-    },
-    {
-      "type": "textarea",
-      "id": "section_image_description",
-      "label": "Image Description",
-      "default": "Write your description here"
-    },
-    {
-      "type": "select",
-      "id": "text_alignment",
-      "label": "Text Alignment",
-      "options": [
-        { "value": "text-left", "label": "Left" },
-        { "value": "text-center", "label": "Center" },
-        { "value": "text-right", "label": "Right" }
-      ],
-      "default": "text-center"
+      "type": "header",
+      "content": "🔘 Button Settings"
     },
     {
       "type": "checkbox",
@@ -252,6 +255,11 @@
       "id": "button_text",
       "label": "Button Text",
       "default": "Learn More"
+    },
+
+    {
+      "type": "header",
+      "content": "🛒 Product Settings"
     },
     {
       "type": "product",
@@ -266,3 +274,4 @@
   ]
 }
 {% endschema %}
+
