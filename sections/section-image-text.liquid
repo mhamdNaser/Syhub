@@ -21,7 +21,7 @@
   if section.settings.image_border == 'all'
     assign image_border_class = 'border-' | append: section.settings.image_border_size
   else
-    assign image_border_class = 'border-' | append: section.settings.image_border | append: section.settings.image_border_size
+    assign image_border_class = 'border-' | append: section.settings.image_border | append: '-' | append: section.settings.image_border_size
   endif
   assign image_border_class = image_border_class | append: ' ' | append: section.settings.image_border_style
   if section.settings.image_border_color != '#ffffff'
