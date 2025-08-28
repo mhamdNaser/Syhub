@@ -23,7 +23,7 @@
   else
     assign image_border_class = 'border-' | append: section.settings.image_border | append: section.settings.image_border_size
   endif
-  assign image_border_class = image_border_class | append: section.settings.image_border_style
+  assign image_border_class = image_border_class | append: ' ' | append: section.settings.image_border_style
   if section.settings.image_border_color != '#ffffff'
     assign image_border_class = image_border_class | append: ' border-[' | append: section.settings.image_border_color | append: ']'
   endif
