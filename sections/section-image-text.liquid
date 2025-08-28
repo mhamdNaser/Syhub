@@ -18,9 +18,9 @@
     else
       assign text_position = 'flex-col'
   endcase
-  assign section_border_class = 'border-' | append: section.settings.section_border | append: ' border-solid'
+  assign image_border_class = 'border-' | append: section.settings.image_border_size | append: section.settings.image_border_style
   if section.settings.image_border_color != '#ffffff'
-    assign section_border_class = section_border_class | append: ' border-['  | append: section.settings.image_border_color | append: ']'
+    assign image_border_class = image_border_class | append: ' border-['  | append: section.settings.image_border_color | append: ']'
   endif
   assign image_padding_class = 'p-' | append: section.settings.image_padding
   assign image_corner = section.settings.image_rounded_corners
@@ -56,7 +56,7 @@
         <div
           class="
             relative w-full overflow-hidden
-            {{ image_padding_class }} {{ section_border_class }} {{ image_rounded }}
+            {{ image_padding_class }} {{ image_border_class }} {{ image_rounded }}
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "
@@ -150,6 +150,17 @@
       "default": "md"
     },
     {
+      "type": "select",
+      "id": "image_border_style",
+      "label": "Image Border Style",
+      "options": [
+        {"value": "border-solid" , "label": "Solid"},
+        {"value": "border-dashed" , "label": "Dashed"},
+        {"value": "border-dotted" , "label": "Dotted"},
+        {"value": "border-double" , "label": "Double"},
+      ]
+    },
+    {
       "type": "color",
       "id": "image_border_color",
       "label": "Image Border Color",
@@ -157,10 +168,10 @@
     },
     {
       "type": "range",
-      "id": "section_border",
-      "label": "Section border",
+      "id": "image_border_size",
+      "label": "Image border",
       "min": 0,
-      "max": 12,
+      "max": 8,
       "step": 2,
       "default": 2
     },
@@ -169,7 +180,7 @@
       "id": "image_padding",
       "label": "Image Padding",
       "min": 0,
-      "max": 12,
+      "max": 8,
       "step": 2,
       "default": 0
     },
