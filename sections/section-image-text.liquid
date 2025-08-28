@@ -18,10 +18,11 @@
     else
       assign text_position = 'flex-col'
   endcase
-  assign section_border = section.settings.section_border
-  assign section_border_class = 'border-' | append: section_border
-  assign image_padding = section.settings.image_padding
-  assign image_padding_class = 'p-' | append: image_padding
+  assign section_border_class = 'border-' | append: section.settings.section_border | append: ' border-solid'
+  if section.settings.image_border_color != '#ffffff'
+    assign section_border_class = section_border_class | append: ' border-' | append: section.settings.image_border_color | remove: '#'
+  end
+  assign image_padding_class = 'p-' | append: section.settings.image_padding
   assign image_corner = section.settings.image_rounded_corners
   case image_corner
     when 'lt'
