@@ -156,6 +156,50 @@
       "default": 0
     },
 
+    
+    {
+      "type": "header",
+      "content": "🎨 Image Border Settings"
+    },
+    {
+      "type": "select",
+      "id": "image_border",
+      "label": "Image Border",
+      "options": [
+        { "value": "l", "label": "Left" },
+        { "value": "r", "label": "Right" },
+        { "value": "t", "label": "Top" },
+        { "value": "b", "label": "Bottom" },
+        { "value": "all", "label": "All" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_border_style",
+      "label": "Image Border Style",
+      "options": [
+        { "value": "border-solid", "label": "Solid" },
+        { "value": "border-dashed", "label": "Dashed" },
+        { "value": "border-dotted", "label": "Dotted" },
+        { "value": "border-double", "label": "Double" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Image Border Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "image_border_size",
+      "label": "Image Border Size",
+      "min": 0,
+      "max": 8,
+      "step": 2,
+      "default": 2
+    },
+    
     {
       "type": "header",
       "content": "📝 Text Settings"
@@ -195,49 +239,6 @@
         { "value": "text-right", "label": "Right" }
       ],
       "default": "text-center"
-    },
-
-    {
-      "type": "header",
-      "content": "🎨 Border Settings"
-    },
-    {
-      "type": "select",
-      "id": "image_border",
-      "label": "Image Border",
-      "options": [
-        { "value": "l", "label": "Left" },
-        { "value": "r", "label": "Right" },
-        { "value": "t", "label": "Top" },
-        { "value": "b", "label": "Bottom" },
-        { "value": "all", "label": "All" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "image_border_style",
-      "label": "Image Border Style",
-      "options": [
-        { "value": "border-solid", "label": "Solid" },
-        { "value": "border-dashed", "label": "Dashed" },
-        { "value": "border-dotted", "label": "Dotted" },
-        { "value": "border-double", "label": "Double" }
-      ]
-    },
-    {
-      "type": "color",
-      "id": "image_border_color",
-      "label": "Image Border Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "image_border_size",
-      "label": "Image Border Size",
-      "min": 0,
-      "max": 8,
-      "step": 2,
-      "default": 2
     },
 
     {
