@@ -55,20 +55,21 @@
         {%- comment -%} صورة {%- endcomment -%}
         <div
           class="
-            relative w-full overflow-hidden {{ image_rounded }}
+            relative w-full overflow-hidden
+            {{ image_padding_class }} {{ section_border_class }} {{ image_rounded }}
             {% if text_position == 'right' %} md:w-1/2 {% endif %}
             {% if text_position == 'left' %} md:w-1/2 {% endif %}
           "
         >
           <figure class="relative">
-            <picture class="{{ image_padding_class }} {{ section_border_class }} block">
+            <picture class="block">
               {% if section_image %}
                 <img
                   src="{{ section_image | file_url | replace: 'files/files/', 'files/' }}"
                   width="640"
                   height="500"
                   alt="Image description"
-                  class="object-cover w-full h-[500px]"
+                  class="object-cover w-full h-[500px] {{ image_rounded }}"
                   loading="lazy"
                 >
               {% else %}
