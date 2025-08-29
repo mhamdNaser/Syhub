@@ -49,7 +49,7 @@
     when 'all'
       assign image_rounded = 'rounded-' | append: section.settings.image_rounded
   endcase
-  assign image_class = 'md:object-contain object-cover w-full h-[500px]' | append: image_rounded
+  assign image_class = 'md:object-contain object-cover w-full h-[500px] ' | append: image_rounded
 %}
 
 <article>
@@ -77,7 +77,7 @@
                   width: 640,
                   height: 500,
                   crop: 'center',
-                  alt: "Image description",
+                  alt: "Image description"
                 %}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'w-full h-48 object-cover' }}
