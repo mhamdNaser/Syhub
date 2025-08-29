@@ -153,9 +153,14 @@
       "name": "Image With Flexible Text",
       "settings": {
         "image": "shopify://shop_images/banner-3--750-1920.jpg",
-        "text_position": "right",
         "image_rounded": "full",
         "image_rounded_corners": "r",
+        "image_padding": 2,
+        "image_border": "r",
+        "image_border_style": "border-dashed",
+        "image_border_color": "#360c0c",
+        "image_border_size": 2,
+        "text_position": "right",
         "section_image_title": "Image Title",
         "section_image_description": "Write your description here",
         "text_alignment": "text-left",
@@ -194,6 +199,51 @@
       "name": "Featured Collection",
       "settings": {}
     },
+    "featured_product_group_EYFJCQ": {
+      "type": "featured-product-group",
+      "blocks": {
+        "product_block_KCKGWm": {
+          "type": "product_block",
+          "settings": {
+            "product": "selling-plans-ski-wax"
+          }
+        },
+        "product_block_PebEMf": {
+          "type": "product_block",
+          "settings": {
+            "product": "the-3p-fulfilled-snowboard"
+          }
+        },
+        "product_block_BH6Yhr": {
+          "type": "product_block",
+          "settings": {
+            "product": "the-collection-snowboard-hydrogen"
+          }
+        }
+      },
+      "block_order": [
+        "product_block_KCKGWm",
+        "product_block_PebEMf",
+        "product_block_BH6Yhr"
+      ],
+      "name": "Featured Product Group",
+      "settings": {
+        "main_product": "test-24",
+        "sub_info_type": "description"
+      }
+    },
+    "section_banner_97WCwN": {
+      "type": "section-banner",
+      "name": "Image Banner",
+      "settings": {
+        "image": "shopify://shop_images/SUNBLOCK-OFFER.png",
+        "heading": "Welcome to Our Store",
+        "subheading": "Discover our collection of amazing products.",
+        "button_link": "",
+        "button_text": "Shop Now",
+        "color_scheme": "scheme-6"
+      }
+    },
     "vendor_gallery_agkEPT": {
       "type": "vendor-gallery",
       "blocks": {
@@ -225,6 +275,8 @@
     "main",
     "section_image_text_aNPf3Q",
     "section_featured_collection_YLh4zD",
+    "featured_product_group_EYFJCQ",
+    "section_banner_97WCwN",
     "vendor_gallery_agkEPT"
   ]
 }
