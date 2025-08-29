@@ -34,6 +34,7 @@
 
     <div
       x-show="open"
+      x-cloak
       @click.away="open = false"
       x-data="priceFilter()"
       class="absolute z-10 bg-white shadow rounded mt-1 w-full p-4 flex flex-col gap-3"
@@ -70,6 +71,12 @@
       </button>
     </div>
   </div>
+
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
 
   {% comment %}
     <div class="bg-gray-100 text-sm px-4 relative">
