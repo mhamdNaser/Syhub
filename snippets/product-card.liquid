@@ -58,6 +58,12 @@
 
       {% if product.featured_image %}
         <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
+          {% comment %} {% render 'image',
+            image: product.featured_image.src,
+            alt: product.featured_image.alt,
+            class: 'w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out hover:scale-105' ,
+            loading: 'lazy'
+           %} {% endcomment %}
           <img
             src="{{ product.featured_image.src | img_url: 'medium' }}"
             alt="{{ product.featured_image.alt | escape }}"
