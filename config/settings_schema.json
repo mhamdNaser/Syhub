@@ -592,7 +592,11 @@
           {
             "value": "hover-zoom--colorize",
             "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__9.label"
-          }
+          },
+          {
+            "value": "none",
+            "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__10.label"
+          },
         ]
       }
     ]

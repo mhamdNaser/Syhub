@@ -47,10 +47,10 @@
         assign my_swiper_class = 'mySwiper-' | append: product.id
         assign next_button_class = 'swiper-next-' | append: product.id
         assign prev_button_class = 'swiper-prev-' | append: product.id
-        if product.featured_image
+        if product.featured_image and settings.image_hover_style != 'none'
           assign image_style = 'hover-zoom ' | append: settings.image_hover_style
         else
-          assign image_style = 'hover-zoom hover-zoom--empty'
+          assign image_style = 'transform group-hover:scale-105 transition-transform duration-500'
         endif
       %}
 

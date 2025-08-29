@@ -280,6 +280,9 @@
             },
             "options__9": {
               "label": "Colorize"
+            },
+            "options__10": {
+              "label": "None"
             }
           }
         }
