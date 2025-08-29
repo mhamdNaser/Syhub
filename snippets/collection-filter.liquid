@@ -23,48 +23,39 @@
   {% endif %}
 
   <!-- Filter by Price Range -->
-  <div class="relative text-sm bg-gray-100 px-4" x-data="{ open: false }">
-    <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
-      Price
-      <svg
-        :class="{ 'rotate-180': open }"
-        class="w-4 h-4 transition-transform"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-      >
-        <path d="M19 9l-7 7-7-7"/>
-      </svg>
+  <div class="bg-gray-100 text-sm px-4 relative" x-data="{ open: false }">
+    <button onclick="togglePriceSection(this)" class="w-full flex py-1 justify-between items-center">
+      <span>Price</span>
+      <div>
+        <span class="icon-down block">{%- render 'icons', icon: 'icon-chevron-down' -%}</span>
+        <span class="icon-up hidden">{%- render 'icons', icon: 'icon-chevron-up' -%}</span>
+      </div>
     </button>
-    <ul
-      x-show="open"
-      @click.away="open = false"
-      class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
+    <div
+      id="price-section"
+      x-data="priceFilter()"
+      class="absolute z-10 hidden bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
     >
-      <li>
-        <label class="block font-semibold">from</label>
-        <input
-          type="number"
-          x-model="minPrice"
-          placeholder="from"
-          class="w-full px-3 py-2 border rounded"
-          min="0"
-          @keyup.enter="applyFilter"
-        >
-      </li>
-      <li>
-        <label class="block font-semibold">to</label>
-        <input
-          type="number"
-          x-model="maxPrice"
-          placeholder="to"
-          class="w-full px-3 py-2 border rounded"
-          min="0"
-          @keyup.enter="applyFilter"
-        >
-      </li>
-    </ul>
+      <label class="block font-semibold">from</label>
+      <input
+        type="number"
+        x-model="minPrice"
+        placeholder="from"
+        class="w-full px-3 py-2 border rounded"
+        min="0"
+        @keyup.enter="applyFilter"
+      >
+
+      <label class="block font-semibold">to</label>
+      <input
+        type="number"
+        x-model="maxPrice"
+        placeholder="to"
+        class="w-full px-3 py-2 border rounded"
+        min="0"
+        @keyup.enter="applyFilter"
+      >
+    </div>
   </div>
 
   <!-- Filter by Color (Variants) -->
