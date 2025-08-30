@@ -9,7 +9,7 @@
     {%- endif -%}
 
     {% comment %} Critical CSS  {% endcomment %}
-    {{ 'app.css' | asset_url | stylesheet_tag: preload: true }}
+    {% comment %} {{ 'app.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
     {{ 'animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'color-schema.css' | asset_url | stylesheet_tag: preload: true }}
