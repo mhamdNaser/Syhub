@@ -49,7 +49,7 @@
     when 'all'
       assign image_rounded = 'rounded-' | append: section.settings.image_rounded
   endcase
-  assign image_class = 'md:object-contain object-cover ' | append: image_rounded
+  assign image_class = 'md:object-contain object-cover w-full' | append: image_rounded
 %}
 
 <article>
@@ -73,7 +73,7 @@
                 {%
                   render 'image',
                   image: section_image | file_url | replace: 'files/files/', 'files/',
-                  class: image_class | append: 'w-full',
+                  class: image_class
                   crop: 'center',
                   alt: "Image description"
                 %}
