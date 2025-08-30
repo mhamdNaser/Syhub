@@ -20,8 +20,8 @@
       {% endcomment %}
       {%
         render 'image',
-        src="{{ settings.logo | image_url }}"
-        alt="{{ shop.name }}"
+        src= settings.logo | image_url
+        alt= shop.name
         class="header__logo"
         width= size
         height= size
@@ -30,8 +30,8 @@
     {% elsif shop.logo %}
       {%
         render 'image',
-        src="{{ settings.logo | image_url }}"
-        alt="{{ shop.name }}"
+        src= settings.logo | image_url
+        alt= shop.name
         class="header__logo"
         width= size
         height= size
