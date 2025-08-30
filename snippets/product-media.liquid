@@ -22,7 +22,7 @@
       <div>
         <button
           id="productModelOpenButton_{{ media.id }}"
-          aria-label="{{ media.preview_image.alt }}"
+          aria-label="{{ media.alt }}"
           x-on:click="productModalOpen = true"
           class="w-[400px] h-[400px] bg-gray-100 border relative"
         >
@@ -31,7 +31,7 @@
           </span>
           <img
             src="{{ media.preview_image | image_url: width: 800 }}"
-            alt="{{ media.preview_image.alt }}"
+            alt="{{ media.alt }}"
             class="w-full h-full object-cover"
             width="auto"
             height="auto"
