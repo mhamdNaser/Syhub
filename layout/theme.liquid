@@ -40,6 +40,7 @@
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
     <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
     <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
+    <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
     {% render 'color-schemes' %}
@@ -89,7 +90,18 @@
 
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
-      {% sections 'header-group' %}
+      {% liquid
+        assign logo_url = ''
+        if settings.logo != blank
+          assign logo_url = settings.logo | image_url
+        elsif shop.logo != blank
+          assign logo_url = shop.logo | image_url
+        endif
+      %}
+
+      {% if logo_url != blank %}
+        {% sections 'header-group' %}
+      {% endif %}
     </div>
 
     <div id="mobile-header" class="block md:hidden">
