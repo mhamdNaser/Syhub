@@ -23,6 +23,12 @@
       media="print"
       onload="this.media='all'"
     >
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      media="print"
+      onload="this.media='all'"
+    >
     <noscript>
       <link
         rel="stylesheet"
@@ -30,10 +36,12 @@
       >
     </noscript>
 
-    {% comment %} <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
-    </noscript> {% endcomment %}
+    {% comment %}
+      <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
+      <noscript>
+        <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+      </noscript>
+    {% endcomment %}
 
     {% comment %} Scripts  {% endcomment %}
     <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
