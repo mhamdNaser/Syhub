@@ -58,23 +58,20 @@
 
       {% if product.featured_image %}
         <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
-          {% comment %}
-            {% render 'image',
-             image: product.featured_image.src,
-             alt: product.featured_image.alt,
-             class: 'w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out hover:scale-105' ,
-             loading: 'lazy'
-            %}
-          {% endcomment %}
-          <img
+          {% render 'image',
+            image: product.featured_image.src | img_url: 'medium',
+            alt: product.featured_image.alt | escape,
+            class: 'w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out hover:scale-105' ,
+            loading: 'lazy'
+           %} 
+          {% comment %} <img
             src="{{ product.featured_image.src | img_url: 'medium' }}"
             alt="{{ product.featured_image.alt | escape }}"
             class="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out hover:scale-105"
-            fetchpriority="high"
             loading="lazy"
             width=""
             height=""
-          >
+          > {% endcomment %}
           {% if sale_label and product.price < product.compare_at_price %}
             <div class="absolute left-2 top-2">
               {% assign discount_amount = product.compare_at_price | minus: product.price %}
