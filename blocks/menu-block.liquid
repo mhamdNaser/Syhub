@@ -18,6 +18,7 @@
             class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu {{ block.settings.item_hover_effect }}"
             id="list-toggle-{{ link.title | handleize }}"
             data-target="header-menu-{{ link.title | handleize }}"
+            aria-label="{{ link.title }}"
           >
             {{ link.title }}
             {% comment %} {% render 'icon-chevron-down' %} {% endcomment %}
@@ -32,7 +33,7 @@
         </li>
       {% else %}
         <li>
-          <a href="{{ link.url }}" class="text-sm {{ block.settings.item_hover_effect }}">
+          <a href="{{ link.url }}" aria-label="{{ link.title }}" class="text-sm {{ block.settings.item_hover_effect }}">
             {{ link.title }}
           </a>
         </li>

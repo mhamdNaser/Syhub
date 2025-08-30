@@ -14,20 +14,20 @@
         <!-- استخدام بيانات المتجر ديناميكيًا عبر Liquid -->
         <p class="mt-2">
           📞
-          <a href="tel:{{ shop.phone }}" class="text-headerLightColor">
+          <a href="tel:{{ shop.phone }}" aria-label="phone" class="text-headerLightColor">
             {{ shop.phone }}
           </a>
         </p>
 
         <p>
           ✉️
-          <a href="mailto:{{ shop.email }}" class="text-headerLightColor">
+          <a href="mailto:{{ shop.email }}" aria-label="e-mail" class="text-headerLightColor">
             {{ shop.email }}
           </a>
         </p>
 
         <p class="mt-2">
-          <a href="https://wa.me/{{ shop.phone | remove: '+' }}" class="text-headerLightColor font-bold">
+          <a href="https://wa.me/{{ shop.phone | remove: '+' }}" aria-label="whatsapp" class="text-headerLightColor font-bold">
             Ask your questions on WhatsApp
           </a>
         </p>
@@ -37,12 +37,12 @@
       <div class="flex-1 min-w-[250px]">
         <h3 class="text-lg font-bold mb-2">Quick Links</h3>
         <ul class="space-y-2">
-          <li><a href="/pages/about-us" class="text-gray-400 hover:text-black">About Us</a></li>
-          <li><a href="/pages/contact-us" class="text-gray-400 hover:text-black">Contact Us</a></li>
-          <li><a href="/pages/terms-conditions" class="text-gray-400 hover:text-black">Terms & Conditions</a></li>
-          <li><a href="/pages/privacy-policy" class="text-gray-400 hover:text-black">Privacy Policy</a></li>
-          <li><a href="/pages/shipping-policy" class="text-gray-400 hover:text-black">Shipping Policy</a></li>
-          <li><a href="/pages/refund-returns" class="text-gray-400 hover:text-black">Refunds & Returns Policy</a></li>
+          <li><a href="/pages/about-us" aria-label="about-us" class="text-gray-400 hover:text-black">About Us</a></li>
+          <li><a href="/pages/contact-us" aria-label="contact-us" class="text-gray-400 hover:text-black">Contact Us</a></li>
+          <li><a href="/pages/terms-conditions" aria-label="terms-conditions" class="text-gray-400 hover:text-black">Terms & Conditions</a></li>
+          <li><a href="/pages/privacy-policy" aria-label="privacy-policy" class="text-gray-400 hover:text-black">Privacy Policy</a></li>
+          <li><a href="/pages/shipping-policy" aria-label="shipping-policy" class="text-gray-400 hover:text-black">Shipping Policy</a></li>
+          <li><a href="/pages/refund-returns" aria-label="refund-returns" class="text-gray-400 hover:text-black">Refunds & Returns Policy</a></li>
         </ul>
       </div>
 
@@ -63,9 +63,9 @@
         <div class="mt-4">
           <h4 class="font-semibold">Follow us</h4>
           <div class="flex space-x-4 mt-2">
-            <a href="#" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-facebook' -%}</a>
-            <a href="#" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-instagram' -%}</a>
-            <a href="#" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-whatsapp' -%}</a>
+            <a href="#" aria-label="facebook" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-facebook' -%}</a>
+            <a href="#" aria-label="instagram" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-instagram' -%}</a>
+            <a href="#" aria-label="whatsapp" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-whatsapp' -%}</a>
           </div>
         </div>
       </div>

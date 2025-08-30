@@ -59,7 +59,7 @@
             <input
               id="search-input"
               type="search"
-              name="q"
+              name="search"
               value="{{ search.terms | escape }}"
               placeholder="{{ 'general.search.search' | t }}"
               class="flex-grow px-4 text-lg border-0 outline-none"
@@ -86,7 +86,7 @@
                 {%- render 'icons' , icon: 'icon-user' -%}
               {% endif %}
 
-              <a href="{{ routes.cart_url }}">
+              <a href="{{ routes.cart_url }}" aria-label="cart">
                 {% if cart.item_count > 0 %}
                   <sup>{{ cart.item_count }}</sup>
                 {% endif %}

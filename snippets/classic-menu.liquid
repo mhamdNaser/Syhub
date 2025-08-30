@@ -13,6 +13,7 @@
       <a
         type="button"
         href="{{ childlink.url }}"
+        aria-label="{{ childlink.title }}"
         class="flex items-center gap-x-2 justify-between w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
         aria-expanded="false"
       >
@@ -39,6 +40,7 @@
             <li>
               <a
                 href="{{ grandchild.url }}"
+                aria-label="{{ grandchild.title }}"
                 class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 text-nowrap"
               >
                 {% if grandchild.object.featured_image %}
