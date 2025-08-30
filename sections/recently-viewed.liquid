@@ -8,8 +8,8 @@
     </div>
 
     <!-- Navigation -->
-    <div class="swiper-button-next text-gray-700 hover:text-gray-900"></div>
-    <div class="swiper-button-prev text-gray-700 hover:text-gray-900"></div>
+    <div class="swiper-button-next text-gray-700 hover:text-gray-900" aria-label="next"></div>
+    <div class="swiper-button-prev text-gray-700 hover:text-gray-900" aria-label="prev"></div>
 
     <!-- Pagination (اختياري) -->
     <div class="swiper-pagination mt-4"></div>
@@ -39,7 +39,7 @@
                     <p class="text-gray-700 font-medium">${(product.price / 100).toFixed(2)} USD</p>
                   </div>
                   <div class="mt-4">
-                    <button class="w-full bg-[#c42764] text-white py-2 rounded-md hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors">View Product</button>
+                    <button class="w-full bg-[#c42764] text-white py-2 rounded-md hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors" aria-label="${product.title}" >View Product</button>
                   </div>
                 </a>
               </div>

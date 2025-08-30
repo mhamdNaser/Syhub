@@ -25,7 +25,7 @@
         class="flex-1 border-none focus:outline-none text-gray-800 text-base"
         placeholder="I'm searching for ..."
       >
-      <button id="mobile-search-close" class="ml-4 text-gray-500">
+      <button id="mobile-search-close" class="ml-4 text-gray-500" aria-label="close">
         {%- render 'icons' , icon: 'icon-close' %}
       </button>
     </div>
@@ -69,7 +69,7 @@
     <div
       class="absolute bg-white -top-10 left-1/2 transform -translate-x-1/2 rounded-full border-b border-gray-200 p-4 flex items-center justify-center"
     >
-      <button class="flex mobile-footer-burger border-none rounded-md focus:outline-none flex-col items-center">
+      <button class="flex mobile-footer-burger border-none rounded-md focus:outline-none flex-col items-center" aria-label="menu">
         <div class="bg-[#c42764] h-10 w-10 rounded-full justify-center items-center flex">
           {%- render 'icons' , icon: 'icon-menu' %}
         </div>
@@ -78,7 +78,7 @@
 
     <!-- Search Icon -->
     <div class="flex px-2 justify-between w-2/5 items-center hover:text-white">
-      <button id="mobile-search-btn" class="flex flex-col w-1/2 items-center">
+      <button id="mobile-search-btn" class="flex flex-col w-1/2 items-center" aria-label="search">
         {%- render 'icons' , icon: 'icon-search' %}
         <span class="text-xs">Search</span>
       </button>
@@ -110,7 +110,7 @@
           {{ shop.name }}
         {% endif %}
       </a>
-      <button class="mobile-footer-close">
+      <button class="mobile-footer-close" aria-label="close">
         {%- render 'icons' , icon: 'icon-close' %}
       </button>
     </div>
@@ -118,6 +118,7 @@
       {% if link.links != blank %}
         <li class="relative w-full">
           <button
+            aria-label="open list"
             class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu {% if link.active == true or link.child_active == true %}text-white font-bold bg-[#c42764]{% endif %}"
             data-target="menu-{{ link.title | handleize }}"
             type="button"
@@ -131,6 +132,7 @@
                 {% if childlink.links != blank %}
                   <li class="relative">
                     <button
+                      aria-label="close list"
                       class="text-sm px-8 flex flex-row items-center justify-between w-full h-12 js-toggle-footer-menu"
                       data-target="menu-{{ childlink.title | handleize }}"
                       type="button"

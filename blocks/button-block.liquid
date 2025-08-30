@@ -13,6 +13,7 @@
   {% if block.settings.button_text != blank and final_link != blank %}
     <a 
       href="{{ final_link }}" 
+      aria-label="{{ block.settings.button_text }}"
       class="px-{{ block.settings.padding_x }} py-{{ block.settings.padding_y }} rounded-{{ block.settings.border_radius }} font-semibold transition"
       style="
         background-color: {{ block.settings.button_bg }};

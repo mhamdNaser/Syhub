@@ -29,6 +29,7 @@
 
     {% if section.settings.button_text != blank %}
       <a
+        aria-label="{{ section.settings.button_text }}"
         href="{{ section.settings.button_link }}"
         class="mt-8 inline-block px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 hover:shadow-xl transition-all duration-300"
       >
