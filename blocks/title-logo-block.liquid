@@ -1,28 +1,53 @@
 {% comment %}
   Preload LCP logo if exists in settings or fallback to shop.logo
 {% endcomment %}
+
 {% assign size = settings.logo_size %}
 
 <h2 class="header__title" {{ block.shopify_attributes }}>
   {% if block.settings.logo == 'logo' %}
     {% if settings.logo != blank %}
-      <img
+      {% comment %}
+        <img
+          src="{{ settings.logo | image_url }}"
+          alt="{{ shop.name }}"
+          class="header__logo"
+          width="{{ size }}"
+          height="50"
+          fetchpriority="high"
+          decoding="async"
+        >
+      {% endcomment %}
+      {%
+        render 'image',
         src="{{ settings.logo | image_url }}"
         alt="{{ shop.name }}"
         class="header__logo"
-        width="{{ size }}"
-        height="{{ size }}"
+        width= size
+        height= size
         fetchpriority="high"
-      >
+      %}
     {% elsif shop.logo %}
-      <img
-        src="{{ shop.logo | image_url }}"
+      {%
+        render 'image',
+        src="{{ settings.logo | image_url }}"
         alt="{{ shop.name }}"
         class="header__logo"
-        width="{{ size }}"
-        height="{{ size }}"
+        width= size
+        height= size
         fetchpriority="high"
-      >
+      %}
+      {% comment %}
+        <img
+          src="{{ shop.logo | image_url }}"
+          alt="{{ shop.name }}"
+          class="header__logo"
+          width="{{ size }}"
+          height="50"
+          fetchpriority="high"
+          decoding="async"
+        >
+      {% endcomment %}
     {% else %}
       {{ shop.name | link_to: routes.root_url }}
     {% endif %}
