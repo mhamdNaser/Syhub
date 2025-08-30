@@ -20,7 +20,7 @@
           {% if childlink.object.featured_image %}
             <img
               src="{{ childlink.object.featured_image | img_url: '50x50' }}"
-              alt="{{ childlink.title }}"
+              alt="{{ childlink.object.title }}"
               class="w-4 h-4 object-cover rounded"
               width=""
               height=""
