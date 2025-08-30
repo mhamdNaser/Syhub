@@ -49,6 +49,7 @@
     when 'all'
       assign image_rounded = 'rounded-' | append: section.settings.image_rounded
   endcase
+  assign image_class = 'md:object-contain object-cover ' | append: image_rounded
 %}
 
 <article>
@@ -69,14 +70,15 @@
           <figure class="relative">
             <picture class="block">
               {% if section_image %}
-                <img
-                  src="{{ section_image | file_url | replace: 'files/files/', 'files/' }}"
-                  width="640"
-                  height="500"
-                  alt="Image description"
-                  class="md:object-contain object-cover w-full h-[500px] {{ image_rounded }}"
-                  loading="lazy"
-                >
+                {%
+                  render 'image',
+                  image: section_image | file_url | replace: 'files/files/', 'files/',
+                  class: image_class,
+                  width: 640,
+                  height: 300,
+                  crop: 'center',
+                  alt: "Image description"
+                %}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'w-full h-48 object-cover' }}
               {% endif %}
@@ -120,7 +122,6 @@
 {
   "name": "Image With Flexible Text",
   "settings": [
-
     {
       "type": "header",
       "content": "📷 Image Settings"
@@ -173,7 +174,6 @@
       "default": 0
     },
 
-    
     {
       "type": "header",
       "content": "🎨 Image Border Settings"
@@ -216,7 +216,7 @@
       "step": 2,
       "default": 2
     },
-    
+
     {
       "type": "header",
       "content": "📝 Text Settings"
@@ -292,4 +292,3 @@
   ]
 }
 {% endschema %}
-

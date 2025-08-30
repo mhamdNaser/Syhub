@@ -33,7 +33,7 @@
     "show_preorder": true,
     "show_preorder_inventory": true,
     "product_titles_caps": true,
-    "image_hover_style": "hover-zoom--basic",
+    "image_hover_style": "none",
     "enable_popup": true,
     "popup_text_alignment": "text-center",
     "popup_image": "shopify://shop_images/Luliz_Logo.png",

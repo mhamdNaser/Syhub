@@ -199,6 +199,28 @@
       "name": "Featured Collection",
       "settings": {}
     },
+    "section_featured_collection_fAkYP3": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_xmbEYG": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "automated-collection",
+            "swiper_view": true,
+            "item_view_in_section": 9,
+            "item_view_in_row": 5,
+            "item_view_in_row_mobile": 1,
+            "show_pagination_row": true,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_xmbEYG"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
+    },
     "featured_product_group_EYFJCQ": {
       "type": "featured-product-group",
       "blocks": {
@@ -275,6 +297,7 @@
     "main",
     "section_image_text_aNPf3Q",
     "section_featured_collection_YLh4zD",
+    "section_featured_collection_fAkYP3",
     "featured_product_group_EYFJCQ",
     "section_banner_97WCwN",
     "vendor_gallery_agkEPT"
