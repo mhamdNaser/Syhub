@@ -1,14 +1,16 @@
 <div class="welcome relative w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}">
   <!-- الخلفية -->
-  <div
-    class="absolute inset-0"
-    style="
-      background-image: url('{{ section.settings.image | image_url: width: 1800 }}');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    "
-  ></div>
+  <div class="relative w-full h-[600px]">
+    {%
+      render 'image',
+      image: section.settings.image | image_url: width: 1800,
+      class: 'absolute inset-0 w-full h-full object-cover'
+      alt:  section.settings.hero_image.alt | escape
+    %}
+    <div class="absolute inset-0 flex items-center justify-center text-white">
+      <h1 class="text-4xl font-bold">{{ section.settings.hero_heading }}</h1>
+    </div>
+  </div>
 
   <!-- المحتوى -->
   <div class="welcome-content relative max-w-4xl py-20 px-10 text-white">
