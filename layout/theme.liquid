@@ -90,18 +90,7 @@
 
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
-      {% liquid
-        assign logo_url = ''
-        if settings.logo != blank
-          assign logo_url = settings.logo | image_url
-        elsif shop.logo != blank
-          assign logo_url = shop.logo | image_url
-        endif
-      %}
-
-      {% if logo_url != blank %}
-        {% sections 'header-group' %}
-      {% endif %}
+      {% sections 'header-group' %}
     </div>
 
     <div id="mobile-header" class="block md:hidden">
