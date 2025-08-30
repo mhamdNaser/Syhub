@@ -53,7 +53,7 @@
     {% endif %}
 
     {% if logo_url != blank %}
-      {{ logo_url | image_tag: preload: true, fetchpriority: 'high' | image_url  }}
+      {{ logo_url | image_tag: preload: true, fetchpriority: 'high' | image_url: width: 600, height: 400  }}
     {% endif %}
     {{ content_for_header }}
   </head>
