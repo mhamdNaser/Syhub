@@ -1,17 +1,20 @@
-<div class="welcome relative w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}">
+<div class="welcome relative h-[600px] w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}">
   <!-- الخلفية -->
-  <div class="relative w-full h-[600px]">
-    {% render 'image',
-      image: section.settings.image | image_url: width: 1800,
-      class: 'absolute inset-0 w-full h-full object-cover',
-      alt:  section.settings.hero_image.alt | escape,
-      width: 1400
-      height: 680
-    %}
-  </div>
+  {% if section.settings.image != blank %}
+    <img
+      src="{{ section.settings.image | image_url: width: 1800 }}"
+      alt="{{ section.settings.image.alt | escape }}"
+      width="1400"
+      height="680"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    >
+  {% endif %}
 
   <!-- المحتوى -->
-  <div class="welcome-content relative w-full py-20 px-10 text-white text-center">
+  <div class="welcome-content absolute w-full py-20 px-10 text-white text-center">
     {% if section.settings.heading != blank %}
       <h1 class="text-5xl font-bold drop-shadow-md">
         {{ section.settings.heading }}
@@ -34,6 +37,7 @@
     {% endif %}
   </div>
 </div>
+
 
 {% schema %}
 {
