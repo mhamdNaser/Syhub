@@ -73,9 +73,9 @@
 
   <body class="overflow-x-hidden font-sans antialiased">
     {% comment %} popup container {% endcomment %}
-    {%- if settings.enable_popup == true -%}
+    {% comment %} {%- if settings.enable_popup == true -%}
       {% render 'popup-landpage' %}
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
 
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
@@ -102,8 +102,8 @@
       {% section 'mobile-navigator' %}
     </div>
 
-    {% if settings.enable_random_product_popup %}
+    {% comment %} {% if settings.enable_random_product_popup %}
       {% render 'popup-random-product' %}
-    {% endif %}
+    {% endif %} {% endcomment %}
   </body>
 </html>
