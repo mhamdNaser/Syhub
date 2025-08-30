@@ -30,10 +30,10 @@
       >
     </noscript>
 
-    <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    {% comment %} <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
-    </noscript>
+    </noscript> {% endcomment %}
 
     {% comment %} Scripts  {% endcomment %}
     <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
