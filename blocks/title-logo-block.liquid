@@ -11,9 +11,8 @@
         alt="{{ shop.name }}"
         class="header__logo"
         width="{{ size }}"
-        height="50"
+        height="{{ size }}"
         fetchpriority="high"
-        loading="eager"
       >
     {% elsif shop.logo %}
       <img
@@ -21,9 +20,8 @@
         alt="{{ shop.name }}"
         class="header__logo"
         width="{{ size }}"
-        height="50"
+        height="{{ size }}"
         fetchpriority="high"
-        loading="eager"
       >
     {% else %}
       {{ shop.name | link_to: routes.root_url }}
