@@ -57,11 +57,11 @@
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
       {% if product.featured_image %}
-        <a href="{{ product.url | within: collection }}" class="block relative overflow-hidden {{ image_style }}">
+        <a href="{{ product.url | within: collection }}" class="block relative {{ image_style }}">
           {% render 'image',
             image: product.featured_image.src | img_url: 'medium',
             alt: product.featured_image.alt | escape,
-            class: 'w-full h-52 object-cover transition-transform duration-300 ease-in-out hover:scale-105' ,
+            class: 'w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105' ,
             loading: 'lazy'
            %} 
           {% comment %} <img
