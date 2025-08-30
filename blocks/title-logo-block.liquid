@@ -20,22 +20,22 @@
       {% endcomment %}
       {%
         render 'image',
-        src= settings.logo | image_url
-        alt= shop.name
-        class="header__logo"
-        width= size
-        height= size
-        fetchpriority="high"
+        image: settings.logo | image_url
+        alt: shop.name
+        class:"header__logo"
+        width: size
+        height: size
+        fetchpriority:"high"
       %}
     {% elsif shop.logo %}
       {%
         render 'image',
-        src= settings.logo | image_url
-        alt= shop.name
-        class="header__logo"
-        width= size
-        height= size
-        fetchpriority="high"
+        image:  settings.logo | image_url
+        alt: shop.name
+        class:"header__logo"
+        width: size
+        height: size
+        fetchpriority:"high"
       %}
       {% comment %}
         <img
