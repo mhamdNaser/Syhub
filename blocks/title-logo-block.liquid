@@ -1,12 +1,46 @@
 {% comment %}
-  Title Logo Block
-  Displays the shop logo or name in the header.
+  Preload LCP logo if exists in settings or fallback to shop.logo
 {% endcomment %}
+
+{% assign logo_url = '' %}
+
+{% if settings.logo != blank %}
+  {% assign logo_url = settings.logo | image_url %}
+{% elsif shop.logo != blank %}
+  {% assign logo_url = shop.logo | image_url %}
+{% endif %}
+
+{% if logo_url != blank %}
+  <link rel="preload" as="image" href="{{ logo_url }}" fetchpriority="high">
+{% endif %}
+
 {% assign size = settings.logo_size %}
 
 <h2 class="header__title" {{ block.shopify_attributes }}>
   {% if block.settings.logo == 'logo' %}
-    <img src="{{ settings.logo | image_url }}" alt="Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area" class="header__logo" width="{{ size }}" height="50">
+    {% if settings.logo != blank %}
+      <img
+        src="{{ settings.logo | image_url }}"
+        alt="{{ shop.name }}"
+        class="header__logo"
+        width="{{ size }}"
+        height="50"
+        fetchpriority="high"
+        decoding="async"
+      >
+    {% elsif shop.logo %}
+      <img
+        src="{{ shop.logo | image_url }}"
+        alt="{{ shop.name }}"
+        class="header__logo"
+        width="{{ size }}"
+        height="50"
+        fetchpriority="high"
+        decoding="async"
+      >
+    {% else %}
+      {{ shop.name | link_to: routes.root_url }}
+    {% endif %}
   {% elsif block.settings.logo == 'text' %}
     {{ shop.name | link_to: routes.root_url }}
   {% else %}
