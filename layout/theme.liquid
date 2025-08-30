@@ -9,19 +9,10 @@
     {%- endif -%}
 
     {% comment %} Critical CSS  {% endcomment %}
-    {% comment %} {{ 'app.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
+    {{ 'app.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'color-schema.css' | asset_url | stylesheet_tag: preload: true }}
-
-    <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
-    <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 
     {% comment %} Non-critical CSS (lazy load)  {% endcomment %}
     <link
@@ -42,14 +33,18 @@
         href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
       >
     </noscript>
-    
 
-    {% comment %}
-      <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
-      <noscript>
-        <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
-      </noscript>
-    {% endcomment %}
+    <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
+    <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
+    <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
+    <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
+    <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+    </noscript>
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
