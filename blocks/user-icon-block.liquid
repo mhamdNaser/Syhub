@@ -1,12 +1,12 @@
 <div class="header__icons" {{ block.shopify_attributes }}>
   {% if shop.customer_accounts_enabled %}
-    <a href="{{ routes.account_url }}">
+    <a href="{{ routes.account_url }}" aria-label="user">
       {%- render 'icons' , icon: 'icon-user', icon_size: '24' -%}
     </a>
     
   {% endif %}
 
-  <a href="{{ routes.cart_url }}">
+  <a href="{{ routes.cart_url }}" aria-label="cart">
     {% if cart.item_count > 0 %}
       <sup>{{ cart.item_count }}</sup>
     {% endif %}
