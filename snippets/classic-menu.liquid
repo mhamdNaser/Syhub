@@ -20,7 +20,7 @@
           {% if childlink.object.featured_image %}
             <img
               src="{{ childlink.object.featured_image | img_url: '50x50' }}"
-              alt="{{ childlink.object.title }}"
+              alt="{{ childlink.title }}_{{ childlink.id }}"
               class="w-4 h-4 object-cover rounded"
               width=""
               height=""
@@ -44,7 +44,7 @@
                 {% if grandchild.object.featured_image %}
                   <img
                     src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
-                    alt="{{ grandchild.title }}"
+                    alt="{{ grandchild.title }}_{{ grandchild.id }}"
                     class="w-4 h-4 object-cover rounded"
                     width=""
                     height=""
