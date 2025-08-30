@@ -42,7 +42,11 @@
                 </h3>
                 {% if section.settings.sub_info_type == 'description' %}
                   <p class="text-gray-600 text-xs line-clamp-2">
-                    {{ product.description | strip_html | truncate: 60 }}
+                    {% if product.description != blank %}
+                      {{ product.description | strip_html | truncate: 60 }}
+                    {% else %}
+                      no description
+                    {% endif %}
                   </p>
                 {% elsif section.settings.sub_info_type == 'vendor' %}
                   <p class="text-gray-500 text-xs">{{ product.vendor }}</p>
