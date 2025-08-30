@@ -15,6 +15,13 @@
     {{ 'color-schema.css' | asset_url | stylesheet_tag: preload: true }}
 
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
+    <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
+    <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
+    <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
+    <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 
     {% comment %} Non-critical CSS (lazy load)  {% endcomment %}
     <link
@@ -43,15 +50,6 @@
         <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
       </noscript>
     {% endcomment %}
-
-    {% comment %} Scripts  {% endcomment %}
-    <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
-    <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
