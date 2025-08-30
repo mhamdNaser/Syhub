@@ -4,7 +4,9 @@
     {% render 'image',
       image: section.settings.image | image_url: width: 1800,
       class: 'absolute inset-0 w-full h-full object-cover',
-      alt:  section.settings.hero_image.alt | escape
+      alt:  section.settings.hero_image.alt | escape,
+      width: 1400
+      height: 680
     %}
     <div class="absolute inset-0 flex items-center justify-center text-white">
       <h1 class="text-4xl font-bold">{{ section.settings.hero_heading }}</h1>
