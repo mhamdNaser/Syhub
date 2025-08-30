@@ -73,9 +73,7 @@
                 {%
                   render 'image',
                   image: section_image | file_url | replace: 'files/files/', 'files/',
-                  class: image_class,
-                  width: 640,
-                  height: 300,
+                  class: image_class | append: 'w-full',
                   crop: 'center',
                   alt: "Image description"
                 %}
