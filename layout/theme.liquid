@@ -15,17 +15,9 @@
     {{ 'color-schema.css' | asset_url | stylesheet_tag: preload: true }}
 
     {% comment %} Non-critical CSS (lazy load)  {% endcomment %}
-    <link
-      rel="stylesheet"
-      href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
-      media="print"
-      onload="this.media='all'"
-    >
+    <link rel="stylesheet" href="{{ 'model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
-      >
+      <link rel="stylesheet" href="{{ 'model-viewer-ui.css' | asset_url }}">
     </noscript>
 
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
@@ -34,7 +26,7 @@
     <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
     <script src="{{ 'shopify-money.js' | asset_url }}" defer></script>
     <script src="{{ 'stickybits.min.js' | asset_url }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
