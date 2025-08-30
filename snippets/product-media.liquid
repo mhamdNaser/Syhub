@@ -17,12 +17,13 @@
 
   {% when 'video' %}
     {{ media | video_tag: controls: true, class: 'w-[80] h-[80] md:w-[400px] md:h-[400px] object-cover' }}
-
+{{ media }}
   {% when 'model' %}
     <product-model data-media-id="{{ media.id }}">
       <div>
         <button
           id="productModelOpenButton_{{ media.id }}"
+          aria-label="{{ media. }}"
           x-on:click="productModalOpen = true"
           class="w-[400px] h-[400px] bg-gray-100 border relative"
         >
