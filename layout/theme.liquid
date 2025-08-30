@@ -8,7 +8,7 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-     {% comment %} Critical CSS  {% endcomment %}
+    {% comment %} Critical CSS  {% endcomment %}
     {{ 'app.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
@@ -16,7 +16,7 @@
 
     <script src="{{ 'alpine.min.js' | asset_url }}" defer></script>
 
-     {% comment %} Non-critical CSS (lazy load)  {% endcomment %}
+    {% comment %} Non-critical CSS (lazy load)  {% endcomment %}
     <link
       rel="stylesheet"
       href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
@@ -35,7 +35,7 @@
       <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
     </noscript>
 
-     {% comment %} Scripts  {% endcomment %}
+    {% comment %} Scripts  {% endcomment %}
     <script src="{{ 'menu-toggle-mobile.js' | asset_url }}" defer></script>
     <script src="{{ 'menu-toggle.js' | asset_url }}" defer></script>
     <script src="{{ 'mega-menu.js' | asset_url }}" defer></script>
@@ -44,6 +44,17 @@
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
+    {% assign logo_url = '' %}
+
+    {% if settings.logo != blank %}
+      {% assign logo_url = settings.logo | image_url %}
+    {% elsif shop.logo != blank %}
+      {% assign logo_url = shop.logo | image_url %}
+    {% endif %}
+
+    {% if logo_url != blank %}
+      {{ logo_url | image_tag: preload: true, fetchpriority: 'high' | image_url  }}
+    {% endif %}
     {{ content_for_header }}
   </head>
 
