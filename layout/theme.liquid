@@ -44,17 +44,6 @@
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
-    {% assign logo_url = '' %}
-
-    {% if settings.logo != blank %}
-      {% assign logo_url = settings.logo | image_url %}
-    {% elsif shop.logo != blank %}
-      {% assign logo_url = shop.logo | image_url %}
-    {% endif %}
-
-    {% if logo_url != blank %}
-      <link rel="preload" as="image" href="{{ logo_url }}" fetchpriority="high">
-    {% endif %}
     {{ content_for_header }}
   </head>
 
