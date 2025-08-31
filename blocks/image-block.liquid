@@ -5,6 +5,14 @@
   {% content_for 'block', type: 'image', id: 'image' %}
 {% enddoc %}
 
+{% liquid
+  if block.settings.image_width_full
+    assign image_width = block.settings.image_width | append: 'px'
+    else
+    assign image_width = '100%'
+  endif
+%}
+
 <div
   class="w-full flex justify-{{ block.settings.image_alignment }}"
   style="
@@ -17,10 +25,10 @@
 >
   {% if block.settings.image != blank %}
     <img
-      src="{{ block.settings.image | image_url: width: block.settings.image_width }}"
+      src="{{ block.settings.image | image_url: width: image_width }}"
       alt="{{ block.settings.alt_text | escape }}"
       style="
-        width: {{ block.settings.image_width }}px;
+        width: {{ image_width }};
         height: {{ block.settings.image_height }}px;
         object-fit: {{ block.settings.object_fit }};
       "
@@ -52,6 +60,12 @@
       "default": "Image description"
     },
     {
+      "type": "checkbox",
+      "id": "image_width_full",
+      "label": "image width full",
+      "default": false
+    },
+    {
       "type": "range",
       "id": "image_width",
       "label": "Image Width (px)",
@@ -65,7 +79,7 @@
       "id": "image_height",
       "label": "Image Height (px)",
       "min": 50,
-      "max": 1200,
+      "max": 2400,
       "step": 20,
       "default": 300
     },
