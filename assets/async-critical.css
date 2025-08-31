@@ -234,6 +234,7 @@
 .swiper-button-next::after {
   font-size: 20px !important;
   color: black;
+  font-weight: bolder;
 }
 
 .swiper-button-prev:hover::after,
