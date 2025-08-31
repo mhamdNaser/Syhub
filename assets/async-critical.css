@@ -1,6 +1,136 @@
-/** Critical CSS for the theme. This file is included on every page. */
+/*=============================
+  Color Scheme Base
+=============================*/
+.color-scheme {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
 
-/* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
+/* Headings */
+.color-scheme h1,
+.color-scheme h2,
+.color-scheme h3,
+.color-scheme h4,
+.color-scheme h5,
+.color-scheme h6 {
+  color: var(--color-foreground-heading);
+}
+
+/* Links and Icons */
+.color-scheme a {
+  color: var(--color-links);
+}
+.color-scheme a:hover {
+  color: var(--color-primary);
+}
+.color-scheme svg {
+  fill: var(--color-icons);
+}
+
+/*=============================
+  Buttons
+=============================*/
+/* Primary Button */
+.color-scheme .btn-primary {
+  color: var(--color-primary-button-text);
+  background-color: var(--color-primary-button-background);
+  border: 1px solid var(--color-primary-button-border);
+  transition: all 0.2s ease;
+}
+.color-scheme .btn-primary:hover {
+  color: var(--color-primary-button-hover-text);
+  background-color: var(--color-primary-button-hover-background);
+  border-color: var(--color-primary-button-hover-border);
+}
+
+/* Secondary Button */
+.color-scheme .btn-secondary {
+  color: var(--color-secondary-button-text);
+  background-color: var(--color-secondary-button-background);
+  border: 1px solid var(--color-secondary-button-border);
+  transition: all 0.2s ease;
+}
+.color-scheme .btn-secondary:hover {
+  color: var(--color-secondary-button-hover-text);
+  background-color: var(--color-secondary-button-hover-background);
+  border-color: var(--color-secondary-button-hover-border);
+}
+
+/*=============================
+  Inputs
+=============================*/
+.color-scheme input,
+.color-scheme textarea,
+.color-scheme select {
+  background-color: var(--color-input-background);
+  color: var(--color-input-text);
+  border: 1px solid var(--color-input-border);
+  transition: all 0.2s ease;
+}
+
+.color-scheme input:hover,
+.color-scheme textarea:hover,
+.color-scheme select:hover {
+  background-color: var(--color-input-hover-background);
+}
+
+.color-scheme input:disabled,
+.color-scheme textarea:disabled,
+.color-scheme select:disabled {
+  background-color: var(--color-input-disabled-background);
+  color: var(--color-input-disabled-text);
+  border-color: var(--color-input-disabled-border);
+}
+
+/*=============================
+  Borders & Shadows
+=============================*/
+.color-scheme .bordered {
+  border-color: var(--color-border);
+}
+
+.color-scheme .shadow {
+  box-shadow: 0 4px 6px var(--color-shadow);
+}
+
+/*=============================
+  Variants
+=============================*/
+.color-scheme .variant {
+  background-color: var(--color-variant-background-color);
+  color: var(--color-variant-text-color);
+  border: 1px solid var(--color-variant-border-color);
+  transition: all 0.2s ease;
+}
+.color-scheme .variant:hover {
+  background-color: var(--color-variant-hover-background-color);
+  color: var(--color-variant-hover-text-color);
+  border-color: var(--color-variant-hover-border-color);
+}
+
+/* Selected Variant */
+.color-scheme .variant.selected {
+  background-color: var(--color-selected-variant-background-color);
+  color: var(--color-selected-variant-text-color);
+  border-color: var(--color-selected-variant-border-color);
+}
+.color-scheme .variant.selected:hover {
+  background-color: var(--color-selected-variant-hover-background-color);
+  color: var(--color-selected-variant-hover-text-color);
+  border-color: var(--color-selected-variant-hover-border-color);
+}
+
+/*=============================
+  Gradient Background
+=============================*/
+.color-scheme.gradient-background {
+  background: var(--color-background-gradient);
+}
+
+
+/*=============================
+  Scroll Bar Color
+=============================*/
 
 ::-webkit-scrollbar {
   width: 8px; 
@@ -25,3 +155,4 @@
   scrollbar-width: thin; 
   scrollbar-color: #c42764 #f0f0f0; 
 }
+
