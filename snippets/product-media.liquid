@@ -10,7 +10,7 @@
   {% when 'image' %}
     {%
       render 'image',
-      image:  media.preview_image | image_url: width: 400
+      image: media.preview_image
       alt: media.alt
       class: image_class
       width: img_width

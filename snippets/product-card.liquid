@@ -58,7 +58,7 @@
         else
           assign image_style = 'transform group-hover:scale-105 transition-transform duration-500'
         endif
-        assign product_image = product.featured_image | image_url: width: 400 , height: 400 
+        assign product_image = product.featured_image.src | image_url: width: 400 , height: 400 
       %}
 
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
