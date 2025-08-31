@@ -230,6 +230,26 @@
   cursor: pointer;
 }
 
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+  color: black;
+}
+
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover::after {
+  color: #c42764
+}
+
+.swiper-pagination {
+  color: black;
+  bottom: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: black !important;
+}
+
 /* زيادة المسافة بينهم */
 .swiper-button-next {
   right: 10px;
@@ -282,30 +302,10 @@
   cursor: pointer;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  color: black;
-  top: 50% !important;
-  height: 20px;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  font-size: 20px !important;
-}
-
-.swiper-pagination {
-  color: black;
-  bottom: 0 !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: black !important;
-}
-
 .product--information {
   height: fit-content;
 }
+
 
 
 /*=============================
@@ -361,6 +361,6 @@ header .header__icons {
         Navigator Section
 =============================*/
 .js-toggle-menu.active-submenu svg {
-    transform: rotate(180deg);
-    transition: transform 0.3s;
-  }
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
