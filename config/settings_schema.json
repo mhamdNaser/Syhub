@@ -57,7 +57,7 @@
             "label": "t:options.normal"
           },
           {
-            "value": "max-w-5xl",
+            "value": "max-w-7xl",
             "label": "t:options.wide"
           },
           {
