@@ -9,7 +9,7 @@
               <img
                 src="{{ block.settings.image | image_url }}"
                 alt="{{ block.settings.title | escape }}"
-                class="w-full h-[680px] object-contain"
+                class="w-full h-[680px] object-fill"
                 width=""
                 height=""
               >
@@ -38,7 +38,7 @@
             <img
               src="{{ block.settings.grid_image | image_url: width: 600 }}"
               alt="{{ block.settings.grid_title | escape }}"
-              class="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-64 object-fill group-hover:scale-105 transition-transform duration-500"
               width=""
               height=""
             >
