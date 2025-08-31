@@ -11,6 +11,7 @@
   "sections": {
     "section_banner_awPiYw": {
       "type": "section-banner",
+      "disabled": true,
       "name": "Image Banner",
       "settings": {
         "image": "shopify://shop_images/mother_s_day_Offers_1920_x_480_px_Website.png",
@@ -19,6 +20,128 @@
         "button_link": "",
         "button_text": "Shop Now",
         "color_scheme": "scheme-6"
+      }
+    },
+    "main_DjJMWy": {
+      "type": "main",
+      "blocks": {
+        "group_VEXmQw": {
+          "type": "group",
+          "name": "t:general.row",
+          "settings": {
+            "layout_direction": "group--horizontal",
+            "alignment_horizontal": "mx-auto",
+            "alignment": "flex-start",
+            "paddingx": 0,
+            "paddingy": 8,
+            "width_container": "w-full"
+          },
+          "blocks": {
+            "image_block_PV8pK6": {
+              "type": "image-block",
+              "name": "Custom Image Block",
+              "settings": {
+                "image": "shopify://shop_images/banner-3--750-1920.jpg",
+                "alt_text": "Image description",
+                "image_width": 1200,
+                "image_height": 300,
+                "object_fit": "cover",
+                "image_alignment": "center",
+                "max_width": 600,
+                "border_radius": 0,
+                "border_width": 0,
+                "border_style": "solid",
+                "border_color": "#000000"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_block_PV8pK6"
+          ]
+        },
+        "group_z93CUL": {
+          "type": "group",
+          "name": "t:general.row",
+          "settings": {
+            "layout_direction": "group--horizontal",
+            "alignment_horizontal": "mx-auto",
+            "alignment": "flex-start",
+            "paddingx": 0,
+            "paddingy": 0,
+            "width_container": "w-full"
+          },
+          "blocks": {
+            "image_block_6VAgbm": {
+              "type": "image-block",
+              "name": "Custom Image Block",
+              "settings": {
+                "image": "shopify://shop_images/BIGOTTI-2.png",
+                "alt_text": "Image description",
+                "image_width": 400,
+                "image_height": 300,
+                "object_fit": "fill",
+                "image_alignment": "center",
+                "max_width": 800,
+                "border_radius": 0,
+                "border_width": 0,
+                "border_style": "solid",
+                "border_color": "#000000"
+              },
+              "blocks": {}
+            },
+            "image_block_HaEtVM": {
+              "type": "image-block",
+              "name": "Custom Image Block",
+              "settings": {
+                "image": "shopify://shop_images/BIGOTTI-1_1.png",
+                "alt_text": "Image description",
+                "image_width": 400,
+                "image_height": 300,
+                "object_fit": "fill",
+                "image_alignment": "center",
+                "max_width": 800,
+                "border_radius": 0,
+                "border_width": 0,
+                "border_style": "solid",
+                "border_color": "#000000"
+              },
+              "blocks": {}
+            },
+            "image_block_eHDwjq": {
+              "type": "image-block",
+              "name": "Custom Image Block",
+              "settings": {
+                "image": "shopify://shop_images/BIGOTTI-8.png",
+                "alt_text": "Image description",
+                "image_width": 400,
+                "image_height": 300,
+                "object_fit": "fill",
+                "image_alignment": "center",
+                "max_width": 650,
+                "border_radius": 0,
+                "border_width": 0,
+                "border_style": "solid",
+                "border_color": "#000000"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_block_6VAgbm",
+            "image_block_HaEtVM",
+            "image_block_eHDwjq"
+          ]
+        }
+      },
+      "block_order": [
+        "group_VEXmQw",
+        "group_z93CUL"
+      ],
+      "name": "Main",
+      "settings": {
+        "padding_y": 10,
+        "direction_cotainer": "flex-col"
       }
     },
     "main": {
@@ -294,6 +417,7 @@
   },
   "order": [
     "section_banner_awPiYw",
+    "main_DjJMWy",
     "main",
     "section_image_text_aNPf3Q",
     "section_featured_collection_YLh4zD",
