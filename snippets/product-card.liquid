@@ -28,24 +28,6 @@
   endif
 %}
 
-<style>
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 10px;
-  }
-  .swiper-button-next::after {
-    content: '›';
-    color: black;
-    font-size: 20px;
-  }
-
-  .swiper-button-prev::after {
-    content: '‹';
-    color: black;
-    font-size: 20px;
-  }
-</style>
-
 <div class="lg:w-60 h-fit bg-white p-4 overflow-hidden">
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}

@@ -393,3 +393,11 @@ header .header__icons {
   display: flex;
   gap: 1rem;
 }
+
+/*=============================
+        Navigator Section
+=============================*/
+.js-toggle-menu.active-submenu svg {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
