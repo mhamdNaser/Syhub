@@ -239,13 +239,6 @@
   left: 10px;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  content: '‹';
-  color: black;
-  font-size: 42px;
-}
-
 /*=============================
           Search Section
 =============================*/
@@ -298,7 +291,7 @@
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 .swiper-pagination {
