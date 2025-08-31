@@ -81,7 +81,7 @@
       "name": "Slider with Grid",
       "settings": {
         "slider_height": 500,
-        "padding-vertical": 2
+        "padding-vertical": 10
       }
     },
     "section_banner_awPiYw": {
