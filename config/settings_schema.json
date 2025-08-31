@@ -49,15 +49,15 @@
         "label": "t:settings.page_width",
         "options": [
           {
-            "value": "max-w-screen",
+            "value": "max-w-5xl",
             "label": "t:options.narrow"
           },
           {
-            "value": "max-w-5xl",
+            "value": "max-w-7xl",
             "label": "t:options.normal"
           },
           {
-            "value": "max-w-7xl",
+            "value": "max-w-screen",
             "label": "t:options.wide"
           },
           {
