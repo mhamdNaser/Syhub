@@ -9,6 +9,81 @@
  */
 {
   "sections": {
+    "section_slider_with_grid_cK3qdw": {
+      "type": "section-slider-with-grid",
+      "blocks": {
+        "slide_4Dk8j4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BIGOTTI-2.png",
+            "title": "",
+            "text": ""
+          }
+        },
+        "slide_wAnxYf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BIGOTTI-9.png",
+            "title": "",
+            "text": ""
+          }
+        },
+        "slide_tdbKic": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BIGOTTI-7.png",
+            "title": "",
+            "text": ""
+          }
+        },
+        "slide_JBPtgQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BIGOTTI-6.png",
+            "title": "",
+            "text": ""
+          }
+        },
+        "grid_image_8yY8cV": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/PUPA3044.png",
+            "grid_title": "",
+            "grid_text": ""
+          }
+        },
+        "grid_image_pHmRQU": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/PUPA--009_1.png",
+            "grid_title": "",
+            "grid_text": ""
+          }
+        },
+        "grid_image_g9EeE4": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/PUPA600-4.png",
+            "grid_title": "",
+            "grid_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_4Dk8j4",
+        "slide_wAnxYf",
+        "slide_tdbKic",
+        "slide_JBPtgQ",
+        "grid_image_8yY8cV",
+        "grid_image_pHmRQU",
+        "grid_image_g9EeE4"
+      ],
+      "name": "Slider with Grid",
+      "settings": {
+        "slider_height": 500,
+        "padding-vertical": 2
+      }
+    },
     "section_banner_awPiYw": {
       "type": "section-banner",
       "name": "Image Banner",
@@ -421,6 +496,7 @@
     }
   },
   "order": [
+    "section_slider_with_grid_cK3qdw",
     "section_banner_awPiYw",
     "main_DjJMWy",
     "main",
