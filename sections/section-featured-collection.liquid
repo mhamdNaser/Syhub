@@ -40,51 +40,6 @@
   assign prev_button_class = 'swiper-prev-' | append: section.id
 %}
 
-<style>
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    border-radius: 50%;
-    z-index: 10;
-    cursor: pointer;
-  }
-
-  /* زيادة المسافة بينهم */
-  .swiper-button-next {
-    right: 10px;
-  }
-  .swiper-button-prev {
-    left: 10px;
-  }
-
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    content: '‹';
-    color: black;
-    font-size: 42px;
-  }
-</style>
-
 <div class="py-12">
   <div class="relative {{ box_width }} mx-auto px-8 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-extrabold mb-8 {{ collection_title_alignment }}" style="color: {{ title_color }};">

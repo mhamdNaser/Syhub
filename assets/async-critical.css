@@ -1,5 +1,5 @@
 /*=============================
-  Color Scheme Base
+      Color Scheme Base
 =============================*/
 .color-scheme {
   background-color: var(--color-background);
@@ -28,7 +28,7 @@
 }
 
 /*=============================
-  Buttons
+          Buttons
 =============================*/
 /* Primary Button */
 .color-scheme .btn-primary {
@@ -57,7 +57,7 @@
 }
 
 /*=============================
-  Inputs
+           Inputs
 =============================*/
 .color-scheme input,
 .color-scheme textarea,
@@ -83,7 +83,7 @@
 }
 
 /*=============================
-  Borders & Shadows
+        Borders & Shadows
 =============================*/
 .color-scheme .bordered {
   border-color: var(--color-border);
@@ -94,7 +94,7 @@
 }
 
 /*=============================
-  Variants
+            Variants
 =============================*/
 .color-scheme .variant {
   background-color: var(--color-variant-background-color);
@@ -121,7 +121,7 @@
 }
 
 /*=============================
-  Gradient Background
+      Gradient Background
 =============================*/
 .color-scheme.gradient-background {
   background: var(--color-background-gradient);
@@ -129,7 +129,7 @@
 
 
 /*=============================
-  Scroll Bar Color
+      Scroll Bar Color
 =============================*/
 
 ::-webkit-scrollbar {
@@ -156,3 +156,184 @@
   scrollbar-color: #c42764 #f0f0f0; 
 }
 
+/*=============================
+      Custom Section
+=============================*/
+
+.custom-section {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  .custom-section__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .custom-section__background img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .custom-section__content {
+    display: grid;
+    grid-template-columns: var(--content-grid);
+  }
+  .custom-section__content > * {
+    grid-column: 2;
+  }
+
+  /*=============================
+            Swiper
+=============================*/
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  /* زيادة المسافة بينهم */
+  .swiper-button-next {
+    right: 10px;
+  }
+  .swiper-button-prev {
+    left: 10px;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    content: '‹';
+    color: black;
+    font-size: 42px;
+  }
+
+  /*=============================
+          Search Section
+=============================*/
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+/* Responsive grid spacing */
+.search-results {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* Pagination styling */
+.pagination a, .pagination span {
+  cursor: pointer;
+  user-select: none;
+}
+
+/*=============================
+        Product Section
+=============================*/
+.product--medias {
+  position: sticky;
+  top: 0px;
+}
+.thumbnail-slider .swiper-slide {
+  width: fit-content;
+  height: fit-content;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.thumbnail-slider .swiper-slide:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: black;
+  top: 50% !important;
+  height: 20px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+}
+.swiper-pagination {
+  color: black;
+  bottom: 0 !important;
+}
+.swiper-pagination-bullet-active {
+  background: black !important;
+}
+.product--information {
+  height: fit-content;
+}
+
+
+/*=============================
+        Header Section
+=============================*/
+#header-group {
+    z-index: 50;
+  }
+  .announcement-bar,
+  .header {
+    transition: transform 0.3s ease;
+  }
+  .border-dashed {
+    border-style: dashed;
+  }
+  .border-solid {
+    border-style: solid;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header a {
+    position: relative;
+    text-decoration: none;
+    color: var(--color-foreground);
+  }
+  header a sup {
+    position: absolute;
+    left: 100%;
+    overflow: hidden;
+    max-width: var(--page-margin);
+  }
+  header svg {
+    width: 2rem;
+  }
+  header .header__menu,
+  header .header__icons {
+    display: flex;
+    gap: 1rem;
+  }
