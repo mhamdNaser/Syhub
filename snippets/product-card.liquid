@@ -65,7 +65,7 @@
       {% if product.featured_image %}
         <a 
           href="{{ product.url | within: collection }}" class="block relative overflow-hidden w-full h-48 {{ image_style }}"
-          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};>
+          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};">
           {% render 'image',
             image: product.featured_image.src | img_url: 'medium',
             alt: product.featured_image.alt | escape,
