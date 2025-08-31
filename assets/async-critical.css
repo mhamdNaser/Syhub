@@ -292,6 +292,13 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
   font-size: 20px !important;
+  color: gainsboro;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  font-size: 20px !important;
+  font-weight: bolder;
   color: #a81f52;
 }
 
