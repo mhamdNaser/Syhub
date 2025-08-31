@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/main_slider.webp",
-            "title": "tesset and 12",
+            "title": "",
             "text": ""
           }
         },
@@ -24,7 +24,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-9.png",
-            "title": "tesset and 485",
+            "title": "",
             "text": ""
           }
         },
@@ -32,7 +32,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-7.png",
-            "title": "tesset and 10",
+            "title": "",
             "text": ""
           }
         },
@@ -40,7 +40,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-6.png",
-            "title": "tesset and 001",
+            "title": "",
             "text": ""
           }
         },
@@ -106,16 +106,48 @@
             "collection": "hydrogen",
             "collection_image": "shopify://shop_images/BIGOTTI-8.png"
           }
+        },
+        "collection_block_9iMVez": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "hydrogen",
+            "collection_image": "shopify://shop_images/BIGOTTI-4.png"
+          }
+        },
+        "collection_block_XWGKfw": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "automated-collection",
+            "collection_image": "shopify://shop_images/PUPA603-4.png"
+          }
+        },
+        "collection_block_BG3NJr": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "automated-collection",
+            "collection_image": "shopify://shop_images/PUPA--007.png"
+          }
+        },
+        "collection_block_6wHFYt": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "frontpage",
+            "collection_image": "shopify://shop_images/BIGOTTI-5.png"
+          }
         }
       },
       "block_order": [
         "collection_block_CWdXFd",
         "collection_block_wdB6NA",
-        "collection_block_tGTcnd"
+        "collection_block_tGTcnd",
+        "collection_block_9iMVez",
+        "collection_block_XWGKfw",
+        "collection_block_BG3NJr",
+        "collection_block_6wHFYt"
       ],
       "name": "Collection Gallery",
       "settings": {
-        "title_section": ""
+        "title_section": "Shop By Collection"
       }
     },
     "vendor_gallery_agkEPT": {
@@ -125,28 +157,84 @@
           "type": "vendor_block",
           "settings": {
             "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
-            "vendor_image": "shopify://shop_images/Luliz_Logo.png"
+            "vendor_image": "shopify://shop_images/BIGOTTI-2.png"
           }
         },
         "vendor_block_pbEHr4": {
           "type": "vendor_block",
           "settings": {
             "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
-            "vendor_image": "shopify://shop_images/Syria_hub.png"
+            "vendor_image": "shopify://shop_images/BIGOTTI-1_1.png"
           }
         },
         "vendor_block_Ha84aW": {
           "type": "vendor_block",
           "settings": {
             "vendor_name": "Hydrogen Vendor",
-            "vendor_image": "shopify://shop_images/BIGOTTI-2.png"
+            "vendor_image": "shopify://shop_images/BIGOTTI-8.png"
+          }
+        },
+        "vendor_block_b6kdjA": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-9.png"
+          }
+        },
+        "vendor_block_GHpJb6": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-1.png"
+          }
+        },
+        "vendor_block_WPGWKk": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-6.png"
+          }
+        },
+        "vendor_block_7QYFQH": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-4.png"
+          }
+        },
+        "vendor_block_VCGL9e": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-5.png"
+          }
+        },
+        "vendor_block_zynfdi": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-3.png"
+          }
+        },
+        "vendor_block_VEBGPc": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "",
+            "vendor_image": "shopify://shop_images/BIGOTTI-7.png"
           }
         }
       },
       "block_order": [
         "vendor_block_YrQcT9",
         "vendor_block_pbEHr4",
-        "vendor_block_Ha84aW"
+        "vendor_block_Ha84aW",
+        "vendor_block_b6kdjA",
+        "vendor_block_GHpJb6",
+        "vendor_block_WPGWKk",
+        "vendor_block_7QYFQH",
+        "vendor_block_VCGL9e",
+        "vendor_block_zynfdi",
+        "vendor_block_VEBGPc"
       ],
       "name": "Vendor Gallery",
       "settings": {
@@ -344,6 +432,49 @@
         "direction_cotainer": "flex-col"
       }
     },
+    "section_image_text_aNPf3Q": {
+      "type": "section-image-text",
+      "name": "Image With Flexible Text",
+      "settings": {
+        "image": "shopify://shop_images/banner-3--750-1920.jpg",
+        "image_rounded": "full",
+        "image_rounded_corners": "r",
+        "image_padding": 2,
+        "image_border": "r",
+        "image_border_style": "border-dashed",
+        "image_border_color": "#360c0c",
+        "image_border_size": 2,
+        "text_position": "right",
+        "section_image_title": "Image Title",
+        "section_image_description": "Write your description here",
+        "text_alignment": "text-left",
+        "section_image_button": true,
+        "button_text": "Learn More",
+        "section_product": ""
+      }
+    },
+    "section_featured_collection_4jAaLb": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_4wmNcU": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 4,
+            "item_view_in_row_mobile": 1,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_4wmNcU"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
+    },
     "main": {
       "type": "main",
       "blocks": {
@@ -472,27 +603,6 @@
         "direction_cotainer": "flex-col"
       }
     },
-    "section_image_text_aNPf3Q": {
-      "type": "section-image-text",
-      "name": "Image With Flexible Text",
-      "settings": {
-        "image": "shopify://shop_images/banner-3--750-1920.jpg",
-        "image_rounded": "full",
-        "image_rounded_corners": "r",
-        "image_padding": 2,
-        "image_border": "r",
-        "image_border_style": "border-dashed",
-        "image_border_color": "#360c0c",
-        "image_border_size": 2,
-        "text_position": "right",
-        "section_image_title": "Image Title",
-        "section_image_description": "Write your description here",
-        "text_alignment": "text-left",
-        "section_image_button": true,
-        "button_text": "Learn More",
-        "section_product": ""
-      }
-    },
     "featured_product_group_EYFJCQ": {
       "type": "section-product-group",
       "blocks": {
@@ -528,6 +638,7 @@
     },
     "section_banner_97WCwN": {
       "type": "section-banner",
+      "disabled": true,
       "name": "Image Banner",
       "settings": {
         "image": "shopify://shop_images/SUNBLOCK-OFFER.png",
@@ -547,8 +658,9 @@
     "section_banner_awPiYw",
     "section_featured_collection_YLh4zD",
     "main_DjJMWy",
-    "main",
     "section_image_text_aNPf3Q",
+    "section_featured_collection_4jAaLb",
+    "main",
     "featured_product_group_EYFJCQ",
     "section_banner_97WCwN"
   ]
