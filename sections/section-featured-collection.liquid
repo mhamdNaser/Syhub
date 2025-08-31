@@ -56,8 +56,6 @@
 
   .swiper-button-next,
   .swiper-button-prev {
-    width: 48px;
-    height: 48px;
     color: black;
     font-size: 14px;
     border-radius: 50%;
@@ -72,15 +70,13 @@
     left: 10px;
   }
 
-  .swiper-button-next::after {
-    content: '›';
-    color: black;
-    font-size: 42px;
-  }
+  .swiper-button-next::after,
   .swiper-button-prev::after {
     content: '‹';
     color: black;
     font-size: 42px;
+    width: 48px;
+    height: 48px;
   }
 </style>
 
