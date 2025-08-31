@@ -1,16 +1,22 @@
-{% assign img_width = width | default: '400px' %}
-{% assign img_height = height | default: '400px' %}
+{% liquid
+  assign img_width = 'w-' | append: width | default: '400px'
+  assign img_height = 'h-' | append: height | default: '400px'
+  assign image_class = 'object-center m-auto ' | append: img_width | append: ' '
+  assign image_class = image_class | append: ' '
+  assign image_class = image_class | append: img_height
+%}
 
 {% case media.media_type %}
   {% when 'image' %}
-    <img
-      src="{{ media.preview_image | image_url: width: 400 }}"
-      alt="{{ media.alt }}"
-      class="w-[{{ img_width }}] h-[{{ img_height }}] object-center m-auto"
-      width="400"
-      height="400"
-      data-media-id="{{ media.id }}"
-    >
+    {%
+      render 'image',
+      image:  media.preview_image | image_url: width: 400
+      alt: media.alt
+      class: image_class
+      width: img_width
+      height: img_height
+      fetchpriority:"high"
+    %}
 
   {% when 'external_video' %}
     {{ media | external_video_tag: class: 'w-[400px] h-[400px] object-cover' }}
@@ -27,7 +33,7 @@
           class="w-[400px] h-[400px] bg-gray-100 border relative"
         >
           <span class="border bg-gray-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            {%- render 'icons' , icon: 'icon-model-viewer' %}
+            {%- render 'icons', icon: 'icon-model-viewer' %}
           </span>
           <img
             src="{{ media.preview_image | image_url: width: 800 }}"
