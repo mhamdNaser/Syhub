@@ -16,11 +16,11 @@
         <div class="flex items-center gap-x-2 flex-1">
           {% if childlink.object.featured_image %}
             <img
-              src="{{ childlink.object.featured_image | img_url: '50x50' }}"
+              src="{{ childlink.object.featured_image | img_url  }}"
               alt="{{ childlink.title }}_{{ childlink.id }}"
               class="w-4 h-4 object-cover rounded"
-              width=""
-              height=""
+              width="40"
+              height="40"
             >
           {% endif %}
           {{ childlink.title }}
@@ -41,11 +41,11 @@
               >
                 {% if grandchild.object.featured_image %}
                   <img
-                    src="{{ grandchild.object.featured_image | img_url: '50x50' }}"
+                    src="{{ grandchild.object.featured_image | img_url }}"
                     alt="{{ grandchild.title }}_{{ grandchild.id }}"
                     class="w-4 h-4 object-cover rounded"
-                    width=""
-                    height=""
+                    width="40"
+                    height="40"
                   >
                 {% endif %}
                 {{ grandchild.title }}
