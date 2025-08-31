@@ -20,6 +20,12 @@
   assign cart_drawer = settings.enable_cart_drawer
   assign add_to_cart_button = settings.show_addtocart
   assign input_field = settings.show_input_field
+  assign product_card_shadow = settings.product_card_shadow
+  if product_card_shadow
+    assign image_shadow = settings.product_image_shadow_color
+    assign shadow_value = settings.product_image_shadow_value
+    assign shadow_blur = settings.product_image_shadow_blur
+  endif
 %}
 
 <style>
@@ -57,7 +63,9 @@
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
       {% if product.featured_image %}
-        <a href="{{ product.url | within: collection }}" class="block relative overflow-hidden w-full h-48 {{ image_style }}">
+        <a 
+          href="{{ product.url | within: collection }}" class="block relative overflow-hidden w-full h-48 {{ image_style }}"
+          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};>
           {% render 'image',
             image: product.featured_image.src | img_url: 'medium',
             alt: product.featured_image.alt | escape,
