@@ -1,23 +1,65 @@
 <section class="vendor-gallery max-w-7xl mx-auto py-8 px-4">
-  <h2 class="text-2xl font-semibold mb-6">الماركات / الفيندور</h2>
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-    {% for block in section.blocks %}
-      {% assign vendor_name = block.settings.vendor_name %}
-      {% assign vendor_image = block.settings.vendor_image %}
+  <h2 class="text-2xl font-semibold mb-6">{{  section.settings.title_section }}</h2>
+  
+  <!-- Swiper Container -->
+  <div class="swiper vendorSwiper">
+    <div class="swiper-wrapper items-center">
+      {% for block in section.blocks %}
+        {% assign vendor_name = block.settings.vendor_name %}
+        {% assign vendor_image = block.settings.vendor_image %}
 
-      {% if vendor_name and vendor_image %}
-        <a href="/collections/all?vendor={{ vendor_name | url_encode }}" class="block border rounded-lg overflow-hidden shadow hover:shadow-lg transition">
-          <img src="{{ vendor_image | img_url: '400x400' }}" alt="{{ vendor_name }}" class="w-full h-auto object-cover" width="" height="">
-        </a>
-      {% endif %}
-    {% endfor %}
+        {% if vendor_name and vendor_image %}
+          <div class="swiper-slide flex justify-center">
+            <a href="/collections/all?vendor={{ vendor_name | url_encode }}" class="block group">
+              <img 
+                src="{{ vendor_image | image_url: width: 300 }}" 
+                alt="{{ vendor_name }}" 
+                class="h-20 w-auto object-contain grayscale group-hover:grayscale-0 transition"
+                width=""
+                height=""
+              >
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <div class="swiper-button-next !text-black"></div>
+    <div class="swiper-button-prev !text-black"></div>
   </div>
 </section>
+
+<!-- Swiper Init -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".vendorSwiper", {
+      slidesPerView: 2,
+      spaceBetween: 20,
+      loop: true,
+      breakpoints: {
+        640: { slidesPerView: 3 },
+        768: { slidesPerView: 4 },
+        1024: { slidesPerView: 6 }
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
   "name": "Vendor Gallery",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_section",
+      "label": "title for brands list"
+    }
+  ],
   "blocks": [
     {
       "type": "vendor_block",
@@ -36,11 +78,11 @@
       ]
     }
   ],
-  "max_blocks": 6,
+  "max_blocks": 20,
   "presets": [
     {
       "name": "Vendor Gallery",
-      "category": "Collections"
+      "category": "Images"
     }
   ]
 }
