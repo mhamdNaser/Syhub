@@ -47,7 +47,7 @@
         "grid_image_8yY8cV": {
           "type": "grid_image",
           "settings": {
-            "grid_image": "shopify://shop_images/PUPA3044.png",
+            "grid_image": "shopify://shop_images/mens_perfumes_-_Edited.webp",
             "grid_title": "tesset and",
             "grid_text": ""
           }
@@ -55,7 +55,7 @@
         "grid_image_pHmRQU": {
           "type": "grid_image",
           "settings": {
-            "grid_image": "shopify://shop_images/PUPA--009_1.png",
+            "grid_image": "shopify://shop_images/womens_perfumes_-_Edited.webp",
             "grid_title": "tesset and 01",
             "grid_text": ""
           }
@@ -63,7 +63,7 @@
         "grid_image_g9EeE4": {
           "type": "grid_image",
           "settings": {
-            "grid_image": "shopify://shop_images/PUPA600-4.png",
+            "grid_image": "shopify://shop_images/arabian_oud_-_Edited.webp",
             "grid_title": "tesset and",
             "grid_text": ""
           }
@@ -453,26 +453,9 @@
         "section_product": ""
       }
     },
-    "section_featured_collection_4jAaLb": {
-      "type": "section-featured-collection",
-      "blocks": {
-        "collection_4wmNcU": {
-          "type": "collection",
-          "settings": {
-            "section_featured_collection": "hydrogen",
-            "swiper_view": true,
-            "item_view_in_section": 12,
-            "item_view_in_row": 4,
-            "item_view_in_row_mobile": 1,
-            "show_pagination_row": false,
-            "collection_url": true
-          }
-        }
-      },
-      "block_order": [
-        "collection_4wmNcU"
-      ],
-      "name": "Featured Collection",
+    "recently_viewed_7JhLf8": {
+      "type": "recently-viewed",
+      "name": "Recently Viewed",
       "settings": {}
     },
     "main": {
@@ -638,16 +621,37 @@
     },
     "section_banner_97WCwN": {
       "type": "section-banner",
-      "disabled": true,
       "name": "Image Banner",
       "settings": {
-        "image": "shopify://shop_images/SUNBLOCK-OFFER.png",
+        "image": "shopify://shop_images/Banner-01_1-min.webp",
         "heading": "Welcome to Our Store",
         "subheading": "Discover our collection of amazing products.",
         "button_link": "",
         "button_text": "Shop Now",
         "color_scheme": "scheme-6"
       }
+    },
+    "section_featured_collection_4jAaLb": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_4wmNcU": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 4,
+            "item_view_in_row_mobile": 1,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_4wmNcU"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
     }
   },
   "order": [
@@ -659,9 +663,10 @@
     "section_featured_collection_YLh4zD",
     "main_DjJMWy",
     "section_image_text_aNPf3Q",
-    "section_featured_collection_4jAaLb",
+    "recently_viewed_7JhLf8",
     "main",
     "featured_product_group_EYFJCQ",
-    "section_banner_97WCwN"
+    "section_banner_97WCwN",
+    "section_featured_collection_4jAaLb"
   ]
 }
