@@ -96,6 +96,36 @@
         "color_scheme": "scheme-6"
       }
     },
+    "section_featured_collection_YLh4zD": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_N8JMpy": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "automated-collection",
+            "swiper_view": true,
+            "item_view_in_section": 9,
+            "item_view_in_row": 4,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": true,
+            "collection_url": true
+          }
+        },
+        "collection_link_MqREVV": {
+          "type": "collection_link",
+          "settings": {
+            "collection_url_button": true,
+            "link_alignment": "text-center"
+          }
+        }
+      },
+      "block_order": [
+        "collection_N8JMpy",
+        "collection_link_MqREVV"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
+    },
     "main_DjJMWy": {
       "type": "main",
       "blocks": {
@@ -351,6 +381,33 @@
         "direction_cotainer": "flex-col"
       }
     },
+    "vendor_gallery_agkEPT": {
+      "type": "vendor-gallery",
+      "blocks": {
+        "vendor_block_YrQcT9": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
+            "vendor_image": "shopify://shop_images/Luliz_Logo.png"
+          }
+        },
+        "vendor_block_pbEHr4": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
+            "vendor_image": "shopify://shop_images/Syria_hub.png"
+          }
+        }
+      },
+      "block_order": [
+        "vendor_block_YrQcT9",
+        "vendor_block_pbEHr4"
+      ],
+      "name": "Vendor Gallery",
+      "settings": {
+        "title_section": ""
+      }
+    },
     "section_image_text_aNPf3Q": {
       "type": "section-image-text",
       "name": "Image With Flexible Text",
@@ -372,36 +429,6 @@
         "section_product": ""
       }
     },
-    "section_featured_collection_YLh4zD": {
-      "type": "section-featured-collection",
-      "blocks": {
-        "collection_N8JMpy": {
-          "type": "collection",
-          "settings": {
-            "section_featured_collection": "automated-collection",
-            "swiper_view": true,
-            "item_view_in_section": 9,
-            "item_view_in_row": 6,
-            "item_view_in_row_mobile": 2,
-            "show_pagination_row": true,
-            "collection_url": true
-          }
-        },
-        "collection_link_MqREVV": {
-          "type": "collection_link",
-          "settings": {
-            "collection_url_button": true,
-            "link_alignment": "text-center"
-          }
-        }
-      },
-      "block_order": [
-        "collection_N8JMpy",
-        "collection_link_MqREVV"
-      ],
-      "name": "Featured Collection",
-      "settings": {}
-    },
     "section_featured_collection_fAkYP3": {
       "type": "section-featured-collection",
       "blocks": {
@@ -411,7 +438,7 @@
             "section_featured_collection": "automated-collection",
             "swiper_view": true,
             "item_view_in_section": 9,
-            "item_view_in_row": 5,
+            "item_view_in_row": 4,
             "item_view_in_row_mobile": 1,
             "show_pagination_row": true,
             "collection_url": true
@@ -468,43 +495,18 @@
         "button_text": "Shop Now",
         "color_scheme": "scheme-6"
       }
-    },
-    "vendor_gallery_agkEPT": {
-      "type": "vendor-gallery",
-      "blocks": {
-        "vendor_block_YrQcT9": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
-            "vendor_image": "shopify://shop_images/Luliz_Logo.png"
-          }
-        },
-        "vendor_block_pbEHr4": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
-            "vendor_image": "shopify://shop_images/Syria_hub.png"
-          }
-        }
-      },
-      "block_order": [
-        "vendor_block_YrQcT9",
-        "vendor_block_pbEHr4"
-      ],
-      "name": "Vendor Gallery",
-      "settings": {}
     }
   },
   "order": [
     "section_slider_with_grid_cK3qdw",
+    "vendor_gallery_agkEPT",
+    "section_featured_collection_fAkYP3",
     "section_banner_awPiYw",
+    "section_featured_collection_YLh4zD",
     "main_DjJMWy",
     "main",
     "section_image_text_aNPf3Q",
-    "section_featured_collection_YLh4zD",
-    "section_featured_collection_fAkYP3",
     "featured_product_group_EYFJCQ",
-    "section_banner_97WCwN",
-    "vendor_gallery_agkEPT"
+    "section_banner_97WCwN"
   ]
 }
