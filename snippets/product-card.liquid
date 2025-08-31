@@ -46,21 +46,13 @@
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
       {% if product.featured_image %}
-<<<<<<< HEAD
-        <a href="{{ product.url | within: collection }}" class="block relative w-full h-48 overflow-hidden {{ image_style }}">
-=======
         <a 
           href="{{ product.url | within: collection }}" class="block relative overflow-hidden w-full h-48 {{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};">
->>>>>>> 5a27347a7a85e759e2e6394049638cb64bc2c939
           {% render 'image',
             image:  product_image ,
             alt: product.featured_image.alt | escape,
-<<<<<<< HEAD
-            class: 'w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105' ,
-=======
             class: 'w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105',
->>>>>>> 5a27347a7a85e759e2e6394049638cb64bc2c939
             loading: 'lazy'
            %} 
           {% if sale_label and product.price < product.compare_at_price %}
