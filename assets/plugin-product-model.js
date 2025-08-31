@@ -1,0 +1,37 @@
+class ProductModel extends HTMLElement {
+    constructor() {
+        super();
+        this.openModelModal();
+    }
+
+    openModelModal() {
+        const mediaID = this.getAttribute('data-media-id');
+        const modal = document.getElementById("productModelModal");
+        if (!mediaID || !modal) return;
+
+        const openModalButton = this.querySelector(`button[id="productModelOpenButton_${mediaID}"]`);
+        if (!openModalButton) return;
+
+        openModalButton.addEventListener('click', (e) => {
+            modal.querySelector("#body").innerHTML = "";
+
+            const template = document.querySelector(`product-model[data-media-id="${mediaID}"] > template`);
+            const clone = template.content.cloneNode(true);
+            modal.querySelector("#body").appendChild(clone);
+
+            const modelViewer = modal.querySelector("#body > model-viewer");
+            modelViewer.setAttribute("reveal", "auto");
+
+            Shopify.loadFeatures([{
+                name: 'model-viewer-ui',
+                version: '1.0',
+                onLoad: (errors) => {
+                    if(errors) return;
+                    this.modelViewerUI = new Shopify.ModelViewerUI(modelViewer);
+                }
+            }]);
+        });
+    }
+}
+
+customElements.define('product-model', ProductModel);
