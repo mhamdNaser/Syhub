@@ -285,6 +285,23 @@
               "label": "None"
             }
           }
+        },
+        "product_card_shadow":{
+          "header": "Shadow Setting",
+          "label": "image product Card Shadow",
+          "info": "to show or hidden shadow for image"
+        },
+        "product_image_shadow_color":{
+          "label": "shadow color",
+          "info": "shadow color"
+        },
+        "product_image_shadow_value":{
+          "label": "shadow value",
+          "info": "shadow value"
+        },
+        "product_image_shadow_blur":{
+          "label": "shadow blur",
+          "info": "shadow blur"
         }
       }
     },

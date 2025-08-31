@@ -78,27 +78,6 @@
   {% endif %}
 {% endif %}
 
-{% stylesheet %}
-  /* Line clamp for excerpt text */
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-  }
-  
-  /* Responsive grid spacing */
-  .search-results {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-
-  /* Pagination styling */
-  .pagination a, .pagination span {
-    cursor: pointer;
-    user-select: none;
-  }
-{% endstylesheet %}
-
 {% schema %}
 {
   "name": "t:general.search",

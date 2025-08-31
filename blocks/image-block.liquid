@@ -5,6 +5,10 @@
   {% content_for 'block', type: 'image', id: 'image' %}
 {% enddoc %}
 
+{% liquid
+  
+%}
+
 <div
   class="w-full flex justify-{{ block.settings.image_alignment }}"
   style="
@@ -55,19 +59,19 @@
       "type": "range",
       "id": "image_width",
       "label": "Image Width (px)",
-      "min": 50,
-      "max": 1200,
-      "step": 50,
+      "min": 100,
+      "max": 2400,
+      "step": 20,
       "default": 400
     },
     {
       "type": "range",
       "id": "image_height",
       "label": "Image Height (px)",
-      "min": 50,
-      "max": 1200,
-      "step": 50,
-      "default": 300
+      "min": 100,
+      "max": 2400,
+      "step": 20,
+      "default": 400
     },
     {
       "type": "select",

@@ -20,25 +20,13 @@
   assign cart_drawer = settings.enable_cart_drawer
   assign add_to_cart_button = settings.show_addtocart
   assign input_field = settings.show_input_field
+  assign product_card_shadow = settings.product_card_shadow
+  if product_card_shadow
+    assign image_shadow = settings.product_image_shadow_color
+    assign shadow_value = settings.product_image_shadow_value
+    assign shadow_blur = settings.product_image_shadow_blur
+  endif
 %}
-
-<style>
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 10px;
-  }
-  .swiper-button-next::after {
-    content: '›';
-    color: black;
-    font-size: 20px;
-  }
-
-  .swiper-button-prev::after {
-    content: '‹';
-    color: black;
-    font-size: 20px;
-  }
-</style>
 
 <div class="lg:w-60 h-fit bg-white p-4 overflow-hidden">
   {% if product %}
@@ -52,26 +40,29 @@
         else
           assign image_style = 'transform group-hover:scale-105 transition-transform duration-500'
         endif
+        assign product_image = product.featured_image.src | image_url: width: 400 , height: 400 
       %}
 
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
       {% if product.featured_image %}
+<<<<<<< HEAD
         <a href="{{ product.url | within: collection }}" class="block relative w-full h-48 overflow-hidden {{ image_style }}">
+=======
+        <a 
+          href="{{ product.url | within: collection }}" class="block relative overflow-hidden w-full h-48 {{ image_style }}"
+          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};">
+>>>>>>> 5a27347a7a85e759e2e6394049638cb64bc2c939
           {% render 'image',
-            image: product.featured_image.src | img_url: 'medium',
+            image:  product_image ,
             alt: product.featured_image.alt | escape,
+<<<<<<< HEAD
             class: 'w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105' ,
+=======
+            class: 'w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105',
+>>>>>>> 5a27347a7a85e759e2e6394049638cb64bc2c939
             loading: 'lazy'
            %} 
-          {% comment %} <img
-            src="{{ product.featured_image.src | img_url: 'medium' }}"
-            alt="{{ product.featured_image.alt | escape }}"
-            class="w-full h-48 object-cover mb-4 transition-transform duration-300 ease-in-out hover:scale-105"
-            loading="lazy"
-            width=""
-            height=""
-          > {% endcomment %}
           {% if sale_label and product.price < product.compare_at_price %}
             <div class="absolute left-2 top-2">
               {% assign discount_amount = product.compare_at_price | minus: product.price %}

@@ -5,10 +5,6 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-{% stylesheet %}
-  
-{% endstylesheet %}
-
 <div class="header__menu relative w-full" {{ block.shopify_attributes }}>
   <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}

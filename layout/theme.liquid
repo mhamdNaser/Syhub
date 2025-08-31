@@ -8,13 +8,10 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-    {% comment %} Critical CSS  {% endcomment %}
     {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-critical.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'async-color-schema.css' | asset_url | stylesheet_tag: preload: true }}
 
-    {% comment %} Non-critical CSS (lazy load)  {% endcomment %}
     <link rel="stylesheet" href="{{ 'async-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript>
       <link rel="stylesheet" href="{{ 'async-model-viewer-ui.css' | asset_url }}">
@@ -40,9 +37,9 @@
 
   <body class="overflow-x-hidden font-sans antialiased">
     {% comment %} popup container {% endcomment %}
-    {% comment %} {%- if settings.enable_popup == true -%}
+    {%- if settings.enable_popup == true -%}
       {% render 'popup-landpage' %}
-    {%- endif -%} {% endcomment %}
+    {%- endif -%}
 
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
@@ -69,8 +66,8 @@
       {% section 'mobile-navigator' %}
     </div>
 
-    {% comment %} {% if settings.enable_random_product_popup %}
+    {% if settings.enable_random_product_popup %}
       {% render 'popup-random-product' %}
-    {% endif %} {% endcomment %}
+    {% endif %}
   </body>
 </html>

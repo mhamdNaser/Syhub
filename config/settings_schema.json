@@ -49,15 +49,15 @@
         "label": "t:settings.page_width",
         "options": [
           {
-            "value": "max-w-sm",
+            "value": "max-w-5xl",
             "label": "t:options.narrow"
           },
           {
-            "value": "max-w-md",
+            "value": "max-w-7xl",
             "label": "t:options.normal"
           },
           {
-            "value": "max-w-5xl",
+            "value": "w-screen",
             "label": "t:options.wide"
           },
           {
@@ -65,7 +65,7 @@
             "label": "t:options.full"
           }
         ],
-        "default": "max-w-5xl"
+        "default": "max-w-7xl"
       },
       {
         "type": "range",
@@ -598,6 +598,45 @@
             "label": "t:settings_schema.productCard.settings.style.image_hover_style.options__10.label"
           },
         ]
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.productCard.settings.product_card_shadow.header"
+      },
+      {
+        "id": "product_card_shadow",
+        "type": "checkbox",
+        "label": "t:settings_schema.productCard.settings.product_card_shadow.label",
+        "info": "t:settings_schema.productCard.settings.product_card_shadow.info",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "product_image_shadow_color",
+        "label": "t:settings_schema.productCard.settings.product_image_shadow_color.label",
+        "info": "t:settings_schema.productCard.settings.product_image_shadow_color.info"
+      },
+      {
+        "type": "range",
+        "id": "product_image_shadow_value",
+        "label": "t:settings_schema.productCard.settings.product_image_shadow_value.label",
+        "info": "t:settings_schema.productCard.settings.product_image_shadow_value.info",
+        "min": 0,
+        "max": 12,
+        "step": 2,
+        "default": 2,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "product_image_shadow_blur",
+        "label": "t:settings_schema.productCard.settings.product_image_shadow_blur.label",
+        "info": "t:settings_schema.productCard.settings.product_image_shadow_blur.info",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "default": 1,
+        "unit": "px"
       }
     ]
   },
