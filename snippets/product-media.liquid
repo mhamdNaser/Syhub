@@ -4,7 +4,7 @@
 {% case media.media_type %}
   {% when 'image' %}
     <img
-      src="{{ media.preview_image | image_url: width: 800 }}"
+      src="{{ media.preview_image | image_url: width: 400 }}"
       alt="{{ media.alt }}"
       class="w-[{{ img_width }}] h-[{{ img_height }}] object-center m-auto"
       width="400"
