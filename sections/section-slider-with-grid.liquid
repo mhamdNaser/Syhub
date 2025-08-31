@@ -7,7 +7,7 @@
           <div class="swiper-slide relative">
             {% if block.settings.image %}
               <img
-                src="{{ block.settings.image | image_url: width: 1920 }}"
+                src="{{ block.settings.image | image_url }}"
                 alt="{{ block.settings.title | escape }}"
                 class="w-full h-full object-cover"
                 width=""
