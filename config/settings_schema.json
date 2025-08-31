@@ -57,7 +57,7 @@
             "label": "t:options.normal"
           },
           {
-            "value": "max-w-screen",
+            "value": "w-screen",
             "label": "t:options.wide"
           },
           {
