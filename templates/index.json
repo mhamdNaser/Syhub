@@ -345,7 +345,7 @@
       "settings": {}
     },
     "featured_product_group_EYFJCQ": {
-      "type": "featured-product-group",
+      "type": "section-product-group",
       "blocks": {
         "product_block_KCKGWm": {
           "type": "product_block",
