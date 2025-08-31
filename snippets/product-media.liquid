@@ -1,22 +1,19 @@
 {% liquid
-  assign img_width = 'w-' | append: width | default: '400px'
-  assign img_height = 'h-' | append: height | default: '400px'
-  assign image_class = 'object-center m-auto ' | append: img_width | append: ' '
-  assign image_class = image_class | append: ' '
-  assign image_class = image_class | append: img_height
+  assign img_width = width | default: '400px'
+  assign img_height = height | default: '400px'
+  
 %}
 
 {% case media.media_type %}
   {% when 'image' %}
-    {%
-      render 'image',
-      image: media.preview_image.src
-      alt: media.alt
-      class: image_class
-      width: img_width
-      height: img_height
-      fetchpriority:"high"
-    %}
+    <img
+      src="{{ media.preview_image | image_url: width: 400 }}"
+      alt="{{ media.alt }}"
+      class="w-[{{ img_width }}] h-[{{ img_height }}] object-center m-auto"
+      width="400"
+      height="400"
+      data-media-id="{{ media.id }}"
+    >
 
   {% when 'external_video' %}
     {{ media | external_video_tag: class: 'w-[400px] h-[400px] object-cover' }}
