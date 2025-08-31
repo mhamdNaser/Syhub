@@ -1,6 +1,6 @@
 <div class="relative w-full">
   <!-- Slider -->
-  <div class="swiper mySwiper w-full h-[{{ section.settings.slider_height }}px] max-h-fit">
+  <div class="swiper mySwiper w-full h-[{{ section.settings.slider_height }}px] min-h-fit">
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
@@ -11,7 +11,7 @@
                 alt="{{ block.settings.title | escape }}"
                 class="w-full  object-cover"
                 width="600"
-                height="600"
+                height="auto"
               >
             {% endif %}
             <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-6">

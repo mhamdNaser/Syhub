@@ -646,6 +646,9 @@
   .min-h-80 {
     min-height: calc(var(--spacing) * 80);
   }
+  .min-h-fit {
+    min-height: fit-content;
+  }
   .min-h-full {
     min-height: 100%;
   }
