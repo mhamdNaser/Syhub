@@ -11,7 +11,6 @@
   "sections": {
     "section_banner_awPiYw": {
       "type": "section-banner",
-      "disabled": true,
       "name": "Image Banner",
       "settings": {
         "image": "shopify://shop_images/mother_s_day_Offers_1920_x_480_px_Website.png",
@@ -43,6 +42,7 @@
               "settings": {
                 "image": "shopify://shop_images/banner-3--750-1920.jpg",
                 "alt_text": "Image description",
+                "image_width_full": false,
                 "image_width": 1200,
                 "image_height": 400,
                 "object_fit": "cover",
@@ -78,6 +78,7 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-2.png",
                 "alt_text": "Image description",
+                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -96,6 +97,7 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-1_1.png",
                 "alt_text": "Image description",
+                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -114,6 +116,7 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-8.png",
                 "alt_text": "Image description",
+                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -138,6 +141,7 @@
         "group_VEXmQw",
         "group_z93CUL"
       ],
+      "disabled": true,
       "name": "Main",
       "settings": {
         "padding_y": 10,
@@ -177,6 +181,7 @@
                   "settings": {
                     "image": "shopify://shop_images/Luliz_Logo.png",
                     "alt_text": "Image description",
+                    "image_width_full": false,
                     "image_width": 500,
                     "image_height": 400,
                     "object_fit": "contain",

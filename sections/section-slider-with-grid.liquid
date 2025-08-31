@@ -1,0 +1,142 @@
+<div class="relative w-full">
+  <!-- Slider -->
+  <div class="swiper mySwiper w-full h-[{{ section.settings.slider_height }}px]">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' %}
+          <div class="swiper-slide relative">
+            {% if block.settings.image %}
+              <img
+                src="{{ block.settings.image | image_url: width: 1920 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="w-full h-full object-cover"
+                width=""
+                height=""
+              >
+            {% endif %}
+            <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-6">
+              <h2 class="text-3xl font-bold">{{ block.settings.title }}</h2>
+              <p class="mt-2 max-w-2xl">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Slider Controls -->
+    <div class="swiper-button-next text-white"></div>
+    <div class="swiper-button-prev text-white"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Grid (3 images) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+    {% for block in section.blocks %}
+      {% if block.type == 'grid_image' %}
+        <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+          {% if block.settings.grid_image %}
+            <img
+              src="{{ block.settings.grid_image | image_url: width: 600 }}"
+              alt="{{ block.settings.grid_title | escape }}"
+              class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+              width=""
+              height=""
+            >
+          {% endif %}
+          <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-4">
+            <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
+            <p class="mt-2">{{ block.settings.grid_text }}</p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Swiper Init -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.mySwiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Slider with Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "slider_height",
+      "label": "Slider Height (px)",
+      "default": 500,
+      "min": 300,
+      "max": 900,
+      "step": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "grid_image",
+      "name": "Grid Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "grid_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "grid_title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "grid_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Slider with Grid",
+      "category": "Images"
+    }
+  ]
+}
+{% endschema %}
