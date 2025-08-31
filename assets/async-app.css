@@ -637,6 +637,9 @@
   .max-h-\[480px\] {
     max-height: 480px;
   }
+  .max-h-fit {
+    max-height: fit-content;
+  }
   .min-h-80 {
     min-height: calc(var(--spacing) * 80);
   }
