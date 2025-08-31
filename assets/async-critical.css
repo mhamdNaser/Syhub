@@ -307,36 +307,6 @@
   height: fit-content;
 }
 
-/*=============================
-        Group Block
-=============================*/
-.group {
-  display: flex;
-  flex-wrap: nowrap;
-  /* overflow: hidden; */
-  /* width: 100% important; */
-}
-
-.group--horizontal {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--paddingy) var(--paddingx);
-  /* max-width: 100%; */
-}
-
-.group--vertical {
-  flex-direction: column;
-  align-items: var(--alignment);
-  padding: var(--paddingy) var(--paddingx);
-}
-
-@media (max-width: 768px) {
-  .group--horizontal {
-    flex-direction: column;
-    align-items: var(--alignment);
-  }
-}
 
 /*=============================
         Header Section
