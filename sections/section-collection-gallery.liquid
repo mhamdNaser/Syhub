@@ -1,0 +1,92 @@
+<section class="collection-gallery max-w-7xl mx-auto py-8 px-4">
+  <h2 class="text-2xl font-semibold mb-6">{{ section.settings.title_section }}</h2>
+  
+  <!-- Swiper Container -->
+  <div class="swiper collectionSwiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% assign collection = block.settings.collection %}
+        {% assign collection_image = block.settings.collection_image %}
+
+        {% if collection and collection_image %}
+          <div class="swiper-slide flex justify-center">
+            <a href="{{ collection.url }}" class="block group transform transition duration-300 hover:-translate-y-2">
+              <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
+                <img 
+                  src="{{ collection_image | image_url: width: 400 }}" 
+                  alt="{{ collection.title }}" 
+                  class="h-40 w-auto object-contain"
+                >
+              </div>
+              <h3 class="mt-3 text-center text-base font-medium group-hover:text-indigo-600">
+                {{ collection.title }}
+              </h3>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <div class="swiper-button-next !text-black"></div>
+    <div class="swiper-button-prev !text-black"></div>
+  </div>
+</section>
+
+<!-- Swiper Init -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".collectionSwiper", {
+      slidesPerView: 2,
+      spaceBetween: 20,
+      loop: true,
+      breakpoints: {
+        640: { slidesPerView: 3 },
+        768: { slidesPerView: 4 },
+        1024: { slidesPerView: 5 }
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_section",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Choose Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Custom Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Collection Gallery",
+      "category": "Collections"
+    }
+  ]
+}
+{% endschema %}
