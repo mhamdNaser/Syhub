@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-2.png",
-            "title": "",
+            "title": "tesset and 12",
             "text": ""
           }
         },
@@ -24,7 +24,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-9.png",
-            "title": "",
+            "title": "tesset and 485",
             "text": ""
           }
         },
@@ -32,7 +32,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-7.png",
-            "title": "",
+            "title": "tesset and 10",
             "text": ""
           }
         },
@@ -40,7 +40,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/BIGOTTI-6.png",
-            "title": "",
+            "title": "tesset and 001",
             "text": ""
           }
         },
@@ -48,7 +48,7 @@
           "type": "grid_image",
           "settings": {
             "grid_image": "shopify://shop_images/PUPA3044.png",
-            "grid_title": "",
+            "grid_title": "tesset and",
             "grid_text": ""
           }
         },
@@ -56,7 +56,7 @@
           "type": "grid_image",
           "settings": {
             "grid_image": "shopify://shop_images/PUPA--009_1.png",
-            "grid_title": "",
+            "grid_title": "tesset and 01",
             "grid_text": ""
           }
         },
@@ -64,7 +64,7 @@
           "type": "grid_image",
           "settings": {
             "grid_image": "shopify://shop_images/PUPA600-4.png",
-            "grid_title": "",
+            "grid_title": "tesset and",
             "grid_text": ""
           }
         }
@@ -83,6 +83,97 @@
         "slider_height": 500,
         "padding-vertical": 10
       }
+    },
+    "section_collection_gallery_j46pdJ": {
+      "type": "section-collection-gallery",
+      "blocks": {
+        "collection_block_CWdXFd": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "automated-collection",
+            "collection_image": "shopify://shop_images/BIGOTTI-2.png"
+          }
+        },
+        "collection_block_wdB6NA": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "collection_block_tGTcnd": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "hydrogen",
+            "collection_image": "shopify://shop_images/BIGOTTI-8.png"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_CWdXFd",
+        "collection_block_wdB6NA",
+        "collection_block_tGTcnd"
+      ],
+      "name": "Collection Gallery",
+      "settings": {
+        "title_section": ""
+      }
+    },
+    "vendor_gallery_agkEPT": {
+      "type": "vendor-gallery",
+      "blocks": {
+        "vendor_block_YrQcT9": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
+            "vendor_image": "shopify://shop_images/Luliz_Logo.png"
+          }
+        },
+        "vendor_block_pbEHr4": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
+            "vendor_image": "shopify://shop_images/Syria_hub.png"
+          }
+        },
+        "vendor_block_Ha84aW": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "Hydrogen Vendor",
+            "vendor_image": "shopify://shop_images/BIGOTTI-2.png"
+          }
+        }
+      },
+      "block_order": [
+        "vendor_block_YrQcT9",
+        "vendor_block_pbEHr4",
+        "vendor_block_Ha84aW"
+      ],
+      "name": "Vendor Gallery",
+      "settings": {
+        "title_section": "Shop By Brands"
+      }
+    },
+    "section_featured_collection_fAkYP3": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_xmbEYG": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "automated-collection",
+            "swiper_view": true,
+            "item_view_in_section": 9,
+            "item_view_in_row": 4,
+            "item_view_in_row_mobile": 1,
+            "show_pagination_row": true,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_xmbEYG"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
     },
     "section_banner_awPiYw": {
       "type": "section-banner",
@@ -381,33 +472,6 @@
         "direction_cotainer": "flex-col"
       }
     },
-    "vendor_gallery_agkEPT": {
-      "type": "vendor-gallery",
-      "blocks": {
-        "vendor_block_YrQcT9": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
-            "vendor_image": "shopify://shop_images/Luliz_Logo.png"
-          }
-        },
-        "vendor_block_pbEHr4": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
-            "vendor_image": "shopify://shop_images/Syria_hub.png"
-          }
-        }
-      },
-      "block_order": [
-        "vendor_block_YrQcT9",
-        "vendor_block_pbEHr4"
-      ],
-      "name": "Vendor Gallery",
-      "settings": {
-        "title_section": ""
-      }
-    },
     "section_image_text_aNPf3Q": {
       "type": "section-image-text",
       "name": "Image With Flexible Text",
@@ -428,28 +492,6 @@
         "button_text": "Learn More",
         "section_product": ""
       }
-    },
-    "section_featured_collection_fAkYP3": {
-      "type": "section-featured-collection",
-      "blocks": {
-        "collection_xmbEYG": {
-          "type": "collection",
-          "settings": {
-            "section_featured_collection": "automated-collection",
-            "swiper_view": true,
-            "item_view_in_section": 9,
-            "item_view_in_row": 4,
-            "item_view_in_row_mobile": 1,
-            "show_pagination_row": true,
-            "collection_url": true
-          }
-        }
-      },
-      "block_order": [
-        "collection_xmbEYG"
-      ],
-      "name": "Featured Collection",
-      "settings": {}
     },
     "featured_product_group_EYFJCQ": {
       "type": "section-product-group",
@@ -499,6 +541,7 @@
   },
   "order": [
     "section_slider_with_grid_cK3qdw",
+    "section_collection_gallery_j46pdJ",
     "vendor_gallery_agkEPT",
     "section_featured_collection_fAkYP3",
     "section_banner_awPiYw",
