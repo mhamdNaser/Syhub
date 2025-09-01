@@ -137,3 +137,193 @@
   "blocks": [{ "type": "@theme" }, { "type": "@app" }]
 }
 {% endschema %}
+
+
+
+
+{% comment %} {% assign border_class = '' %}
+
+{% if section.settings.menu_border %}
+  {% assign border_class = 'border-b' %}
+
+  {% case section.settings.menu_border_width %}
+    {% when '2' %}
+      {% assign border_class = border_class | append: ' border-b-2' %}
+    {% when '4' %}
+      {% assign border_class = border_class | append: ' border-b-4' %}
+    {% when '8' %}
+      {% assign border_class = border_class | append: ' border-b-8' %}
+  {% endcase %}
+
+  {% case section.settings.menu_border_color %}
+    {% when 'pink' %}
+      {% assign border_class = border_class | append: ' border-[#c42764]' %}
+    {% when 'gray' %}
+      {% assign border_class = border_class | append: ' border-gray-500' %}
+    {% when 'black' %}
+      {% assign border_class = border_class | append: ' border-black' %}
+  {% endcase %}
+
+  {% if section.settings.border_bottom == 'dashed' %}
+    {% assign border_class = border_class | append: ' border-dashed' %}
+  {% elsif section.settings.border_bottom == 'solid' %}
+    {% assign border_class = border_class | append: ' border-solid' %}
+  {% else %}
+    {% assign border_class = border_class | append: ' border-none' %}
+  {% endif %}
+{% endif %}
+
+<header
+  class="header w-full shadow-lg bg-white {{ border_class }}"
+>
+  <div class="flex flex-row text-sm w-2/3 mx-auto justify-between">
+    {% content_for 'blocks' %}
+  </div>
+</header>
+
+{% if section.settings.header_position == 'sticky' %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      stickybits('#header-group', { stickyBitStickyOffset: 0 });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let lastScrollTop = 0;
+      const announcementBar = document.querySelector('.announcement-bar');
+      const header = document.querySelector('.header');
+
+      if (!announcementBar || !header) return;
+
+      const barHeight = announcementBar.offsetHeight;
+
+      window.addEventListener('scroll', function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+          // نزول → إخفاء البار ورفع الهيدر
+          announcementBar.style.transform = `translateY(-${barHeight}px)`;
+          header.style.transform = `translateY(-${barHeight}px)`;
+        } else {
+          // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
+          announcementBar.style.transform = 'translateY(0)';
+          header.style.transform = 'translateY(0)';
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
+    });
+  </script>
+{% elsif section.settings.header_position == 'fixed' %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const el = document.getElementById('header-group');
+      if (el) {
+        el.style.position = 'fixed';
+        el.style.top = '0';
+        el.style.width = '100%'
+      }
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:general.header",
+  "class": "header",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "select",
+      "id": "header_position",
+      "label": "Header Position",
+      "default": "none",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "sticky",
+          "label": "Sticky"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_border",
+      "label": "Show Menu Border",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "border_bottom",
+      "label": "t:settings.header.border_bottom.name",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:settings.header.border_bottom.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:settings.header.border_bottom.solid"
+        },
+        {
+          "value": "dashed",
+          "label": "t:settings.header.border_bottom.dashed"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "menu_border_width",
+      "label": "Menu Item Border Width",
+      "options": [
+        {
+          "value": "0",
+          "label": "0"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "8",
+          "label": "8"
+        }
+      ],
+      "default": "0"
+    },
+    {
+      "type": "select",
+      "id": "menu_border_color",
+      "label": "Menu Item Border Color",
+      "options": [
+        {
+          "value": "pink",
+          "label": "pink"
+        },
+        {
+          "value": "gray",
+          "label": "Gray"
+        },
+        {
+          "value": "black",
+          "label": "Black"
+        }
+      ]
+    }
+  ],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }]
+}
+{% endschema %} {% endcomment %}
