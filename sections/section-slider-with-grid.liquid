@@ -1,6 +1,14 @@
-<div class="relative w-full py-{{ section.settings.padding-vertical }}">
+<div id="shopify-section-{{ section.id }}" class="relative w-full py-{{ section.settings.padding-vertical }}">
   <!-- Slider -->
-  <div class="swiper mySwiper w-full h-[{{ section.settings.slider_height }}px] max-h-fit">
+  <div
+    class="swiper mySwiper-{{ section.id }} w-full h-[{{ section.settings.slider_height }}px] max-h-fit"
+    data-next-btn="swiper-button-next-{{ section.id }}"
+    data-prev-btn="swiper-button-prev-{{ section.id }}"
+    data-slides-per-view="1"
+    data-slides-per-view-mobile="1"
+    data-autoplay="true"
+    data-autoplay-delay="2500"
+  >
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
@@ -24,8 +32,8 @@
     </div>
 
     <!-- Slider Controls -->
-    <div class="swiper-button-next text-white"></div>
-    <div class="swiper-button-prev text-white"></div>
+    <div class="swiper-button-next swiper-button-next-{{ section.id }} text-white"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section.id }} text-white"></div>
     <div class="swiper-pagination"></div>
   </div>
 
@@ -53,26 +61,6 @@
   </div>
 </div>
 
-<!-- Swiper Init -->
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.mySwiper', {
-      loop: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        type: "fraction",
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-  });
-</script>
 {% schema %}
 {
   "name": "Slider with Grid",
