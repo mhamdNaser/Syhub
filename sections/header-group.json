@@ -185,10 +185,19 @@
         "menu_border_width": "0",
         "menu_border_color": "pink"
       }
+    },
+    "header_top_bar_mxbrjQ": {
+      "type": "header-top-bar",
+      "name": "Header Top Bar",
+      "settings": {
+        "enable_top_bar": false,
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "announcement_bar_ab9AHh",
+    "header_top_bar_mxbrjQ",
     "header"
   ]
 }

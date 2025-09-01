@@ -7,6 +7,9 @@
 {% schema %}
 {
   "name": "Header Top Bar",
+  "tag": "section",
+  "limit": 1,
+  "max_blocks": 10,
   "settings": [
     {
       "type": "checkbox",
@@ -21,7 +24,10 @@
       "default": "scheme-1"
     }
   ],
-  "presets": [{ "name": "Header Top Bar" }]
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" }
+  ],
 }
 {% endschema %}
 
