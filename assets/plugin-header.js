@@ -1,24 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector("#header-group");
+  // جلب ال wrapper
+  const wrapper = document.querySelector("#header-group");
+  if (!wrapper) return;
+
+  // جلب الهيدر نفسه
+  const header = wrapper.querySelector(".header");
   if (!header) return;
 
-  const headerPosition = header.dataset.headerPosition;
+  const headerPosition = header.dataset.headerPosition || "normal";
 
   // ===== Fixed Mode =====
   if (headerPosition === "fixed") {
     header.style.position = "fixed";
     header.style.top = "0";
     header.style.width = "100%";
+    header.style.zIndex = "999"; // لضمان ظهوره فوق باقي العناصر
   }
 
   // ===== Sticky Mode =====
-  if (headerPosition === "sticky") {
-    // stickybits
+  else if (headerPosition === "sticky") {
     if (typeof stickybits !== "undefined") {
-      stickybits("#header-group", { stickyBitStickyOffset: 0 });
+      stickybits("#header-group .header", { stickyBitStickyOffset: 0 });
     }
 
-    // scroll hide/show
     let lastScrollTop = 0;
     const announcementBar = document.querySelector(".announcement-bar");
     const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
@@ -28,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (announcementBar) {
         if (scrollTop > lastScrollTop) {
-          // نزول → إخفاء البار ورفع الهيدر
+          // نزول → إخفاء البار والهيدر
           announcementBar.style.transform = `translateY(-${barHeight}px)`;
           header.style.transform = `translateY(-${barHeight}px)`;
         } else {
@@ -40,5 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
+  }
+
+  // ===== Normal Mode =====
+  else {
+    // لا نفعل أي شيء، الهيدر يبقى طبيعي
+    header.style.position = "relative";
   }
 });

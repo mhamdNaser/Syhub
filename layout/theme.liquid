@@ -29,6 +29,7 @@
     </noscript>
     <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
@@ -44,7 +45,6 @@
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
-      <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
     </div>
 
     <div id="mobile-header" class="block md:hidden">
