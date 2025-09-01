@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("[Header Script] Wrapper موجود");
 
   // جلب الهيدر نفسه
-  const header = wrapper.querySelector(".header");
+  const header = wrapper.querySelector("#header");
   if (!header) {
     console.error("[Header Script] عنصر الهيدر .header غير موجود داخل ال-wrapper!");
     return;
