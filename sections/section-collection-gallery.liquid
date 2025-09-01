@@ -1,8 +1,14 @@
-<section class="collection-gallery max-w-7xl mx-auto py-8 px-4">
+<section id="shopify-section-{{ section.id }}" class="collection-gallery max-w-7xl mx-auto py-8 px-4">
   <h2 class="text-2xl font-semibold mb-6">{{ section.settings.title_section }}</h2>
   
   <!-- Swiper Container -->
-  <div class="swiper collectionSwiper">
+  <div 
+    class="swiper mySwiper-{{ section.id }}" 
+    data-next-btn="swiper-button-next-{{ section.id }}" 
+    data-prev-btn="swiper-button-prev-{{ section.id }}"
+    data-slides-per-view="5"
+    data-slides-per-view-mobile="2"
+  >
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% assign collection = block.settings.collection %}
@@ -30,30 +36,11 @@
     </div>
 
     <!-- Controls -->
-    <div class="swiper-button-next !text-black"></div>
-    <div class="swiper-button-prev !text-black"></div>
+    <div class="swiper-button-next swiper-button-next-{{ section.id }} !text-black"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section.id }} !text-black"></div>
   </div>
 </section>
 
-<!-- Swiper Init -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    new Swiper(".collectionSwiper", {
-      slidesPerView: 2,
-      spaceBetween: 20,
-      loop: true,
-      breakpoints: {
-        640: { slidesPerView: 3 },
-        768: { slidesPerView: 4 },
-        1024: { slidesPerView: 5 }
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      }
-    });
-  });
-</script>
 
 {% schema %}
 {
