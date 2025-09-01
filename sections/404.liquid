@@ -20,14 +20,14 @@
 
 <div class="max-w-md">
   <div class="my-4">
-    <img
-      src="{{ image_url }}"
-      srcset="{{ image_url }} 2x"
-      alt="404 Image"
-      width="{{ section.settings.image_size }}"
-      height="{{ section.settings.image_size }}"
-      class="max-w-full h-auto mx-auto"
-    >
+    {%
+      render 'image' ,
+      image:  image_url ,
+      alt: "404 Image",
+      class: 'wmax-w-full h-auto mx-auto',
+      width: section.settings.image_size
+      loading: 'lazy'
+    %}
   </div>
   <div class="text-5xl font-bold">{{ section.settings.title }}</div>
   <div class="my-4">
