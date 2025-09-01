@@ -1,0 +1,33 @@
+{% if section.settings.enable_top_bar %}
+  <div class="header-top-bar color-{{ section.settings.color_scheme }} py-2 text-center text-sm">
+    {% content_for 'blocks' %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Header Top Bar",
+  "tag": "section",
+  "limit": 1,
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_top_bar",
+      "label": "Enable Top Bar",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" }
+  ],
+}
+{% endschema %}
+

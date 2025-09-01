@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   const wrapper = document.querySelector("#header-group");
   const header = wrapper.querySelector(".header");
   const headerPosition = header.dataset.headerPosition;
@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let lastScrollTop = 0;
     const announcementBar = document.querySelector(".announcement-bar");
+    const headertopBar = document.querySelector(".header-top-bar");
     const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
+    const topbarHeight = headertopBar ? headertopBar.offsetHeight : 0;
 
     window.addEventListener("scroll", () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -33,6 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
           announcementBar.style.transform = "translateY(0)";
+          header.style.transform = "translateY(0)";
+        }
+      }
+
+      if (headertopBar) {
+        if (scrollTop > lastScrollTop) {
+          // نزول → إخفاء البار والهيدر
+          headertopBar.style.transform = `translateY(-${topbarHeight}px)`;
+          header.style.transform = `translateY(-${topbarHeight}px)`;
+        } else {
+          // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
+          headertopBar.style.transform = "translateY(0)";
           header.style.transform = "translateY(0)";
         }
       }
