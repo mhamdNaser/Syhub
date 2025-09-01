@@ -2145,6 +2145,11 @@
       height: 600px;
     }
   }
+  .md\:max-h-fit {
+    @media (width >= 48rem) {
+      max-height: fit-content;
+    }
+  }
   .md\:w-1\/2 {
     @media (width >= 48rem) {
       width: calc(1/2 * 100%);
