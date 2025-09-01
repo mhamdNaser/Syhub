@@ -9,10 +9,10 @@
     data-autoplay="true"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper max-h-fit">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide relative">
+          <div class="swiper-slide relative max-h-fit">
             {% if block.settings.image %}
               <img
                 src="{{ block.settings.image | image_url }}"
