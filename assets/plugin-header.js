@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   else if (headerPosition === "sticky") {
     // إذا مكتبة stickybits موجودة
     if (typeof stickybits !== "undefined") {
-      stickybits("#header-group .header", { stickyBitStickyOffset: 0 });
+      stickybits("#header-group", { stickyBitStickyOffset: 0 });
     } else {
       // تفعيل Sticky يدوي
       let lastScrollTop = 0;
