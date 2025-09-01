@@ -12,12 +12,12 @@
     <div class="swiper-wrapper max-h-fit">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide relative max-h-fit">
+          <div class="swiper-slide relative h-[360px] md:h-[600px]">
             {% if block.settings.image %}
               <img
                 src="{{ block.settings.image | image_url }}"
                 alt="{{ block.settings.title | escape }}"
-                class="w-full h-[360px] md:h-[600px] object-contain"
+                class="w-full object-contain"
                 width=""
                 height=""
               >
