@@ -1,38 +1,38 @@
-{% assign border_class = '' %}
+{% liquid
+  assign border_class = ''
+  if section.settings.menu_border
+    assign border_class = 'border-b'
+    case section.settings.menu_border_width
+      when '2'
+        assign border_class = border_class | append: ' border-b-2'
+      when '4'
+        assign border_class = border_class | append: ' border-b-4'
+      when '8'
+        assign border_class = border_class | append: ' border-b-8'
+    endcase
 
-{% if section.settings.menu_border %}
-  {% assign border_class = 'border-b' %}
-
-  {% case section.settings.menu_border_width %}
-    {% when '2' %}
-      {% assign border_class = border_class | append: ' border-b-2' %}
-    {% when '4' %}
-      {% assign border_class = border_class | append: ' border-b-4' %}
-    {% when '8' %}
-      {% assign border_class = border_class | append: ' border-b-8' %}
-  {% endcase %}
-
-  {% case section.settings.menu_border_color %}
-    {% when 'pink' %}
-      {% assign border_class = border_class | append: ' border-[#c42764]' %}
-    {% when 'gray' %}
-      {% assign border_class = border_class | append: ' border-gray-500' %}
-    {% when 'black' %}
-      {% assign border_class = border_class | append: ' border-black' %}
-  {% endcase %}
-
-  {% if section.settings.border_bottom == 'dashed' %}
-    {% assign border_class = border_class | append: ' border-dashed' %}
-  {% elsif section.settings.border_bottom == 'solid' %}
-    {% assign border_class = border_class | append: ' border-solid' %}
-  {% else %}
-    {% assign border_class = border_class | append: ' border-none' %}
-  {% endif %}
-{% endif %}
+    case section.settings.menu_border_color
+      when 'pink'
+        assign border_class = border_class | append: ' border-[#c42764]'
+      when 'gray'
+        assign border_class = border_class | append: ' border-gray-500'
+      when 'black'
+        assign border_class = border_class | append: ' border-black'
+    endcase
+    if section.settings.border_bottom == 'dashed'
+      assign border_class = border_class | append: ' border-dashed'
+    elsif section.settings.border_bottom == 'solid'
+      assign border_class = border_class | append: ' border-solid'
+    else
+      assign border_class = border_class | append: ' border-none'
+    endif
+  endif
+  assign header_position = section.settings.header_position
+%}
 
 <header
   class="header w-full shadow-lg bg-white {{ border_class }}"
-  data-header-position="{{ section.settings.header_position }}"
+  data-header-position="{{ header_position }}"
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between">
     {% content_for 'blocks' %}
