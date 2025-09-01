@@ -44,6 +44,7 @@
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
+      <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
     </div>
 
     <div id="mobile-header" class="block md:hidden">
