@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (headertopBar) {
         if (scrollTop > lastScrollTop) {
           // نزول → إخفاء البار والهيدر
-          headertopBar.style.transform = `translateY(-${topbarHeight}px)`;
-          header.style.transform = `translateY(-${topbarHeight}px)`;
+          headertopBar.style.transform = `translateY(-${topbarHeight + barHeight}px)`;
+          header.style.transform = `translateY(-${topbarHeight + barHeight}px)`;
         } else {
           // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
           headertopBar.style.transform = "translateY(0)";
