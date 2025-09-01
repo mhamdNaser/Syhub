@@ -1,8 +1,14 @@
-<section class="vendor-gallery max-w-7xl mx-auto py-8 px-4">
-  <h2 class="text-2xl font-semibold mb-6">{{  section.settings.title_section }}</h2>
+<section id="shopify-section-{{ section.id }}" class="vendor-gallery max-w-7xl mx-auto py-8 px-4">
+  <h2 class="text-2xl font-semibold mb-6">{{ section.settings.title_section }}</h2>
   
   <!-- Swiper Container -->
-  <div class="swiper vendorSwiper">
+  <div 
+    class="swiper mySwiper-{{ section.id }}" 
+    data-next-btn="swiper-button-next-{{ section.id }}" 
+    data-prev-btn="swiper-button-prev-{{ section.id }}"
+    data-slides-per-view="8"
+    data-slides-per-view-mobile="2"
+  >
     <div class="swiper-wrapper items-center">
       {% for block in section.blocks %}
         {% assign vendor_name = block.settings.vendor_name %}
@@ -25,30 +31,11 @@
     </div>
 
     <!-- Controls -->
-    <div class="swiper-button-next !text-black"></div>
-    <div class="swiper-button-prev !text-black"></div>
+    <div class="swiper-button-next swiper-button-next-{{ section.id }} !text-black"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section.id }} !text-black"></div>
   </div>
 </section>
 
-<!-- Swiper Init -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    new Swiper(".vendorSwiper", {
-      slidesPerView: 2,
-      spaceBetween: 20,
-      loop: true,
-      breakpoints: {
-        640: { slidesPerView: 4 },
-        768: { slidesPerView: 6 },
-        1024: { slidesPerView: 8 }
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      }
-    });
-  });
-</script>
 
 {% schema %}
 {

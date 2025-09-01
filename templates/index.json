@@ -151,7 +151,7 @@
       }
     },
     "vendor_gallery_agkEPT": {
-      "type": "vendor-gallery",
+      "type": "section-vendor-gallery",
       "blocks": {
         "vendor_block_YrQcT9": {
           "type": "vendor_block",
