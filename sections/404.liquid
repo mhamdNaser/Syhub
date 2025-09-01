@@ -5,11 +5,6 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
 {% liquid
-  if section.settings.image != blank
-    assign not_found_url = section.settings.image | file_url | replace: 'files/files/', 'files/'
-  else
-    assign not_found_url = settings.logo | image_url 
-  endif
   assign button_url = section.settings.button_url
   if button_url == blank
     assign shop_url = shop.secure_url
@@ -18,7 +13,7 @@
   endif
 %}
 
-<div class="max-w-md">
+<div class="max-w-md" >
   <div class="my-4">
     {%
       render 'image' ,
@@ -80,9 +75,9 @@
       "default": "40",
       "label": "Image Size (px)",
       "options": [
-        { "value": "40", "label": "small" },
-        { "value": "60", "label": "medium" },
-        { "value": "100", "label": "large" }
+        { "value": "200", "label": "small" },
+        { "value": "400", "label": "medium" },
+        { "value": "800", "label": "large" }
       ]
     },
     {
