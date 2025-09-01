@@ -19,8 +19,8 @@
         "image_size": "100",
         "button_label": "back to home page",
         "button_url": "",
-        "button_background_class": "bg-blue-500",
-        "button_text_class": "text-white"
+        "button_background_class": "#c42764",
+        "button_text_class": "#000000"
       }
     }
   },
