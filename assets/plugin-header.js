@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   console.log("[Header Script] الهيدر موجود");
 
-  const headerPosition = header.dataset.headerPosition ;
+  const headerPosition = parseInt(header.dataset.headerPosition) ;
   console.log("[Header Script] وضع الهيدر:", headerPosition);
 
   // ===== Fixed Mode =====
