@@ -53,8 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
-
-    console.log("[Header Script] تم تفعيل Sticky Mode");
   }
 
   // ===== Normal Mode =====
