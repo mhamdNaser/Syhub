@@ -32,12 +32,58 @@
 
 <header
   class="header w-full shadow-lg bg-white {{ border_class }}"
-  data-header-position="{{ section.settings.header_position }}"
 >
   <div class="flex flex-row text-sm w-2/3 mx-auto justify-between">
     {% content_for 'blocks' %}
   </div>
 </header>
+
+{% if section.settings.header_position == 'sticky' %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      stickybits('#header-group', { stickyBitStickyOffset: 0 });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let lastScrollTop = 0;
+      const announcementBar = document.querySelector('.announcement-bar');
+      const header = document.querySelector('.header');
+
+      if (!announcementBar || !header) return;
+
+      const barHeight = announcementBar.offsetHeight;
+
+      window.addEventListener('scroll', function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+          // نزول → إخفاء البار ورفع الهيدر
+          announcementBar.style.transform = `translateY(-${barHeight}px)`;
+          header.style.transform = `translateY(-${barHeight}px)`;
+        } else {
+          // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
+          announcementBar.style.transform = 'translateY(0)';
+          header.style.transform = 'translateY(0)';
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
+    });
+  </script>
+{% elsif section.settings.header_position == 'fixed' %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const el = document.getElementById('header-group');
+      if (el) {
+        el.style.position = 'fixed';
+        el.style.top = '0';
+        el.style.width = '100%'
+      }
+    });
+  </script>
+{% endif %}
 
 {% schema %}
 {
