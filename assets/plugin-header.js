@@ -1,24 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("[Header Script] DOM Loaded");
-
-  // جلب ال wrapper
+  
   const wrapper = document.querySelector("#header-group");
-  if (!wrapper) {
-    console.error("[Header Script] Wrapper #header-group غير موجود!");
-    return;
-  }
-  console.log("[Header Script] Wrapper موجود");
-
-  // جلب الهيدر نفسه
   const header = wrapper.querySelector(".header");
-  if (!header) {
-    console.error("[Header Script] عنصر الهيدر .header غير موجود داخل ال-wrapper!");
-    return;
-  }
-  console.log("[Header Script] الهيدر موجود");
-
   const headerPosition = header.dataset.headerPosition;
-  console.log("[Header Script] وضع الهيدر:", headerPosition);
 
   // ===== Fixed Mode =====
   if (headerPosition === "fixed") {
@@ -26,22 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     header.style.top = "0";
     header.style.width = "100%";
     header.style.zIndex = "999";
-    console.log("[Header Script] تم تفعيل Fixed Mode");
   }
 
   // ===== Sticky Mode =====
   else if (headerPosition === "sticky") {
     if (typeof stickybits !== "undefined") {
       stickybits("#header-group", { stickyBitStickyOffset: 0 });
-      console.log("[Header Script] Stickybits مفعّل");
-    } else {
-      console.warn("[Header Script] مكتبة stickybits غير موجودة!");
-    }
-
-    // إضافة انتقال سلس
-    header.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
-    if (announcementBar) {
-      announcementBar.style.transition = "transform 0.3s ease";
     }
 
     let lastScrollTop = 0;
@@ -56,12 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
           // نزول → إخفاء البار والهيدر
           announcementBar.style.transform = `translateY(-${barHeight}px)`;
           header.style.transform = `translateY(-${barHeight}px)`;
-          header.style.boxShadow = "none"; // إزالة الظل عند النزول
         } else {
-          // صعود → إرجاع البار والهيدر
+          // صعود → إرجاع البار والهيدر لوضعهم الطبيعي
           announcementBar.style.transform = "translateY(0)";
           header.style.transform = "translateY(0)";
-          header.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)"; // إضافة ظل خفيف
         }
       }
 
