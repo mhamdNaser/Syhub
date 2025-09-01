@@ -16,7 +16,7 @@
 
         {% if vendor_name and vendor_image %}
           <div class="swiper-slide flex justify-center">
-            <a href="/collections/vendors?q={{ vendor_name | url_encode }}" class="block group">
+            <a href="/collections/vendors?q={{ vendor_name | url_encode }}" class="block group" aria-label="{{ vendor_name }}">
               <img 
                 src="{{ vendor_image | image_url: width: 300 }}" 
                 alt="{{ vendor_name }}" 
