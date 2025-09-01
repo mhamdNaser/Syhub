@@ -37,6 +37,49 @@
         "color_scheme": "scheme-6"
       }
     },
+    "header_top_bar_mxbrjQ": {
+      "type": "header-top-bar",
+      "blocks": {
+        "social_icons_block_FVzWXQ": {
+          "type": "social-icons-block",
+          "name": "Social Icons Bar",
+          "settings": {
+            "facebook_url": "https://www.facebook.com/wjh.al.adltswt.alhq/",
+            "instagram_url": "https://www.instagram.com/n21_muhammed/"
+          },
+          "blocks": {}
+        },
+        "plain_text_block_cyWwkB": {
+          "type": "plain-text-block",
+          "name": "Plain Text Block",
+          "settings": {
+            "text": "Open Doors To A World Of Cosmetic  |  Discover More",
+            "font_size": 16,
+            "font_weight": "normal",
+            "font_style": "normal",
+            "text_alignment": "left",
+            "color_scheme": "scheme-2"
+          },
+          "blocks": {}
+        },
+        "language_currency_block_yKWrdY": {
+          "type": "language-currency-block",
+          "name": "language currency block",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "social_icons_block_FVzWXQ",
+        "plain_text_block_cyWwkB",
+        "language_currency_block_yKWrdY"
+      ],
+      "name": "Header Top Bar",
+      "settings": {
+        "enable_top_bar": true,
+        "color_scheme": ""
+      }
+    },
     "header": {
       "type": "header",
       "blocks": {
@@ -52,53 +95,6 @@
             "width_container": "w-full"
           },
           "blocks": {
-            "group_AWcwfp": {
-              "type": "group",
-              "name": "t:general.row",
-              "settings": {
-                "layout_direction": "group--horizontal",
-                "alignment_horizontal": "mx-auto",
-                "alignment": "flex-start",
-                "paddingx": 0,
-                "paddingy": 11,
-                "width_container": "w-full"
-              },
-              "blocks": {
-                "social_icons_block_iigtQg": {
-                  "type": "social-icons-block",
-                  "name": "Social Icons Bar",
-                  "settings": {
-                    "facebook_url": "https://www.facebook.com/wjh.al.adltswt.alhq/",
-                    "instagram_url": "https://www.instagram.com/n21_muhammed/"
-                  },
-                  "blocks": {}
-                },
-                "plain_text_block_djLUdd": {
-                  "type": "plain-text-block",
-                  "name": "Plain Text Block",
-                  "settings": {
-                    "text": "Open Doors To A World Of Cosmetic  |  Discover More",
-                    "font_size": 16,
-                    "font_weight": "normal",
-                    "font_style": "normal",
-                    "text_alignment": "left",
-                    "color_scheme": "scheme-2"
-                  },
-                  "blocks": {}
-                },
-                "language_currency_block_RUbKhi": {
-                  "type": "language-currency-block",
-                  "name": "language currency block",
-                  "settings": {},
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "social_icons_block_iigtQg",
-                "plain_text_block_djLUdd",
-                "language_currency_block_RUbKhi"
-              ]
-            },
             "group_Q4yAAj": {
               "type": "group",
               "name": "t:general.row",
@@ -169,7 +165,6 @@
             }
           },
           "block_order": [
-            "group_AWcwfp",
             "group_Q4yAAj",
             "group_jy8YYN"
           ]
@@ -184,14 +179,6 @@
         "border_bottom": "dashed",
         "menu_border_width": "0",
         "menu_border_color": "pink"
-      }
-    },
-    "header_top_bar_mxbrjQ": {
-      "type": "header-top-bar",
-      "name": "Header Top Bar",
-      "settings": {
-        "enable_top_bar": false,
-        "color_scheme": ""
       }
     }
   },
