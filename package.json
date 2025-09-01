@@ -1,6 +1,18 @@
 {
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.8",
-    "tailwindcss": "^4.1.8"
+    "@tailwindcss/cli": "^4.1.8"
+  },
+  "name": "syhub",
+  "description": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/app.css --watch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

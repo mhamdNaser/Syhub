@@ -8,7 +8,8 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-    {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'async-theme-tw.css' | asset_url | stylesheet_tag: preload: true }}
+    {% comment %} {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
     {{ 'async-animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-critical.css' | asset_url | stylesheet_tag: preload: true }}
 
