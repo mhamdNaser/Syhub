@@ -191,10 +191,14 @@
       },
       "heading_font_weight": {
         "label": "Heading Font Weight",
-        "options": {
-          "medium": "Medium (tailwind: font-medium)",
-          "bold": "Bold (tailwind: font-bold)",
-          "extrabold": "Extra Bold (tailwind: font-extrabold)"
+        "options__1": {
+          "label": "Medium (tailwind: font-medium)"
+        },
+        "options__2": {
+          "label": "Bold (tailwind: font-bold)"
+        },
+        "options__3": {
+          "label": "Extra Bold (tailwind: font-extrabold)"
         }
       },
       "text_transform": {
