@@ -14,13 +14,14 @@
         {% if block.type == 'slide' %}
           <div class="swiper-slide relative h-[{{ section.settings.slider_height }}px] md:h-[600px]">
             {% if block.settings.image %}
-              <img
-                src="{{ block.settings.image | image_url }}"
-                alt="{{ block.settings.title | escape }}"
-                class="w-full object-contain"
-                width=""
-                height=""
-              >
+              {%
+                render 'image',
+                image: block.settings.image | image_url,
+                width: "600"
+                class: "w-full object-contain"
+                crop: 'center',
+                alt: block.settings.title | escape
+              %}
             {% endif %}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
               <h2 class="text-3xl font-bold">{{ block.settings.title }}</h2>
@@ -43,13 +44,14 @@
       {% if block.type == 'grid_image' %}
         <div class="relative group overflow-hidden shadow-lg">
           {% if block.settings.grid_image %}
-            <img
-              src="{{ block.settings.grid_image | image_url: width: 600 }}"
-              alt="{{ block.settings.grid_title | escape }}"
-              class="w-full h-32 md:h-64 object-fill group-hover:scale-105 transition-transform duration-500"
-              width=""
-              height=""
-            >
+            {%
+              render 'image',
+              image: block.settings.grid_image | image_url,
+              width: "600"
+              class: "w-full h-32 md:h-64 object-fill group-hover:scale-105 transition-transform duration-500"
+              crop: 'center',
+              alt: block.settings.grid_title | escape
+            %}
           {% endif %}
           <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-4">
             <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
