@@ -141,7 +141,7 @@
           /* Change Color فقط مفعل، تم بالفعل أعلاه */
         {% when '2' %}
           .button:hover {
-            box-shadow: 0 8px var(--button-shadow-blur) 0 var(--button-shadow-color); 
+            box-shadow: 0 8px var(--button-shadow-blur) 0 var(--button-shadow-color);
           }
         {% when '3' %}
           .button:hover {
@@ -153,12 +153,20 @@
           }
       {% endcase %}
     </style>
+
+    <script>
+      window.addEventListener('load', function () {
+        const loader = document.getElementById('loading-overlay');
+        if (loader) {
+          loader.classList.add('hidden');
+        }
+      });
+    </script>
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased">
-
     {% render 'loading-spinner' %}
-    
+
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
