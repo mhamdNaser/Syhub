@@ -156,6 +156,9 @@
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased">
+
+    {% render 'loading-spinner' %}
+    
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
