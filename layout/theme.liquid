@@ -157,14 +157,20 @@
     <script>
       window.addEventListener('load', function () {
         const loader = document.getElementById('loading-overlay');
+        const body = document.body;
+
         if (loader) {
-          loader.classList.add('hidden');
+          loader.classList.add('hidden'); // يخفي اللودر
         }
+
+        // يُظهر المحتوى بسلاسة
+        body.style.transition = 'opacity 0.5s ease';
+        body.style.opacity = '1';
       });
     </script>
   </head>
 
-  <body class="overflow-x-hidden font-sans antialiased">
+  <body class="overflow-x-hidden font-sans antialiased opacity-0">
     {% render 'loading-spinner' %}
 
     {% # Load the header and footer sections %}
