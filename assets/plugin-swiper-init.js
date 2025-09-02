@@ -26,10 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   requestAnimationFrame(() => {
     sliders.forEach(slider => {
+
+      const slidesCount = slider.container.querySelectorAll('.swiper-slide').length;
+      const slidesToShow = Math.min(slider.slidesPerView, slidesCount);
+
       new Swiper(slider.container, {
-        slidesPerView: slider.slidesPerView,
+        slidesPerView: slidesToShow,
+        loop: slidesCount > slidesToShow,
         spaceBetween: 10,
-        loop: true,
         navigation: {
           nextEl: slider.nextBtn,
           prevEl: slider.prevBtn
