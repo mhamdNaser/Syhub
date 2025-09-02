@@ -48,6 +48,33 @@
             "text": ""
           }
         },
+        "slide_EEbJY3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-3--750-1920.jpg",
+            "show_title_description": false,
+            "title": "Slide_5",
+            "text": ""
+          }
+        },
+        "slide_dM94gB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d.jpg",
+            "show_title_description": false,
+            "title": "Slide_6",
+            "text": ""
+          }
+        },
+        "slide_nXjrwb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d_c37c0659-d227-4477-8ef1-51f1afc2bcf8.jpg",
+            "show_title_description": false,
+            "title": "Slide_7",
+            "text": ""
+          }
+        },
         "grid_image_8yY8cV": {
           "type": "grid_image",
           "settings": {
@@ -78,6 +105,9 @@
         "slide_wAnxYf",
         "slide_tdbKic",
         "slide_JBPtgQ",
+        "slide_EEbJY3",
+        "slide_dM94gB",
+        "slide_nXjrwb",
         "grid_image_8yY8cV",
         "grid_image_pHmRQU",
         "grid_image_g9EeE4"
