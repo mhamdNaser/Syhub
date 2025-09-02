@@ -7,9 +7,9 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script> {% endcomment %}
 
-    {% comment %} {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
+    {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-critical.css' | asset_url | stylesheet_tag: preload: true }}
 
@@ -153,25 +153,9 @@
           }
       {% endcase %}
     </style>
-
-    <script>
-      window.addEventListener('load', function () {
-        const loader = document.getElementById('loading-overlay');
-        const body = document.body;
-
-        if (loader) {
-          loader.classList.add('hidden'); // يخفي اللودر
-        }
-
-        // يُظهر المحتوى بسلاسة
-        body.style.transition = 'opacity 0.5s ease';
-        body.style.opacity = '1';
-      });
-    </script>
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased opacity-0">
-    {% render 'loading-spinner' %}
 
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
