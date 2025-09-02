@@ -57,6 +57,15 @@
         --line-height: {% if settings.line_height == 'relaxed' %}1.6
                        {% elsif settings.line_height == 'loose' %}2
                        {% else %}1.4{% endif %};
+        --button-text-color: {{ settings.button_text_color }};
+        --button-bg-color: {{ settings.button_background_color }};
+        --button-border-color: {{ settings.button_border_color }};
+        --button-border-width: {{ settings.button_border_width }}px;
+        --button-shadow-color: {{ settings.button_shadow_color }};
+        --button-shadow-blur: {{ settings.button_shadow_blur }}px;
+        --button-shadow-enabled: {{ settings.button_shadow_enabled | default: true }};
+        --button-text-hover-color: {{ settings.button_text_hover_color }};
+        --button-bg-hover-color: {{ settings.button_background_hover_color }};
       }
 
       /* تطبيق الإعدادات على كل النصوص في الثيم */
@@ -106,6 +115,22 @@
         letter-spacing: var(--letter-spacing);
         line-height: var(--line-height);
         text-transform: var(--text-transform);
+      }
+
+      .button {
+        color: var(--button-text-color);
+        background-color: var(--button-bg-color);
+        border: var(--button-border-width) solid var(--button-border-color);
+        box-shadow: var(--button-shadow-enabled) ? 0 4px 6px var(--button-shadow-color) : none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .button:hover {
+        color: var(--button-text-hover-color);
+        background-color: var(--button-bg-hover-color);
+        /* hover effect based on your setting */
       }
     </style>
   </head>
