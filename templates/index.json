@@ -527,9 +527,9 @@
                     "text": "Plain text block",
                     "font_size": 48,
                     "font_weight": "bold",
-                    "font_style": "italic",
+                    "font_style": "normal",
                     "text_alignment": "left",
-                    "color_scheme": "scheme-2"
+                    "color_scheme": "scheme-1"
                   },
                   "blocks": {}
                 },
@@ -552,7 +552,7 @@
                     "button_link": "",
                     "product": "test-24",
                     "collection": "",
-                    "button_bg": "#e53d7c",
+                    "button_bg": "#001128",
                     "button_text_color": "#ffffff",
                     "button_font_size": 16,
                     "button_alignment": "center",
