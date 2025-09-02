@@ -21,6 +21,7 @@
         {% if block.type == 'slide' %}
           <div class="swiper-slide relative h-[{{ section.settings.slider_height }}px] md:h-[600px]">
             {% if block.settings.image %}
+              {{ title }}
               {%
                 render 'image',
                 image: block.settings.image | image_url,
