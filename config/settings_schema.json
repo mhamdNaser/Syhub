@@ -89,6 +89,12 @@
       }
     ]
   },
+  {
+    "name": "settings_schema.typography.name",
+    "settings": [
+      
+    ]
+  },
   // layout and animations
   {
     "name": "t:settings_schema.animations.name",

@@ -53,7 +53,6 @@
     // new 
     "animations": "Animation",
     "page_layout": "Page layout",
-    "logo_and_favicon": "Logo and favicon",
     "language_currency_bar": "Language and Currency Bar",
     "announcement_bar": "Announcement Bar",
     "language_currency_block": "Language and Currency Block",
@@ -565,5 +564,5 @@
         }
       }
     }
-  },
+  }
 }
