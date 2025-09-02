@@ -15,13 +15,6 @@
     <noscript>
       <link rel="stylesheet" href="{{ 'async-model-viewer-ui.css' | asset_url }}">
     </noscript>
-
-    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
     <link
       rel="stylesheet"
       href="{{ 'async-swiper-bundle.min.css' | asset_url }}"
@@ -31,9 +24,6 @@
     <noscript>
       <link rel="stylesheet" href="{{ 'async-swiper-bundle.min.css' | asset_url }}">
     </noscript>
-    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
@@ -154,7 +144,6 @@
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased opacity-0">
-
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
@@ -189,4 +178,14 @@
       {% render 'popup-random-product' %}
     {% endif %}
   </body>
+
+  <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
 </html>
