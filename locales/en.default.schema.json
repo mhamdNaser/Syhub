@@ -520,17 +520,14 @@
         "popup_vertical_padding": {
           "label": "Vertical padding",
           "info": "Adjust the vertical padding inside the popup",
-          "default": 8
         },
         "popup_horizontal_padding": {
           "label": "Horizontal padding",
           "info": "Adjust the horizontal padding inside the popup",
-          "default": 8
         },
         "popup_element_gap": {
           "label": "Element gap",
           "info": "Space between popup elements",
-          "default": 4
         },
         "popup_text_alignment": {
           "label": "Text alignment",
