@@ -14,28 +14,7 @@
 %}
 
 <div class="max-w-md" >
-  <div class="my-4">
-    {%
-      render 'image' ,
-      image: settings.logo ,
-      alt: "404 Image",
-      class: 'mx-auto',
-      width: section.settings.image_size,
-      loading: 'lazy'
-    %}
-  </div>
-  <div class="text-5xl font-bold">{{ section.settings.title }}</div>
-  <div class="my-4">
-    <p class="text-base md:text-xl leading-normal">{{ section.settings.subtext }}</p>
-  </div>
-  <div class="my-6">
-    <a
-      href="{{ shop_url }}"
-      class="px-4 inline py-3 font-medium shadow text-[{{ section.settings.button_text_class }}] bg-[{{ section.settings.button_background_class }}]"
-    >
-      {{- section.settings.button_label -}}
-    </a>
-  </div>
+  {% content_for 'blocks' %}
 </div>
 
 {% schema %}
@@ -44,69 +23,7 @@
   "tag": "section",
   "class": "flex items-center justify-center text-center py-7",
   "settings": [
-    {
-      "type": "header",
-      "content": "Text Settings"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "default": "404",
-      "label": "404 Heading Title"
-    },
-    {
-      "type": "text",
-      "id": "subtext",
-      "default": "The page that you're looking for is not found",
-      "label": "404 Subtext Title"
-    },
-    {
-      "type": "header",
-      "content": "Image Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Upload Image"
-    },
-    {
-      "type": "select",
-      "id": "image_size",
-      "default": "200",
-      "label": "Image Size (px)",
-      "options": [
-        { "value": "200", "label": "small" },
-        { "value": "600", "label": "medium" },
-        { "value": "800", "label": "large" }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Button Settings"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "back to home page",
-      "label": "Button Label"
-    },
-    {
-      "type": "url",
-      "id": "button_url",
-      "label": "Button URL"
-    },
-    {
-      "type": "color",
-      "id": "button_background_class",
-      "label": "Button Background Color",
-      "default": "#c42764"
-    },
-    {
-      "type": "color",
-      "id": "button_text_class",
-      "label": "Button Text Color",
-      "default": "#000000"
-    }
-  ]
+  ],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }]
 }
 {% endschema %}
