@@ -117,7 +117,7 @@
         text-transform: var(--text-transform);
       }
 
-      .button {
+      button {
         color: var(--button-text-color);
         background-color: var(--button-bg-color);
         border: var(--button-border-width) solid var(--button-border-color);
@@ -127,11 +127,28 @@
         border-radius: 0.5rem;
       }
 
-      .button:hover {
+      button:hover {
         color: var(--button-text-hover-color);
         background-color: var(--button-bg-hover-color);
         /* hover effect based on your setting */
       }
+
+      {% case settings.button_hover_effect %}
+        {% when '1' %}
+          /* Change Color فقط مفعل، تم بالفعل أعلاه */
+        {% when '2' %}
+          button:hover {
+            box-shadow: 0 8px 12px var(--button-shadow-color);
+          }
+        {% when '3' %}
+          button:hover {
+            box-shadow: 0 4px 6px var(--button-shadow-color);
+          }
+        {% when '4' %}
+          button:hover {
+            box-shadow: none;
+          }
+      {% endcase %}
     </style>
   </head>
 
