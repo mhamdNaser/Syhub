@@ -14,12 +14,12 @@
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "t:settings_schema.logo_and_favicon.settings.default_logo.label"
+        "label": "t:settings_schema.logo_and_favicon.default_logo.label"
       },
       {
         "type": "range",
         "id": "logo_size",
-        "label": "t:settings_schema.logo_and_favicon.settings.logo_size.label",
+        "label": "t:settings_schema.logo_and_favicon.logo_size.label",
         "min": 20,
         "max": 300,
         "step": 10,
@@ -29,13 +29,13 @@
       {
         "type": "image_picker",
         "id": "logo_inverse",
-        "label": "t:settings_schema.logo_and_favicon.settings.inverse_logo.label",
-        "info": "t:settings_schema.logo_and_favicon.settings.inverse_logo_info.info"
+        "label": "t:settings_schema.logo_and_favicon.inverse_logo.label",
+        "info": "t:settings_schema.logo_and_favicon.inverse_logo_info.info"
       },
       {
         "type": "image_picker",
         "id": "favicon",
-        "label": "t:settings_schema.logo_and_favicon.settings.favicon.label"
+        "label": "t:settings_schema.logo_and_favicon.favicon.label"
       }
     ]
   },
