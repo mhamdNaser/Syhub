@@ -303,6 +303,65 @@
       }
     ]
   },
+  // button settigs
+  {
+    "name": "t:settings_schema.button.name",
+    "settings": [
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "t:settings_schema.button.settings.button_text_color.label",
+        "info": "t:settings_schema.button.settings.button_text_color.info",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "t:settings_schema.button.settings.button_background_color.label",
+        "info": "t:settings_schema.button.settings.button_background_color.info",
+        "default": "#1D4ED8"
+      },
+      {
+        "type": "text",
+        "id": "button_border_color",
+        "label": "t:settings_schema.button.settings.button_border_color.label",
+        "info": "t:settings_schema.button.settings.button_border_color.info",
+        "default": "1px solid #1D4ED8"
+      },
+      {
+        "type": "text",
+        "id": "button_shadow_color",
+        "label": "t:settings_schema.button.settings.button_shadow_color.label",
+        "info": "t:settings_schema.button.settings.button_shadow_color.info",
+        "default": "none"
+      },
+      {
+        "type": "select",
+        "id": "button_hover_effect",
+        "label": "t:settings_schema.button.settings.button_hover_effect.label",
+        "info": "t:settings_schema.button.settings.button_hover_effect.info",
+        "default": "scale",
+        "options": [
+          {
+            "value": "scale",
+            "label": "t:settings_schema.button.settings.hover_effect_scale"
+          },
+          {
+            "value": "opacity",
+            "label": "t:settings_schema.button.settings.hover_effect_opacity"
+          },
+          {
+            "value": "shadow",
+            "label": "t:settings_schema.button.settings.hover_effect_shadow"
+          },
+          {
+            "value": "none",
+            "label": "t:settings_schema.button.settings.hover_effect_none"
+          }
+        ]
+      }
+    ]
+  },
   // colors and color schemes
   {
     "name": "t:settings_schema.colors.name",
