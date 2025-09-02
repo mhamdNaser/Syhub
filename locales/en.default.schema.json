@@ -123,20 +123,22 @@
   "settings_schema": {
     "logo_and_favicon": {
       "name": "Logo and favicon",
-      "default_logo": {
-        "label": "Default logo"
-      },
-      "logo_size": {
-        "label": "Logo size"
-      },
-      "inverse_logo": {
-        "label": "Inverse logo"
-      },
-      "inverse_logo_info": {
-        "info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds."
-      },
-      "favicon": {
-        "label": "Favicon"
+      "settings": {
+        "default_logo": {
+          "label": "Default logo"
+        },
+        "logo_size": {
+          "label": "Logo size"
+        },
+        "inverse_logo": {
+          "label": "Inverse logo"
+        },
+        "inverse_logo_info": {
+          "info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds."
+        },
+        "favicon": {
+          "label": "Favicon"
+        }
       }
     },
     "page_layout": {
