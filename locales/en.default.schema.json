@@ -123,22 +123,20 @@
   "settings_schema": {
     "logo_and_favicon": {
       "name": "Logo and favicon",
-      "settings": {
-        "default_logo": {
-          "label": "Default logo"
-        },
-        "logo_size": {
-          "label": "Logo size"
-        },
-        "inverse_logo": {
-          "label": "Inverse logo"
-        },
-        "inverse_logo_info": {
-          "info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds."
-        },
-        "favicon": {
-          "label": "Favicon"
-        }
+      "default_logo": {
+        "label": "Default logo"
+      },
+      "logo_size": {
+        "label": "Logo size"
+      },
+      "inverse_logo": {
+        "label": "Inverse logo"
+      },
+      "inverse_logo_info": {
+        "info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds."
+      },
+      "favicon": {
+        "label": "Favicon"
       }
     },
     "page_layout": {
@@ -519,15 +517,15 @@
         },
         "popup_vertical_padding": {
           "label": "Vertical padding",
-          "info": "Adjust the vertical padding inside the popup",
+          "info": "Adjust the vertical padding inside the popup"
         },
         "popup_horizontal_padding": {
           "label": "Horizontal padding",
-          "info": "Adjust the horizontal padding inside the popup",
+          "info": "Adjust the horizontal padding inside the popup"
         },
         "popup_element_gap": {
           "label": "Element gap",
-          "info": "Space between popup elements",
+          "info": "Space between popup elements"
         },
         "popup_text_alignment": {
           "label": "Text alignment",
