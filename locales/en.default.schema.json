@@ -303,10 +303,18 @@
         "button_hover_effect": {
           "label": "Hover Effect",
           "info": "Select the effect that appears when hovering over the button.",
-          "hover_effect_color": "Change Color",
-          "hover_effect_shadow_persistent": "Persistent Shadow",
-          "hover_effect_shadow_temporary": "Temporary Shadow",
-          "hover_effect_none": "None"
+          "options__1":{
+            "label": "Change Color"
+          },
+          "options__2":{
+            "label": "Persistent Shadow"
+          },
+          "options__3":{
+            "label": "Temporary Shadow"
+          },
+          "options__4":{
+            "label": "None"
+          } 
         }
       }
     },

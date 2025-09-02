@@ -385,19 +385,19 @@
         "options": [
           {
             "value": "color",
-            "label": "t:settings_schema.button.settings.hover_effect_color"
+            "label": "t:settings_schema.button.settings.button_hover_effect.options__1.label"
           },
           {
             "value": "shadow_persistent",
-            "label": "t:settings_schema.button.settings.hover_effect_shadow_persistent"
+            "label": "t:settings_schema.button.settings.button_hover_effect.options__2.label"
           },
           {
             "value": "shadow_temporary",
-            "label": "t:settings_schema.button.settings.hover_effect_shadow_temporary"
+            "label": "t:settings_schema.button.settings.button_hover_effect.options__3.label"
           },
           {
             "value": "none",
-            "label": "t:settings_schema.button.settings.hover_effect_none"
+            "label": "t:settings_schema.button.settings.button_hover_effect.options__4.label"
           }
         ]
       }
