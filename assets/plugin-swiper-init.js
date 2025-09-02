@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = "." + swiperContainer.dataset.nextBtn;
     const prevBtn = "." + swiperContainer.dataset.prevBtn;
 
-    const slidesPerView = parseInt(swiperContainer.dataset.slidesPerView) || 2;
-    const slidesPerViewMobile = parseInt(swiperContainer.dataset.slidesPerViewMobile) || 2;
+    const slidesPerView = parseInt(swiperContainer.dataset.slidesPerView) || 1;
+    const slidesPerViewMobile = parseInt(swiperContainer.dataset.slidesPerViewMobile) || 1;
 
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
     const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 2500;
