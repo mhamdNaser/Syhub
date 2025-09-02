@@ -158,7 +158,7 @@
       }
     },
     "typography": {
-      "name": "Typography Settings",
+      "name": "Typography",
       "font_family": {
         "label": "Font Family",
         "options__1": {
