@@ -129,13 +129,21 @@
         "vendor_block_VEBGPc": {
           "type": "vendor_block",
           "settings": {
-            "vendor_name": "",
+            "vendor_name": "Quickstart (a2f667fa)",
             "vendor_image": "shopify://shop_images/BIGOTTI-7.png"
+          }
+        },
+        "vendor_block_9N9HxP": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "Hydrogen Vendor",
+            "vendor_image": "shopify://shop_images/BIGOTTI-5.png"
           }
         }
       },
       "block_order": [
-        "vendor_block_VEBGPc"
+        "vendor_block_VEBGPc",
+        "vendor_block_9N9HxP"
       ],
       "name": "Vendor Gallery",
       "settings": {
