@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const slidesPerViewMobile = parseInt(swiperContainer.dataset.slidesPerViewMobile) || 1;
 
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
-    const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 5000;
+    const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
 
     return {
       container: swiperContainer,
