@@ -16,7 +16,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/main_slider.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_1",
             "text": ""
           }
         },
@@ -24,7 +25,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/download_6.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_2",
             "text": ""
           }
         },
@@ -32,7 +34,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Banner-01_1-min.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_3",
             "text": ""
           }
         },
@@ -40,7 +43,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/download_4.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_4",
             "text": ""
           }
         },
@@ -326,7 +330,6 @@
               "settings": {
                 "image": "shopify://shop_images/banner-3--750-1920.jpg",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 1200,
                 "image_height": 400,
                 "object_fit": "cover",
@@ -362,7 +365,6 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-2.png",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -381,7 +383,6 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-1_1.png",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -400,7 +401,6 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-8.png",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -491,7 +491,6 @@
                   "settings": {
                     "image": "shopify://shop_images/Luliz_Logo.png",
                     "alt_text": "Image description",
-                    "image_width_full": false,
                     "image_width": 500,
                     "image_height": 400,
                     "object_fit": "contain",
