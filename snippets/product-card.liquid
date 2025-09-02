@@ -28,7 +28,7 @@
   endif
 %}
 
-<div class="lg:w-60 h-fit bg-white p-4 overflow-hidden">
+<div class="lg:w-60 h-fit bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}">
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       {% liquid

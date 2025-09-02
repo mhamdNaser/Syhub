@@ -4,15 +4,6 @@
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
-{% liquid
-  assign button_url = section.settings.button_url
-  if button_url == blank
-    assign shop_url = shop.secure_url
-  else
-    assign shop_url = section.settings.button_url
-  endif
-%}
-
 <div class="max-w-md" >
   {% content_for 'blocks' %}
 </div>
