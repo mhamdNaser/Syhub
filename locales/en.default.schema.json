@@ -199,11 +199,17 @@
       },
       "text_transform": {
         "label": "Text Transform",
-        "options": {
-          "none": "None",
-          "uppercase": "Uppercase (tailwind: uppercase)",
-          "capitalize": "Capitalize (tailwind: capitalize)",
-          "lowercase": "Lowercase (tailwind: lowercase)"
+        "options__1": {
+          "label": "None"
+        },
+        "options__2": {
+          "label": "Uppercase (tailwind: uppercase)"
+        },
+        "options__3": {
+          "label": "Capitalize (tailwind: capitalize)"
+        },
+        "options__4": {
+          "label": "Lowercase (tailwind: lowercase)"
         }
       },
       "letter_spacing": {
@@ -211,10 +217,14 @@
       },
       "line_height": {
         "label": "Line Height",
-        "options": {
-          "normal": "Normal (tailwind: leading-normal)",
-          "relaxed": "Relaxed (tailwind: leading-relaxed)",
-          "loose": "Loose (tailwind: leading-loose)"
+        "options__1": {
+          "label": "Normal (tailwind: leading-normal)"
+        },
+        "options__2": {
+          "label": "Relaxed (tailwind: leading-relaxed)"
+        },
+        "options__3": {
+          "label": "Loose (tailwind: leading-loose)"
         }
       }
     },

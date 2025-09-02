@@ -100,15 +100,15 @@
         "options": [
           {
             "value": "sans",
-            "label": "t:settings_schema.typography.font_family.options__1"
+            "label": "t:settings_schema.typography.font_family.options__1.label"
           },
           {
             "value": "serif",
-            "label": "t:settings_schema.typography.font_family.options__2"
+            "label": "t:settings_schema.typography.font_family.options__2.label"
           },
           {
             "value": "mono",
-            "label": "t:settings_schema.typography.font_family.options__3"
+            "label": "t:settings_schema.typography.font_family.options__3.label"
           }
         ],
         "default": "sans"
@@ -130,19 +130,19 @@
         "options": [
           {
             "value": "normal",
-            "label": "t:settings_schema.typography.font_weight.options__1"
+            "label": "t:settings_schema.typography.font_weight.options__1.label"
           },
           {
             "value": "medium",
-            "label": "t:settings_schema.typography.font_weight.options__2"
+            "label": "t:settings_schema.typography.font_weight.options__2.label"
           },
           {
             "value": "bold",
-            "label": "t:settings_schema.typography.font_weight.options__2"
+            "label": "t:settings_schema.typography.font_weight.options__2.label"
           },
           {
             "value": "extrabold",
-            "label": "t:settings_schema.typography.font_weight.options__3"
+            "label": "t:settings_schema.typography.font_weight.options__3.label"
           }
         ],
         "default": "normal"
@@ -154,15 +154,15 @@
         "options": [
           {
             "value": "medium",
-            "label": "Medium (tailwind: font-medium)"
+            "label": "t:settings_schema.typography.heading_font_weight.options__1.label"
           },
           {
             "value": "bold",
-            "label": "Bold (tailwind: font-bold)"
+            "label": "t:settings_schema.typography.heading_font_weight.options__2.label"
           },
           {
             "value": "extrabold",
-            "label": "Extra Bold (tailwind: font-extrabold)"
+            "label": "t:settings_schema.typography.heading_font_weight.options__3.label"
           }
         ],
         "default": "bold"
@@ -178,15 +178,15 @@
           },
           {
             "value": "uppercase",
-            "label": "Uppercase (tailwind: uppercase)"
+            "label": "t:settings_schema.typography.text_transform.options__1.label"
           },
           {
             "value": "capitalize",
-            "label": "Capitalize (tailwind: capitalize)"
+            "label": "t:settings_schema.typography.text_transform.options__2.label"
           },
           {
             "value": "lowercase",
-            "label": "Lowercase (tailwind: lowercase)"
+            "label": "t:settings_schema.typography.text_transform.options__3.label"
           }
         ],
         "default": "none"
@@ -208,15 +208,15 @@
         "options": [
           {
             "value": "normal",
-            "label": "Normal (tailwind: leading-normal)"
+            "label": "t:settings_schema.typography.line_height.options__1.label"
           },
           {
             "value": "relaxed",
-            "label": "Relaxed (tailwind: leading-relaxed)"
+            "label": "t:settings_schema.typography.line_height.options__2.label"
           },
           {
             "value": "loose",
-            "label": "Loose (tailwind: leading-loose)"
+            "label": "t:settings_schema.typography.line_height.options__3.label"
           }
         ],
         "default": "normal"
