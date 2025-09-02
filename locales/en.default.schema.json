@@ -157,6 +157,57 @@
         "label": "Vertical padding"
       }
     },
+    "typography": {
+      "name": "Typography Settings",
+      "font_family": {
+        "label": "Font Family",
+        "options": {
+          "sans": "Sans (tailwind: font-sans)",
+          "serif": "Serif (tailwind: font-serif)",
+          "mono": "Monospace (tailwind: font-mono)"
+        }
+      },
+      "base_font_size": {
+        "label": "Base Font Size"
+      },
+      "font_weight": {
+        "label": "Font Weight",
+        "options": {
+          "normal": "Normal (tailwind: font-normal)",
+          "medium": "Medium (tailwind: font-medium)",
+          "bold": "Bold (tailwind: font-bold)",
+          "extrabold": "Extra Bold (tailwind: font-extrabold)"
+        }
+      },
+      "heading_font_weight": {
+        "label": "Heading Font Weight",
+        "options": {
+          "medium": "Medium (tailwind: font-medium)",
+          "bold": "Bold (tailwind: font-bold)",
+          "extrabold": "Extra Bold (tailwind: font-extrabold)"
+        }
+      },
+      "text_transform": {
+        "label": "Text Transform",
+        "options": {
+          "none": "None",
+          "uppercase": "Uppercase (tailwind: uppercase)",
+          "capitalize": "Capitalize (tailwind: capitalize)",
+          "lowercase": "Lowercase (tailwind: lowercase)"
+        }
+      },
+      "letter_spacing": {
+        "label": "Letter Spacing"
+      },
+      "line_height": {
+        "label": "Line Height",
+        "options": {
+          "normal": "Normal (tailwind: leading-normal)",
+          "relaxed": "Relaxed (tailwind: leading-relaxed)",
+          "loose": "Loose (tailwind: leading-loose)"
+        }
+      }
+    },
     "animations": {
       "name": "Animations",
       "image_hover_style": {

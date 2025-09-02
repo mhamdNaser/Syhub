@@ -89,9 +89,88 @@
       }
     ]
   },
+  // typography settings
   {
     "name": "settings_schema.typography.name",
-    "settings": []
+    "settings": [
+      {
+        "type": "select",
+        "id": "font_family",
+        "label": "settings_schema.typography.font_family.label",
+        "options": [
+          { "value": "sans", "label": "Sans (tailwind: font-sans)" },
+          { "value": "serif", "label": "Serif (tailwind: font-serif)" },
+          { "value": "mono", "label": "Monospace (tailwind: font-mono)" }
+        ],
+        "default": "sans"
+      },
+      {
+        "type": "range",
+        "id": "base_font_size",
+        "label": "settings_schema.typography.base_font_size.label",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "font_weight",
+        "label": "settings_schema.typography.font_weight.label",
+        "options": [
+          { "value": "normal", "label": "Normal (tailwind: font-normal)" },
+          { "value": "medium", "label": "Medium (tailwind: font-medium)" },
+          { "value": "bold", "label": "Bold (tailwind: font-bold)" },
+          { "value": "extrabold", "label": "Extra Bold (tailwind: font-extrabold)" }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_weight",
+        "label": "settings_schema.typography.heading_font_weight.label",
+        "options": [
+          { "value": "medium", "label": "Medium (tailwind: font-medium)" },
+          { "value": "bold", "label": "Bold (tailwind: font-bold)" },
+          { "value": "extrabold", "label": "Extra Bold (tailwind: font-extrabold)" }
+        ],
+        "default": "bold"
+      },
+      {
+        "type": "select",
+        "id": "text_transform",
+        "label": "settings_schema.typography.text_transform.label",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "uppercase", "label": "Uppercase (tailwind: uppercase)" },
+          { "value": "capitalize", "label": "Capitalize (tailwind: capitalize)" },
+          { "value": "lowercase", "label": "Lowercase (tailwind: lowercase)" }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "range",
+        "id": "letter_spacing",
+        "label": "settings_schema.typography.letter_spacing.label",
+        "min": -2,
+        "max": 8,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "line_height",
+        "label": "settings_schema.typography.line_height.label",
+        "options": [
+          { "value": "normal", "label": "Normal (tailwind: leading-normal)" },
+          { "value": "relaxed", "label": "Relaxed (tailwind: leading-relaxed)" },
+          { "value": "loose", "label": "Loose (tailwind: leading-loose)" }
+        ],
+        "default": "normal"
+      }
+    ]
   },
   // layout and animations
   {
