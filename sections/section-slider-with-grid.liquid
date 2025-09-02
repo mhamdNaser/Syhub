@@ -26,7 +26,7 @@
                 image: block.settings.image | image_url,
                 width: "1280",
                 height: "{{ section.settings.slider_height }}",
-                class: "w-full h-full object-cover",
+                class: "w-full h-full",
                 crop: 'center',
                 alt: title
               %}
@@ -56,7 +56,7 @@
               {%
                 render 'image',
                 image: block.settings.grid_image | image_url,
-                class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                class: 'w-full h-full group-hover:scale-105 transition-transform duration-500',
                 alt: block.settings.grid_title | escape
               %}
             </div>
