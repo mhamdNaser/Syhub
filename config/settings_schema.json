@@ -130,19 +130,19 @@
         "options": [
           {
             "value": "normal",
-            "label": "Normal (tailwind: font-normal)"
+            "label": "t:settings_schema.typography.font_weight.options__1"
           },
           {
             "value": "medium",
-            "label": "Medium (tailwind: font-medium)"
+            "label": "t:settings_schema.typography.font_weight.options__2"
           },
           {
             "value": "bold",
-            "label": "Bold (tailwind: font-bold)"
+            "label": "t:settings_schema.typography.font_weight.options__2"
           },
           {
             "value": "extrabold",
-            "label": "Extra Bold (tailwind: font-extrabold)"
+            "label": "t:settings_schema.typography.font_weight.options__3"
           }
         ],
         "default": "normal"

@@ -161,10 +161,14 @@
       "name": "Typography Settings",
       "font_family": {
         "label": "Font Family",
-        "options": {
-          "options__1": "Sans (tailwind: font-sans)",
-          "options__2": "Serif (tailwind: font-serif)",
-          "options__3": "Monospace (tailwind: font-mono)"
+        "options__1": {
+          "label": "Sans (tailwind: font-sans)"
+        },
+        "options__2": {
+          "label": "Serif (tailwind: font-serif)"
+        },
+        "options__3": {
+          "label": "Monospace (tailwind: font-mono)"
         }
       },
       "base_font_size": {
@@ -172,11 +176,17 @@
       },
       "font_weight": {
         "label": "Font Weight",
-        "options": {
-          "normal": "Normal (tailwind: font-normal)",
-          "medium": "Medium (tailwind: font-medium)",
-          "bold": "Bold (tailwind: font-bold)",
-          "extrabold": "Extra Bold (tailwind: font-extrabold)"
+        "options__1": {
+          "label": "Normal (tailwind: font-normal)"
+        },
+        "options__2": {
+          "label": "Medium (tailwind: font-medium)"
+        },
+        "options__3": {
+          "label": "Bold (tailwind: font-bold)"
+        },
+        "options__4": {
+          "label": "Extra Bold (tailwind: font-extrabold)"
         }
       },
       "heading_font_weight": {
