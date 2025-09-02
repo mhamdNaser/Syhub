@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = "." + swiperContainer.dataset.nextBtn;
     const prevBtn = "." + swiperContainer.dataset.prevBtn;
 
-    const slidesPerView = parseInt(swiperContainer.dataset.slidesPerView) || 2;
-    const slidesPerViewMobile = parseInt(swiperContainer.dataset.slidesPerViewMobile) || 2;
+    const slidesPerView = parseInt(swiperContainer.dataset.slidesPerView) || 1;
+    const slidesPerViewMobile = parseInt(swiperContainer.dataset.slidesPerViewMobile) || 1;
 
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
-    const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 2500;
+    const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
 
     return {
       container: swiperContainer,
@@ -26,10 +26,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   requestAnimationFrame(() => {
     sliders.forEach(slider => {
+
+      const slidesCount = slider.container.querySelectorAll('.swiper-slide').length;
+      const slidesToShow = Math.min(slider.slidesPerView, slidesCount);
+
       new Swiper(slider.container, {
-        slidesPerView: slider.slidesPerView,
+        slidesPerView: slidesToShow,
+        loop: slidesCount > slidesToShow,
+        speed: 3000,
         spaceBetween: 10,
-        loop: true,
         navigation: {
           nextEl: slider.nextBtn,
           prevEl: slider.prevBtn

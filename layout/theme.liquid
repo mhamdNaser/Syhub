@@ -7,9 +7,7 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
-
-    {% comment %} {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
+    {{ 'async-app.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-animation.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'async-critical.css' | asset_url | stylesheet_tag: preload: true }}
 
@@ -17,28 +15,135 @@
     <noscript>
       <link rel="stylesheet" href="{{ 'async-model-viewer-ui.css' | asset_url }}">
     </noscript>
-
-    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
-    <link rel="stylesheet" href="{{ 'async-swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link
+      rel="stylesheet"
+      href="{{ 'async-swiper-bundle.min.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'"
+    >
     <noscript>
       <link rel="stylesheet" href="{{ 'async-swiper-bundle.min.css' | asset_url }}">
     </noscript>
-    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
 
     {% render 'color-schemes' %}
     {% render 'meta-tags' %}
     {{ content_for_header }}
+
+    <style>
+      /* تعريف متغيرات CSS حسب إعدادات الثيم */
+      :root {
+        --font-family: {% if settings.font_family == 'serif' %} 'Times New Roman', serif
+                       {% elsif settings.font_family == 'mono' %} 'Courier New', monospace
+                       {% else %} 'Inter', sans-serif {% endif %};
+
+        --base-font-size: {{ settings.base_font_size }}px;
+
+        --font-weight: {{ settings.font_weight }};
+        --heading-font-weight: {{ settings.heading_font_weight }};
+        --text-transform: {{ settings.text_transform }};
+        --letter-spacing: {{ settings.letter_spacing }}px;
+        --line-height: {% if settings.line_height == 'relaxed' %}1.6
+                       {% elsif settings.line_height == 'loose' %}2
+                       {% else %}1.4{% endif %};
+        --button-text-color: {{ settings.button_text_color }};
+        --button-bg-color: {{ settings.button_background_color }};
+        --button-border-color: {{ settings.button_border_color }};
+        --button-border-width: {{ settings.button_border_width }}px;
+        --button-shadow-color: {{ settings.button_shadow_color }};
+        --button-shadow-blur: {{ settings.button_shadow_blur }}px;
+        --button-shadow-enabled: {{ settings.button_shadow_enabled | default: true }};
+        --button-text-hover-color: {{ settings.button_text_hover_color }};
+        --button-bg-hover-color: {{ settings.button_background_hover_color }};
+      }
+
+      /* تطبيق الإعدادات على كل النصوص في الثيم */
+      body {
+        font-family: var(--font-family);
+        font-size: var(--base-font-size);
+        font-weight: var(--font-weight);
+        letter-spacing: var(--letter-spacing);
+        line-height: var(--line-height);
+        text-transform: var(--text-transform);
+        color: inherit;
+      }
+
+      /* العناوين */
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: var(--heading-font-weight);
+        font-family: var(--font-family);
+        line-height: var(--line-height);
+        letter-spacing: var(--letter-spacing);
+        text-transform: var(--text-transform);
+      }
+
+      /* الروابط */
+      a {
+        font-family: var(--font-family);
+        font-weight: var(--font-weight);
+        letter-spacing: var(--letter-spacing);
+        line-height: var(--line-height);
+        text-transform: var(--text-transform);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* الأزرار */
+      button, input[type="button"], input[type="submit"] {
+        font-family: var(--font-family);
+        font-weight: var(--font-weight);
+        letter-spacing: var(--letter-spacing);
+        line-height: var(--line-height);
+        text-transform: var(--text-transform);
+      }
+
+      /* الحقول النصية */
+      input, textarea, select {
+        font-family: var(--font-family);
+        font-weight: var(--font-weight);
+        letter-spacing: var(--letter-spacing);
+        line-height: var(--line-height);
+        text-transform: var(--text-transform);
+      }
+
+      button {
+        color: var(--button-text-color);
+        background-color: var(--button-bg-color);
+        border: var(--button-border-width) solid var(--button-border-color);
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        {% if settings.button_shadow_enabled %}
+          box-shadow: 0 4px var(--button-shadow-blur) var(--button-shadow-color);
+        {% endif %}
+      }
+
+      button:hover {
+        color: var(--button-text-hover-color);
+        background-color: var(--button-bg-hover-color);
+        /* hover effect based on your setting */
+      }
+
+      {% case settings.button_hover_effect %}
+        {% when '1' %}
+          /* Change Color فقط مفعل، تم بالفعل أعلاه */
+        {% when '2' %}
+          .button:hover {
+            box-shadow: 0 8px var(--button-shadow-blur) 0 var(--button-shadow-color);
+          }
+        {% when '3' %}
+          .button:hover {
+            box-shadow: 0 4px var(--button-shadow-blur) 0 var(--button-shadow-color);
+          }
+        {% when '4' %}
+          .button:hover {
+            box-shadow: none;
+          }
+      {% endcase %}
+    </style>
   </head>
 
-  <body class="overflow-x-hidden font-sans antialiased">
-
+  <body class="overflow-x-hidden font-sans antialiased opacity-0">
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
@@ -73,4 +178,14 @@
       {% render 'popup-random-product' %}
     {% endif %}
   </body>
+
+  <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
 </html>

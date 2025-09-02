@@ -15,13 +15,13 @@
         {% assign collection_image = block.settings.collection_image %}
 
         {% if collection and collection_image %}
-          <div class="swiper-slide flex justify-center">
-            <a href="{{ collection.url }}" class=" flex flex-col group transform transition duration-300 hover:-translate-y-2" aria-label="{{ collection.title }}">
-              <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
+          <div class="swiper-slide flex justify-center w-fit">
+            <a href="{{ collection.url }}" class=" flex flex-col group transform transition duration-300 hover:-translate-y-2 w-fit" aria-label="{{ collection.title }}">
+              <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
                 <img 
                   src="{{ collection_image | image_url: width: 400 }}" 
-                  alt="{{ collection.title }}" 
-                  class="h-40 w-full object-fill"
+                  alt="" 
+                  class="h-40 w-40"
                   width=""
                   height=""
                 >

@@ -28,7 +28,7 @@
   endif
 %}
 
-<div class="lg:w-60 h-fit bg-white p-4 overflow-hidden">
+<div class="lg:w-60 h-fit bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}">
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       {% liquid
@@ -52,7 +52,7 @@
           {% render 'image',
             image:  product_image ,
             alt: product.featured_image.alt | escape,
-            class: 'w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105',
+            class: 'w-full h-48 transition-transform duration-300 ease-in-out hover:scale-105',
             loading: 'lazy'
            %} 
           {% if sale_label and product.price < product.compare_at_price %}

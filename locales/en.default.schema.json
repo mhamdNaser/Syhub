@@ -53,7 +53,6 @@
     // new 
     "animations": "Animation",
     "page_layout": "Page layout",
-    "logo_and_favicon": "Logo and favicon",
     "language_currency_bar": "Language and Currency Bar",
     "announcement_bar": "Announcement Bar",
     "language_currency_block": "Language and Currency Block",
@@ -122,6 +121,305 @@
     "section": "Section"
   },
   "settings_schema": {
+    "logo_and_favicon": {
+      "name": "Logo and favicon",
+      "default_logo": {
+        "label": "Default logo"
+      },
+      "logo_size": {
+        "label": "Logo size"
+      },
+      "inverse_logo": {
+        "label": "Inverse logo"
+      },
+      "inverse_logo_info": {
+        "info": "If you have a light logo, you can upload a dark version here to ensure it stands out against dark backgrounds."
+      },
+      "favicon": {
+        "label": "Favicon"
+      }
+    },
+    "page_layout": {
+      "name": "Page layout",
+      "page_width": {
+        "label": "Page width",
+        "options": {
+          "narrow": "Narrow",
+          "normal": "Normal",
+          "wide": "Wide",
+          "full": "Full width"
+        }
+      },
+      "page_padding_horizontal": {
+        "label": "Horizontal padding"
+      },
+      "page_padding_vertical": {
+        "label": "Vertical padding"
+      }
+    },
+    "typography": {
+      "name": "Typography",
+      "font_family": {
+        "label": "Font Family",
+        "options__1": {
+          "label": "Sans (tailwind: font-sans)"
+        },
+        "options__2": {
+          "label": "Serif (tailwind: font-serif)"
+        },
+        "options__3": {
+          "label": "Monospace (tailwind: font-mono)"
+        }
+      },
+      "base_font_size": {
+        "label": "Base Font Size"
+      },
+      "font_weight": {
+        "label": "Font Weight",
+        "options__1": {
+          "label": "Normal (tailwind: font-normal)"
+        },
+        "options__2": {
+          "label": "Medium (tailwind: font-medium)"
+        },
+        "options__3": {
+          "label": "Bold (tailwind: font-bold)"
+        },
+        "options__4": {
+          "label": "Extra Bold (tailwind: font-extrabold)"
+        }
+      },
+      "heading_font_weight": {
+        "label": "Heading Font Weight",
+        "options__1": {
+          "label": "Medium (tailwind: font-medium)"
+        },
+        "options__2": {
+          "label": "Bold (tailwind: font-bold)"
+        },
+        "options__3": {
+          "label": "Extra Bold (tailwind: font-extrabold)"
+        }
+      },
+      "text_transform": {
+        "label": "Text Transform",
+        "options__1": {
+          "label": "None"
+        },
+        "options__2": {
+          "label": "Uppercase (tailwind: uppercase)"
+        },
+        "options__3": {
+          "label": "Capitalize (tailwind: capitalize)"
+        },
+        "options__4": {
+          "label": "Lowercase (tailwind: lowercase)"
+        }
+      },
+      "letter_spacing": {
+        "label": "Letter Spacing"
+      },
+      "line_height": {
+        "label": "Line Height",
+        "options__1": {
+          "label": "Normal (tailwind: leading-normal)"
+        },
+        "options__2": {
+          "label": "Relaxed (tailwind: leading-relaxed)"
+        },
+        "options__3": {
+          "label": "Loose (tailwind: leading-loose)"
+        }
+      }
+    },
+    "animations": {
+      "name": "Animations",
+      "image_hover_style": {
+        "label": "Image hover style",
+        "info": "Choose how product images behave when hovered.",
+        "options": {
+          "basic": "Basic zoom",
+          "quick_zoom": "Quick zoom",
+          "point_zoom": "Point zoom",
+          "zoom_rotate": "Zoom and rotate",
+          "brightness": "Brightness shift",
+          "pan_h": "Pan horizontally",
+          "pan_v": "Pan vertically",
+          "blur": "Blur effect",
+          "colorize": "Color overlay",
+          "none": "None"
+        }
+      },
+      "card_hover_effect": {
+        "label": "Card hover effect",
+        "info": "Choose how the entire product card reacts on hover.",
+        "options": {
+          "none": "None",
+          "lift": "Lift",
+          "scale": "Scale up",
+          "subtle_zoom": "Subtle zoom"
+        }
+      }
+    },
+    "button": {
+      "name": "Button",
+      "settings": {
+        "button_text_color": {
+          "label": "Button Text Color",
+          "info": "Choose the color of the text displayed inside the button."
+        },
+        "button_background_color": {
+          "label": "Button Background Color",
+          "info": "Select the background color of the button."
+        },
+        "button_border_color": {
+          "label": "Button Border Color",
+          "info": "Choose the color of the button border."
+        },
+        "button_border_width": {
+          "label": "Button Border Width",
+          "info": "Set the thickness of the button border in pixels."
+        },
+        "button_shadow_color": {
+          "label": "Button Shadow Color",
+          "info": "Choose the color of the button shadow."
+        },
+        "button_shadow_blur": {
+          "label": "Button Shadow Blur",
+          "info": "Set the blur size of the shadow in pixels."
+        },
+        "button_shadow_enabled": {
+          "label": "Enable Shadow",
+          "info": "Enable or disable shadow for the button."
+        },
+        "button_text_hover_color": {
+          "label": "Button Text Hover Color",
+          "info": "Choose the text color when hovering over the button."
+        },
+        "button_background_hover_color": {
+          "label": "Button Background Hover Color",
+          "info": "Choose the background color when hovering over the button."
+        },
+        "button_hover_effect": {
+          "label": "Hover Effect",
+          "info": "Select the effect that appears when hovering over the button.",
+          "options__1":{
+            "label": "Change Color"
+          },
+          "options__2":{
+            "label": "Persistent Shadow"
+          },
+          "options__3":{
+            "label": "Temporary Shadow"
+          },
+          "options__4":{
+            "label": "None"
+          } 
+        }
+      }
+    },
+    "colors": {
+      "name": "Colors",
+      "settings": {
+        "background": {
+          "label": "Background color",
+          "info": "Main background color."
+        },
+        "background_gradient": {
+          "label": "Background gradient",
+          "info": "Optional gradient background."
+        },
+        "foreground": {
+          "label": "Text color",
+          "info": "Default text color."
+        },
+        "foreground_heading": {
+          "label": "Heading color",
+          "info": "Color for headings and titles."
+        },
+        "primary": {
+          "label": "Primary color",
+          "info": "Used for primary highlights and accents."
+        },
+        "primary_hover": {
+          "label": "Primary hover color",
+          "info": "Color when hovering over primary elements."
+        },
+        "border": {
+          "label": "Border color",
+          "info": "Default border color."
+        },
+        "shadow": {
+          "label": "Shadow color",
+          "info": "Used for element shadows."
+        },
+        "primary_button": {
+          "text": {
+            "label": "Primary button text",
+            "info": "Text color for primary button."
+          },
+          "background": {
+            "label": "Primary button background",
+            "info": "Background color for primary button."
+          },
+          "border": {
+            "label": "Primary button border",
+            "info": "Border color for primary button."
+          },
+          "hover_text": {
+            "label": "Primary button hover text",
+            "info": "Text color when hovering."
+          },
+          "hover_background": {
+            "label": "Primary button hover background",
+            "info": "Background when hovering."
+          },
+          "hover_border": {
+            "label": "Primary button hover border",
+            "info": "Border when hovering."
+          }
+        },
+        "secondary_button": {
+          "text": {
+            "label": "Secondary button text",
+            "info": "Text color for secondary button."
+          },
+          "background": {
+            "label": "Secondary button background",
+            "info": "Background color for secondary button."
+          },
+          "border": {
+            "label": "Secondary button border",
+            "info": "Border color for secondary button."
+          },
+          "hover_text": {
+            "label": "Secondary button hover text",
+            "info": "Text color when hovering."
+          },
+          "hover_background": {
+            "label": "Secondary button hover background",
+            "info": "Background when hovering."
+          },
+          "hover_border": {
+            "label": "Secondary button hover border",
+            "info": "Border when hovering."
+          }
+        }
+      }
+    },
+    "color_mappings": {
+      "name": "Color Mappings",
+      "settings": {
+        "color_option_labels": {
+          "label": "Color Option Labels",
+          "info": "Enter the words that define color options, separated by commas, e.g., color,colour,اللون."
+        },
+        "color_map": {
+          "label": "Color Map (JSON format)",
+          "info": "Enter the color map in JSON format, e.g., {\"Red\": \"#ff0000\", \"Blue\": \"#0000ff\"}."
+        }
+      }
+    },
     "productCard": {
       "name": "Product Card",
       "settings": {
@@ -286,171 +584,22 @@
             }
           }
         },
-        "product_card_shadow":{
+        "product_card_shadow": {
           "header": "Shadow Setting",
           "label": "image product Card Shadow",
           "info": "to show or hidden shadow for image"
         },
-        "product_image_shadow_color":{
+        "product_image_shadow_color": {
           "label": "shadow color",
           "info": "shadow color"
         },
-        "product_image_shadow_value":{
+        "product_image_shadow_value": {
           "label": "shadow value",
           "info": "shadow value"
         },
-        "product_image_shadow_blur":{
+        "product_image_shadow_blur": {
           "label": "shadow blur",
           "info": "shadow blur"
-        }
-      }
-    },
-    "colors": {
-      "name": "Colors",
-      "settings": {
-        "background": {
-          "label": "Background",
-          "info": "This sets the main background color for your theme"
-        },
-        "background_gradient": {
-          "label": "Background gradient",
-          "info": "This sets the gradient overlay for the background"
-        },
-        "text": {
-          "label": "Text",
-          "info": "This sets the default text color across your store"
-        },
-        "foreground_heading": {
-          "label": "Headings",
-          "info": "This color is used for all heading elements"
-        },
-        "primary": {
-          "label": "Primary",
-          "info": "This is the main primary color used for highlights"
-        },
-        "primary_hover": {
-          "label": "Primary hover",
-          "info": "This is the primary color when hovered"
-        },
-        "border": {
-          "label": "Border",
-          "info": "Color used for borders in the theme"
-        },
-        "shadow": {
-          "label": "Shadow",
-          "info": "Color used for shadows in elements"
-        },
-        "primary_button_background": {
-          "label": "Primary button background",
-          "info": "Background color for primary buttons"
-        },
-        "primary_button_text": {
-          "label": "Primary button text",
-          "info": "Text color for primary buttons"
-        },
-        "primary_button_border": {
-          "label": "Primary button border",
-          "info": "Border color for primary buttons"
-        },
-        "primary_button_hover_background": {
-          "label": "Primary button hover background",
-          "info": "Background color for primary buttons on hover"
-        },
-        "primary_button_hover_text": {
-          "label": "Primary button hover text",
-          "info": "Text color for primary buttons on hover"
-        },
-        "primary_button_hover_border": {
-          "label": "Primary button hover border",
-          "info": "Border color for primary buttons on hover"
-        },
-        "secondary_button_background": {
-          "label": "Secondary button background",
-          "info": "Background color for secondary buttons"
-        },
-        "secondary_button_text": {
-          "label": "Secondary button text",
-          "info": "Text color for secondary buttons"
-        },
-        "secondary_button_border": {
-          "label": "Secondary button border",
-          "info": "Border color for secondary buttons"
-        },
-        "secondary_button_hover_background": {
-          "label": "Secondary button hover background",
-          "info": "Background color for secondary buttons on hover"
-        },
-        "secondary_button_hover_text": {
-          "label": "Secondary button hover text",
-          "info": "Text color for secondary buttons on hover"
-        },
-        "secondary_button_hover_border": {
-          "label": "Secondary button hover border",
-          "info": "Border color for secondary buttons on hover"
-        },
-        "input_background": {
-          "label": "Input background",
-          "info": "Background color for input fields"
-        },
-        "input_text_color": {
-          "label": "Input text",
-          "info": "Text color inside input fields"
-        },
-        "input_border_color": {
-          "label": "Input border",
-          "info": "Border color of input fields"
-        },
-        "input_hover_background": {
-          "label": "Input hover background",
-          "info": "Background color for input fields when hovered"
-        },
-        "variant_background_color": {
-          "label": "Variant background",
-          "info": "Background color for product variants"
-        },
-        "variant_text_color": {
-          "label": "Variant text",
-          "info": "Text color for product variants"
-        },
-        "variant_border_color": {
-          "label": "Variant border",
-          "info": "Border color for product variants"
-        },
-        "variant_hover_background_color": {
-          "label": "Variant hover background",
-          "info": "Background color when hovering over variants"
-        },
-        "variant_hover_text_color": {
-          "label": "Variant hover text",
-          "info": "Text color when hovering over variants"
-        },
-        "variant_hover_border_color": {
-          "label": "Variant hover border",
-          "info": "Border color when hovering over variants"
-        },
-        "selected_variant_background_color": {
-          "label": "Selected variant background",
-          "info": "Background color for selected variants"
-        },
-        "selected_variant_text_color": {
-          "label": "Selected variant text",
-          "info": "Text color for selected variants"
-        },
-        "selected_variant_border_color": {
-          "label": "Selected variant border",
-          "info": "Border color for selected variants"
-        },
-        "selected_variant_hover_background_color": {
-          "label": "Selected variant hover background",
-          "info": "Background color for selected variants on hover"
-        },
-        "selected_variant_hover_text_color": {
-          "label": "Selected variant hover text",
-          "info": "Text color for selected variants on hover"
-        },
-        "selected_variant_hover_border_color": {
-          "label": "Selected variant hover border",
-          "info": "Border color for selected variants on hover"
         }
       }
     },
@@ -463,13 +612,13 @@
         },
         "popup_show_once": {
           "label": "Show popup on",
+          "info": "Choose where the popup should be displayed",
           "options__1": {
             "label": "Coupon"
           },
           "options__2": {
             "label": "Product"
-          },
-          "info": "Choose where the popup should be displayed"
+          }
         },
         "popup_image": {
           "label": "Popup image",
@@ -477,11 +626,13 @@
         },
         "popup_title": {
           "label": "Popup title",
-          "info": "Title text displayed at the top of the popup"
+          "info": "Title text displayed at the top of the popup",
+          "default": "Welcome to our store!"
         },
         "popup_content": {
           "label": "Popup content",
-          "info": "Content or message displayed inside the popup"
+          "info": "Content or message displayed inside the popup",
+          "default": "<p>Subscribe to our newsletter for the latest updates.</p>"
         },
         "copon_code": {
           "label": "Coupon code",
@@ -493,7 +644,8 @@
         },
         "popup_product_button_text": {
           "label": "Popup button text",
-          "info": "Text for the button inside the popup"
+          "info": "Text for the button inside the popup",
+          "default": "View Product"
         },
         "popup_vertical_padding": {
           "label": "Vertical padding",
@@ -519,7 +671,7 @@
           "options__3": {
             "label": "Right"
           }
-        },
+        }
       }
     },
     "random_product_popup": {
@@ -541,5 +693,5 @@
         }
       }
     }
-  },
+  }
 }

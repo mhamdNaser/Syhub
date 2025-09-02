@@ -16,7 +16,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/main_slider.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_1",
             "text": ""
           }
         },
@@ -24,7 +25,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/download_6.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_2",
             "text": ""
           }
         },
@@ -32,7 +34,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Banner-01_1-min.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_3",
             "text": ""
           }
         },
@@ -40,7 +43,35 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/download_4.webp",
-            "title": "",
+            "show_title_description": false,
+            "title": "Slide_4",
+            "text": ""
+          }
+        },
+        "slide_EEbJY3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-3--750-1920.jpg",
+            "show_title_description": false,
+            "title": "Slide_5",
+            "text": ""
+          }
+        },
+        "slide_dM94gB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d.jpg",
+            "show_title_description": false,
+            "title": "Slide_6",
+            "text": ""
+          }
+        },
+        "slide_nXjrwb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d_c37c0659-d227-4477-8ef1-51f1afc2bcf8.jpg",
+            "show_title_description": false,
+            "title": "Slide_7",
             "text": ""
           }
         },
@@ -74,6 +105,9 @@
         "slide_wAnxYf",
         "slide_tdbKic",
         "slide_JBPtgQ",
+        "slide_EEbJY3",
+        "slide_dM94gB",
+        "slide_nXjrwb",
         "grid_image_8yY8cV",
         "grid_image_pHmRQU",
         "grid_image_g9EeE4"
@@ -94,38 +128,11 @@
             "collection_image": "shopify://shop_images/BIGOTTI-2.png"
           }
         },
-        "collection_block_wdB6NA": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "frontpage"
-          }
-        },
-        "collection_block_tGTcnd": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "hydrogen",
-            "collection_image": "shopify://shop_images/BIGOTTI-8.png"
-          }
-        },
         "collection_block_9iMVez": {
           "type": "collection_block",
           "settings": {
             "collection": "hydrogen",
             "collection_image": "shopify://shop_images/BIGOTTI-4.png"
-          }
-        },
-        "collection_block_XWGKfw": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "automated-collection",
-            "collection_image": "shopify://shop_images/PUPA603-4.png"
-          }
-        },
-        "collection_block_BG3NJr": {
-          "type": "collection_block",
-          "settings": {
-            "collection": "automated-collection",
-            "collection_image": "shopify://shop_images/PUPA--007.png"
           }
         },
         "collection_block_6wHFYt": {
@@ -138,11 +145,7 @@
       },
       "block_order": [
         "collection_block_CWdXFd",
-        "collection_block_wdB6NA",
-        "collection_block_tGTcnd",
         "collection_block_9iMVez",
-        "collection_block_XWGKfw",
-        "collection_block_BG3NJr",
         "collection_block_6wHFYt"
       ],
       "name": "Collection Gallery",
@@ -153,88 +156,24 @@
     "vendor_gallery_agkEPT": {
       "type": "section-vendor-gallery",
       "blocks": {
-        "vendor_block_YrQcT9": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "{{ metaobjects[\"shopify--snowboarding-style\"][\"all-mountain-snowboarding\"].label.value }}",
-            "vendor_image": "shopify://shop_images/BIGOTTI-2.png"
-          }
-        },
-        "vendor_block_pbEHr4": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "{{ metaobjects[\"shopify--snowboard-design\"].directional.label.value }}",
-            "vendor_image": "shopify://shop_images/BIGOTTI-1_1.png"
-          }
-        },
-        "vendor_block_Ha84aW": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "Hydrogen Vendor",
-            "vendor_image": "shopify://shop_images/BIGOTTI-8.png"
-          }
-        },
-        "vendor_block_b6kdjA": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "",
-            "vendor_image": "shopify://shop_images/BIGOTTI-9.png"
-          }
-        },
-        "vendor_block_GHpJb6": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "",
-            "vendor_image": "shopify://shop_images/BIGOTTI-1.png"
-          }
-        },
-        "vendor_block_WPGWKk": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "",
-            "vendor_image": "shopify://shop_images/BIGOTTI-6.png"
-          }
-        },
-        "vendor_block_7QYFQH": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "",
-            "vendor_image": "shopify://shop_images/BIGOTTI-4.png"
-          }
-        },
-        "vendor_block_VCGL9e": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "",
-            "vendor_image": "shopify://shop_images/BIGOTTI-5.png"
-          }
-        },
-        "vendor_block_zynfdi": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "",
-            "vendor_image": "shopify://shop_images/BIGOTTI-3.png"
-          }
-        },
         "vendor_block_VEBGPc": {
           "type": "vendor_block",
           "settings": {
-            "vendor_name": "",
+            "vendor_name": "Quickstart (a2f667fa)",
             "vendor_image": "shopify://shop_images/BIGOTTI-7.png"
+          }
+        },
+        "vendor_block_9N9HxP": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "Hydrogen Vendor",
+            "vendor_image": "shopify://shop_images/BIGOTTI-5.png"
           }
         }
       },
       "block_order": [
-        "vendor_block_YrQcT9",
-        "vendor_block_pbEHr4",
-        "vendor_block_Ha84aW",
-        "vendor_block_b6kdjA",
-        "vendor_block_GHpJb6",
-        "vendor_block_WPGWKk",
-        "vendor_block_7QYFQH",
-        "vendor_block_VCGL9e",
-        "vendor_block_zynfdi",
-        "vendor_block_VEBGPc"
+        "vendor_block_VEBGPc",
+        "vendor_block_9N9HxP"
       ],
       "name": "Vendor Gallery",
       "settings": {
@@ -326,7 +265,6 @@
               "settings": {
                 "image": "shopify://shop_images/banner-3--750-1920.jpg",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 1200,
                 "image_height": 400,
                 "object_fit": "cover",
@@ -362,7 +300,6 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-2.png",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -381,7 +318,6 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-1_1.png",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -400,7 +336,6 @@
               "settings": {
                 "image": "shopify://shop_images/BIGOTTI-8.png",
                 "alt_text": "Image description",
-                "image_width_full": false,
                 "image_width": 400,
                 "image_height": 400,
                 "object_fit": "fill",
@@ -491,7 +426,6 @@
                   "settings": {
                     "image": "shopify://shop_images/Luliz_Logo.png",
                     "alt_text": "Image description",
-                    "image_width_full": false,
                     "image_width": 500,
                     "image_height": 400,
                     "object_fit": "contain",
@@ -528,9 +462,9 @@
                     "text": "Plain text block",
                     "font_size": 48,
                     "font_weight": "bold",
-                    "font_style": "italic",
+                    "font_style": "normal",
                     "text_alignment": "left",
-                    "color_scheme": "scheme-2"
+                    "color_scheme": "scheme-1"
                   },
                   "blocks": {}
                 },
@@ -553,7 +487,7 @@
                     "button_link": "",
                     "product": "test-24",
                     "collection": "",
-                    "button_bg": "#e53d7c",
+                    "button_bg": "#001128",
                     "button_text_color": "#ffffff",
                     "button_font_size": 16,
                     "button_alignment": "center",

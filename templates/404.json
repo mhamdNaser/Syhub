@@ -7,21 +7,82 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- 
 {
   "sections": {
     "main": {
       "type": "404",
-      "settings": {
-        "title": "404",
-        "subtext": "The page that you're looking for is not found",
-        "image": "shopify://shop_images/Luliz_Logo.png",
-        "image_size": "100",
-        "button_label": "back to home page",
-        "button_url": "",
-        "button_background_class": "#c42764",
-        "button_text_class": "#000000"
-      }
+      "blocks": {
+        "image_block_qXDEYM": {
+          "type": "image-block",
+          "name": "Custom Image Block",
+          "settings": {
+            "image": "shopify://shop_images/Luliz_Logo.png",
+            "alt_text": "Image description",
+            "image_width": 500,
+            "image_height": 200,
+            "object_fit": "fill",
+            "image_alignment": "center",
+            "max_width": 800,
+            "border_radius": 8,
+            "border_width": 0,
+            "border_style": "solid",
+            "border_color": "#000000"
+          },
+          "blocks": {}
+        },
+        "plain_text_block_AFPNPq": {
+          "type": "plain-text-block",
+          "name": "Plain Text Block",
+          "settings": {
+            "text": "404",
+            "font_size": 34,
+            "font_weight": "bold",
+            "font_style": "normal",
+            "text_alignment": "center",
+            "color_scheme": ""
+          },
+          "blocks": {}
+        },
+        "plain_text_block_VjD68B": {
+          "type": "plain-text-block",
+          "name": "Plain Text Block",
+          "settings": {
+            "text": "this page is not found",
+            "font_size": 16,
+            "font_weight": "bold",
+            "font_style": "normal",
+            "text_alignment": "center",
+            "color_scheme": ""
+          },
+          "blocks": {}
+        },
+        "button_block_yW3iEk": {
+          "type": "button-block",
+          "name": "Custom Button Block",
+          "settings": {
+            "button_text": "Shop Now",
+            "button_link": "shopify://pages/waves",
+            "product": "",
+            "collection": "",
+            "button_bg": "#c42764",
+            "button_text_color": "#ffffff",
+            "button_font_size": 19,
+            "button_alignment": "center",
+            "padding_x": 6,
+            "padding_y": 2,
+            "margin_y": 8,
+            "border_radius": "none"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_block_qXDEYM",
+        "plain_text_block_AFPNPq",
+        "plain_text_block_VjD68B",
+        "button_block_yW3iEk"
+      ],
+      "settings": {}
     }
   },
   "order": [

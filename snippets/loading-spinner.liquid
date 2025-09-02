@@ -7,6 +7,30 @@
   {% render 'loading-spinner' %}
 {% endcomment %}
 
-<div class="{% if class %}{{ class }}{% else %}loading__spinner hidden{% endif %}">
-  {{ 'loading-spinner.svg' | inline_asset_content }}
+
+<div id="loading-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white">
+  <div class="spinner w-16 h-16 border-4 border-t-blue-500 border-r-transparent rounded-full animate-spin"></div>
 </div>
+
+<style>
+  /* Spinner animation */
+  .spinner {
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #3b82f6 transparent transparent transparent;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Fade out effect when hidden */
+  #loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+</style>
