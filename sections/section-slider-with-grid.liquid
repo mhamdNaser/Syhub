@@ -1,3 +1,10 @@
+{% liquid
+  if block.settings.show_title_description != false
+    assign title = block.settings.title
+    assign content = block.settings.text
+  endif
+%}
+
 <div id="shopify-section-{{ section.id }}" class="relative w-full py-{{ section.settings.padding-vertical }}">
   <!-- Slider -->
   <div
@@ -24,8 +31,8 @@
               %}
             {% endif %}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
-              <h2 class="text-3xl font-bold">{{ block.settings.title }}</h2>
-              <p class="mt-2 max-w-2xl">{{ block.settings.text }}</p>
+              <h2 class="text-3xl font-bold">{{ title }}</h2>
+              <p class="mt-2 max-w-2xl">{{ content }}</p>
             </div>
           </div>
         {% endif %}
@@ -101,6 +108,12 @@
           "id": "image",
           "label": "Slide Image",
           "info": "image height must be 600px and width 1280px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_title_description",
+          "label": "show text",
+          "default": false
         },
         {
           "type": "text",
