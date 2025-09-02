@@ -98,9 +98,18 @@
         "id": "font_family",
         "label": "t:settings_schema.typography.font_family.label",
         "options": [
-          { "value": "sans", "label": "Sans (tailwind: font-sans)" },
-          { "value": "serif", "label": "Serif (tailwind: font-serif)" },
-          { "value": "mono", "label": "Monospace (tailwind: font-mono)" }
+          {
+            "value": "sans",
+            "label": "t:settings_schema.typography.font_family.options__1"
+          },
+          {
+            "value": "serif",
+            "label": "t:settings_schema.typography.font_family.options__2"
+          },
+          {
+            "value": "mono",
+            "label": "t:settings_schema.typography.font_family.options__3"
+          }
         ],
         "default": "sans"
       },
@@ -119,10 +128,22 @@
         "id": "font_weight",
         "label": "t:settings_schema.typography.font_weight.label",
         "options": [
-          { "value": "normal", "label": "Normal (tailwind: font-normal)" },
-          { "value": "medium", "label": "Medium (tailwind: font-medium)" },
-          { "value": "bold", "label": "Bold (tailwind: font-bold)" },
-          { "value": "extrabold", "label": "Extra Bold (tailwind: font-extrabold)" }
+          {
+            "value": "normal",
+            "label": "Normal (tailwind: font-normal)"
+          },
+          {
+            "value": "medium",
+            "label": "Medium (tailwind: font-medium)"
+          },
+          {
+            "value": "bold",
+            "label": "Bold (tailwind: font-bold)"
+          },
+          {
+            "value": "extrabold",
+            "label": "Extra Bold (tailwind: font-extrabold)"
+          }
         ],
         "default": "normal"
       },
@@ -131,9 +152,18 @@
         "id": "heading_font_weight",
         "label": "t:settings_schema.typography.heading_font_weight.label",
         "options": [
-          { "value": "medium", "label": "Medium (tailwind: font-medium)" },
-          { "value": "bold", "label": "Bold (tailwind: font-bold)" },
-          { "value": "extrabold", "label": "Extra Bold (tailwind: font-extrabold)" }
+          {
+            "value": "medium",
+            "label": "Medium (tailwind: font-medium)"
+          },
+          {
+            "value": "bold",
+            "label": "Bold (tailwind: font-bold)"
+          },
+          {
+            "value": "extrabold",
+            "label": "Extra Bold (tailwind: font-extrabold)"
+          }
         ],
         "default": "bold"
       },
@@ -142,10 +172,22 @@
         "id": "text_transform",
         "label": "t:settings_schema.typography.text_transform.label",
         "options": [
-          { "value": "none", "label": "None" },
-          { "value": "uppercase", "label": "Uppercase (tailwind: uppercase)" },
-          { "value": "capitalize", "label": "Capitalize (tailwind: capitalize)" },
-          { "value": "lowercase", "label": "Lowercase (tailwind: lowercase)" }
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "uppercase",
+            "label": "Uppercase (tailwind: uppercase)"
+          },
+          {
+            "value": "capitalize",
+            "label": "Capitalize (tailwind: capitalize)"
+          },
+          {
+            "value": "lowercase",
+            "label": "Lowercase (tailwind: lowercase)"
+          }
         ],
         "default": "none"
       },
@@ -164,9 +206,18 @@
         "id": "line_height",
         "label": "t:settings_schema.typography.line_height.label",
         "options": [
-          { "value": "normal", "label": "Normal (tailwind: leading-normal)" },
-          { "value": "relaxed", "label": "Relaxed (tailwind: leading-relaxed)" },
-          { "value": "loose", "label": "Loose (tailwind: leading-loose)" }
+          {
+            "value": "normal",
+            "label": "Normal (tailwind: leading-normal)"
+          },
+          {
+            "value": "relaxed",
+            "label": "Relaxed (tailwind: leading-relaxed)"
+          },
+          {
+            "value": "loose",
+            "label": "Loose (tailwind: leading-loose)"
+          }
         ],
         "default": "normal"
       }
