@@ -21,14 +21,15 @@
         {% if block.type == 'slide' %}
           <div class="swiper-slide relative h-[{{ section.settings.slider_height }}px] md:h-[600px]">
             {% if block.settings.image %}
-              <div class="w-full aspect-[21/9] relative">
-                {%
-                  render 'image',
-                  image: block.settings.image | image_url,
-                  class: 'absolute w-full h-full object-cover',
-                  alt: title
-                %}
-              </div>
+              {%
+                render 'image',
+                image: block.settings.image | image_url,
+                width: "1280",
+                height: "{{ section.settings.slider_height }}",
+                class: "w-full h-full object-cover",
+                crop: 'center',
+                alt: title
+              %}
             {% endif %}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
               <h2 class="text-3xl font-bold">{{ title }}</h2>
@@ -59,6 +60,17 @@
                 alt: block.settings.grid_title | escape
               %}
             </div>
+            {% comment %}
+              {%
+                render 'image',
+                image: block.settings.grid_image | image_url,
+                width: "600"
+                height: "600"
+                class: "object-fill group-hover:scale-105 transition-transform duration-500"
+                crop: 'center',
+                alt: block.settings.grid_title | escape
+              %}
+            {% endcomment %}
           {% endif %}
           <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-4">
             <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
