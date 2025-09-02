@@ -1,10 +1,3 @@
-{% liquid
-  if block.settings.show_title_description != true
-    assign title = block.settings.title | escape
-    assign content = block.settings.text | escape
-  endif
-%}
-
 <div id="shopify-section-{{ section.id }}" class="relative w-full py-{{ section.settings.padding-vertical }}">
   <!-- Slider -->
   <div
@@ -21,7 +14,6 @@
         {% if block.type == 'slide' %}
           <div class="swiper-slide relative h-[{{ section.settings.slider_height }}px] md:h-[600px]">
             {% if block.settings.image %}
-              {{ title }}
               {%
                 render 'image',
                 image: block.settings.image | image_url,
@@ -32,10 +24,12 @@
                 alt: title
               %}
             {% endif %}
-            <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
-              <h2 class="text-3xl font-bold">{{ title }}</h2>
-              <p class="mt-2 max-w-2xl">{{ content }}</p>
-            </div>
+            {% if block.settings.show_title_description != true %}
+              <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
+                <h2 class="text-3xl font-bold">{{ block.settings.title | escape }}</h2>
+                <p class="mt-2 max-w-2xl">{{ block.settings.text | escape }}</p>
+              </div>
+            {% endif %}
           </div>
         {% endif %}
       {% endfor %}
