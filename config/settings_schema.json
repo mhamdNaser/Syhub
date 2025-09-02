@@ -91,12 +91,12 @@
   },
   // typography settings
   {
-    "name": "settings_schema.typography.name",
+    "name": "t:settings_schema.typography.name",
     "settings": [
       {
         "type": "select",
         "id": "font_family",
-        "label": "settings_schema.typography.font_family.label",
+        "label": "t:settings_schema.typography.font_family.label",
         "options": [
           { "value": "sans", "label": "Sans (tailwind: font-sans)" },
           { "value": "serif", "label": "Serif (tailwind: font-serif)" },
@@ -107,7 +107,7 @@
       {
         "type": "range",
         "id": "base_font_size",
-        "label": "settings_schema.typography.base_font_size.label",
+        "label": "t:settings_schema.typography.base_font_size.label",
         "min": 12,
         "max": 24,
         "step": 1,
@@ -117,7 +117,7 @@
       {
         "type": "select",
         "id": "font_weight",
-        "label": "settings_schema.typography.font_weight.label",
+        "label": "t:settings_schema.typography.font_weight.label",
         "options": [
           { "value": "normal", "label": "Normal (tailwind: font-normal)" },
           { "value": "medium", "label": "Medium (tailwind: font-medium)" },
@@ -129,7 +129,7 @@
       {
         "type": "select",
         "id": "heading_font_weight",
-        "label": "settings_schema.typography.heading_font_weight.label",
+        "label": "t:settings_schema.typography.heading_font_weight.label",
         "options": [
           { "value": "medium", "label": "Medium (tailwind: font-medium)" },
           { "value": "bold", "label": "Bold (tailwind: font-bold)" },
@@ -140,7 +140,7 @@
       {
         "type": "select",
         "id": "text_transform",
-        "label": "settings_schema.typography.text_transform.label",
+        "label": "t:settings_schema.typography.text_transform.label",
         "options": [
           { "value": "none", "label": "None" },
           { "value": "uppercase", "label": "Uppercase (tailwind: uppercase)" },
@@ -152,7 +152,7 @@
       {
         "type": "range",
         "id": "letter_spacing",
-        "label": "settings_schema.typography.letter_spacing.label",
+        "label": "t:settings_schema.typography.letter_spacing.label",
         "min": -2,
         "max": 8,
         "step": 1,
@@ -162,7 +162,7 @@
       {
         "type": "select",
         "id": "line_height",
-        "label": "settings_schema.typography.line_height.label",
+        "label": "t:settings_schema.typography.line_height.label",
         "options": [
           { "value": "normal", "label": "Normal (tailwind: leading-normal)" },
           { "value": "relaxed", "label": "Relaxed (tailwind: leading-relaxed)" },
