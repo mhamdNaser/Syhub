@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       menu.classList.add("show");
       // إزالة أي hidden
-      menu.style.display = 'block'; // أو 'flex' حسب التصميم
+      menu.style.display = 'flex'; // أو 'flex' حسب التصميم
     }
   }
 
