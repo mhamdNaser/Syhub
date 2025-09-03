@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   const menuContainer = document.querySelector('.header__menu ul');
   if (!menuContainer) return;
 
@@ -7,8 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const seeMoreButton = seeMoreLi.querySelector('button');
   const seeMoreMenu = seeMoreLi.querySelector('ul');
 
+  // دوال Toggle/Close
   function toggleMenu(menu, parentScope = null) {
-    menu.offsetHeight;
+    menu.offsetHeight; // Force reflow
     const isOpen = menu.classList.contains("show");
     if (parentScope) {
       parentScope.querySelectorAll("ul").forEach((other) => {
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     menu.addEventListener("animationend", () => menu.classList.remove("hide"), { once: true });
   }
 
+  // تهيئة toggle/hover لأي container
   function initToggles(container) {
     const mainToggles = container.querySelectorAll(".js-toggle-header-menu");
     mainToggles.forEach((btn) => {
@@ -33,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       btn.addEventListener("click", (e) => { e.preventDefault(); toggleMenu(menu); });
 
-      // Hover فقط على الديسكتوب
       const showMenu = () => { if (window.innerWidth > 768) menu.classList.add("show"); };
       const hideMenu = () => {
         if (window.innerWidth > 768)
@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (window.innerWidth > 768)
           setTimeout(() => { if (!submenu.matches(":hover") && !btn.matches(":hover")) closeMenu(submenu); }, 150);
       };
-
       btn.addEventListener("mouseenter", showSubmenu);
       btn.addEventListener("mouseleave", hideSubmenu);
       submenu.addEventListener("mouseenter", showSubmenu);
@@ -66,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Adjust menu وإعادة نقل العناصر
   function adjustMenu() {
     Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
 
@@ -80,22 +80,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
 
-    // إعادة تهيئة toggles
+    // إعادة تهيئة toggle/hover للعناصر المنقولة داخل See More
     initToggles(seeMoreMenu);
   }
 
-  // ---------------------------
-  // Hover منفصل لزر See More
-  // ---------------------------
-  seeMoreLi.addEventListener("mouseenter", () => toggleMenu(seeMoreMenu));
-  seeMoreLi.addEventListener("mouseleave", () => closeMenu(seeMoreMenu));
+  // Hover / Click للزر See More
+  function initSeeMoreHover() {
+    let hoverTimeout;
+    seeMoreLi.addEventListener("mouseenter", () => {
+      clearTimeout(hoverTimeout);
+      seeMoreMenu.classList.add("show");
+    });
+    seeMoreLi.addEventListener("mouseleave", () => {
+      hoverTimeout = setTimeout(() => closeMenu(seeMoreMenu), 150);
+    });
 
-  seeMoreButton.addEventListener("click", () => toggleMenu(seeMoreMenu));
+    seeMoreButton.addEventListener("click", () => toggleMenu(seeMoreMenu));
+  }
 
   initToggles(menuContainer);
   adjustMenu();
-  window.addEventListener('resize', adjustMenu);
+  initSeeMoreHover();
 
+  window.addEventListener('resize', adjustMenu);
 });
 
 // document.addEventListener("DOMContentLoaded", function () {
