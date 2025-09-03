@@ -39,6 +39,16 @@
   assign has_icon = icon or context
 %}
 
+{% liquid
+  assign btn_type = type | default: 'button'
+  if btn_type == 'link'
+    assign tag = 'a'
+  else
+    assign tag = 'button'
+  endif
+  assign has_icon = icon or context
+%}
+
 <{{ tag }}
   {% if url and btn_type == 'link' %}
     href="{{ url }}"
