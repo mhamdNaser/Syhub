@@ -118,7 +118,7 @@
       <button
         id="list-toggle-seemore"
         data-target="header-menu-semore"
-        class="flex items-center gap-x-1 text-sm font-medium"
+        class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu"
       >
         See more
       </button>
@@ -129,38 +129,6 @@
     </li>
   </ul>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuContainer = document.querySelector('.header__menu ul');
-    if (!menuContainer) return;
-
-    const seeMoreLi = menuContainer.querySelector('.see-more');
-    const seeMoreMenu = seeMoreLi.querySelector('ul');
-
-    function adjustMenu() {
-      // إعادة كل العناصر إلى القائمة الرئيسية
-      Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
-
-      const containerWidth = menuContainer.offsetWidth;
-      let totalWidth = seeMoreLi.offsetWidth; // زر See More
-
-      const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
-      items.forEach((li) => {
-        totalWidth += li.offsetWidth;
-        if (totalWidth > containerWidth) {
-          seeMoreMenu.appendChild(li);
-        }
-      });
-
-      // إظهار أو إخفاء زر See More حسب الحاجة
-      seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
-    }
-
-    adjustMenu();
-    window.addEventListener('resize', adjustMenu);
-  });
-</script>
 
 {% schema %}
 {
