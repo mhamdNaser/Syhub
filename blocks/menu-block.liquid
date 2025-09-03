@@ -76,13 +76,26 @@
     const seeMoreMenu = seeMoreLi.querySelector('ul');
 
     function organizeMenu() {
-      // إعادة كل العناصر إلى القائمة الرئيسية أولًا
+      // رجع كل العناصر من see more للقائمة الرئيسية
       Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
 
       const containerWidth = menuContainer.offsetWidth;
       let totalWidth = seeMoreLi.offsetWidth; // عرض زر See More
 
-      const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+      // جلب العناصر باستثناء زر see more
+      let items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+
+      // ✅ ترتيب العناصر: بدون تشايلد أولاً
+      items.sort((a, b) => {
+        const aHasChild = a.querySelector('ul') ? 1 : 0;
+        const bHasChild = b.querySelector('ul') ? 1 : 0;
+        return aHasChild - bHasChild;
+      });
+
+      // إعادة ترتيب العناصر داخل القائمة الرئيسية
+      items.forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
+
+      // توزيع العناصر مع مراعاة العرض
       items.forEach((li) => {
         totalWidth += li.offsetWidth;
         if (totalWidth > containerWidth) {
@@ -90,6 +103,7 @@
         }
       });
 
+      // إظهار أو إخفاء زر see more
       seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
     }
 
@@ -97,6 +111,7 @@
     window.addEventListener('resize', organizeMenu);
   });
 </script>
+
 
 {% schema %}
 {
