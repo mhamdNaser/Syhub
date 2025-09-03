@@ -64,7 +64,7 @@
   </ul>
 </div>
 
-<script>
+{% comment %} <script>
   document.addEventListener('DOMContentLoaded', function () {
     const menuContainer = document.querySelector('.header__menu ul');
     if (!menuContainer) return;
@@ -94,7 +94,7 @@
     adjustMenu();
     window.addEventListener('resize', adjustMenu);
   });
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
