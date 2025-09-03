@@ -5,43 +5,154 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-<div class="header__menu relative w-full" {{ block.shopify_attributes }}>
-  <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
+{% assign button_class = 'flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu '
+  | append: block.settings.item_hover_effect
+%}
+
+<div class="header__menu w-full" {{ block.shopify_attributes }}>
+  <ul class="flex justify-between items-center w-full space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
-        <li class="relative">
-          <button
-            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu {{ block.settings.item_hover_effect }}"
-            id="list-toggle-{{ link.title | handleize }}"
-            data-target="header-menu-{{ link.title | handleize }}"
-            aria-label="{{ link.title }}"
+        <li class="relative whitespace-nowrap flex-shrink-0">
+          {% assign btn_id = 'list-toggle-' | append: link.title | handleize %}
+          {% assign btn_target = 'header-menu-' | append: link.title | handleize %}
+          {% render 'button',
+            type: 'button',
+            id: btn_id,
+            class: button_class,
+            data_target: btn_target,
+            data_label: link.title,
+            text: link.title,
+            bg_color: block.settings.link_bg_color,
+            text_color: block.settings.link_text_color
+          %}
+          <ul
+            id="header-menu-{{ link.title | handleize }}"
+            class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
           >
-            {{ link.title }}
-            {% comment %} {% render 'icon-chevron-down' %} {% endcomment %}
-          </button>
+            {% for childlink in link.links %}
+              <li class="relative">
+                <!-- Parent link -->
+                <a
+                  type="button"
+                  href="{{ childlink.url }}"
+                  aria-label="{{ childlink.title }}"
+                  class="flex items-center gap-x-2 justify-between w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
+                  aria-expanded="false"
+                >
+                  <div class="flex items-center gap-x-2 flex-1">
+                    {% if childlink.object.featured_image %}
+                      <img
+                        src="{{ childlink.object.featured_image | img_url  }}"
+                        alt="{{ childlink.title }}_{{ childlink.id }}"
+                        class="w-4 h-4 object-cover rounded"
+                        width="40"
+                        height="40"
+                      >
+                    {% endif %}
+                    {{ childlink.title }}
+                  </div>
+                  {% if childlink.links != blank %}
+                    {%- render 'icons', icon: 'icon-chevron-right' %}
+                  {% endif %}
+                </a>
 
-          <!-- Drop-down بدل Mega Menu -->
-          {% if block.settings.menu_style == 'mega-menu' %}
-            {% render 'mega-menu', link: link %}
-          {% else %}
-            {% render 'classic-menu', link: link %}
-          {% endif %}
+                {% if childlink.links != blank %}
+                  <ul class="absolute top-0 left-full -translate-y-2  min-w-[200px] transition-menu bg-white border border-gray-200 shadow-lg py-2">
+                    {% for grandchild in childlink.links %}
+                      <li>
+                        <a
+                          href="{{ grandchild.url }}"
+                          aria-label="{{ grandchild.title }}"
+                          class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 text-nowrap"
+                        >
+                          {% if grandchild.object.featured_image %}
+                            <img
+                              src="{{ grandchild.object.featured_image | img_url }}"
+                              alt="{{ grandchild.title }}_{{ grandchild.id }}"
+                              class="w-4 h-4 object-cover rounded"
+                              width="40"
+                              height="40"
+                            >
+                          {% endif %}
+                          {{ grandchild.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
         </li>
       {% else %}
-        <li>
-          <a href="{{ link.url }}" aria-label="{{ link.title }}" class="text-sm {{ block.settings.item_hover_effect }}">
-            {{ link.title }}
-          </a>
+        <li class="flex-shrink-0">
+          {% render 'button',
+            type: 'link',
+            url: link.url,
+            class: block.settings.item_hover_effect,
+            data_label: link.title,
+            text: link.title,
+            bg_color: block.settings.link_bg_color,
+            text_color: block.settings.link_text_color
+          %}
         </li>
       {% endif %}
     {% endfor %}
+
+    <!-- زر See More -->
+    <li class="relative group flex-shrink-0 see-more">
+      <button
+        id="list-toggle-seemore"
+        data-target="header-menu-semore"
+        class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu"
+      >
+        See more
+      </button>
+      <ul
+        id="header-menu-semore"
+        class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
+      ></ul>
+    </li>
   </ul>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const menuContainer = document.querySelector('.header__menu ul');
+  if (!menuContainer) return;
+
+  const seeMoreLi = menuContainer.querySelector('.see-more');
+  const seeMoreMenu = seeMoreLi.querySelector('ul');
+
+  function organizeMenu() {
+    // إعادة كل العناصر إلى القائمة الرئيسية أولًا
+    Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
+
+    const containerWidth = menuContainer.offsetWidth;
+    let totalWidth = seeMoreLi.offsetWidth; // عرض زر See More
+
+    const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+    items.forEach((li) => {
+      totalWidth += li.offsetWidth;
+      if (totalWidth > containerWidth) {
+        seeMoreMenu.appendChild(li);
+      }
+    });
+
+    seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
+  }
+
+  organizeMenu();
+  window.addEventListener('resize', organizeMenu);
+});
+</script>
+
 
 {% schema %}
 {
   "name": "Menu Block",
-  "class": "mx-auto w-screen relative",
+  "class": "w-full",
   "settings": [
     {
       "type": "link_list",
@@ -49,20 +160,16 @@
       "label": "menu"
     },
     {
-      "type": "select",
-      "id": "menu_style",
-      "label": "menu_style",
-      "default": "classic-menu",
-      "options": [
-        {
-          "value": "classic-menu",
-          "label": "classic-menu"
-        },
-        {
-          "value": "mega-menu",
-          "label": "mega-menu"
-        }
-      ]
+      "type": "color",
+      "id": "link_bg_color",
+      "label": "link background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "link text color",
+      "default": "#000000"
     },
     {
       "type": "select",
@@ -82,30 +189,6 @@
           "label": "doubleline"
         }
       ]
-    },
-    {
-      "type": "select",
-      "id": "menu_width",
-      "label": "menu_width",
-      "options": [
-        {
-          "value": "w-full",
-          "label": "full"
-        },
-        {
-          "value": "w-fit",
-          "label": "fit"
-        }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "menu_horizontal_padding",
-      "label": "menu_horizontal_padding",
-      "min": 0,
-      "max": 12,
-      "step": 2,
-      "default": 0
     }
   ],
   "presets": [

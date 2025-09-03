@@ -58,6 +58,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== Normal Mode =====
   else {
     header.style.position = "relative";
-    console.log("[Header Script] Normal Mode - الهيدر طبيعي");
   }
 });

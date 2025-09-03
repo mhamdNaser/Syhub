@@ -1,0 +1,66 @@
+{% doc %}
+  Renders a button or link with customizable styles, text, and icons.
+
+  @param {string} type - "button" or "link" (default: button)
+  @param {string} [url] - Required if type is link
+  @param {string} [id] - Optional id attribute
+  @param {string} [class] - Additional classes for styling
+  @param {string} [text] - The button text
+  @param {string} [icon] - Optional icon name (uses icons snippet)
+  @param {string} [bg_color] - Background color (e.g. bg-blue-500)
+  @param {string} [text_color] - Text color (e.g. text-white)
+  @param {string} [width] - Width classes (e.g. w-full, w-40)
+  @param {string} [height] - Height classes (e.g. h-12)
+  @param {string} [data_label] - Optional data-label attribute
+  @param {string} [data_target] - Optional data-target attribute
+
+  @example
+  {% render 'button', 
+    type: 'button', 
+    text: 'Submit', 
+    class: 'rounded-lg px-4 py-2', 
+    bg_color: 'bg-blue-600', 
+    text_color: 'text-white', 
+    icon: 'icon-chevron-down' %}
+  @example
+  {% render 'button', 
+    type: 'link', 
+    url: '/collections/all', 
+    text: 'Shop All', 
+    bg_color: 'bg-gray-100', 
+    text_color: 'text-gray-800', 
+    icon: 'icon-arrow-right' %}
+{% enddoc %}
+
+{% liquid
+  assign btn_type = type | default: 'button'
+  if btn_type == 'link'
+    assign tag = 'a'
+  else
+    assign tag = 'button'
+  endif
+%}
+
+<{{ tag }}
+  {% if url and btn_type == 'link' %}
+    href="{{ url }}"
+  {% endif %}
+  {% if id %}
+    id="{{ id }}"
+  {% endif %}
+  class="w-{{ width }} h-{{ height }} bg-[{{ bg_color }}] text-[{{ text_color }}] {{ class }}"
+  {% if data_label %}
+    data-label="{{ data_label }}"
+  {% endif %}
+  {% if data_target %}
+    data-target="{{ data_target }}"
+  {% endif %}
+>
+  {% if icon %}
+    {% render 'icons', icon: icon %}
+  {% endif %}
+
+  {% if text %}
+    <span class="ml-2">{{ text }}</span>
+  {% endif %}
+</{{ tag }}>

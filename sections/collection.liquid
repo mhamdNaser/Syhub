@@ -10,7 +10,7 @@
 
 <div class="px-4 py-24 md:py-6 mx-auto {{ box_width }}">
   <!-- Filter Toggle for Mobile -->
-  <div class="flex justify-between items-center sticky top-20 z-50 mb-4 lg:hidden">
+  <div class="flex justify-between items-center sticky top-20 z-40 mb-4 lg:hidden">
     <h2 class="text-xl font-bold text-gray-900">{{ collection.title }}</h2>
     <button 
       aria-label="Filters"
@@ -22,7 +22,7 @@
 
   <div class="flex flex-col lg:flex-row gap-6">
     <!-- Filter Sidebar -->
-    <aside id="mobile-filters" class="hidden lg:block sticky top-20 z-50 w-full lg:w-1/4 bg-white p-4 rounded-lg shadow-md">
+    <aside id="mobile-filters" class="hidden lg:block sticky top-20 z-40 w-full lg:w-1/4 bg-white p-4 rounded-lg shadow-md">
       {%- if collection.image.src != blank -%}
         <img
           src="{{ collection.image.src | image_url: width: 800 }}"
