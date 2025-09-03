@@ -85,10 +85,10 @@
       // جلب العناصر باستثناء زر see more
       let items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
 
-      // ✅ ترتيب العناصر: بدون تشايلد أولاً
+      // ✅ ترتيب العناصر: اللي إلها تشايلد أول، اللي ما إلها تشايلد بعدين
       items.sort((a, b) => {
-        const aHasChild = a.querySelector('ul') ? 1 : 0;
-        const bHasChild = b.querySelector('ul') ? 1 : 0;
+        const aHasChild = a.querySelector('ul') ? 0 : 1;
+        const bHasChild = b.querySelector('ul') ? 0 : 1;
         return aHasChild - bHasChild;
       });
 
@@ -111,6 +111,7 @@
     window.addEventListener('resize', organizeMenu);
   });
 </script>
+
 
 
 {% schema %}
