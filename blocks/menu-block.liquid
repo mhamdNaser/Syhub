@@ -77,10 +77,10 @@
 
     // ✅ تعديل جميع ul li ul داخل see more
     function fixNestedDropdowns() {
-      const nestedULs = seeMoreMenu.querySelectorAll('li > ul > li > ul');
+      const nestedULs = seeMoreMenu.querySelectorAll('li > ul ');
       nestedULs.forEach((ul) => {
-        ul.classList.remove('left-full');
-        ul.classList.add('right-full', 'top-0');
+        ul.classList.remove('left-0', 'top-full');
+        ul.classList.add('-left-full', 'top-0');
       });
     }
 
