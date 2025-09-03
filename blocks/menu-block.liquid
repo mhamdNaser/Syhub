@@ -115,15 +115,22 @@
 
     <!-- زر See More -->
     <li class="relative group flex-shrink-0 see-more">
-      <button class="flex items-center gap-x-1 text-sm font-medium">See more</button>
+      <button
+        id="list-toggle-seemore"
+        data-target="header-menu-semore"
+        class="flex items-center gap-x-1 text-sm font-medium"
+      >
+        See more
+      </button>
       <ul
+        id="header-menu-semore"
         class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
       ></ul>
     </li>
   </ul>
 </div>
 
-<script>
+{% comment %} <script>
   document.addEventListener('DOMContentLoaded', function () {
     const menuContainer = document.querySelector('.header__menu ul');
     if (!menuContainer) return;
@@ -153,7 +160,7 @@
     adjustMenu();
     window.addEventListener('resize', adjustMenu);
   });
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
