@@ -15,14 +15,23 @@ document.addEventListener("DOMContentLoaded", function () {
         if (other !== menu) closeMenu(other);
       });
     }
-    if (isOpen) closeMenu(menu);
-    else menu.classList.add("show");
+    if (isOpen) {
+      closeMenu(menu);
+      // إخفاء See More
+      menu.style.display = 'none';
+    } else {
+      menu.classList.add("show");
+      // إزالة أي hidden
+      menu.style.display = 'block'; // أو 'flex' حسب التصميم
+    }
   }
 
   function closeMenu(menu) {
     menu.classList.remove("show");
     menu.classList.add("hide");
     menu.addEventListener("animationend", () => menu.classList.remove("hide"), { once: true });
+    // إخفاء See More عند الإغلاق
+    menu.style.display = 'none';
   }
 
   // تهيئة toggle/hover لأي container
