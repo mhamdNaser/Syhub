@@ -16,19 +16,17 @@
         <li class="relative text-nowrap">
           {% assign btn_id = 'list-toggle-' | append: link.title | handleize %}
           {% assign btn_target = 'header-menu-' | append: link.title | handleize %}
-          {%
-            render 'button',
+          {% render 'button',
             type: 'button',
-            id: btn_id ,
+            id: btn_id,
             class: button_class,
             data_target: btn_target,
             data_label: link.title,
-            text: link.title
-            bg_color: block.settings.link_bg_color
+            text: link.title,
+            bg_color: block.settings.link_bg_color,
             text_color: block.settings.link_text_color
           %}
 
-          <!-- Drop-down بدل Mega Menu -->
           {% if block.settings.menu_style == 'mega-menu' %}
             {% render 'mega-menu', link: link %}
           {% else %}
@@ -49,8 +47,66 @@
         </li>
       {% endif %}
     {% endfor %}
+
+    <!-- زر See more ثابت -->
+    <li class="relative group" style="display:none;">
+      <button class="flex items-center gap-x-1 text-sm font-medium">
+        See more
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <ul
+        class="absolute hidden group-hover:block top-full left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50"
+      ></ul>
+    </li>
   </ul>
 </div>
+
+{% comment %}
+  <div class="header__menu relative w-full" {{ block.shopify_attributes }}>
+    <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
+      {% for link in block.settings.menu.links %}
+        {% if link.links != blank %}
+          <li class="relative text-nowrap">
+            {% assign btn_id = 'list-toggle-' | append: link.title | handleize %}
+            {% assign btn_target = 'header-menu-' | append: link.title | handleize %}
+            {%
+              render 'button',
+              type: 'button',
+              id: btn_id ,
+              class: button_class,
+              data_target: btn_target,
+              data_label: link.title,
+              text: link.title
+              bg_color: block.settings.link_bg_color
+              text_color: block.settings.link_text_color
+            %}
+
+            <!-- Drop-down بدل Mega Menu -->
+            {% if block.settings.menu_style == 'mega-menu' %}
+              {% render 'mega-menu', link: link %}
+            {% else %}
+              {% render 'classic-menu', link: link %}
+            {% endif %}
+          </li>
+        {% else %}
+          <li>
+            {% render 'button',
+              type: 'link',
+              url: link.url,
+              class: block.settings.item_hover_effect,
+              data_label: link.title,
+              text: link.title,
+              bg_color: block.settings.link_bg_color,
+              text_color: block.settings.link_text_color
+            %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endcomment %}
 
 {% schema %}
 {
