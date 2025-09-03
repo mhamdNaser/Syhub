@@ -1,7 +1,6 @@
 <ul
   id="header-menu-{{ link.title | handleize }}"
   class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
-  {% comment %} style="transition: all 0.2s ease-in-out;" {% endcomment %}
 >
   {% for childlink in link.links %}
     <li class="relative">
