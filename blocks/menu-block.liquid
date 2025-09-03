@@ -5,6 +5,13 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
+{% stylesheet %}
+  .header__menu ul li {
+    flex-shrink: 0; /* منع تقليص حجم العناصر */
+    white-space: nowrap; /* منع تقسيم النص */
+  }
+{% endstylesheet %}
+
 {% assign button_class = 'flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu '
   | append: block.settings.item_hover_effect
 %}
