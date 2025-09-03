@@ -814,6 +814,14 @@
     --tw-translate-x: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .-translate-x-2 {
+    --tw-translate-x: calc(var(--spacing) * -2);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-x-2\.5 {
+    --tw-translate-x: calc(var(--spacing) * -2.5);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .translate-x-1 {
     --tw-translate-x: calc(var(--spacing) * 1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
