@@ -9,11 +9,11 @@
   | append: block.settings.item_hover_effect
 %}
 
-<div class="header__menu" {{ block.shopify_attributes }}>
-  <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
+<div class="header__menu w-full" {{ block.shopify_attributes }}>
+  <ul class="flex justify-between items-center w-full space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
-        <li class="relative text-nowrap">
+        <li class="relative whitespace-nowrap flex-shrink-0">
           {% assign btn_id = 'list-toggle-' | append: link.title | handleize %}
           {% assign btn_target = 'header-menu-' | append: link.title | handleize %}
           {% render 'button',
@@ -26,7 +26,6 @@
             bg_color: block.settings.link_bg_color,
             text_color: block.settings.link_text_color
           %}
-
           {% if block.settings.menu_style == 'mega-menu' %}
             {% render 'mega-menu', link: link %}
           {% else %}
@@ -34,7 +33,7 @@
           {% endif %}
         </li>
       {% else %}
-        <li>
+        <li class="flex-shrink-0">
           {% render 'button',
             type: 'link',
             url: link.url,
@@ -48,8 +47,8 @@
       {% endif %}
     {% endfor %}
 
-    <!-- زر See more ثابت -->
-    <li class="relative group" style="display:none;">
+    <!-- زر See More -->
+    <li class="relative group hidden flex-shrink-0">
       <button class="flex items-center gap-x-1 text-sm font-medium">
         See more
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
@@ -107,6 +106,38 @@
     </ul>
   </div>
 {% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuContainer = document.querySelector('.header__menu ul');
+    if (!menuContainer) return;
+
+    const seeMoreLi = menuContainer.querySelector('.group');
+    const seeMoreMenu = seeMoreLi.querySelector('ul');
+
+    function adjustMenu() {
+      // إعادة كل العناصر إلى القائمة الرئيسية
+      Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
+
+      const containerWidth = menuContainer.offsetWidth;
+      let totalWidth = seeMoreLi.offsetWidth; // احتساب زر See More
+
+      const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+      items.forEach((li) => {
+        totalWidth += li.offsetWidth;
+        if (totalWidth > containerWidth) {
+          seeMoreMenu.appendChild(li);
+        }
+      });
+
+      // إظهار زر See More فقط إذا كان هناك عناصر مخفية
+      seeMoreLi.classList.toggle('hidden', seeMoreMenu.children.length === 0);
+    }
+
+    adjustMenu();
+    window.addEventListener('resize', adjustMenu);
+  });
+</script>
 
 {% schema %}
 {
