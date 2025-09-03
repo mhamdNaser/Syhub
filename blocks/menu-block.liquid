@@ -79,7 +79,7 @@
     function fixNestedDropdowns() {
       const nestedULs = seeMoreMenu.querySelectorAll('li > ul ');
       nestedULs.forEach((ul) => {
-        ul.classList.remove('left-0', 'top-full');
+        ul.classList.remove('left-0', 'top-full', 'mt-3');
         ul.classList.add('-left-full', 'top-0');
       });
     }
