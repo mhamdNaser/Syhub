@@ -8,13 +8,13 @@
 {% stylesheet %}
   .header__menu ul .see-more ul {
     display: none;
-    position: absolute; 
+    position: absolute;
     background: white;
     list-style: none;
   }
 
   .header__menu ul .see-more:hover ul {
-    display: block; 
+    display: block;
   }
 {% endstylesheet %}
 
@@ -39,11 +39,64 @@
             bg_color: block.settings.link_bg_color,
             text_color: block.settings.link_text_color
           %}
-          {% if block.settings.menu_style == 'mega-menu' %}
-            {% render 'mega-menu', link: link %}
-          {% else %}
-            {% render 'classic-menu', link: link %}
-          {% endif %}
+          <ul
+            id="header-menu-{{ link.title | handleize }}"
+            class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
+          >
+            {% for childlink in link.links %}
+              <li class="relative">
+                <!-- Parent link -->
+                <a
+                  type="button"
+                  href="{{ childlink.url }}"
+                  aria-label="{{ childlink.title }}"
+                  class="flex items-center gap-x-2 justify-between w-full px-4 py-2 text-sm hover:bg-gray-100 js-toggle-grandchild"
+                  aria-expanded="false"
+                >
+                  <div class="flex items-center gap-x-2 flex-1">
+                    {% if childlink.object.featured_image %}
+                      <img
+                        src="{{ childlink.object.featured_image | img_url  }}"
+                        alt="{{ childlink.title }}_{{ childlink.id }}"
+                        class="w-4 h-4 object-cover rounded"
+                        width="40"
+                        height="40"
+                      >
+                    {% endif %}
+                    {{ childlink.title }}
+                  </div>
+                  {% if childlink.links != blank %}
+                    {%- render 'icons', icon: 'icon-chevron-right' %}
+                  {% endif %}
+                </a>
+
+                {% if childlink.links != blank %}
+                  <ul class="absolute top-0 left-full -translate-y-2  min-w-[200px] transition-menu bg-white border border-gray-200 shadow-lg py-2">
+                    {% for grandchild in childlink.links %}
+                      <li>
+                        <a
+                          href="{{ grandchild.url }}"
+                          aria-label="{{ grandchild.title }}"
+                          class="flex items-center gap-x-2 px-4 py-2 text-xs hover:bg-gray-100 text-nowrap"
+                        >
+                          {% if grandchild.object.featured_image %}
+                            <img
+                              src="{{ grandchild.object.featured_image | img_url }}"
+                              alt="{{ grandchild.title }}_{{ grandchild.id }}"
+                              class="w-4 h-4 object-cover rounded"
+                              width="40"
+                              height="40"
+                            >
+                          {% endif %}
+                          {{ grandchild.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
         </li>
       {% else %}
         <li class="flex-shrink-0">
@@ -64,7 +117,7 @@
     <li class="relative group flex-shrink-0 see-more">
       <button class="flex items-center gap-x-1 text-sm font-medium">See more</button>
       <ul
-        class="absolute hidden group-hover:flex group-hover:flex-col gap-y-4 top-full mt-5 right-0 -translate-x-2.5 bg-white shadow-lg rounded-lg w-screen z-50"
+        class="absolute top-full left-0 mt-3 min-w-[220px] transition-menu bg-white border border-gray-200 shadow-lg z-20 py-2"
       ></ul>
     </li>
   </ul>
@@ -111,22 +164,6 @@
       "type": "link_list",
       "id": "menu",
       "label": "menu"
-    },
-    {
-      "type": "select",
-      "id": "menu_style",
-      "label": "menu_style",
-      "default": "classic-menu",
-      "options": [
-        {
-          "value": "classic-menu",
-          "label": "classic-menu"
-        },
-        {
-          "value": "mega-menu",
-          "label": "mega-menu"
-        }
-      ]
     },
     {
       "type": "color",
