@@ -7,7 +7,6 @@
   @param {string} [class] - Additional classes for styling
   @param {string} [text] - The button text
   @param {string} [icon] - Optional icon name (uses icons snippet)
-  @param {string} [context] - Context text shown before/after icon
   @param {string} [bg_color] - Background color (e.g. bg-blue-500)
   @param {string} [text_color] - Text color (e.g. text-white)
   @param {string} [width] - Width classes (e.g. w-full, w-40)
@@ -40,7 +39,6 @@
   else
     assign tag = 'button'
   endif
-  assign has_icon = icon or context
 %}
 
 <{{ tag }}
@@ -60,10 +58,6 @@
 >
   {% if icon %}
     {% render 'icons', icon: icon %}
-  {% endif %}
-
-  {% if context %}
-    <span class="ml-2">{{ context }}</span>
   {% endif %}
 
   {% if text %}
