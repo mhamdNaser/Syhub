@@ -9,7 +9,7 @@
   | append: block.settings.item_hover_effect
 %}
 
-<div class="header__menu relative" {{ block.shopify_attributes }}>
+<div class="header__menu relative w-7xl" {{ block.shopify_attributes }}>
   <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
