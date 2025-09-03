@@ -55,11 +55,10 @@
     {% endfor %}
 
     <!-- زر See More -->
-    <li class="relative group flex-shrink-0 see-more">
+    <li class="relative group flex-shrink-0 see-more" style="display:none;">
       <button class="flex items-center gap-x-1 text-sm font-medium">See more</button>
-      <ul
-        class="absolute hidden group-hover:block top-full left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50"
-      ></ul>
+      <ul class="absolute hidden group-hover:block top-full left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50">
+      </ul>
     </li>
   </ul>
 </div>
@@ -77,17 +76,17 @@
       Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
 
       const containerWidth = menuContainer.offsetWidth;
-      let totalWidth = seeMoreLi.offsetWidth; // زر See More
+      let totalWidth = seeMoreLi.offsetWidth;
 
       const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
       items.forEach((li) => {
         totalWidth += li.offsetWidth;
         if (totalWidth > containerWidth) {
-          seeMoreMenu.appendChild(li);
+          seeMoreMenu.appendChild(li); // تحريك العنصر نفسه، سيحتفظ بالـ Liquid rendering
         }
       });
 
-      // إظهار أو إخفاء زر See More حسب الحاجة
+      // إظهار أو إخفاء زر See More
       seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
     }
 
