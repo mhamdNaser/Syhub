@@ -75,12 +75,6 @@
     const seeMoreLi = menuContainer.querySelector('.see-more');
     const seeMoreMenu = seeMoreLi.querySelector('ul');
 
-    // ✅ تعديل الكلاسات الخاصة بالـ submenu
-    if (seeMoreMenu) {
-      seeMoreMenu.classList.remove('top-full', 'left-0');
-      seeMoreMenu.classList.add('top-0', 'left-full');
-    }
-
     function organizeMenu() {
       // رجع كل العناصر من see more للقائمة الرئيسية
       Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
@@ -91,7 +85,7 @@
       // جلب العناصر باستثناء زر see more
       let items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
 
-      // ترتيب: اللي إلها تشايلد تبقى أول
+      // ✅ ترتيب العناصر: اللي إلها تشايلد أول، اللي ما إلها تشايلد بعدين
       items.sort((a, b) => {
         const aHasChild = a.querySelector('ul') ? 0 : 1;
         const bHasChild = b.querySelector('ul') ? 0 : 1;
