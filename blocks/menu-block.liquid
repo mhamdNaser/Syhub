@@ -56,9 +56,7 @@
 
     <!-- زر See More -->
     <li class="relative group hidden flex-shrink-0">
-      <button class="flex items-center gap-x-1 text-sm font-medium">
-        See more
-      </button>
+      <button class="flex items-center gap-x-1 text-sm font-medium">See more</button>
       <ul
         class="absolute hidden group-hover:block top-full left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50"
       ></ul>
@@ -82,6 +80,7 @@
       let totalWidth = seeMoreLi.offsetWidth; // احتساب زر See More
 
       const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+
       items.forEach((li) => {
         totalWidth += li.offsetWidth;
         if (totalWidth > containerWidth) {
@@ -89,8 +88,9 @@
         }
       });
 
-      // إظهار زر See More فقط إذا كان هناك عناصر مخفية
-      seeMoreLi.classList.toggle('hidden', seeMoreMenu.children.length === 0);
+      // إظهار زر See More فقط إذا كان هناك عناصر مخفية فعلًا
+      const hiddenItems = Array.from(seeMoreMenu.children).filter((li) => li.offsetWidth > 0);
+      seeMoreLi.classList.toggle('hidden', hiddenItems.length === 0);
     }
 
     adjustMenu();
