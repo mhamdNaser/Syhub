@@ -87,12 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------
   // Hover منفصل لزر See More
   // ---------------------------
-  seeMoreLi.addEventListener("mouseenter", () => { seeMoreMenu.classList.add("show"); });
-  seeMoreLi.addEventListener("mouseleave", () => { seeMoreMenu.classList.remove("show"); });
+  seeMoreLi.addEventListener("mouseenter", () => toggleMenu(seeMoreMenu));
+  seeMoreLi.addEventListener("mouseleave", () => closeMenu(seeMoreMenu));
 
-  seeMoreButton.addEventListener("click", () => {
-    seeMoreMenu.classList.toggle("show");
-  });
+  seeMoreButton.addEventListener("click", () => toggleMenu(seeMoreMenu));
 
   initToggles(menuContainer);
   adjustMenu();
