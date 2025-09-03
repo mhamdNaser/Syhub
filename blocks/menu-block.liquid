@@ -5,20 +5,26 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
+{% assign button_class = 'flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu '
+  | append: block.settings.item_hover_effect
+%}
+
 <div class="header__menu relative w-full" {{ block.shopify_attributes }}>
   <ul class="flex px-{{ block.settings.menu_horizontal_padding }} {{ block.settings.menu_width }} justify-between items-center space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
         <li class="relative">
-          <button
-            class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu {{ block.settings.item_hover_effect }}"
-            id="list-toggle-{{ link.title | handleize }}"
-            data-target="header-menu-{{ link.title | handleize }}"
-            aria-label="{{ link.title }}"
-          >
-            {{ link.title }}
-            {% comment %} {% render 'icon-chevron-down' %} {% endcomment %}
-          </button>
+          {%
+            render 'button',
+            type: 'button',
+            id: 'list-toggle-' | append:  link.title | handleize,
+            class: button_class,
+            data_target: 'header-menu-' | append: link.title | handleize,
+            data_label: link.title,
+            text: link.title,
+            bg_color: block.settings.link_bg_color,
+            text_color: block.settings.link_text_color
+          %}
 
           <!-- Drop-down بدل Mega Menu -->
           {% if block.settings.menu_style == 'mega-menu' %}
@@ -29,9 +35,15 @@
         </li>
       {% else %}
         <li>
-          <a href="{{ link.url }}" aria-label="{{ link.title }}" class="text-sm {{ block.settings.item_hover_effect }}">
-            {{ link.title }}
-          </a>
+          {% render 'button',
+            type: 'link',
+            url: link.url,
+            class: block.settings.item_hover_effect,
+            data_label: link.title,
+            text: link.title,
+            bg_color: block.settings.link_bg_color,
+            text_color: block.settings.link_text_color
+          %}
         </li>
       {% endif %}
     {% endfor %}
@@ -63,6 +75,18 @@
           "label": "mega-menu"
         }
       ]
+    },
+    {
+      "type": "color",
+      "id": "link_bg_color",
+      "label": "link background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "link text color",
+      "default": "#000000"
     },
     {
       "type": "select",
