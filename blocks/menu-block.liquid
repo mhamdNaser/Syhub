@@ -139,6 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
         seeMoreMenu.appendChild(li);
       }
     });
+
+    seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
   }
 
   organizeMenu();
