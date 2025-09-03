@@ -130,6 +130,36 @@
   </ul>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const menuContainer = document.querySelector('.header__menu ul');
+  if (!menuContainer) return;
+
+  const seeMoreLi = menuContainer.querySelector('.see-more');
+  const seeMoreMenu = seeMoreLi.querySelector('ul');
+
+  function organizeMenu() {
+    // إعادة كل العناصر إلى القائمة الرئيسية أولًا
+    Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
+
+    const containerWidth = menuContainer.offsetWidth;
+    let totalWidth = seeMoreLi.offsetWidth; // عرض زر See More
+
+    const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+    items.forEach((li) => {
+      totalWidth += li.offsetWidth;
+      if (totalWidth > containerWidth) {
+        seeMoreMenu.appendChild(li);
+      }
+    });
+  }
+
+  organizeMenu();
+  window.addEventListener('resize', organizeMenu);
+});
+</script>
+
+
 {% schema %}
 {
   "name": "Menu Block",
