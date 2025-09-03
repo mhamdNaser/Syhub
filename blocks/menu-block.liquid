@@ -55,46 +55,54 @@
     {% endfor %}
 
     <!-- زر See More -->
-    <li class="relative group flex-shrink-0 see-more">
+    <li class="relative flex-shrink-0 see-more" style="display:none;">
       <button class="flex items-center gap-x-1 text-sm font-medium">See more</button>
-      <ul
-        class="absolute hidden group-hover:flex group-hover:flex-col gap-y-4 top-full mt-5 left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50"
-      ></ul>
+      <ul class="absolute hidden top-full left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50"></ul>
     </li>
+    {% comment %}
+      <li class="relative group flex-shrink-0 see-more">
+        <button class="flex items-center gap-x-1 text-sm font-medium">See more</button>
+        <ul
+          class="absolute hidden group-hover:flex group-hover:flex-col gap-y-4 top-full mt-5 left-0 bg-white shadow-lg rounded-lg min-w-[200px] z-50"
+        ></ul>
+      </li>
+    {% endcomment %}
   </ul>
 </div>
 
-{% comment %} <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const menuContainer = document.querySelector('.header__menu ul');
-    if (!menuContainer) return;
+{% comment %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuContainer = document.querySelector('.header__menu ul');
+      if (!menuContainer) return;
 
-    const seeMoreLi = menuContainer.querySelector('.see-more');
-    const seeMoreMenu = seeMoreLi.querySelector('ul');
+      const seeMoreLi = menuContainer.querySelector('.see-more');
+      const seeMoreMenu = seeMoreLi.querySelector('ul');
 
-    function adjustMenu() {
-      // إعادة كل العناصر إلى القائمة الرئيسية
-      Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
+      function adjustMenu() {
+        // إعادة كل العناصر إلى القائمة الرئيسية
+        Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
 
-      const containerWidth = menuContainer.offsetWidth;
-      let totalWidth = seeMoreLi.offsetWidth; // زر See More
+        const containerWidth = menuContainer.offsetWidth;
+        let totalWidth = seeMoreLi.offsetWidth; // زر See More
 
-      const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
-      items.forEach((li) => {
-        totalWidth += li.offsetWidth;
-        if (totalWidth > containerWidth) {
-          seeMoreMenu.appendChild(li);
-        }
-      });
+        const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+        items.forEach((li) => {
+          totalWidth += li.offsetWidth;
+          if (totalWidth > containerWidth) {
+            seeMoreMenu.appendChild(li);
+          }
+        });
 
-      // إظهار أو إخفاء زر See More حسب الحاجة
-      seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
-    }
+        // إظهار أو إخفاء زر See More حسب الحاجة
+        seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
+      }
 
-    adjustMenu();
-    window.addEventListener('resize', adjustMenu);
-  });
-</script> {% endcomment %}
+      adjustMenu();
+      window.addEventListener('resize', adjustMenu);
+    });
+  </script>
+{% endcomment %}
 
 {% schema %}
 {
