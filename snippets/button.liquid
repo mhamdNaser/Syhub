@@ -35,12 +35,6 @@
 
 {% liquid
   assign btn_type = type | default: 'button'
-  assign tag = btn_type == 'link' ? 'a' : 'button'
-  assign has_icon = icon or context
-%}
-
-{% liquid
-  assign btn_type = type | default: 'button'
   if btn_type == 'link'
     assign tag = 'a'
   else
