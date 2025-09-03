@@ -6,9 +6,17 @@
 {% enddoc %}
 
 {% stylesheet %}
-  .header__menu ul li {
-    flex-shrink: 0; /* منع تقليص حجم العناصر */
-    white-space: nowrap; /* منع تقسيم النص */
+  .header__menu ul .see-more ul {
+    display: none; /* اخفاء القائمة الفرعية افتراضيًا */
+    position: absolute; /* لو احتجت لتكون منسدلة */
+    background: white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__menu ul .see-more:hover ul {
+    display: block; /* إظهار القائمة عند الهوفر على li.see-more فقط */
   }
 {% endstylesheet %}
 
