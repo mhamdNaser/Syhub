@@ -9,6 +9,12 @@
   | append: block.settings.item_hover_effect
 %}
 
+<style>
+  .see-more ul li {
+    padding: 10px 0px,
+  }
+</style>
+
 <div class="header__menu w-full" {{ block.shopify_attributes }}>
   <ul class="flex justify-between items-center w-full space-x-6 text-gray-600 hover:text-black">
     {% for link in block.settings.menu.links %}
@@ -118,36 +124,35 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const menuContainer = document.querySelector('.header__menu ul');
-  if (!menuContainer) return;
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuContainer = document.querySelector('.header__menu ul');
+    if (!menuContainer) return;
 
-  const seeMoreLi = menuContainer.querySelector('.see-more');
-  const seeMoreMenu = seeMoreLi.querySelector('ul');
+    const seeMoreLi = menuContainer.querySelector('.see-more');
+    const seeMoreMenu = seeMoreLi.querySelector('ul');
 
-  function organizeMenu() {
-    // إعادة كل العناصر إلى القائمة الرئيسية أولًا
-    Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
+    function organizeMenu() {
+      // إعادة كل العناصر إلى القائمة الرئيسية أولًا
+      Array.from(seeMoreMenu.children).forEach((li) => menuContainer.insertBefore(li, seeMoreLi));
 
-    const containerWidth = menuContainer.offsetWidth;
-    let totalWidth = seeMoreLi.offsetWidth; // عرض زر See More
+      const containerWidth = menuContainer.offsetWidth;
+      let totalWidth = seeMoreLi.offsetWidth; // عرض زر See More
 
-    const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
-    items.forEach((li) => {
-      totalWidth += li.offsetWidth;
-      if (totalWidth > containerWidth) {
-        seeMoreMenu.appendChild(li);
-      }
-    });
+      const items = Array.from(menuContainer.children).filter((li) => li !== seeMoreLi);
+      items.forEach((li) => {
+        totalWidth += li.offsetWidth;
+        if (totalWidth > containerWidth) {
+          seeMoreMenu.appendChild(li);
+        }
+      });
 
-    seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
-  }
+      seeMoreLi.style.display = seeMoreMenu.children.length ? 'flex' : 'none';
+    }
 
-  organizeMenu();
-  window.addEventListener('resize', organizeMenu);
-});
+    organizeMenu();
+    window.addEventListener('resize', organizeMenu);
+  });
 </script>
-
 
 {% schema %}
 {
