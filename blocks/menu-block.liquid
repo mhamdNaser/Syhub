@@ -77,7 +77,7 @@
 
     // ✅ تعديل جميع ul li ul داخل see more
     function fixNestedDropdowns() {
-      const nestedULs = seeMoreMenu.querySelectorAll('li > ul');
+      const nestedULs = seeMoreMenu.querySelectorAll('li > ul > li > ul');
       nestedULs.forEach((ul) => {
         ul.classList.remove('left-full');
         ul.classList.add('right-full', 'top-0');
@@ -123,9 +123,6 @@
     window.addEventListener('resize', organizeMenu);
   });
 </script>
-
-
-
 
 {% schema %}
 {
