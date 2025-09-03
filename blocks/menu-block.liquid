@@ -14,15 +14,17 @@
     {% for link in block.settings.menu.links %}
       {% if link.links != blank %}
         <li class="relative">
+          {% assign btn_id = 'list-toggle-' | append: link.title | handleize %}
+          {% assign btn_target = 'header-menu-' | append: link.title | handleize %}
           {%
             render 'button',
             type: 'button',
-            id: 'list-toggle-' | append:  link.title | handleize,
+            id: btn_id ,
             class: button_class,
-            data_target: 'header-menu-' | append: link.title | handleize,
+            data_target: btn_target,
             data_label: link.title,
-            text: link.title,
-            bg_color: block.settings.link_bg_color,
+            text: link.title
+            bg_color: block.settings.link_bg_color
             text_color: block.settings.link_text_color
           %}
 
