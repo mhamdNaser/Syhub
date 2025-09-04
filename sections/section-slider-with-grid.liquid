@@ -1,7 +1,7 @@
 <div id="shopify-section-{{ section.id }}" class="relative w-full py-{{ section.settings.padding-vertical }}">
   <!-- Slider -->
   <div
-    class="swiper mySwiper-{{ section.id }} w-full h-fit"
+    class="swiper mySwiper-{{ section.id }} w-full relative"
     data-next-btn="swiper-button-next-{{ section.id }}"
     data-prev-btn="swiper-button-prev-{{ section.id }}"
     data-slides-per-view="1"
@@ -12,13 +12,13 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide relative h-[{{ section.settings.slider_height }}px] md:h-[600px]">
+          <div class="swiper-slide relative h-[400px] sm:h-[500px] md:h-[600px]">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
-                class: 'object-cover',
+                class: 'w-full h-full object-cover',
                 width: 1920,
-                height: section.settings.slider_height,
+                height: 600,
                 crop: 'center',
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
