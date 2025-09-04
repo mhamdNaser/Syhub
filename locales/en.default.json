@@ -61,7 +61,8 @@
   "general": {
     "search": {
       "search": "Search",
-      "reset": "Reset"
+      "reset": "Reset",
+      "skip_to_content": "Skip to content"
     }
   },
   "accessibility": {
