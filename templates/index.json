@@ -375,7 +375,7 @@
         "image_rounded": "full",
         "image_rounded_corners": "r",
         "image_padding": 2,
-        "image_border": "r",
+        "image_border": "t",
         "image_border_style": "border-dashed",
         "image_border_color": "#360c0c",
         "image_border_size": 2,
