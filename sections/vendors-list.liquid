@@ -1,4 +1,4 @@
-{% liquid
+{% comment %} {% liquid
   assign item_in_row = section.settings.item_in_row
   assign group_title = section.settings.show_group_title
   assign show_title  = section.settings.show_title
@@ -14,47 +14,55 @@
 
   assign unique_vendors = vendors | split: ',' | uniq | sort
   assign current_letter = ""
-%}
+%} {% endcomment %}
 
-<div class="max-w-7xl mx-auto py-12 px-6">
-  {% if show_title %}
-    <h1 class="text-4xl font-bold mb-8 text-center text-gray-800 tracking-wide">
-      {{ title }}
+{%- assign item_in_row = section.settings.item_in_row -%}
+{%- assign group_title = section.settings.show_group_title -%}
+
+<div class="flex max-w-7xl mx-auto py-8">
+  {% if section.settings.show_title == true %}
+    <h1 class="text-3xl font-medium">
+      {{ section.settings.title }}
     </h1>
   {% endif %}
+  <div class="w-full">
+      {% assign vendors = "" %}
 
-  <div class="space-y-10">
-    {% for vendor in unique_vendors %}
-      {% if vendor != "" %}
-        {% liquid
-          assign first_letter = vendor | slice: 0, 1 | downcase
-        %}
+      {% for product in collections.all.products %}
+        {% unless vendors contains product.vendor and product.vendor != "" %}
+          {% assign vendors = vendors | append: product.vendor | append: "," %}
+        {% endunless %}
+      {% endfor %}
 
-        {% if group_title and first_letter != current_letter %}
-          {% assign current_letter = first_letter %}
-          <div class="w-full py-3 border-b border-gray-200 mb-4">
-            <h2 class="text-2xl font-semibold text-gray-700">
-              {{ first_letter | upcase }}
-            </h2>
-          </div>
-        {% endif %}
+      {% assign unique_vendors = vendors | split: ',' | uniq | sort %}  <!-- تم إضافة sort هنا لترتيب الفيندورات -->
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-{{ item_in_row }} gap-6">
-          <a href="/collections/vendors?q={{ vendor | url_encode }}"
-             class="block group">
-            <div class="bg-white shadow-md border border-gray-200 rounded-xl overflow-hidden transition transform hover:-translate-y-1 hover:shadow-lg">
-              <div class="p-6 text-center">
-                <h3 class="text-lg font-medium text-gray-800 group-hover:text-primary transition">
-                  {{ vendor }}
-                </h3>
+      {% assign current_letter = "" %}
+      {% for vendor in unique_vendors %}
+        <div class="flex flex-col py-4">
+          {% if vendor != "" %}
+            {% assign first_letter = vendor | slice: 0, 1 | downcase %}
+            
+            {% if group_title and first_letter != current_letter %}
+              {% assign current_letter = first_letter %}
+              <div class="w-full py-3 px-3">
+                <h2 class="text-2xl font-semibold">{{ first_letter | upcase }}</h2>
+              </div>
+            {% endif %}
+            
+            <div class="grid grid-cols-1 md:grid-cols-{{ item_in_row }} gap-6">
+              <div class="bg-white shadow-md border rounded-lg hover:bg-headerLightColor hover:text-white overflow-hidden">
+                <a href="/collections/vendors?q={{ vendor | url_encode }}">
+                  <div class="p-4">
+                    <h1 class="text-xl">{{ vendor }}</h1>
+                  </div>
+                </a>
               </div>
             </div>
-          </a>
+          {% endif %}
         </div>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
 
 {% schema %}
 {
@@ -85,7 +93,7 @@
       "step": 1,
       "label": "Item In Row",
       "default": 3
-    }
+    },
   ],
   "presets": [
     {
