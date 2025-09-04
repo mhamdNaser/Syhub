@@ -1,4 +1,4 @@
-{% liquid %}
+{% liquid 
   assign item_in_row = section.settings.item_in_row
   assign group_title = section.settings.show_group_title
   assign show_title = section.settings.show_title
@@ -13,7 +13,8 @@
 
   assign unique_vendors = vendors | split: ',' | uniq | sort
   assign current_letter = ""
-{% endliquid %}
+
+%}
 
 <div class="max-w-7xl mx-auto px-4 py-10">
   {% if show_title %}
