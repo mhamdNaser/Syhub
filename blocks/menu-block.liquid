@@ -5,7 +5,7 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
-{% assign button_class = 'flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu '
+{% assign button_class = 'flex items-center gap-x-1 font-medium js-toggle-header-menu '
   | append: block.settings.item_hover_effect
 %}
 
@@ -55,7 +55,7 @@
       <button
         id="list-toggle-seemore"
         data-target="header-menu-semore"
-        class="flex items-center gap-x-1 text-sm font-medium js-toggle-header-menu"
+        class="flex items-center gap-x-1 font-medium js-toggle-header-menu"
       >
         See more
       </button>
