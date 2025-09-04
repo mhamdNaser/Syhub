@@ -15,7 +15,7 @@
     "favicon": "shopify://shop_images/logo.avif",
     "page_width": "max-w-7xl",
     "page_padding_horizontal": 0,
-    "font_family": "mono",
+    "font_family": "sans",
     "font_weight": "bold",
     "heading_font_weight": "extrabold",
     "image_hover_style": "none",
