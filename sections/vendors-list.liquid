@@ -1,4 +1,4 @@
-{% comment %} {% liquid
+{% liquid
   assign item_in_row = section.settings.item_in_row
   assign group_title = section.settings.show_group_title
   assign show_title  = section.settings.show_title
@@ -14,29 +14,16 @@
 
   assign unique_vendors = vendors | split: ',' | uniq | sort
   assign current_letter = ""
-%} {% endcomment %}
-
-{%- assign item_in_row = section.settings.item_in_row -%}
-{%- assign group_title = section.settings.show_group_title -%}
+%} 
 
 <div class="flex max-w-7xl mx-auto py-8">
-  {% if section.settings.show_title == true %}
+  {% if show_title %}
     <h1 class="text-3xl font-medium">
-      {{ section.settings.title }}
+      {{ title }}
     </h1>
   {% endif %}
   <div class="w-full">
-      {% assign vendors = "" %}
 
-      {% for product in collections.all.products %}
-        {% unless vendors contains product.vendor and product.vendor != "" %}
-          {% assign vendors = vendors | append: product.vendor | append: "," %}
-        {% endunless %}
-      {% endfor %}
-
-      {% assign unique_vendors = vendors | split: ',' | uniq | sort %}  <!-- تم إضافة sort هنا لترتيب الفيندورات -->
-
-      {% assign current_letter = "" %}
       {% for vendor in unique_vendors %}
         <div class="flex flex-col py-4">
           {% if vendor != "" %}
@@ -45,16 +32,14 @@
             {% if group_title and first_letter != current_letter %}
               {% assign current_letter = first_letter %}
               <div class="w-full py-3 px-3">
-                <h2 class="text-2xl font-semibold">{{ first_letter | upcase }}</h2>
+                <h3 class="text-2xl font-semibold">{{ first_letter | upcase }}</h3>
               </div>
             {% endif %}
             
             <div class="grid grid-cols-1 md:grid-cols-{{ item_in_row }} gap-6">
               <div class="bg-white shadow-md border rounded-lg hover:bg-headerLightColor hover:text-white overflow-hidden">
-                <a href="/collections/vendors?q={{ vendor | url_encode }}">
-                  <div class="p-4">
-                    <h1 class="text-xl">{{ vendor }}</h1>
-                  </div>
+                <a href="/collections/vendors?q={{ vendor | url_encode }}" class="p-4" aria-label="{{ vendor }}">
+                    {{ vendor }}
                 </a>
               </div>
             </div>
