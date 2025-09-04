@@ -138,11 +138,11 @@
           },
           {
             "value": "bold",
-            "label": "t:settings_schema.typography.font_weight.options__2.label"
+            "label": "t:settings_schema.typography.font_weight.options__3.label"
           },
           {
             "value": "extrabold",
-            "label": "t:settings_schema.typography.font_weight.options__3.label"
+            "label": "t:settings_schema.typography.font_weight.options__4.label"
           }
         ],
         "default": "normal"
