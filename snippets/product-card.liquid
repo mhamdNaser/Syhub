@@ -52,8 +52,11 @@
           {% render 'image',
             image:  product_image ,
             alt: product.featured_image.alt | escape,
-            class: 'w-full h-48 transition-transform duration-300 ease-in-out hover:scale-105',
-            loading: 'lazy'
+            class: 'transition-transform duration-300 ease-in-out hover:scale-105',
+            width: "600",
+            height: "600",
+            loading: 'lazy',
+            sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
            %} 
           {% if sale_label and product.price < product.compare_at_price %}
             <div class="absolute left-2 top-2">
