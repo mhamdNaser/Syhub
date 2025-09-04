@@ -18,7 +18,7 @@
   @param {string} [loading] - Lazy/eager loading (default: lazy)
   @param {string} [decoding] - async/sync decoding (default: async)
   @param {string} [sizes] - Responsive sizes attribute
-  @param {string} [fetchpriority] 
+  @param {string} [fetchpriority]
 
   @example
   {% render 'image', image: product.featured_image %}
@@ -38,13 +38,12 @@
 
 {% liquid
   assign final_width = width | default: 1200
-   if height
+  if height
     assign final_height = height
   else
     assign temp_height = final_width | times: image.height
     assign final_height = temp_height | divided_by: image.width
   endif
-
 
   if url
     assign wrapper = 'a'
@@ -61,21 +60,22 @@
 
 <{{ wrapper }}
   class="image relative overflow-hidden {{ class }}"
-  {% if url %} href="{{ url }}" {% endif %}
-  style="width:100%; height:{{ final_height }}px;"
+  {% if url %}
+    href="{{ url }}"
+  {% endif %}
 >
   {{
     image
     | image_url: width: final_width, height: final_height, crop: crop
     | image_tag:
-        id: id,
-        class: 'w-full h-full object-cover',
-        alt: alt_text,
-        loading: loading_attr,
-        decoding: decoding_attr,
-        sizes: sizes_attr,
-        fetchpriority: fetchpriority_attr,
-        width: final_width,
-        height: final_height
+      id: id,
+      class: 'w-full h-full object-cover',
+      alt: alt_text,
+      loading: loading_attr,
+      decoding: decoding_attr,
+      sizes: sizes_attr,
+      fetchpriority: fetchpriority_attr,
+      width: final_width,
+      height: final_height
   }}
 </{{ wrapper }}>
