@@ -151,10 +151,7 @@
                   "name": "Menu Block",
                   "settings": {
                     "menu": "main-menu",
-                    "menu_style": "classic-menu",
-                    "item_hover_effect": "hover-doubleline",
-                    "menu_width": "w-full",
-                    "menu_horizontal_padding": 0
+                    "item_hover_effect": "hover-doubleline"
                   },
                   "blocks": {}
                 }
