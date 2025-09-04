@@ -426,8 +426,8 @@
                   "settings": {
                     "image": "shopify://shop_images/download_4.webp",
                     "alt_text": "Image description",
-                    "image_width": 2050,
-                    "image_height": 300,
+                    "image_width": 2400,
+                    "image_height": 350,
                     "object_fit": "cover",
                     "image_alignment": "center",
                     "max_width": 2000,
