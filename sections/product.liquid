@@ -116,11 +116,13 @@
                 {% when 'vendor' %}
                   <div class="flex justify-center items-center gap-4">
                     {% if block.settings.vendor_type == 'image' and block.settings.vendor_image != blank %}
-                      <img
-                        src="{{ block.settings.vendor_image | image_url }}"
-                        alt="{{ product_vendor }}"
-                        class="object-contain max-w-36 max-h-36"
-                      >
+                      {%
+                        render 'image',
+                        image: block.settings.vendor_image | image_url ,
+                        alt: product_vendor ,
+                        class: 'object-contain max-w-36 max-h-36',
+                        loading: 'lazy'
+                      %}
                     {% else %}
                       <span class="text-xs text-gray-500">
                         {{ block.settings.vendor_name | default: product_vendor }}
@@ -189,12 +191,14 @@
                 {% when 'guarantee' %}
                   <div class="flex flex-col items-center gap-3 bg-gray-50 p-4 rounded-lg shadow-inner text-center">
                     {% if block.settings.guarantee_title != blank %}
+                      {% assign guarantee_image = block.settings.guarantee_image | image_url: width: 100, height: 100 %}
                       <h2 class="font-semibold">{{ block.settings.guarantee_title }}</h2>
-                      <img
-                        src="{{ block.settings.guarantee_image | image_url: width: 100, height: 100 }}"
-                        alt="{{ block.settings.guarantee_title }}"
-                        class="h-20 w-20 object-cover rounded-full"
-                      >
+                      {% render 'image',
+                        image: guarantee_image,
+                        alt: block.settings.guarantee_title,
+                        class: 'h-20 w-20 object-cover rounded-full',
+                        loading: 'lazy'
+                      %}
                       <span class="text-xs text-gray-500 max-w-xs">{{ block.settings.guarantee_description }}</span>
                     {% endif %}
                   </div>
