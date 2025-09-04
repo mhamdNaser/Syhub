@@ -38,6 +38,7 @@
 
 {% liquid
   assign final_width = width | default: 1200
+
   if height
     assign final_height = height
   else
@@ -64,18 +65,34 @@
     href="{{ url }}"
   {% endif %}
 >
-  {{
-    image
-    | image_url: crop: crop
-    | image_tag:
-      id: id,
-      class: 'w-full h-full object-cover',
-      alt: alt_text,
-      loading: loading_attr,
-      decoding: decoding_attr,
-      sizes: sizes_attr,
-      fetchpriority: fetchpriority_attr,
-      width: final_width,
-      height: final_height
-  }}
+  {% if crop %}
+    {{-
+      image
+      | image_url: width: final_width, height: final_height, crop: crop
+      | image_tag:
+        id: id,
+        class: 'w-full h-full object-cover',
+        alt: alt_text,
+        loading: loading_attr,
+        decoding: decoding_attr,
+        sizes: sizes_attr,
+        fetchpriority: fetchpriority_attr,
+        width: final_width,
+        height: final_height
+    -}}
+  {% else %}
+    {{-
+      image
+      | image_url: width: final_width
+      | image_tag:
+        id: id,
+        class: 'max-w-full h-auto object-contain',
+        alt: alt_text,
+        loading: loading_attr,
+        decoding: decoding_attr,
+        sizes: sizes_attr,
+        fetchpriority: fetchpriority_attr,
+        width: final_width
+    -}}
+  {% endif %}
 </{{ wrapper }}>
