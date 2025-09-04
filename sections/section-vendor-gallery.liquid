@@ -1,29 +1,45 @@
-<section id="shopify-section-{{ section.id }}" class="vendor-gallery max-w-7xl mx-auto py-8 px-4">
-  <h2 class="text-2xl font-semibold mb-6">{{ section.settings.title_section }}</h2>
-  
+{% liquid
+  assign section_id = section.id
+  assign title = section.settings.title_section
+  assign slides_desktop = 8
+  assign slides_mobile = 3
+%}
+
+<section id="shopify-section-{{ section_id }}" class="vendor-gallery max-w-7xl mx-auto py-12 px-6">
+  {% if title != blank %}
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 tracking-wide">
+      {{ title }}
+    </h2>
+  {% endif %}
+
   <!-- Swiper Container -->
-  <div 
-    class="swiper mySwiper-{{ section.id }}" 
-    data-next-btn="swiper-button-next-{{ section.id }}" 
-    data-prev-btn="swiper-button-prev-{{ section.id }}"
-    data-slides-per-view="8"
-    data-slides-per-view-mobile="3"
+  <div
+    class="swiper mySwiper-{{ section_id }}"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
+    data-slides-per-view="{{ slides_desktop }}"
+    data-slides-per-view-mobile="{{ slides_mobile }}"
   >
     <div class="swiper-wrapper items-center">
       {% for block in section.blocks %}
-        {% assign vendor_name = block.settings.vendor_name %}
-        {% assign vendor_image = block.settings.vendor_image %}
+        {% liquid
+          assign vendor_name = block.settings.vendor_name
+          assign vendor_image = block.settings.vendor_image | image_url: width: 300
+        %}
 
         {% if vendor_name and vendor_image %}
           <div class="swiper-slide flex justify-center">
-            <a href="/collections/vendors?q={{ vendor_name | url_encode }}" class="block group" aria-label="{{ vendor_name | default: section.id }}">
-              <img 
-                src="{{ vendor_image | image_url: width: 300 }}" 
-                alt="{{ vendor_name }}" 
-                class="h-20 w-auto object-contain grayscale group-hover:grayscale-0 transition"
-                width=""
-                height=""
-              >
+            <a
+              href="/collections/vendors?q={{ vendor_name | url_encode }}"
+              class="block group p-3 rounded-xl bg-white shadow-sm hover:shadow-md transition transform hover:-translate-y-1"
+              aria-label="{{ vendor_name | default: section_id }}"
+            >
+              {% render 'image',
+                image: vendor_image,
+                alt: vendor_name,
+                class: 'h-20 w-auto object-contain grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+                loading: 'lazy'
+              %}
             </a>
           </div>
         {% endif %}
@@ -31,11 +47,14 @@
     </div>
 
     <!-- Controls -->
-    <div class="swiper-button-next swiper-button-next-{{ section.id }} !text-black"></div>
-    <div class="swiper-button-prev swiper-button-prev-{{ section.id }} !text-black"></div>
+    <div
+      class="swiper-button-next swiper-button-next-{{ section_id }} !text-gray-700 hover:!text-black transition"
+    ></div>
+    <div
+      class="swiper-button-prev swiper-button-prev-{{ section_id }} !text-gray-700 hover:!text-black transition"
+    ></div>
   </div>
 </section>
-
 
 {% schema %}
 {
@@ -44,7 +63,7 @@
     {
       "type": "text",
       "id": "title_section",
-      "label": "title for brands list"
+      "label": "Title for brands list"
     }
   ],
   "blocks": [
