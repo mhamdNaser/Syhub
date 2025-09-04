@@ -38,10 +38,11 @@
 
 {% liquid
   assign final_width = width | default: 1200
-  if height
+   if height
     assign final_height = height
   else
-    assign final_height = (final_width | times: image.height) | divided_by: image.width
+    assign temp_height = final_width | times: image.height
+    assign final_height = temp_height | divided_by: image.width
   endif
 
 
