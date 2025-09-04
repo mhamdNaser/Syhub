@@ -36,9 +36,9 @@
           {% endif %}
 
           <div class="grid grid-cols-1 md:grid-cols-{{ item_in_row }} gap-6">
-            <div class="bg-white shadow-md border rounded-lg hover:bg-headerLightColor hover:text-white overflow-hidden">
+            <div class="bg-white shadow-md border rounded-lg hover:bg-headerLightColor hover:text-white overflow-hidden p-4">
               {% assign vendor_url = '/collections/vendors?q=' | append: vendor | url_encode %}
-              {% render 'button', type: 'link', url: vendor_url, class: 'py-4', data_label: vendor, text: vendor %}
+              {% render 'button', type: 'link', url: vendor_url, data_label: vendor, text: vendor %}
             </div>
           </div>
         {% endif %}
