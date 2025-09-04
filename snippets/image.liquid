@@ -38,7 +38,11 @@
 
 {% liquid
   assign final_width = width | default: 1200
-  assign final_height = height | default: 600
+  if height
+    assign final_height = height
+  else
+    assign final_height = (final_width | times: image.height) | divided_by: image.width
+  endif
 
 
   if url
