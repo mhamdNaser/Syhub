@@ -424,16 +424,16 @@
                   "type": "image-block",
                   "name": "Custom Image Block",
                   "settings": {
-                    "image": "shopify://shop_images/Luliz_Logo.png",
+                    "image": "shopify://shop_images/download_4.webp",
                     "alt_text": "Image description",
                     "image_width": 500,
-                    "image_height": 400,
+                    "image_height": 200,
                     "object_fit": "contain",
-                    "image_alignment": "right",
-                    "max_width": 800,
-                    "border_radius": 100,
+                    "image_alignment": "left",
+                    "max_width": 1200,
+                    "border_radius": 43,
                     "border_width": 0,
-                    "border_style": "dashed",
+                    "border_style": "dotted",
                     "border_color": "#c48282"
                   },
                   "blocks": {}
