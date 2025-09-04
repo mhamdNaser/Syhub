@@ -14,20 +14,20 @@
         {% if block.type == 'slide' %}
           <div class="swiper-slide relative h-[{{ section.settings.slider_height }}px] md:h-[600px]">
             {% if block.settings.image %}
-              {%
-                render 'image',
-                image: block.settings.image | image_url,
-                width: "1280",
-                height: "{{ section.settings.slider_height }}",
-                class: "w-full h-full",
+              {% render 'image',
+                image: block.settings.image,
+                class: 'w-full h-full object-cover',
+                width: 1920,
+                height: section.settings.slider_height,
                 crop: 'center',
-                alt: block.settings.title
+                alt: block.settings.title,
+                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
               %}
             {% endif %}
             {% if block.settings.show_title_description == true %}
               <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
-                <h2 class="text-3xl font-bold">{{ block.settings.title  }}</h2>
-                <p class="mt-2 max-w-2xl">{{ block.settings.text  }}</p>
+                <h2 class="text-3xl font-bold">{{ block.settings.title }}</h2>
+                <p class="mt-2 max-w-2xl">{{ block.settings.text }}</p>
               </div>
             {% endif %}
           </div>
@@ -50,22 +50,15 @@
             <div class="relative group overflow-hidden shadow-lg aspect-square">
               {%
                 render 'image',
-                image: block.settings.grid_image | image_url,
-                class: 'w-full h-full group-hover:scale-105 transition-transform duration-500',
-                alt: block.settings.grid_title | escape
+                image: block.settings.grid_image,
+                class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
+                width: 800,
+                height: 800,
+                crop: 'center',
+                alt: block.settings.grid_title | escape,
+                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
               %}
             </div>
-            {% comment %}
-              {%
-                render 'image',
-                image: block.settings.grid_image | image_url,
-                width: "600"
-                height: "600"
-                class: "object-fill group-hover:scale-105 transition-transform duration-500"
-                crop: 'center',
-                alt: block.settings.grid_title | escape
-              %}
-            {% endcomment %}
           {% endif %}
           <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white p-4">
             <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
