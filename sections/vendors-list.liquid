@@ -1,11 +1,10 @@
-{% liquid
+{% liquid %}
   assign item_in_row = section.settings.item_in_row
   assign group_title = section.settings.show_group_title
-  assign show_title  = section.settings.show_title
-  assign title       = section.settings.title
+  assign show_title = section.settings.show_title
+  assign section_title = section.settings.title
 
   assign vendors = ""
-
   for product in collections.all.products
     unless vendors contains product.vendor and product.vendor != ""
       assign vendors = vendors | append: product.vendor | append: ","
@@ -14,16 +13,16 @@
 
   assign unique_vendors = vendors | split: ',' | uniq | sort
   assign current_letter = ""
-%}
+{% endliquid %}
 
-<div class="max-w-7xl mx-auto py-12 px-6">
+<div class="max-w-7xl mx-auto px-4 py-10">
   {% if show_title %}
-    <h1 class="text-4xl font-bold mb-8 text-center text-gray-800 tracking-wide">
-      {{ title }}
+    <h1 class="text-4xl font-bold text-center mb-10 text-gray-800">
+      {{ section_title }}
     </h1>
   {% endif %}
 
-  <div class="space-y-10">
+  <div class="space-y-8">
     {% for vendor in unique_vendors %}
       {% if vendor != "" %}
         {% liquid
@@ -32,24 +31,22 @@
 
         {% if group_title and first_letter != current_letter %}
           {% assign current_letter = first_letter %}
-          <div class="w-full py-3 border-b border-gray-200 mb-4">
-            <h2 class="text-2xl font-semibold text-gray-700">
-              {{ first_letter | upcase }}
-            </h2>
+          <div class="border-b pb-2 mb-4">
+            <h2 class="text-2xl font-semibold text-gray-700">{{ first_letter | upcase }}</h2>
           </div>
         {% endif %}
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-{{ item_in_row }} gap-6">
-          <a href="/collections/vendors?q={{ vendor | url_encode }}"
-             class="block group">
-            <div class="bg-white shadow-md border border-gray-200 rounded-xl overflow-hidden transition transform hover:-translate-y-1 hover:shadow-lg">
-              <div class="p-6 text-center">
-                <h3 class="text-lg font-medium text-gray-800 group-hover:text-primary transition">
+          <div class="group bg-white rounded-2xl shadow-md border hover:shadow-xl transition duration-300 overflow-hidden">
+            <a href="/collections/vendors?q={{ vendor | url_encode }}" class="block h-full">
+              <div class="p-6 flex items-center justify-center h-full">
+                <h3 class="text-lg font-medium text-gray-700 group-hover:text-white transition">
                   {{ vendor }}
                 </h3>
               </div>
-            </div>
-          </a>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 group-hover:opacity-90 transition duration-300"></div>
+            </a>
+          </div>
         </div>
       {% endif %}
     {% endfor %}
