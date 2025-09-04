@@ -188,4 +188,10 @@
   <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
+  <script id="product-data" type="application/json">
+    {{ product | json }}
+  </script>
+  <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
 </html>
