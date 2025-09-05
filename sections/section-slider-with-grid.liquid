@@ -40,12 +40,12 @@
   </div>
 
   <!-- Grid (3 images) -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-1.5 mt-1">
+  <div class="grid sm:swiper sm:mySwiper-grid md:grid-cols-3 gap-x-1.5 mt-1">
     {% for block in section.blocks %}
       {% if block.type == 'grid_image' %}
-        <div class="relative group overflow-hidden shadow-lg">
+        <div class="relative group sm:swiper-wrapper overflow-hidden shadow-lg">
           {% if block.settings.grid_image %}
-            <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[144px] md:h-[280px]">
+            <div class="relative swiper-slide group overflow-hidden shadow-lg aspect-square w-full h-[144px] md:h-[280px]">
               {%
                 render 'image',
                 image: block.settings.grid_image,
