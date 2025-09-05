@@ -68,7 +68,7 @@
   {% if crop %}
     {{-
       image
-      | image_url: width: final_width, height: final_height, crop: crop
+      | image_url
       | image_tag:
         id: id,
         class: 'w-full h-full object-cover',
