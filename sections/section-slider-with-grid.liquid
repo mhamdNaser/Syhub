@@ -12,7 +12,7 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide h-[400px] md:h-[500px] max-w-full">
+          <div class="swiper-slide aspect-[16/9] max-w-full">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
@@ -51,7 +51,7 @@
               {%
                 render 'image',
                 image: block.settings.grid_image,
-                class: 'object-cover w-full group-hover:scale-105 transition-transform duration-500',
+                class: 'w-full group-hover:scale-105 transition-transform duration-500',
                 width: 420,
                 crop: 'center',
                 alt: block.settings.grid_title | escape,
