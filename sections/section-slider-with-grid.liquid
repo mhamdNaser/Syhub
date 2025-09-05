@@ -16,9 +16,7 @@
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
-                class: 'object-cover h-full',
-                width: 1920,
-                crop: 'center',
+                class: 'object-cover h-full w-full',
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
               %}
