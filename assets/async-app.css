@@ -608,6 +608,9 @@
   .h-\[180px\] {
     height: 180px;
   }
+  .h-\[250px\] {
+    height: 250px;
+  }
   .h-\[350px\] {
     height: 350px;
   }
@@ -2068,6 +2071,16 @@
   .sm\:inline {
     @media (width >= 40rem) {
       display: inline;
+    }
+  }
+  .sm\:h-\[350px\] {
+    @media (width >= 40rem) {
+      height: 350px;
+    }
+  }
+  .sm\:h-\[620px\] {
+    @media (width >= 40rem) {
+      height: 620px;
     }
   }
   .sm\:grid-cols-2 {
