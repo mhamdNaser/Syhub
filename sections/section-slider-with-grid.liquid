@@ -70,8 +70,12 @@
   <!-- Grid (3 images / swiper on mobile) -->
   <div
     class="sm:swiper mySwiper-grid mt-1 w-full"
-    data-slides-per-view="1.2"
-    data-space-between="10"
+    data-next-btn="swiper-button-next-grid"
+    data-prev-btn="swiper-button-prev-grid"
+    data-slides-per-view="3"
+    data-slides-per-view-mobile="1"
+    data-autoplay="true"
+    data-autoplay-delay="2500"
   >
     <div class="swiper-wrapper md:grid md:grid-cols-3 md:gap-x-1.5">
       {% for block in section.blocks %}
@@ -103,22 +107,6 @@
     <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Grid swiper only for mobile
-    if (window.innerWidth < 768) {
-      new Swiper('.mySwiper-grid', {
-        slidesPerView: 1.2,
-        spaceBetween: 10,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-      });
-    }
-  });
-</script>
 
 {% schema %}
 {
