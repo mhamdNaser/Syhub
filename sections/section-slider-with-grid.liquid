@@ -12,7 +12,7 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide aspect-[16/9] max-w-full ">
+          <div class="swiper-slide sm:aspect-[16/9] max-w-full ">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,

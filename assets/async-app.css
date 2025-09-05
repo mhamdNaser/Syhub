@@ -2076,6 +2076,11 @@
       display: inline;
     }
   }
+  .sm\:aspect-\[16\/9\] {
+    @media (width >= 40rem) {
+      aspect-ratio: 16/9;
+    }
+  }
   .sm\:h-\[350px\] {
     @media (width >= 40rem) {
       height: 350px;
