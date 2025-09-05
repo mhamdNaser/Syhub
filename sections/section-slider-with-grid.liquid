@@ -42,7 +42,7 @@
   </div>
 
   <!-- Grid (3 images) -->
-  <div class="grid grid-cols-3 gap-2 mt-4">
+  <div class="grid grid-cols-3 gap-2 mt-2">
     {% for block in section.blocks %}
       {% if block.type == 'grid_image' %}
         <div class="relative group overflow-hidden shadow-lg">
@@ -106,7 +106,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Slide Image",
-          "info": "image height must be 600px and width 1280px"
+          "info": "image height must be 500px and width 1280px"
         },
         {
           "type": "checkbox",
