@@ -625,6 +625,9 @@
   .h-\[680px\] {
     height: 680px;
   }
+  .h-\[px\] {
+    height: px;
+  }
   .h-auto {
     height: auto;
   }
