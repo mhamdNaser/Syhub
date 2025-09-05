@@ -617,11 +617,20 @@
   .h-\[400px\] {
     height: 400px;
   }
+  .h-\[500\] {
+    height: 500;
+  }
   .h-\[600px\] {
     height: 600px;
   }
   .h-\[620px\] {
     height: 620px;
+  }
+  .h-\[1680\] {
+    height: 1680;
+  }
+  .h-\[1680px\] {
+    height: 1680px;
   }
   .h-auto {
     height: auto;
@@ -2194,6 +2203,11 @@
   .md\:h-\[400px\] {
     @media (width >= 48rem) {
       height: 400px;
+    }
+  }
+  .md\:h-\[500\] {
+    @media (width >= 48rem) {
+      height: 500;
     }
   }
   .md\:h-\[500px\] {
