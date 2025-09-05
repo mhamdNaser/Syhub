@@ -6,7 +6,7 @@
   {% if block.settings.logo == 'logo' %}
     {% if settings.logo != blank %}
       {% render 'image',
-        image: settings.logo | image_url: settings.logo_size,
+        image: settings.logo,
         url: shop.url,
         alt: shop.name,
         class: "header__logo",
@@ -15,7 +15,7 @@
       %}
     {% elsif shop.logo %}
       {% render 'image',
-        image: shop.logo | image_url: settings.logo_size,
+        image: shop.logo ,
         url: shop.url,
         alt: shop.name,
         class: "header__logo",

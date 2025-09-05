@@ -59,7 +59,6 @@
     "results_for_html": "{{ count }} results found for {{ terms }}"
   },
   "general": {
-    "skip_to_content": "Skip to content",
     "search": {
       "search": "Search",
       "reset": "Reset",
