@@ -12,11 +12,11 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide h-[680px] md:h-[500px] w-full">
+          <div class="swiper-slide h-[680px] md:h-[500px] w-full sm:h-auto">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
-                class: 'h-full w-full',
+                class: 'w-full h-full object-cover sm:object-contain',
                 width: 1920,
                 crop: 'center',
                 alt: block.settings.title,
