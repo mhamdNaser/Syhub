@@ -47,11 +47,11 @@
       {% if block.type == 'grid_image' %}
         <div class="relative group overflow-hidden shadow-lg">
           {% if block.settings.grid_image %}
-            <div class="relative group overflow-hidden shadow-lg aspect-square">
+            <div class="relative group overflow-hidden shadow-lg aspect-square h-[144px] md:h-[180px]">
               {%
                 render 'image',
                 image: block.settings.grid_image,
-                class: 'object-cover group-hover:scale-105 transition-transform duration-500',
+                class: 'object-cover w-full group-hover:scale-105 transition-transform duration-500',
                 width: 420,
                 height: 180
                 alt: block.settings.grid_title | escape,
