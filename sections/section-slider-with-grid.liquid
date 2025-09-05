@@ -40,32 +40,85 @@
   </div>
 
   <!-- Grid (3 images) -->
-  <div class="grid sm:swiper sm:mySwiper-grid md:grid-cols-3 gap-x-1.5 mt-1">
-    {% for block in section.blocks %}
-      {% if block.type == 'grid_image' %}
-        <div class="relative group sm:swiper-wrapper overflow-hidden shadow-lg">
-          {% if block.settings.grid_image %}
-            <div class="relative swiper-slide group overflow-hidden shadow-lg aspect-square w-full h-[144px] md:h-[280px]">
-              {%
-                render 'image',
-                image: block.settings.grid_image,
-                class: 'w-full group-hover:scale-105 transition-transform duration-500',
-                width: 420,
-                crop: 'center',
-                alt: block.settings.grid_title | escape,
-                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-              %}
+  {% comment %}
+    <div class="grid md:grid-cols-3 gap-x-1.5 mt-1">
+      {% for block in section.blocks %}
+        {% if block.type == 'grid_image' %}
+          <div class="relative group overflow-hidden shadow-lg">
+            {% if block.settings.grid_image %}
+              <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[144px] md:h-[280px]">
+                {%
+                  render 'image',
+                  image: block.settings.grid_image,
+                  class: 'w-full group-hover:scale-105 transition-transform duration-500',
+                  width: 420,
+                  crop: 'center',
+                  alt: block.settings.grid_title | escape,
+                  sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                %}
+              </div>
+            {% endif %}
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
+              <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
+              <p class="mt-2">{{ block.settings.grid_text }}</p>
             </div>
-          {% endif %}
-          <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
-            <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
-            <p class="mt-2">{{ block.settings.grid_text }}</p>
           </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endcomment %}
+  <!-- Grid (3 images / swiper on mobile) -->
+  <div
+    class="sm:swiper mySwiper-grid mt-1 w-full"
+    data-slides-per-view="1.2"
+    data-space-between="10"
+  >
+    <div class="swiper-wrapper md:grid md:grid-cols-3 md:gap-x-1.5">
+      {% for block in section.blocks %}
+        {% if block.type == 'grid_image' %}
+          <div class="swiper-slide relative group overflow-hidden shadow-lg">
+            {% if block.settings.grid_image %}
+              <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[144px] md:h-[280px]">
+                {%
+                  render 'image',
+                  image: block.settings.grid_image,
+                  class: 'w-full group-hover:scale-105 transition-transform duration-500',
+                  width: 420,
+                  crop: 'center',
+                  alt: block.settings.grid_title | escape,
+                  sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                %}
+              </div>
+            {% endif %}
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
+              <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
+              <p class="mt-2">{{ block.settings.grid_text }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls تظهر فقط على الموبايل -->
+    <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Grid swiper only for mobile
+    if (window.innerWidth < 768) {
+      new Swiper('.mySwiper-grid', {
+        slidesPerView: 1.2,
+        spaceBetween: 10,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
