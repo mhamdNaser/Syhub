@@ -2020,6 +2020,11 @@
       margin-bottom: calc(var(--spacing) * 0);
     }
   }
+  .sm\:block {
+    @media (width >= 40rem) {
+      display: block;
+    }
+  }
   .sm\:inline {
     @media (width >= 40rem) {
       display: inline;
@@ -2083,6 +2088,11 @@
   .md\:flex {
     @media (width >= 48rem) {
       display: flex;
+    }
+  }
+  .md\:grid {
+    @media (width >= 48rem) {
+      display: grid;
     }
   }
   .md\:hidden {
@@ -2182,6 +2192,11 @@
         margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
         margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
       }
+    }
+  }
+  .md\:gap-x-1\.5 {
+    @media (width >= 48rem) {
+      column-gap: calc(var(--spacing) * 1.5);
     }
   }
   .md\:object-contain {

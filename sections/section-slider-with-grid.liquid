@@ -40,31 +40,45 @@
   </div>
 
   <!-- Grid (3 images) -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-1.5 mt-1">
-    {% for block in section.blocks %}
-      {% if block.type == 'grid_image' %}
-        <div class="relative group overflow-hidden shadow-lg">
-          {% if block.settings.grid_image %}
-            <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[144px] md:h-[280px]">
-              {%
-                render 'image',
-                image: block.settings.grid_image,
-                class: 'w-full group-hover:scale-105 transition-transform duration-500',
-                width: 420,
-                crop: 'center',
-                alt: block.settings.grid_title | escape,
-                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-              %}
+  <div
+    class="sm:swiper mySwiper-grid mt-1 w-full relative"
+    data-next-btn="swiper-button-next-grid"
+    data-prev-btn="swiper-button-prev-grid"
+    data-slides-per-view="3"
+    data-slides-per-view-mobile="1"
+    data-autoplay="false"
+    data-autoplay-delay="2500"
+  >
+    <div class="swiper-wrapper md:grid md:grid-cols-3 md:gap-x-1.5">
+      {% for block in section.blocks %}
+        {% if block.type == 'grid_image' %}
+          <div class="swiper-slide relative group overflow-hidden shadow-lg">
+            {% if block.settings.grid_image %}
+              <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[180px] md:h-[280px]">
+                {%
+                  render 'image',
+                  image: block.settings.grid_image,
+                  class: 'w-full group-hover:scale-105 transition-transform duration-500',
+                  width: 420,
+                  crop: 'center',
+                  alt: block.settings.grid_title | escape,
+                  sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                %}
+              </div>
+            {% endif %}
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
+              <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
+              <p class="mt-2">{{ block.settings.grid_text }}</p>
             </div>
-          {% endif %}
-          <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
-            <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
-            <p class="mt-2">{{ block.settings.grid_text }}</p>
           </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls تظهر فقط على الموبايل -->
+    <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
+</div>
 </div>
 
 {% schema %}
