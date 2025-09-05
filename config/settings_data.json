@@ -10,7 +10,7 @@
 {
   "current": {
     "logo": "shopify://shop_images/logo.avif",
-    "logo_size": 300,
+    "logo_size": 130,
     "logo_inverse": "shopify://shop_images/logo.avif",
     "favicon": "shopify://shop_images/logo.avif",
     "page_width": "max-w-7xl",
