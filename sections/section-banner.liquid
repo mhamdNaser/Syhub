@@ -1,44 +1,53 @@
-<div class="welcome relative h-[600px] w-full flex items-center justify-center text-center color-{{ section.settings.color_scheme }}">
+{% liquid
+  assign color_scheme = section.settings.color_scheme
+  assign bg_image = section.settings.image
+  assign heading = section.settings.heading
+  assign subheading = section.settings.subheading
+  assign button_text = section.settings.button_text
+  assign button_link = section.settings.button_link
+%}
+
+<div class="welcome relative h-[600px] w-full flex items-center justify-center text-center color-{{ color_scheme }}">
   <!-- الخلفية -->
-  {% if section.settings.image != blank %}
-    {%
-      render 'image',
-      image: section.settings.image,
+  {% if bg_image != blank %}
+    {% render 'image',
+      image: bg_image,
       class: 'object-cover absolute inset-0 w-full h-full',
       width: 1920,
-      alt: section.settings.image.alt,
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
+      alt: bg_image.alt,
+      loading: "eager",
+      fetchpriority: "high",
+      decoding: "async",
       sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
     %}
   {% endif %}
 
   <!-- المحتوى -->
   <div class="welcome-content absolute w-full py-20 px-10 text-white text-center">
-    {% if section.settings.heading != blank %}
+    {% if heading != blank %}
       <h1 class="text-5xl font-bold drop-shadow-md">
-        {{ section.settings.heading }}
+        {{ heading }}
       </h1>
     {% endif %}
 
-    {% if section.settings.subheading != blank %}
+    {% if subheading != blank %}
       <p class="welcome-description text-lg md:text-xl leading-relaxed mt-6">
-        {{ section.settings.subheading }}
+        {{ subheading }}
       </p>
     {% endif %}
 
-    {% if section.settings.button_text != blank %}
+    {% if button_text != blank %}
       <a
-        aria-label="{{ section.settings.button_text }}"
-        href="{{ section.settings.button_link }}"
+        aria-label="{{ button_text }}"
+        href="{{ button_link }}"
         class="mt-8 inline-block px-8 py-3 text-lg font-semibold rounded-full shadow-none hover:bg-pink-700 hover:shadow-2xl transition-all duration-300"
       >
-        {{ section.settings.button_text }}
+        {{ button_text }}
       </a>
     {% endif %}
   </div>
 </div>
+
 
 {% schema %}
 {
