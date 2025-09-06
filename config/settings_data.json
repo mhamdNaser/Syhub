@@ -13,7 +13,7 @@
     "logo_size": 130,
     "logo_inverse": "shopify://shop_images/logo.avif",
     "favicon": "shopify://shop_images/logo.avif",
-    "page_width": "max-w-7xl",
+    "page_width": "w-11/12",
     "page_padding_horizontal": 0,
     "font_family": "sans",
     "font_weight": "bold",
