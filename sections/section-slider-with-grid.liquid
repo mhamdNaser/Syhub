@@ -62,7 +62,7 @@
               <div class="relative group hover:shadow-xl">
                 {% render 'image',
                   image: block.settings.grid_image,
-                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500 max-h-[420px]',
+                  class: 'object-fill group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500',
                   alt: block.settings.grid_title | escape,
                   sizes: '(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 33vw'
                 %}
