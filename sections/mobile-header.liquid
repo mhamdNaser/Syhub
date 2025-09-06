@@ -1,16 +1,11 @@
-
-
-<header class="w-full bg-white flex justify-between items-center py-4 px-4 z-50">
-  <!-- الشعار -->
-  <div>
-    {% render 'image',
-      image: settings.logo,
-      class: 'object-cover header__logo',
-      width: 60,
-      alt: 'Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area',
-      sizes: '(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px'
-    %}
-  </div>
+<header class="bg-white items-center py-4 px-4 z-50">
+  {% render 'image',
+    image: settings.logo,
+    class: 'object-cover header__logo',
+    width: 60,
+    alt: 'Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area',
+    sizes: '(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px'
+  %}
 
   <!-- زر القائمة/الإغلاق -->
   <button id="menu-toggle" aria-label="menu toggle" class="p-2">
