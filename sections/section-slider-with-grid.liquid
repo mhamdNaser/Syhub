@@ -62,10 +62,10 @@
         {% if block.type == 'grid_image' %}
           <div class="swiper-slide relative group shadow-lg">
             {% if block.settings.grid_image %}
-              <div class="relative group shadow-lg aspect-square w-full h-[180px] md:h-[280px]">
+              <div class="relative group shadow-lg ">
                 {% render 'image',
                   image: block.settings.grid_image,
-                  class: 'object-cover group-hover:scale-105 transition-transform duration-500',
+                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500',
                   width: 628,
                   crop: 'center',
                   alt: block.settings.grid_title | escape,
