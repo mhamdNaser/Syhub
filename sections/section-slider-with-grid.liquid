@@ -1,9 +1,15 @@
-<div id="shopify-section-{{ section.id }}" class="relative w-full md:py-{{ section.settings.padding-vertical }} p-4">
+{% liquid
+  assign section_id = section.id
+  assign slider_height = section.settings.slider_height
+  assign padding_vertical = section.settings.padding-vertical
+%}
+
+<div id="shopify-section-{{ section_id }}" class="relative w-full md:py-{{ padding_vertical }} p-4">
   <!-- Slider -->
   <div
-    class="swiper mySwiper-{{ section.id }} w-full relative"
-    data-next-btn="swiper-button-next-{{ section.id }}"
-    data-prev-btn="swiper-button-prev-{{ section.id }}"
+    class="swiper mySwiper-{{ section_id }} relative"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
     data-slides-per-view-mobile="1"
     data-autoplay="true"
@@ -12,7 +18,7 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide h-[680px] md:h-[500px] max-w-full">
+          <div class="swiper-slide h-[{{ slider_height }}px] md:h-[500px] max-w-full">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
@@ -34,8 +40,8 @@
     </div>
 
     <!-- Slider Controls -->
-    <div class="swiper-button-next swiper-button-next-{{ section.id }} text-white"></div>
-    <div class="swiper-button-prev swiper-button-prev-{{ section.id }} text-white"></div>
+    <div class="swiper-button-next swiper-button-next-{{ section_id }} text-white"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"></div>
     <div class="swiper-pagination"></div>
   </div>
 
@@ -55,8 +61,7 @@
           <div class="swiper-slide relative group overflow-hidden shadow-lg">
             {% if block.settings.grid_image %}
               <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[180px] md:h-[280px]">
-                {%
-                  render 'image',
+                {% render 'image',
                   image: block.settings.grid_image,
                   class: 'w-full group-hover:scale-105 transition-transform duration-500',
                   width: 428,
@@ -79,91 +84,3 @@
     <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Slider with Grid",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Slider Settings"
-    },
-    {
-      "type": "range",
-      "id": "slider_height",
-      "label": "Slider Height (px)",
-      "default": 500,
-      "min": 300,
-      "max": 900,
-      "step": 50
-    },
-    {
-      "type": "range",
-      "id": "padding-vertical",
-      "label": "Slider Height (px)",
-      "default": 2,
-      "min": 0,
-      "max": 12,
-      "step": 2
-    }
-  ],
-  "blocks": [
-    {
-      "type": "slide",
-      "name": "Slide",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Slide Image",
-          "info": "image height must be 500px and width 1280px"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_title_description",
-          "label": "show text",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "grid_image",
-      "name": "Grid Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "grid_image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "grid_title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "grid_text",
-          "label": "Text"
-        }
-      ]
-    }
-  ],
-  "max_blocks": 12,
-  "presets": [
-    {
-      "name": "Slider with Grid",
-      "category": "Images"
-    }
-  ]
-}
-{% endschema %}
