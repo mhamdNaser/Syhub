@@ -61,7 +61,7 @@
             "label": "t:settings_schema.page_layout.page_width.options.wide"
           },
           {
-            "value": "w-full",
+            "value": "w-11/12",
             "label": "t:settings_schema.page_layout.page_width.options.full"
           }
         ],

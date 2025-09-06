@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       new Swiper(slider.container, {
         slidesPerView: slidesToShow,
         loop: slidesCount > slidesToShow,
+        autoHeight: true,
         speed: 3000,
         spaceBetween: 10,
         navigation: {

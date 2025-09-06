@@ -16,3 +16,6 @@ node_modules/
 ## Release files
 release
 *.zip
+package-lock.json
+package.json
+

@@ -37,7 +37,7 @@
 {% enddoc %}
 
 {% liquid
-  assign final_width = width | default: 1200
+  assign final_width = width
 
   if height
     assign final_height = height
@@ -53,7 +53,7 @@
   endif
 
   assign alt_text = alt | default: image.alt | escape
-  assign loading_attr = loading | default: 'lazy'
+  assign loading_attr = loading | default: nil
   assign decoding_attr = decoding | default: 'async'
   assign fetchpriority_attr = fetchpriority | default: 'auto'
   assign sizes_attr = sizes | default: '(max-width: 768px) 100vw, 50vw'
@@ -65,13 +65,13 @@
     href="{{ url }}"
   {% endif %}
 >
+  
   {% if crop %}
     {{-
       image
       | image_url: width: final_width, height: final_height, crop: crop
       | image_tag:
         id: id,
-        class: 'w-full h-full object-cover',
         alt: alt_text,
         loading: loading_attr,
         decoding: decoding_attr,
@@ -86,7 +86,6 @@
       | image_url: width: final_width
       | image_tag:
         id: id,
-        class: 'max-w-full h-auto object-contain',
         alt: alt_text,
         loading: loading_attr,
         decoding: decoding_attr,
