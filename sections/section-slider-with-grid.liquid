@@ -15,7 +15,7 @@
     data-autoplay="true"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper h-[{{ slider_height }}px] md:h-[500px]">
+    <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
           <div class="swiper-slide h-[{{ slider_height }}px] md:h-[500px] max-w-full">
