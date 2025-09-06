@@ -15,15 +15,16 @@
     {% comment %} data-autoplay="true" {% endcomment %}
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper mx-w-full">
+    <div class="swiper-wrapper mx-w-full h-svh">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
           <div class="swiper-slide aspect-[1920/1000]">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
-                class: 'object-cover',
+                class: 'object-cover w-full h-full',
                 width: 1920,
+                height: 1000 ,
                 crop: 'center',
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px'
