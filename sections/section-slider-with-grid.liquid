@@ -60,9 +60,9 @@
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
-          <div class="swiper-slide relative group overflow-hidden shadow-lg">
+          <div class="swiper-slide relative group shadow-lg">
             {% if block.settings.grid_image %}
-              <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[180px] md:h-[280px]">
+              <div class="relative group shadow-lg aspect-square w-full h-[180px] md:h-[280px]">
                 {% render 'image',
                   image: block.settings.grid_image,
                   class: 'object-cover group-hover:scale-105 transition-transform duration-500',
