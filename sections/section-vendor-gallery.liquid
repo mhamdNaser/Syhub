@@ -28,7 +28,7 @@
         %}
 
         {% if vendor_name and vendor_image %}
-          <div class="swiper-slide flex justify-center">
+          <div class="swiper-slide flex justify-center aspect-[1/1]">
             <a
               href="/collections/vendors?q={{ vendor_name | url_encode }}"
               class="block group p-3 rounded-xl bg-white shadow-sm hover:shadow-md transition transform hover:-translate-y-1"
@@ -37,7 +37,9 @@
               {% render 'image',
                 image: vendor_image,
                 alt: vendor_name,
-                class: 'object-contain grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+                width: 300,
+                height: 300,
+                class: 'object-contain w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
                 loading: 'lazy'
               %}
             </a>
