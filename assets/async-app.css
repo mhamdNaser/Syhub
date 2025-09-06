@@ -1061,6 +1061,9 @@
   .rounded-tl-full {
     border-top-left-radius: calc(infinity * 1px);
   }
+  .rounded-tr-full {
+    border-top-right-radius: calc(infinity * 1px);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
