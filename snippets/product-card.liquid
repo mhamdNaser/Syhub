@@ -106,27 +106,12 @@
           {% render 'image',
             image:  product_image ,
             alt: product.featured_image.alt | escape,
-            class: 'transition-transform duration-300 ease-in-out hover:scale-105',
-            width: "200",
-            height: "200",
+            class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
+            width: 400,
+            height: 400,
             loading: 'lazy',
             sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
            %} 
-
-          {% comment %} {% if sale_label and product.price < product.compare_at_price %}
-            <div class="absolute left-2 top-2">
-              <span class="px-5 py-1 text-xs font-bold bg-red-500 text-white">
-                {% case sale_label_price %}
-                  {% when 'amount' %}
-                    -{{ discount_amount | money }}
-                  {% when 'percentage' %}
-                    -{{ discount_percentage }}%
-                  {% else %}
-                    sale
-                {% endcase %}
-              </span>
-            </div>
-          {% endif %} {% endcomment %}
 
           <div class="absolute bottom-0 w-full flex justify-between">
             <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full {{ discount_bg_color }} text-white overflow-hidden">
