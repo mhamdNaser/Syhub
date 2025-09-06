@@ -603,6 +603,9 @@
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
+  .h-\[40px\] {
+    height: 40px;
+  }
   .h-\[80\] {
     height: 80;
   }
@@ -614,6 +617,9 @@
   }
   .h-\[400px\] {
     height: 400px;
+  }
+  .h-\[420px\] {
+    height: 420px;
   }
   .h-auto {
     height: auto;

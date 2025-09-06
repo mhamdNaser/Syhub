@@ -57,7 +57,7 @@
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
-          <div class="swiper-slide relative group shadow-lg">
+          <div class="swiper-slide relative group shadow-lg h-[420px]">
             {% if block.settings.grid_image %}
               <div class="relative group hover:shadow-xl">
                 {% render 'image',
