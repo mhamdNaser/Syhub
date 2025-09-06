@@ -7,7 +7,7 @@
 <div id="shopify-section-{{ section_id }}" class="relative w-full p-4 md:p-0">
   <!-- Slider -->
   <div
-    class="swiper mySwiper-{{ section_id }} w-full relative"
+    class="swiper mySwiper-{{ section_id }}"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
@@ -15,16 +15,17 @@
     data-autoplay="true"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper h-fit">
+    <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide  aspect-[16/9] relative max-w-full">
+          <div class="swiper-slide">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
-                class: 'w-full h-full object-cover',
+                class: 'object-cover',
                 width: 1920,
                 height: 1000 ,
+                crop: 'center',
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
               %}
