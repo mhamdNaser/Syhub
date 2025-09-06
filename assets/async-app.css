@@ -573,6 +573,9 @@
   .aspect-\[1920\/1000\] {
     aspect-ratio: 1920/1000;
   }
+  .aspect-\[1920\/1080\] {
+    aspect-ratio: 1920/1080;
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }

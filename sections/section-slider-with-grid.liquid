@@ -18,13 +18,13 @@
     <div class="swiper-wrapper mx-w-full h-svh">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide aspect-[1920/750]">
+          <div class="swiper-slide aspect-[1920/1080]">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
                 class: 'object-cover w-full h-full',
                 width: 1920,
-                height: 750 ,
+                height: 1080,
                 crop: 'center',
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px'

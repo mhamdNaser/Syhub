@@ -53,7 +53,7 @@
   endif
 
   assign alt_text = alt | default: image.alt | escape
-  assign loading_attr = loading | default: 'lazy'
+  assign loading_attr = loading | default: nil
   assign decoding_attr = decoding | default: 'async'
   assign fetchpriority_attr = fetchpriority | default: 'auto'
   assign sizes_attr = sizes | default: '(max-width: 768px) 100vw, 50vw'
