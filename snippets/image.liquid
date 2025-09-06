@@ -18,7 +18,8 @@
   @param {string} [loading] - Lazy/eager loading (default: lazy)
   @param {string} [decoding] - async/sync decoding (default: async)
   @param {string} [sizes] - Responsive sizes attribute
-  @param {string} [fetchpriority]
+  @param {boolean} [preload] - If true, adds a <link rel="preload"> tag for the image and forces loading="eager" with fetchpriority="high" to improve LCP.
+  @param {string} [fetchpriority] - Image fetch priority hint for the browser (auto | high | low). Useful for optimizing Core Web Vitals.
 
   @example
   {% render 'image', image: product.featured_image %}
@@ -31,7 +32,7 @@
     height: auto,
     crop: 'center',
     alt: product.title,
-    sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+    sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
     fetchpriority: 
   %}
 {% enddoc %}
@@ -53,10 +54,11 @@
   endif
 
   assign alt_text = alt | default: image.alt | escape
-  assign loading_attr = loading | default: nil
+  assign loading_attr = loading | default: null
   assign decoding_attr = decoding | default: 'async'
   assign fetchpriority_attr = fetchpriority | default: 'auto'
   assign sizes_attr = sizes | default: '(max-width: 768px) 100vw, 50vw'
+  assign preload_attr = preload | default: false
 %}
 
 <{{ wrapper }}
@@ -65,33 +67,23 @@
     href="{{ url }}"
   {% endif %}
 >
-  
   {% if crop %}
     {{-
       image
       | image_url: width: final_width, height: final_height, crop: crop
-      | image_tag:
-        id: id,
-        alt: alt_text,
-        loading: loading_attr,
-        decoding: decoding_attr,
-        sizes: sizes_attr,
-        fetchpriority: fetchpriority_attr,
-        width: final_width,
-        height: final_height
+      | image_tag: id: id, alt: alt_text, loading: preload_attr
+      | default: loading_attr
+      | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
+      | default: fetchpriority_attr, width: final_width, height: final_height
     -}}
   {% else %}
     {{-
       image
       | image_url: width: final_width
-      | image_tag:
-        id: id,
-        alt: alt_text,
-        loading: loading_attr,
-        decoding: decoding_attr,
-        sizes: sizes_attr,
-        fetchpriority: fetchpriority_attr,
-        width: final_width
+      | image_tag: id: id, alt: alt_text, loading: preload_attr
+      | default: loading_attr
+      | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
+      | default: fetchpriority_attr, width: final_width
     -}}
   {% endif %}
 </{{ wrapper }}>
