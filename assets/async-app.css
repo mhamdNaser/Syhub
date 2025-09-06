@@ -561,6 +561,9 @@
   .aspect-\[16\/9\] {
     aspect-ratio: 16/9;
   }
+  .aspect-\[628\/420\] {
+    aspect-ratio: 628/420;
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }

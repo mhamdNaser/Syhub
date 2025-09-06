@@ -18,7 +18,7 @@
     <div class="swiper-wrapper mx-w-full h-svh">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide">
+          <div class="swiper-slide aspect-[16/9] relative">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
@@ -60,7 +60,7 @@
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
-          <div class="swiper-slide relative group shadow-lg">
+          <div class="swiper-slide relative group shadow-lg aspect-[628/420]">
             {% if block.settings.grid_image %}
               <div class="relative group shadow-lg">
                 {% render 'image',
