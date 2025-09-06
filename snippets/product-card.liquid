@@ -75,6 +75,7 @@
     assign bg_color    = 'bg-[#1C2228]'
   else
     assign stock_label = ''
+    assign show_container = 'hidden'
   endif
 
   if sale_label and product.price < product.compare_at_price
@@ -85,15 +86,8 @@
         assign discount_label = discount_percentage
       else
         assign discount_label = ''
+        assign show_container = 'hidden'
     endcase
-  endif
-
-  if stock_label != '' and discount_label != ''
-    assign class_justify = 'justify-between' 
-  elsif stock_label == ''
-    assign class_justify = 'justify-start'
-  elsif discount_label == ''
-    assign class_justify = 'justify-end'
   endif
 %}
 
@@ -131,14 +125,14 @@
             </div>
           {% endif %} {% endcomment %}
 
-          <div class="absolute bottom-0 w-full flex {{ class_justify }}">
-            <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full bg-red-950 text-white overflow-hidden">
+          <div class="absolute bottom-0 w-full flex justify-between">
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full bg-red-950 text-white overflow-hidden">
               <div class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"></div>
               <span class="relative z-10 text-xs font-bold text-nowrap">
                 {{ discount_label }}
               </span>
             </div>
-            <div class="relative flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ bg_color }} text-white overflow-hidden">
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ bg_color }} text-white overflow-hidden">
               <div class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"></div>
               <span class="relative z-10 text-xs font-bold text-nowrap">
                 {{ stock_label }}
