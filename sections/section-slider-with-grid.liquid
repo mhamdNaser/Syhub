@@ -4,7 +4,7 @@
   assign padding_vertical = section.settings.padding-vertical
 %}
 
-<div id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden">
+<div id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-[{{ padding_vertical }}px]">
   <!-- Slider -->
   <div
     class="swiper mySwiper-{{ section_id }}"
