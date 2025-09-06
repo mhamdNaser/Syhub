@@ -1,4 +1,4 @@
-<section class="featured-product-group max-w-7xl mx-auto py-8 px-4">
+<section class="featured-product-group max-w-7xl mx-auto py-8 px-0 md:px-4">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
     <!-- المنتج الكبير -->
     {% if section.settings.main_product != blank %}
@@ -6,13 +6,14 @@
       {% if main_product %}
         <div class="main-product h-full">
           <a href="{{ main_product.url }}">
-            <img
-              src="{{ main_product.featured_image | img_url: '800x800' }}"
-              alt="{{ main_product.title }}"
-              class="w-full h-full object-cover rounded-lg shadow-lg"
-              width=""
-              height=""
-            >
+            {% render 'image',
+              image: main_product.featured_image,
+              class: 'w-full h-full object-cover rounded-lg shadow-lg',
+              width: 800,
+              height: 800,
+              crop: 'center',
+              alt: main_product.title
+            %}
           </a>
         </div>
       {% endif %}
@@ -27,13 +28,14 @@
             <div class="flex items-center bg-white rounded-lg shadow p-3">
               <!-- صورة المنتج -->
               <a href="{{ product.url }}" class="flex-shrink-0">
-                <img
-                  src="{{ product.featured_image | img_url: '150x150' }}"
-                  alt="{{ product.title }}"
-                  class="w-20 h-20 object-cover rounded mr-4"
-                  width=""
-                  height=""
-                >
+                {% render 'image',
+                  image: product.featured_image,
+                  class: 'w-full h-full object-cover rounded mr-4',
+                  width: 150,
+                  height: 150,
+                  crop: 'center',
+                  alt: product.title
+                %}
               </a>
               <!-- النص -->
               <div class="flex-1 overflow-hidden">
@@ -54,7 +56,11 @@
                 <p class="text-gray-800 font-medium mt-1">{{ product.price | money }}</p>
               </div>
               <!-- زر -->
-              <a href="{{ product.url }}" aria-label="view {{ product.title }}" class="ml-3 bg-black text-white text-xs px-3 py-1 rounded hover:bg-gray-800">
+              <a
+                href="{{ product.url }}"
+                aria-label="view {{ product.title }}"
+                class="ml-3 bg-black text-white text-xs px-3 py-1 rounded hover:bg-gray-800"
+              >
                 عرض
               </a>
             </div>
