@@ -51,7 +51,7 @@
     "product_image_shadow_blur": 6,
     "enable_popup": true,
     "popup_text_alignment": "text-center",
-    "popup_image": "shopify://shop_images/Luliz_Logo.png",
+    "popup_image": "shopify://shop_images/logo.avif",
     "popup_product": "test-24",
     "copon_code": "dfg213",
     "color_scheme": "scheme-6",

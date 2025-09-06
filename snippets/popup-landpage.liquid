@@ -14,13 +14,13 @@
     <div class="flex flex-col {{ settings.popup_text_alignment }} gap-y-{{ settings.popup_element_gap }} py-{{ settings.popup_vertical_padding }} px-{{ settings.popup_horizontal_padding }}">
       <!-- image -->
       <div class="mb-4 border-b border-gray-200 rounded-lg overflow-hidden p-3">
-        <img
-          src="{{ settings.popup_image | image_url }}"
-          alt="Popup Banner"
-          class="object-contain h-full w-full"
-          width=""
-          height=""
-        >
+        {% render 'image',
+          image: settings.popup_image,
+          alt: 'Popup Banner',
+          width: 130,
+          class: 'object-contain w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+          loading: 'lazy'
+        %}
       </div>
 
       <!-- title -->
