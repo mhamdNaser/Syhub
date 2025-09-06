@@ -18,12 +18,13 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide h-[{{ slider_height }}px] md:h-[500px] max-w-full">
+          <div class="swiper-slide  aspect-[16/9] relative max-w-full">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
                 class: 'object-cover',
                 width: 1920,
+                height: 1000 ,
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
               %}
@@ -121,7 +122,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Slide Image",
-          "info": "image height must be 500px and width 1280px"
+          "info": "image height must be 1000px and width 1920px"
         },
         {
           "type": "checkbox",
