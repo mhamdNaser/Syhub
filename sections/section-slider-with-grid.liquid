@@ -12,7 +12,7 @@
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
     data-slides-per-view-mobile="1"
-    data-autoplay="true"
+    {% comment %} data-autoplay="true" {% endcomment %}
     data-autoplay-delay="2500"
   >
     <div class="swiper-wrapper mx-w-full h-svh">
@@ -44,7 +44,7 @@
     <!-- Slider Controls -->
     <div class="swiper-button-next swiper-button-next-{{ section_id }} text-white"></div>
     <div class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"></div>
-    <div class="swiper-pagination"></div>
+    {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
   </div>
 
   <!-- Grid (3 images) -->
