@@ -84,3 +84,91 @@
     <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Slider with Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "slider_height",
+      "label": "Slider Height (px)",
+      "default": 500,
+      "min": 300,
+      "max": 900,
+      "step": 50
+    },
+    {
+      "type": "range",
+      "id": "padding-vertical",
+      "label": "Slider Height (px)",
+      "default": 2,
+      "min": 0,
+      "max": 12,
+      "step": 2
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image",
+          "info": "image height must be 500px and width 1280px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_title_description",
+          "label": "show text",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "grid_image",
+      "name": "Grid Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "grid_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "grid_title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "grid_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Slider with Grid",
+      "category": "Images"
+    }
+  ]
+}
+{% endschema %}
