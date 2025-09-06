@@ -1,29 +1,30 @@
 {% liquid
   assign section_id = section.id
+  assign slider_height = section.settings.slider_height
+  assign padding_vertical = section.settings.padding-vertical
 %}
 
-<div id="shopify-section-{{ section_id }}" class="relative w-full p-4">
-
-  <!-- Slider رئيسي -->
+<div id="shopify-section-{{ section_id }}" class="relative w-full md:py-{{ padding_vertical }} p-4">
+  <!-- Slider -->
   <div
     class="swiper mySwiper-{{ section_id }} w-full relative"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
+    data-slides-per-view-mobile="1"
     data-autoplay="true"
     data-autoplay-delay="2500"
   >
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide aspect-[16/9] relative max-w-full">
+          <div class="swiper-slide h-[{{ slider_height }}px] md:h-[500px] max-w-full">
             {% if block.settings.image %}
               {% render 'image',
                 image: block.settings.image,
-                class: 'w-full h-full object-cover',
+                class: 'object-cover',
                 width: 1920,
-                height: 1080,
-                alt: block.settings.title | escape,
+                alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
               %}
             {% endif %}
@@ -38,57 +39,38 @@
       {% endfor %}
     </div>
 
-    <!-- أزرار التنقل -->
+    <!-- Slider Controls -->
     <div class="swiper-button-next swiper-button-next-{{ section_id }} text-white"></div>
     <div class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"></div>
     <div class="swiper-pagination"></div>
   </div>
 
-  <!-- Grid أسفل السلايدر -->
-  <div class="mt-6">
-    <div
-      class="swiper hidden md:block mySwiper-grid w-full relative"
-      data-slides-per-view="1"
-      data-space-between="16"
-    >
-      <div class="swiper-wrapper">
-        {% for block in section.blocks %}
-          {% if block.type == 'grid_image' %}
-            <div class="swiper-slide">
-              <div class="relative overflow-hidden shadow-lg aspect-square">
-                {% render 'image',
-                  image: block.settings.grid_image,
-                  class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
-                  width: 428,
-                  height: 428,
-                  alt: block.settings.grid_title | escape,
-                  sizes: '(max-width: 640px) 100vw, 33vw'
-                %}
-              </div>
-              <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
-                <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
-                <p class="mt-2">{{ block.settings.grid_text }}</p>
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-
-    <!-- Grid عادي للديسكتوب -->
-    <div class="md:hidden grid grid-cols-1 md:grid-cols-3 gap-4">
+  <!-- Grid (3 images) -->
+  <div
+    class="sm:swiper mySwiper-grid mt-3 w-full relative"
+    data-next-btn="swiper-button-next-grid"
+    data-prev-btn="swiper-button-prev-grid"
+    data-slides-per-view="3"
+    data-slides-per-view-mobile="1"
+    data-autoplay="false"
+    data-autoplay-delay="2500"
+  >
+    <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
-          <div class="relative overflow-hidden shadow-lg aspect-square">
-            {% render 'image',
-              image: block.settings.grid_image,
-              class: 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
-              width: 428,
-              height: 428,
-              alt: block.settings.grid_title | escape,
-              sizes: '(max-width: 640px) 100vw, 33vw'
-            %}
+          <div class="swiper-slide relative group overflow-hidden shadow-lg">
+            {% if block.settings.grid_image %}
+              <div class="relative group overflow-hidden shadow-lg aspect-square w-full h-[180px] md:h-[280px]">
+                {% render 'image',
+                  image: block.settings.grid_image,
+                  class: 'w-full group-hover:scale-105 transition-transform duration-500',
+                  width: 428,
+                  crop: 'center',
+                  alt: block.settings.grid_title | escape,
+                  sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                %}
+              </div>
+            {% endif %}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
               <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
               <p class="mt-2">{{ block.settings.grid_text }}</p>
@@ -97,9 +79,11 @@
         {% endif %}
       {% endfor %}
     </div>
+
+    <!-- Controls تظهر فقط على الموبايل -->
+    <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
 </div>
-
 
 {% schema %}
 {
