@@ -66,13 +66,13 @@
   ### ⬅️ متغيرات المخزون (للعرض المشروط)
   if show_stock and stock < stock_qty
     assign stock_label = 'productCard.laststock' | t
-    assign bg_color    = 'bg-[#c42764]'
+    assign stock_bg_color    = 'bg-[#c42764]'
   elsif show_stock_always
     assign stock_label = stock
-    assign bg_color    = 'bg-[#1C2228]'
+    assign stock_bg_color    = 'bg-[#1C2228]'
   elsif show_stock_available and stock > show_stock_qty
     assign stock_label = stock
-    assign bg_color    = 'bg-[#1C2228]'
+    assign stock_bg_color    = 'bg-[#1C2228]'
   else
     assign stock_label = ''
     assign show_container = 'hidden'
@@ -82,10 +82,13 @@
     case sale_label_price
       when 'amount'
         assign discount_label = discount_amount | money
+        assign discount_bg_color = 'bg-red-950'
       when 'percentage'
         assign discount_label = discount_percentage
+        assign discount_bg_color = 'bg-red-950'
       else
         assign discount_label = ''
+        assign discount_bg_color = 'bg-none'
         assign show_container = 'hidden'
     endcase
   endif
@@ -126,13 +129,13 @@
           {% endif %} {% endcomment %}
 
           <div class="absolute bottom-0 w-full flex justify-between">
-            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full bg-red-950 text-white overflow-hidden">
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full {{ discount_bg_color }} text-white overflow-hidden">
               <div class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"></div>
               <span class="relative z-10 text-xs font-bold text-nowrap">
                 {{ discount_label }}
               </span>
             </div>
-            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ bg_color }} text-white overflow-hidden">
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ stock_bg_color }} text-white overflow-hidden">
               <div class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"></div>
               <span class="relative z-10 text-xs font-bold text-nowrap">
                 {{ stock_label }}
