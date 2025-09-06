@@ -621,6 +621,9 @@
   .h-\[420px\] {
     height: 420px;
   }
+  .h-\[600px\] {
+    height: 600px;
+  }
   .h-auto {
     height: auto;
   }
