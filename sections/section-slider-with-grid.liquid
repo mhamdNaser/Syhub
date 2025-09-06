@@ -47,7 +47,7 @@
   <!-- Grid أسفل السلايدر -->
   <div class="mt-6">
     <div
-      class="swiper sm:hidden mySwiper-grid w-full relative"
+      class="swiper hidden md:block mySwiper-grid w-full relative"
       data-slides-per-view="1"
       data-space-between="16"
     >
@@ -77,7 +77,7 @@
     </div>
 
     <!-- Grid عادي للديسكتوب -->
-    <div class="hidden sm:grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="md:hidden grid grid-cols-1 md:grid-cols-3 gap-4">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
           <div class="relative overflow-hidden shadow-lg aspect-square">
