@@ -70,12 +70,13 @@
           <figure class="relative">
             <picture class="block">
               {% if section_image %}
-                {%
-                  render 'image',
-                  image: section_image | file_url | replace: 'files/files/', 'files/',
-                  class: image_class
+                {% render 'image',
+                  image: section_image,
+                  class: 'object-cover w-full h-full {{ image_class }}',
+                  width: 1920,
+                  height: 750,
                   crop: 'center',
-                  alt: "Image description"
+                  alt: 'Image description'
                 %}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'w-full h-48 object-cover' }}
