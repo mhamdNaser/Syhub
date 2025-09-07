@@ -1,10 +1,11 @@
 {% liquid
   assign section_id = section.id
   assign title_section = section.settings.title_section
+  assign title_alignment = section.settings.title_section_alignment
 %}
 
 <section id="shopify-section-{{ section_id }}" class="collection-gallery max-w-7xl mx-auto py-8 px-4">
-  <h2 class="text-2xl font-semibold mb-6">{{ title_section }}</h2>
+  <h2 class="text-2xl font-semibold mb-6 {{ title_alignment }}">{{ title_section }}</h2>
 
   <!-- Swiper Container -->
   <div
@@ -61,6 +62,25 @@
       "type": "text",
       "id": "title_section",
       "label": "Section Title"
+    },
+    {
+      "type": "select",
+      "id": "title_section_alignment",
+      "label": "Title Section Alignment",
+      "options": [
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        },
+      ]
     }
   ],
   "blocks": [
