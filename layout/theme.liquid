@@ -217,9 +217,9 @@
       document.body.appendChild(moneyJs);
     });
   </script>
-  {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+  {% comment %} {% if template contains 'index' or template contains 'collection' or template contains 'product' %} {% endcomment %}
     <script>
-      window.addEventListener('shopify:section:load', () => {
+      window.addEventListener('load', () => {
         const swiperJs = document.createElement('script');
         swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
         swiperJs.onload = () => {
@@ -235,5 +235,5 @@
         document.body.appendChild(swiperJs);
       });
     </script>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
 </html>
