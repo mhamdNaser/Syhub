@@ -174,19 +174,19 @@
         "options": [
           {
             "value": "none",
-            "label": "None"
-          },
-          {
-            "value": "uppercase",
             "label": "t:settings_schema.typography.text_transform.options__1.label"
           },
           {
-            "value": "capitalize",
+            "value": "uppercase",
             "label": "t:settings_schema.typography.text_transform.options__2.label"
           },
           {
-            "value": "lowercase",
+            "value": "capitalize",
             "label": "t:settings_schema.typography.text_transform.options__3.label"
+          },
+          {
+            "value": "lowercase",
+            "label": "t:settings_schema.typography.text_transform.options__4.label"
           }
         ],
         "default": "none"
