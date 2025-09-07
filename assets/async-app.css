@@ -2101,6 +2101,11 @@
       display: inline;
     }
   }
+  .sm\:h-\[500px\] {
+    @media (width >= 40rem) {
+      height: 500px;
+    }
+  }
   .sm\:h-\[600px\] {
     @media (width >= 40rem) {
       height: 600px;
