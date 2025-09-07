@@ -5,16 +5,6 @@
   assign title_color = section.settings.title_color
 
   assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
-
-  if section.settings.title_bold
-    assign title_class = title_class | append: ' font-bold'
-  else
-    assign title_class = title_class | append: ' font-normal'
-  endif
-
-  if section.settings.title_uppercase
-    assign title_class = title_class | append: ' uppercase'
-  endif
 %}
 
 <section id="shopify-section-{{ section_id }}" class="collection-gallery {{ section_width }} mx-auto py-8 px-4">
@@ -121,21 +111,10 @@
       "default": "text-2xl"
     },
     {
-      "type": "checkbox",
-      "id": "title_bold",
-      "label": "Bold Title",
-      "default": true
-    },
-    {
       "type": "color",
       "id": "title_color",
       "label": "Title Color",
       "default": "#111827"
-    },
-    {
-      "type": "checkbox",
-      "id": "title_uppercase",
-      "label": "Uppercase Title"
     }
   ],
   "blocks": [
