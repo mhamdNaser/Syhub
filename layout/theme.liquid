@@ -200,7 +200,7 @@
   <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
   <script>
-    window.addEventListener('shopify:section:load', () => {
+    window.addEventListener('load', () => {
       // Stickybits (for sticky elements)
       const stickybitsJs = document.createElement('script');
       stickybitsJs.src = "{{ 'plugin-stickybits.min.js' | asset_url }}";
