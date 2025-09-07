@@ -222,7 +222,7 @@
     </script>
   {% endcomment %}
 
-  {% if template contains 'index' or template contains 'collection' %}
+  {% comment %} {% if template contains 'index' or template contains 'collection' %}
     <script>
       window.addEventListener('load', () => {
         const swiperJs = document.createElement('script');
@@ -239,5 +239,5 @@
         document.body.appendChild(swiperJs);
       });
     </script>
-  {% endif %}
+  {% endif %} {% endcomment %}
 </html>
