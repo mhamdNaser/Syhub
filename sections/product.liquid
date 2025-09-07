@@ -61,7 +61,13 @@
 
         <!-- thumbnails -->
         <div class="thumbnail-slider">
-          <div class="swiper thumbnails-swiper">
+          <div
+            class="swiper mySwiper-{{ section_id }}"
+            data-next-btn="swiper-button-next-{{ section_id }}"
+            data-prev-btn="swiper-button-prev-{{ section_id }}"
+            data-slides-per-view="3"
+            data-slides-per-view-mobile="1"
+          >
             <div class="swiper-wrapper">
               {% for media in product.media offset: 1 %}
                 <div class="swiper-slide">
@@ -78,8 +84,14 @@
                 </div>
               {% endfor %}
             </div>
-            <div class="swiper-button-prev !text-gray-700 hover:!text-black"></div>
-            <div class="swiper-button-next !text-gray-700 hover:!text-black"></div>
+            <div
+              class="swiper-button-next swiper-button-next-{{ section_id }} text-white"
+              aria-label="swiper-button-next-{{ section_id }}"
+            ></div>
+            <div
+              class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"
+              aria-label="swiper-button-prev-{{ section_id }}"
+            ></div>
           </div>
         </div>
       </div>
@@ -256,28 +268,9 @@
   }
 </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    window.thumbnailsSwiper = new Swiper('.thumbnails-swiper', {
-      slidesPerView: 3,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 15,
-        },
-      },
-    });
-  });
-</script>
-
 <script id="product-data" type="application/json">
-    {{ product | json }}
-  </script>
+  {{ product | json }}
+</script>
 
 {% schema %}
 {
