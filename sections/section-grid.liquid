@@ -1,53 +1,9 @@
 {% liquid
   assign section_id = section.id
-  assign slider_height = section.settings.slider_height
   assign padding_vertical = section.settings['padding-vertical']
 %}
 
 <section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-[{{ padding_vertical }}px]">
-  <!-- Slider -->
-  <div
-    class="swiper mySwiper-{{ section_id }}"
-    data-next-btn="swiper-button-next-{{ section_id }}"
-    data-prev-btn="swiper-button-prev-{{ section_id }}"
-    data-slides-per-view="1"
-    data-slides-per-view-mobile="1"
-    {% comment %} data-autoplay="true" {% endcomment %}
-    data-autoplay-delay="2500"
-  >
-    <div class="swiper-wrapper mx-w-full">
-      {% for block in section.blocks %}
-        {% if block.type == 'slide' %}
-          <div class="swiper-slide sm:h-[500px] md:h-[750px]">
-            {% if block.settings.image %}
-              {% render 'image',
-                image: block.settings.image,
-                class: 'object-cover w-full h-full',
-                width: 1920,
-                height: 750,
-                crop: 'center',
-                alt: block.settings.title,
-                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px',
-                preload: true
-              %}
-            {% endif %}
-            {% if block.settings.show_title_description == true %}
-              <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
-                <h2 class="text-3xl font-bold">{{ block.settings.title }}</h2>
-                <p class="mt-2 max-w-2xl">{{ block.settings.text }}</p>
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <!-- Slider Controls -->
-    <div class="swiper-button-next swiper-button-next-{{ section_id }} text-white" aria-label="swiper-button-next-{{ section_id }}"></div>
-    <div class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white" aria-label="swiper-button-prev-{{ section_id }}"></div>
-    {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
-  </div>
-
   <!-- Grid (3 images) -->
   <div
     class="sm:swiper mySwiper-grid mt-3 w-full relative"
@@ -91,7 +47,7 @@
 
 {% schema %}
 {
-  "name": "Slider with Grid",
+  "name": "Section Grid",
   "limit": 1,
   "settings": [
     {
@@ -119,34 +75,6 @@
   ],
   "blocks": [
     {
-      "type": "slide",
-      "name": "Slide",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Slide Image",
-          "info": "image height must be 1000px and width 1920px"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_title_description",
-          "label": "show text",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Text"
-        }
-      ]
-    },
-    {
       "type": "grid_image",
       "name": "Grid Image",
       "settings": [
@@ -172,7 +100,7 @@
   "max_blocks": 12,
   "presets": [
     {
-      "name": "Slider with Grid",
+      "name": "Section Grid",
       "category": "Images"
     }
   ]
