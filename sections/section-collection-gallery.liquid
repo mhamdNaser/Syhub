@@ -5,16 +5,8 @@
   assign title_color = section.settings.title_color
 
   assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
-
-  if section.settings.title_bold
-    assign title_class = title_class | append: ' font-bold'
-  else
-    assign title_class = title_class | append: ' font-normal'
-  endif
-
-  if section.settings.title_uppercase
-    assign title_class = title_class | append: ' uppercase'
-  endif
+  assign title_class = title_class | append: ' ' | append: section.settings.title_bold | default: ''
+  assign title_class = title_class | append: ' ' | append: section.settings.title_uppercase | default: ''
 %}
 
 <section id="shopify-section-{{ section_id }}" class="collection-gallery {{ section_width }} mx-auto py-8 px-4">
