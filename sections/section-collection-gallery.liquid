@@ -2,6 +2,158 @@
   assign section_id = section.id
   assign title_section = section.settings.title_section
   assign title_alignment = section.settings.title_section_alignment
+  assign section_width = section.settings.section_width
+  assign title_font_size = section.settings.title_font_size
+  assign title_bold = section.settings.title_bold
+  assign title_color = section.settings.title_color
+  assign title_uppercase = section.settings.title_uppercase
+%}
+
+<section id="shopify-section-{{ section_id }}" class="collection-gallery {{ section_width }} mx-auto py-8 px-4">
+  <h2 class="{{ title_font_size }} {{ title_alignment }} {% if title_bold %}font-bold{% else %}font-normal{% endif %} {% if title_uppercase %}uppercase{% endif %}" style="color: {{ title_color }}">
+    {{ title_section }}
+  </h2>
+
+  <!-- Swiper Container -->
+  <div
+    class="swiper mySwiper-{{ section_id }}"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
+    data-slides-per-view="5"
+    data-slides-per-view-mobile="2"
+  >
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {% liquid
+          assign collection = block.settings.collection
+          assign collection_image = block.settings.collection_image
+          assign collection_title = collection.title | append: '-' | append: section_id
+        %}
+        {% if collection and collection_image %}
+          <div class="swiper-slide flex justify-center aspect-[1/1]">
+            <a
+              href="{{ collection.url }}"
+              class="flex flex-col group transform transition duration-300 hover:-translate-y-2 w-fit"
+              aria-label="{{ collection_title }}"
+            >
+              <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
+                {% render 'image',
+                  image: collection_image,
+                  alt: collection_title,
+                  width: 400,
+                  height: 400,
+                  class: 'object-contain w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+                  loading: 'lazy'
+                %}
+              </div>
+              <h3 class="mt-3 text-center text-base font-medium group-hover:text-indigo-600">
+                {{ collection.title }}
+              </h3>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <div class="swiper-button-next swiper-button-next-{{ section_id }} !text-black" aria-label="swiper-button-next-{{ section_id }}"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section_id }} !text-black" aria-label="swiper-button-prev-{{ section_id }}"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_section",
+      "label": "Section Title"
+    },
+    {
+      "type": "select",
+      "id": "title_section_alignment",
+      "label": "Title Alignment",
+      "options": [
+        {"value": "text-center", "label": "Center"},
+        {"value": "text-left", "label": "Left"},
+        {"value": "text-right", "label": "Right"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Width",
+      "options": [
+        {"value": "w-full", "label": "Full Width"},
+        {"value": "max-w-7xl", "label": "Max Width 7xl"},
+        {"value": "max-w-5xl", "label": "Max Width 5xl"}
+      ],
+      "default": "max-w-7xl"
+    },
+    {
+      "type": "select",
+      "id": "title_font_size",
+      "label": "Title Font Size",
+      "options": [
+        {"value": "text-xl", "label": "XL"},
+        {"value": "text-2xl", "label": "2XL"},
+        {"value": "text-3xl", "label": "3XL"},
+        {"value": "text-4xl", "label": "4XL"}
+      ],
+      "default": "text-2xl"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_bold",
+      "label": "Bold Title",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#111827"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_uppercase",
+      "label": "Uppercase Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Choose Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Custom Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Collection Gallery",
+      "category": "Images"
+    }
+  ]
+}
+{% endschema %}
+
+
+{% comment %} {% liquid
+  assign section_id = section.id
+  assign title_section = section.settings.title_section
+  assign title_alignment = section.settings.title_section_alignment
 %}
 
 <section id="shopify-section-{{ section_id }}" class="collection-gallery max-w-7xl mx-auto py-8 px-4">
@@ -109,4 +261,4 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
