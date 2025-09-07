@@ -8,7 +8,7 @@
   assign button_link = section.settings.button_link
 %}
 
-<section id="shopify-section-{{ section_id }}" class="welcome relative w-full flex items-center justify-center text-center color-{{ color_scheme }}">
+<section id="shopify-section-{{ section_id }}" class="welcome relative aspect-[1920/750] flex items-center justify-center text-center color-{{ color_scheme }}">
   <!-- الخلفية -->
   {% if bg_image != blank %}
     {% render 'image',
