@@ -1,15 +1,17 @@
 {% liquid
   assign section_id = section.id
-  assign title = section.settings.title_section
-  assign title_alignment = section.settings.title_section_alignment
+  assign title_section = section.settings.title_section
+  assign section_width = section.settings.section_width | default: 'max-w-7xl'
+  assign title_color = section.settings.title_color | default: '#111827'
+  assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
   assign slides_desktop = 8
   assign slides_mobile = 3
 %}
 
-<section id="shopify-section-{{ section_id }}" class="vendor-gallery max-w-7xl mx-auto py-12 px-6">
-  {% if title != blank %}
-    <h2 class="text-3xl font-bold mb-8 {{ title_alignment }} text-gray-800 tracking-wide">
-      {{ title }}
+<section id="shopify-section-{{ section_id }}" class="vendor-gallery {{ section_width }} mx-auto py-12 px-6">
+  {% if title_section != blank %}
+    <h2 class="{{ title_class }}" style="color: {{ title_color }}">
+      {{ title_section }}
     </h2>
   {% endif %}
 
@@ -25,9 +27,8 @@
       {% for block in section.blocks %}
         {% liquid
           assign vendor_name = block.settings.vendor_name
-          assign vendor_image = block.settings.vendor_image | image_url: width: 300
+          assign vendor_image = block.settings.vendor_image
         %}
-
         {% if vendor_name and vendor_image %}
           <div class="swiper-slide flex justify-center aspect-[1/1]">
             <a
@@ -35,14 +36,16 @@
               class="block group p-3 rounded-xl bg-white shadow-sm hover:shadow-md transition transform hover:-translate-y-1"
               aria-label="{{ vendor_name | default: section_id }}"
             >
-              {% render 'image',
-                image: vendor_image,
-                alt: vendor_name,
-                width: 300,
-                height: 300,
-                class: 'object-contain w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
-                loading: 'lazy'
-              %}
+              <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
+                {% render 'image',
+                  image: vendor_image,
+                  alt: vendor_name,
+                  width: 300,
+                  height: 300,
+                  class: 'object-contain w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+                  loading: 'lazy'
+                %}
+              </div>
             </a>
           </div>
         {% endif %}
@@ -84,8 +87,37 @@
         {
           "value": "text-right",
           "label": "Right"
-        },
+        }
       ]
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Width",
+      "options": [
+        { "value": "w-full", "label": "Full Width" },
+        { "value": "max-w-7xl", "label": "Max Width 7xl" },
+        { "value": "max-w-5xl", "label": "Max Width 5xl" }
+      ],
+      "default": "max-w-7xl"
+    },
+    {
+      "type": "select",
+      "id": "title_font_size",
+      "label": "Title Font Size",
+      "options": [
+        { "value": "text-xl", "label": "XL" },
+        { "value": "text-2xl", "label": "2XL" },
+        { "value": "text-3xl", "label": "3XL" },
+        { "value": "text-4xl", "label": "4XL" }
+      ],
+      "default": "text-2xl"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#111827"
     }
   ],
   "blocks": [
