@@ -144,7 +144,6 @@
   </head>
 
   <body class="overflow-x-hidden font-sans antialiased">
-
     {% # Load the header and footer sections %}
     <div id="header-group" class="hidden md:block">
       {% sections 'header-group' %}
@@ -180,16 +179,85 @@
     {% endif %}
   </body>
 
+  {% comment %}
+    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
+  {% endcomment %}
+  {%- comment -%}
+    📌 Core scripts - must load early with the page
+  {%- endcomment -%}
   <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
+
+  {%- comment -%}
+    📌 Lazy-loaded scripts - load after the page is fully loaded
+  {%- endcomment -%}
+  <script>
+    window.addEventListener('load', () => {
+      // Stickybits (for sticky elements)
+      const stickybitsJs = document.createElement('script');
+      stickybitsJs.src = "{{ 'plugin-stickybits.min.js' | asset_url }}";
+      document.body.appendChild(stickybitsJs);
+
+      // Recently viewed products
+      const rvJs = document.createElement('script');
+      rvJs.src = "{{ 'plugin-recently-viewed.js' | asset_url }}";
+      document.body.appendChild(rvJs);
+
+      // Shopify money formatter
+      const moneyJs = document.createElement('script');
+      moneyJs.src = "{{ 'plugin-shopify-money.js' | asset_url }}";
+      document.body.appendChild(moneyJs);
+    });
+  </script>
+
+  {%- comment -%}
+    📌 Product page only scripts
+  {%- endcomment -%}
+  {% if template contains 'product' %}
+    <script>
+      window.addEventListener('load', () => {
+        // Product 3D model
+        const modelJs = document.createElement('script');
+        modelJs.src = "{{ 'plugin-product-model.js' | asset_url }}";
+        document.body.appendChild(modelJs);
+
+        // Product variant switcher
+        const variantJs = document.createElement('script');
+        variantJs.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}";
+        document.body.appendChild(variantJs);
+      });
+    </script>
+  {% endif %}
+
+  {%- comment -%}
+    📌 Swiper slider scripts - load only if slider exists (e.g., homepage or collection)
+  {%- endcomment -%}
+  {% if template contains 'index' or template contains 'collection' %}
+    <script>
+      window.addEventListener('load', () => {
+        const swiperJs = document.createElement('script');
+        swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
+        swiperJs.onload = () => {
+          const swiperInit = document.createElement('script');
+          swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
+          document.body.appendChild(swiperInit);
+        };
+        document.body.appendChild(swiperJs);
+      });
+    </script>
+  {% endif %}
 </html>
