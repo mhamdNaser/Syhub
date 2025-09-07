@@ -1,16 +1,20 @@
-{%- assign form_title = section.settings.title -%}
+{% liquid
+  assign form_title = section.settings.title
+%}
+
 <div class="flex flex-col items-center my-8">
-  {%- if form_title != blank -%}
+  {% if form_title != blank %}
     <h1 class="text-3xl font-medium my-8 md:my-16">
       {{ form_title }}
     </h1>
-  {%- endif -%}
+  {% endif %}
+
   {% form 'contact' %}
-    {%- if form.errors -%}
+    {% if form.errors %}
       <div class="items-center w-full my-3 p-5">
         <div class="flex flex-row items-center w-full my-3">
           <div class="text-red-500">
-            {%- render 'icons' , icon: 'icon-failed' -%}
+            {% render 'icons', icon: 'icon-failed' %}
           </div>
           <div class="text-sm font-medium ml-3">Oh No? Your Message Is not Send</div>
         </div>
@@ -22,14 +26,15 @@
           {% endfor %}
         </ul>
       </div>
-    {%- elsif form.posted_successfully? -%}
+    {% elsif form.posted_successfully? %}
       <div class="flex flex-row items-center w-full my-3 p-5">
         <div class="text-green-500">
-          {%- render 'icons' , icon: 'icon-success' -%}
+          {% render 'icons', icon: 'icon-success' %}
         </div>
         <div class="text-sm font-medium ml-3">Message Is Send Successfully</div>
       </div>
-    {%- endif -%}
+    {% endif %}
+
     <div class="max-w-6xl mx-auto">
       <div class="flex gap-4">
         <div class="mb-4 w-1/2">
@@ -73,6 +78,7 @@
     </div>
   {% endform %}
 </div>
+
 
 {% schema %}
 {

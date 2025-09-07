@@ -1,18 +1,20 @@
-{% assign box_width = settings.body_width %}
-{% assign swiper = section.settings.swiper_view %}
-{% assign item_in_row = section.settings.item_in_row %}
-{% assign pagination_row = section.settings.show_pagination_row %}
-{% assign swiper_class = 'swiper mySwiper-' | append: section.id %}
-{% assign my_swiper_class = 'mySwiper-' | append: section.id %}
-{% assign next_button_class = 'swiper-next-' | append: section.id %}
-{% assign prev_button_class = 'swiper-prev-' | append: section.id %}
+{% liquid
+  assign box_width = settings.body_width
+  assign swiper = section.settings.swiper_view
+  assign item_in_row = section.settings.item_in_row
+  assign pagination_row = section.settings.show_pagination_row
+  assign swiper_class = 'swiper mySwiper-' | append: section.id
+  assign my_swiper_class = 'mySwiper-' | append: section.id
+  assign next_button_class = 'swiper-next-' | append: section.id
+  assign prev_button_class = 'swiper-prev-' | append: section.id
 
-{% assign reference_product_id = nil %}
-{% if product %}
-  {% assign reference_product_id = product.id %}
-{% elsif cart and cart.items.size > 0 %}
-  {% assign reference_product_id = cart.items.first.product.id %}
-{% endif %}
+  assign reference_product_id = nil
+  if product
+    assign reference_product_id = product.id
+  elsif cart and cart.items.size > 0
+    assign reference_product_id = cart.items.first.product.id
+  endif
+%}
 
 <div 
   class="product-recommendations {{ box_width }} mx-auto"
@@ -113,18 +115,10 @@ document.addEventListener('DOMContentLoaded', function () {
               prevEl: ".{{ prev_button_class }}"
             },
             breakpoints: {
-              0: {
-                slidesPerView: 1,
-              },
-              640: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              1024: {
-                slidesPerView: {{ item_in_row | json }},
-              },
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: {{ item_in_row | json }} }
             }
           });
         }

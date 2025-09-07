@@ -1,20 +1,26 @@
-<section id="shopify-section-{{ section.id }}" class="collection-gallery max-w-7xl mx-auto py-8 px-4">
-  <h2 class="text-2xl font-semibold mb-6">{{ section.settings.title_section }}</h2>
+{% liquid
+  assign section_id = section.id
+  assign title_section = section.settings.title_section
+%}
+
+<section id="shopify-section-{{ section_id }}" class="collection-gallery max-w-7xl mx-auto py-8 px-4">
+  <h2 class="text-2xl font-semibold mb-6">{{ title_section }}</h2>
 
   <!-- Swiper Container -->
   <div
-    class="swiper mySwiper-{{ section.id }}"
-    data-next-btn="swiper-button-next-{{ section.id }}"
-    data-prev-btn="swiper-button-prev-{{ section.id }}"
+    class="swiper mySwiper-{{ section_id }}"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="5"
     data-slides-per-view-mobile="2"
   >
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
-        {% assign collection = block.settings.collection %}
-        {% assign collection_image = block.settings.collection_image %}
-        {%- assign collection_title = collection.title | append: '-' | append: section.id -%}
-
+        {% liquid
+          assign collection = block.settings.collection
+          assign collection_image = block.settings.collection_image
+          assign collection_title = collection.title | append: '-' | append: section_id
+        %}
         {% if collection and collection_image %}
           <div class="swiper-slide flex justify-center aspect-[1/1]">
             <a
@@ -42,8 +48,8 @@
     </div>
 
     <!-- Controls -->
-    <div class="swiper-button-next swiper-button-next-{{ section.id }} !text-black"></div>
-    <div class="swiper-button-prev swiper-button-prev-{{ section.id }} !text-black"></div>
+    <div class="swiper-button-next swiper-button-next-{{ section_id }} !text-black"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section_id }} !text-black"></div>
   </div>
 </section>
 

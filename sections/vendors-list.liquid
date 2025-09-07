@@ -1,4 +1,5 @@
 {% liquid
+  assign section_id = section.id
   assign item_in_row = section.settings.item_in_row
   assign group_title = section.settings.show_group_title
   assign show_title = section.settings.show_title
@@ -16,7 +17,7 @@
   assign current_letter = ''
 %}
 
-<div class="flex max-w-7xl mx-auto py-8">
+<section id="shopify-section-{{ section_id }}" class="flex max-w-7xl mx-auto py-8">
   {% if show_title %}
     <h1 class="text-3xl font-medium">
       {{ title }}
@@ -45,7 +46,7 @@
       </div>
     {% endfor %}
   </div>
-</div>
+</section>
 
 {% schema %}
 {

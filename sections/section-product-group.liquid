@@ -1,70 +1,73 @@
-<section class="featured-product-group max-w-7xl mx-auto py-8 px-0 md:px-4">
+{% liquid
+  assign section_id = section.id
+  assign main_product = all_products[section.settings.main_product]
+  assign sub_info_type = section.settings.sub_info_type
+%}
+
+<section id="shopify-section-{{ section_id }}" class="featured-product-group max-w-7xl mx-auto py-8 px-0 md:px-4">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
     <!-- المنتج الكبير -->
-    {% if section.settings.main_product != blank %}
-      {% assign main_product = all_products[section.settings.main_product] %}
-      {% if main_product %}
-        <div class="main-product h-full">
-          <a href="{{ main_product.url }}">
-            {% render 'image',
-              image: main_product.featured_image,
-              class: 'w-full h-full object-cover rounded-lg shadow-lg',
-              width: 800,
-              height: 800,
-              crop: 'center',
-              alt: main_product.title
-            %}
-          </a>
-        </div>
-      {% endif %}
+    {% if main_product %}
+      <div class="main-product h-full">
+        <a href="{{ main_product.url }}">
+          {% render 'image',
+            image: main_product.featured_image,
+            class: 'w-full h-full object-cover rounded-lg shadow-lg',
+            width: 800,
+            height: 800,
+            crop: 'center',
+            alt: main_product.title
+          %}
+        </a>
+      </div>
     {% endif %}
 
     <!-- المنتجات الجانبية -->
     <div class="product-list grid grid-rows-3 gap-4 h-full">
       {% for block in section.blocks %}
-        {% if block.settings.product != blank %}
-          {% assign product = all_products[block.settings.product] %}
-          {% if product %}
-            <div class="flex items-center bg-white rounded-lg shadow p-3">
-              <!-- صورة المنتج -->
-              <a href="{{ product.url }}" class="flex-shrink-0">
-                {% render 'image',
-                  image: product.featured_image,
-                  class: 'w-full h-full object-cover rounded mr-4',
-                  width: 150,
-                  height: 150,
-                  crop: 'center',
-                  alt: product.title
-                %}
-              </a>
-              <!-- النص -->
-              <div class="flex-1 overflow-hidden">
-                <h3 class="text-sm font-semibold truncate">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-                {% if section.settings.sub_info_type == 'description' %}
-                  <p class="text-gray-600 text-xs line-clamp-2">
-                    {% if product.description != blank %}
-                      {{ product.description | strip_html | truncate: 60 }}
-                    {% else %}
-                      no description
-                    {% endif %}
-                  </p>
-                {% elsif section.settings.sub_info_type == 'vendor' %}
-                  <p class="text-gray-500 text-xs">{{ product.vendor }}</p>
-                {% endif %}
-                <p class="text-gray-800 font-medium mt-1">{{ product.price | money }}</p>
-              </div>
-              <!-- زر -->
-              <a
-                href="{{ product.url }}"
-                aria-label="view {{ product.title }}"
-                class="ml-3 bg-black text-white text-xs px-3 py-1 rounded hover:bg-gray-800"
-              >
-                عرض
-              </a>
+        {% liquid
+          assign product = all_products[block.settings.product]
+        %}
+        {% if product %}
+          <div class="flex items-center bg-white rounded-lg shadow p-3">
+            <!-- صورة المنتج -->
+            <a href="{{ product.url }}" class="flex-shrink-0">
+              {% render 'image',
+                image: product.featured_image,
+                class: 'w-full h-full object-cover rounded mr-4',
+                width: 150,
+                height: 150,
+                crop: 'center',
+                alt: product.title
+              %}
+            </a>
+            <!-- النص -->
+            <div class="flex-1 overflow-hidden">
+              <h3 class="text-sm font-semibold truncate">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              {% if sub_info_type == 'description' %}
+                <p class="text-gray-600 text-xs line-clamp-2">
+                  {% if product.description != blank %}
+                    {{ product.description | strip_html | truncate: 60 }}
+                  {% else %}
+                    no description
+                  {% endif %}
+                </p>
+              {% elsif sub_info_type == 'vendor' %}
+                <p class="text-gray-500 text-xs">{{ product.vendor }}</p>
+              {% endif %}
+              <p class="text-gray-800 font-medium mt-1">{{ product.price | money }}</p>
             </div>
-          {% endif %}
+            <!-- زر -->
+            <a
+              href="{{ product.url }}"
+              aria-label="view {{ product.title }}"
+              class="ml-3 bg-black text-white text-xs px-3 py-1 rounded hover:bg-gray-800"
+            >
+              عرض
+            </a>
+          </div>
         {% endif %}
       {% endfor %}
     </div>
