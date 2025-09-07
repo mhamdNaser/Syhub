@@ -16,8 +16,7 @@
   {% if bg_image != blank %}
     {% render 'image',
       image: bg_image,
-      class: 'object-fill absolute inset-0 w-full h-full',
-      width: 1920,
+      class: 'object-cover absolute inset-0 w-full h-full',
       alt: heading,
       preload: true,
       sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px'
