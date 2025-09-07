@@ -200,7 +200,7 @@
   <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
   <script>
-    window.addEventListener('load', () => {
+    window.addEventListener('shopify:section:load', () => {
       // Stickybits (for sticky elements)
       const stickybitsJs = document.createElement('script');
       stickybitsJs.src = "{{ 'plugin-stickybits.min.js' | asset_url }}";
@@ -219,7 +219,7 @@
   </script>
   {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
     <script>
-      window.addEventListener('load', () => {
+      window.addEventListener('shopify:section:load', () => {
         const swiperJs = document.createElement('script');
         swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
         swiperJs.onload = () => {
