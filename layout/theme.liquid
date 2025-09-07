@@ -246,19 +246,16 @@
   {% if template contains 'index' or template contains 'collection' %}
     <script>
       window.addEventListener('load', () => {
-        // Load Swiper core first
         const swiperJs = document.createElement('script');
         swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
-        swiperJs.defer = true;
-
         swiperJs.onload = () => {
-          // Once Swiper core is loaded, load the init script
           const swiperInit = document.createElement('script');
           swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
-          swiperInit.defer = true;
+          swiperInit.onload = () => {
+            initSwipers(); // 🚀 call the function manually after both scripts are loaded
+          };
           document.body.appendChild(swiperInit);
         };
-
         document.body.appendChild(swiperJs);
       });
     </script>
