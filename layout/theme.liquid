@@ -217,7 +217,8 @@
       document.body.appendChild(moneyJs);
     });
   </script>
-  {% if template contains 'index' or template contains 'collection' or template contains 'Product' %}
+
+  {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
     <script>
       window.addEventListener('load', () => {
         const swiperJs = document.createElement('script');
@@ -226,14 +227,48 @@
           const swiperInit = document.createElement('script');
           swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
           swiperInit.onload = () => {
-            initSwipers(); // 🚀 call the function manually after both scripts are loaded
-            {% comment %} const variantSwitcher = document.createElement('script');
-            variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
+            // ✅ تشغيل السوابر فقط إذا كانت المكتبة موجودة والعناصر موجودة
+            const tryInit = () => {
+              if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
+                initSwipers();
+              } else {
+                setTimeout(tryInit, 200);
+              }
+            };
+            tryInit();
           };
           document.body.appendChild(swiperInit);
         };
         document.body.appendChild(swiperJs);
       });
+
+      // ✅ إعادة التهيئة عند تحميل سكشن جديد (زي product)
+      document.addEventListener('shopify:section:load', () => {
+        if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
+          initSwipers();
+        }
+      });
     </script>
   {% endif %}
+  {% comment %}
+    {% if template contains 'index' or template contains 'collection' or template contains 'Product' %}
+      <script>
+        window.addEventListener('load', () => {
+          const swiperJs = document.createElement('script');
+          swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
+          swiperJs.onload = () => {
+            const swiperInit = document.createElement('script');
+            swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
+            swiperInit.onload = () => {
+              initSwipers(); // 🚀 call the function manually after both scripts are loaded
+              {% comment %} const variantSwitcher = document.createElement('script');
+              variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
+            };
+            document.body.appendChild(swiperInit);
+          };
+          document.body.appendChild(swiperJs);
+        });
+      </script>
+    {% endif %}
+  {% endcomment %}
 </html>
