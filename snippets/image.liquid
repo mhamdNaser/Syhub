@@ -88,7 +88,7 @@
   {% else %}
     {{-
       image
-      | image_url : width: 'auto'
+      | image_url : width: width
       | image_tag: id: id, alt: alt_text, loading: preload_attr
       | default: loading_attr
       | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
