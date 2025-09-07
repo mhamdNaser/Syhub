@@ -217,7 +217,7 @@
       document.body.appendChild(moneyJs);
     });
   </script>
-  {% comment %} {% if template contains 'index' or template contains 'collection' or template contains 'product' %} {% endcomment %}
+  {% if template contains 'index' or template contains 'collection' or template contains 'Product' %}
     <script>
       window.addEventListener('load', () => {
         const swiperJs = document.createElement('script');
@@ -235,5 +235,5 @@
         document.body.appendChild(swiperJs);
       });
     </script>
-  {% comment %} {% endif %} {% endcomment %}
+  {% endif %}
 </html>
