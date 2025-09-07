@@ -23,7 +23,9 @@
               {% render 'image',
                 image: block.settings.image,
                 class: 'object-cover w-full h-full',
-                
+                width: 1920,
+                height: 750,
+                crop: 'center',
                 alt: block.settings.title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px',
                 preload: true
