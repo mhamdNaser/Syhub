@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
       sku.textContent = ''
       sku.textContent = selectedVariant.sku
     }
-
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
     allThumbnails.forEach(thumb => {
