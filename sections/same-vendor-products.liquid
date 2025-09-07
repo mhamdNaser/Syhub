@@ -1,8 +1,18 @@
-<div class="same-vendor-products max-w-7xl mx-auto py-8">
+{% liquid
+  assign section_id = section.id
+%}
+
+<section id="shopify-section-{{ section_id }}" class="same-vendor-products max-w-7xl mx-auto py-8">
   <h2 class="text-2xl font-bold mb-6 text-center">More from {{ product.vendor }}</h2>
 
   <!-- Swiper wrapper -->
-  <div class="swiper same-vendor-swiper">
+  <div
+    class="swiper mySwiper-{{ section_id }}"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
+    data-slides-per-view="3"
+    data-slides-per-view-mobile="1"
+  >
     <div class="swiper-wrapper">
       {% assign vendor_products = collections.all.products | where: 'vendor', product.vendor %}
       {% for p in vendor_products %}
@@ -24,7 +34,10 @@
                   <p class="text-gray-700 font-medium">{{ p.price | money }}</p>
                 </div>
                 <div class="mt-4">
-                  <button aria-label="View Product" class="w-full py-2 rounded-md bg-[#c42764] text-white hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors">
+                  <button
+                    aria-label="View Product"
+                    class="w-full py-2 rounded-md bg-[#c42764] text-white hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors"
+                  >
                     View Product
                   </button>
                 </div>
@@ -36,37 +49,16 @@
     </div>
 
     <!-- Navigation -->
-    <div class="swiper-button-next text-gray-700 hover:text-gray-900" aria-label="next"></div>
-    <div class="swiper-button-prev text-gray-700 hover:text-gray-900" aria-label="prev"></div>
-
-    <!-- Pagination (اختياري) -->
-    <div class="swiper-pagination mt-4"></div>
+    <div
+      class="swiper-button-next swiper-button-next-{{ section_id }} text-white"
+      aria-label="swiper-button-next-{{ section_id }}"
+    ></div>
+    <div
+      class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"
+      aria-label="swiper-button-prev-{{ section_id }}"
+    ></div>
   </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.same-vendor-swiper', {
-      slidesPerView: 2,
-      spaceBetween: 20,
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        0: { slidesPerView: 1 },
-        640: { slidesPerView: 2, spaceBetween: 20 },
-        768: { slidesPerView: 3, spaceBetween: 24 },
-        1024: { slidesPerView: 4, spaceBetween: 24 },
-      },
-    });
-  });
-</script>
+</section>
 
 {% schema %}
 {
