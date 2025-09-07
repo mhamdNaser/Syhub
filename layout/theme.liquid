@@ -179,12 +179,13 @@
     {% endif %}
   </body>
 
- 
   <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
   <script>
     window.addEventListener('load', () => {
       // Stickybits (for sticky elements)
@@ -203,21 +204,6 @@
       document.body.appendChild(moneyJs);
     });
   </script>
-  {% if template contains 'product' %}
-    <script>
-      window.addEventListener('load', () => {
-        // Product 3D model
-        const modelJs = document.createElement('script');
-        modelJs.src = "{{ 'plugin-product-model.js' | asset_url }}";
-        document.body.appendChild(modelJs);
-
-        // Product variant switcher
-        const variantJs = document.createElement('script');
-        variantJs.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}";
-        document.body.appendChild(variantJs);
-      });
-    </script>
-  {% endif %}
 
   {% if template contains 'index' or template contains 'collection' %}
     <script>
