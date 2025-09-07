@@ -4,6 +4,9 @@
   When `width`, `height` and `crop` are provided, the image will be rendered
   with a fixed aspect ratio.
 
+  Serves as an example of how to use the `image_url` filter and `image_tag` filter
+  as well as how you can use LiquidDoc to document your code.
+
   @param {image} image - The image to be rendered
   @param {string} [url] - Optional destination URL for the image
   @param {string} [class] - Optional class to be added to the image wrapper
@@ -15,8 +18,23 @@
   @param {string} [loading] - Lazy/eager loading (default: lazy)
   @param {string} [decoding] - async/sync decoding (default: async)
   @param {string} [sizes] - Responsive sizes attribute
-  @param {boolean} [preload] - If true, adds a <link rel="preload"> tag for the image and forces loading="eager" with fetchpriority="high".
-  @param {string} [fetchpriority] - Image fetch priority hint (auto | high | low).
+  @param {boolean} [preload] - If true, adds a <link rel="preload"> tag for the image and forces loading="eager" with fetchpriority="high" to improve LCP.
+  @param {string} [fetchpriority] - Image fetch priority hint for the browser (auto | high | low). Useful for optimizing Core Web Vitals.
+
+  @example
+  {% render 'image', image: product.featured_image %}
+  {% render 'image', image: product.featured_image, url: product.url %}
+  {% render 'image',
+    image: product.featured_image,
+    url: product.url,
+    class: 'rounded-xl shadow',
+    width: 1200,
+    height: 800,
+    crop: 'center',
+    alt: product.title,
+    sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+    fetchpriority: 'high'
+  %}
 {% enddoc %}
 
 {% liquid
@@ -70,7 +88,6 @@
   {% else %}
     {{-
       image
-      | image_tag: id: id, alt: alt_text, class: class, loading: preload_attr
       | default: loading_attr
       | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
       | default: fetchpriority_attr
