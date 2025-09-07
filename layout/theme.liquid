@@ -247,12 +247,12 @@
       document.addEventListener('shopify:section:load', () => {
         if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
           initSwipers();
-          const variantSwitcher = document.createElement('script');
-          variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}";
+          {% comment %} const variantSwitcher = document.createElement('script');
+          variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
         }
       });
     </script>
-    {% comment %} <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script> {% endcomment %}
+    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
   {% endif %}
   {% comment %}
     {% if template contains 'index' or template contains 'collection' or template contains 'Product' %}
