@@ -29,15 +29,24 @@
     url: product.url,
     class: 'rounded-xl shadow',
     width: 1200,
-    height: 800,
+    height: auto,
     crop: 'center',
     alt: product.title,
     sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-    fetchpriority: 'high'
+    fetchpriority: 
   %}
 {% enddoc %}
 
-{% liquid
+{% comment %} {% liquid
+  assign final_width = width
+
+  if height
+    assign final_height = height
+  else
+    assign temp_height = final_width | times: image.height
+    assign final_height = temp_height | divided_by: image.width
+  endif
+
   if url
     assign wrapper = 'a'
   else
@@ -58,41 +67,59 @@
     href="{{ url }}"
   {% endif %}
 >
-  {% if crop and width and height %}
+  {% if crop %}
     {{-
       image
-      | image_url: width: width, height: height, crop: crop
+      | image_url: width: final_width, height: final_height, crop: crop
       | image_tag: id: id, alt: alt_text, loading: preload_attr
       | default: loading_attr
       | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
-      | default: fetchpriority_attr, width: width, height: height
-    -}}
-  {% elsif width and height %}
-    {{-
-      image
-      | image_url: width: width, height: height
-      | image_tag: id: id, alt: alt_text, loading: preload_attr
-      | default: loading_attr
-      | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
-      | default: fetchpriority_attr, width: width, height: height
-    -}}
-  {% elsif width %}
-    {{-
-      image
-      | image_url: width: width
-      | image_tag: id: id, alt: alt_text, loading: preload_attr
-      | default: loading_attr
-      | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
-      | default: fetchpriority_attr, width: width
+      | default: fetchpriority_attr, width: final_width, height: final_height
     -}}
   {% else %}
     {{-
       image
-      | image_url : width: width
+      | image_url: width: final_width
       | image_tag: id: id, alt: alt_text, loading: preload_attr
       | default: loading_attr
       | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
-      | default: fetchpriority_attr
+      | default: fetchpriority_attr, width: final_width
+    -}}
+  {% endif %}
+</{{ wrapper }}> {% endcomment %}
+{% liquid
+  if url
+    assign wrapper = 'a'
+  else
+    assign wrapper = 'div'
+  endif
+
+  assign alt_text = alt | default: image.alt | escape
+  assign loading_attr = loading | default: 'lazy'
+  assign decoding_attr = decoding | default: 'async'
+  assign fetchpriority_attr = fetchpriority | default: 'auto'
+  assign sizes_attr = sizes | default: '(max-width: 768px) 100vw, 50vw'
+  assign preload_attr = preload | default: false
+%}
+
+<{{ wrapper }}
+  class="image relative overflow-hidden {{ class }}"
+  {% if url %}
+    href="{{ url }}"
+  {% endif %}
+>
+  {% if width or height %}
+    {%- comment -%} ✅ بحالة فيه أبعاد مرسلة نستعمل image_url {%- endcomment -%}
+    {{-
+      image
+      | image_url: width: width, height: height, crop: crop
+      | image_tag: id: id, alt: alt_text, loading: loading_attr, decoding: decoding_attr, sizes: sizes_attr, fetchpriority: fetchpriority_attr, width: width, height: height
+    -}}
+  {% else %}
+    {%- comment -%} ✅ بحالة ما فيه أبعاد، نستخدم image_tag مباشرة {%- endcomment -%}
+    {{-
+      image
+      | image_tag: id: id, alt: alt_text, class: class, loading: loading_attr, decoding: decoding_attr, sizes: sizes_attr, fetchpriority: fetchpriority_attr
     -}}
   {% endif %}
 </{{ wrapper }}>
