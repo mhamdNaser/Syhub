@@ -179,26 +179,26 @@
     {% endif %}
   </body>
 
+  {% comment %}
+    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
+  {% endcomment %}
+
   <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
-
-  {% comment %} <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
+  {% comment %} <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script> {% endcomment %}
   <script>
     window.addEventListener('load', () => {
       // Stickybits (for sticky elements)
@@ -217,7 +217,6 @@
       document.body.appendChild(moneyJs);
     });
   </script>
-
   {% if template contains 'index' or template contains 'collection' %}
     <script>
       window.addEventListener('load', () => {
@@ -228,11 +227,13 @@
           swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
           swiperInit.onload = () => {
             initSwipers(); // 🚀 call the function manually after both scripts are loaded
+            const variantSwitcher = document.createElement('script');
+            variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}";
           };
           document.body.appendChild(swiperInit);
         };
         document.body.appendChild(swiperJs);
       });
     </script>
-  {% endif %} {% endcomment %}
+  {% endif %}
 </html>
