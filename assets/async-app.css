@@ -619,6 +619,9 @@
   .h-\[400px\] {
     height: 400px;
   }
+  .h-\[500px\] {
+    height: 500px;
+  }
   .h-auto {
     height: auto;
   }
@@ -2095,6 +2098,11 @@
       display: inline;
     }
   }
+  .sm\:h-\[600px\] {
+    @media (width >= 40rem) {
+      height: 600px;
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2195,6 +2203,11 @@
   .md\:h-\[400px\] {
     @media (width >= 48rem) {
       height: 400px;
+    }
+  }
+  .md\:h-\[750px\] {
+    @media (width >= 48rem) {
+      height: 750px;
     }
   }
   .md\:w-1\/2 {
