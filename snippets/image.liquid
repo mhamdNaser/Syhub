@@ -108,17 +108,22 @@
     href="{{ url }}"
   {% endif %}
 >
-  {% if width or height %}
-    {%- comment -%} ✅ بحالة فيه أبعاد مرسلة نستعمل image_url {%- endcomment -%}
+  {% if crop and width and height %}
     {{-
       image
       | image_url: width: width, height: height, crop: crop
       | image_tag: id: id, alt: alt_text, loading: loading_attr, decoding: decoding_attr, sizes: sizes_attr, fetchpriority: fetchpriority_attr, width: width, height: height
     -}}
-  {% else %}
-    {%- comment -%} ✅ بحالة ما فيه أبعاد، نستخدم image_tag مباشرة {%- endcomment -%}
+  {% elsif width or height %}
     {{-
       image
+      | image_url: width: width, height: height
+      | image_tag: id: id, alt: alt_text, loading: loading_attr, decoding: decoding_attr, sizes: sizes_attr, fetchpriority: fetchpriority_attr, width: width, height: height
+    -}}
+  {% else %}
+    {{-
+      image
+      | image_url: width: 2000
       | image_tag: id: id, alt: alt_text, class: class, loading: loading_attr, decoding: decoding_attr, sizes: sizes_attr, fetchpriority: fetchpriority_attr
     -}}
   {% endif %}
