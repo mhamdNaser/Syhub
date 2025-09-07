@@ -29,24 +29,15 @@
     url: product.url,
     class: 'rounded-xl shadow',
     width: 1200,
-    height: auto,
+    height: 800,
     crop: 'center',
     alt: product.title,
     sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-    fetchpriority: 
+    fetchpriority: 'high'
   %}
 {% enddoc %}
 
 {% liquid
-  assign final_width = width
-
-  if height
-    assign final_height = height
-  else
-    assign temp_height = final_width | times: image.height
-    assign final_height = temp_height | divided_by: image.width
-  endif
-
   if url
     assign wrapper = 'a'
   else
@@ -67,23 +58,41 @@
     href="{{ url }}"
   {% endif %}
 >
-  {% if crop %}
+  {% if crop and width and height %}
     {{-
       image
-      | image_url: width: final_width, height: final_height, crop: crop
+      | image_url: width: width, height: height, crop: crop
       | image_tag: id: id, alt: alt_text, loading: preload_attr
       | default: loading_attr
       | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
-      | default: fetchpriority_attr, width: final_width, height: final_height
+      | default: fetchpriority_attr, width: width, height: height
+    -}}
+  {% elsif width and height %}
+    {{-
+      image
+      | image_url: width: width, height: height
+      | image_tag: id: id, alt: alt_text, loading: preload_attr
+      | default: loading_attr
+      | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
+      | default: fetchpriority_attr, width: width, height: height
+    -}}
+  {% elsif width %}
+    {{-
+      image
+      | image_url: width: width
+      | image_tag: id: id, alt: alt_text, loading: preload_attr
+      | default: loading_attr
+      | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
+      | default: fetchpriority_attr, width: width
     -}}
   {% else %}
     {{-
       image
-      | image_url: width: final_width
+      | image_url
       | image_tag: id: id, alt: alt_text, loading: preload_attr
       | default: loading_attr
       | default: 'lazy', decoding: decoding_attr, sizes: sizes_attr, fetchpriority: preload_attr
-      | default: fetchpriority_attr, width: final_width
+      | default: fetchpriority_attr
     -}}
   {% endif %}
 </{{ wrapper }}>
