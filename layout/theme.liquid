@@ -239,9 +239,6 @@
               }
             });
           });
-
-          // Product variant switcher
-          await loadScript("{{ 'plugin-product-variant-switcher.js' | asset_url }}");
         {% endif %}
 
       } catch (err) {
@@ -249,6 +246,7 @@
       }
     });
   </script>
+  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
 
   {% comment %}
     <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
