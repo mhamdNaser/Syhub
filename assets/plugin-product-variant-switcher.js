@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
     console.warn("⚠️ not avaialble script[type='application/json'] داخل variant-selector");
   }
 
+  function getSwiperForThumbnail(thumbnailContainer) {
+    const swiperEl = thumbnailContainer.closest('.thumbnail-slider').querySelector('.swiper');
+    if (!swiperEl) return null;
+    return swiperEl.swiper || null; // Swiper instance مربوط بالـ DOM element
+  }
+
 
   function updateVariant(optionValues) {
     const selectedVariant = variantData.find(v => {
@@ -42,13 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (thumbnailContainer) {
       thumbnailContainer.classList.add('border', 'border-[#c42764]');
 
-      // for move swiper to select variant slider
-      if (window.thumbnailsSwiper) {
-        const slideIndex = Array.from(thumbnailsSwiper.slides).findIndex(slide =>
+      // ✅ تحريك الـ swiper الصحيح
+      const swiperInstance = getSwiperForThumbnail(thumbnailContainer);
+      if (swiperInstance) {
+        const slideIndex = Array.from(swiperInstance.slides).findIndex(slide =>
           slide.contains(thumbnailContainer)
         );
         if (slideIndex >= 0) {
-          thumbnailsSwiper.slideTo(slideIndex);
+          swiperInstance.slideTo(slideIndex);
         }
       }
     }
