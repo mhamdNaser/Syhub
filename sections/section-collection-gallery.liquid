@@ -5,10 +5,8 @@
   assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
   if section.settings.title_bold
     assign title_bold = 'font-bold'
-  else
-    assign title_bold = 'font-normal'
+    assign title_class = title_class | append: ' ' | append: title_bold
   endif
-  assign title_class = title_class | append: ' ' | append: title_bold
   if section.settings.title_uppercase
     assign title_uppercase = 'uppercase'
     assign title_class = title_class | append: ' ' | append: title_uppercase
