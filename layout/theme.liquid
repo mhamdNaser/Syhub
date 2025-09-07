@@ -198,7 +198,6 @@
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-  {% comment %} <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script> {% endcomment %}
   <script>
     window.addEventListener('load', () => {
       // Stickybits (for sticky elements)
@@ -231,8 +230,8 @@
             const tryInit = () => {
               if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
                 initSwipers();
-                const variantSwitcher = document.createElement('script');
-                variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}";
+                {% comment %} const variantSwitcher = document.createElement('script');
+                variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
               } else {
                 setTimeout(tryInit, 200);
               }
@@ -251,6 +250,7 @@
         }
       });
     </script>
+    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
   {% endif %}
   {% comment %}
     {% if template contains 'index' or template contains 'collection' or template contains 'Product' %}
