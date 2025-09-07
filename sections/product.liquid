@@ -198,7 +198,7 @@
 
                 {% when 'sku' %}
                   {% if default_variant.sku != blank %}
-                    <span class="text-gray-400 text-sm">SKU: {{ default_variant.sku }}</span>
+                    <span id="container-sku" class="text-gray-400 text-sm">SKU: {{ default_variant.sku }}</span>
                   {% endif %}
 
                 {% when 'guarantee' %}
