@@ -179,20 +179,6 @@
     {% endif %}
   </body>
 
-  {% comment %}
-    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
-  {% endcomment %}
-
   <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
@@ -230,8 +216,6 @@
             const tryInit = () => {
               if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
                 initSwipers();
-                {% comment %} const variantSwitcher = document.createElement('script');
-                variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
               } else {
                 setTimeout(tryInit, 200);
               }
@@ -247,32 +231,9 @@
       document.addEventListener('shopify:section:load', () => {
         if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
           initSwipers();
-          {% comment %} const variantSwitcher = document.createElement('script');
-          variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
         }
       });
     </script>
     <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
   {% endif %}
-  {% comment %}
-    {% if template contains 'index' or template contains 'collection' or template contains 'Product' %}
-      <script>
-        window.addEventListener('load', () => {
-          const swiperJs = document.createElement('script');
-          swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
-          swiperJs.onload = () => {
-            const swiperInit = document.createElement('script');
-            swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
-            swiperInit.onload = () => {
-              initSwipers(); // 🚀 call the function manually after both scripts are loaded
-              {% comment %} const variantSwitcher = document.createElement('script');
-              variantSwitcher.src = "{{ 'plugin-product-variant-switcher.js' | asset_url }}"; {% endcomment %}
-            };
-            document.body.appendChild(swiperInit);
-          };
-          document.body.appendChild(swiperJs);
-        });
-      </script>
-    {% endif %}
-  {% endcomment %}
 </html>
