@@ -179,32 +179,12 @@
     {% endif %}
   </body>
 
-  {% comment %}
-    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
-  {% endcomment %}
-  {%- comment -%}
-    📌 Core scripts - must load early with the page
-  {%- endcomment -%}
+ 
   <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-mega-menu.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
-
-  {%- comment -%}
-    📌 Lazy-loaded scripts - load after the page is fully loaded
-  {%- endcomment -%}
   <script>
     window.addEventListener('load', () => {
       // Stickybits (for sticky elements)
@@ -223,10 +203,6 @@
       document.body.appendChild(moneyJs);
     });
   </script>
-
-  {%- comment -%}
-    📌 Product page only scripts
-  {%- endcomment -%}
   {% if template contains 'product' %}
     <script>
       window.addEventListener('load', () => {
