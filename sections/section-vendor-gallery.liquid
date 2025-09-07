@@ -1,13 +1,14 @@
 {% liquid
   assign section_id = section.id
   assign title = section.settings.title_section
+  assign title_alignment = section.settings.title_section_alignment
   assign slides_desktop = 8
   assign slides_mobile = 3
 %}
 
 <section id="shopify-section-{{ section_id }}" class="vendor-gallery max-w-7xl mx-auto py-12 px-6">
   {% if title != blank %}
-    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 tracking-wide">
+    <h2 class="text-3xl font-bold mb-8 {{ title_alignment }} text-gray-800 tracking-wide">
       {{ title }}
     </h2>
   {% endif %}
@@ -66,6 +67,25 @@
       "type": "text",
       "id": "title_section",
       "label": "Title for brands list"
+    },
+    {
+      "type": "select",
+      "id": "title_section_alignment",
+      "label": "Title Section Alignment",
+      "options": [
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        },
+      ]
     }
   ],
   "blocks": [
