@@ -184,56 +184,129 @@
   <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
   <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
+
   <script>
-    window.addEventListener('load', () => {
-      // Stickybits (for sticky elements)
-      const stickybitsJs = document.createElement('script');
-      stickybitsJs.src = "{{ 'plugin-stickybits.min.js' | asset_url }}";
-      document.body.appendChild(stickybitsJs);
+    // Helper to load a script dynamically with a promise
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.body.appendChild(s);
+      });
+    }
 
-      // Recently viewed products
-      const rvJs = document.createElement('script');
-      rvJs.src = "{{ 'plugin-recently-viewed.js' | asset_url }}";
-      document.body.appendChild(rvJs);
+    // Load heavy scripts after window load
+    window.addEventListener('load', async () => {
+      try {
+        await loadScript("{{ 'plugin-stickybits.min.js' | asset_url }}");
+        await loadScript("{{ 'plugin-recently-viewed.js' | asset_url }}");
+        await loadScript("{{ 'plugin-shopify-money.js' | asset_url }}");
 
-      // Shopify money formatter
-      const moneyJs = document.createElement('script');
-      moneyJs.src = "{{ 'plugin-shopify-money.js' | asset_url }}";
-      document.body.appendChild(moneyJs);
+        {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+          // Swiper bundle
+          await loadScript("{{ 'plugin-swiper-bundle.min.js' | asset_url }}");
+          await loadScript("{{ 'plugin-swiper-init.js' | asset_url }}");
+
+          // Initialize Swipers efficiently
+          const initSwiperSafe = () => {
+            if (typeof Swiper !== 'undefined') {
+              const swipers = document.querySelectorAll('.swiper');
+              if (swipers.length > 0) {
+                requestAnimationFrame(() => {
+                  initSwipers();
+                });
+                return true;
+              }
+            }
+            return false;
+          };
+
+          // Use MutationObserver instead of setTimeout polling
+          if (!initSwiperSafe()) {
+            const observer = new MutationObserver(() => {
+              if (initSwiperSafe()) observer.disconnect();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+          }
+
+          // Re-init on section load (Shopify AJAX sections)
+          document.addEventListener('shopify:section:load', () => {
+            requestAnimationFrame(() => {
+              if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
+                initSwipers();
+              }
+            });
+          });
+
+          // Product variant switcher
+          await loadScript("{{ 'plugin-product-variant-switcher.js' | asset_url }}");
+        {% endif %}
+
+      } catch (err) {
+        console.error("Failed to load script:", err);
+      }
     });
   </script>
 
-  {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+  {% comment %}
+    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
+    <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
     <script>
       window.addEventListener('load', () => {
-        const swiperJs = document.createElement('script');
-        swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
-        swiperJs.onload = () => {
-          const swiperInit = document.createElement('script');
-          swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
-          swiperInit.onload = () => {
-            // ✅ تشغيل السوابر فقط إذا كانت المكتبة موجودة والعناصر موجودة
-            const tryInit = () => {
-              if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
-                initSwipers();
-              } else {
-                setTimeout(tryInit, 200);
-              }
-            };
-            tryInit();
-          };
-          document.body.appendChild(swiperInit);
-        };
-        document.body.appendChild(swiperJs);
-      });
+        // Stickybits (for sticky elements)
+        const stickybitsJs = document.createElement('script');
+        stickybitsJs.src = "{{ 'plugin-stickybits.min.js' | asset_url }}";
+        document.body.appendChild(stickybitsJs);
 
-      // ✅ إعادة التهيئة عند تحميل سكشن جديد (زي product)
-      document.addEventListener('shopify:section:load', () => {
-        if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
-          initSwipers();
-        }
+        // Recently viewed products
+        const rvJs = document.createElement('script');
+        rvJs.src = "{{ 'plugin-recently-viewed.js' | asset_url }}";
+        document.body.appendChild(rvJs);
+
+        // Shopify money formatter
+        const moneyJs = document.createElement('script');
+        moneyJs.src = "{{ 'plugin-shopify-money.js' | asset_url }}";
+        document.body.appendChild(moneyJs);
       });
     </script>
-    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
-  {% endif %}
+
+    {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+      <script>
+        window.addEventListener('load', () => {
+          const swiperJs = document.createElement('script');
+          swiperJs.src = "{{ 'plugin-swiper-bundle.min.js' | asset_url }}";
+          swiperJs.onload = () => {
+            const swiperInit = document.createElement('script');
+            swiperInit.src = "{{ 'plugin-swiper-init.js' | asset_url }}";
+            swiperInit.onload = () => {
+              // ✅ تشغيل السوابر فقط إذا كانت المكتبة موجودة والعناصر موجودة
+              const tryInit = () => {
+                if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
+                  initSwipers();
+                } else {
+                  setTimeout(tryInit, 200);
+                }
+              };
+              tryInit();
+            };
+            document.body.appendChild(swiperInit);
+          };
+          document.body.appendChild(swiperJs);
+        });
+
+        // ✅ إعادة التهيئة عند تحميل سكشن جديد (زي product)
+        document.addEventListener('shopify:section:load', () => {
+          if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
+            initSwipers();
+          }
+        });
+      </script>
+      <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
+    {% endif %}
+  {% endcomment %}
 </html>
