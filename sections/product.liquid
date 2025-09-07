@@ -8,6 +8,7 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 {% endcomment %}
 {% liquid
+  assign section_id = section.id
   assign default_variant = product.selected_or_first_available_variant
   assign selected_variant = blank
 
@@ -23,7 +24,7 @@
   assign first_media = product.media | first
 %}
 
-<div x-data="{ productModalOpen: false }">
+<section id="shopify-section-{{ section_id }}" x-data="{ productModalOpen: false }">
   <div class="max-w-7xl mx-auto">
     {% render 'bread-crumb' %}
 
@@ -209,7 +210,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <script type="application/ld+json">
   {
