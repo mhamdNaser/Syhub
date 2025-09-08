@@ -39,9 +39,14 @@
   assign my_swiper_class = 'mySwiper-' | append: section.id
   assign next_button_class = 'swiper-next-' | append: section.id
   assign prev_button_class = 'swiper-prev-' | append: section.id
+  assign padding_vertical = section.settings.padding_vertical | default: 0
+  assign padding_horizontal = section.settings.padding_horizontal | default: 0
 %}
 
-<section id="shopify-section-{{ section_id }}" class="py-12">
+<section
+  id="shopify-section-{{ section_id }}"
+  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
+>
   <div class="relative {{ box_width }} mx-auto px-8 sm:px-6 lg:px-8">
     <h2 class="text-3xl font-extrabold mb-8 {{ collection_title_alignment }}" style="color: {{ title_color }};">
       {{ section_title | escape }}
@@ -125,6 +130,26 @@
 {% schema %}
 {
   "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Section Padding vertical (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Section Padding horizontal (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ],
   "blocks": [
     { "type": "@app" },
     {

@@ -151,6 +151,46 @@
         "title_color": "#111827"
       }
     },
+    "section_featured_collection_fAkYP3": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "text_XMFzyn": {
+          "type": "text",
+          "settings": {
+            "title": "Featured Collection",
+            "title_color": "#c72222",
+            "title_alignment": "text-left"
+          }
+        },
+        "collection_xmbEYG": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "automated-collection",
+            "swiper_view": true,
+            "item_view_in_section": 9,
+            "item_view_in_row": 4,
+            "item_view_in_row_mobile": 1,
+            "show_pagination_row": true,
+            "collection_url": true
+          }
+        },
+        "collection_link_e4Ybjq": {
+          "type": "collection_link",
+          "settings": {
+            "collection_url_button": true,
+            "url_color": "#000000",
+            "link_alignment": "text-center"
+          }
+        }
+      },
+      "block_order": [
+        "text_XMFzyn",
+        "collection_xmbEYG",
+        "collection_link_e4Ybjq"
+      ],
+      "name": "Featured Collection",
+      "settings": {}
+    },
     "vendor_gallery_agkEPT": {
       "type": "section-vendor-gallery",
       "blocks": {
@@ -181,28 +221,6 @@
         "title_font_size": "text-2xl",
         "title_color": "#111827"
       }
-    },
-    "section_featured_collection_fAkYP3": {
-      "type": "section-featured-collection",
-      "blocks": {
-        "collection_xmbEYG": {
-          "type": "collection",
-          "settings": {
-            "section_featured_collection": "automated-collection",
-            "swiper_view": true,
-            "item_view_in_section": 9,
-            "item_view_in_row": 4,
-            "item_view_in_row_mobile": 1,
-            "show_pagination_row": true,
-            "collection_url": true
-          }
-        }
-      },
-      "block_order": [
-        "collection_xmbEYG"
-      ],
-      "name": "Featured Collection",
-      "settings": {}
     },
     "section_banner_awPiYw": {
       "type": "section-banner",
@@ -595,8 +613,8 @@
     "section_slider_tFtkUk",
     "section_grid_x4mjAW",
     "section_collection_gallery_j46pdJ",
-    "vendor_gallery_agkEPT",
     "section_featured_collection_fAkYP3",
+    "vendor_gallery_agkEPT",
     "section_banner_awPiYw",
     "section_featured_collection_YLh4zD",
     "main_DjJMWy",
