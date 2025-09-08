@@ -34,16 +34,12 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative sm:h-[500px] md:h-[750px]">
+          <div class="swiper-slide relative  mx-3 gap-3 max-w-3/5 aspect-square md:aspect-[1920/750]">
             {% if slide_image %}
               {% render 'image',
                 image: slide_image,
                 class: 'object-cover w-full h-full',
-                width: 1920,
-                height: 750,
-                crop: 'center',
                 alt: slide_title,
-                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px',
                 preload: true
               %}
             {% endif %}
