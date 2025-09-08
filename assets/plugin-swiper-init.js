@@ -12,7 +12,7 @@ function initSwipers() {
 
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
     const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
-    const centerSlides = swiperContainer.dataset.centeredSlides || "false";
+    const centerSlides = swiperContainer.dataset.centeredSlides || false ;
 
     return {
       container: swiperContainer,
