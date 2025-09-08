@@ -12,6 +12,7 @@ function initSwipers() {
 
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
     const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
+    const centeredSlides = swiperContainer.dataset.centeredSlides === "false";
 
     return {
       container: swiperContainer,
@@ -31,7 +32,7 @@ function initSwipers() {
 
       new Swiper(slider.container, {
         slidesPerView: "auto",
-        centeredSlides: true,
+        centeredSlides: centeredSlides,
         autoHeight: true,
         speed: 3000,
         spaceBetween: 10,
