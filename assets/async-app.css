@@ -562,6 +562,12 @@
   .aspect-\[1\/1\] {
     aspect-ratio: 1/1;
   }
+  .aspect-\[80\/80\] {
+    aspect-ratio: 80/80;
+  }
+  .aspect-\[200\/80\] {
+    aspect-ratio: 200/80;
+  }
   .aspect-\[200\/200\] {
     aspect-ratio: 200/200;
   }
@@ -2237,6 +2243,11 @@
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;
+    }
+  }
+  .md\:aspect-\[200\/200\] {
+    @media (width >= 48rem) {
+      aspect-ratio: 200/200;
     }
   }
   .md\:h-96 {
