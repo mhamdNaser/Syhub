@@ -34,7 +34,7 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative aspect-square md:aspect-[1920/1080]">
+          <div class="swiper-slide relative aspect-square md:aspect-[1920/750]">
             {% if slide_image %}
               {% render 'image',
                 image: slide_image,
@@ -106,7 +106,16 @@
     {
       "type": "range",
       "id": "padding-vertical",
-      "label": "Section Padding (px)",
+      "label": "Section Padding vertical (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Section Padding horizontal (px)",
       "default": 20,
       "min": 0,
       "max": 100,
