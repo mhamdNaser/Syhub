@@ -22,7 +22,11 @@
     data-slides-per-view="3"
     data-slides-per-view-mobile="1"
     data-autoplay="false"
-    data-autoplay-delay="2500"
+    data-effect="coverflow"
+    data-grab-cursor="true"
+    data-centered-slides="true"
+    data-auto-height="false"
+    data-speed="1500"
   >
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
@@ -36,15 +40,15 @@
           %}
           <div class="swiper-slide relative group overflow-hidden">
             {% if grid_image %}
-                {%
-                  render 'image',
-                  image: grid_image,
-                  class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300 ease-in-out',
-                  width: 620,
-                  height: 410,
-                  crop: 'center',
-                  alt: grid_title | escape,
-                %}
+              {%
+                render 'image',
+                image: grid_image,
+                class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300 ease-in-out',
+                width: 620,
+                height: 410,
+                crop: 'center',
+                alt: grid_title | escape,
+              %}
             {% endif %}
             <div class="absolute inset-0 flex flex-col gap-3 justify-center items-center text-center text-white p-4">
               {% if grid_title != blank %}
@@ -63,7 +67,7 @@
                   bg_color: link_bg_color,
                   text_color: link_text_color,
                   padding_vertical: button_padding_vertical,
-                  padding_horizontal: button_padding_horizontal,
+                  padding_horizontal: button_padding_horizontal
                 %}
               {% endif %}
             </div>
