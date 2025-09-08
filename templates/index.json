@@ -9,6 +9,97 @@
  */
 {
   "sections": {
+    "section_slider_tFtkUk": {
+      "type": "section-slider",
+      "blocks": {
+        "slide_PMPn8X": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/main_slider.webp",
+            "show_title_description": false,
+            "title": "slider_1",
+            "text": ""
+          }
+        },
+        "slide_GmmKHQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/download_4.webp",
+            "show_title_description": false,
+            "title": "slider_2",
+            "text": ""
+          }
+        },
+        "slide_YTn8LX": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/download_6.webp",
+            "show_title_description": false,
+            "title": "slider_3",
+            "text": ""
+          }
+        },
+        "slide_Tx4U7n": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/download_6.webp",
+            "show_title_description": false,
+            "title": "slider_4",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_PMPn8X",
+        "slide_GmmKHQ",
+        "slide_YTn8LX",
+        "slide_Tx4U7n"
+      ],
+      "name": "Section Slider",
+      "settings": {
+        "slider_height": 300,
+        "padding-vertical": 8
+      }
+    },
+    "section_grid_x4mjAW": {
+      "type": "section-grid",
+      "blocks": {
+        "grid_image_WyxVFa": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/mens_perfumes_-_Edited.webp",
+            "grid_title": "gird _1",
+            "grid_text": ""
+          }
+        },
+        "grid_image_6JWK73": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/arabian_oud_-_Edited.avif",
+            "grid_title": "gird _2",
+            "grid_text": ""
+          }
+        },
+        "grid_image_nKYNw9": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/womens_perfumes_-_Edited.webp",
+            "grid_title": "gird _3",
+            "grid_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_image_WyxVFa",
+        "grid_image_6JWK73",
+        "grid_image_nKYNw9"
+      ],
+      "name": "Section Grid",
+      "settings": {
+        "slider_height": 500,
+        "padding-vertical": 2
+      }
+    },
     "section_collection_gallery_j46pdJ": {
       "type": "section-collection-gallery",
       "blocks": {
@@ -41,7 +132,11 @@
       ],
       "name": "Collection Gallery",
       "settings": {
-        "title_section": "Shop By Collection"
+        "title_section": "Shop By Collection",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
       }
     },
     "vendor_gallery_agkEPT": {
@@ -68,7 +163,11 @@
       ],
       "name": "Vendor Gallery",
       "settings": {
-        "title_section": "Shop By Brands"
+        "title_section": "Shop By Brands",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
       }
     },
     "section_featured_collection_fAkYP3": {
@@ -124,6 +223,7 @@
           "type": "collection_link",
           "settings": {
             "collection_url_button": true,
+            "url_color": "#000000",
             "link_alignment": "text-center"
           }
         }
@@ -480,6 +580,8 @@
     }
   },
   "order": [
+    "section_slider_tFtkUk",
+    "section_grid_x4mjAW",
     "section_collection_gallery_j46pdJ",
     "vendor_gallery_agkEPT",
     "section_featured_collection_fAkYP3",
