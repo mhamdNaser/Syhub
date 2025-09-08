@@ -33,7 +33,7 @@ function initSwipers() {
 
       new Swiper(slider.container, {
         slidesPerView: "auto",
-        centeredSlides: centerSlides,
+        centeredSlides: slider.centerSlides,
         autoHeight: true,
         speed: 3000,
         spaceBetween: 10,
