@@ -62,11 +62,12 @@
     width: {{ width }}px;
   "
 >
-  {% if icon %}
+  {% if icon and text %}
     {% render 'icons', icon: icon %}
-  {% endif %}
-
-  {% if text %}
     <span class="ml-2">{{ text }}</span>
+  {% elsif text %}
+    <span class="">{{ text }}</span>
+  {% elsif icon %}
+    {% render 'icons', icon: icon %}
   {% endif %}
 </{{ tag }}>

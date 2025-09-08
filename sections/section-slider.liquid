@@ -25,6 +25,8 @@
             assign button_link = block.settings.button_link
             assign link_bg_color = block.settings.link_bg_color
             assign link_text_color = block.settings.link_text_color
+            assign button_height = block.settings.button_height
+            assign button_width = block.settings.button_width
           %}
           <div class="swiper-slide relative sm:h-[500px] md:h-[750px]">
             {% if slide_image %}
@@ -56,7 +58,9 @@
                       data_label: slide_title,
                       text: button_label,
                       bg_color: link_bg_color,
-                      text_color: link_text_color
+                      text_color: link_text_color,
+                      height: button_height
+                      width: button_width
                     %}
                   </div>
                 {% endif %}
@@ -155,6 +159,24 @@
           "id": "link_text_color",
           "label": "Button Text Color",
           "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "button_height",
+          "label": "Button Height (px)",
+          "default": 20,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "button_width",
+          "label": "Button Width (px)",
+          "default": 20,
+          "min": 0,
+          "max": 100,
+          "step": 5
         }
       ]
     }
