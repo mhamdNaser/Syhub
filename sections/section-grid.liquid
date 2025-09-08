@@ -6,7 +6,7 @@
 <section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-[{{ padding_vertical }}px]">
   <!-- Grid (3 images) -->
   <div
-    class="sm:swiper mySwiper-grid mt-3 w-full relative"
+    class="sm:swiper mySwiper-grid w-full relative"
     data-next-btn="swiper-button-next-grid"
     data-prev-btn="swiper-button-prev-grid"
     data-slides-per-view="3"
@@ -17,13 +17,13 @@
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
-          <div class="swiper-slide relative group shadow-lg aspect-[628/420] overflow-hidden">
+          <div class="swiper-slide relative group shadow-lg aspect-[628/420]">
             {% if block.settings.grid_image %}
               <div class="relative group shadow-lg">
                 {%
                   render 'image',
                   image: block.settings.grid_image,
-                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500',
+                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500 overflow-hidden',
                   width: 620,
                   height: 410,
                   crop: 'center',
