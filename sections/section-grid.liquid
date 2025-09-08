@@ -1,9 +1,11 @@
 {% liquid
   assign section_id = section.id
   assign padding_vertical = section.settings.padding_vertical
+  assign padding_horizontal = section.settings.padding_horizontal
 %}
 
-<section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-[{{ padding_vertical }}px]">
+<section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden "
+style="padding: {{ padding_vertical }}px {{ padding_horizontal }}">
   <!-- Grid (3 images) -->
   <div
     class="sm:swiper mySwiper-grid w-full relative"
@@ -89,7 +91,16 @@
     {
       "type": "range",
       "id": "padding_vertical",
-      "label": "Section Padding (px)",
+      "label": "Section Padding y (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Section Padding x (px)",
       "default": 20,
       "min": 0,
       "max": 100,
