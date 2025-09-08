@@ -101,7 +101,7 @@
 
       {% if product.featured_image %}
         <a 
-          href="{{ product_url }}" class=" aspect-square md:aspect-[200/140] {{ image_style }}"
+          href="{{ product_url }}" class="relative aspect-square md:aspect-[200/140] {{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};">
           {% render 'image',
             image:  product_image ,
