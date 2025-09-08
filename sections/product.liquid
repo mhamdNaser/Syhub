@@ -211,14 +211,6 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener("shopify:section:load", function(event) {
-    if (event.detail.sectionId === "{{ section.id }}") {
-      initVariantSelector("{{ section.id }}");
-    }
-  });
-</script>
-
 <script type="application/ld+json">
   {
     "@context": "https://schema.org/",
