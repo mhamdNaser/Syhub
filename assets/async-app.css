@@ -2365,6 +2365,16 @@
       aspect-ratio: 1920/750;
     }
   }
+  .md\:aspect-\[1920\/1050\] {
+    @media (width >= 48rem) {
+      aspect-ratio: 1920/1050;
+    }
+  }
+  .md\:aspect-\[1920\/1080\] {
+    @media (width >= 48rem) {
+      aspect-ratio: 1920/1080;
+    }
+  }
   .md\:h-96 {
     @media (width >= 48rem) {
       height: calc(var(--spacing) * 96);
