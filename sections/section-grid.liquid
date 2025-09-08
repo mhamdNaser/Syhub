@@ -11,7 +11,7 @@
 
 <section
   id="shopify-section-{{ section_id }}"
-  class="relative w-full overflow-hidden"
+  class="relative w-fit overflow-hidden"
   style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
 >
   <!-- Grid (3 images) -->
@@ -24,7 +24,7 @@
     data-autoplay="false"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper md:grid md:grid-cols-3 overflow-hidden">
+    <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
           {% liquid
