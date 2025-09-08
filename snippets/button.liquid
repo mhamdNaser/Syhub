@@ -48,13 +48,19 @@
   {% if id %}
     id="{{ id }}"
   {% endif %}
-  class="w-{{ width }} h-{{ height }} bg-[{{ bg_color }}] text-[{{ text_color }}] {{ class }}"
+  class="{{ class }}"
   {% if data_label %}
     data-label="{{ data_label }}"
   {% endif %}
   {% if data_target %}
     data-target="{{ data_target }}"
   {% endif %}
+  style="
+    background-color: {{ bg_color }};
+    color: {{ text_color }};
+    height: {{ height }}px;
+    width: {{ width }}px;
+  "
 >
   {% if icon %}
     {% render 'icons', icon: icon %}
