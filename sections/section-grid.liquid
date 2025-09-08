@@ -11,8 +11,8 @@
 
 <section
   id="shopify-section-{{ section_id }}"
-  class="relative w-full"
-  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px; height: 680px"
+  class="relative w-full overflow-hidden"
+  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
 >
   <!-- Grid (3 images) -->
   <div
@@ -38,17 +38,17 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative group overflow-hidden">
+          <div class="swiper-slide relative group aspect-[620/420] overflow-hidden">
             {% if grid_image %}
-              {%
-                render 'image',
-                image: grid_image,
-                class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300 ease-in-out',
-                width: 620,
-                height: 410,
-                crop: 'center',
-                alt: grid_title | escape,
-              %}
+                {%
+                  render 'image',
+                  image: grid_image,
+                  class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300 ease-in-out',
+                  width: 620,
+                  height: 410,
+                  crop: 'center',
+                  alt: grid_title | escape,
+                %}
             {% endif %}
             <div class="absolute inset-0 flex flex-col gap-3 justify-center items-center text-center text-white p-4">
               {% if grid_title != blank %}
@@ -67,7 +67,7 @@
                   bg_color: link_bg_color,
                   text_color: link_text_color,
                   padding_vertical: button_padding_vertical,
-                  padding_horizontal: button_padding_horizontal
+                  padding_horizontal: button_padding_horizontal,
                 %}
               {% endif %}
             </div>
