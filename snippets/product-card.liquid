@@ -148,7 +148,8 @@
         <a
           href="{{ product_url }}"
           title="{{ product_title | escape }}"
-          class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate {% if product_titles_caps %} uppercase {% endif %}"
+          class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate"
+          style="text-transform: {% if product_titles_caps %} uppercase  !important{% else %} none {% endif %};"
         >
           {{ product_title }}
         </a>
