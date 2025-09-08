@@ -1,7 +1,7 @@
 {% liquid
   assign section_id = section.id
-  assign padding_vertical = section.settings.padding_vertical
-  assign padding_horizontal = section.settings.padding_horizontal
+  assign padding_vertical = section.settings.padding_vertical | default: 0
+  assign padding_horizontal = section.settings.padding_horizontal | default: 0
   assign link_bg_color = section.settings.link_bg_color
   assign link_text_color = section.settings.link_text_color
   assign button_padding_horizontal = section.settings.button_padding_horizontal
