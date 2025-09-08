@@ -775,6 +775,12 @@
   .max-w-1 {
     max-width: calc(var(--spacing) * 1);
   }
+  .max-w-2 {
+    max-width: calc(var(--spacing) * 2);
+  }
+  .max-w-2\/3 {
+    max-width: calc(2/3 * 100%);
+  }
   .max-w-2xl {
     max-width: var(--container-2xl);
   }
@@ -789,6 +795,15 @@
   }
   .max-w-3xl {
     max-width: var(--container-3xl);
+  }
+  .max-w-4 {
+    max-width: calc(var(--spacing) * 4);
+  }
+  .max-w-4\/3 {
+    max-width: calc(4/3 * 100%);
+  }
+  .max-w-4\/5 {
+    max-width: calc(4/5 * 100%);
   }
   .max-w-4xl {
     max-width: var(--container-4xl);
