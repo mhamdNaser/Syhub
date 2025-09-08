@@ -862,6 +862,12 @@
   .max-w-10\/5 {
     max-width: calc(10/5 * 100%);
   }
+  .max-w-10\/10 {
+    max-width: calc(10/10 * 100%);
+  }
+  .max-w-10\/11 {
+    max-width: calc(10/11 * 100%);
+  }
   .max-w-11 {
     max-width: calc(var(--spacing) * 11);
   }
