@@ -44,24 +44,12 @@
             "button_label": "",
             "button_link": ""
           }
-        },
-        "slide_Tx4U7n": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/download_6.webp",
-            "show_title_description": false,
-            "title": "slider_4",
-            "text": "",
-            "button_label": "",
-            "button_link": ""
-          }
         }
       },
       "block_order": [
         "slide_PMPn8X",
         "slide_GmmKHQ",
-        "slide_YTn8LX",
-        "slide_Tx4U7n"
+        "slide_YTn8LX"
       ],
       "name": "Section Slider",
       "settings": {
