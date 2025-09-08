@@ -11,19 +11,19 @@
 
 <section
   id="shopify-section-{{ section_id }}"
-  class="relative w-full overflow-hidden sm:h-[950px]"
+  class="relative w-full overflow-hidden"
   style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
 >
   <!-- Slider -->
   <div
-    class="swiper mySwiper-{{ section_id }} h-full"
+    class="swiper mySwiper-{{ section_id }}"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
     data-slides-per-view-mobile="1"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper mx-w-full h-full">
+    <div class="swiper-wrapper mx-w-full">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
           {% liquid
@@ -43,6 +43,7 @@
                 height: 750,
                 crop: 'center',
                 alt: slide_title,
+                sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px',
                 preload: true
               %}
             {% endif %}
