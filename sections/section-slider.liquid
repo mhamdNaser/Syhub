@@ -6,6 +6,7 @@
   assign link_text_color = section.settings.link_text_color
   assign button_padding_horizontal = section.settings.button_padding_horizontal
   assign button_padding_vertical = section.settings.button_padding_vertical
+  assign button_rounded = section.settings.button_rounded
 %}
 
 <section
@@ -59,7 +60,7 @@
                     {% render 'button',
                       type: 'link',
                       url: button_link,
-                      class: 'text-center',
+                      class: 'text-center {{ button_rounded  }}',
                       data_label: slide_title,
                       text: button_label,
                       bg_color: link_bg_color,
