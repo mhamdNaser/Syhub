@@ -772,6 +772,9 @@
   .w-screen {
     width: 100vw;
   }
+  .max-w-1 {
+    max-width: calc(var(--spacing) * 1);
+  }
   .max-w-2xl {
     max-width: var(--container-2xl);
   }
