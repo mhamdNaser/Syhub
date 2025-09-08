@@ -13,6 +13,7 @@ function initSwipers() {
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
     const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
     const centerSlides = swiperContainer.dataset.centeredSlides || false ;
+    const speed = parseInt(swiperContainer.dataset.speed) || 1500;
 
     return {
       container: swiperContainer,
@@ -22,7 +23,8 @@ function initSwipers() {
       slidesPerViewMobile,
       autoplayEnabled,
       autoplayDelay,
-      centerSlides
+      centerSlides,
+      speed
     };
   });
 
@@ -35,7 +37,7 @@ function initSwipers() {
         slidesPerView: "auto",
         centeredSlides: slider.centerSlides,
         autoHeight: true,
-        speed: 3000,
+        speed: slider.speed,
         spaceBetween: 10,
         navigation: {
           nextEl: slider.nextBtn,
