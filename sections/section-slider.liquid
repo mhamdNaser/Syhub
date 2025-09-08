@@ -16,7 +16,7 @@
 >
   <!-- Slider -->
   <div
-    class="swiper mySwiper-{{ section_id }}"
+    class="swiper mySwiper-{{ section_id }} h-[750px]"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
@@ -34,7 +34,7 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative h-[750px]">
+          <div class="swiper-slide relative">
             {% if slide_image %}
               {% render 'image',
                 image: slide_image,
