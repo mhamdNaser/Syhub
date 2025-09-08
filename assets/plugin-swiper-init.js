@@ -99,9 +99,12 @@ function initSwipers() {
 
   requestAnimationFrame(() => {
     sliders.forEach(slider => {
+      const slidesCount = slider.container.querySelectorAll('.swiper-slide').length;
+      const slidesToShow = Math.min(slider.slidesPerView, slidesCount);
 
       new Swiper(slider.container, {
-        slidesPerView: slidesPerView || 'auto',
+        slidesPerView: slidesToShow,
+        loop: slidesCount > slidesToShow,
         autoHeight: true,
         speed: 3000,
         spaceBetween: 10,
