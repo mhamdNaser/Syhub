@@ -4,6 +4,8 @@
   assign section_width = section.settings.section_width
   assign title_color = section.settings.title_color
   assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
+  assign slides_desktop = 8
+  assign slides_mobile = 1
 %}
 
 <section id="shopify-section-{{ section_id }}" class="collection-gallery {{ section_width }} mx-auto py-8 px-4">
@@ -19,8 +21,8 @@
     class="swiper mySwiper-{{ section_id }} w-full"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
-    data-slides-per-view="5"
-    data-slides-per-view-mobile="1"
+    data-slides-per-view="{{ slides_desktop }}"
+    data-slides-per-view-mobile="{{ slides_mobile }}"
     data-autoplay="false"
   >
     <div class="swiper-wrapper">
