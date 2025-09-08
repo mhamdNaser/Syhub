@@ -36,7 +36,6 @@
           %}
           <div class="swiper-slide relative group shadow-lg aspect-[628/420] overflow-hidden">
             {% if grid_image %}
-              <div class="relative group shadow-lg">
                 {%
                   render 'image',
                   image: grid_image,
@@ -46,7 +45,6 @@
                   crop: 'center',
                   alt: grid_title | escape,
                 %}
-              </div>
             {% endif %}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
               {% if grid_title != blank %}
