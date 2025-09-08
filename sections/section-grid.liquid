@@ -34,12 +34,12 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative group shadow-lg aspect-[620/420] overflow-hidden">
+          <div class="swiper-slide relative shadow-lg aspect-[620/420] overflow-hidden">
             {% if grid_image %}
                 {%
                   render 'image',
                   image: grid_image,
-                  class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-500 ease-in-out',
+                  class: 'object-cover hover:scale-105 hover:shadow-lg transition-transform duration-500 ease-in-out',
                   width: 620,
                   height: 410,
                   crop: 'center',
