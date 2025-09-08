@@ -9,29 +9,9 @@
   assign button_rounded = section.settings.button_rounded
 %}
 
-<style>
-    .mySwiper-grid {
-      width: 100%;
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-
-    .mySwiper-grid .swiper-slide {
-      background-position: center;
-      background-size: cover;
-      width: 300px;
-      height: 300px;
-    }
-
-    .swiper-slide img {
-      display: block;
-      width: 100%;
-    }
-  </style>
-
 <section
   id="shopify-section-{{ section_id }}"
-  class=""
+  class="relative w-full overflow-hidden"
   style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
 >
   <!-- Grid (3 images) -->
@@ -57,13 +37,15 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide">
+          <div class="swiper-slide relative group aspect-[620/420] overflow-hidden">
             {% if grid_image %}
                 {%
                   render 'image',
                   image: grid_image,
-                  height: 300,
-                  width: 300,
+                  class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300 ease-in-out',
+                  width: 620,
+                  height: 410,
+                  crop: 'center',
                   alt: grid_title | escape,
                 %}
             {% endif %}
