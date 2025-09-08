@@ -16,7 +16,7 @@
 >
   <!-- Grid (3 images) -->
   <div
-    class="sm:swiper mySwiper-grid w-full relative overflow-hidden"
+    class="sm:swiper mySwiper-grid w-full relative"
     data-next-btn="swiper-button-next-grid"
     data-prev-btn="swiper-button-prev-grid"
     data-slides-per-view="3"
@@ -24,7 +24,7 @@
     data-autoplay="false"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper md:grid md:grid-cols-3">
+    <div class="swiper-wrapper md:grid md:grid-cols-3 overflow-hidden">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
           {% liquid
