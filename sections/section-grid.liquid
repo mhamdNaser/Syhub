@@ -28,13 +28,13 @@ style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px">
             assign link_bg_color = block.settings.link_bg_color
             assign link_text_color = block.settings.link_text_color
           %}
-          <div class="swiper-slide relative group shadow-lg aspect-[628/420]">
+          <div class="swiper-slide relative group shadow-lg aspect-[628/420] overflow-hidden">
             {% if grid_image %}
               <div class="relative group shadow-lg">
                 {%
                   render 'image',
                   image: grid_image,
-                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500 overflow-hidden',
+                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500',
                   width: 620,
                   height: 410,
                   crop: 'center',
