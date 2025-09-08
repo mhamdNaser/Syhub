@@ -11,29 +11,55 @@
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
     data-slides-per-view-mobile="1"
-    {% comment %} data-autoplay="true" {% endcomment %}
     data-autoplay-delay="2500"
   >
     <div class="swiper-wrapper mx-w-full">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
-          <div class="swiper-slide sm:h-[500px] md:h-[750px]">
-            {% if block.settings.image %}
+          {% liquid
+            assign slide_image = block.settings.image
+            assign slide_title = block.settings.title
+            assign slide_text = block.settings.text
+            assign show_title_description = block.settings.show_title_description
+            assign button_label = block.settings.button_label
+            assign button_link = block.settings.button_link
+            assign link_bg_color = block.settings.link_bg_color
+            assign link_text_color = block.settings.link_text_color
+          %}
+          <div class="swiper-slide relative sm:h-[500px] md:h-[750px]">
+            {% if slide_image %}
               {% render 'image',
-                image: block.settings.image,
+                image: slide_image,
                 class: 'object-cover w-full h-full',
                 width: 1920,
                 height: 750,
                 crop: 'center',
-                alt: block.settings.title,
+                alt: slide_title,
                 sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1920px',
                 preload: true
               %}
             {% endif %}
-            {% if block.settings.show_title_description == true %}
+            {% if show_title_description %}
               <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
-                <h2 class="text-3xl font-bold">{{ block.settings.title }}</h2>
-                <p class="mt-2 max-w-2xl">{{ block.settings.text }}</p>
+                {% if slide_title != blank %}
+                  <h2 class="text-3xl font-bold">{{ slide_title }}</h2>
+                {% endif %}
+                {% if slide_text != blank %}
+                  <p class="mt-2 max-w-2xl">{{ slide_text }}</p>
+                {% endif %}
+                {% if button_label != blank and button_link != blank %}
+                  <div class="mt-4">
+                    {% render 'button',
+                      type: 'link',
+                      url: button_link,
+                      class: '',
+                      data_label: slide_title,
+                      text: button_label,
+                      bg_color: link_bg_color,
+                      text_color: link_text_color
+                    %}
+                  </div>
+                {% endif %}
               </div>
             {% endif %}
           </div>
@@ -50,7 +76,6 @@
       class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"
       aria-label="swiper-button-prev-{{ section_id }}"
     ></div>
-    {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
   </div>
 </section>
 
@@ -75,11 +100,11 @@
     {
       "type": "range",
       "id": "padding-vertical",
-      "label": "Slider Height (px)",
-      "default": 2,
+      "label": "Section Padding (px)",
+      "default": 20,
       "min": 0,
-      "max": 12,
-      "step": 2
+      "max": 100,
+      "step": 5
     }
   ],
   "blocks": [
@@ -91,12 +116,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Slide Image",
-          "info": "image height must be 1000px and width 1920px"
+          "info": "Recommended size: 1920x1000px"
         },
         {
           "type": "checkbox",
           "id": "show_title_description",
-          "label": "show text",
+          "label": "Show Text",
           "default": false
         },
         {
@@ -108,6 +133,28 @@
           "type": "textarea",
           "id": "text",
           "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "link_bg_color",
+          "label": "Button Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "link_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
         }
       ]
     }
