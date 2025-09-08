@@ -604,6 +604,9 @@
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
+  .h-680 {
+    height: calc(var(--spacing) * 680);
+  }
   .h-\[80\] {
     height: 80;
   }
