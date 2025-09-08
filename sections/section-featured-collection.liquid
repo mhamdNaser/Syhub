@@ -58,13 +58,13 @@
         <div class="swiper-wrapper">
           {% if featured_collection %}
             {% for product in featured_collection limit: item_view %}
-              <div class="swiper-slide">
+              <div class="swiper-slide mx-3 max-w-5/6">
                 {% render 'product-card', product: product %}
               </div>
             {% endfor %}
           {% else %}
             {% for item in (1..4) %}
-              <div class="swiper-slide">
+              <div class="swiper-slide mx-3 max-w-5/6">
                 {% render 'product-card-placeholder' %}
               </div>
             {% endfor %}
