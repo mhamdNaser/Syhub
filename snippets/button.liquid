@@ -9,8 +9,8 @@
   @param {string} [icon] - Optional icon name (uses icons snippet)
   @param {string} [bg_color] - Background color (e.g. bg-blue-500)
   @param {string} [text_color] - Text color (e.g. text-white)
-  @param {string} [width] - Width classes (e.g. w-full, w-40)
-  @param {string} [height] - Height classes (e.g. h-12)
+  @param {string} [padding_horizontal] - Width classes (e.g. w-full, w-40)
+  @param {string} [padding_vertical] - Height classes (e.g. h-12)
   @param {string} [data_label] - Optional data-label attribute
   @param {string} [data_target] - Optional data-target attribute
 
@@ -58,8 +58,7 @@
   style="
     background-color: {{ bg_color }};
     color: {{ text_color }};
-    height: {{ height }}px;
-    width: {{ width }}px;
+    padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
   "
 >
   {% if icon and text %}
