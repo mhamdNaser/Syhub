@@ -2107,6 +2107,16 @@
       height: 750px;
     }
   }
+  .sm\:h-\[950\] {
+    @media (width >= 40rem) {
+      height: 950;
+    }
+  }
+  .sm\:h-\[950px\] {
+    @media (width >= 40rem) {
+      height: 950px;
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -11,19 +11,19 @@
 
 <section
   id="shopify-section-{{ section_id }}"
-  class="relative"
+  class="relative w-full overflow-hidden sm:h-[950px]"
   style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
 >
   <!-- Slider -->
   <div
-    class="swiper mySwiper-{{ section_id }} h-[750px]"
+    class="swiper mySwiper-{{ section_id }} h-full"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="1"
     data-slides-per-view-mobile="1"
     data-autoplay-delay="2500"
   >
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper mx-w-full h-full">
       {% for block in section.blocks %}
         {% if block.type == 'slide' %}
           {% liquid
@@ -34,11 +34,14 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative">
+          <div class="swiper-slide relative sm:h-[500px] md:h-[750px]">
             {% if slide_image %}
               {% render 'image',
                 image: slide_image,
-                class: 'object-cover inset-0 w-full h-full',
+                class: 'object-cover w-full h-full',
+                width: 1920,
+                height: 750,
+                crop: 'center',
                 alt: slide_title,
                 preload: true
               %}
