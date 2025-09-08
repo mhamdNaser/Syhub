@@ -15,7 +15,7 @@
         "slide_PMPn8X": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/main_slider.webp",
+            "image": "shopify://shop_images/main_slider_b2e9fe79-4144-44ac-8c3f-b75055a802d2.webp",
             "show_title_description": false,
             "title": "slider_1",
             "text": "",
@@ -65,8 +65,8 @@
       ],
       "name": "Section Slider",
       "settings": {
-        "slider_height": 300,
-        "padding-vertical": 20,
+        "padding_vertical": 20,
+        "padding_horizontal": 0,
         "link_bg_color": "#000000",
         "link_text_color": "#ffffff",
         "button_padding_vertical": 5,
@@ -115,13 +115,12 @@
       ],
       "name": "Section Grid",
       "settings": {
-        "slider_height": 550,
-        "padding_vertical": 20,
+        "padding_vertical": 0,
         "padding_horizontal": 0,
         "link_bg_color": "#ffffff",
         "link_text_color": "#001128",
         "button_padding_vertical": 5,
-        "button_padding_horizontal": 5,
+        "button_padding_horizontal": 15,
         "button_rounded": "rounded-md"
       }
     },
