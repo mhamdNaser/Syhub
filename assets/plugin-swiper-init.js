@@ -34,7 +34,7 @@ function initSwipers() {
       const slidesToShow = Math.min(slider.slidesPerView, slidesCount);
 
       new Swiper(slider.container, {
-        slidesPerView: "auto",
+        slidesPerView: slidesToShow,
         centeredSlides: slider.centerSlides,
         autoHeight: true,
         speed: slider.speed,
