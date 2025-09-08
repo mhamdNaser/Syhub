@@ -1,3 +1,4 @@
+
 function initSwipers() {
   const sliders = Array.from(document.querySelectorAll("[class*='mySwiper-']")).map(swiperContainer => {
     const classList = swiperContainer.className.split(" ");
@@ -12,13 +13,6 @@ function initSwipers() {
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
     const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
 
-    // القيم الجديدة من data attributes
-    const effect = swiperContainer.dataset.effect || "slide";
-    const grabCursor = swiperContainer.dataset.grabCursor === "false";
-    const centeredSlides = swiperContainer.dataset.centeredSlides === "false";
-    const autoHeight = swiperContainer.dataset.autoHeight === "false";
-    const speed = parseInt(swiperContainer.dataset.speed) || 3000;
-
     return {
       container: swiperContainer,
       nextBtn,
@@ -26,12 +20,7 @@ function initSwipers() {
       slidesPerView,
       slidesPerViewMobile,
       autoplayEnabled,
-      autoplayDelay,
-      effect,
-      grabCursor,
-      centeredSlides,
-      autoHeight,
-      speed
+      autoplayDelay
     };
   });
 
@@ -42,11 +31,8 @@ function initSwipers() {
 
       new Swiper(slider.container, {
         slidesPerView: slidesToShow,
-        effect: slider.effect,
-        grabCursor: slider.grabCursor,
-        centeredSlides: slider.centeredSlides,
-        autoHeight: slider.autoHeight,
-        speed: slider.speed,
+        autoHeight: true,
+        speed: 3000,
         spaceBetween: 10,
         navigation: {
           nextEl: slider.nextBtn,
@@ -74,13 +60,6 @@ function initSwipers() {
           delay: slider.autoplayDelay,
           disableOnInteraction: false
         } : false,
-        coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        },
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",

@@ -16,16 +16,13 @@
 >
   <!-- Grid (3 images) -->
   <div
-    class="sm:swiper mySwiper-grid"
+    class="sm:swiper mySwiper-grid w-full relative"
     data-next-btn="swiper-button-next-grid"
     data-prev-btn="swiper-button-prev-grid"
-    data-slides-per-view="1"
+    data-slides-per-view="3"
     data-slides-per-view-mobile="1"
     data-autoplay="false"
-    data-effect="coverflow"
-    data-grab-cursor="true"
-    data-centered-slides="true"
-    data-speed="1500"
+    data-autoplay-delay="2500"
   >
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
@@ -37,19 +34,19 @@
             assign button_label = block.settings.button_label
             assign button_link = block.settings.button_link
           %}
-          <div class="swiper-slide relative group aspect-[620/420] overflow-hidden">
+          <div class="swiper-slide relative grou aspect-[628/420]">
             {% if grid_image %}
                 {%
                   render 'image',
                   image: grid_image,
-                  class: 'object-cover group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300 ease-in-out',
+                  class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500',
                   width: 620,
                   height: 410,
                   crop: 'center',
                   alt: grid_title | escape,
                 %}
             {% endif %}
-            <div class="absolute inset-0 flex flex-col gap-3 justify-center items-center text-center text-white p-4">
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
               {% if grid_title != blank %}
                 <h3 class="text-xl font-semibold">{{ grid_title }}</h3>
               {% endif %}
