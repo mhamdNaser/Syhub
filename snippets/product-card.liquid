@@ -188,7 +188,7 @@
         <p class="text-xs font-bold text-gray-700 mt-2">
           {% if show_price %}
             {% if product.compare_at_price > product.price %}
-              <span class="text-sm text-red-700 line-through">{{ product_compare | money }}</span>
+              <span class="text-xs text-red-700 line-through">{{ product_compare | money }}</span>
             {% endif %}
             <span class="text-xs text-gray-900">{{ product_price | money }}</span>
           {% endif %}
