@@ -36,11 +36,18 @@
           %}
           <div class="swiper-slide relative aspect-[700/530] md:aspect-[1920/750]">
             {% if slide_image %}
-              {% render 'image',
+              {%
+                render 'image',
                 image: slide_image,
                 class: 'object-fill w-full h-full',
                 alt: slide_title,
-                preload: true
+                preload: true,
+                sizes="(max-width: 165px) 165px,
+                (max-width: 240px) 240px,
+                (max-width: 350px) 350px,
+                (max-width: 533px) 533px,
+                (max-width: 720px) 720px,
+                940px"
               %}
             {% endif %}
             {% if show_title_description %}
