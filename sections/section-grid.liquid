@@ -17,7 +17,7 @@
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
-          <div class="swiper-slide relative group shadow-lg aspect-[628/420]">
+          <div class="swiper-slide relative group shadow-lg aspect-[628/420] overflow-hidden">
             {% if block.settings.grid_image %}
               <div class="relative group shadow-lg">
                 {%
