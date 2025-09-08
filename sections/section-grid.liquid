@@ -1,6 +1,6 @@
 {% liquid
   assign section_id = section.id
-  assign padding_vertical = section.settings['padding-vertical']
+  assign padding_vertical = section.settings.padding_vertical
 %}
 
 <section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-[{{ padding_vertical }}px]">
