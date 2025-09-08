@@ -1,20 +1,30 @@
-<div class="recently-viewed max-w-7xl mx-auto py-8">
+{% liquid
+  assign section_id = section.id
+%}
+
+<section class="recently-viewed max-w-7xl mx-auto py-8">
   <h2 class="text-2xl font-bold mb-6 text-center">Recently Viewed</h2>
 
   <!-- Swiper wrapper -->
-  <div class="swiper recently-viewed-swiper">
+  <div
+    class="swiper mySwiper-{{ section_id }}"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
+    data-slides-per-view="3"
+    data-slides-per-view-mobile="1"
+  >
     <div class="swiper-wrapper" id="recently-viewed-products">
       <!-- الكاردات ستضاف بالـ JS -->
     </div>
 
     <!-- Navigation -->
-    <div class="swiper-button-next text-gray-700 hover:text-gray-900" aria-label="next"></div>
-    <div class="swiper-button-prev text-gray-700 hover:text-gray-900" aria-label="prev"></div>
+    <div class="swiper-button-next swiper-button-next-{{ section_id }} text-gray-700 hover:text-gray-900" aria-label="next-{{ section_id }}"></div>
+    <div class="swiper-button-prev swiper-button-prev-{{ section_id }} text-gray-700 hover:text-gray-900" aria-label="prev-{{ section_id }}"></div>
 
     <!-- Pagination (اختياري) -->
     <div class="swiper-pagination mt-4"></div>
   </div>
-</div>
+</section>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -39,7 +49,9 @@
                     <p class="text-gray-700 font-medium">${(product.price / 100).toFixed(2)} USD</p>
                   </div>
                   <div class="mt-4">
-                    <button class="w-full bg-[#c42764] text-white py-2 rounded-md hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors" aria-label="${product.title}" >View Product</button>
+                    <button class="w-full bg-[#c42764] text-white py-2 rounded-md hover:bg-[#f2bed2] hover:text-[#c42764] transition-colors" aria-label="${
+                      product.title
+                    }" >View Product</button>
                   </div>
                 </a>
               </div>
@@ -50,27 +62,6 @@
           .catch((err) => console.error('Error fetching product:', handle, err));
       });
 
-      // بعد تحميل كل الكاردات، نعمل تهيئة الـ Swiper
-      const checkSwiper = setInterval(() => {
-        if (container.children.length > 0) {
-          new Swiper('.recently-viewed-swiper', {
-            slidesPerView: 2,
-            spaceBetween: 20,
-            loop: true,
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-              0: { slidesPerView: 1 },
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              768: { slidesPerView: 3, spaceBetween: 24 },
-              1024: { slidesPerView: 4, spaceBetween: 24 },
-            },
-          });
-          clearInterval(checkSwiper);
-        }
-      }, 100);
     } else {
       document.querySelector('.recently-viewed').style.display = 'none';
     }

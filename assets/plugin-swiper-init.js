@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
 
+function initSwipers() {
   const sliders = Array.from(document.querySelectorAll("[class*='mySwiper-']")).map(swiperContainer => {
     const classList = swiperContainer.className.split(" ");
     const mySwiperClass = classList.find(c => c.startsWith("mySwiper-"));
@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const autoplayEnabled = swiperContainer.dataset.autoplay === "true";
     const autoplayDelay = parseInt(swiperContainer.dataset.autoplayDelay) || 10000;
+    const centerSlides = swiperContainer.dataset.centeredSlides || false ;
+    const speed = parseInt(swiperContainer.dataset.speed) || 1500;
 
     return {
       container: swiperContainer,
@@ -20,21 +22,22 @@ document.addEventListener("DOMContentLoaded", function () {
       slidesPerView,
       slidesPerViewMobile,
       autoplayEnabled,
-      autoplayDelay
+      autoplayDelay,
+      centerSlides,
+      speed
     };
   });
 
   requestAnimationFrame(() => {
     sliders.forEach(slider => {
-
       const slidesCount = slider.container.querySelectorAll('.swiper-slide').length;
       const slidesToShow = Math.min(slider.slidesPerView, slidesCount);
 
       new Swiper(slider.container, {
         slidesPerView: slidesToShow,
-        loop: slidesCount > slidesToShow,
+        centeredSlides: slider.centerSlides,
         autoHeight: true,
-        speed: 3000,
+        speed: slider.speed,
         spaceBetween: 10,
         navigation: {
           nextEl: slider.nextBtn,
@@ -69,4 +72,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
-});
+}

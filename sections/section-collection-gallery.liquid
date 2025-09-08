@@ -3,7 +3,6 @@
   assign title_section = section.settings.title_section
   assign section_width = section.settings.section_width
   assign title_color = section.settings.title_color
-
   assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
 %}
 
@@ -17,11 +16,12 @@
 
   <!-- Swiper Container -->
   <div
-    class="swiper mySwiper-{{ section_id }}"
+    class="swiper mySwiper-{{ section_id }} w-full"
     data-next-btn="swiper-button-next-{{ section_id }}"
     data-prev-btn="swiper-button-prev-{{ section_id }}"
     data-slides-per-view="5"
-    data-slides-per-view-mobile="2"
+    data-slides-per-view-mobile="1"
+    data-autoplay="false"
   >
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
@@ -31,19 +31,17 @@
           assign collection_title = collection.title | append: '-' | append: section_id
         %}
         {% if collection and collection_image %}
-          <div class="swiper-slide flex justify-center aspect-[1/1]">
+          <div class="swiper-slide flex mx-5 max-w-5/6 aspect-square md:aspect-[200/200]">
             <a
               href="{{ collection.url }}"
-              class="flex flex-col group transform transition duration-300 hover:-translate-y-2"
+              class="flex flex-col py-3 group transform transition duration-300 hover:-translate-y-2"
               aria-label="{{ collection_title }}"
             >
-              <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition">
+              <div class="overflow-hidden p-3 rounded-lg shadow-md hover:shadow-xl transition w-fit">
                 {% render 'image',
                   image: collection_image,
                   alt: collection_title,
-                  width: 400,
-                  height: 400,
-                  class: 'object-contain w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+                  class: 'object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
                   loading: 'lazy'
                 %}
               </div>

@@ -179,16 +179,72 @@
     {% endif %}
   </body>
 
+  <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
+  <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
 
-    <script src="{{ 'plugin-alpine.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle-mobile.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-menu-toggle.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-shopify-money.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-stickybits.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-bundle.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-swiper-init.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-header.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-product-model.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-recently-viewed.js' | asset_url }}" defer></script>
-    <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
+  <script>
+    // Helper to load a script dynamically with a promise
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.body.appendChild(s);
+      });
+    }
+
+    // Load heavy scripts after window load
+    window.addEventListener('load', async () => {
+      try {
+        await loadScript("{{ 'plugin-stickybits.min.js' | asset_url }}");
+        await loadScript("{{ 'plugin-recently-viewed.js' | asset_url }}");
+        await loadScript("{{ 'plugin-shopify-money.js' | asset_url }}");
+
+        {% if template contains 'index' or template contains 'collection' or template contains 'product' %}
+          // Swiper bundle
+          await loadScript("{{ 'plugin-swiper-bundle.min.js' | asset_url }}");
+          await loadScript("{{ 'plugin-swiper-init.js' | asset_url }}");
+
+          // Initialize Swipers efficiently
+          const initSwiperSafe = () => {
+            if (typeof Swiper !== 'undefined') {
+              const swipers = document.querySelectorAll('.swiper');
+              if (swipers.length > 0) {
+                requestAnimationFrame(() => {
+                  initSwipers();
+                });
+                return true;
+              }
+            }
+            return false;
+          };
+
+          // Use MutationObserver instead of setTimeout polling
+          if (!initSwiperSafe()) {
+            const observer = new MutationObserver(() => {
+              if (initSwiperSafe()) observer.disconnect();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+          }
+
+          // Re-init on section load (Shopify AJAX sections)
+          document.addEventListener('shopify:section:load', () => {
+            requestAnimationFrame(() => {
+              if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
+                initSwipers();
+              }
+            });
+          });
+        {% endif %}
+
+      } catch (err) {
+        console.error("Failed to load script:", err);
+      }
+    });
+  </script>
+  <script src="{{ 'plugin-product-variant-switcher.js' | asset_url }}" defer></script>
 </html>

@@ -97,7 +97,7 @@
   assign alt_text = alt | default: image.alt | escape
   assign loading_attr = loading | default: 'lazy'
   assign decoding_attr = decoding | default: 'async'
-  assign fetchpriority_attr = fetchpriority | default: 'auto'
+  assign fetchpriority_attr = fetchpriority | default: 'high'
   assign sizes_attr = sizes | default: '(max-width: 768px) 100vw, 50vw'
   assign preload_attr = preload | default: false
 %}

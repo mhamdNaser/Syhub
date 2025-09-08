@@ -9,8 +9,8 @@
   @param {string} [icon] - Optional icon name (uses icons snippet)
   @param {string} [bg_color] - Background color (e.g. bg-blue-500)
   @param {string} [text_color] - Text color (e.g. text-white)
-  @param {string} [width] - Width classes (e.g. w-full, w-40)
-  @param {string} [height] - Height classes (e.g. h-12)
+  @param {string} [padding_horizontal] - padding horizontal (e.g. 15px)
+  @param {string} [padding_vertical] - padding vertical (e.g. 15px)
   @param {string} [data_label] - Optional data-label attribute
   @param {string} [data_target] - Optional data-target attribute
 
@@ -48,19 +48,25 @@
   {% if id %}
     id="{{ id }}"
   {% endif %}
-  class="w-{{ width }} h-{{ height }} bg-[{{ bg_color }}] text-[{{ text_color }}] {{ class }}"
+  class="{{ class }}"
   {% if data_label %}
     data-label="{{ data_label }}"
   {% endif %}
   {% if data_target %}
     data-target="{{ data_target }}"
   {% endif %}
+  style="
+    background-color: {{ bg_color }};
+    color: {{ text_color }};
+    padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
+  "
 >
-  {% if icon %}
+  {% if icon and text %}
     {% render 'icons', icon: icon %}
-  {% endif %}
-
-  {% if text %}
     <span class="ml-2">{{ text }}</span>
+  {% elsif text %}
+    <span class="">{{ text }}</span>
+  {% elsif icon %}
+    {% render 'icons', icon: icon %}
   {% endif %}
 </{{ tag }}>

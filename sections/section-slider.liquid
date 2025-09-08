@@ -1,0 +1,221 @@
+{% liquid
+  assign section_id = section.id
+  assign padding_vertical = section.settings.padding_vertical | default: 0
+  assign padding_horizontal = section.settings.padding_horizontal | default: 0
+  assign link_bg_color = section.settings.link_bg_color
+  assign link_text_color = section.settings.link_text_color
+  assign button_padding_horizontal = section.settings.button_padding_horizontal
+  assign button_padding_vertical = section.settings.button_padding_vertical
+  assign button_rounded = section.settings.button_rounded
+%}
+
+<section
+  id="shopify-section-{{ section_id }}"
+  class="relative w-full"
+  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
+>
+  <!-- Slider -->
+  <div
+    class="swiper mySwiper-{{ section_id }}"
+    data-next-btn="swiper-button-next-{{ section_id }}"
+    data-prev-btn="swiper-button-prev-{{ section_id }}"
+    data-slides-per-view="1"
+    data-slides-per-view-mobile="1"
+    data-autoplay-delay="2500"
+  >
+    <div class="swiper-wrapper mx-w-full">
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' %}
+          {% liquid
+            assign slide_image = block.settings.image
+            assign slide_title = block.settings.title
+            assign slide_text = block.settings.text
+            assign show_title_description = block.settings.show_title_description
+            assign button_label = block.settings.button_label
+            assign button_link = block.settings.button_link
+          %}
+          <div class="swiper-slide relative aspect-square md:aspect-[1920/750]">
+            {% if slide_image %}
+              {% render 'image',
+                image: slide_image,
+                class: 'object-fill w-full h-full',
+                alt: slide_title,
+                preload: true
+              %}
+            {% endif %}
+            {% if show_title_description %}
+              <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
+                {% if slide_title != blank %}
+                  <h2 class="text-3xl font-bold">{{ slide_title }}</h2>
+                {% endif %}
+                {% if slide_text != blank %}
+                  <p class="mt-2 max-w-2xl">{{ slide_text }}</p>
+                {% endif %}
+                {% if button_label != blank and button_link != blank %}
+                  <div class="mt-4">
+                    {% render 'button',
+                      type: 'link',
+                      url: button_link,
+                      class: 'text-center {{ button_rounded  }}',
+                      data_label: slide_title,
+                      text: button_label,
+                      bg_color: link_bg_color,
+                      text_color: link_text_color,
+                      padding_vertical: button_padding_vertical,
+                      padding_horizontal: button_padding_horizontal
+                    %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Slider Controls -->
+    <div
+      class="swiper-button-next swiper-button-next-{{ section_id }} text-white"
+      aria-label="swiper-button-next-{{ section_id }}"
+    ></div>
+    <div
+      class="swiper-button-prev swiper-button-prev-{{ section_id }} text-white"
+      aria-label="swiper-button-prev-{{ section_id }}"
+    ></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Section Slider",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Section Padding vertical (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Section Padding horizontal (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "color",
+      "id": "link_bg_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button padding vertical (px)",
+      "default": 5,
+      "min": 0,
+      "max": 50,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button padding horizontal (px)",
+      "default": 5,
+      "min": 0,
+      "max": 50,
+      "step": 5
+    },
+    {
+      "type": "select",
+      "id": "button_rounded",
+      "label": "button rounded",
+      "options": [
+        {
+          "value": "rounded-sm",
+          "label": "small"
+        },
+        {
+          "value": "rounded-md",
+          "label": "medium"
+        },
+        {
+          "value": "rounded-lg",
+          "label": "large"
+        },
+        {
+          "value": "rounded-xl",
+          "label": "X large"
+        },
+        {
+          "value": "rounded-full",
+          "label": "full"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image",
+          "info": "Recommended size: 1920x1000px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_title_description",
+          "label": "Show Text",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Section Slider",
+      "category": "Images"
+    }
+  ]
+}
+{% endschema %}

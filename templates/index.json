@@ -9,113 +9,107 @@
  */
 {
   "sections": {
-    "section_slider_with_grid_cK3qdw": {
-      "type": "section-slider-with-grid",
+    "section_slider_tFtkUk": {
+      "type": "section-slider",
       "blocks": {
-        "slide_4Dk8j4": {
+        "slide_PMPn8X": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/main_slider.webp",
+            "image": "shopify://shop_images/main_slider_b2e9fe79-4144-44ac-8c3f-b75055a802d2.webp",
             "show_title_description": false,
-            "title": "Slide_1",
-            "text": ""
+            "title": "slider_1",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
           }
         },
-        "slide_wAnxYf": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/download_6.webp",
-            "show_title_description": false,
-            "title": "Slide_2",
-            "text": ""
-          }
-        },
-        "slide_tdbKic": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Banner-01_1-min.webp",
-            "show_title_description": false,
-            "title": "Slide_3",
-            "text": ""
-          }
-        },
-        "slide_JBPtgQ": {
+        "slide_GmmKHQ": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/download_4.webp",
             "show_title_description": false,
-            "title": "Slide_4",
-            "text": ""
+            "title": "slider_2",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
           }
         },
-        "slide_EEbJY3": {
+        "slide_YTn8LX": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/banner-3--750-1920.jpg",
+            "image": "shopify://shop_images/download_6.webp",
             "show_title_description": false,
-            "title": "Slide_5",
-            "text": ""
-          }
-        },
-        "slide_dM94gB": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d.jpg",
-            "show_title_description": false,
-            "title": "Slide_6",
-            "text": ""
-          }
-        },
-        "slide_nXjrwb": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/white-blank-unbranded-cosmetic-cream-jar-and-tube-on-beige-background-with-water-splash-skin-care-product-presentation-elegant-mockup-beauty-and-spa-jar-tube-with-copy-space-banner-3d_c37c0659-d227-4477-8ef1-51f1afc2bcf8.jpg",
-            "show_title_description": false,
-            "title": "Slide_7",
-            "text": ""
-          }
-        },
-        "grid_image_8yY8cV": {
-          "type": "grid_image",
-          "settings": {
-            "grid_image": "shopify://shop_images/mens_perfumes_-_Edited.webp",
-            "grid_title": "tesset and",
-            "grid_text": ""
-          }
-        },
-        "grid_image_pHmRQU": {
-          "type": "grid_image",
-          "settings": {
-            "grid_image": "shopify://shop_images/womens_perfumes_-_Edited.webp",
-            "grid_title": "tesset and 01",
-            "grid_text": ""
-          }
-        },
-        "grid_image_g9EeE4": {
-          "type": "grid_image",
-          "settings": {
-            "grid_image": "shopify://shop_images/arabian_oud_-_Edited.avif",
-            "grid_title": "tesset and",
-            "grid_text": ""
+            "title": "slider_3",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
           }
         }
       },
       "block_order": [
-        "slide_4Dk8j4",
-        "slide_wAnxYf",
-        "slide_tdbKic",
-        "slide_JBPtgQ",
-        "slide_EEbJY3",
-        "slide_dM94gB",
-        "slide_nXjrwb",
-        "grid_image_8yY8cV",
-        "grid_image_pHmRQU",
-        "grid_image_g9EeE4"
+        "slide_PMPn8X",
+        "slide_GmmKHQ",
+        "slide_YTn8LX"
       ],
-      "name": "Slider with Grid",
+      "name": "Section Slider",
       "settings": {
-        "slider_height": 500,
-        "padding-vertical": 10
+        "padding_vertical": 20,
+        "padding_horizontal": 0,
+        "link_bg_color": "#000000",
+        "link_text_color": "#ffffff",
+        "button_padding_vertical": 5,
+        "button_padding_horizontal": 5,
+        "button_rounded": "rounded-sm"
+      }
+    },
+    "section_grid_x4mjAW": {
+      "type": "section-grid",
+      "blocks": {
+        "grid_image_WyxVFa": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/mens_perfumes_-_Edited.webp",
+            "grid_title": "gird _1",
+            "grid_text": "",
+            "button_label": "gird _1",
+            "button_link": "shopify://collections/automated-collection"
+          }
+        },
+        "grid_image_6JWK73": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/arabian_oud_-_Edited.avif",
+            "grid_title": "gird _2",
+            "grid_text": "",
+            "button_label": "gird _2",
+            "button_link": "shopify://collections/frontpage"
+          }
+        },
+        "grid_image_nKYNw9": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/womens_perfumes_-_Edited.webp",
+            "grid_title": "gird _3",
+            "grid_text": "",
+            "button_label": "gird _3",
+            "button_link": "shopify://collections/hydrogen"
+          }
+        }
+      },
+      "block_order": [
+        "grid_image_WyxVFa",
+        "grid_image_6JWK73",
+        "grid_image_nKYNw9"
+      ],
+      "name": "Section Grid",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0,
+        "link_bg_color": "#ffffff",
+        "link_text_color": "#001128",
+        "button_padding_vertical": 5,
+        "button_padding_horizontal": 15,
+        "button_rounded": "rounded-md"
       }
     },
     "section_collection_gallery_j46pdJ": {
@@ -150,7 +144,11 @@
       ],
       "name": "Collection Gallery",
       "settings": {
-        "title_section": "Shop By Collection"
+        "title_section": "Shop By Collection",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
       }
     },
     "vendor_gallery_agkEPT": {
@@ -177,7 +175,11 @@
       ],
       "name": "Vendor Gallery",
       "settings": {
-        "title_section": "Shop By Brands"
+        "title_section": "Shop By Brands",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
       }
     },
     "section_featured_collection_fAkYP3": {
@@ -233,6 +235,7 @@
           "type": "collection_link",
           "settings": {
             "collection_url_button": true,
+            "url_color": "#000000",
             "link_alignment": "text-center"
           }
         }
@@ -589,7 +592,8 @@
     }
   },
   "order": [
-    "section_slider_with_grid_cK3qdw",
+    "section_slider_tFtkUk",
+    "section_grid_x4mjAW",
     "section_collection_gallery_j46pdJ",
     "vendor_gallery_agkEPT",
     "section_featured_collection_fAkYP3",

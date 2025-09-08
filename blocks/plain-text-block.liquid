@@ -4,14 +4,20 @@
   @example
   {% content_for 'block', type: 'text', id: 'text' %}
 {% enddoc %}
+{% doc %}
+  Renders a text block.
+{% enddoc %}
 
 <p
-  class="text-{{ block.settings.text_alignment }} w-full color-{{ block.settings.color_scheme }} overflow-ellipsis text-nowrap"
-  style="
-    font-size: {{ block.settings.font_size }}px;
-    font-weight: {{ block.settings.font_weight }};
-    font-style: {{ block.settings.font_style }};
-    margin: 0;
+  class="
+    text-{{ block.settings.text_alignment }}
+    w-full
+    color-{{ block.settings.color_scheme }}
+    overflow-ellipsis
+    text-nowrap
+    {{ block.settings.font_weight }}
+    {{ block.settings.font_style }}
+    text-[{{ block.settings.font_size }}px]
   "
   {{ block.shopify_attributes }}
 >
@@ -26,7 +32,7 @@
     {
       "type": "range",
       "id": "font_size",
-      "label": "Font Size",
+      "label": "Font Size (px)",
       "min": 12,
       "max": 48,
       "step": 1,
@@ -36,20 +42,20 @@
       "type": "select",
       "id": "font_weight",
       "label": "Font Weight",
-      "default": "normal",
+      "default": "font-normal",
       "options": [
-        { "value": "normal", "label": "Normal" },
-        { "value": "bold", "label": "Bold" },
-        { "value": "lighter", "label": "Light" }
+        { "value": "font-normal", "label": "Normal" },
+        { "value": "font-bold", "label": "Bold" },
+        { "value": "font-light", "label": "Light" }
       ]
     },
     {
       "type": "select",
       "id": "font_style",
       "label": "Font Style",
-      "default": "normal",
+      "default": "not-italic",
       "options": [
-        { "value": "normal", "label": "Normal" },
+        { "value": "not-italic", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
       ]
     },
