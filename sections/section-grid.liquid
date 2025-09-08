@@ -3,7 +3,7 @@
   assign padding_vertical = section.settings.padding_vertical
 %}
 
-<section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-{{ padding_vertical }}">
+<section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden py-[{{ padding_vertical }}px]">
   <!-- Grid (3 images) -->
   <div
     class="sm:swiper mySwiper-grid w-full relative"
@@ -17,32 +17,47 @@
     <div class="swiper-wrapper md:grid md:grid-cols-3">
       {% for block in section.blocks %}
         {% if block.type == 'grid_image' %}
+          {% liquid
+            assign grid_image = block.settings.grid_image
+            assign grid_title = block.settings.grid_title
+            assign grid_text = block.settings.grid_text
+            assign button_label = block.settings.button_label
+            assign button_link = block.settings.button_link
+            assign link_bg_color = block.settings.link_bg_color
+            assign link_text_color = block.settings.link_text_color
+          %}
           <div class="swiper-slide relative group shadow-lg aspect-[628/420]">
-            {% if block.settings.grid_image %}
+            {% if grid_image %}
               <div class="relative group shadow-lg">
                 {%
                   render 'image',
-                  image: block.settings.grid_image,
+                  image: grid_image,
                   class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500 overflow-hidden',
                   width: 620,
                   height: 410,
                   crop: 'center',
-                  alt: block.settings.grid_title | escape,
+                  alt: grid_title | escape,
                 %}
               </div>
             {% endif %}
             <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-4">
-              <h3 class="text-xl font-semibold">{{ block.settings.grid_title }}</h3>
-              <p class="mt-2">{{ block.settings.grid_text }}</p>
-              {% render 'button',
-                type: 'link',
-                url: ,
-                class: ,
-                data_label: block.settings.grid_title,
-                text: link.title,
-                bg_color: block.settings.link_bg_color,
-                text_color: block.settings.link_text_color
-              %}
+              {% if grid_title != blank %}
+                <h3 class="text-xl font-semibold">{{ grid_title }}</h3>
+              {% endif %}
+              {% if grid_text != blank %}
+                <p class="mt-2">{{ grid_text }}</p>
+              {% endif %}
+              {% if button_label != blank and button_link != blank %}
+                {% render 'button',
+                  type: 'link',
+                  url: button_link,
+                  class: '',
+                  data_label: grid_title,
+                  text: button_label,
+                  bg_color: link_bg_color,
+                  text_color: link_text_color
+                %}
+              {% endif %}
             </div>
           </div>
         {% endif %}
@@ -74,11 +89,11 @@
     {
       "type": "range",
       "id": "padding_vertical",
-      "label": "Slider Height (px)",
-      "default": 2,
+      "label": "Section Padding (px)",
+      "default": 20,
       "min": 0,
-      "max": 12,
-      "step": 2
+      "max": 100,
+      "step": 5
     }
   ],
   "blocks": [
@@ -90,7 +105,7 @@
           "type": "image_picker",
           "id": "grid_image",
           "label": "Image",
-          "info": "image height must be 400px and width 620px"
+          "info": "Recommended size: 620x410px"
         },
         {
           "type": "text",
@@ -101,6 +116,28 @@
           "type": "textarea",
           "id": "grid_text",
           "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "link_bg_color",
+          "label": "Button Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "link_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
         }
       ]
     }
