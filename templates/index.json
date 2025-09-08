@@ -57,8 +57,7 @@
       ],
       "name": "Section Slider",
       "settings": {
-        "slider_height": 300,
-        "padding-vertical": 8
+        "slider_height": 300
       }
     },
     "section_grid_x4mjAW": {
@@ -96,8 +95,7 @@
       ],
       "name": "Section Grid",
       "settings": {
-        "slider_height": 500,
-        "padding-vertical": 2
+        "slider_height": 500
       }
     },
     "section_collection_gallery_j46pdJ": {
