@@ -4,8 +4,11 @@
   assign padding_horizontal = section.settings.padding_horizontal
 %}
 
-<section id="shopify-section-{{ section_id }}" class="relative w-full overflow-hidden "
-style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px">
+<section
+  id="shopify-section-{{ section_id }}"
+  class="relative w-full overflow-hidden "
+  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
+>
   <!-- Grid (3 images) -->
   <div
     class="sm:swiper mySwiper-grid w-full relative"
@@ -27,6 +30,8 @@ style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px">
             assign button_link = block.settings.button_link
             assign link_bg_color = block.settings.link_bg_color
             assign link_text_color = block.settings.link_text_color
+            assign button_padding_horizontal = block.settings.button_padding_horizontal
+            assign button_padding_vertical = block.settings.button_padding_vertical
           %}
           <div class="swiper-slide relative group shadow-lg aspect-[628/420] overflow-hidden">
             {% if grid_image %}
@@ -57,7 +62,9 @@ style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px">
                   data_label: grid_title,
                   text: button_label,
                   bg_color: link_bg_color,
-                  text_color: link_text_color
+                  text_color: link_text_color,
+                  padding_vertical: button_padding_vertical,
+                  padding_horizontal: button_padding_horizontal
                 %}
               {% endif %}
             </div>
@@ -149,6 +156,24 @@ style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px">
           "id": "link_text_color",
           "label": "Button Text Color",
           "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "button_padding_vertical",
+          "label": "Button Height (px)",
+          "default": 20,
+          "min": 0,
+          "max": 100,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "button_padding_horizontal",
+          "label": "Button Width (px)",
+          "default": 20,
+          "min": 0,
+          "max": 100,
+          "step": 5
         }
       ]
     }
