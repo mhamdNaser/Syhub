@@ -14,6 +14,75 @@
   class="relative w-full overflow-hidden"
   style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
 >
+  <!-- Horizontal scroll container -->
+  <div
+    class="flex gap-4 overflow-x-auto scrollbar-hide md:grid md:grid-cols-3 md:gap-6"
+  >
+    {% for block in section.blocks %}
+      {% if block.type == 'grid_image' %}
+        {% liquid
+          assign grid_image = block.settings.grid_image
+          assign grid_title = block.settings.grid_title
+          assign grid_text = block.settings.grid_text
+          assign button_label = block.settings.button_label
+          assign button_link = block.settings.button_link
+        %}
+        <div class="flex-shrink-0 w-10/12 sm:w-8/12 md:w-auto group overflow-hidden relative aspect-[628/420]">
+          {% if grid_image %}
+              {%
+                render 'image',
+                image: grid_image,
+                class: 'object-cover group-hover:scale-105 group-hover:shadow-xl transition-transform duration-500',
+                width: 620,
+                height: 410,
+                crop: 'center',
+                alt: grid_title | escape,
+              %}
+          {% endif %}
+          <div class="absolute inset-0 flex flex-col gap-3 justify-center items-center text-center text-white p-4">
+            {% if grid_title != blank %}
+              <h3 class="text-xl font-semibold">{{ grid_title }}</h3>
+            {% endif %}
+            {% if grid_text != blank %}
+              <p class="mt-2">{{ grid_text }}</p>
+            {% endif %}
+            {% if button_label != blank and button_link != blank %}
+              {% render 'button',
+                type: 'link',
+                url: button_link,
+                class: button_rounded,
+                data_label: grid_title,
+                text: button_label,
+                bg_color: link_bg_color,
+                text_color: link_text_color,
+                padding_vertical: button_padding_vertical,
+                padding_horizontal: button_padding_horizontal,
+              %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+
+{% comment %} {% liquid
+  assign section_id = section.id
+  assign padding_vertical = section.settings.padding_vertical
+  assign padding_horizontal = section.settings.padding_horizontal
+  assign link_bg_color = section.settings.link_bg_color
+  assign link_text_color = section.settings.link_text_color
+  assign button_padding_horizontal = section.settings.button_padding_horizontal
+  assign button_padding_vertical = section.settings.button_padding_vertical
+  assign button_rounded = section.settings.button_rounded
+%}
+
+<section
+  id="shopify-section-{{ section_id }}"
+  class="relative w-full overflow-hidden"
+  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
+>
   <!-- Grid (3 images) -->
   <div
     class="sm:swiper mySwiper-grid w-full relative"
@@ -75,7 +144,7 @@
     <!-- Controls تظهر فقط على الموبايل -->
     <div class="swiper-pagination sm:block md:hidden"></div>
   </div>
-</section>
+</section> {% endcomment %}
 
 {% schema %}
 {
