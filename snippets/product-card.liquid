@@ -84,10 +84,10 @@
   x-bind:class="
     {
       'grid-style': $el.parentElement.dataset.layout === 'grid',
-      'vertical-style': $el.parentElement.dataset.layout === 'vertical'
+      'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
     }
   "
-  class="lg:w-60 {% if layout == 'vertical' %} flex flex-row w-full {% endif %} bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}"
+  class="lg:w-60 {% if layout == 'horizontal' %} flex flex-row w-full {% endif %} bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}"
 >
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
