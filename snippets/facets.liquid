@@ -29,7 +29,7 @@
               >
 
               {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
-                {%- assign color_code = value.label | downcase -%} {# افتراضي من الاسم #}
+                {%- assign color_code = value.label | downcase -%}
 
                 {%- for pair in colors_list -%}
                   {%- assign kv = pair | split: "=>" -%}
