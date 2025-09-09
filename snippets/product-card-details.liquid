@@ -17,19 +17,17 @@
   {{ product.title }}
 </a>
 
-{% if product_short_description == 'product_description' %}
-  <p class="mt-2 text-xs text-gray-500 truncate w-full">
+<p class="mt-2 text-xs text-gray-500 truncate w-full">
+  {% if product_short_description == 'product_description' %}
     {% if product.description != blank %}
       {{ product.description }}
     {% else %}
       This product has no description
     {% endif %}
-  </p>
-{% elsif product_short_description == 'custom' %}
-  <p class="mt-2 text-xs text-gray-500 truncate w-full">
+  {% elsif product_short_description == 'custom' %}
     {{ product_short_description_text }}
-  </p>
-{% endif %}
+  {% endif %}
+</p>
 
 {% if show_rating %}
   <div class="mt-2 flex w-full justify-center items-center text-xs">
