@@ -1,16 +1,14 @@
 {%- assign colors_raw = settings.color_map | split: "," -%}
 
-{%- comment -%} إنشاء hash يدويًا {%- endcomment -%}
-{%- assign colors_hash = "" -%}
+{%- comment -%} إنشاء قائمة من الأزواج key=>val {%- endcomment -%}
+{%- assign colors_hash_text = "" -%}
 {%- for item in colors_raw -%}
   {%- assign pair = item | split: ":" -%}
   {%- assign key = pair[0] | strip -%}
   {%- assign val = pair[1] | strip -%}
-  {%- capture colors_hash -%}{{ colors_hash }}{{ key }}=>{{ val }}|{%- endcapture -%}
+  {%- capture colors_hash_text -%}{{ colors_hash_text }}{{ key }}=>{{ val }}|{%- endcapture -%}
 {%- endfor -%}
-
-{%- comment -%} دالة صغيرة للحصول على اللون من النص {%- endcomment -%}
-{%- assign colors_list = colors_hash | split: "|" -%}
+{%- assign colors_list = colors_hash_text | split: "|" -%}
 
 <form id="FacetFiltersForm" class="facets" method="get"> 
   <div class="facets__wrapper space-y-4">
@@ -31,7 +29,8 @@
               >
 
               {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
-                {%- assign color_code = "#ffffff" -%}
+                {%- assign color_code = value.label | downcase -%} {# افتراضي من الاسم #}
+
                 {%- for pair in colors_list -%}
                   {%- assign kv = pair | split: "=>" -%}
                   {%- if kv[0] == value.value -%}
