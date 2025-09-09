@@ -87,7 +87,7 @@
       x-bind:class="
         {
           'grid-style': $el.parentElement.dataset.layout === 'grid',
-          'horizontal-style  flex flex-row gap-4 items-start': $el.parentElement.dataset.layout === 'horizontal'
+          'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
         }
       "
     >
@@ -131,7 +131,7 @@
         </div>
       {% endif %}
 
-      <div class="{{ text_alignment }} mt-4 shrink-0 h-full">
+      <div class="{{ text_alignment }} mt-4 w-1/2 h-full">
         {% render 'product-card-details',
           product: product,
           show_vendor: show_vendor,
@@ -146,7 +146,7 @@
       </div>
 
       {% if add_to_cart_button %}
-        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
+        <div class="flex justify-between items-center w-1/4 h-full border border-[#c42764] mt-4 text-xs">
           {% if show_preorder and variant_policy == 'continue' %}
             <button
               aria-label="preorder"
