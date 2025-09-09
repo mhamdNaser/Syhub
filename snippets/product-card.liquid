@@ -80,7 +80,6 @@
   endif
 %}
 
-<div class="{{ settings.card_hover_effect }} w-full">
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       <div
@@ -89,6 +88,7 @@
             'grid-style': $el.parentElement.dataset.layout === 'grid',
             'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
           }
+        {{ settings.card_hover_effect }}
         "
       >
         <input type="hidden" name="id" value="{{ variant_id }}">
@@ -197,4 +197,3 @@
       <span class="text-gray-500">Product not available</span>
     </div>
   {% endif %}
-</div>
