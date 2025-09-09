@@ -84,7 +84,7 @@
   x-bind:class="
     {
       'grid-style': $el.parentElement.dataset.layout === 'lg:w-60 bg-white p-4 overflow-hidden',
-      'horizontal-style': $el.parentElement.dataset.layout === 'flex flex-row max-h-[200px]'
+      'horizontal-style': $el.parentElement.dataset.layout === 'flex max-h-[200px]'
     }
 
   "
@@ -96,7 +96,7 @@
       {% if product.featured_image %}
         <a
           href="{{ product_url }}"
-          class="block relative overflow-hidden aspect-[200/200] {{ image_style }}"
+          class="block relative overflow-hidden h-full aspect-[200/200] {{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
         >
           {%
@@ -132,7 +132,7 @@
         </div>
       {% endif %}
 
-      <div class="{{ text_alignment }} mt-4 shrink-0">
+      <div class="{{ text_alignment }} mt-4 shrink-0 h-full">
         {% render 'product-card-details',
           product: product,
           show_vendor: show_vendor,
@@ -147,7 +147,7 @@
       </div>
 
       {% if add_to_cart_button %}
-        <div class="flex justify-between items-center border border-[#c42764] mt-4 text-xs">
+        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
           {% if show_preorder and variant_policy == 'continue' %}
             <button
               aria-label="preorder"
