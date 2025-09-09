@@ -43,7 +43,7 @@
     "show_product_stock_always": true,
     "show_product_rating": false,
     "show_vendor": true,
-    "show_addtocart": true,
+    "show_addtocart": false,
     "show_input_field": true,
     "show_preorder": true,
     "show_preorder_inventory": true,
