@@ -37,14 +37,14 @@
             <a
               href="{{ collection.url }}"
               class="flex flex-col py-3 group transform transition duration-300 hover:-translate-y-2"
-              width: 120,
-              height: 120,
               aria-label="{{ collection_title }}"
             >
               <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
                 {% render 'image',
                   image: collection_image,
                   alt: collection_title,
+                  width: 120,
+                  height: 120,
                   class: 'object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
                   loading: 'lazy'
                 %}
