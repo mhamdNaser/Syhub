@@ -53,10 +53,12 @@
 
       <div class="mb-4" x-data="{ layoutType: 'grid' }">
         <form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
-          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700"> {{ collection.products_count }} products {{ layoutType | default: "null" }}</label>
+          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700">
+            {{ collection.products_count }} products</label
+          >
 
           <div class="flex items-center space-x-2">
-            <!-- زر Grid -->
+            <!-- Grid -->
             <button
               type="button"
               @click="layoutType = 'grid'"
@@ -67,15 +69,15 @@
               {%- render 'icons', icon: 'icon-grid', icon_size: '20' -%}
             </button>
 
-            <!-- زر Vertical -->
+            <!-- horizontal -->
             <button
               type="button"
-              @click="layoutType = 'vertical'"
-              :class="layoutType === 'vertical' ? 'text-[#c42764]' : 'text-gray-500'"
+              @click="layoutType = 'horizontal'"
+              :class="layoutType === 'horizontal' ? 'text-[#c42764]' : 'text-gray-500'"
               class="p-1"
               title="List View"
             >
-              {%- render 'icons', icon: 'icon-vertical', icon_size: '20' -%}
+              {%- render 'icons', icon: 'icon-horizontal', icon_size: '20' -%}
             </button>
 
             {% render 'collection-sort', productNumber: collection.products_count %}
@@ -88,10 +90,11 @@
               class="grid gap-6"
               :class="layoutType === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'flex flex-col w-full'"
             >
-              
               {% for product in collection.products %}
                 <!-- نمرر قيمة layout للـ product-card -->
-                {%- render 'product-card', product: product, layout: layoutType -%}
+                <div :data-layout="layoutType">
+                  {%- render 'product-card', product: product -%}
+                </div>
               {% else %}
                 <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات مطابقة.</p>
               {% endfor %}
