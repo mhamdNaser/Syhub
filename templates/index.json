@@ -189,7 +189,10 @@
         "collection_link_e4Ybjq"
       ],
       "name": "Featured Collection",
-      "settings": {}
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
     },
     "vendor_gallery_agkEPT": {
       "type": "section-vendor-gallery",
@@ -263,7 +266,10 @@
         "collection_link_MqREVV"
       ],
       "name": "Featured Collection",
-      "settings": {}
+      "settings": {
+        "padding_vertical": 20,
+        "padding_horizontal": 20
+      }
     },
     "main_DjJMWy": {
       "type": "main",
@@ -606,7 +612,10 @@
         "collection_4wmNcU"
       ],
       "name": "Featured Collection",
-      "settings": {}
+      "settings": {
+        "padding_vertical": 20,
+        "padding_horizontal": 20
+      }
     }
   },
   "order": [
