@@ -1,6 +1,4 @@
 {% liquid
-  assign layout         = layout | default: 'vertical' 
-  assign image_position = image_position | default: 'left'
   # all variable in this block
   assign text_alignment             = settings.productcards_text_alignment
   assign sale_label                 = settings.show_sale_label
@@ -96,29 +94,36 @@
   endif
 %}
 
-<div 
-  class="bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}
-  {% if layout == 'horizontal' %} flex items-start gap-4 {% if image_position == 'right' %} flex-row-reverse {% endif %}{% else %} lg:w-60 {% endif %}">
-  
+<div class="lg:w-60 bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}">
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       <input type="hidden" name="id" value="{{ variant_id }}">
 
-      {%- comment -%} ✅ الصورة {%- endcomment -%}
       {% if product.featured_image %}
         <a 
-          href="{{ product_url }}"
-          class="block relative overflow-hidden 
-          {% if layout == 'horizontal' %} w-1/3 {% else %} aspect-square md:aspect-[200/200] {% endif %}
-          {{ image_style }}"
-          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
-        >
+          href="{{ product_url }}" class="block relative overflow-hidden aspect-square md:aspect-[200/200] {{ image_style }}"
+          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};">
           {% render 'image',
             image:  product_image ,
             alt: product.featured_image.alt | escape,
             class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
             loading: 'lazy'
            %} 
+
+          <div class="absolute bottom-0 w-full flex justify-between">
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full {{ discount_bg_color }} text-white overflow-hidden">
+              <div class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"></div>
+              <span class="relative z-10 text-xs font-bold text-nowrap">
+                {{ discount_label }}
+              </span>
+            </div>
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ stock_bg_color }} text-white overflow-hidden">
+              <div class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"></div>
+              <span class="relative z-10 text-xs font-bold text-nowrap">
+                {{ stock_label }}
+              </span>
+            </div>
+          </div>
         </a>
       {% else %}
         <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
@@ -126,10 +131,7 @@
         </div>
       {% endif %}
 
-      {%- comment -%} ✅ المحتوى {%- endcomment -%}
-      <div class="{% if layout == 'horizontal' %} w-2/3 {% endif %} {{ text_alignment }} mt-4">
-        {%- comment -%} 🔽 نفس محتوى الكارد الأصلي تبعك (vendor, title, price, rating, add-to-cart ...) {%- endcomment -%}
-
+      <div class="{{ text_alignment }} mt-4">
         {% if show_vendor %}
           <span class="text-xs text-gray-500 block truncate">
             {% if product.vendor contains 'color:' %}
@@ -144,7 +146,7 @@
           href="{{ product_url }}"
           title="{{ product_title | escape }}"
           class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate"
-          style="text-transform: {% if product_titles_caps %} uppercase !important {% else %} none {% endif %};"
+          style="text-transform: {% if product_titles_caps %} uppercase  !important{% else %} none {% endif %};"
         >
           {{ product_title }}
         </a>
@@ -255,7 +257,7 @@
           </div>
         {% endif %}
       </div>
-     {% endform %}
+    {% endform %}
   {% else %}
     <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
       <span class="text-gray-500">Product not available</span>
