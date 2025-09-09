@@ -53,7 +53,7 @@
 
       <div class="mb-4">
         <form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
-          <label for="SortBy" class="mr-2 font-medium text-gray-700">{{ productNumber }} products</label>
+          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700">{{ productNumber }} products</label>
           {%- render 'icons', icon: 'icon-grid' -%}
           {%- render 'icons', icon: 'icon-vertical' -%}
           {% render 'collection-sort', productNumber: collection.products_count %}
