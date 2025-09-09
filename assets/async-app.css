@@ -2465,6 +2465,7 @@
 .horizontal-style {
   display: flex;
   max-height: 200px;
+  flex-direction: row;
   gap: calc(var(--spacing) * 4);
   background-color: var(--color-white);
   padding: calc(var(--spacing) * 4);
