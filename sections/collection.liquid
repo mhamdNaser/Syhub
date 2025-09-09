@@ -51,32 +51,57 @@
         >
       </div>
 
-      <div class="mb-4">
+      <div class="mb-4" x-data="{ layoutType: 'grid' }">
         <form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
-          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700">{{ productNumber }} products</label>
-          <div class="flex items-center">
-            {%- render 'icons', icon: 'icon-grid',  icon_size: '20' -%}
-            {%- render 'icons', icon: 'icon-vertical', icon_size: '20' -%}
+          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700"> {{ productNumber }} products </label>
+
+          <div class="flex items-center space-x-2">
+            <!-- زر Grid -->
+            <button
+              type="button"
+              @click="layoutType = 'grid'"
+              :class="layoutType === 'grid' ? 'text-[#c42764]' : 'text-gray-500'"
+              class="p-1"
+              title="Grid View"
+            >
+              {%- render 'icons', icon: 'icon-grid', icon_size: '20' -%}
+            </button>
+
+            <!-- زر Vertical -->
+            <button
+              type="button"
+              @click="layoutType = 'vertical'"
+              :class="layoutType === 'vertical' ? 'text-[#c42764]' : 'text-gray-500'"
+              class="p-1"
+              title="List View"
+            >
+              {%- render 'icons', icon: 'icon-vertical', icon_size: '20' -%}
+            </button>
+
             {% render 'collection-sort', productNumber: collection.products_count %}
           </div>
         </form>
-      </div>
 
-      {% paginate collection.products by number_of_product %}
-        <div id="collection-grid">
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {% for product in collection.products %}
-              {%- render 'product-card', product: product -%}
-            {% else %}
-              <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات مطابقة.</p>
-            {% endfor %}
+        {% paginate collection.products by number_of_product %}
+          <div id="collection-grid">
+            <div
+              class="grid gap-6"
+              :class="layoutType === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1'"
+            >
+              {% for product in collection.products %}
+                <!-- نمرر قيمة layout للـ product-card -->
+                {%- render 'product-card', product: product, layout: layoutType -%}
+              {% else %}
+                <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات مطابقة.</p>
+              {% endfor %}
+            </div>
           </div>
-        </div>
 
-        <div class="mt-8 flex justify-center">
-          {%- render 'pagination', pagination: paginate -%}
-        </div>
-      {% endpaginate %}
+          <div class="mt-8 flex justify-center">
+            {%- render 'pagination', pagination: paginate -%}
+          </div>
+        {% endpaginate %}
+      </div>
     </section>
   </div>
 </section>
