@@ -4,12 +4,6 @@
   }
 </style>
 
-<style>
-  [x-cloak] {
-    display: none !important;
-  }
-</style>
-
 <div class="filters text-sm space-y-6">
   <!-- Availability Filter -->
   <div>
@@ -52,7 +46,8 @@
       <h3 class="font-semibold mb-2">Brand</h3>
       <ul class="space-y-2">
         {% for value in vendor_array %}
-          <li x-show="{{ forloop.index <= 5 }} || showAll">
+          {% assign is_first_five = forloop.index <= 5 %}
+          <li x-show="{{ is_first_five | json }} || showAll" x-cloak>
             <label class="flex items-center gap-2 cursor-pointer">
               <input type="checkbox"
                 onchange="
@@ -75,6 +70,7 @@
           </li>
         {% endfor %}
       </ul>
+
       {% if vendor_array.size > 5 %}
         <button @click="showAll = !showAll" class="text-pink-600 text-xs mt-2">
           <span x-show="!showAll">Show more ▼</span>
