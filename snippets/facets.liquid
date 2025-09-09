@@ -31,7 +31,7 @@
               >
 
               {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
-                {%- assign color_code = "#ffffff" -%} {# افتراضي إذا لم يوجد اللون #}
+                {%- assign color_code = "#ffffff" -%}
                 {%- for pair in colors_list -%}
                   {%- assign kv = pair | split: "=>" -%}
                   {%- if kv[0] == value.value -%}
