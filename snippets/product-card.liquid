@@ -84,7 +84,6 @@
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       <input type="hidden" name="id" value="{{ variant_id }}">
-{{ layout }}
       {% if product.featured_image %}
         <a
           href="{{ product_url }}"
