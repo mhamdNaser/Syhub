@@ -129,7 +129,14 @@
         </div>
       {% endif %}
 
-      <div class="{{ text_alignment }} mt-4 shrink-0 h-full">
+      <div
+        class=" mt-4 shrink-0 h-full"
+        :class="
+          layoutType === 'grid'
+          ? '{{ text_alignment }}'
+          : 'text-start'
+        "
+      >
         {% render 'product-card-details',
           product: product,
           show_vendor: show_vendor,
