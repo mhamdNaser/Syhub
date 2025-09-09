@@ -38,7 +38,7 @@
         %}
       {%- endif -%}
       <div class="py-2">
-        {% render 'facets' , results: collection %}
+        {% render 'facets', results: collection %}
       </div>
     </aside>
 
@@ -52,7 +52,12 @@
       </div>
 
       <div class="mb-4">
-        {% render 'collection-sort', productNumber: collection.products_count %}
+        <form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
+          <label for="SortBy" class="mr-2 font-medium text-gray-700">{{ productNumber }} products</label>
+          {%- render 'icons', icon: 'icon-grid' -%}
+          {%- render 'icons', icon: 'icon-vertical' -%}
+          {% render 'collection-sort', productNumber: collection.products_count %}
+        </form>
       </div>
 
       {% paginate collection.products by number_of_product %}
