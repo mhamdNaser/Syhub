@@ -8,7 +8,7 @@
   assign slides_mobile = 2
 %}
 
-<section id="shopify-section-{{ section_id }}" class="vendor-gallery {{ section_width }} mx-auto py-8 px-4">
+<section id="shopify-section-{{ section_id }}" class="vendor-gallery {{ section_width }} mx-auto py-8">
   {% if title_section != blank %}
     <h2 class="{{ title_class }}" style="color: {{ title_color }}">
       {{ title_section }}
@@ -30,7 +30,7 @@
           assign vendor_image = block.settings.vendor_image
         %}
         {% if vendor_name and vendor_image %}
-          <div class="swiper-slide flex max-w-5/6 aspect-square md:aspect-[200/200]">
+          <div class="swiper-slide flex max-w-5/6 aspect-[120/120] md:aspect-[120/120]">
             <a
               href="/collections/vendors?q={{ vendor_name | url_encode }}"
               class="block group rounded-xl bg-white shadow-sm hover:shadow-md transition transform hover:-translate-y-1"
@@ -40,6 +40,8 @@
                 {% render 'image',
                   image: vendor_image,
                   alt: vendor_name,
+                  width: 120,
+                  height: 120,
                   class: 'object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
                   loading: 'lazy'
                 %}
