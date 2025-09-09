@@ -33,7 +33,7 @@
           assign collection_title = collection.title | append: '-' | append: section_id
         %}
         {% if collection and collection_image %}
-          <div class="swiper-slide flex max-w-5/6 aspect-square md:aspect-[200/200]">
+          <div class="swiper-slide flex max-w-5/6 aspect-[120/120] md:aspect-[200/200]">
             <a
               href="{{ collection.url }}"
               class="flex flex-col py-3 group transform transition duration-300 hover:-translate-y-2"
