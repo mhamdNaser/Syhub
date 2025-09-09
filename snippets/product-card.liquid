@@ -1,54 +1,54 @@
 {% liquid
-  assign layout         = layout | default: 'vertical' 
+  assign layout = layout | default: 'vertical'
   assign image_position = image_position | default: 'left'
   # all variable in this block
-  assign text_alignment             = settings.productcards_text_alignment
-  assign sale_label                 = settings.show_sale_label
-  assign sale_label_price           = settings.sale_label_price
-  assign show_stock                 = settings.show_stock_label
-  assign stock_qty                  = settings.stock_label_qty
-  assign show_price                 = settings.show_price_varies
-  assign show_stock_available       = settings.show_product_stock
-  assign show_stock_qty             = settings.show_product_stock_qty
-  assign show_stock_always          = settings.show_product_stock_always
-  assign show_rating                = settings.show_product_rating
-  assign show_vendor                = settings.show_vendor
-  assign show_preorder              = settings.show_preorder
-  assign show_preorder_inventory    = settings.show_preorder_inventory
-  assign preorder_label             = settings.preorder_button_text | default: 'Pre-order'
-  assign product_short_description  = settings.product_short_description
+  assign text_alignment = settings.productcards_text_alignment
+  assign sale_label = settings.show_sale_label
+  assign sale_label_price = settings.sale_label_price
+  assign show_stock = settings.show_stock_label
+  assign stock_qty = settings.stock_label_qty
+  assign show_price = settings.show_price_varies
+  assign show_stock_available = settings.show_product_stock
+  assign show_stock_qty = settings.show_product_stock_qty
+  assign show_stock_always = settings.show_product_stock_always
+  assign show_rating = settings.show_product_rating
+  assign show_vendor = settings.show_vendor
+  assign show_preorder = settings.show_preorder
+  assign show_preorder_inventory = settings.show_preorder_inventory
+  assign preorder_label = settings.preorder_button_text | default: 'Pre-order'
+  assign product_short_description = settings.product_short_description
   assign product_short_description_text = settings.product_short_description_text
-  assign product_titles_caps        = settings.product_titles_caps
-  assign enable_color_swatches      = settings.enable_color_swatches
-  assign cart_drawer                = settings.enable_cart_drawer
-  assign add_to_cart_button         = settings.show_addtocart
-  assign input_field                = settings.show_input_field
-  assign product_card_shadow        = settings.product_card_shadow
+  assign product_titles_caps = settings.product_titles_caps
+  assign enable_color_swatches = settings.enable_color_swatches
+  assign cart_drawer = settings.enable_cart_drawer
+  assign add_to_cart_button = settings.show_addtocart
+  assign input_field = settings.show_input_field
+  assign product_card_shadow = settings.product_card_shadow
 
   if product_card_shadow
-    assign image_shadow  = settings.product_image_shadow_color
-    assign shadow_value  = settings.product_image_shadow_value
-    assign shadow_blur   = settings.product_image_shadow_blur
+    assign image_shadow = settings.product_image_shadow_color
+    assign shadow_value = settings.product_image_shadow_value
+    assign shadow_blur = settings.product_image_shadow_blur
   endif
 
   ### ⬅️ متغيرات ديناميكية من المنتج
   if product
-    assign product_id      = product.id
-    assign product_title   = product.title
-    assign product_vendor  = product.vendor
-    assign product_url     = product.url | within: collection
-    assign product_price   = product.price
+    assign product_id = product.id
+    assign product_title = product.title
+    assign product_vendor = product.vendor
+    assign product_url = product.url | within: collection
+    assign product_price = product.price
     assign product_compare = product.compare_at_price
-    assign product_image   = product.featured_image.src | image_url: width: 400, height: 400
-    assign stock           = product.inventory_quantity | default: product.variants.first.inventory_quantity
-    assign first_variant   = product.variants.first
-    assign variant_id      = product.variants.first.id
-    assign variant_policy  = product.variants.first.inventory_policy
-    assign variant_qty     = product.variants.first.inventory_quantity
+    assign product_image = product.featured_image.src | image_url: width: 400, height: 400
+    assign stock = product.inventory_quantity | default: product.variants.first.inventory_quantity
+    assign first_variant = product.variants.first
+    assign variant_id = product.variants.first.id
+    assign variant_policy = product.variants.first.inventory_policy
+    assign variant_qty = product.variants.first.inventory_quantity
   endif
 
   ### ⬅️ متغيرات خاصة بالـ Slider / Swiper
-  assign my_swiper_class   = 'mySwiper-' | append: product.id
+  assign my_swiper_class = 'mySwiper-' | append: product.id
   assign next_button_class = 'swiper-next-' | append: product.id
   assign prev_button_class = 'swiper-prev-' | append: product.id
 
@@ -61,20 +61,20 @@
 
   ### ⬅️ متغيرات التخفيض (إذا كان فيه عرض)
   if sale_label and product.compare_at_price > product.price
-    assign discount_amount     = product.compare_at_price | minus: product.price
+    assign discount_amount = product.compare_at_price | minus: product.price
     assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price
   endif
 
   ### ⬅️ متغيرات المخزون (للعرض المشروط)
   if show_stock and stock < stock_qty
     assign stock_label = 'productCard.laststock' | t
-    assign stock_bg_color    = 'bg-[#c42764]'
+    assign stock_bg_color = 'bg-[#c42764]'
   elsif show_stock_always
     assign stock_label = stock
-    assign stock_bg_color    = 'bg-[#1C2228]'
+    assign stock_bg_color = 'bg-[#1C2228]'
   elsif show_stock_available and stock > show_stock_qty
     assign stock_label = stock
-    assign stock_bg_color    = 'bg-[#1C2228]'
+    assign stock_bg_color = 'bg-[#1C2228]'
   else
     assign stock_label = ''
     assign show_container = 'hidden'
@@ -96,29 +96,34 @@
   endif
 %}
 
-<div 
-  class="bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}
-  {% if layout == 'horizontal' %} flex items-start gap-4 {% if image_position == 'right' %} flex-row-reverse {% endif %}{% else %} lg:w-60 {% endif %}">
-  
+<div
+  class="
+    bg-white p-4 overflow-hidden {{ settings.card_hover_effect }}
+    {% if layout == 'horizontal' %} flex items-start gap-4 {% if image_position == 'right' %} flex-row-reverse {% endif %}{% else %} flex flex-col lg:w-60 {% endif %}
+  "
+>
   {% if product %}
     {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
       <input type="hidden" name="id" value="{{ variant_id }}">
 
       {%- comment -%} ✅ الصورة {%- endcomment -%}
       {% if product.featured_image %}
-        <a 
+        <a
           href="{{ product_url }}"
-          class="block relative overflow-hidden 
-          {% if layout == 'horizontal' %} w-1/3 {% else %} aspect-square md:aspect-[200/200] {% endif %}
-          {{ image_style }}"
+          class="
+            block relative overflow-hidden
+            {% if layout == 'horizontal' %} w-1/3 {% else %} w-full aspect-square md:aspect-[200/200] {% endif %}
+            {{ image_style }}
+          "
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
         >
-          {% render 'image',
+          {%
+            render 'image',
             image:  product_image ,
             alt: product.featured_image.alt | escape,
             class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
             loading: 'lazy'
-           %} 
+          %}
         </a>
       {% else %}
         <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
@@ -127,13 +132,16 @@
       {% endif %}
 
       {%- comment -%} ✅ المحتوى {%- endcomment -%}
-      <div class="{% if layout == 'horizontal' %} w-2/3 {% endif %} {{ text_alignment }} mt-4">
-        {%- comment -%} 🔽 نفس محتوى الكارد الأصلي تبعك (vendor, title, price, rating, add-to-cart ...) {%- endcomment -%}
+      <div class="{% if layout == 'horizontal' %} w-2/3 {% else %} w-full {% endif %} {{ text_alignment }} {% if layout == 'vertical' %} mt-4 {% endif %}">
+        {# 🔽 نفس محتوى الكارد (vendor, title, price, description...) #}
 
         {% if show_vendor %}
           <span class="text-xs text-gray-500 block truncate">
             {% if product.vendor contains 'color:' %}
-              <span class="inline-block w-4 h-4" style="background-color: {{ product.vendor | remove: 'color:' }};"></span>
+              <span
+                class="inline-block w-4 h-4"
+                style="background-color: {{ product.vendor | remove: 'color:' }};"
+              ></span>
             {% else %}
               {{ product.vendor }}
             {% endif %}
@@ -150,7 +158,7 @@
         </a>
 
         {% if product_short_description == 'product_description' %}
-          <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+          <div class="mt-2 text-xs text-gray-500 truncate">
             {% if product.description != blank %}
               {{ product.description }}
             {% else %}
@@ -158,28 +166,8 @@
             {% endif %}
           </div>
         {% elsif product_short_description == 'custom' %}
-          <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+          <div class="mt-2 text-xs text-gray-500 truncate">
             {{ product_short_description_text }}
-          </div>
-        {% endif %}
-
-        {% if show_rating %}
-          <div class="mt-2 flex w-full justify-center items-center text-xs">
-            {% assign full_stars = product.metafields.reviews.rating | floor %}
-            {% assign half_star = product.metafields.reviews.rating | modulo: 1 %}
-            {% assign empty_stars = 5 | minus: full_stars | minus: half_star | floor %}
-
-            {% for i in (1..full_stars) %}
-              <span class="text-yellow-500">★</span>
-            {% endfor %}
-
-            {% if half_star > 0 %}
-              <span class="text-yellow-500">☆</span>
-            {% endif %}
-
-            {% for i in (1..empty_stars) %}
-              <span class="text-gray-300">☆</span>
-            {% endfor %}
           </div>
         {% endif %}
 
@@ -203,7 +191,11 @@
               <span x-show="open">Hide Colors</span>
             </button>
 
-            <div x-show="open" x-transition class="mt-2 absolute flex h-fit w-full z-40 justify-center text-sm bg-white">
+            <div
+              x-show="open"
+              x-transition
+              class="mt-2 absolute flex h-fit w-full z-40 justify-center text-sm bg-white"
+            >
               {% render 'product-variant', product: product, display_type: 'color' %}
             </div>
           </div>
@@ -255,7 +247,7 @@
           </div>
         {% endif %}
       </div>
-     {% endform %}
+    {% endform %}
   {% else %}
     <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
       <span class="text-gray-500">Product not available</span>
