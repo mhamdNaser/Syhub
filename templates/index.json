@@ -450,7 +450,7 @@
       ],
       "name": "Featured Product Group",
       "settings": {
-        "main_product": "test-24",
+        "main_product": "gift-card",
         "sub_info_type": "description"
       }
     },
