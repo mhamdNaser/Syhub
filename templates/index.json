@@ -225,16 +225,54 @@
         "padding_horizontal": 0
       }
     },
-    "section_banner_awPiYw": {
-      "type": "section-banner",
-      "name": "Image Banner",
+    "section_grid_pnjykT": {
+      "type": "section-grid",
+      "blocks": {
+        "grid_image_kGcgVf": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/arabian_oud_-_Edited.avif",
+            "grid_title": "grid_2_1",
+            "grid_text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "grid_image_NrdyP7": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/womens_perfumes_-_Edited.webp",
+            "grid_title": "grid_2_2",
+            "grid_text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "grid_image_4wCPPj": {
+          "type": "grid_image",
+          "settings": {
+            "grid_image": "shopify://shop_images/1_39ee56b2-eac0-44f2-a181-fbcec47d481d.png",
+            "grid_title": "grid_2_3",
+            "grid_text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_image_kGcgVf",
+        "grid_image_NrdyP7",
+        "grid_image_4wCPPj"
+      ],
+      "name": "Section Grid",
       "settings": {
-        "image": "shopify://shop_images/mother_s_day_Offers_1920_x_480_px_Website.png",
-        "heading": "Welcome to Our Store",
-        "subheading": "Discover our collection of amazing products.",
-        "button_link": "",
-        "button_text": "Shop Now",
-        "color_scheme": "scheme-6"
+        "padding_vertical": 0,
+        "padding_horizontal": 0,
+        "link_bg_color": "#000000",
+        "link_text_color": "#ffffff",
+        "button_padding_vertical": 5,
+        "button_padding_horizontal": 5,
+        "button_rounded": "rounded-sm"
       }
     },
     "section_featured_collection_YLh4zD": {
@@ -245,10 +283,10 @@
           "settings": {
             "section_featured_collection": "automated-collection",
             "swiper_view": true,
-            "item_view_in_section": 9,
-            "item_view_in_row": 4,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": true,
+            "show_pagination_row": false,
             "collection_url": true
           }
         },
@@ -267,8 +305,568 @@
       ],
       "name": "Featured Collection",
       "settings": {
-        "padding_vertical": 20,
-        "padding_horizontal": 20
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "featured_product_group_EYFJCQ": {
+      "type": "section-product-group",
+      "blocks": {
+        "product_block_KCKGWm": {
+          "type": "product_block",
+          "settings": {
+            "product": "selling-plans-ski-wax"
+          }
+        },
+        "product_block_PebEMf": {
+          "type": "product_block",
+          "settings": {
+            "product": "the-3p-fulfilled-snowboard"
+          }
+        },
+        "product_block_BH6Yhr": {
+          "type": "product_block",
+          "settings": {
+            "product": "the-collection-snowboard-hydrogen"
+          }
+        }
+      },
+      "block_order": [
+        "product_block_KCKGWm",
+        "product_block_PebEMf",
+        "product_block_BH6Yhr"
+      ],
+      "name": "Featured Product Group",
+      "settings": {
+        "main_product": "test-24",
+        "sub_info_type": "description"
+      }
+    },
+    "section_featured_collection_4jAaLb": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_4wmNcU": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_4wmNcU"
+      ],
+      "name": "Featured Collection",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "section_featured_collection_m4BKUQ": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_Mn8zDm": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_Mn8zDm"
+      ],
+      "name": "Featured Collection",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "section_featured_collection_yLYGDQ": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_f3AanM": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_f3AanM"
+      ],
+      "name": "Featured Collection",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "section_product_group_KkRBWg": {
+      "type": "section-product-group",
+      "blocks": {
+        "product_block_nnC3zt": {
+          "type": "product_block",
+          "settings": {
+            "product": "selling-plans-ski-wax"
+          }
+        },
+        "product_block_Aty9PN": {
+          "type": "product_block",
+          "settings": {
+            "product": "the-3p-fulfilled-snowboard"
+          }
+        },
+        "product_block_83zYHf": {
+          "type": "product_block",
+          "settings": {
+            "product": "the-collection-snowboard-hydrogen"
+          }
+        }
+      },
+      "block_order": [
+        "product_block_nnC3zt",
+        "product_block_Aty9PN",
+        "product_block_83zYHf"
+      ],
+      "name": "Featured Product Group",
+      "settings": {
+        "main_product": "test-24",
+        "sub_info_type": "description"
+      }
+    },
+    "section_featured_collection_BA3XDJ": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_phrEat": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_phrEat"
+      ],
+      "name": "Featured Collection",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "main": {
+      "type": "main",
+      "blocks": {
+        "group_Ur97Qd": {
+          "type": "group",
+          "name": "t:general.row",
+          "settings": {
+            "layout_direction": "group--horizontal",
+            "alignment_horizontal": "mx-auto",
+            "alignment": "flex-start",
+            "paddingx": 3,
+            "paddingy": 18,
+            "width_container": "max-w-7xl"
+          },
+          "blocks": {
+            "group_BNpXkR": {
+              "type": "group",
+              "name": "t:general.column",
+              "settings": {
+                "layout_direction": "group--vertical",
+                "alignment_horizontal": "mx-auto",
+                "alignment": "center",
+                "paddingx": 18,
+                "paddingy": 0,
+                "width_container": "max-w-7xl"
+              },
+              "blocks": {
+                "image_block_qNatcb": {
+                  "type": "image-block",
+                  "name": "Custom Image Block",
+                  "settings": {
+                    "image": "shopify://shop_images/download_4.webp",
+                    "alt_text": "Image description",
+                    "image_width": 2400,
+                    "image_height": 350,
+                    "object_fit": "cover",
+                    "image_alignment": "center",
+                    "max_width": 2000,
+                    "border_radius": 88,
+                    "border_width": 4,
+                    "border_style": "dotted",
+                    "border_color": "#c48282"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_block_qNatcb"
+              ]
+            },
+            "group_dHjFgX": {
+              "type": "group",
+              "name": "t:general.column",
+              "settings": {
+                "layout_direction": "group--vertical",
+                "alignment_horizontal": "mx-auto",
+                "alignment": "flex-start",
+                "paddingx": 0,
+                "paddingy": 0,
+                "width_container": "max-w-7xl"
+              },
+              "blocks": {
+                "plain_text_block_VjRRJC": {
+                  "type": "plain-text-block",
+                  "name": "Plain Text Block",
+                  "settings": {
+                    "text": "Plain text block",
+                    "font_size": 48,
+                    "font_weight": "bold",
+                    "font_style": "normal",
+                    "text_alignment": "left",
+                    "color_scheme": "scheme-1"
+                  },
+                  "blocks": {}
+                },
+                "rich_text_block_NmJgUm": {
+                  "type": "rich-text-block",
+                  "name": "Rich Text Block",
+                  "settings": {
+                    "rich_text": "<p>The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability,</p>",
+                    "color_scheme": "",
+                    "text_alignment": "left",
+                    "text_size": "large"
+                  },
+                  "blocks": {}
+                },
+                "button_block_A4HPhD": {
+                  "type": "button-block",
+                  "name": "Custom Button Block",
+                  "settings": {
+                    "button_text": "Shop Now",
+                    "button_link": "",
+                    "product": "test-24",
+                    "collection": "",
+                    "button_bg": "#001128",
+                    "button_text_color": "#ffffff",
+                    "button_font_size": 16,
+                    "button_alignment": "center",
+                    "padding_x": 6,
+                    "padding_y": 2,
+                    "margin_y": 2,
+                    "border_radius": "xl"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "plain_text_block_VjRRJC",
+                "rich_text_block_NmJgUm",
+                "button_block_A4HPhD"
+              ]
+            }
+          },
+          "block_order": [
+            "group_BNpXkR",
+            "group_dHjFgX"
+          ]
+        }
+      },
+      "block_order": [
+        "group_Ur97Qd"
+      ],
+      "settings": {
+        "padding_y": 10,
+        "direction_cotainer": "flex-col"
+      }
+    },
+    "section_collection_gallery_fdgbbB": {
+      "type": "section-collection-gallery",
+      "blocks": {
+        "collection_block_FUGPQR": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "automated-collection",
+            "collection_image": "shopify://shop_images/BIGOTTI-2.png"
+          }
+        },
+        "collection_block_GrbFrd": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "hydrogen",
+            "collection_image": "shopify://shop_images/BIGOTTI-4.png"
+          }
+        },
+        "collection_block_zCNnjm": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "frontpage",
+            "collection_image": "shopify://shop_images/BIGOTTI-5.png"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_FUGPQR",
+        "collection_block_GrbFrd",
+        "collection_block_zCNnjm"
+      ],
+      "name": "Collection Gallery",
+      "settings": {
+        "title_section": "Shop By Collection",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
+      }
+    },
+    "section_featured_collection_wnhmck": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_77f9TC": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_77f9TC"
+      ],
+      "name": "Featured Collection",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "section_featured_collection_TqbbiK": {
+      "type": "section-featured-collection",
+      "blocks": {
+        "collection_bqAnbp": {
+          "type": "collection",
+          "settings": {
+            "section_featured_collection": "hydrogen",
+            "swiper_view": true,
+            "item_view_in_section": 12,
+            "item_view_in_row": 6,
+            "item_view_in_row_mobile": 2,
+            "show_pagination_row": false,
+            "collection_url": true
+          }
+        }
+      },
+      "block_order": [
+        "collection_bqAnbp"
+      ],
+      "name": "Featured Collection",
+      "settings": {
+        "padding_vertical": 0,
+        "padding_horizontal": 0
+      }
+    },
+    "main_tRVgCt": {
+      "type": "main",
+      "blocks": {
+        "group_nxtJdn": {
+          "type": "group",
+          "name": "t:general.row",
+          "settings": {
+            "layout_direction": "group--horizontal",
+            "alignment_horizontal": "mx-auto",
+            "alignment": "flex-start",
+            "paddingx": 3,
+            "paddingy": 18,
+            "width_container": "max-w-7xl"
+          },
+          "blocks": {
+            "group_AHgCBz": {
+              "type": "group",
+              "name": "t:general.column",
+              "settings": {
+                "layout_direction": "group--vertical",
+                "alignment_horizontal": "mx-auto",
+                "alignment": "center",
+                "paddingx": 18,
+                "paddingy": 0,
+                "width_container": "max-w-7xl"
+              },
+              "blocks": {
+                "image_block_EXbTee": {
+                  "type": "image-block",
+                  "name": "Custom Image Block",
+                  "settings": {
+                    "image": "shopify://shop_images/download_4.webp",
+                    "alt_text": "Image description",
+                    "image_width": 2400,
+                    "image_height": 350,
+                    "object_fit": "cover",
+                    "image_alignment": "center",
+                    "max_width": 2000,
+                    "border_radius": 88,
+                    "border_width": 4,
+                    "border_style": "dotted",
+                    "border_color": "#c48282"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_block_EXbTee"
+              ]
+            },
+            "group_VGDnDw": {
+              "type": "group",
+              "name": "t:general.column",
+              "settings": {
+                "layout_direction": "group--vertical",
+                "alignment_horizontal": "mx-auto",
+                "alignment": "flex-start",
+                "paddingx": 0,
+                "paddingy": 0,
+                "width_container": "max-w-7xl"
+              },
+              "blocks": {
+                "plain_text_block_gePwPQ": {
+                  "type": "plain-text-block",
+                  "name": "Plain Text Block",
+                  "settings": {
+                    "text": "Plain text block",
+                    "font_size": 48,
+                    "font_weight": "bold",
+                    "font_style": "normal",
+                    "text_alignment": "left",
+                    "color_scheme": "scheme-1"
+                  },
+                  "blocks": {}
+                },
+                "rich_text_block_BbVLYf": {
+                  "type": "rich-text-block",
+                  "name": "Rich Text Block",
+                  "settings": {
+                    "rich_text": "<p>The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability,</p>",
+                    "color_scheme": "",
+                    "text_alignment": "left",
+                    "text_size": "large"
+                  },
+                  "blocks": {}
+                },
+                "button_block_aXddpC": {
+                  "type": "button-block",
+                  "name": "Custom Button Block",
+                  "settings": {
+                    "button_text": "Shop Now",
+                    "button_link": "",
+                    "product": "test-24",
+                    "collection": "",
+                    "button_bg": "#001128",
+                    "button_text_color": "#ffffff",
+                    "button_font_size": 16,
+                    "button_alignment": "center",
+                    "padding_x": 6,
+                    "padding_y": 2,
+                    "margin_y": 2,
+                    "border_radius": "xl"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "plain_text_block_gePwPQ",
+                "rich_text_block_BbVLYf",
+                "button_block_aXddpC"
+              ]
+            }
+          },
+          "block_order": [
+            "group_AHgCBz",
+            "group_VGDnDw"
+          ]
+        }
+      },
+      "block_order": [
+        "group_nxtJdn"
+      ],
+      "settings": {
+        "padding_y": 10,
+        "direction_cotainer": "flex-col"
+      }
+    },
+    "section_collection_gallery_NYAVq4": {
+      "type": "section-collection-gallery",
+      "blocks": {
+        "collection_block_YRbi6R": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "automated-collection",
+            "collection_image": "shopify://shop_images/BIGOTTI-2.png"
+          }
+        },
+        "collection_block_ieT8ax": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "hydrogen",
+            "collection_image": "shopify://shop_images/BIGOTTI-4.png"
+          }
+        },
+        "collection_block_W8Cgqp": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "frontpage",
+            "collection_image": "shopify://shop_images/BIGOTTI-5.png"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_YRbi6R",
+        "collection_block_ieT8ax",
+        "collection_block_W8Cgqp"
+      ],
+      "name": "Collection Gallery",
+      "settings": {
+        "title_section": "Shop By Collection",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
+      }
+    },
+    "section_banner_awPiYw": {
+      "type": "section-banner",
+      "name": "Image Banner",
+      "settings": {
+        "image": "shopify://shop_images/mother_s_day_Offers_1920_x_480_px_Website.png",
+        "heading": "Welcome to Our Store",
+        "subheading": "Discover our collection of amazing products.",
+        "button_link": "",
+        "button_text": "Shop Now",
+        "color_scheme": "scheme-6"
       }
     },
     "main_DjJMWy": {
@@ -420,166 +1018,6 @@
       "name": "Recently Viewed",
       "settings": {}
     },
-    "main": {
-      "type": "main",
-      "blocks": {
-        "group_Ur97Qd": {
-          "type": "group",
-          "name": "t:general.row",
-          "settings": {
-            "layout_direction": "group--horizontal",
-            "alignment_horizontal": "mx-auto",
-            "alignment": "flex-start",
-            "paddingx": 3,
-            "paddingy": 18,
-            "width_container": "max-w-7xl"
-          },
-          "blocks": {
-            "group_BNpXkR": {
-              "type": "group",
-              "name": "t:general.column",
-              "settings": {
-                "layout_direction": "group--vertical",
-                "alignment_horizontal": "mx-auto",
-                "alignment": "center",
-                "paddingx": 18,
-                "paddingy": 0,
-                "width_container": "max-w-7xl"
-              },
-              "blocks": {
-                "image_block_qNatcb": {
-                  "type": "image-block",
-                  "name": "Custom Image Block",
-                  "settings": {
-                    "image": "shopify://shop_images/download_4.webp",
-                    "alt_text": "Image description",
-                    "image_width": 2400,
-                    "image_height": 350,
-                    "object_fit": "cover",
-                    "image_alignment": "center",
-                    "max_width": 2000,
-                    "border_radius": 88,
-                    "border_width": 4,
-                    "border_style": "dotted",
-                    "border_color": "#c48282"
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "image_block_qNatcb"
-              ]
-            },
-            "group_dHjFgX": {
-              "type": "group",
-              "name": "t:general.column",
-              "settings": {
-                "layout_direction": "group--vertical",
-                "alignment_horizontal": "mx-auto",
-                "alignment": "flex-start",
-                "paddingx": 0,
-                "paddingy": 0,
-                "width_container": "max-w-7xl"
-              },
-              "blocks": {
-                "plain_text_block_VjRRJC": {
-                  "type": "plain-text-block",
-                  "name": "Plain Text Block",
-                  "settings": {
-                    "text": "Plain text block",
-                    "font_size": 48,
-                    "font_weight": "bold",
-                    "font_style": "normal",
-                    "text_alignment": "left",
-                    "color_scheme": "scheme-1"
-                  },
-                  "blocks": {}
-                },
-                "rich_text_block_NmJgUm": {
-                  "type": "rich-text-block",
-                  "name": "Rich Text Block",
-                  "settings": {
-                    "rich_text": "<p>The Skeleton theme is a minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability,</p>",
-                    "color_scheme": "",
-                    "text_alignment": "left",
-                    "text_size": "large"
-                  },
-                  "blocks": {}
-                },
-                "button_block_A4HPhD": {
-                  "type": "button-block",
-                  "name": "Custom Button Block",
-                  "settings": {
-                    "button_text": "Shop Now",
-                    "button_link": "",
-                    "product": "test-24",
-                    "collection": "",
-                    "button_bg": "#001128",
-                    "button_text_color": "#ffffff",
-                    "button_font_size": 16,
-                    "button_alignment": "center",
-                    "padding_x": 6,
-                    "padding_y": 2,
-                    "margin_y": 2,
-                    "border_radius": "xl"
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "plain_text_block_VjRRJC",
-                "rich_text_block_NmJgUm",
-                "button_block_A4HPhD"
-              ]
-            }
-          },
-          "block_order": [
-            "group_BNpXkR",
-            "group_dHjFgX"
-          ]
-        }
-      },
-      "block_order": [
-        "group_Ur97Qd"
-      ],
-      "settings": {
-        "padding_y": 10,
-        "direction_cotainer": "flex-col"
-      }
-    },
-    "featured_product_group_EYFJCQ": {
-      "type": "section-product-group",
-      "blocks": {
-        "product_block_KCKGWm": {
-          "type": "product_block",
-          "settings": {
-            "product": "selling-plans-ski-wax"
-          }
-        },
-        "product_block_PebEMf": {
-          "type": "product_block",
-          "settings": {
-            "product": "the-3p-fulfilled-snowboard"
-          }
-        },
-        "product_block_BH6Yhr": {
-          "type": "product_block",
-          "settings": {
-            "product": "the-collection-snowboard-hydrogen"
-          }
-        }
-      },
-      "block_order": [
-        "product_block_KCKGWm",
-        "product_block_PebEMf",
-        "product_block_BH6Yhr"
-      ],
-      "name": "Featured Product Group",
-      "settings": {
-        "main_product": "test-24",
-        "sub_info_type": "description"
-      }
-    },
     "section_banner_97WCwN": {
       "type": "section-banner",
       "name": "Image Banner",
@@ -591,31 +1029,6 @@
         "button_text": "Shop Now",
         "color_scheme": "scheme-6"
       }
-    },
-    "section_featured_collection_4jAaLb": {
-      "type": "section-featured-collection",
-      "blocks": {
-        "collection_4wmNcU": {
-          "type": "collection",
-          "settings": {
-            "section_featured_collection": "hydrogen",
-            "swiper_view": true,
-            "item_view_in_section": 12,
-            "item_view_in_row": 4,
-            "item_view_in_row_mobile": 1,
-            "show_pagination_row": false,
-            "collection_url": true
-          }
-        }
-      },
-      "block_order": [
-        "collection_4wmNcU"
-      ],
-      "name": "Featured Collection",
-      "settings": {
-        "padding_vertical": 20,
-        "padding_horizontal": 20
-      }
     }
   },
   "order": [
@@ -624,14 +1037,24 @@
     "section_collection_gallery_j46pdJ",
     "vendor_gallery_agkEPT",
     "section_featured_collection_fAkYP3",
-    "section_banner_awPiYw",
+    "section_grid_pnjykT",
     "section_featured_collection_YLh4zD",
+    "featured_product_group_EYFJCQ",
+    "section_featured_collection_4jAaLb",
+    "section_featured_collection_m4BKUQ",
+    "section_featured_collection_yLYGDQ",
+    "section_product_group_KkRBWg",
+    "section_featured_collection_BA3XDJ",
+    "main",
+    "section_collection_gallery_fdgbbB",
+    "section_featured_collection_wnhmck",
+    "main_tRVgCt",
+    "section_collection_gallery_NYAVq4",
+    "section_featured_collection_TqbbiK",
+    "section_banner_awPiYw",
     "main_DjJMWy",
     "section_image_text_aNPf3Q",
     "recently_viewed_7JhLf8",
-    "main",
-    "featured_product_group_EYFJCQ",
-    "section_banner_97WCwN",
-    "section_featured_collection_4jAaLb"
+    "section_banner_97WCwN"
   ]
 }
