@@ -7,8 +7,9 @@
 
 {% assign number_of_product = section.settings.number_of_products_per_page %}
 {%- assign box_width = settings.body_width -%}
+{%- assign section_id = section.id -%}
 
-<div class="px-4 py-24 md:py-6 mx-auto {{ box_width }}">
+<section id="shopify-section-{{ section_id }}" class="px-4 py-24 md:py-6 mx-auto {{ box_width }}">
   {% render 'bread-crumb' %}
   <!-- Filter Toggle for Mobile -->
   <div class="flex justify-between items-center sticky top-20 z-40 mb-4 lg:hidden">
@@ -66,7 +67,7 @@
       {% endpaginate %}
     </section>
   </div>
-</div>
+</section>
 
 
 {% schema %}
