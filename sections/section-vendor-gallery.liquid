@@ -8,7 +8,7 @@
   assign slides_mobile = 2
 %}
 
-<section id="shopify-section-{{ section_id }}" class="vendor-gallery {{ section_width }} mx-auto py-8">
+<section id="shopify-section-{{ section_id }}" class="vendor-gallery {{ section_width }} mx-auto">
   {% if title_section != blank %}
     <h2 class="{{ title_class }}" style="color: {{ title_color }}">
       {{ title_section }}
@@ -33,7 +33,7 @@
           <div class="swiper-slide flex max-w-5/6 aspect-[120/120] md:aspect-[120/120]">
             <a
               href="/collections/vendors?q={{ vendor_name | url_encode }}"
-              class="block group rounded-xl bg-white shadow-sm hover:shadow-md transition transform hover:-translate-y-1"
+              class="block group transition transform hover:-translate-y-1"
               aria-label="{{ vendor_name | default: section_id }}"
             >
               <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
