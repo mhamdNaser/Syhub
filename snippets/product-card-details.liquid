@@ -18,15 +18,15 @@
 </a>
 
 {% if product_short_description == 'product_description' %}
-  <p class="mt-2 text-xs text-gray-500 truncate">
+  <p class="mt-2 text-xs text-gray-500 truncate w-full">
     {% if product.description != blank %}
       {{ product.description }}
     {% else %}
-      this product has not description
+      This product has no description
     {% endif %}
   </p>
 {% elsif product_short_description == 'custom' %}
-  <p class="mt-2 text-xs text-gray-500 truncate">
+  <p class="mt-2 text-xs text-gray-500 truncate w-full">
     {{ product_short_description_text }}
   </p>
 {% endif %}
