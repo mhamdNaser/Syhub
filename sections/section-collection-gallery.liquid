@@ -25,7 +25,7 @@
     data-slides-per-view-mobile="{{ slides_mobile }}"
     data-autoplay="false"
   >
-    <div class="swiper-wrapper items-center">
+    <div class="swiper-wrapper items-center py-0">
       {% for block in section.blocks %}
         {% liquid
           assign collection = block.settings.collection
@@ -36,7 +36,7 @@
           <div class="swiper-slide flex max-w-5/6 aspect-[120/120] md:aspect-[120/120]">
             <a
               href="{{ collection.url }}"
-              class="flex flex-col items-center py-3 group transform transition duration-300 hover:-translate-y-2"
+              class="flex flex-col items-center group transform transition duration-300 hover:-translate-y-2"
               aria-label="{{ collection_title }}"
             >
               <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
