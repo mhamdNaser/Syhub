@@ -94,7 +94,7 @@
               "
             >
               {% for product in collection.products %}
-                <div :data-layout="layoutType">
+                <div :data-layout="layoutType" class="w-full">
                   {%- render 'product-card', product: product -%}
                 </div>
               {% else %}
