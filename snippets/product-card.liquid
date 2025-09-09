@@ -80,120 +80,120 @@
   endif
 %}
 
-  {% if product %}
-    {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
-      <div
-        x-bind:class="
-          {
-            'grid-style': $el.parentElement.dataset.layout === 'grid',
-            'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
-          }
-        {{ settings.card_hover_effect }}
-        "
-      >
-        <input type="hidden" name="id" value="{{ variant_id }}">
-        {% if product.featured_image %}
-          <a
-            href="{{ product_url }}"
-            class="block relative overflow-hidden max-h-[200px] aspect-[200/200] {{ image_style }}"
-            style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
-          >
-            {%
-              render 'image',
-              image: product.featured_image.src,
-              alt: product.featured_image.alt | escape,
-              class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
-              loading: 'lazy'
-            %}
-
-            <div class="absolute bottom-0 w-full flex justify-between">
-              <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full {{ discount_bg_color }} text-white overflow-hidden">
-                <div
-                  class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
-                ></div>
-                <span class="relative z-10 text-xs font-bold text-nowrap">
-                  {{ discount_label }}
-                </span>
-              </div>
-              <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ stock_bg_color }} text-white overflow-hidden">
-                <div
-                  class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
-                ></div>
-                <span class="relative z-10 text-xs font-bold text-nowrap">
-                  {{ stock_label }}
-                </span>
-              </div>
-            </div>
-          </a>
-        {% else %}
-          <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
-            <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
-          </div>
-        {% endif %}
-
-        <div class="{{ text_alignment }} mt-4 shrink-0 h-full">
-          {% render 'product-card-details',
-            product: product,
-            show_vendor: show_vendor,
-            product_titles_caps: product_titles_caps,
-            product_short_description: product_short_description,
-            product_short_description_text: product_short_description_text,
-            show_rating: show_rating,
-            show_price: show_price,
-            enable_color_swatches: enable_color_swatches,
-            product_url: product_url
+{% if product %}
+  {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+    <div
+      class="{{ settings.card_hover_effect }}"
+      x-bind:class="
+        {
+          'grid-style': $el.parentElement.dataset.layout === 'grid',
+          'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
+        }
+      "
+    >
+      <input type="hidden" name="id" value="{{ variant_id }}">
+      {% if product.featured_image %}
+        <a
+          href="{{ product_url }}"
+          class="overflow-hidden max-h-[200px] aspect-[200/200] {{ image_style }}"
+          style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
+        >
+          {%
+            render 'image',
+            image: product.featured_image.src,
+            alt: product.featured_image.alt | escape,
+            class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
+            loading: 'lazy'
           %}
-        </div>
 
-        {% if add_to_cart_button %}
-          <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
-            {% if show_preorder and variant_policy == 'continue' %}
-              <button
-                aria-label="preorder"
-                class="w-full h-full py-2 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764]"
-                title="{% if show_preorder_inventory %}Available for pre-order: {{ variant_qty }} pieces{% endif %}"
+          <div class="absolute bottom-0 w-full flex justify-between">
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full {{ discount_bg_color }} text-white overflow-hidden">
+              <div
+                class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
+              ></div>
+              <span class="relative z-10 text-xs font-bold text-nowrap">
+                {{ discount_label }}
+              </span>
+            </div>
+            <div class="relative {{ show_container }} flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full {{ stock_bg_color }} text-white overflow-hidden">
+              <div
+                class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0"
+              ></div>
+              <span class="relative z-10 text-xs font-bold text-nowrap">
+                {{ stock_label }}
+              </span>
+            </div>
+          </div>
+        </a>
+      {% else %}
+        <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
+          <span class="text-gray-500">{{ 'productCard.no_image' | t }}</span>
+        </div>
+      {% endif %}
+
+      <div class="{{ text_alignment }}">
+        {% render 'product-card-details',
+          product: product,
+          show_vendor: show_vendor,
+          product_titles_caps: product_titles_caps,
+          product_short_description: product_short_description,
+          product_short_description_text: product_short_description_text,
+          show_rating: show_rating,
+          show_price: show_price,
+          enable_color_swatches: enable_color_swatches,
+          product_url: product_url
+        %}
+      </div>
+
+      {% if add_to_cart_button %}
+        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
+          {% if show_preorder and variant_policy == 'continue' %}
+            <button
+              aria-label="preorder"
+              class="w-full h-full py-2 bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764]"
+              title="{% if show_preorder_inventory %}Available for pre-order: {{ variant_qty }} pieces{% endif %}"
+            >
+              {{ preorder_label }}
+            </button>
+          {% else %}
+            {% if input_field %}
+              <input
+                type="number"
+                aria-label="quantity"
+                id="Quantity-{{ variant_id }}"
+                name="quantity"
+                value="1"
+                min="1"
+                class="w-1/3 h-full align-middle outline-none text-center justify-center items-center"
               >
-                {{ preorder_label }}
+            {% endif %}
+            {% if cart_drawer %}
+              <button
+                type="button"
+                name="add"
+                aria-label="add to cart"
+                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
+                @click="addToCart('{{ variant_id }}'); openCart = true"
+              >
+                {% render 'icons', icon: 'icon-cart' %}
               </button>
             {% else %}
-              {% if input_field %}
-                <input
-                  type="number"
-                  aria-label="quantity"
-                  id="Quantity-{{ variant_id }}"
-                  name="quantity"
-                  value="1"
-                  min="1"
-                  class="w-1/3 h-full align-middle outline-none text-center justify-center items-center"
-                >
-              {% endif %}
-              {% if cart_drawer %}
-                <button
-                  type="button"
-                  name="add"
-                  aria-label="add to cart"
-                  class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
-                  @click="addToCart('{{ variant_id }}'); openCart = true"
-                >
-                  {% render 'icons', icon: 'icon-cart' %}
-                </button>
-              {% else %}
-                <button
-                  type="submit"
-                  name="add"
-                  aria-label="add to cart"
-                  class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
-                >
-                  {% render 'icons', icon: 'icon-cart' %}
-                </button>
-              {% endif %}
+              <button
+                type="submit"
+                name="add"
+                aria-label="add to cart"
+                class="flex justify-center bg-[#c42764] hover:bg-[#f2bed2] text-white hover:text-[#c42764] h-full py-2 m-0 {% if input_field %}w-2/3{% else %}w-full{% endif %}"
+              >
+                {% render 'icons', icon: 'icon-cart' %}
+              </button>
             {% endif %}
-          </div>
-        {% endif %}
-      </div>
-    {% endform %}
-  {% else %}
-    <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
-      <span class="text-gray-500">Product not available</span>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
-  {% endif %}
+  {% endform %}
+{% else %}
+  <div class="w-full h-48 bg-gray-200 flex items-center justify-center mb-4">
+    <span class="text-gray-500">Product not available</span>
+  </div>
+{% endif %}
