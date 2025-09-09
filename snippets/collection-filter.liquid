@@ -4,63 +4,41 @@
   }
 </style>
 
-<div class="filters justify-between items-center grid grid-cols-2 gap-3 md:block md:space-y-4">
-  <!-- Filter Selected Tags (Active Filters) -->
-  {% if collection.current_tags.size > 0 or collection.current_filters.size > 0 %}
-    <div class="mb-4 flex flex-wrap gap-2">
-      {% for tag in collection.current_tags %}
-        <span class="px-3 py-1 rounded bg-gray-200 text-sm flex items-center gap-2">
-          {{ tag }}
-          <a
-            href="{{ collection.url | remove: '?constraint=' | append: collection.current_tags | split: tag | join: '' }}"
-            class="text-red-500 hover:underline"
-            >×</a
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>
+
+<div class="filters text-sm space-y-6">
+  <!-- Availability Filter -->
+  <div>
+    <h3 class="font-semibold mb-2">Filter</h3>
+    <ul class="space-y-2">
+      <li>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox"
+            onchange="
+              let searchParams = new URLSearchParams(window.location.search);
+              if(this.checked) {
+                searchParams.set('filter.v.availability', '1');
+              } else {
+                searchParams.delete('filter.v.availability');
+              }
+              if (!searchParams.has('sort_by')) {
+                searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+              }
+              window.location.href = window.location.pathname + '?' + searchParams.toString();
+            "
+            {% if current_tags contains 'In Stock' or request.params['filter.v.availability'] == '1' %}checked{% endif %}
           >
-        </span>
-      {% endfor %}
-      <a href="{{ collection.url }}" class="text-sm text-indigo-600 hover:underline ml-2">Remove all</a>
-    </div>
-  {% endif %}
-
-  <!-- Filter by Price Range -->
-  <div class="bg-gray-100 text-sm px-4 relative" x-data="{ open: false }">
-    <button onclick="togglePriceSection(this)" class="w-full flex py-1 justify-between items-center">
-      <span>Price</span>
-      <div>
-        <span class="icon-down block">{%- render 'icons', icon: 'icon-chevron-down' -%}</span>
-        <span class="icon-up hidden">{%- render 'icons', icon: 'icon-chevron-up' -%}</span>
-      </div>
-    </button>
-    <div
-      id="price-section"
-      x-data="priceFilter()"
-      class="absolute z-10 hidden bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-    >
-      <label class="block font-semibold">from</label>
-      <input
-        type="number"
-        x-model="minPrice"
-        placeholder="from"
-        class="w-full px-3 py-2 border rounded"
-        min="0"
-        @keyup.enter="applyFilter"
-      >
-
-      <label class="block font-semibold">to</label>
-      <input
-        type="number"
-        x-model="maxPrice"
-        placeholder="to"
-        class="w-full px-3 py-2 border rounded"
-        min="0"
-        @keyup.enter="applyFilter"
-      >
-    </div>
+          <span>In stock</span>
+        </label>
+      </li>
+    </ul>
   </div>
 
-  <!-- Filter by Color (Variants) -->
-
-  <!-- Brand  Filter -->
+  <!-- Brand Filter -->
   {% assign vendor_values = '' %}
   {% for product in collection.all_products %}
     {% unless vendor_values contains product.vendor %}
@@ -70,267 +48,43 @@
   {% assign vendor_array = vendor_values | split: ',' | uniq | compact %}
 
   {% if vendor_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
-      <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
-        Brand
-        <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-      >
+    <div x-data="{ showAll: false }">
+      <h3 class="font-semibold mb-2">Brand</h3>
+      <ul class="space-y-2">
         {% for value in vendor_array %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.p.vendor', '{{ value  }}');
-
-                if(!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
+          <li x-show="{{ forloop.index <= 5 }} || showAll">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox"
+                onchange="
+                  let searchParams = new URLSearchParams(window.location.search);
+                  if(this.checked) {
+                    searchParams.set('filter.p.vendor', '{{ value }}');
+                  } else {
+                    searchParams.delete('filter.p.vendor');
+                  }
+                  if (!searchParams.has('sort_by')) {
+                    searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
+                  }
+                  window.location.href = window.location.pathname + '?' + searchParams.toString();
+                "
+                {% if request.params['filter.p.vendor'] == value %}checked{% endif %}
+              >
+              <span>{{ value }}</span>
+              <span class="text-gray-400 text-xs">({{ collection.all_products | where: "vendor", value | size }})</span>
+            </label>
           </li>
         {% endfor %}
       </ul>
+      {% if vendor_array.size > 5 %}
+        <button @click="showAll = !showAll" class="text-pink-600 text-xs mt-2">
+          <span x-show="!showAll">Show more ▼</span>
+          <span x-show="showAll">Show less ▲</span>
+        </button>
+      {% endif %}
     </div>
   {% endif %}
-
-  {% comment %} Availability Filter {% endcomment %}
-  {% assign availability_values = '' %}
-  {% for product in collection.all_products %}
-    {% if product.available %}
-      {% assign val = 'In Stock' %}
-    {% else %}
-      {% assign val = 'Out of Stock' %}
-    {% endif %}
-    {% unless availability_values contains val %}
-      {% assign availability_values = availability_values | append: val | append: ',' %}
-    {% endunless %}
-  {% endfor %}
-  {% assign availability_array = availability_values | split: ',' | uniq | compact %}
-
-  {% if availability_array.size > 0 %}
-    {% assign availability_array = '1,0' | split: ',' %}
-
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
-      <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
-        Availability
-        <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-      >
-        {% for value in availability_array %}
-          {% if value == '1' %}
-            {% assign label = 'In Stock' %}
-          {% else %}
-            {% assign label = 'Out of Stock' %}
-          {% endif %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.v.availability', '{{ value }}');
-                if (!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ label }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-
-  {% comment %} Category Filter {% endcomment %}
-  {% assign category_values = '' %}
-  {% for product in collection.all_products %}
-    {% for tag in product.tags %}
-      {% unless category_values contains tag %}
-        {% assign category_values = category_values | append: tag | append: ',' %}
-      {% endunless %}
-    {% endfor %}
-  {% endfor %}
-  {% assign category_array = category_values | split: ',' | uniq | compact %}
-
-  {% if category_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
-      <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
-        Category
-        <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-      >
-        {% for value in category_array %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                let tagValue = '{{ value | capitalize }}';
-                searchParams.set('filter.p.tag', tagValue);
-                if (!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-
-  {% if type_array.size > 0 %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
-      <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
-        Product type
-        <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-      >
-        {% for value in type_array %}
-          <li>
-            <a
-              href="#"
-              onclick="
-                event.preventDefault();
-                let searchParams = new URLSearchParams(window.location.search);
-                searchParams.set('filter.v.product_type', '{{ value | handle }}');
-                if (!searchParams.has('sort_by')) {
-                  searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                }
-                window.location.href = window.location.pathname + '?' + searchParams.toString();
-              "
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-
-  <!-- Filter by Options -->
-  {% for option in collection.all_types_options %}
-    <div x-data="{ open: false }" class="relative text-sm bg-gray-100 px-4">
-      <button @click="open = !open" class="w-full flex py-1 justify-between items-center">
-        {{ option.name }}
-        <svg
-          :class="{ 'rotate-180': open }"
-          class="w-4 h-4 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-        >
-          <path d="M19 9l-7 7-7-7"/>
-        </svg>
-      </button>
-      <ul
-        x-show="open"
-        @click.away="open = false"
-        class="absolute z-10 bg-white shadow rounded mt-1 w-full max-h-60 overflow-auto"
-      >
-        {% for value in option.values %}
-          <li>
-            <a
-              href="{{ collection.url }}?options[{{ option.name | handle }}]={{ value | handle }}"
-              class="block px-4 py-2 hover:bg-indigo-100"
-            >
-              {{ value }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endfor %}
 </div>
 
-<script>
-  function togglePriceSection(button) {
-    const iconDown = button.querySelector('.icon-down');
-    const iconUp = button.querySelector('.icon-up');
-    const priceSection = document.getElementById('price-section');
-
-    // تبديل الأيقونات
-    iconDown.classList.toggle('hidden');
-    iconUp.classList.toggle('hidden');
-
-    // تبديل ظهور الـ div بين hidden و flex
-    if (priceSection.classList.contains('hidden')) {
-      priceSection.classList.remove('hidden');
-      priceSection.classList.add('flex', 'flex-col');
-    } else {
-      priceSection.classList.remove('flex', 'flex-col');
-      priceSection.classList.add('hidden');
-    }
-  }
-</script>
 
 <script>
   function priceFilter() {
