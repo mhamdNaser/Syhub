@@ -657,8 +657,17 @@
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
   }
+  .max-h-680 {
+    max-height: calc(var(--spacing) * 680);
+  }
   .max-h-\[480px\] {
     max-height: 480px;
+  }
+  .max-h-\[680\] {
+    max-height: 680;
+  }
+  .max-h-\[680px\] {
+    max-height: 680px;
   }
   .min-h-80 {
     min-height: calc(var(--spacing) * 80);
