@@ -91,7 +91,6 @@
               :class="layoutType === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'flex flex-col w-full'"
             >
               {% for product in collection.products %}
-                <!-- نمرر قيمة layout للـ product-card -->
                 <div :data-layout="layoutType">
                   {%- render 'product-card', product: product -%}
                 </div>
