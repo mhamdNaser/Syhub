@@ -1,0 +1,37 @@
+{%- comment -%}
+  Facets (collection filters) snippet
+  يستخدم مع Search & Discovery app
+{%- endcomment -%}
+
+<form id="FacetFiltersForm" class="facets" method="get">
+  <div class="facets__wrapper space-y-4">
+    {%- for filter in results.filters -%}
+      <details class="facets__disclosure" {% if filter.active_values.size > 0 %} open {% endif %}>
+        <summary class="facets__summary cursor-pointer font-semibold">
+          {{ filter.label }}
+        </summary>
+        <div class="facets__options space-y-2 mt-2">
+          {%- for value in filter.values -%}
+            <label class="flex items-center gap-2">
+              <input
+                type="checkbox"
+                name="{{ value.param_name }}"
+                value="{{ value.value }}"
+                {% if value.active %} checked {% endif %}
+                {% if value.count == 0 and value.active == false %} disabled {% endif %}
+              >
+              <span>{{ value.label }} ({{ value.count }})</span>
+            </label>
+          {%- endfor -%}
+        </div>
+      </details>
+    {%- endfor -%}
+  </div>
+
+  <!-- زر تطبيق الفلتر للموبايل -->
+  <div class="facets__footer mt-4">
+    <button type="submit" class="px-4 py-2 bg-[#c42764] text-white rounded shadow">
+      تطبيق الفلاتر
+    </button>
+  </div>
+</form>
