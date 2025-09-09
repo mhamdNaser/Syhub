@@ -6,9 +6,15 @@
   assign title_class = section.settings.title_font_size | append: ' ' | append: section.settings.title_section_alignment
   assign slides_desktop = 8
   assign slides_mobile = 2
+  assign padding_vertical = section.settings.padding_vertical | default: 0
+  assign padding_horizontal = section.settings.padding_horizontal | default: 0
 %}
 
-<section id="shopify-section-{{ section_id }}" class="vendor-gallery {{ section_width }} mx-auto">
+<section
+  id="shopify-section-{{ section_id }}"
+  class="vendor-gallery {{ section_width }} mx-auto"
+  style="padding: {{ padding_vertical }}px {{ padding_horizontal }}px"
+>
   {% if title_section != blank %}
     <h2 class="{{ title_class }}" style="color: {{ title_color }} py-2">
       {{ title_section }}
@@ -118,6 +124,24 @@
       "id": "title_color",
       "label": "Title Color",
       "default": "#111827"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Section Padding vertical (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Section Padding horizontal (px)",
+      "default": 20,
+      "min": 0,
+      "max": 100,
+      "step": 5
     }
   ],
   "blocks": [
