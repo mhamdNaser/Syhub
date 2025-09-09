@@ -1,4 +1,13 @@
-<form id="FacetFiltersForm" class="facets" method="get">
+{%- assign colors_raw = settings.color_map | split: "," -%}
+{%- assign colors_hash = {} -%}
+{%- for item in colors_raw -%}
+  {%- assign pair = item | split: ":" -%}
+  {%- assign key = pair[0] | strip -%}
+  {%- assign val = pair[1] | strip -%}
+  {%- assign colors_hash = colors_hash | merge: {{ key }}: "{{ val }}" }-%}
+{%- endfor -%}
+
+<form id="FacetFiltersForm" class="facets" method="get"> 
   <div class="facets__wrapper space-y-4">
     {%- for filter in results.filters -%}
       <details class="facets__disclosure" {% if filter.active_values.size > 0 %} open {% endif %}>
@@ -19,7 +28,7 @@
               {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
                 <!-- دائرة اللون -->
                 <span class="inline-block w-4 h-4 rounded-full border border-gray-300"
-                      style="background-color: {{ value.label | downcase }};"></span>
+                      style="background-color: {{ colors_hash[value.value] }};"></span>
               {%- endif -%}
 
               <span>{{ value.label }} ({{ value.count }})</span>
@@ -30,7 +39,6 @@
     {%- endfor -%}
   </div>
 
-  <!-- زر تطبيق الفلتر للموبايل -->
   <div class="facets__footer mt-4">
     <button type="submit" class="px-4 py-2 bg-[#c42764] text-white rounded shadow">
       تطبيق الفلاتر
