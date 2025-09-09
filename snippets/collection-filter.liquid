@@ -60,17 +60,22 @@
                 type="checkbox"
                 onchange="
                   let searchParams = new URLSearchParams(window.location.search);
+                  let selectedVendors = searchParams.getAll('filter.p.vendor');
                   if(this.checked) {
-                    searchParams.set('filter.p.vendor', '{{ value }}');
+                    if(!selectedVendors.includes('{{ value }}')) {
+                      searchParams.append('filter.p.vendor', '{{ value }}');
+                    }
                   } else {
+                    selectedVendors = selectedVendors.filter(v => v !== '{{ value }}');
                     searchParams.delete('filter.p.vendor');
+                    selectedVendors.forEach(v => searchParams.append('filter.p.vendor', v));
                   }
                   if (!searchParams.has('sort_by')) {
                     searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
                   }
                   window.location.href = window.location.pathname + '?' + searchParams.toString();
                 "
-                {% if request.params['filter.p.vendor'] == value %}
+                {% if request.params['filter.p.vendor'] contains value %}
                   checked
                 {% endif %}
               >
