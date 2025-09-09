@@ -83,7 +83,6 @@
 {% if product %}
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
     <div
-      class="{{ settings.card_hover_effect }}"
       :class="
         {
           'grid-style': $el.parentElement.dataset.layout === 'grid',
