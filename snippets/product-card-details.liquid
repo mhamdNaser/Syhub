@@ -1,0 +1,78 @@
+{% if show_vendor %}
+  <span class="text-xs text-gray-500 block truncate">
+    {% if product.vendor contains 'color:' %}
+      <span class="inline-block w-4 h-4" style="background-color: {{ product.vendor | remove: 'color:' }};"></span>
+    {% else %}
+      {{ product.vendor }}
+    {% endif %}
+  </span>
+{% endif %}
+
+<a
+  href="{{ product_url }}"
+  title="{{ product_title | escape }}"
+  class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate"
+  style="text-transform: {% if product_titles_caps %} uppercase  !important{% else %} none {% endif %};"
+>
+  {{ product_title }}
+</a>
+
+{% if product_short_description == 'product_description' %}
+  <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+    {% if product.description != blank %}
+      {{ product.description }}
+    {% else %}
+      this product has not description
+    {% endif %}
+  </div>
+{% elsif product_short_description == 'custom' %}
+  <div class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+    {{ product_short_description_text }}
+  </div>
+{% endif %}
+
+{% if show_rating %}
+  <div class="mt-2 flex w-full justify-center items-center text-xs">
+    {% assign full_stars = product.metafields.reviews.rating | floor %}
+    {% assign half_star = product.metafields.reviews.rating | modulo: 1 %}
+    {% assign empty_stars = 5 | minus: full_stars | minus: half_star | floor %}
+
+    {% for i in (1..full_stars) %}
+      <span class="text-yellow-500">★</span>
+    {% endfor %}
+
+    {% if half_star > 0 %}
+      <span class="text-yellow-500">☆</span>
+    {% endif %}
+
+    {% for i in (1..empty_stars) %}
+      <span class="text-gray-300">☆</span>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<p class="text-xs font-bold text-gray-700 mt-2">
+  {% if show_price %}
+    {% if product.compare_at_price > product.price %}
+      <span class="text-xs text-red-700 line-through">{{ product_compare | money }}</span>
+    {% endif %}
+    <span class="text-xs text-gray-900">{{ product_price | money }}</span>
+  {% endif %}
+</p>
+
+{% if enable_color_swatches %}
+  <div x-data="{ open: false }" class="text-center relative mt-2">
+    <button
+      type="button"
+      @click="open = !open"
+      class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-sm"
+    >
+      <span x-show="!open">Show Colors</span>
+      <span x-show="open">Hide Colors</span>
+    </button>
+
+    <div x-show="open" x-transition class="mt-2 absolute flex h-fit w-full z-40 justify-center text-sm bg-white">
+      {% render 'product-variant', product: product, display_type: 'color' %}
+    </div>
+  </div>
+{% endif %}
