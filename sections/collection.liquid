@@ -94,9 +94,7 @@
               "
             >
               {% for product in collection.products %}
-                <div :data-layout="layoutType" class="w-full">
-                  {%- render 'product-card', product: product -%}
-                </div>
+                {%- render 'product-card', product: product -%}
               {% else %}
                 <p class="text-center text-gray-500 col-span-full py-10">لا توجد منتجات مطابقة.</p>
               {% endfor %}
