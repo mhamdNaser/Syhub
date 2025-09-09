@@ -36,8 +36,6 @@
     assign variant_id = product.variants.first.id
     assign variant_policy = product.variants.first.inventory_policy
     assign variant_qty = product.variants.first.inventory_quantity
-  endif
-
 
   ### ⬅️ استايل الصور
   if product.featured_image and settings.image_hover_style != 'none'
