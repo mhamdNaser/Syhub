@@ -84,10 +84,9 @@
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
     <div
       :class="
-        {
-          'grid-style': $el.parentElement.dataset.layout === 'grid',
-          'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
-        }
+        layoutType === 'grid'
+        ? 'grid-style'
+        : 'horizontal-style'
       "
     >
       <input type="hidden" name="id" value="{{ variant_id }}">
