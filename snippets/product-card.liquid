@@ -95,7 +95,7 @@
       {% if product.featured_image %}
         <a
           href="{{ product_url }}"
-          class="overflow-hidden relative max-h-[200px] aspect-[200/200] {{ image_style }}"
+          class="block relative overflow-hidden max-h-[200px] aspect-[200/200] {{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
         >
           {%
@@ -131,7 +131,7 @@
         </div>
       {% endif %}
 
-      <div class="{{ text_alignment }}">
+      <div class="{{ text_alignment }} mt-4 shrink-0 h-full">
         {% render 'product-card-details',
           product: product,
           show_vendor: show_vendor,
