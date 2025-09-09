@@ -995,6 +995,35 @@
         "label": "t:settings_schema.random_product_popup.settings.popup_random_product_content.label"
       }
     ]
+  },
+  {
+    "name": "Facet Filters Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_color_filter",
+        "label": "إظهار فلتر الألوان",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_size_filter",
+        "label": "إظهار فلتر المقاسات",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor_filter",
+        "label": "إظهار فلتر البائع",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_price_filter",
+        "label": "إظهار فلتر السعر",
+        "default": false
+      }
+    ]
   }
   // end layout and animations
 ]
