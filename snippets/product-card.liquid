@@ -87,7 +87,7 @@
       x-bind:class="
         {
           'grid-style': $el.parentElement.dataset.layout === 'grid',
-          'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
+          'horizontal-style  flex flex-row gap-4 items-start': $el.parentElement.dataset.layout === 'horizontal'
         }
       "
     >
