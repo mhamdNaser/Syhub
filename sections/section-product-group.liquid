@@ -38,7 +38,7 @@
           assign product = all_products[block.settings.product]
         %}
         {% if product %}
-          <div class="flex items-center justify-between bg-white border-b border-neutral-500">
+          <div class="flex items-center justify-between bg-white {% unless forloop.last %}border-b border-neutral-500{% endunless %}">
             <!-- النص -->
             <div class="flex-1 pr-4">
               <p class="text-xs text-gray-500 font-semibold uppercase">
