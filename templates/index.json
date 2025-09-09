@@ -151,6 +151,37 @@
         "title_color": "#111827"
       }
     },
+    "vendor_gallery_agkEPT": {
+      "type": "section-vendor-gallery",
+      "blocks": {
+        "vendor_block_VEBGPc": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "Quickstart (a2f667fa)",
+            "vendor_image": "shopify://shop_images/BIGOTTI-7.png"
+          }
+        },
+        "vendor_block_9N9HxP": {
+          "type": "vendor_block",
+          "settings": {
+            "vendor_name": "Hydrogen Vendor",
+            "vendor_image": "shopify://shop_images/BIGOTTI-5.png"
+          }
+        }
+      },
+      "block_order": [
+        "vendor_block_VEBGPc",
+        "vendor_block_9N9HxP"
+      ],
+      "name": "Vendor Gallery",
+      "settings": {
+        "title_section": "Shop By Brands",
+        "title_section_alignment": "text-left",
+        "section_width": "w-full",
+        "title_font_size": "text-2xl",
+        "title_color": "#111827"
+      }
+    },
     "section_featured_collection_fAkYP3": {
       "type": "section-featured-collection",
       "blocks": {
@@ -192,37 +223,6 @@
       "settings": {
         "padding_vertical": 0,
         "padding_horizontal": 0
-      }
-    },
-    "vendor_gallery_agkEPT": {
-      "type": "section-vendor-gallery",
-      "blocks": {
-        "vendor_block_VEBGPc": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "Quickstart (a2f667fa)",
-            "vendor_image": "shopify://shop_images/BIGOTTI-7.png"
-          }
-        },
-        "vendor_block_9N9HxP": {
-          "type": "vendor_block",
-          "settings": {
-            "vendor_name": "Hydrogen Vendor",
-            "vendor_image": "shopify://shop_images/BIGOTTI-5.png"
-          }
-        }
-      },
-      "block_order": [
-        "vendor_block_VEBGPc",
-        "vendor_block_9N9HxP"
-      ],
-      "name": "Vendor Gallery",
-      "settings": {
-        "title_section": "Shop By Brands",
-        "title_section_alignment": "text-left",
-        "section_width": "w-full",
-        "title_font_size": "text-2xl",
-        "title_color": "#111827"
       }
     },
     "section_banner_awPiYw": {
@@ -622,8 +622,8 @@
     "section_slider_tFtkUk",
     "section_grid_x4mjAW",
     "section_collection_gallery_j46pdJ",
-    "section_featured_collection_fAkYP3",
     "vendor_gallery_agkEPT",
+    "section_featured_collection_fAkYP3",
     "section_banner_awPiYw",
     "section_featured_collection_YLh4zD",
     "main_DjJMWy",
