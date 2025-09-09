@@ -30,7 +30,7 @@
           assign vendor_image = block.settings.vendor_image
         %}
         {% if vendor_name and vendor_image %}
-          <div class="swiper-slide flex max-w-5/6 aspect-[120/120] md:aspect-[120/120]">
+          <div class="swiper-slide flex flex-col max-w-5/6 aspect-[120/120] md:aspect-[120/120]">
             <a
               href="/collections/vendors?q={{ vendor_name | url_encode }}"
               class="block group transition transform hover:-translate-y-1"
