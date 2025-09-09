@@ -57,7 +57,7 @@
   </div>
 </form> {% endcomment %}
 
-{%- assign colors_raw = section.settings.color_map | split: "," -%}
+{%- assign colors_raw = settings.color_map | split: "," -%}
 {%- assign colors_list = "" -%}
 {%- for item in colors_raw -%}
   {%- assign pair = item | split: ":" -%}
