@@ -53,7 +53,7 @@
 
       <div class="mb-4" x-data="{ layoutType: 'grid' }">
         <form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
-          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700"> {{ productNumber }} products </label>
+          <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700"> {{ collection.products_count }} products </label>
 
           <div class="flex items-center space-x-2">
             <!-- زر Grid -->
@@ -86,7 +86,7 @@
           <div id="collection-grid">
             <div
               class="grid gap-6"
-              :class="layoutType === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 w-full'"
+              :class="layoutType === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'flex flex-xol w-full'"
             >
               {% for product in collection.products %}
                 <!-- نمرر قيمة layout للـ product-card -->
