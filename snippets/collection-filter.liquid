@@ -11,7 +11,8 @@
     <ul class="space-y-2">
       <li>
         <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox"
+          <input
+            type="checkbox"
             onchange="
               let searchParams = new URLSearchParams(window.location.search);
               if(this.checked) {
@@ -24,7 +25,9 @@
               }
               window.location.href = window.location.pathname + '?' + searchParams.toString();
             "
-            {% if current_tags contains 'In Stock' or request.params['filter.v.availability'] == '1' %}checked{% endif %}
+            {% if current_tags contains 'In Stock' or request.params['filter.v.availability'] == '1' %}
+              checked
+            {% endif %}
           >
           <span>In stock</span>
         </label>
@@ -46,10 +49,15 @@
       <h3 class="font-semibold mb-2">Brand</h3>
       <ul class="space-y-2">
         {% for value in vendor_array %}
-          {% assign is_first_five = forloop.index <= 5 %}
+          {% if forloop.index <= 5 %}
+            {% assign is_first_five = true %}
+          {% else %}
+            {% assign is_first_five = false %}
+          {% endif %}
           <li x-show="{{ is_first_five | json }} || showAll" x-cloak>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox"
+              <input
+                type="checkbox"
                 onchange="
                   let searchParams = new URLSearchParams(window.location.search);
                   if(this.checked) {
@@ -62,10 +70,12 @@
                   }
                   window.location.href = window.location.pathname + '?' + searchParams.toString();
                 "
-                {% if request.params['filter.p.vendor'] == value %}checked{% endif %}
+                {% if request.params['filter.p.vendor'] == value %}
+                  checked
+                {% endif %}
               >
               <span>{{ value }}</span>
-              <span class="text-gray-400 text-xs">({{ collection.all_products | where: "vendor", value | size }})</span>
+              <span class="text-gray-400 text-xs">({{ collection.all_products | where: 'vendor', value | size }})</span>
             </label>
           </li>
         {% endfor %}
@@ -80,7 +90,6 @@
     </div>
   {% endif %}
 </div>
-
 
 <script>
   function priceFilter() {
