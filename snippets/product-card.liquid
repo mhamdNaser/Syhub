@@ -84,7 +84,7 @@
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
     <div
       class="{{ settings.card_hover_effect }}"
-      x-bind:class="
+      :class="
         {
           'grid-style': $el.parentElement.dataset.layout === 'grid',
           'horizontal-style': $el.parentElement.dataset.layout === 'horizontal'
