@@ -1761,6 +1761,14 @@
       }
     }
   }
+  .group-hover\:scale-z-105 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        --tw-scale-z: 105%;
+        scale: var(--tw-scale-x) var(--tw-scale-y) var(--tw-scale-z);
+      }
+    }
+  }
   .group-hover\:from-black\/40 {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
