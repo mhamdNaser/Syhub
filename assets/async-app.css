@@ -2256,6 +2256,16 @@
       display: none;
     }
   }
+  .md\:aspect-\[120\/120\] {
+    @media (width >= 48rem) {
+      aspect-ratio: 120/120;
+    }
+  }
+  .md\:aspect-\[120\/200\] {
+    @media (width >= 48rem) {
+      aspect-ratio: 120/200;
+    }
+  }
   .md\:aspect-\[200\/200\] {
     @media (width >= 48rem) {
       aspect-ratio: 200/200;
