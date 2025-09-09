@@ -1,6 +1,7 @@
 {% liquid
   assign img_width = width | default: '400'
   assign img_height = height | default: '400'
+  assign image_class = image_class
 %}
 
 {% case media.media_type %}
@@ -10,7 +11,7 @@
       image: media.preview_image ,
       url: shop.url,
       alt: shop.name,
-      class: "",
+      class: "{{ image_class }}",
       width: img_width ,
       height: img_height ,
       id : media.id ,
