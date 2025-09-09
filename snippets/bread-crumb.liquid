@@ -1,6 +1,39 @@
 <!-- Breadcrumb -->
 <nav class="text-sm mb-6 capitalize" aria-label="Breadcrumb">
   <ol class="flex items-center space-x-2 text-gray-500">
+    <!-- رابط الهوم -->
+    <li>
+      <a href="{{ routes.root_url }}" class="hover:text-gray-700">Homepage</a>
+      <span class="mx-1">›</span>
+    </li>
+
+    {% if template.name contains 'collection' %}
+      <!-- لو نحن بصفحة كولكشن -->
+      <li class="text-gray-900 font-semibold">
+        {{ collection.title }}
+      </li>
+
+    {% elsif template.name contains 'product' %}
+      <!-- لو نحن بصفحة منتج -->
+      {% assign first_collection = product.collections | first %}
+      {% if first_collection %}
+        <li>
+          <a href="{{ first_collection.url }}" class="hover:text-gray-700">
+            {{ first_collection.title }}
+          </a>
+          <span class="mx-1">›</span>
+        </li>
+      {% endif %}
+
+      <li class="text-gray-900 font-semibold">
+        {{ product.title }}
+      </li>
+    {% endif %}
+  </ol>
+</nav>
+
+{% comment %} <nav class="text-sm mb-6 capitalize" aria-label="Breadcrumb">
+  <ol class="flex items-center space-x-2 text-gray-500">
     <li>
       <a href="{{ routes.root_url }}" class="hover:text-gray-700">Homepage</a>
       <span class="mx-1">›</span>
@@ -20,5 +53,5 @@
       {{ product.title }}
     </li>
   </ol>
-</nav>
+</nav> {% endcomment %}
 <!-- End Breadcrumb -->
