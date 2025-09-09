@@ -857,7 +857,7 @@
         "unit": "px"
       }
     ]
-  },
+  }
   // main popup settings
   {
     "name": "t:settings_schema.popup.name",
