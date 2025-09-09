@@ -1,10 +1,8 @@
 <style>
-  [x-cloak] {
-    display: none !important;
-  }
+  [x-cloak] { display: none !important; }
 </style>
 
-<div class="filters text-sm space-y-6">
+<div class="filters text-sm space-y-6" id="filters">
   <!-- Availability Filter -->
   <div>
     <h3 class="font-semibold mb-2">Filter</h3>
@@ -13,21 +11,8 @@
         <label class="flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
-            onchange="
-              let searchParams = new URLSearchParams(window.location.search);
-              if(this.checked) {
-                searchParams.set('filter.v.availability', '1');
-              } else {
-                searchParams.delete('filter.v.availability');
-              }
-              if (!searchParams.has('sort_by')) {
-                searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-              }
-              window.location.href = window.location.pathname + '?' + searchParams.toString();
-            "
-            {% if current_tags contains 'In Stock' or request.params['filter.v.availability'] == '1' %}
-              checked
-            {% endif %}
+            data-filter="availability"
+            {% if current_tags contains 'In Stock' or request.params['filter.v.availability'] == '1' %}checked{% endif %}
           >
           <span>In stock</span>
         </label>
@@ -49,35 +34,14 @@
       <h3 class="font-semibold mb-2">Brand</h3>
       <ul class="space-y-2">
         {% for value in vendor_array %}
-          {% if forloop.index <= 5 %}
-            {% assign is_first_five = true %}
-          {% else %}
-            {% assign is_first_five = false %}
-          {% endif %}
+          {% assign is_first_five = forloop.index <= 5 %}
           <li x-show="{{ is_first_five | json }} || showAll" x-cloak>
             <label class="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
-                onchange="
-                  let searchParams = new URLSearchParams(window.location.search);
-                  let selectedVendors = searchParams.getAll('filter.p.vendor');
-                  if(this.checked) {
-                    if(!selectedVendors.includes('{{ value }}')) {
-                      searchParams.append('filter.p.vendor', '{{ value }}');
-                    }
-                  } else {
-                    selectedVendors = selectedVendors.filter(v => v !== '{{ value }}');
-                    searchParams.delete('filter.p.vendor');
-                    selectedVendors.forEach(v => searchParams.append('filter.p.vendor', v));
-                  }
-                  if (!searchParams.has('sort_by')) {
-                    searchParams.set('sort_by', '{{ collection.sort_by | default: 'manual' }}');
-                  }
-                  window.location.href = window.location.pathname + '?' + searchParams.toString();
-                "
-                {% if request.params['filter.p.vendor'] contains value %}
-                  checked
-                {% endif %}
+                data-filter="vendor"
+                value="{{ value }}"
+                {% if request.params['filter.p.vendor'] contains value %}checked{% endif %}
               >
               <span>{{ value }}</span>
               <span class="text-gray-400 text-xs">({{ collection.all_products | where: 'vendor', value | size }})</span>
@@ -95,6 +59,47 @@
     </div>
   {% endif %}
 </div>
+
+<div id="products-container">
+  {% render 'collection-products' %}
+</div>
+
+<script>
+  document.querySelectorAll('#filters input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      let searchParams = new URLSearchParams();
+
+      // Availability
+      const availability = document.querySelector('[data-filter="availability"]');
+      if (availability.checked) searchParams.set('filter.v.availability', '1');
+
+      // Vendors
+      const vendorCheckboxes = document.querySelectorAll('[data-filter="vendor"]:checked');
+      vendorCheckboxes.forEach(vendor => {
+        searchParams.append('filter.p.vendor', vendor.value);
+      });
+
+      // Sort by default if not set
+      if (!searchParams.has('sort_by')) {
+        searchParams.set('sort_by', '{{ collection.sort_by | default: "manual" }}');
+      }
+
+      // Fetch filtered products via AJAX
+      fetch(window.location.pathname + '?' + searchParams.toString(), {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newProducts = doc.querySelector('#products-container').innerHTML;
+        document.querySelector('#products-container').innerHTML = newProducts;
+      })
+      .catch(err => console.error(err));
+    });
+  });
+</script>
+
 
 <script>
   function priceFilter() {
