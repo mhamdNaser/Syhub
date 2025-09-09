@@ -1002,25 +1002,31 @@
       {
         "type": "checkbox",
         "id": "show_color_filter",
-        "label": "إظهار فلتر الألوان",
+        "label": "Show Color Filter",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "show_size_filter",
-        "label": "إظهار فلتر المقاسات",
+        "label": "Show Size Filter",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "show_vendor_filter",
-        "label": "إظهار فلتر البائع",
+        "label": "Show Vendor Filter",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_Availability_filter",
+        "label": "Show Availability Filter",
         "default": false
       },
       {
         "type": "checkbox",
         "id": "show_price_filter",
-        "label": "إظهار فلتر السعر",
+        "label": "Show Price Filter",
         "default": false
       }
     ]

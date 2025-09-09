@@ -74,11 +74,13 @@
       {%- assign show_filter = false -%}
       {%- if filter.label contains 'Color' and settings.show_color_filter -%}
         {%- assign show_filter = true -%}
-      {%- elsif filter.label contains 'Size' and settings.show_size_filter -%}
+      {%- elsif filter.label contains 'Denominations' and settings.show_size_filter -%}
         {%- assign show_filter = true -%}
-      {%- elsif filter.label contains 'Vendor' and settings.show_vendor_filter -%}
+      {%- elsif filter.label contains 'Brand' and settings.show_vendor_filter -%}
         {%- assign show_filter = true -%}
       {%- elsif filter.label contains 'Price' and settings.show_price_filter -%}
+        {%- assign show_filter = true -%}
+      {%- elsif filter.label contains 'Availability' and settings.show_Availability_filter -%}
         {%- assign show_filter = true -%}
       {%- endif -%}
 
