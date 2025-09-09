@@ -1,0 +1,112 @@
+<div id="collection-grid">
+    <div class="grid gap-6 flex flex-col w-full"
+        :class="layoutType === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'flex flex-col w-full'">
+
+        <div :data-layout="layoutType" data-layout="horizontal">
+
+            <div class=" w-full">
+
+                <form method="post" action="/cart/add" id="product-form" accept-charset="UTF-8"
+                    class="shopify-product-form" enctype="multipart/form-data" novalidate="novalidate"><input
+                        type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+                    <div x-bind:class="
+          {
+            'grid-style': $el.parentElement.dataset.layout === 'lg:w-60 bg-white p-4 overflow-hidden',
+            'horizontal-style': $el.parentElement.dataset.layout === 'flex max-h-[200px]'
+          }
+        ">
+                        <input type="hidden" name="id" value="41744283697219">
+
+                        <a href="/collections/automated-collection/products/the-collection-snowboard-hydrogen"
+                            class="block relative overflow-hidden max-h-[200px] aspect-[200/200] transform group-hover:scale-105 transition-transform duration-500"
+                            style="box-shadow: -4px 4px 4px #e6b5c7;">
+
+
+
+
+
+                            <div
+                                class="image relative overflow-hidden object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105">
+
+                                <img src="//sydev.site/cdn/shop/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1724232185&amp;width=2000"
+                                    alt="Top and bottom view of a snowboard. The top view shows stylized hydrogen bonds and the bottom view
+        shows “H2” in a brush script typeface."
+                                    srcset="//sydev.site/cdn/shop/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1724232185&amp;width=352 352w, //sydev.site/cdn/shop/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1724232185&amp;width=832 832w, //sydev.site/cdn/shop/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1724232185&amp;width=1200 1200w, //sydev.site/cdn/shop/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1724232185&amp;width=1920 1920w, //sydev.site/cdn/shop/files/Main_0a40b01b-5021-48c1-80d1-aa8ab4876d3d.jpg?v=1724232185&amp;width=2000 2000w"
+                                    width="2000" height="2000" loading="lazy"
+                                    class="object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105"
+                                    decoding="async" sizes="(max-width: 768px) 100vw, 50vw" fetchpriority="high">
+                            </div>
+
+
+                            <div class="absolute bottom-0 w-full flex justify-between">
+                                <div
+                                    class="relative  flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tr-full  text-white overflow-hidden">
+                                    <div
+                                        class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0">
+                                    </div>
+                                    <span class="relative z-10 text-xs font-bold text-nowrap">
+
+                                    </span>
+                                </div>
+                                <div
+                                    class="relative  flex justify-center items-center w-1/4 min-w-fit p-1 group rounded-tl-full bg-[#1C2228] text-white overflow-hidden">
+                                    <div
+                                        class="absolute inset-0 hidden bg-white opacity-75 transition-opacity duration-300 group-hover:opacity-0">
+                                    </div>
+                                    <span class="relative z-10 text-xs font-bold text-nowrap">
+                                        49
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+
+                        <div class="text-center mt-4 shrink-0 h-full">
+
+                            <span class="text-xs text-gray-500 block truncate">
+
+                                Hydrogen Vendor
+
+                            </span>
+
+
+                            <a href="/collections/automated-collection/products/the-collection-snowboard-hydrogen"
+                                title="The Collection Snowboard: Hydrogen"
+                                class="text-xs font-bold text-gray-800 hover:text-blue-500 block truncate"
+                                style="text-transform:  uppercase  !important;">
+                                The Collection Snowboard: Hydrogen
+                            </a>
+
+
+                            <div
+                                class="mt-2 flex w-full justify-center items-center mx-auto text-xs text-gray-500 truncate">
+
+                                this product has not description
+
+                            </div>
+
+
+
+
+                            <p class="text-xs font-bold text-gray-700 mt-2">
+
+
+                                <span class="text-xs text-gray-900">$ 10,829.00</span>
+
+                            </p>
+
+
+
+                        </div>
+
+
+                    </div>
+                    <input type="hidden" name="product-id" value="7288648859715"><input type="hidden" name="section-id"
+                        value="template--17205580431427__main">
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

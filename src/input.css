@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.grid-style {
+  @apply bg-white p-4 overflow-hidden;
+}
+
+.horizontal-style {
+  @apply flex max-h-[200px] bg-white p-4 gap-4;
+}
