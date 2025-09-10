@@ -10,6 +10,7 @@
       alt: alt,
       class: "{{ image_class }}",
       id : media.id ,
+      preload: true
     %}
   {% when 'external_video' %}
     {{ media | external_video_tag: class: 'w-[400px] h-[400px] object-cover' }}
