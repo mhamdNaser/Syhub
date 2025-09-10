@@ -36,8 +36,6 @@
             {% render 'product-media',
               media: first_media,
               loading: 'lazy',
-              height: '220px',
-              width: '220px',
               image_class: 'w-full h-full object-cover',
               alt: product_title
             %}
@@ -50,8 +48,6 @@
                 {% render 'product-media',
                   media: media,
                   mediaId: media.id,
-                  height: '220px',
-                  width: '220px',
                   loading: 'lazy',
                   alt: product_title
                 %}
