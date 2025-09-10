@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
     allThumbnails.forEach(thumb => {
       thumb.classList.remove('border-[#c42764]');
+      thumb.classList.add('border-neutral-200');
     });
 
     // إضافة البوردر للثامبنيل المختار
