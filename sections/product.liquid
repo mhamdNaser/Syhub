@@ -31,8 +31,8 @@
     <div class="flex md:flex-row flex-col gap-8 relative">
       <!-- قسم الصور -->
       <div class="{{ media_classes }}">
-        <div class="mb-4 bg-white shadow-xl rounded-xl overflow-hidden aspect-[600/600]">
-          <div id="main-product-image" class="overflow-hidden" data-current-media-id="{{ first_media.id }}">
+        <div class="mb-4 bg-white shadow-xl rounded-xl overflow-hidden">
+          <div id="main-product-image" class="overflow-hidden aspect-[600/600]" data-current-media-id="{{ first_media.id }}">
             {% render 'product-media',
               media: first_media,
               loading: 'lazy',
