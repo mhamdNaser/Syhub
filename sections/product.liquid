@@ -31,7 +31,7 @@
     <div class="flex md:flex-row flex-col gap-8 relative">
       <!-- قسم الصور -->
       <div class="{{ media_classes }}">
-        <div class="mb-4 bg-white shadow-xl rounded-xl overflow-hidden hidden md:block aspect-[600/600]">
+        <picture class="mb-4 bg-white shadow-xl rounded-xl overflow-hidden hidden md:block aspect-[600/600]">
           <div id="main-product-image" class="overflow-hidden" data-current-media-id="{{ first_media.id }}">
             {% render 'product-media',
               media: first_media,
@@ -54,7 +54,7 @@
               </div>
             {% endfor %}
           </div>
-        </div>
+        </picture>
 
         <!-- thumbnails -->
         <div class="thumbnail-slider">
