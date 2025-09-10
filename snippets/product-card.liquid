@@ -100,7 +100,9 @@
             render 'image',
             image: product.featured_image.src,
             alt: product.featured_image.alt | escape,
-            class: 'object-cover w-full h-full max-h-[200px] transition-transform duration-300 ease-in-out hover:scale-105',
+            width: 200,
+            height: 200,
+            class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
             loading: 'lazy'
           %}
 
