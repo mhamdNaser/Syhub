@@ -563,6 +563,12 @@
   .aspect-\[120\/120\] {
     aspect-ratio: 120/120;
   }
+  .aspect-\[140\/140\] {
+    aspect-ratio: 140/140;
+  }
+  .aspect-\[140\/200\] {
+    aspect-ratio: 140/200;
+  }
   .aspect-\[200\/200\] {
     aspect-ratio: 200/200;
   }
@@ -742,6 +748,9 @@
   }
   .w-\[80\] {
     width: 80;
+  }
+  .w-\[140px\] {
+    width: 140px;
   }
   .w-\[200px\] {
     width: 200px;
