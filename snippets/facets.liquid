@@ -1,4 +1,59 @@
-{%- assign colors_raw = settings.color_map | split: "," -%}
+<form id="FacetFiltersForm" class="facets" method="get" x-data>
+  <div class="facets__wrapper space-y-4">
+    {%- for filter in results.filters -%}
+
+      {%- assign show_filter = false -%}
+      {%- if filter.label contains 'Color' and settings.show_color_filter -%}
+        {%- assign show_filter = true -%}
+      {%- elsif filter.label contains 'Denominations' and settings.show_size_filter -%}
+        {%- assign show_filter = true -%}
+      {%- elsif filter.label contains 'Brand' and settings.show_vendor_filter -%}
+        {%- assign show_filter = true -%}
+      {%- elsif filter.label contains 'Availability' and settings.show_Availability_filter -%}
+        {%- assign show_filter = true -%}
+      {%- endif -%}
+
+      {%- if show_filter -%}
+        <details class="facets__disclosure" {% if filter.active_values.size > 0 %} open {% endif %}>
+          <summary class="facets__summary cursor-pointer font-semibold">
+            {{ filter.label }}
+          </summary>
+          <div class="facets__options space-y-2 mt-2">
+            {%- for value in filter.values -%}
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="{{ value.param_name }}"
+                  value="{{ value.value }}"
+                  {% if value.active %} checked {% endif %}
+                  {% if value.count == 0 and value.active == false %} disabled {% endif %}
+                  @change="$el.form.submit()"
+                >
+
+                {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
+                  {%- assign color_code = value.label | downcase -%}
+                  {%- for pair in colors_list -%}
+                    {%- assign kv = pair | split: "=>" -%}
+                    {%- if kv[0] == value.value -%}
+                      {%- assign color_code = kv[1] -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  <span class="inline-block w-4 h-4 rounded-full border border-gray-300"
+                        style="background-color: {{ color_code }};"></span>
+                {%- endif -%}
+
+                <span>{{ value.label }} ({{ value.count }})</span>
+              </label>
+            {%- endfor -%}
+          </div>
+        </details>
+      {%- endif -%}
+
+    {%- endfor -%}
+  </div>
+</form>
+
+{% comment %} {%- assign colors_raw = settings.color_map | split: "," -%}
 {%- assign colors_list = "" -%}
 {%- for item in colors_raw -%}
   {%- assign pair = item | split: ":" -%}
@@ -67,4 +122,4 @@
     </button>
   </div>
 </form>
-
+ {% endcomment %}
