@@ -31,8 +31,8 @@
     <div class="flex md:flex-row flex-col gap-8 relative">
       <!-- قسم الصور -->
       <div class="{{ media_classes }} px-12">
-        <picture class="mb-4 bg-white shadow-xl rounded-xl overflow-hidden hidden md:block aspect-[400/360]">
-          <div id="main-product-image" class="overflow-hidden" data-current-media-id="{{ first_media.id }}">
+        <picture class="mb-4 bg-white shadow-xl rounded-xl overflow-hidden hidden md:block">
+          <div id="main-product-image" class="overflow-hidden aspect-[400/360]" data-current-media-id="{{ first_media.id }}">
             {% render 'product-media',
               media: first_media,
               loading: 'lazy',
@@ -42,7 +42,7 @@
           </div>
 
           <!-- صور الميديا المخفية -->
-          <div id="all-variant-media" class="hidden">
+          <div id="all-variant-media" class="hidden aspect-[400/360]">
             {% for media in product.media %}
               <div data-media-id="{{ media.id }}" class="overflow-hidden">
                 {% render 'product-media',
