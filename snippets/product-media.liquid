@@ -1,6 +1,4 @@
 {% liquid
-  assign img_width = width | default: ''
-  assign img_height = height | default: ''
   assign image_class = image_class
 %}
 
@@ -12,8 +10,6 @@
       url: shop.url,
       alt: shop.name,
       class: "{{ image_class }}",
-      width: img_width ,
-      height: img_height ,
       id : media.id ,
       sizes: "(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px"
     %}
