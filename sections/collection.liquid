@@ -88,9 +88,9 @@
           <div id="collection-grid">
             <div
               :class="
-                layoutType === 'grid'
-                ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
-                : 'flex flex-col gap-6 w-full'
+                layoutType === 'horizontal'
+                ? 'flex flex-col gap-6 w-full'
+                : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
               "
             >
               {% for product in collection.products %}

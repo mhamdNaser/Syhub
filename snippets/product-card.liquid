@@ -84,9 +84,9 @@
   {% form 'product', product, id: 'product-form', novalidate: 'novalidate', class: 'w-full' %}
     <div
       :class="
-        layoutType === 'grid'
-        ? 'grid-style'
-        : 'horizontal-style'
+        layoutType === 'horizontal'
+        ? 'horizontal-style'
+        : 'grid-style'
       "
     >
       <input type="hidden" name="id" value="{{ variant_id }}">
@@ -94,9 +94,9 @@
         <a
           href="{{ product_url }}"
           :class="
-            layoutType === 'grid'
-            ? 'block relative overflow-hidden max-h-[200px] max-w-[200px] aspect-[200/200] '
-            : 'block relative overflow-hidden w-[120px] aspect-[120/120]'
+            layoutType === 'horizontal'
+            ? 'block relative overflow-hidden w-[120px] aspect-[120/120]'
+            : 'block relative overflow-hidden max-h-[200px] max-w-[200px] aspect-[200/200] '
           "
           class="{{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
@@ -137,9 +137,9 @@
       <div
         class="h-full"
         :class="
-          layoutType === 'grid'
-          ? '{{ text_alignment }} mx-auto mt-2'
-          : 'text-start shrink-0 w-3/5 items-center my-auto'
+          layoutType === 'horizontal'
+          ? 'text-start shrink-0 w-3/5 items-center my-auto'
+          : '{{ text_alignment }} mx-auto mt-2'
         "
       >
         {% render 'product-card-details',
@@ -159,9 +159,9 @@
         <div
           class="flex justify-between items-center border border-[#c42764] text-xs"
           :class="
-            layoutType === 'grid'
-            ? 'h-full mt-2'
-            : 'h-full w-full max-w-1/5 items-center my-auto'
+            layoutType === 'horizontal'
+            ? 'h-full w-full max-w-1/5 items-center my-auto'
+            : 'h-full mt-2'
           "
         >
           {% if show_preorder and variant_policy == 'continue' %}
