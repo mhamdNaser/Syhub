@@ -96,7 +96,7 @@
           :class="
             layoutType === 'grid'
             ? 'block relative overflow-hidden max-h-[200px] max-w-[200px] aspect-[200/200] '
-            : 'block relative overflow-hidden max-h-[200px] max-w-[200px] aspect-[200/200] w-1/5'
+            : 'block relative overflow-hidden w-[200px] aspect-[200/200]'
           "
           class="{{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
@@ -156,7 +156,7 @@
       </div>
 
       {% if add_to_cart_button %}
-        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs w-1/5">
+        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
           {% if show_preorder and variant_policy == 'continue' %}
             <button
               aria-label="preorder"
