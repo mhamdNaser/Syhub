@@ -139,7 +139,7 @@
         :class="
           layoutType === 'grid'
           ? '{{ text_alignment }} mx-auto'
-          : 'text-start shrink-0'
+          : 'text-start shrink-0 w-1/5'
         "
       >
         {% render 'product-card-details',
@@ -156,7 +156,7 @@
       </div>
 
       {% if add_to_cart_button %}
-        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
+        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs w-1/5">
           {% if show_preorder and variant_policy == 'continue' %}
             <button
               aria-label="preorder"
