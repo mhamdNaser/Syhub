@@ -31,31 +31,51 @@
             {{ filter.label }}
           </summary>
           <div class="facets__options space-y-2 mt-2">
-            {%- for value in filter.values -%}
-              <label class="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  name="{{ value.param_name }}"
-                  value="{{ value.value }}"
-                  {% if value.active %} checked {% endif %}
-                  {% if value.count == 0 and value.active == false %} disabled {% endif %}
-                >
 
-                {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
-                  {%- assign color_code = value.label | downcase -%}
-                  {%- for pair in colors_list -%}
-                    {%- assign kv = pair | split: "=>" -%}
-                    {%- if kv[0] == value.value -%}
-                      {%- assign color_code = kv[1] -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  <span class="inline-block w-4 h-4 rounded-full border border-gray-300"
-                        style="background-color: {{ color_code }};"></span>
-                {%- endif -%}
+            {%- if filter.type == 'price_range' -%}
+              <div class="flex items-center gap-2">
+                <input type="number"
+                       name="{{ filter.min_value.param_name }}"
+                       value="{{ filter.min_value.value }}"
+                       placeholder="من"
+                       min="0"
+                       class="border rounded px-2 py-1 w-24">
+                <span>-</span>
+                <input type="number"
+                       name="{{ filter.max_value.param_name }}"
+                       value="{{ filter.max_value.value }}"
+                       placeholder="إلى"
+                       min="0"
+                       class="border rounded px-2 py-1 w-24">
+              </div>
+            {%- else -%}
+              {%- for value in filter.values -%}
+                <label class="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    name="{{ value.param_name }}"
+                    value="{{ value.value }}"
+                    {% if value.active %} checked {% endif %}
+                    {% if value.count == 0 and value.active == false %} disabled {% endif %}
+                  >
 
-                <span>{{ value.label }} ({{ value.count }})</span>
-              </label>
-            {%- endfor -%}
+                  {%- if filter.label contains 'Color' or filter.label contains 'اللون' -%}
+                    {%- assign color_code = value.label | downcase -%}
+                    {%- for pair in colors_list -%}
+                      {%- assign kv = pair | split: "=>" -%}
+                      {%- if kv[0] == value.value -%}
+                        {%- assign color_code = kv[1] -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    <span class="inline-block w-4 h-4 rounded-full border border-gray-300"
+                          style="background-color: {{ color_code }};"></span>
+                  {%- endif -%}
+
+                  <span>{{ value.label }} ({{ value.count }})</span>
+                </label>
+              {%- endfor -%}
+            {%- endif -%}
+
           </div>
         </details>
       {%- endif -%}
@@ -69,4 +89,3 @@
     </button>
   </div>
 </form>
-
