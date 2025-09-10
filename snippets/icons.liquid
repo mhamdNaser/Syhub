@@ -2,6 +2,7 @@
   assign size = icon_size | default: 16
   assign fill_color = icon_fill_color | default: 'none'
   assign stroke_color = icon_stroke_color | default: 'currentColor'
+  assign icon_class = icon_class | default: 'font-bold'
 %}
 
 {%- case icon -%}
@@ -12,6 +13,7 @@
       stroke-width="1.5"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -26,6 +28,7 @@
       stroke-width="1.5"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -40,6 +43,7 @@
       stroke-width="1.5"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -52,6 +56,7 @@
       stroke-width="1.5"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -64,6 +69,7 @@
       stroke-width="1.5"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -77,6 +83,7 @@
       aria-hidden="true"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -94,6 +101,7 @@
       stroke-width="1.5"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -113,6 +121,7 @@
       xml:space="preserve"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -130,6 +139,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
     </svg>
@@ -143,6 +153,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
     </svg>
@@ -160,6 +171,7 @@
       xml:space="preserve"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
     >
@@ -178,13 +190,16 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
     </svg>
 
   {%- when 'icon-model-viewer' -%}
-    <svg xmlns="http://www.w3.org/2000/svg" width="{{ size }}" height="{{ size }}" viewBox="0 0 61 61">
-      <title>3d-icon-button-control-angular</title><rect x="0.5" y="0.5" width="{{ size }}" height="{{ size }}" fill="#fff" stroke="#f5f5f5" stroke-miterlimit="10"/><path d="M30.5,17.35,18.24,24.42V38.58L30.5,45.65l12.26-7.08V24.42ZM20.24,37.42V25.58L30.5,19.65,40.63,25.5,30.5,31.38v12Z" fill="#3a3a3a"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="{{ size }}" height="{{ size }}"
+      class="{{ icon_class }}" viewBox="0 0 61 61">
+      <title>3d-icon-button-control-angular</title><rect x="0.5" y="0.5" width="{{ size }}" height="{{ size }}"
+        class="{{ icon_class }}" fill="#fff" stroke="#f5f5f5" stroke-miterlimit="10"/><path d="M30.5,17.35,18.24,24.42V38.58L30.5,45.65l12.26-7.08V24.42ZM20.24,37.42V25.58L30.5,19.65,40.63,25.5,30.5,31.38v12Z" fill="#3a3a3a"/>
     </svg>
 
   {%- when 'icon-search' -%}
@@ -196,6 +211,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round"
           d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -209,6 +225,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     </svg>
@@ -217,6 +234,7 @@
     <svg
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
       viewBox="0 0 24 24"
       fill="{{ fill_color }}"
       stroke="{{ stroke_color }}"
@@ -236,6 +254,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </svg>
@@ -248,6 +267,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
     </svg>
@@ -260,6 +280,7 @@
       stroke="{{ stroke_color }}"
       width="{{ size }}"
       height="{{ size }}"
+      class="{{ icon_class }}"
     >
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
     </svg>
