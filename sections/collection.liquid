@@ -51,7 +51,18 @@
         >
       </div>
 
-      <div class="mb-4" x-data="{ layoutType: 'grid' }">
+      <div
+        class="mb-4"
+        x-data="
+          {
+              layoutType: localStorage.getItem('layoutType') || 'grid',
+              setLayout(type) {
+                this.layoutType = type;
+                localStorage.setItem('layoutType', type);
+              }
+          }
+        "
+      >
         <form id="SortByForm" class="flex items-center justify-between py-2 border-b border-[#c42764]">
           <label for="SortBy" class="mr-2 shrink-0 font-medium text-gray-700">
             {{ collection.products_count }} products</label
