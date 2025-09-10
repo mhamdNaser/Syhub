@@ -17,15 +17,22 @@
   {{ product.title }}
 </a>
 
-<span class="mt-2 flex text-xs text-gray-500 max-w-3xl overflow-hidden mx-auto break-words whitespace-normal">
+<span
+  class="mt-2 flex text-xs text-gray-500 max-w-3xl overflow-hidden mx-auto"
+  :class="
+    layoutType === 'horizontal'
+    ? ' break-words whitespace-normal'
+    : 'truncate'
+  "
+>
   {% if product_short_description == 'product_description' %}
     {% if product.description != blank %}
-      {{ product.description | strip_html | truncatewords: 10, " more ..." }}
+      {{ product.description | strip_html | truncatewords: 10, ' more ...' }}
     {% else %}
       This product has no description
     {% endif %}
   {% elsif product_short_description == 'custom' %}
-    {{ product_short_description_text | strip_html | truncatewords: 10, " more ..." }}
+    {{ product_short_description_text | strip_html | truncatewords: 10, ' more ...' }}
   {% endif %}
 </span>
 
