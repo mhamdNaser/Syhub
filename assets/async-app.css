@@ -2208,6 +2208,11 @@
       line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
+  .md\:z-10 {
+    @media (width >= 48rem) {
+      z-index: 10;
+    }
+  }
   .md\:mx-auto {
     @media (width >= 48rem) {
       margin-inline: auto;
@@ -2413,6 +2418,16 @@
   .lg\:static {
     @media (width >= 64rem) {
       position: static;
+    }
+  }
+  .lg\:z-10 {
+    @media (width >= 64rem) {
+      z-index: 10;
+    }
+  }
+  .lg\:z-30 {
+    @media (width >= 64rem) {
+      z-index: 30;
     }
   }
   .lg\:block {
