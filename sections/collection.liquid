@@ -9,34 +9,41 @@
 <section id="shopify-section-{{ section_id }}" class="py-6 mx-auto {{ box_width }}">
   {% render 'bread-crumb' %}
 
-  <!-- Filter Toggle for Mobile -->
-  <div class="flex justify-between items-center sticky top-20 mb-4 lg:hidden">
-    <h2 class="text-xl font-bold text-gray-900">{{ collection.title }}</h2>
-    <button
-      aria-label="Filters"
-      onclick="document.getElementById('mobile-filters').classList.toggle('hidden')"
-      class="px-3 py-2 bg-gray-100 rounded shadow"
-    >
-      Filters
-    </button>
-  </div>
-
-  <div class="flex flex-col lg:flex-row gap-6">
-    <!-- Filter Sidebar -->
+  <div class="flex flex-col lg:flex-row gap-6" x-data="{ showFilters: false }">
+    <!-- Filters Sidebar -->
     <aside
       id="mobile-filters"
-      class="hidden lg:block sticky top-20 z-40 w-full lg:w-1/4 bg-white p-4 rounded-lg shadow-md"
+      class="fixed inset-y-0 left-0 z-50 w-2/3 bg-white p-4 rounded-r-lg shadow-lg transform transition-transform duration-300 lg:static lg:block lg:w-1/4 lg:rounded-lg lg:shadow-md"
+      x-show="showFilters"
+      x-transition:enter="transform transition ease-in-out duration-300"
+      x-transition:enter-start="-translate-x-full"
+      x-transition:enter-end="translate-x-0"
+      x-transition:leave="transform transition ease-in-out duration-300"
+      x-transition:leave-start="translate-x-0"
+      x-transition:leave-end="-translate-x-full"
+      x-cloak
     >
+      <!-- Header for mobile -->
+      <div class="flex items-center justify-between mb-4 lg:hidden">
+        <h2 class="text-lg font-bold">Filters</h2>
+        <button @click="showFilters = false" class="text-gray-600 hover:text-gray-900">✕</button>
+      </div>
+
+      <!-- Collection image (only desktop) -->
       {%- if collection.image.src != blank -%}
-        {% render 'image',
-          image: collection.image.src,
-          alt: collection.title,
-          width: 800,
-          height: 800,
-          class: 'w-full h-auto rounded mb-4',
-          loading: 'lazy'
-        %}
+        <div class="hidden lg:block">
+          {% render 'image',
+            image: collection.image.src,
+            alt: collection.title,
+            width: 800,
+            height: 800,
+            class: 'w-full h-auto rounded mb-4',
+            loading: 'lazy'
+          %}
+        </div>
       {%- endif -%}
+
+      <!-- Filters content -->
       <div class="py-2">
         {% render 'facets', results: collection %}
       </div>
@@ -46,9 +53,13 @@
     <section class="w-full lg:w-3/4">
       <div class="flex items-center justify-between text-left py-2 border-b border-[#c42764] mb-4">
         <h1 class="text-lg md:text-3xl font-bold text-gray-900 tracking-tight mb-2 sm:mb-0">{{ collection.title }}</h1>
-        <a href="{{ routes.collections_url }}" class="text-sm text-gray-400 hover:text-gray-600 transition"
-          >← Back To Collections</a
+        <button
+          aria-label="Filters"
+          @click="showFilters = true"
+          class="px-3 py-2 bg-gray-100 rounded shadow"
         >
+          Filters
+        </button>
       </div>
 
       <div

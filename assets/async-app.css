@@ -285,6 +285,9 @@
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
+  .inset-y-0 {
+    inset-block: calc(var(--spacing) * 0);
+  }
   .-top-10 {
     top: calc(var(--spacing) * -10);
   }
@@ -851,6 +854,14 @@
     --tw-translate-x: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .-translate-x-full {
+    --tw-translate-x: -100%;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .translate-x-0 {
+    --tw-translate-x: calc(var(--spacing) * 0);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .-translate-y-1 {
     --tw-translate-y: calc(var(--spacing) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -1092,6 +1103,10 @@
   }
   .rounded-tl-full {
     border-top-left-radius: calc(infinity * 1px);
+  }
+  .rounded-r-lg {
+    border-top-right-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
   }
   .rounded-tr-full {
     border-top-right-radius: calc(infinity * 1px);
@@ -2386,6 +2401,11 @@
       line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
+  .lg\:static {
+    @media (width >= 64rem) {
+      position: static;
+    }
+  }
   .lg\:block {
     @media (width >= 64rem) {
       display: block;
@@ -2441,6 +2461,11 @@
       gap: calc(var(--spacing) * 12);
     }
   }
+  .lg\:rounded-lg {
+    @media (width >= 64rem) {
+      border-radius: var(--radius-lg);
+    }
+  }
   .lg\:px-8 {
     @media (width >= 64rem) {
       padding-inline: calc(var(--spacing) * 8);
@@ -2467,6 +2492,12 @@
     @media (width >= 64rem) {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
+  .lg\:shadow-md {
+    @media (width >= 64rem) {
+      --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
     }
   }
   .xl\:flex {
