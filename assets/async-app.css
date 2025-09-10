@@ -770,9 +770,6 @@
   .max-w-36 {
     max-width: calc(var(--spacing) * 36);
   }
-  .max-w-\[200px\] {
-    max-width: 200px;
-  }
   .max-w-md {
     max-width: var(--container-md);
   }
@@ -787,9 +784,6 @@
   }
   .min-w-\[80px\] {
     min-width: 80px;
-  }
-  .min-w-\[120px\] {
-    min-width: 120px;
   }
   .min-w-\[200px\] {
     min-width: 200px;
@@ -2479,8 +2473,6 @@
 }
 .horizontal-style {
   display: flex;
-  max-height: 200px;
-  width: 100%;
   flex-direction: row;
   align-items: flex-start;
   gap: calc(var(--spacing) * 4);
