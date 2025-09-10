@@ -72,7 +72,7 @@
             <!-- Grid -->
             <button
               type="button"
-              @click="layoutType = 'grid'"
+              @click="setLayout('grid')"
               :class="layoutType === 'grid' ? 'text-[#c42764]' : 'text-gray-500'"
               class="p-1"
               title="Grid View"
@@ -83,7 +83,7 @@
             <!-- horizontal -->
             <button
               type="button"
-              @click="layoutType = 'horizontal'"
+              @click="setLayout('horizontal')"
               :class="layoutType === 'horizontal' ? 'text-[#c42764]' : 'text-gray-500'"
               class="p-1"
               title="List View"
