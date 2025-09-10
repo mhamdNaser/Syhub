@@ -55,7 +55,7 @@
         <h1 class="text-lg md:text-3xl font-bold text-gray-900 tracking-tight mb-2 sm:mb-0">{{ collection.title }}</h1>
         <button
           aria-label="Filters"
-          @click="showFilters = true"
+          @click="showFilters = !showFilters"
           class="px-3 py-2 bg-gray-100 rounded shadow"
         >
           Filters
