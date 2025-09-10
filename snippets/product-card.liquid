@@ -135,11 +135,11 @@
       {% endif %}
 
       <div
-        class="my-auto h-full"
+        class="h-full"
         :class="
           layoutType === 'grid'
-          ? '{{ text_alignment }} mx-auto'
-          : 'text-start shrink-0 w-3/5 items-center'
+          ? '{{ text_alignment }} mx-auto mt-4'
+          : 'text-start shrink-0 w-3/5 items-center my-auto'
         "
       >
         {% render 'product-card-details',
@@ -157,11 +157,11 @@
 
       {% if add_to_cart_button %}
         <div
-          class="flex justify-between items-center border border-[#c42764] my-auto text-xs"
+          class="flex justify-between items-center border border-[#c42764] text-xs"
           :class="
             layoutType === 'grid'
-            ? 'h-full'
-            : 'h-full w-full max-w-1/5 items-center'
+            ? 'h-full mt-4'
+            : 'h-full w-full max-w-1/5 items-center my-auto'
           "
         >
           {% if show_preorder and variant_policy == 'continue' %}
