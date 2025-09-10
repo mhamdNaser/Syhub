@@ -95,7 +95,7 @@
           href="{{ product_url }}"
           :class="
             layoutType === 'horizontal'
-            ? 'min-w-[120px] aspect-[120/120]'
+            ? 'aspect-[120/120]'
             : 'aspect-[200/200]'
           "
           class="{{ image_style }} block relative overflow-hidden"
@@ -104,9 +104,7 @@
           {%
             render 'image',
             image: product.featured_image.src,
-            alt: product.featured_image.alt | escape,
-            height: 120,
-            width: 120,
+            alt: product.featured_image.alt | escape, 
             class: 'object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105',
             loading: 'lazy'
           %}
