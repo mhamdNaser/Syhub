@@ -157,11 +157,11 @@
 
       {% if add_to_cart_button %}
         <div
-          class="flex justify-between items-center border border-[#c42764] text-xs"
+          class="justify-between items-center border border-[#c42764] text-xs"
           :class="
             layoutType === 'horizontal'
-            ? 'h-full w-full max-w-1/5 items-center my-auto hidden md:block'
-            : 'h-full mt-2'
+            ? 'h-full w-full max-w-1/5 items-center my-auto hidden md:flex'
+            : 'h-full mt-2 flex'
           "
         >
           {% if show_preorder and variant_policy == 'continue' %}
