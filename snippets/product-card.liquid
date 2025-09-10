@@ -92,13 +92,13 @@
       <input type="hidden" name="id" value="{{ variant_id }}">
       {% if product.featured_image %}
         <a
+          class="{{ image_style }} relative overflow-hidden "
           href="{{ product_url }}"
           :class="
             layoutType === 'horizontal'
-            ? 'relative overflow-hidden min-w-[120px] aspect-[120/120]'
-            : 'relative overflow-hidden aspect-[200/200] '
+            ? 'min-w-[120px] aspect-[120/120]'
+            : 'aspect-[200/200] '
           "
-          class="{{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
         >
           {%
