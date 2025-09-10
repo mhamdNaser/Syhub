@@ -17,7 +17,7 @@
   {{ product.title }}
 </a>
 
-<span class="mt-2 flex text-xs text-gray-500 truncate w-full">
+<span class="mt-2 flex text-xs text-gray-500 truncate max-w-3xl">
   {% if product_short_description == 'product_description' %}
     {% if product.description != blank %}
       {{ product.description }}
