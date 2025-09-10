@@ -32,7 +32,11 @@
       <!-- قسم الصور -->
       <div class="{{ media_classes }} px-12">
         <picture class="mb-4 bg-white shadow-xl rounded-xl border border-neutral-200 overflow-hidden hidden md:block">
-          <div id="main-product-image" class="overflow-hidden aspect-[400/360]" data-current-media-id="{{ first_media.id }}">
+          <div
+            id="main-product-image"
+            class="overflow-hidden aspect-[400/360]"
+            data-current-media-id="{{ first_media.id }}"
+          >
             {% render 'product-media',
               media: first_media,
               loading: 'lazy',
@@ -45,12 +49,7 @@
           <div id="all-variant-media" class="hidden aspect-[400/360]">
             {% for media in product.media %}
               <div data-media-id="{{ media.id }}" class="overflow-hidden">
-                {% render 'product-media',
-                  media: media,
-                  mediaId: media.id,
-                  loading: 'lazy',
-                  alt: product_title
-                %}
+                {% render 'product-media', media: media, mediaId: media.id, loading: 'lazy', alt: product_title %}
               </div>
             {% endfor %}
           </div>
@@ -118,7 +117,10 @@
           </div>
 
           <!-- المعلومات الرئيسية -->
-          <div class="bg-white p-6 shadow-lg rounded-2xl  border border-neutral-200 space-y-6" id="product-information_{{ product_title }}">
+          <div
+            class="bg-white p-6 shadow-lg rounded-2xl  border border-neutral-200 space-y-6"
+            id="product-information_{{ product_title }}"
+          >
             <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
             {% for block in section.blocks %}
@@ -214,6 +216,13 @@
                   </div>
               {% endcase %}
             {% endfor %}
+            <div class="footer__payment rounded-2xl  border border-neutral-200">
+              {% if section.settings.show_payment_icons %}
+                {% for type in shop.enabled_payment_types %}
+                  {{ type | payment_type_svg_tag }}
+                {% endfor %}
+              {% endif %}
+            </div>
           </div>
         {% endform %}
       </div>
