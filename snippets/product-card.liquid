@@ -95,10 +95,10 @@
           href="{{ product_url }}"
           :class="
             layoutType === 'horizontal'
-            ? 'w-[120px] aspect-[120/120]'
-            : 'max-h-[200px] max-w-[200px] aspect-[200/200]'
+            ? 'block relative overflow-hidden w-[120px] aspect-[120/120]'
+            : 'block relative overflow-hidden max-h-[200px] max-w-[200px] aspect-[200/200] '
           "
-          class="{{ image_style }} relative block  overflow-hidden"
+          class="{{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
         >
           {%
@@ -135,11 +135,11 @@
       {% endif %}
 
       <div
-        class="h-full {{ text_alignment }}"
+        class="h-full"
         :class="
           layoutType === 'horizontal'
           ? 'text-start shrink-0 w-3/5 items-center my-auto'
-          : 'mx-auto mt-2'
+          : '{{ text_alignment }} mx-auto mt-2'
         "
       >
         {% render 'product-card-details',
