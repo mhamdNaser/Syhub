@@ -29,13 +29,14 @@
     {% endif %}
 
     <!-- المنتجات الجانبية -->
-    <div class="product-list grid grid-rows-3 gap-4 h-full">
+    <div class="product-list grid grid-rows-3 gap-4 h-full" x-data="{ layoutType: 'grid' }">
       {% for block in section.blocks %}
         {% liquid
           assign product = all_products[block.settings.product]
         %}
         {% if product %}
-          <div class="flex items-center justify-between bg-white {% unless forloop.last %}border-b border-neutral-500{% endunless %}">
+          {%- render 'product-card', product: product -%}
+          {% comment %} <div class="flex items-center justify-between bg-white {% unless forloop.last %}border-b border-neutral-500{% endunless %}">
             <!-- النص -->
             <div class="flex-1 pr-4">
               <p class="text-xs text-gray-500 font-semibold uppercase">
@@ -58,7 +59,7 @@
                 alt: product.title
               %}
             </a>
-          </div>
+          </div> {% endcomment %}
         {% endif %}
       {% endfor %}
     </div>
