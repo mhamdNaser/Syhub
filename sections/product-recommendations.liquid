@@ -70,7 +70,7 @@
       <div class="{{ layout_class }}">
         {% if swiper %}<div class="swiper-wrapper">{% endif %}
           {% for product in collections['frontpage'].products limit:4 %}
-            <div class="swiper-slide flex justify-center items-center">
+            <div class="swiper-slide flex justify-center items-center" x-data="{ layoutType: 'grid' }">
               {%- render 'product-card', product: product -%}
             </div>
           {% endfor %}

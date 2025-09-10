@@ -36,105 +36,11 @@
         %}
         {% if product %}
           {%- render 'product-card', product: product -%}
-          {% comment %} <div class="flex items-center justify-between bg-white {% unless forloop.last %}border-b border-neutral-500{% endunless %}">
-            <!-- النص -->
-            <div class="flex-1 pr-4">
-              <p class="text-xs text-gray-500 font-semibold uppercase">
-                {{ product.vendor }}
-              </p>
-              <h3 class="text-sm font-bold leading-tight">
-                <a href="{{ product.url }}">{{ product.title }}</a>
-              </h3>
-              <p class="text-green-500 text-xs mt-1">✔ 1-2 Days Delivery</p>
-              <p class="text-gray-800 font-semibold mt-1">{{ product.price | money }}</p>
-            </div>
-            <!-- صورة المنتج -->
-            <a href="{{ product.url }}" class="w-16 md:w-20 flex-shrink-0">
-              {% render 'image',
-                image: product.featured_image,
-                class: 'w-full h-auto object-contain rounded',
-                width: 150,
-                height: 150,
-                crop: 'center',
-                alt: product.title
-              %}
-            </a>
-          </div> {% endcomment %}
         {% endif %}
       {% endfor %}
     </div>
   </div>
 </section>
-
-{% comment %} <section id="shopify-section-{{ section_id }}" class="featured-product-group max-w-7xl mx-auto py-8 px-0 md:px-4">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-    <!-- المنتج الكبير -->
-    {% if main_product %}
-      <div class="main-product h-full">
-        <a href="{{ main_product.url }}">
-          {% render 'image',
-            image: main_product.featured_image,
-            class: 'w-full h-full object-cover rounded-lg shadow-lg',
-            width: 800,
-            height: 800,
-            crop: 'center',
-            alt: main_product.title
-          %}
-        </a>
-      </div>
-    {% endif %}
-
-    <!-- المنتجات الجانبية -->
-    <div class="product-list grid grid-rows-3 gap-4 h-full">
-      {% for block in section.blocks %}
-        {% liquid
-          assign product = all_products[block.settings.product]
-        %}
-        {% if product %}
-          <div class="flex items-center bg-white rounded-lg shadow p-3">
-            <!-- صورة المنتج -->
-            <a href="{{ product.url }}" class="flex-shrink-0">
-              {% render 'image',
-                image: product.featured_image,
-                class: 'w-full h-full object-cover rounded mr-4',
-                width: 150,
-                height: 150,
-                crop: 'center',
-                alt: product.title
-              %}
-            </a>
-            <!-- النص -->
-            <div class="flex-1 overflow-hidden">
-              <h3 class="text-sm font-semibold truncate">
-                <a href="{{ product.url }}">{{ product.title }}</a>
-              </h3>
-              {% if sub_info_type == 'description' %}
-                <p class="text-gray-600 text-xs line-clamp-2">
-                  {% if product.description != blank %}
-                    {{ product.description | strip_html | truncate: 60 }}
-                  {% else %}
-                    no description
-                  {% endif %}
-                </p>
-              {% elsif sub_info_type == 'vendor' %}
-                <p class="text-gray-500 text-xs">{{ product.vendor }}</p>
-              {% endif %}
-              <p class="text-gray-800 font-medium mt-1">{{ product.price | money }}</p>
-            </div>
-            <!-- زر -->
-            <a
-              href="{{ product.url }}"
-              aria-label="view {{ product.title }}"
-              class="ml-3 bg-black text-white text-xs px-3 py-1 rounded hover:bg-gray-800"
-            >
-              عرض
-            </a>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section> {% endcomment %}
 
 {% schema %}
 {
