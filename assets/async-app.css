@@ -2534,6 +2534,11 @@
       display: flex;
     }
   }
+  .xl\:grid {
+    @media (width >= 80rem) {
+      display: grid;
+    }
+  }
   .xl\:hidden {
     @media (width >= 80rem) {
       display: none;
@@ -2542,6 +2547,11 @@
   .xl\:w-full {
     @media (width >= 80rem) {
       width: 100%;
+    }
+  }
+  .xl\:grid-cols-5 {
+    @media (width >= 80rem) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
   }
   .xl\:justify-between {
