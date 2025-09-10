@@ -8,6 +8,10 @@
 {%- endfor -%}
 {%- assign colors_list = colors_list | split: "|" -%}
 
+{% for filter in results.filters %}
+  <p>{{ filter.label }} — {{ filter.type }}</p>
+{% endfor %}
+
 <form id="FacetFiltersForm" class="facets" method="get"> 
   <div class="facets__wrapper space-y-4">
     {%- for filter in results.filters -%}
