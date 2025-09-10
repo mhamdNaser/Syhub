@@ -68,7 +68,7 @@
             <div class="swiper-wrapper">
               {% for media in product.media offset: 1 %}
                 <div class="swiper-slide">
-                  <button class="thumbnail-container_{{ media.id }} border-neutral-200 ">
+                  <button class="thumbnail-container_{{ media.id }} border border-neutral-200 ">
                     {% render 'product-media',
                       media: media,
                       height: '180px',
@@ -94,7 +94,7 @@
       </div>
 
       <!-- قسم المعلومات -->
-      <div class="product--information px-4 md:w-2/5 border-neutral-200 ">
+      <div class="product--information px-4 md:w-2/5 border border-neutral-200">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <div data-product-handle="{{ product_handle }}"></div>
 
