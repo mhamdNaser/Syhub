@@ -1322,6 +1322,9 @@
   .bg-center {
     background-position: center;
   }
+  .stroke-\[2\] {
+    stroke-width: 2;
+  }
   .stroke-\[3\] {
     stroke-width: 3;
   }
