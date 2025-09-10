@@ -216,7 +216,7 @@
                   </div>
               {% endcase %}
             {% endfor %}
-            <div class="footer__payment flex justify-between rounded-2xl  border border-neutral-200">
+            <div class="footer__payment flex justify-between items-center rounded-2xl  border border-neutral-200">
               {% for type in shop.enabled_payment_types %}
                 {{ type | payment_type_svg_tag }}
               {% endfor %}
