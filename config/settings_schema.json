@@ -1022,12 +1022,6 @@
         "id": "show_Availability_filter",
         "label": "Show Availability Filter",
         "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "show_price_filter",
-        "label": "Show Price Filter",
-        "default": false
       }
     ]
   }
