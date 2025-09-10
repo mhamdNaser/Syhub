@@ -40,13 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // إزالة البوردر من كل الثامبنيلز
     const allThumbnails = document.querySelectorAll('[class^="thumbnail-container_"]');
     allThumbnails.forEach(thumb => {
-      thumb.classList.remove('border', 'border-[#c42764]');
+      thumb.classList.remove('border-[#c42764]');
     });
 
     // إضافة البوردر للثامبنيل المختار
     const thumbnailContainer = document.querySelector(`.thumbnail-container_${selectedVariant.featured_media.id}`);
     if (thumbnailContainer) {
-      thumbnailContainer.classList.add('border', 'border-[#c42764]');
+      thumbnailContainer.classList.remove( 'border-neutral-200');
+      thumbnailContainer.classList.add( 'border-[#c42764]');
 
       // ✅ تحريك الـ swiper الصحيح
       const swiperInstance = getSwiperForThumbnail(thumbnailContainer);
