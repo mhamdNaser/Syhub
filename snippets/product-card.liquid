@@ -93,7 +93,7 @@
       {% if product.featured_image %}
         <a
           href="{{ product_url }}"
-          class="block relative overflow-hidden max-h-[200px] w-1/5 aspect-[200/200] {{ image_style }}"
+          class="block relative overflow-hidden max-h-[200px] aspect-[200/200] {{ image_style }}"
           style="box-shadow: -{{ shadow_value }}px {{ shadow_value }}px {{ shadow_blur }}px {{ image_shadow }};"
         >
           {%
@@ -130,7 +130,7 @@
       {% endif %}
 
       <div
-        class="mt-4 shrink-0 w-3/5 h-full"
+        class="mt-4 shrink-0 h-full"
         :class="
           layoutType === 'grid'
           ? '{{ text_alignment }}'
@@ -151,7 +151,7 @@
       </div>
 
       {% if add_to_cart_button %}
-        <div class="flex justify-between items-center h-full w-1/5 border border-[#c42764] mt-4 text-xs">
+        <div class="flex justify-between items-center h-full border border-[#c42764] mt-4 text-xs">
           {% if show_preorder and variant_policy == 'continue' %}
             <button
               aria-label="preorder"
