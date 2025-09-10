@@ -94,7 +94,7 @@
       </div>
 
       <!-- قسم المعلومات -->
-      <div class="product--information px-4 md:w-2/5 border border-neutral-200">
+      <div class="product--information px-4 md:w-2/5">
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <div data-product-handle="{{ product_handle }}"></div>
 
@@ -118,7 +118,7 @@
           </div>
 
           <!-- المعلومات الرئيسية -->
-          <div class="bg-white p-6 shadow-lg rounded-2xl space-y-6" id="product-information_{{ product_title }}">
+          <div class="bg-white p-6 shadow-lg rounded-2xl  border border-neutral-200 space-y-6" id="product-information_{{ product_title }}">
             <input type="hidden" id="formInput" name="id" value="{{ default_variant.id }}">
 
             {% for block in section.blocks %}
