@@ -575,6 +575,12 @@
   .aspect-\[343\/235\] {
     aspect-ratio: 343/235;
   }
+  .aspect-\[400\/400\] {
+    aspect-ratio: 400/400;
+  }
+  .aspect-\[400\/600\] {
+    aspect-ratio: 400/600;
+  }
   .aspect-\[600\/600\] {
     aspect-ratio: 600/600;
   }
