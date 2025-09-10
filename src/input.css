@@ -5,5 +5,5 @@
 }
 
 .horizontal-style {
-  @apply flex flex-row items-start max-h-[200px] bg-white p-4 gap-4;
+  @apply flex flex-row items-start justify-center max-h-[200px] bg-white p-4 gap-4;
 }
