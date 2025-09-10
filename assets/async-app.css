@@ -803,6 +803,9 @@
   .max-w-36 {
     max-width: calc(var(--spacing) * 36);
   }
+  .max-w-\[120px\] {
+    max-width: 120px;
+  }
   .max-w-md {
     max-width: var(--container-md);
   }
