@@ -20,12 +20,12 @@
 <span class="mt-2 flex text-xs text-gray-500 truncate max-w-3xl overflow-hidden mx-auto">
   {% if product_short_description == 'product_description' %}
     {% if product.description != blank %}
-      {{ product.description | strip_html | truncatewords: 5, " more ..." }}
+      {{ product.description | strip_html | truncatewords: 7, " more ..." }}
     {% else %}
       This product has no description
     {% endif %}
   {% elsif product_short_description == 'custom' %}
-    {{ product_short_description_text | strip_html | truncatewords: 5, " more ..." }}
+    {{ product_short_description_text | strip_html | truncatewords: 7, " more ..." }}
   {% endif %}
 </span>
 
