@@ -2477,6 +2477,7 @@
 .horizontal-style {
   display: flex;
   max-height: 200px;
+  width: 100%;
   flex-direction: row;
   align-items: flex-start;
   gap: calc(var(--spacing) * 4);
