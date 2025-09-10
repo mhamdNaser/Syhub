@@ -81,7 +81,7 @@
 %}
 
 {% if product %}
-  {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+  {% form 'product', product, id: 'product-form', novalidate: 'novalidate', class: 'w-full' %}
     <div
       :class="
         layoutType === 'grid'
