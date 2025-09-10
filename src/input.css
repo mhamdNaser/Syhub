@@ -5,5 +5,5 @@
 }
 
 .horizontal-style {
-  @apply flex flex-row items-start bg-white p-4 gap-4 overflow-hidden;
+  @apply flex flex-row items-start bg-white px-4 gap-4 overflow-hidden;
 }
