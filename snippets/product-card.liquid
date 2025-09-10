@@ -139,7 +139,7 @@
         :class="
           layoutType === 'grid'
           ? '{{ text_alignment }} mx-auto'
-          : 'text-start shrink-0 max-w-3/5'
+          : 'text-start shrink-0 max-w-3/5 items-center'
         "
       >
         {% render 'product-card-details',
@@ -161,7 +161,7 @@
           :class="
             layoutType === 'grid'
             ? 'h-full'
-            : 'h-full w-full max-w-1/5'
+            : 'h-full w-full max-w-1/5 items-center'
           "
         >
           {% if show_preorder and variant_policy == 'continue' %}
