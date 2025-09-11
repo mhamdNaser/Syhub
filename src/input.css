@@ -13,5 +13,5 @@
 }
 
 .custom-payment-button button:hover {
-  background-color: var(--color-neutral-700) !important;
+  background-color: var(--color-neutral-900) !important;
 }
