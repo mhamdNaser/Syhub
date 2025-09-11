@@ -61,9 +61,6 @@
     {% assign price_float = product.price | divided_by: 100.0 %}
     {% assign compare_float = product.compare_at_price | divided_by: 100.0 %}
 
-    {% comment %}
-      دالة صغيرة لتنسيق الرقم مع منزلتين عشريتين
-    {% endcomment %}
     {% assign format_price = price_float | round: 2 %}
     {% assign format_compare = compare_float | round: 2 %}
 
@@ -88,9 +85,9 @@
       {% assign format_compare_str = format_compare_str | append: ".00" %}
     {% endif %}
 
-    {% if product.compare_at_price > product.price %}
-      <span class="text-xs text-red-700 line-through">{{ format_compare_str }}</span>
-      <span class="text-xs text-gray-900">{{ format_price_str }}</span>
+    {% if product.compare_at_price < product.price %}
+      <span class="text-xs text-red-700 line-through">{{ format_price_str }}</span>
+      <span class="text-xs text-gray-900">{{ format_compare_str }}</span>
     {% else %}
       <span class="text-xs text-gray-900">{{ format_price_str }}</span>
     {% endif %}
