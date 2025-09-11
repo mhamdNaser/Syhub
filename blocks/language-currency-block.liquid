@@ -36,7 +36,8 @@
                     {% endif %}
                   >
                     {{ language.endonym_name }}
-                    {%- render 'icons', icon: 'icon-{{  language.iso_code  }}-flag', icon_size: '20' -%}
+                    {%- assign lang_flag = "icon-" | append: language.iso_code | append: '-flag' -%}
+                    {%- render 'icons', icon: lang_flag , icon_size: '20' -%}
                   </a>
                 </li>
               {% endfor %}
