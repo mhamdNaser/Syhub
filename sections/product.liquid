@@ -200,12 +200,12 @@
                         name="quantity"
                         id="Quantity-{{ section.id }}"
                         min="1"
-                        class="w-1/4 border border-neutral-400 rounded-md px-3 py-2 mt-1"
+                        class="w-1/4 border border-neutral-400 rounded-md px-3 py-2"
                       >
                       <button
                         type="submit"
                         name="add"
-                        class="w-3/4 px-6 py-4 font-semibold rounded-lg bg-[#c42764] text-white disabled:bg-gray-400"
+                        class="w-3/4 px-6 py-2 font-semibold rounded-lg bg-[#c42764] text-white disabled:bg-gray-400"
                         {% if default_variant.available == false %}
                           disabled
                         {% endif %}
