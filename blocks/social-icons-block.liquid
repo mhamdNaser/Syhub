@@ -19,14 +19,14 @@
 %}
 
 <div class="flex items-center gap-4" {{ block.shopify_attributes }}>
-  <a
-    href="{{ facebook_url }}"
-    aria-label="icon-facebook"
-    target="_blank"
-    class="hover:text-blue-600 transition inline-block"
-  >
-    {%- render 'icons', icon: 'icon-facebook' -%}
-  </a>
+  {% render 'button',
+    type: 'link',
+    url: facebook_url,
+    data_label: 'icon-facebook',
+    data_target: '_blank',
+    class: 'hover:text-blue-600 transition inline-block',
+    icon: 'icon-instagram'
+  %}
 
   <a
     href="{{ instagram_url }}"
