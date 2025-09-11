@@ -63,7 +63,7 @@
         <div class="swiper-wrapper">
           {% if featured_collection %}
             {% for product in featured_collection limit: item_view %}
-              <div class="swiper-slide mx-3 max-w-2/3" x-data="{ layoutType: 'grid' }">
+              <div class="swiper-slide mx-3 px-8 max-w-2/3" x-data="{ layoutType: 'grid' }">
                 {% render 'product-card', product: product %}
               </div>
             {% endfor %}

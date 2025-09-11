@@ -68,12 +68,7 @@
               {% for media in product.media offset: 1 %}
                 <div class="swiper-slide">
                   <button class="thumbnail-container_{{ media.id }} border border-neutral-200 ">
-                    {% render 'product-media',
-                      media: media,
-                      mediaId: media.id,
-                      loading: 'lazy',
-                      alt: product_title
-                    %}
+                    {% render 'product-media', media: media, mediaId: media.id, loading: 'lazy', alt: product_title %}
                   </button>
                 </div>
               {% endfor %}
@@ -87,6 +82,10 @@
               aria-label="swiper-button-prev-{{ section_id }}"
             ></div>
           </div>
+        </div>
+
+        <div id="description">
+          {{ product.description | strip_html }}
         </div>
       </div>
 
@@ -175,7 +174,10 @@
                 {% when 'description' %}
                   <div>
                     <h2 class="text-lg font-semibold mb-2">Product Description</h2>
-                    <p class="text-gray-700 leading-relaxed">{{ product.description }}</p>
+                    <p class="text-gray-700 leading-relaxed">
+                      {{ product.description | strip_html | truncatewords: 30 }}
+                      <a class="text-red-700 text-bold" href="#description"> read more </a>
+                    </p>
                   </div>
 
                 {% when 'checkout_buttons' %}
