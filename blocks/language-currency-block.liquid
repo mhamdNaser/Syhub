@@ -29,7 +29,7 @@
               {% for language in localization.available_languages %}
                 <li>
                   <a
-                    class="flex px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
+                    class="flex gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
                     href="{{ language.root_url }}"
                     lang="{{ language.iso_code }}"
                     data-value="{{ language.iso_code }}"
@@ -37,9 +37,9 @@
                       aria-current="true" class="active"
                     {% endif %}
                   >
-                    <span>{{ language.endonym_name }}</span>
                     {%- assign lang_flag = "icon-" | append: language.iso_code | append: '-flag' -%}
                     <span>{%- render 'icons', icon: lang_flag , icon_size: '20' -%}</span>
+                    <span>{{ language.endonym_name }}</span>
                   </a>
                 </li>
               {% endfor %}
