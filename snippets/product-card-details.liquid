@@ -64,25 +64,25 @@
     {% assign format_price = price_float | round: 2 %}
     {% assign format_compare = compare_float | round: 2 %}
 
-    {% assign format_price_str = format_price | append: "" %}
-    {% assign format_compare_str = format_compare | append: "" %}
+    {% assign format_price_str = format_price | append: '' %}
+    {% assign format_compare_str = format_compare | append: '' %}
 
-    {% if format_price_str contains "." %}
-      {% assign decimals = format_price_str | split: "." | last %}
+    {% if format_price_str contains '.' %}
+      {% assign decimals = format_price_str | split: '.' | last %}
       {% if decimals.size == 1 %}
-        {% assign format_price_str = format_price_str | append: "0" %}
+        {% assign format_price_str = format_price_str | append: '0' %}
       {% endif %}
     {% else %}
-      {% assign format_price_str = format_price_str | append: ".00" %}
+      {% assign format_price_str = format_price_str | append: '.00' %}
     {% endif %}
 
-    {% if format_compare_str contains "." %}
-      {% assign decimals = format_compare_str | split: "." | last %}
+    {% if format_compare_str contains '.' %}
+      {% assign decimals = format_compare_str | split: '.' | last %}
       {% if decimals.size == 1 %}
-        {% assign format_compare_str = format_compare_str | append: "0" %}
+        {% assign format_compare_str = format_compare_str | append: '0' %}
       {% endif %}
     {% else %}
-      {% assign format_compare_str = format_compare_str | append: ".00" %}
+      {% assign format_compare_str = format_compare_str | append: '.00' %}
     {% endif %}
 
     {% if product.compare_at_price > product.price %}
@@ -91,9 +91,9 @@
     {% else %}
       <span class="text-xs text-gray-900">{{ format_price_str }}</span>
     {% endif %}
+    <span class="text-xs text-gray-900">{{ cart.currency.iso_code }}</span>
   {% endif %}
 </p>
-
 
 {% if enable_color_swatches %}
   <div x-data="{ open: false }" class="text-center relative mt-2">
