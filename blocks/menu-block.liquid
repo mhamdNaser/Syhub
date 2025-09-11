@@ -24,7 +24,8 @@
           {% assign btn_id = 'list-toggle-' | append: link.title | handleize %}
           {% assign btn_target = 'header-menu-' | append: link.title | handleize %}
           {% render 'button',
-            type: 'button',
+            type: 'link',
+            url: link.url,
             id: btn_id,
             class: button_class,
             data_target: btn_target,
