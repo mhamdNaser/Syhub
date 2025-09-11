@@ -16,16 +16,6 @@
           "type": "description",
           "settings": {}
         },
-        "vendor_DCGKh8": {
-          "type": "vendor",
-          "settings": {
-            "vendor_type": "image"
-          }
-        },
-        "title_bBQbQJ": {
-          "type": "title",
-          "settings": {}
-        },
         "price_HrdwKV": {
           "type": "price",
           "settings": {}
@@ -60,13 +50,11 @@
       "block_order": [
         "description_3zXyTq",
         "price_HrdwKV",
-        "vendor_DCGKh8",
-        "title_bBQbQJ",
         "sku_PzLWCN",
-        "guarantee_wi6VJH",
         "product_variant_hcWX3J",
         "quantity_bQNMJy",
-        "checkout_buttons_qyNBRV"
+        "checkout_buttons_qyNBRV",
+        "guarantee_wi6VJH"
       ],
       "settings": {
         "media_sticky": false
