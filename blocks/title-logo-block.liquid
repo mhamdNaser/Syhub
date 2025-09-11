@@ -4,7 +4,6 @@
 
 {% assign logo_aspect = 135 | divided_by: 36.0 %}
 {% assign logo_height = settings.logo_size | times: logo_aspect | round %}
-{% assign homepage_url = request.locale.root_url | default: shop.url %}
 
 <h2 class="header__title" {{ block.shopify_attributes }}>
   {% if block.settings.logo == 'logo' %}
