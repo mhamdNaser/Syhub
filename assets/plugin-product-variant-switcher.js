@@ -115,12 +115,12 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("mouseenter", function () {
       const allcolorButtons = document.querySelectorAll('.color-swatch');
       allcolorButtons.forEach(btnbor => {
-        btnbor.classList.remove('border', 'border-[#c42764]');
+        btnbor.classList.remove('outline', 'outline-[#c42764]');
       });
       const optionIndex = parseInt(btn.dataset.optionIndex);
       const selectsArray = Array.from(selects).map(s => s.value);
       selectsArray[optionIndex] = btn.dataset.value;
-      btn.classList.add('border', 'border-[#c42764]');
+      btn.classList.add('outline', 'outline-[#c42764]');
       updateVariant(selectsArray);
     });
   });

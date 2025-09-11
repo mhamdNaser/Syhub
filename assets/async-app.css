@@ -1126,6 +1126,10 @@
     border-style: var(--tw-border-style);
     border-width: 0px;
   }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
   .border-4 {
     border-style: var(--tw-border-style);
     border-width: 4px;
@@ -1221,6 +1225,9 @@
   }
   .border-red-700 {
     border-color: var(--color-red-700);
+  }
+  .border-white {
+    border-color: var(--color-white);
   }
   .border-t-blue-500 {
     border-top-color: var(--color-blue-500);
@@ -1700,6 +1707,9 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .outline-\[\#c42764\] {
+    outline-color: #c42764;
   }
   .blur {
     --tw-blur: blur(8px);
