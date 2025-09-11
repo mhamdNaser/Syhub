@@ -44,7 +44,7 @@
       assign image_style = 'transform group-hover:scale-105 transition-transform duration-500'
     endif
 
-    if sale_label and product.compare_at_price > product.price
+    if sale_label and product.compare_at_price < product.price
       assign discount_amount = product.compare_at_price | minus: product.price
       assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price
     endif
