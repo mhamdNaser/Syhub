@@ -56,20 +56,14 @@
   </div>
 {% endif %}
 
-<p class="text-xs font-bold text-gray-700 mt-2 flex justify-center gap-3">
+<p class="text-xs font-bold text-gray-700 mt-2">
   {% if show_price %}
-    {% assign price_float = product.price | money  %}
-    {% assign compare_at_price_float = product.compare_at_price | money %}
     {% if product.compare_at_price < product.price %}
-      <span class="text-xs text-red-700 line-through">
-        {{ price_float }}
-        {% comment %} {{ product.compare_at_price | money }} {% endcomment %}
-      </span>
+      <span class="text-xs text-red-700 line-through">{{ product.price | money }}</span>
+      <span class="text-xs text-gray-900">{{ product.compare_at_price | money }}</span>
+    {% else %}
+      <span class="text-xs text-gray-900">{{ product.price | money }}</span>
     {% endif %}
-    <span class="text-xs text-gray-900">
-      {% comment %} {{ product.price | money }} {% endcomment %}
-      {{ compare_at_price_float }}
-    </span>
   {% endif %}
 </p>
 
