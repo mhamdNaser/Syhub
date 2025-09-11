@@ -182,19 +182,6 @@
                 {% when 'product-variant' %}
                   {% render 'product-variant', product: product, display_type: block.settings.variant_display_type %}
 
-                {% when 'quantity' %}
-                  <div>
-                    <label for="Quantity-{{ section.id }}" class="text-sm font-medium">Quantity</label>
-                    <input
-                      type="number"
-                      name="quantity"
-                      id="Quantity-{{ section.id }}"
-                      value="1"
-                      min="1"
-                      class="w-full border rounded-md px-3 py-2 mt-1"
-                    >
-                  </div>
-
                 {% when 'description' %}
                   <p class="leading-relaxed">
                     {{ product.description | strip_html | truncatewords: 20 }}
@@ -203,8 +190,16 @@
                     </a>
                   </p>
 
-                {% when 'checkout_buttons' %}
-                  <div>
+                {% when 'payment_form' %}
+                  <div class="flex">
+                    <input
+                      type="number"
+                      name="quantity"
+                      id="Quantity-{{ section.id }}"
+                      value="1"
+                      min="1"
+                      class="w-full border rounded-md px-3 py-2 mt-1"
+                    >
                     <button
                       aria-label="add to cart"
                       type="submit"
@@ -387,11 +382,6 @@
       ]
     },
     {
-      "type": "quantity",
-      "name": "Quantity",
-      "limit": 1
-    },
-    {
       "type": "sku",
       "name": "SKU",
       "limit": 1
@@ -402,7 +392,7 @@
       "limit": 1
     },
     {
-      "type": "checkout_buttons",
+      "type": "payment_form",
       "name": "Checkout Buttons",
       "limit": 1
     }
