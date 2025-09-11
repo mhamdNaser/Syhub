@@ -4,6 +4,11 @@
   elsif localization.language.iso_code == 'en'
     assign language_icon = 'icon-en-flag'
   endif
+
+  assign querystring = ''
+  if request.query_string != blank
+    assign querystring = '?' | append: request.query_string
+  endif
 %}
 
 <div class="flex items-center gap-2 " {{ block.shopify_attributes }}>
@@ -30,15 +35,15 @@
                 <li>
                   <a
                     class="flex gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
-                    href="{{ language.root_url }}{{ request.path }}{{ request.query_string | prepend: '?' unless request.query_string == blank }}"
+                    href="{{ language.root_url }}{{ request.path }}{{ querystring }}"
                     lang="{{ language.iso_code }}"
                     data-value="{{ language.iso_code }}"
                     {% if language.iso_code == localization.language.iso_code %}
                       aria-current="true" class="active"
                     {% endif %}
                   >
-                    {%- assign lang_flag = "icon-" | append: language.iso_code | append: '-flag' -%}
-                    <span>{%- render 'icons', icon: lang_flag , icon_size: '20' -%}</span>
+                    {%- assign lang_flag = 'icon-' | append: language.iso_code | append: '-flag' -%}
+                    <span>{%- render 'icons', icon: lang_flag, icon_size: '20' -%}</span>
                     <span>{{ language.endonym_name }}</span>
                   </a>
                 </li>
