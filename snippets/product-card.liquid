@@ -1,7 +1,6 @@
 {% liquid
   assign text_alignment = settings.productcards_text_alignment
   assign sale_label = settings.show_sale_label
-  assign sale_label_price = settings.sale_label_price
   assign show_stock = settings.show_stock_label
   assign stock_qty = settings.stock_label_qty
   assign show_price = settings.show_price_varies
@@ -44,11 +43,6 @@
       assign image_style = 'transform group-hover:scale-105 transition-transform duration-500'
     endif
 
-    if sale_label and product.compare_at_price > product.price
-      assign discount_amount = product.compare_at_price | minus: product.price
-      assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price
-    endif
-
     if show_stock and stock < stock_qty
       assign stock_label = 'productCard.laststock' | t
       assign stock_bg_color = 'bg-[#c42764]'
@@ -67,18 +61,17 @@
       assign discount_amount = product.compare_at_price_max | minus: product.price
       assign discount_percentage = discount_amount | times: 100 | divided_by: product.compare_at_price_max
 
-      case sale_label_price
-        when 'amount'
+      if settings.sale_label_price == 'amount'
           assign discount_label = discount_amount | money
           assign discount_bg_color = 'bg-red-950'
-        when 'percentage'
+      elsif settings.sale_label_price == 'percentage'
           assign discount_label = discount_percentage | append: '%'
           assign discount_bg_color = 'bg-red-950'
-        else
+      else
           assign discount_label = ''
           assign discount_bg_color = 'bg-none'
           assign show_container = 'hidden'
-      endcase
+      endif
     endif
   endif
 %}
