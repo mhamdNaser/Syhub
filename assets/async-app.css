@@ -2390,6 +2390,12 @@
       line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
+  .md\:font-bold {
+    @media (width >= 48rem) {
+      --tw-font-weight: var(--font-weight-bold);
+      font-weight: var(--font-weight-bold);
+    }
+  }
   .lg\:static {
     @media (width >= 64rem) {
       position: static;
