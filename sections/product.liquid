@@ -140,15 +140,40 @@
                 {% when 'price' %}
                   <div id="price-{{ section.id }}" class="flex items-center gap-3 text-4xl">
                     {% assign price_float = default_variant.price | divided_by: 100.0 %}
-                    {% assign compare_at_price_float = default_variant.compare_at_price | divided_by: 100.0 %}
-                    {% if default_variant.compare_at_price < default_variant.price %}
+                    {% assign compare_float = default_variant.compare_at_price | divided_by: 100.0 %}
+                    {% assign price_str = price_float | round: 2 | append: '' %}
+                    {% assign compare_str = compare_float | round: 2 | append: '' %}
+
+                    {% if price_str contains '.' %}
+                      {% assign decimals = price_str | split: '.' | last %}
+                      {% if decimals.size == 1 %}
+                        {% assign price_str = price_str | append: '0' %}
+                      {% endif %}
+                    {% else %}
+                      {% assign price_str = price_str | append: '.00' %}
+                    {% endif %}
+
+                    {% if compare_str contains '.' %}
+                      {% assign decimals = compare_str | split: '.' | last %}
+                      {% if decimals.size == 1 %}
+                        {% assign compare_str = compare_str | append: '0' %}
+                      {% endif %}
+                    {% else %}
+                      {% assign compare_str = compare_str | append: '.00' %}
+                    {% endif %}
+
+                    {% if default_variant.compare_at_price > default_variant.price %}
                       <span class="text-gray-400 line-through">
-                        {{ price_float | round: 2 }}
+                        {{ compare_str }}
+                      </span>
+                      <span class="font-semibold text-gray-900">
+                        {{ price_str }}
+                      </span>
+                    {% else %}
+                      <span class="font-semibold text-gray-900">
+                        {{ price_str }}
                       </span>
                     {% endif %}
-                    <span class="font-semibold text-gray-900">
-                      {{ compare_at_price_float | round: 2 }}
-                    </span>
                   </div>
 
                 {% when 'product-variant' %}
