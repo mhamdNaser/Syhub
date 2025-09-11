@@ -12,11 +12,6 @@
   assign default_variant = product.selected_or_first_available_variant
   assign selected_variant = blank
 
-  if section.settings.media_sticky
-    assign media_classes = 'product--medias sticky top-0 md:w-3/5'
-  else
-    assign media_classes = 'md:w-3/5'
-  endif
 
   assign product_title = product.title
   assign product_vendor = product.vendor
@@ -28,7 +23,7 @@
   <div class="max-w-7xl mx-auto py-6">
     {% render 'bread-crumb' %}
 
-    <div class="flex md:flex-row flex-col gap-14 relative">
+    <div class="flex md:flex-row flex-col gap-8 relative">
       <!-- قسم الصور -->
       <div class="{{ media_classes }} px-12">
         <picture class="bg-white shadow-xl rounded-xl border border-neutral-200 overflow-hidden hidden md:block">
@@ -280,12 +275,6 @@
 {
   "name": "Product",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "media_sticky",
-      "label": "Media Position",
-      "default": false
-    }
   ],
   "blocks": [
     {
