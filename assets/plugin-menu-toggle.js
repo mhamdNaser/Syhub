@@ -45,10 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!submenu) return;
 
     // Click → Toggle
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      toggleMenu(submenu, parentLi.parentElement);
-    });
+    // btn.addEventListener("click", (e) => {
+    //   e.preventDefault();
+    //   toggleMenu(submenu, parentLi.parentElement);
+    // });
 
     // Hover → فقط للديسكتوب
     const showSubmenu = () => {
