@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!menu) return;
 
     // Click → Toggle على الموبايل
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      toggleMenu(menu);
-    });
+    // btn.addEventListener("click", (e) => {
+    //   e.preventDefault();
+    //   toggleMenu(menu);
+    // });
 
     // Hover → فقط للديسكتوب
     const showMenu = () => {
