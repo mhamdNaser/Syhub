@@ -37,7 +37,7 @@
                     type="submit"
                     name="locale_code"
                     value="{{ language.iso_code }}"
-                    class="flex gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option {% if language.iso_code == localization.language.iso_code %}active{% endif %}"
+                    class="flex w-full gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option {% if language.iso_code == localization.language.iso_code %}active{% endif %}"
                   >
                     {%- assign lang_flag = 'icon-' | append: language.iso_code | append: '-flag' -%}
                     <span>{%- render 'icons', icon: lang_flag, icon_size: '20' -%}</span>
