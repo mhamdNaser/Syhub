@@ -22,20 +22,19 @@
   {% render 'button',
     type: 'link',
     url: facebook_url,
-    data_label: 'icon-facebook',
-    data_target: '_blank',
+    aria_label: 'icon-facebook',
+    target: '_blank',
     class: 'hover:text-blue-600 transition inline-block',
     icon: 'icon-facebook'
   %}
-
-  <a
-    href="{{ instagram_url }}"
-    aria-label="icon-instagram"
-    target="_blank"
-    class="hover:text-pink-500 transition inline-block"
-  >
-    {%- render 'icons', icon: 'icon-instagram' %}
-  </a>
+  {% render 'button',
+    type: 'link',
+    url: instagram_url,
+    aria_label: 'icon-instagram',
+    target: '_blank',
+    class: 'hover:text-blue-600 transition inline-block',
+    icon: 'icon-instagram'
+  %}
 </div>
 
 {% schema %}

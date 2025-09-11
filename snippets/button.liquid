@@ -11,7 +11,9 @@
   @param {string} [text_color] - Text color (e.g. text-white)
   @param {string} [padding_horizontal] - padding horizontal (e.g. 15px)
   @param {string} [padding_vertical] - padding vertical (e.g. 15px)
+  @param {string} [aria_label] - Optional aria-label attribute
   @param {string} [data_label] - Optional data-label attribute
+  @param {string} [target] - The link target text
   @param {string} [data_target] - Optional data-target attribute
 
   @example
@@ -47,6 +49,12 @@
   {% endif %}
   {% if id %}
     id="{{ id }}"
+  {% endif %}
+  {% if target %}
+    target="{{ target }}"
+  {% endif %}
+  {% if aria_label %}
+    aria-label="{{ aria_label }}"
   {% endif %}
   class="{{ class }}"
   {% if data_label %}
