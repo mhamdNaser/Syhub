@@ -58,16 +58,45 @@
 
 <p class="text-xs font-bold text-gray-700 mt-2">
   {% if show_price %}
-    {% assign raw_price = product.price | divided_by: 100.0 %}
-    {% assign raw_compare_at_price = product.compare_at_price | divided_by: 100.0 %}
-    {% if product.compare_at_price < product.price %}
-      <span class="text-xs text-red-700 line-through">{{ raw_price | sprintf: "%.2f" }}</span>
-      <span class="text-xs text-gray-900">{{ raw_compare_at_price | sprintf: "%.2f" }}</span>
+    {% assign price_float = product.price | divided_by: 100.0 %}
+    {% assign compare_float = product.compare_at_price | divided_by: 100.0 %}
+
+    {% comment %}
+      دالة صغيرة لتنسيق الرقم مع منزلتين عشريتين
+    {% endcomment %}
+    {% assign format_price = price_float | round: 2 %}
+    {% assign format_compare = compare_float | round: 2 %}
+
+    {% assign format_price_str = format_price | append: "" %}
+    {% assign format_compare_str = format_compare | append: "" %}
+
+    {% if format_price_str contains "." %}
+      {% assign decimals = format_price_str | split: "." | last %}
+      {% if decimals.size == 1 %}
+        {% assign format_price_str = format_price_str | append: "0" %}
+      {% endif %}
     {% else %}
-      <span class="text-xs text-gray-900">{{ raw_price | sprintf: "%.2f" }}</span>
+      {% assign format_price_str = format_price_str | append: ".00" %}
+    {% endif %}
+
+    {% if format_compare_str contains "." %}
+      {% assign decimals = format_compare_str | split: "." | last %}
+      {% if decimals.size == 1 %}
+        {% assign format_compare_str = format_compare_str | append: "0" %}
+      {% endif %}
+    {% else %}
+      {% assign format_compare_str = format_compare_str | append: ".00" %}
+    {% endif %}
+
+    {% if product.compare_at_price > product.price %}
+      <span class="text-xs text-red-700 line-through">{{ format_compare_str }}</span>
+      <span class="text-xs text-gray-900">{{ format_price_str }}</span>
+    {% else %}
+      <span class="text-xs text-gray-900">{{ format_price_str }}</span>
     {% endif %}
   {% endif %}
 </p>
+
 
 {% if enable_color_swatches %}
   <div x-data="{ open: false }" class="text-center relative mt-2">
