@@ -1138,6 +1138,13 @@
     border-start-start-radius: 0.25rem;
     border-end-start-radius: 0.25rem;
   }
+  .rounded-s-full {
+    border-start-start-radius: calc(infinity * 1px);
+    border-end-start-radius: calc(infinity * 1px);
+  }
+  .rounded-ss-full {
+    border-start-start-radius: calc(infinity * 1px);
+  }
   .rounded-se-full {
     border-start-end-radius: calc(infinity * 1px);
   }
