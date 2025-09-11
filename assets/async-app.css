@@ -2501,6 +2501,7 @@
 }
 .custom-payment-button button {
   margin-top: calc(var(--spacing) * 3);
+  height: 100%;
   width: 100%;
   border-radius: var(--radius-lg);
   background-color: var(--color-neutral-700);
