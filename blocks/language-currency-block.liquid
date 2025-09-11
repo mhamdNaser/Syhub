@@ -33,9 +33,10 @@
             {% form 'localization', class: 'localization-form' %}
               {% for language in localization.available_languages %}
                 <li>
-                  <a
+                  <button
                     class="flex gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
-                    href="https://{{ request.host }}{{ language.root_url }}{{ request.path }}{{ querystring }}"
+                    name="locale_code"
+                    type="submit"
                     lang="{{ language.iso_code }}"
                     data-value="{{ language.iso_code }}"
                     {% if language.iso_code == localization.language.iso_code %}
@@ -45,7 +46,7 @@
                     {%- assign lang_flag = 'icon-' | append: language.iso_code | append: '-flag' -%}
                     <span>{%- render 'icons', icon: lang_flag, icon_size: '20' -%}</span>
                     <span>{{ language.endonym_name }}</span>
-                  </a>
+                  </button>
                 </li>
               {% endfor %}
             {% endform %}
