@@ -20,6 +20,16 @@
           "type": "price",
           "settings": {}
         },
+        "product_variant_hcWX3J": {
+          "type": "product-variant",
+          "settings": {
+            "variant_display_type": "color"
+          }
+        },
+        "payment_form_AHkC9U": {
+          "type": "payment_form",
+          "settings": {}
+        },
         "sku_PzLWCN": {
           "type": "sku",
           "settings": {}
@@ -31,34 +41,17 @@
             "guarantee_image": "shopify://shop_images/brandvip_original_badge_430x_92b88575-32b3-45a5-9d1a-86c511156d2f.avif",
             "guarantee_description": "<p>✔️ 100% Original Product – Cash on Delivery – Easy Returns</p>"
           }
-        },
-        "product_variant_hcWX3J": {
-          "type": "product-variant",
-          "settings": {
-            "variant_display_type": "color"
-          }
-        },
-        "quantity_bQNMJy": {
-          "type": "quantity",
-          "settings": {}
-        },
-        "checkout_buttons_qyNBRV": {
-          "type": "checkout_buttons",
-          "settings": {}
         }
       },
       "block_order": [
         "description_3zXyTq",
         "price_HrdwKV",
-        "sku_PzLWCN",
         "product_variant_hcWX3J",
-        "quantity_bQNMJy",
-        "checkout_buttons_qyNBRV",
+        "payment_form_AHkC9U",
+        "sku_PzLWCN",
         "guarantee_wi6VJH"
       ],
-      "settings": {
-        "media_sticky": false
-      }
+      "settings": {}
     },
     "product_recommendations_mCUedn": {
       "type": "product-recommendations",
