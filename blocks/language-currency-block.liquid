@@ -30,7 +30,7 @@
                 <li>
                   <a
                     class="flex gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
-                    href="{{ language.root_url }}"
+                    href="{{ language.root_url }}{{ request.path }}{{ request.query_string | prepend: '?' unless request.query_string == blank }}"
                     lang="{{ language.iso_code }}"
                     data-value="{{ language.iso_code }}"
                     {% if language.iso_code == localization.language.iso_code %}
