@@ -12,10 +12,13 @@
     "main": {
       "type": "product",
       "blocks": {
+        "description_3zXyTq": {
+          "type": "description",
+          "settings": {}
+        },
         "vendor_DCGKh8": {
           "type": "vendor",
           "settings": {
-            "vendor_image": "shopify://shop_images/logo.png",
             "vendor_type": "image"
           }
         },
@@ -49,16 +52,13 @@
           "type": "quantity",
           "settings": {}
         },
-        "description_3zXyTq": {
-          "type": "description",
-          "settings": {}
-        },
         "checkout_buttons_qyNBRV": {
           "type": "checkout_buttons",
           "settings": {}
         }
       },
       "block_order": [
+        "description_3zXyTq",
         "vendor_DCGKh8",
         "title_bBQbQJ",
         "price_HrdwKV",
@@ -66,10 +66,11 @@
         "guarantee_wi6VJH",
         "product_variant_hcWX3J",
         "quantity_bQNMJy",
-        "description_3zXyTq",
         "checkout_buttons_qyNBRV"
       ],
-      "settings": {}
+      "settings": {
+        "media_sticky": false
+      }
     },
     "product_recommendations_mCUedn": {
       "type": "product-recommendations",
