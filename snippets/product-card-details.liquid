@@ -56,7 +56,7 @@
   </div>
 {% endif %}
 
-<p class="text-xs font-bold text-gray-700 mt-2">
+<p class="text-xs font-bold text-gray-700 mt-2 flex gap-3">
   {% if show_price %}
     {% assign price_float = product.price | divided_by: 100.0 %}
     {% assign compare_at_price_float = product.compare_at_price | divided_by: 100.0 %}
