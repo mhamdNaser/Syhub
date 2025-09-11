@@ -173,7 +173,6 @@
 
                 {% when 'description' %}
                   <div>
-                    <h2 class="text-lg font-semibold mb-2">Product Description</h2>
                     <p class="text-gray-700 leading-relaxed">
                       {{ product.description | strip_html | truncatewords: 30 }}
                       <a class="text-red-700 text-bold" href="#description"> read more </a>
