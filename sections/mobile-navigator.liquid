@@ -80,20 +80,18 @@
     class="fixed top-0 left-0 bottom-0 flex flex-col w-full max-w-sm bg-white shadow-md overflow-y-auto list-none"
   >
     <div class="flex items-center w-full justify-between py-3">
-      <a class="mr-auto text-xl font-bold leading-none" href="{{ routes.root_url }}">
-        {% if settings.logo != blank %}
-          {% render 'image',
-            url: routes.root_url,
-            image: settings.logo,
-            class: 'object-cover header__logo',
-            width: 60,
-            alt: 'Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area',
-            sizes: '(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px'
-          %}
-        {% else %}
-          {{ shop.name }}
-        {% endif %}
-      </a>
+      {% if settings.logo != blank %}
+        {% render 'image',
+          url: routes.root_url,
+          image: settings.logo,
+          class: 'object-cover header__logo',
+          width: 60,
+          alt: 'Shop logo displaying {{ shop.name }} in a welcoming style, positioned in the website header area',
+          sizes: '(max-width: 640px) 60px, (max-width: 1024px) 70px, 80px'
+        %}
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
       <button class="mobile-footer-close" aria-label="close">
         {%- render 'icons', icon: 'icon-close' %}
       </button>
