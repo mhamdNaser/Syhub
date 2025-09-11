@@ -139,7 +139,7 @@
                   <h2 class="font-extrabold text-xl">{{ product_title }}</h2>
 
                 {% when 'price' %}
-                  <div id="price-{{ section.id }}" class="flex items-center gap-3">
+                  <div id="price-{{ section.id }}" class="flex items-center gap-3 text-4xl">
                     {% if default_variant.compare_at_price > default_variant.price %}
                       <span class="text-sm text-gray-400 line-through">
                         {{ default_variant.compare_at_price | money }}
@@ -170,7 +170,7 @@
                 {% when 'description' %}
                     <p class="leading-relaxed">
                       {{ product.description | strip_html | truncatewords: 20 }}
-                      <a class="font-extrabold text-xs" href="#description" style="color: darkred"> read more </a>
+                      <a class="font-extrabold text-xs" href="#description" style="color: darkred !important"> read more </a>
                     </p>
 
                 {% when 'checkout_buttons' %}
