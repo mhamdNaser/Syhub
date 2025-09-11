@@ -216,17 +216,15 @@
                     </div>
 
                     {% if default_variant.available %}
-                      <form method="post" action="/cart/add" x-ref="checkoutForm">
-                        <input type="hidden" name="id" value="{{ default_variant.id }}">
-                        <input type="hidden" name="quantity" :value="quantity">
-                        <button
-                          type="submit"
-                          formaction="/checkout"
-                          class="w-full px-6 py-4 font-semibold rounded-lg bg-neutral-700 text-white"
-                        >
-                          Buy Now
-                        </button>
-                      </form>
+                      <button
+                        type="submit"
+                        formaction="/checkout"
+                        class="w-full px-6 py-4 font-semibold rounded-lg bg-neutral-700 text-white mt-3"
+                        :name="'checkout'"
+                        :value="quantity"
+                      >
+                        Buy Now
+                      </button>
                     {% endif %}
                   </div>
 
