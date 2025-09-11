@@ -215,11 +215,10 @@
                     </div>
 
                     {% if default_variant.available %}
+                      <input type="hidden" name="checkout" value="1">
                       <button
                         type="submit"
-                        name="checkout"
                         class="w-full px-6 py-4 font-semibold rounded-lg bg-neutral-700 text-white mt-3"
-                        formaction="/cart/add?checkout"
                       >
                         Buy Now
                       </button>
