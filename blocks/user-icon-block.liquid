@@ -1,16 +1,17 @@
 <div class="header__icons" {{ block.shopify_attributes }}>
   {% if shop.customer_accounts_enabled %}
     <a href="{{ routes.account_url }}" aria-label="user">
-      {%- render 'icons' , icon: 'icon-user', icon_size: '24' -%}
+      {%- render 'icons', icon: 'icon-user', icon_size: '24' -%}
     </a>
-    
   {% endif %}
 
-  <a href="{{ routes.cart_url }}" aria-label="cart">
+  <a href="{{ routes.cart_url }}" aria-label="cart" class="relative">
+    {%- render 'icons', icon: 'icon-cart', icon_size: '24' -%}
     {% if cart.item_count > 0 %}
-      <sup>{{ cart.item_count }}</sup>
+      <span class="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full border-2 border-red-600 text-red-600 text-xs font-bold bg-white">
+        {{ cart.item_count }}
+      </span>
     {% endif %}
-    {%- render 'icons' , icon: 'icon-cart' , icon_size: '24' -%}
   </a>
 </div>
 
