@@ -139,9 +139,9 @@
 
                 {% when 'price' %}
                   <div id="price-{{ section.id }}" class="flex items-center gap-3 text-4xl">
+                    {% assign price_float = default_variant.price | divided_by: 100.0 %}
+                    {% assign compare_at_price_float = default_variant.compare_at_price | divided_by: 100.0 %}
                     {% if default_variant.compare_at_price < default_variant.price %}
-                      {% assign price_float = default_variant.price | divided_by: 100.0 %}
-                      {% assign compare_at_price_float = default_variant.compare_at_price | divided_by: 100.0 %}
                       <span class="text-gray-400 line-through">
                         {{ price_float | round: 2 }}
                       </span>
