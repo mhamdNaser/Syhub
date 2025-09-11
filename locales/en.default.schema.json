@@ -304,18 +304,18 @@
         "button_hover_effect": {
           "label": "Hover Effect",
           "info": "Select the effect that appears when hovering over the button.",
-          "options__1":{
+          "options__1": {
             "label": "Change Color"
           },
-          "options__2":{
+          "options__2": {
             "label": "Persistent Shadow"
           },
-          "options__3":{
+          "options__3": {
             "label": "Temporary Shadow"
           },
-          "options__4":{
+          "options__4": {
             "label": "None"
-          } 
+          }
         }
       }
     },
@@ -692,6 +692,64 @@
           "info": "Content or message displayed inside the random product popup",
           "default": "Check out this amazing product that others are loving!"
         }
+      }
+    },
+    "social_icons": {
+      "name": "Social Media Icons",
+      "facebook": {
+        "label": "Facebook URL",
+        "info": "Enter the link to your Facebook page"
+      },
+      "instagram": {
+        "label": "Instagram URL",
+        "info": "Enter the link to your Instagram profile"
+      },
+      "twitter": {
+        "label": "Twitter URL",
+        "info": "Enter the link to your Twitter profile"
+      },
+      "tiktok": {
+        "label": "TikTok URL",
+        "info": "Enter the link to your TikTok profile"
+      },
+      "youtube": {
+        "label": "YouTube URL",
+        "info": "Enter the link to your YouTube channel"
+      },
+      "linkedin": {
+        "label": "LinkedIn URL",
+        "info": "Enter the link to your LinkedIn profile"
+      },
+      "snapchat": {
+        "label": "Snapchat URL",
+        "info": "Enter the link to your Snapchat account"
+      },
+      "pinterest": {
+        "label": "Pinterest URL",
+        "info": "Enter the link to your Pinterest profile"
+      },
+      "whatsapp": {
+        "label": "WhatsApp URL",
+        "info": "Enter the link to your WhatsApp number or group"
+      },
+      "telegram": {
+        "label": "Telegram URL",
+        "info": "Enter the link to your Telegram channel or group"
+      }
+    },
+    "facet_filters": {
+      "name": "Facet Filters Settings",
+      "color": {
+        "label": "Show Color Filter"
+      },
+      "size": {
+        "label": "Show Size Filter"
+      },
+      "vendor": {
+        "label": "Show Vendor Filter"
+      },
+      "availability": {
+        "label": "Show Availability Filter"
       }
     }
   }

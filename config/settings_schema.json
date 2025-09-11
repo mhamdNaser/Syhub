@@ -997,31 +997,96 @@
     ]
   },
   {
-    "name": "Facet Filters Settings",
+    "name": "t:settings_schema.facet_filters.name",
     "settings": [
       {
         "type": "checkbox",
         "id": "show_color_filter",
-        "label": "Show Color Filter",
+        "label": "t:settings_schema.facet_filters.color.label",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "show_size_filter",
-        "label": "Show Size Filter",
+        "label": "t:settings_schema.facet_filters.size.label",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "show_vendor_filter",
-        "label": "Show Vendor Filter",
+        "label": "t:settings_schema.facet_filters.vendor.label",
         "default": false
       },
       {
         "type": "checkbox",
-        "id": "show_Availability_filter",
-        "label": "Show Availability Filter",
+        "id": "show_availability_filter",
+        "label": "t:settings_schema.facet_filters.availability.label",
         "default": false
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.social_icons.name",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "t:settings_schema.social_icons.facebook.label",
+        "info": "t:settings_schema.social_icons.facebook.info"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "t:settings_schema.social_icons.instagram.label",
+        "info": "t:settings_schema.social_icons.instagram.info"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter",
+        "label": "t:settings_schema.social_icons.twitter.label",
+        "info": "t:settings_schema.social_icons.twitter.info"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "t:settings_schema.social_icons.tiktok.label",
+        "info": "t:settings_schema.social_icons.tiktok.info"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "t:settings_schema.social_icons.youtube.label",
+        "info": "t:settings_schema.social_icons.youtube.info"
+      },
+      {
+        "type": "url",
+        "id": "social_linkedin",
+        "label": "t:settings_schema.social_icons.linkedin.label",
+        "info": "t:settings_schema.social_icons.linkedin.info"
+      },
+      {
+        "type": "url",
+        "id": "social_snapchat",
+        "label": "t:settings_schema.social_icons.snapchat.label",
+        "info": "t:settings_schema.social_icons.snapchat.info"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest",
+        "label": "t:settings_schema.social_icons.pinterest.label",
+        "info": "t:settings_schema.social_icons.pinterest.info"
+      },
+      {
+        "type": "url",
+        "id": "social_whatsapp",
+        "label": "t:settings_schema.social_icons.whatsapp.label",
+        "info": "t:settings_schema.social_icons.whatsapp.info"
+      },
+      {
+        "type": "url",
+        "id": "social_telegram",
+        "label": "t:settings_schema.social_icons.telegram.label",
+        "info": "t:settings_schema.social_icons.telegram.info"
       }
     ]
   }
