@@ -140,7 +140,7 @@
 
                 {% when 'price' %}
                   <div id="price-{{ section.id }}" class="flex items-center gap-3 text-4xl">
-                    {% if default_variant.compare_at_price > default_variant.price %}
+                    {% if default_variant.compare_at_price < default_variant.price %}
                       <span class="text-gray-400 line-through">
                         {{ default_variant.compare_at_price | money }}
                       </span>
