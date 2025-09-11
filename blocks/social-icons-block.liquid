@@ -5,35 +5,43 @@
   {% content_for 'block', type: 'tools', id: 'tools' %}
 {% enddoc %}
 
+{% liquid
+  if settings.facebook_url != blank
+    assign facebook_url = block.settings.facebook_url
+  else
+    assign facebook_url = routes.root_url
+  endif
+  if block.settings.instagram_url != blank
+    assign instagram_url = block.settings.instagram_url
+  else
+    assign instagram_url = routes.root_url
+  endif
+%}
+
 <div class="flex items-center gap-4" {{ block.shopify_attributes }}>
-  {% if block.settings.facebook_url != blank %}
-    <a href="{{ block.settings.facebook_url }}" aria-label="icon-facebook" target="_blank" class="hover:text-blue-600 transition inline-block">
-      {%- render 'icons' , icon: 'icon-facebook' -%}
-    </a>
-  {% endif %}
-  
-  {% if block.settings.instagram_url != blank %}
-    <a href="{{ block.settings.instagram_url }}" aria-label="icon-instagram" target="_blank" class="hover:text-pink-500 transition inline-block">
-      {%- render 'icons' , icon: 'icon-instagram' %}
-    </a>
-  {% endif %}
+  <a
+    href="{{ facebook_url }}"
+    aria-label="icon-facebook"
+    target="_blank"
+    class="hover:text-blue-600 transition inline-block"
+  >
+    {%- render 'icons', icon: 'icon-facebook' -%}
+  </a>
+
+  <a
+    href="{{ instagram_url }}"
+    aria-label="icon-instagram"
+    target="_blank"
+    class="hover:text-pink-500 transition inline-block"
+  >
+    {%- render 'icons', icon: 'icon-instagram' %}
+  </a>
 </div>
 
 {% schema %}
 {
   "name": "Social Icons Bar",
-  "settings": [
-    {
-      "type": "url",
-      "id": "facebook_url",
-      "label": "Facebook URL"
-    },
-    {
-      "type": "url",
-      "id": "instagram_url",
-      "label": "Instagram URL"
-    }
-  ],
-  "presets": [{ "name": "Social Icons Bar", "category": "Header" }],
+  "settings": [],
+  "presets": [{ "name": "Social Icons Bar", "category": "Header" }]
 }
 {% endschema %}
