@@ -191,14 +191,14 @@
                   </p>
 
                 {% when 'payment_form' %}
-                  <div class="flex flex-col gap-3 p-6 m-4 border border-neutral-200">
+                  <div x-data="{ quantity: 1 }" class="flex flex-col gap-3 p-6 m-4 border border-neutral-200">
                     <!-- حقل الكمية + زر الإضافة في صف واحد -->
                     <div class="flex gap-3 w-full">
                       <input
                         type="number"
+                        x-model.number="quantity"
                         name="quantity"
                         id="Quantity-{{ section.id }}"
-                        value="1"
                         min="1"
                         class="w-1/4 border border-neutral-400 rounded-md px-3 py-2 mt-1"
                       >
@@ -215,13 +215,14 @@
                       </button>
                     </div>
 
+                    <!-- زر Buy Now / Checkout -->
                     {% if default_variant.available %}
                       <button
                         type="submit"
+                        name="checkout"
                         formaction="/checkout"
                         class="w-full px-6 py-4 font-semibold rounded-lg bg-neutral-700 text-white mt-3"
-                        :name="'checkout'"
-                        :value="quantity"
+                        x-bind:value="quantity"
                       >
                         Buy Now
                       </button>
