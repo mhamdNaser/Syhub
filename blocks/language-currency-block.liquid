@@ -11,9 +11,11 @@
     <div class="flex items-center gap-2">
       <!-- LANGUAGE SELECTOR -->
       <div class="relative">
-        <button class="p-0 m-0 flex items-center" id="language-toggle" type="button">
-          <span id="selected-language" class="mx-1 flex items-center gap-2">
+        <button class="p-0 m-0 flex items-center gap-2" id="language-toggle" type="button">
+          <span id="selected-language">
             {%- render 'icons', icon: language_icon, icon_size: '20' -%}
+          </span>
+          <span id="selected-flag">
             {{- localization.language.iso_code | upcase }}
           </span>
         </button>
@@ -27,7 +29,7 @@
               {% for language in localization.available_languages %}
                 <li>
                   <a
-                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
+                    class="flex px-4 py-2 text-gray-800 hover:bg-gray-200 language-option"
                     href="{{ language.root_url }}"
                     lang="{{ language.iso_code }}"
                     data-value="{{ language.iso_code }}"
@@ -35,9 +37,9 @@
                       aria-current="true" class="active"
                     {% endif %}
                   >
-                    {{ language.endonym_name }}
+                    <span>{{ language.endonym_name }}</span>
                     {%- assign lang_flag = "icon-" | append: language.iso_code | append: '-flag' -%}
-                    {%- render 'icons', icon: lang_flag , icon_size: '20' -%}
+                    <span>{%- render 'icons', icon: lang_flag , icon_size: '20' -%}</span>
                   </a>
                 </li>
               {% endfor %}
