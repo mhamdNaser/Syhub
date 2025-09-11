@@ -7,3 +7,7 @@
 .horizontal-style {
   @apply flex flex-row items-start bg-white px-4 gap-4 overflow-hidden;
 }
+
+.custom-payment-button button {
+  @apply "w-full px-6 py-4 font-semibold rounded-lg bg-neutral-700 text-white mt-3;
+}
