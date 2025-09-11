@@ -7,9 +7,9 @@
 
   <a href="{{ routes.cart_url }}" aria-label="cart" class="relative">
     {%- render 'icons', icon: 'icon-cart', icon_size: '24' -%}
-    <span class="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full border-2 border-red-600 text-red-600 text-xs font-bold bg-white">
+    <sup class="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full border border-red-600 text-red-600 text-xs bg-white">
       {{ cart.item_count }}
-    </span>
+    </sup>
   </a>
 </div>
 
