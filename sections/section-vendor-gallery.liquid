@@ -39,7 +39,7 @@
           <div class="swiper-slide max-w-5/6 aspect-[120/120] md:aspect-[120/120]">
             <a
               href="/collections/vendors?q={{ vendor_name | url_encode }}"
-              class="flex flex-col items-center group transition transform hover:-translate-y-1"
+              class="flex flex-col items-center transition transform hover:-translate-y-1"
               aria-label="{{ vendor_name | default: section_id }}"
             >
               <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition w-fit">
@@ -48,7 +48,7 @@
                   alt: vendor_name,
                   width: 120,
                   height: 120,
-                  class: 'object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-300 ease-in-out',
+                  class: 'object-cover w-full h-full transition duration-300 ease-in-out',
                   loading: 'lazy'
                 %}
               </div>
