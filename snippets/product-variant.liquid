@@ -15,12 +15,12 @@
           or option_name_downcase contains 'colour'
           or option_name_downcase contains 'اللون'
         %}
-          <div class="flex gap-2 items-center p-1">
+          <div class="flex gap-2 items-center">
             {% for value in option.values %}
               <button
                 type="button"
                 id="color-swatch_{{ value.id | escape }}"
-                class="w-8 h-8 rounded-full cursor-pointer bg-center bg-cover color-swatch"
+                class="w-8 h-8 rounded-full cursor-pointer bg-center bg-cover color-swatch p-2"
                 style="
                   {% if display_type == 'image' %}
                     background-image: url('{{ value.variant.featured_media | img_url  }}');
