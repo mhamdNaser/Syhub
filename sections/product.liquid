@@ -12,7 +12,6 @@
   assign default_variant = product.selected_or_first_available_variant
   assign selected_variant = blank
 
-
   assign product_title = product.title
   assign product_vendor = product.vendor
   assign product_handle = product.handle
@@ -141,12 +140,14 @@
                 {% when 'price' %}
                   <div id="price-{{ section.id }}" class="flex items-center gap-3 text-4xl">
                     {% if default_variant.compare_at_price < default_variant.price %}
+                      {% assign price_float = default_variant.price | divided_by: 100.0 %}
+                      {% assign compare_at_price_float = default_variant.compare_at_price | divided_by: 100.0 %}
                       <span class="text-gray-400 line-through">
-                        {{ default_variant.compare_at_price | money }}
+                        {{ price_float | round: 2 }}
                       </span>
                     {% endif %}
                     <span class="font-semibold text-gray-900">
-                      {{ default_variant.price | money }}
+                      {{ compare_at_price_float | round: 2 }}
                     </span>
                   </div>
 
@@ -167,10 +168,12 @@
                   </div>
 
                 {% when 'description' %}
-                    <p class="leading-relaxed">
-                      {{ product.description | strip_html | truncatewords: 20 }}
-                      <a class="font-extrabold text-xs" href="#description" style="color: darkred !important"> read more </a>
-                    </p>
+                  <p class="leading-relaxed">
+                    {{ product.description | strip_html | truncatewords: 20 }}
+                    <a class="font-extrabold text-xs" href="#description" style="color: darkred !important">
+                      read more
+                    </a>
+                  </p>
 
                 {% when 'checkout_buttons' %}
                   <div>
@@ -271,8 +274,7 @@
 {% schema %}
 {
   "name": "Product",
-  "settings": [
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "vendor",
