@@ -205,7 +205,7 @@
             "item_view_in_section": 9,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 1,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         },
@@ -290,7 +290,7 @@
             "item_view_in_section": 12,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         },
@@ -357,7 +357,7 @@
             "item_view_in_section": 12,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         }
@@ -382,7 +382,7 @@
             "item_view_in_section": 12,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         }
@@ -407,7 +407,7 @@
             "item_view_in_section": 12,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         }
@@ -465,7 +465,7 @@
             "item_view_in_section": 12,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         }
@@ -658,7 +658,7 @@
             "item_view_in_section": 12,
             "item_view_in_row": 6,
             "item_view_in_row_mobile": 2,
-            "show_pagination_row": false,
+            "show_pagination_row": true,
             "collection_url": true
           }
         }
