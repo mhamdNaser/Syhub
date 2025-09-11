@@ -59,9 +59,9 @@
 <p class="text-xs font-bold text-gray-700 mt-2">
   {% if show_price %}
     {% if product.compare_at_price > product.price %}
-      <span class="text-xs text-red-700 line-through">{{ product.compare_at_price | money }}</span>
+      <span class="text-xs text-red-700 line-through">{{ product.compare_at_price | money_without_trailing_zeros  }}</span>
     {% endif %}
-    <span class="text-xs text-gray-900">{{ product.price | money }}</span>
+    <span class="text-xs text-gray-900">{{ product.price | money_without_trailing_zeros  }}</span>
   {% endif %}
 </p>
 
