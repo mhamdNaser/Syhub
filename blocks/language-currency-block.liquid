@@ -13,7 +13,7 @@
       <div class="relative">
         <button class="p-0 m-0 flex items-center" id="language-toggle" type="button">
           <span id="selected-language" class="mx-1">{{ localization.language.iso_code | upcase }}
-            {%- render 'icons', icon: language_icon -%}
+            {%- render 'icons', icon: language_icon,  icon_size: '24' -%}
           </span>
         </button>
         <div
@@ -35,7 +35,7 @@
                     {% endif %}
                   >
                     {{ language.endonym_name }}
-                    {%- render 'icons', icon: 'icon-{{  language.iso_code  }}-flag' -%}
+                    {%- render 'icons', icon: 'icon-{{  language.iso_code  }}-flag',  icon_size: '24' -%}
                   </a>
                 </li>
               {% endfor %}
