@@ -60,17 +60,15 @@
   {% if show_price %}
     {% assign price_float = product.price | divided_by: 100.0 %}
     {% assign compare_at_price_float = product.compare_at_price | divided_by: 100.0 %}
-    {{ price_float | round: 2 }}
-    {{ compare_at_price_float | round: 2 }}
     {% if product.compare_at_price > product.price %}
       <span class="text-xs text-red-700 line-through">
-        {{ compare_at_price_float }}
+        {{ compare_at_price_float | round: 2 }}
         {% comment %} {{ product.compare_at_price | money }} {% endcomment %}
       </span>
     {% endif %}
     <span class="text-xs text-gray-900">
       {% comment %} {{ product.price | money }} {% endcomment %}
-      {{ price_float }}
+      {{ price_float | round: 2 }}
     </span>
   {% endif %}
 </p>
