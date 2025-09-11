@@ -1,7 +1,7 @@
 <!doctype html>
 <html
-  lang="{{ request.locale.iso_code }}"
-  dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}"
+  lang="{{ localization.language.iso_code }}"
+  dir="{% if localization.language.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}"
 >
   <head>
     {%- if settings.favicon != blank -%}
