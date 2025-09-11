@@ -63,7 +63,7 @@
       assign show_container = 'hidden'
     endif
 
-    if sale_label and product.price < product.compare_at_price
+    if sale_label and product.price > product.compare_at_price
       case sale_label_price
         when 'amount'
           assign discount_label = discount_amount | money
