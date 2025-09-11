@@ -58,17 +58,17 @@
 
 <p class="text-xs font-bold text-gray-700 mt-2 flex justify-center gap-3">
   {% if show_price %}
-    {% comment %} {% assign price_float = product.price | divided_by: 100.00 %} {% endcomment %}
-    {% comment %} {% assign compare_at_price_float = product.compare_at_price | divided_by: 100.00 %} {% endcomment %}
+    {% assign price_float = product.price | money | divided_by: 100.00 %}
+    {% assign compare_at_price_float = product.compare_at_price | money | divided_by: 100.00 %}
     {% if product.compare_at_price < product.price %}
       <span class="text-xs text-red-700 line-through">
-        {{ product.price | round: 2 }}
+        {{ price_float | round: 2 }}
         {% comment %} {{ product.compare_at_price | money }} {% endcomment %}
       </span>
     {% endif %}
     <span class="text-xs text-gray-900">
       {% comment %} {{ product.price | money }} {% endcomment %}
-      {{ product.compare_at_price | round: 2 }}
+      {{ compare_at_price_float | round: 2 }}
     </span>
   {% endif %}
 </p>
