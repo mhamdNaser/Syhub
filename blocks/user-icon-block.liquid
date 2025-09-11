@@ -6,7 +6,7 @@
   {% endif %}
 
   <a href="{{ routes.cart_url }}" aria-label="cart" class="relative">
-    <span class="absolute -top-2 left-2 flex items-center justify-center w-6 h-6 rounded-full border border-red-600 text-red-600 text-xs bg-white">
+    <span class="absolute -top-2 -left-3 flex items-center justify-center w-4 h-4 rounded-full border border-red-600 text-red-600 text-xs bg-white">
       {{ cart.item_count }}
     </span>
     {%- render 'icons', icon: 'icon-cart', icon_size: '24' -%}
