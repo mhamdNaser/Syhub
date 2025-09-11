@@ -85,9 +85,9 @@
       {% assign format_compare_str = format_compare_str | append: ".00" %}
     {% endif %}
 
-    {% if product.compare_at_price < product.price %}
-      <span class="text-xs text-red-700 line-through">{{ format_price_str }}</span>
-      <span class="text-xs text-gray-900">{{ format_compare_str }}</span>
+    {% if product.compare_at_price > product.price %}
+      <span class="text-xs text-red-700 line-through">{{ format_compare_str }}</span>
+      <span class="text-xs text-gray-900">{{ format_price_str }}</span>
     {% else %}
       <span class="text-xs text-gray-900">{{ format_price_str }}</span>
     {% endif %}
