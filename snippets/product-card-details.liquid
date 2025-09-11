@@ -58,13 +58,13 @@
 
 <p class="text-xs font-bold text-gray-700 mt-2">
   {% if show_price %}
-    {% assign raw_price = product.price | divided_by: 100.00 %}
-    {% assign raw_compare_at_price = product.compare_at_price | divided_by: 100.00 %}
+    {% assign raw_price = product.price | divided_by: 100.0 %}
+    {% assign raw_compare_at_price = product.compare_at_price | divided_by: 100.0 %}
     {% if product.compare_at_price < product.price %}
-      <span class="text-xs text-red-700 line-through">{{ raw_price | round: 2 }}</span>
-      <span class="text-xs text-gray-900">{{ raw_compare_at_price | round: 2 }}</span>
+      <span class="text-xs text-red-700 line-through">{{ raw_price | sprintf: "%.2f" }}</span>
+      <span class="text-xs text-gray-900">{{ raw_compare_at_price | sprintf: "%.2f" }}</span>
     {% else %}
-      <span class="text-xs text-gray-900">{{ raw_price | round: 2 }}</span>
+      <span class="text-xs text-gray-900">{{ raw_price | sprintf: "%.2f" }}</span>
     {% endif %}
   {% endif %}
 </p>
