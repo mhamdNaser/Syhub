@@ -75,9 +75,23 @@
       });
     }
 
-     if (toggleLanguage && menuLanguage) {
+    if (toggleLanguage && menuLanguage) {
       toggleLanguage.addEventListener('click', function () {
         menuLanguage.classList.toggle('hidden');
+
+        // حساب المساحة من أسفل المتصفح
+        const rect = toggleLanguage.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const menuHeight = menuLanguage.offsetHeight;
+
+        if (spaceBelow < menuHeight + 10) {
+          // +10 for padding
+          menuLanguage.style.top = 'auto';
+          menuLanguage.style.bottom = `${rect.height + 4}px`; // تفتح فوق الزر
+        } else {
+          menuLanguage.style.bottom = 'auto';
+          menuLanguage.style.top = `${rect.height + 4}px`; // تفتح أسفل الزر
+        }
       });
 
       document.addEventListener('click', function (e) {
