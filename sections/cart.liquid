@@ -151,10 +151,11 @@ function cartHandler() {
   return {
     quantities: {{ cart.items | map: 'quantity' | json }},
     totals: {{ cart.items | map: 'line_price' | json }},
-    cartTotal: {{ cart.total_price }},
-    cartSubtotal: {{ cart.items_subtotal_price }},
-    cartTax: {{ cart.total_tax }},
-    cartDiscount: {{ cart.total_discount }},
+    
+    cartSubtotal: {{ cart.items_subtotal_price | default: 0 }},
+    cartDiscount: {{ cart.total_discount | default: 0 }},
+    cartTax: {{ cart.total_tax | default: 0 }},
+    cartTotal: {{ cart.total_price | default: 0 }},
 
     formatMoney(cents) {
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: '{{ shop.currency }}' }).format(cents / 100);
@@ -168,12 +169,13 @@ function cartHandler() {
       })
       .then(res => res.json())
       .then(data => {
-        this.cartTotal = data.total_price;
-        this.cartSubtotal = data.items_subtotal_price;
-        this.cartTax = data.total_tax;
-        this.cartDiscount = data.total_discount;
         this.quantities = data.items.map(i => i.quantity);
         this.totals = data.items.map(i => i.line_price);
+
+        this.cartSubtotal = data.items_subtotal_price;
+        this.cartDiscount = data.total_discount;
+        this.cartTax = data.total_tax;
+        this.cartTotal = data.total_price;
 
         if (data.item_count === 0) {
           window.location.reload();
