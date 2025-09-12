@@ -1,7 +1,7 @@
 {% assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' %}
 {% assign free_shipping_threshold = 20000 %}
 
-<div class="p-4 min-h-96" x-data="cartHandler()">
+<div class="min-h-96 py-12" x-data="cartHandler()">
   <template x-if="items.length > 0">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
       <!-- Left: Cart Items -->
