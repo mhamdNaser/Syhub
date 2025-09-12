@@ -151,16 +151,16 @@
                       {%- if social != blank -%}
                         {%- assign social_info = social | strip | split: '|' -%}
                         {{ social_info[0] }}
-                        {%- assign icon_name = social_info[0] | strip -%}
-                        {%- assign icon_url = social_info[1] | strip -%}
+                        {%- assign icon_name =  'icon-' | append: social_info[0] -%}
+                        {%- assign icon_url = social_info[1] -%}
                         {%
                           render 'button',
                           type: 'link',
                           url: icon_url,
-                          aria_label: 'icon-' | append: icon_name,
+                          aria_label: icon_name ,
                           target: '_blank',
                           class: 'hover:text-blue-600 transition inline-block',
-                          icon: 'icon-' | append: icon_name,
+                          icon: icon_name,
                           icon_size: '20',
                           icon_color: 'white'
                         %}
