@@ -7,6 +7,7 @@
   @param {string} [class] - Additional classes for styling
   @param {string} [text] - The button text
   @param {string} [icon] - Optional icon name (uses icons snippet)
+  @param {string} [icon_size] - Optional icon size (uses icons snippet)
   @param {string} [bg_color] - Background color (e.g. bg-blue-500)
   @param {string} [text_color] - Text color (e.g. text-white)
   @param {string} [font_size] - Text Size (e.g. 12 px)
@@ -77,6 +78,6 @@
   {% elsif text %}
     <span class="">{{ text }}</span>
   {% elsif icon %}
-    {% render 'icons', icon: icon %}
+    {% render 'icons', icon: icon, icon_size: icon_size %}
   {% endif %}
 </{{ tag }}>
