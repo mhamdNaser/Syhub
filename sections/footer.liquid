@@ -150,6 +150,7 @@
                     {%- for social in socials -%}
                       {%- if social != blank -%}
                         {%- assign social_info = social | strip | split: '|' -%}
+                        {{ social_info[0] }}
                         {%- assign icon_name = social_info[0] | strip -%}
                         {%- assign icon_url = social_info[1] | strip -%}
                         {%
