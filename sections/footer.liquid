@@ -152,6 +152,7 @@
                         {%- assign social_info = social | split: '|' -%}
                         {%- assign icon_name = social_info[0] | strip -%}
                         {%- assign icon_url = social_info[1] | strip -%}
+                        {{ icon_name }}
                         {%
                           render 'button',
                           type: 'link',
