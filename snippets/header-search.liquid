@@ -1,4 +1,4 @@
-{% comment %} <details-modal class="header__search relative">
+<details-modal class="header__search relative">
   <details>
     <!-- زر الأيقونة فقط -->
     <summary
@@ -10,7 +10,7 @@
         {% comment %} {{ 'general.search.search' | t }} {% endcomment %}
         <span class="space-x-24"> search Products </span>
         <span class="svg-wrapper w-6 h-6 ms-16 group-hover:text-[#c42764]">
-          {% render 'icons', icon: 'icon-search' , icon_size: '24' %}
+          {% render 'icons', icon: 'icon-search', icon_size: '24' %}
         </span>
       </div>
     </summary>
@@ -29,13 +29,13 @@
           aria-label="{{ 'accessibility.close' | t }}"
           onclick="this.closest('details').removeAttribute('open')"
         >
-          <span class="w-6 h-6">{% render 'icons', icon: 'icon-close' , icon_size: '24' %}</span>
+          <span class="w-6 h-6">{% render 'icons', icon: 'icon-close', icon_size: '24' %}</span>
         </button>
       </div>
       <!-- خلفية شفافة -->
 
       <div class="relative z-40 w-full max-w-7xl justify-between mx-auto">
-        <div class="flex items-center justify-between mb-4 py-3">
+        <div x-data="searchComponent()" class="flex items-center justify-between mb-4 py-3">
           <!-- لوغو الموقع -->
           <a href="{{ routes.root_url }}" class="flex-shrink-0">
             <h2 class="header__title" {{ block.shopify_attributes }}>
@@ -54,43 +54,94 @@
             action="{{ routes.search_url }}"
             method="get"
             role="search"
-            class="flex-1 mx-6 flex items-center border border-gray-200 rounded-md p-4 gap-2 relative max-w-3xl"
+            class="flex items-center border border-gray-200 rounded-md p-4 gap-2 relative"
+            @submit="open = false"
           >
             <input
-              id="search-input"
               type="search"
-              name="search"
-              value="{{ search.terms | escape }}"
+              name="q"
+              x-model="query"
               placeholder="{{ 'general.search.search' | t }}"
               class="flex-grow px-4 text-lg border-0 outline-none"
+              @input.debounce.300ms="fetchResults"
+              @focus="open = true"
             >
+
             <button
+              type="submit"
               class="text-gray-600 hover:text-blue-600"
               aria-label="{{ 'general.search.search' | t }}"
-              type="submit"
             >
-              <span class="w-5 h-5">{%- render 'icons' , icon: 'icon-search' , icon_size: '24' %}</span>
+              <span class="w-5 h-5">{% render 'icons', icon: 'icon-search', icon_size: '24' %}</span>
             </button>
-
-            <!-- هنا سيظهر الأوتوكومبليت -->
-            <div
-              id="search-results"
-              class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4  max-h-[480px] overflow-y-auto"
-            ></div>
           </form>
+          <!-- النتائج -->
+          <div
+            x-show="open && (results.products.length > 0 || results.collections.length > 0)"
+            x-transition
+            class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4 max-h-[480px] overflow-y-auto"
+            @click.away="open = false"
+          >
+            <!-- Suggestions -->
+            <template x-if="results.collections.length > 0">
+              <div class="mb-4">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Suggestions</h3>
+                <div class="flex flex-wrap gap-3">
+                  <template x-for="coll in results.collections" :key="coll.id">
+                    <button
+                      type="button"
+                      class="px-4 py-2 bg-[#f2bed2] text-[#c42764] rounded-lg hover:bg-[#c42764] hover:text-white transition shadow-sm font-medium"
+                      @click="query = coll.title; fetchResults()"
+                      x-html="highlight(coll.title)"
+                    ></button>
+                  </template>
+                </div>
+              </div>
+            </template>
+
+            <!-- Products -->
+            <template x-if="results.products.length > 0">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
+                <template x-for="product in results.products" :key="product.id">
+                  <a
+                    :href="product.url"
+                    class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition"
+                  >
+                    <div class="flex items-center space-x-3 overflow-hidden">
+                      <img
+                        :src="product.featured_image"
+                        :alt="product.title"
+                        class="w-12 h-12 rounded-md object-cover flex-shrink-0"
+                      >
+                      <div class="flex flex-col min-w-0">
+                        <p class="text-sm text-gray-500 truncate" x-html="highlight(product.vendor)"></p>
+                        <span class="text-gray-900 font-semibold" x-html="highlight(product.title)"></span>
+                        <!-- الوصف -->
+                        <p class="text-xs text-gray-400 mt-1 line-clamp-2" x-text="product.excerpt"></p>
+                      </div>
+                    </div>
+                    <div class="text-right min-w-[80px] flex-shrink-0">
+                      <span class="text-gray-800 font-bold text-base" x-text="product.price"></span>
+                    </div>
+                  </a>
+                </template>
+              </div>
+            </template>
+          </div>
 
           <!-- الأيقونتان على اليمين -->
           <div class="flex items-center space-x-4 flex-shrink-0">
             <div class="header__icons" {{ block.shopify_attributes }}>
               {% if shop.customer_accounts_enabled %}
-                {%- render 'icons' , icon: 'icon-user' -%}
+                {%- render 'icons', icon: 'icon-user' -%}
               {% endif %}
 
               <a href="{{ routes.cart_url }}" aria-label="cart">
                 {% if cart.item_count > 0 %}
                   <sup>{{ cart.item_count }}</sup>
                 {% endif %}
-                {%- render 'icons' , icon: 'icon-cart' -%}
+                {%- render 'icons', icon: 'icon-cart' -%}
               </a>
             </div>
           </div>
@@ -98,104 +149,18 @@
       </div>
     </div>
   </details>
-</details-modal> {% endcomment %}
-
-{% comment %} <script src="{{ 'plugin-search.js' | asset_url }}" defer></script> {% endcomment %}
-
-
-<div 
-  x-data="searchComponent()" 
-  class="relative w-full max-w-3xl"
->
-  <form
-    action="{{ routes.search_url }}"
-    method="get"
-    role="search"
-    class="flex items-center border border-gray-200 rounded-md p-4 gap-2 relative"
-    @submit="open = false"
-  >
-    <input
-      type="search"
-      name="q"
-      x-model="query"
-      placeholder="{{ 'general.search.search' | t }}"
-      class="flex-grow px-4 text-lg border-0 outline-none"
-      @input.debounce.300ms="fetchResults"
-      @focus="open = true"
-    >
-
-    <button
-      type="submit"
-      class="text-gray-600 hover:text-blue-600"
-      aria-label="{{ 'general.search.search' | t }}"
-    >
-      <span class="w-5 h-5">{% render 'icons' , icon: 'icon-search' , icon_size: '24' %}</span>
-    </button>
-  </form>
-
-  <!-- النتائج -->
-  <div
-    x-show="open && (results.products.length > 0 || results.collections.length > 0)"
-    x-transition
-    class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4 max-h-[480px] overflow-y-auto"
-    @click.away="open = false"
-  >
-    <!-- Suggestions -->
-    <template x-if="results.collections.length > 0">
-      <div class="mb-4">
-        <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Suggestions</h3>
-        <div class="flex flex-wrap gap-3">
-          <template x-for="coll in results.collections" :key="coll.id">
-            <button 
-              type="button"
-              class="px-4 py-2 bg-[#f2bed2] text-[#c42764] rounded-lg hover:bg-[#c42764] hover:text-white transition shadow-sm font-medium"
-              @click="query = coll.title; fetchResults()"
-              x-html="highlight(coll.title)"
-            ></button>
-          </template>
-        </div>
-      </div>
-    </template>
-
-    <!-- Products -->
-    <template x-if="results.products.length > 0">
-      <div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
-        <template x-for="product in results.products" :key="product.id">
-          <a
-            :href="product.url"
-            class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition"
-          >
-            <div class="flex items-center space-x-3 overflow-hidden">
-              <img :src="product.featured_image" :alt="product.title"
-                   class="w-12 h-12 rounded-md object-cover flex-shrink-0" >
-              <div class="flex flex-col min-w-0">
-                <p class="text-sm text-gray-500 truncate" x-html="highlight(product.vendor)"></p>
-                <span class="text-gray-900 font-semibold" x-html="highlight(product.title)"></span>
-                <!-- الوصف -->
-                <p class="text-xs text-gray-400 mt-1 line-clamp-2" x-text="product.excerpt"></p>
-              </div>
-            </div>
-            <div class="text-right min-w-[80px] flex-shrink-0">
-              <span class="text-gray-800 font-bold text-base" x-text="product.price"></span>
-            </div>
-          </a>
-        </template>
-      </div>
-    </template>
-  </div>
-</div>
+</details-modal>
 
 <script>
   function searchComponent() {
     return {
-      query: "",
+      query: '',
       results: { products: [], collections: [] },
       open: false,
 
       highlight(text) {
-        if (!text) return "";
-        const regex = new RegExp(`(${this.query})`, "gi");
+        if (!text) return '';
+        const regex = new RegExp(`(${this.query})`, 'gi');
         return text.replace(regex, `<span class='bg-[#f2bed2]'>$1</span>`);
       },
 
@@ -213,17 +178,17 @@
 
           // أول نجلب المنتجات بدون وصف
           this.results = {
-            products: (data.resources.results.products || []).map(p => ({
+            products: (data.resources.results.products || []).map((p) => ({
               id: p.id,
               handle: p.handle,
               title: p.title,
-              vendor: p.vendor || "",
+              vendor: p.vendor || '',
               url: p.url,
               featured_image: p.featured_image?.url,
-              price: `${(p.price.amount || p.price).toLocaleString()}${p.price.currency_symbol || "$"}`,
-              excerpt: "Loading description..." // مؤقت
+              price: `${(p.price.amount || p.price).toLocaleString()}${p.price.currency_symbol || '$'}`,
+              excerpt: 'Loading description...', // مؤقت
             })),
-            collections: data.resources.results.collections || []
+            collections: data.resources.results.collections || [],
           };
 
           // بعدين نجيب الوصف لكل منتج
@@ -231,9 +196,8 @@
             const desc = await this.fetchDescription(prod.handle);
             this.results.products[i].excerpt = this.extractSentence(desc, this.query);
           });
-
         } catch (err) {
-          console.error("Search error:", err);
+          console.error('Search error:', err);
           this.results = { products: [], collections: [] };
         }
       },
@@ -241,12 +205,12 @@
       async fetchDescription(handle) {
         try {
           const res = await fetch(`/products/${handle}.json`);
-          if (!res.ok) return "";
+          if (!res.ok) return '';
           const data = await res.json();
-          let desc = data.product?.body_html || "";
-          return desc.replace(/<[^>]*>/g, ""); // إزالة HTML
+          let desc = data.product?.body_html || '';
+          return desc.replace(/<[^>]*>/g, ''); // إزالة HTML
         } catch {
-          return "";
+          return '';
         }
       },
 
@@ -258,9 +222,8 @@
             return s.trim();
           }
         }
-        return text.length > 80 ? text.slice(0, 80) + "..." : text;
-      }
+        return text.length > 80 ? text.slice(0, 80) + '...' : text;
+      },
     };
   }
 </script>
-
