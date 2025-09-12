@@ -113,6 +113,8 @@
                         :src="product.featured_image"
                         :alt="product.title"
                         class="w-12 h-12 rounded-md object-cover flex-shrink-0"
+                        width="auto"
+                        height="auto"
                       >
                       <div class="flex flex-col min-w-0">
                         <p class="text-sm text-gray-500 truncate" x-html="highlight(product.vendor)"></p>
@@ -134,14 +136,14 @@
           <div class="flex items-center space-x-4 flex-shrink-0">
             <div class="header__icons" {{ block.shopify_attributes }}>
               {% if shop.customer_accounts_enabled %}
-                {%- render 'icons', icon: 'icon-user' -%}
+                {%- render 'icons', icon: 'icon-user', icon_size: '24' -%}
               {% endif %}
 
               <a href="{{ routes.cart_url }}" aria-label="cart">
                 {% if cart.item_count > 0 %}
                   <sup>{{ cart.item_count }}</sup>
                 {% endif %}
-                {%- render 'icons', icon: 'icon-cart' -%}
+                {%- render 'icons', icon: 'icon-cart', icon_size: '24' -%}
               </a>
             </div>
           </div>
