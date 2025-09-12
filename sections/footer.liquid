@@ -1,54 +1,24 @@
 {% assign background = section.settings.color_scheme.settings.background %}
 
+{% assign background = section.settings.color_scheme.settings.background %}
+
 <footer
-  class="hidden w-0 xl:w-full xl:flex xl:justify-between m-auto  py-8 px-8 xl:px-24 color-{{ section.settings.color_scheme }}"
+  class="hidden w-0 xl:w-full xl:flex xl:justify-between m-auto py-8 px-8 xl:px-24 color-{{ section.settings.color_scheme }}"
   style="background-color: {{ background }};"
 >
   <div class="w-full mx-auto max-w-7xl">
     <div class="flex flex-wrap justify-between gap-16">
-      <!-- العمود الأول: خدمة العملاء -->
+
+      <!-- العمود الأول: Follow us + Subscribe -->
       <div class="flex-1 min-w-[250px]">
-        <h3 class="text-lg font-bold mb-2">Customer Service</h3>
-        <p>The Ultimate Destination for All Your Beauty Needs</p>
+        <h3 class="font-bold mb-2">Follow us</h3>
+        <div class="flex space-x-4 mb-4">
+          <a href="#" aria-label="facebook" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-facebook', icon_fill_color: 'white' -%}</a>
+          <a href="#" aria-label="instagram" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-instagram', icon_fill_color: 'white' -%}</a>
+          <a href="#" aria-label="whatsapp" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-whatsapp', icon_fill_color: 'white' -%}</a>
+        </div>
 
-        <!-- استخدام بيانات المتجر ديناميكيًا عبر Liquid -->
-        <p class="mt-2">
-          📞
-          <a href="tel:{{ shop.phone }}" aria-label="phone" class="text-headerLightColor">
-            {{ shop.phone }}
-          </a>
-        </p>
-
-        <p>
-          ✉️
-          <a href="mailto:{{ shop.email }}" aria-label="e-mail" class="text-headerLightColor">
-            {{ shop.email }}
-          </a>
-        </p>
-
-        <p class="mt-2">
-          <a href="https://wa.me/{{ shop.phone | remove: '+' }}" aria-label="whatsapp" class="text-headerLightColor font-bold">
-            Ask your questions on WhatsApp
-          </a>
-        </p>
-      </div>
-
-      <!-- العمود الثاني: روابط المتجر -->
-      <div class="flex-1 min-w-[250px]">
-        <h3 class="text-lg font-bold mb-2">Quick Links</h3>
-        <ul class="space-y-2">
-          <li><a href="/pages/about-us" aria-label="about-us" class="text-gray-400 hover:text-black">About Us</a></li>
-          <li><a href="/pages/contact-us" aria-label="contact-us" class="text-gray-400 hover:text-black">Contact Us</a></li>
-          <li><a href="/pages/terms-conditions" aria-label="terms-conditions" class="text-gray-400 hover:text-black">Terms & Conditions</a></li>
-          <li><a href="/pages/privacy-policy" aria-label="privacy-policy" class="text-gray-400 hover:text-black">Privacy Policy</a></li>
-          <li><a href="/pages/shipping-policy" aria-label="shipping-policy" class="text-gray-400 hover:text-black">Shipping Policy</a></li>
-          <li><a href="/pages/refund-returns" aria-label="refund-returns" class="text-gray-400 hover:text-black">Refunds & Returns Policy</a></li>
-        </ul>
-      </div>
-
-      <!-- العمود الثالث: الاشتراك بالبريد -->
-      <div class="flex-1 min-w-[250px]">
-        <h3 class="text-sm font-bold mb-2">Our conversation is just getting started</h3>
+        <h4 class="font-semibold">Subscribe to our emails</h4>
         <form method="post" action="{{ routes.newsletter_url }}">
           <input
             type="email"
@@ -59,16 +29,41 @@
           >
           <button type="submit" aria-label="submit" class="w-full bg-headerLightColor text-white py-2 rounded-md">Subscribe</button>
         </form>
-
-        <div class="mt-4">
-          <h4 class="font-semibold">Follow us</h4>
-          <div class="flex space-x-4 mt-2">
-            <a href="#" aria-label="facebook" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-facebook', icon_fill_color: 'white' -%}</a>
-            <a href="#" aria-label="instagram" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-instagram', icon_fill_color: 'white' -%}</a>
-            <a href="#" aria-label="whatsapp" class="text-gray-400 hover:text-black">{%- render 'icons' , icon: 'icon-whatsapp', icon_fill_color: 'white' -%}</a>
-          </div>
-        </div>
       </div>
+
+      <!-- العمود الثاني: Company -->
+      <div class="flex-1 min-w-[250px]">
+        <h3 class="font-bold mb-2">Company</h3>
+        <ul class="space-y-2">
+          <li><a href="/pages/about-us" aria-label="about-us" class="text-gray-400 hover:text-black">About Us</a></li>
+          <li><a href="/pages/contact-us" aria-label="contact-us" class="text-gray-400 hover:text-black">Contact Us</a></li>
+          <li><a href="/pages/faqs" aria-label="faqs" class="text-gray-400 hover:text-black">FAQS</a></li>
+          <li><a href="/pages/our-brands" aria-label="our-brands" class="text-gray-400 hover:text-black">Our Brands</a></li>
+        </ul>
+      </div>
+
+      <!-- العمود الثالث: Policies -->
+      <div class="flex-1 min-w-[250px]">
+        <h3 class="font-bold mb-2">Policies</h3>
+        <ul class="space-y-2">
+          <li><a href="/pages/privacy-policy" class="text-gray-400 hover:text-black">Privacy Policy</a></li>
+          <li><a href="/pages/refund-returns" class="text-gray-400 hover:text-black">Returns and Refunds Policy</a></li>
+          <li><a href="/pages/terms-conditions" class="text-gray-400 hover:text-black">Terms of service</a></li>
+          <li><a href="/pages/shipping-policy" class="text-gray-400 hover:text-black">Shipping policy</a></li>
+          <li><a href="/pages/contact-us" class="text-gray-400 hover:text-black">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- العمود الرابع: Customer support -->
+      <div class="flex-1 min-w-[250px]">
+        <h3 class="font-bold mb-2">Customer support</h3>
+        <p>Available between 11AM to 11PM.<br>Ready to answer your questions.</p>
+
+        <p class="mt-2">📞 <a href="tel:{{ shop.phone }}" aria-label="phone" class="text-headerLightColor">{{ shop.phone }}</a></p>
+        <p>✉️ <a href="mailto:{{ shop.email }}" aria-label="e-mail" class="text-headerLightColor">{{ shop.email }}</a></p>
+        <p class="mt-2">💬 Ask your questions on <span class="font-bold">WhatsApp</span></p>
+      </div>
+
     </div>
 
     <div class="flex justify-between items-center mt-8 border-t border-gray-100 pt-4 text-sm text-gray-100">
@@ -86,6 +81,7 @@
     </div>
   </div>
 </footer>
+
 
 {% schema %}
 {
