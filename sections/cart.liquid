@@ -1,11 +1,9 @@
 {% assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' %}
 {% assign free_shipping_threshold = 20000 %}
 
-<div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
-
+<div class="p-4 min-h-screen" x-data="cartHandler()">
   <template x-if="items.length > 0">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-
       <!-- Left: Cart Items -->
       <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
@@ -16,9 +14,13 @@
               <!-- Product -->
               <div class="flex items-center gap-4">
                 <a :href="item.url">
-                  <img :src="item.image || 'https://via.placeholder.com/100'" 
-                       class="w-20 h-20 object-cover rounded" 
-                       :alt="item.title">
+                  <img
+                    :src="item.image || 'https://via.placeholder.com/100'"
+                    class="w-20 h-20 object-cover rounded"
+                    :alt="item.title"
+                    width="auto"
+                    height="auto"
+                  >
                 </a>
                 <div>
                   <a :href="item.url" class="font-semibold text-gray-800 hover:text-rose-700" x-text="item.title"></a>
@@ -29,11 +31,17 @@
 
               <!-- Quantity & Total -->
               <div class="flex items-center gap-4">
-                <input type="number" min="1" class="w-16 border rounded text-center"
-                       :value="item.quantity"
-                       @change="updateQuantity(index, $event.target.value)">
+                <input
+                  type="number"
+                  min="1"
+                  class="w-16 border rounded text-center"
+                  :value="item.quantity"
+                  @change="updateQuantity(index, $event.target.value)"
+                >
                 <p class="font-semibold text-gray-800" x-text="formatMoney(item.line_price)"></p>
-                <button @click.prevent="removeItem(index)" class="text-red-600 hover:underline">🗑</button>
+                <button @click.prevent="removeItem(index)" class="text-red-600 hover:underline">
+                  {% render 'icons', icon: 'icon-delete' %}
+                </button>
               </div>
             </div>
           </template>
@@ -44,11 +52,17 @@
       <div class="bg-white rounded-lg shadow p-6 space-y-6">
         <!-- Free Shipping Progress -->
         <div>
-          <p class="text-sm font-medium" x-html="shippingMessage()" 
-             :class="cartTotal >= freeShippingThreshold ? 'text-green-600' : 'text-rose-800'">
-          </p>
+          <p
+            class="text-sm font-medium"
+            x-html="shippingMessage()"
+            :class="cartTotal >= freeShippingThreshold ? 'text-green-600' : 'text-rose-800'"
+          ></p>
           <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-            <div class="h-2 rounded-full" :class="shippingBarColor()" :style="'width:' + shippingProgress() + '%'"></div>
+            <div
+              class="h-2 rounded-full"
+              :class="shippingBarColor()"
+              :style="'width:' + shippingProgress() + '%'"
+            ></div>
           </div>
         </div>
 
@@ -57,14 +71,22 @@
           <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
           <div class="mt-2 flex flex-col sm:flex-row gap-2 w-full">
             <input type="text" id="discount" class="flex-1 border rounded p-2 w-full" placeholder="Enter code">
-            <button type="button" @click="applyDiscount()" class="bg-rose-800 text-white px-4 rounded hover:bg-rose-900 w-full sm:w-auto">Apply</button>
+            <button
+              type="button"
+              @click="applyDiscount()"
+              class="bg-rose-800 text-white px-4 rounded hover:bg-rose-900 w-full sm:w-auto"
+            >
+              Apply
+            </button>
           </div>
         </details>
 
         <!-- Totals -->
         <div class="border-t pt-4 text-lg font-semibold space-y-2">
           <div class="flex justify-between"><span>Subtotal</span><span x-text="formatMoney(cartSubtotal)"></span></div>
-          <div class="flex justify-between" x-show="cartTax > 0"><span>Tax</span><span x-text="formatMoney(cartTax)"></span></div>
+          <div class="flex justify-between" x-show="cartTax > 0">
+            <span>Tax</span><span x-text="formatMoney(cartTax)"></span>
+          </div>
           <div class="flex justify-between text-green-600" x-show="cartDiscount > 0">
             <span>Discount</span><span>-<span x-text="formatMoney(cartDiscount)"></span></span>
           </div>
@@ -75,7 +97,13 @@
 
         <!-- Checkout Button -->
         <form action="/cart" method="post">
-          <button type="submit" name="checkout" class="w-full bg-rose-800 hover:bg-rose-900 text-white font-semibold py-3 px-8 rounded-full transition">Checkout →</button>
+          <button
+            type="submit"
+            name="checkout"
+            class="w-full bg-rose-800 hover:bg-rose-900 text-white font-semibold py-3 px-8 rounded-full transition"
+          >
+            Checkout →
+          </button>
         </form>
 
         <!-- Trust Badges -->
@@ -85,7 +113,6 @@
           <div class="flex items-center gap-2">🔄 Easy Returns</div>
         </div>
       </div>
-
     </div>
   </template>
 
@@ -94,7 +121,11 @@
     <div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
       <div class="text-center">
         <h1 class="text-3xl my-4">{{ cart_text }}</h1>
-        <a href="{{ routes.all_products_collection_url }}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">Continue Shopping</a>
+        <a
+          href="{{ routes.all_products_collection_url }}"
+          class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
+          >Continue Shopping</a
+        >
       </div>
     </div>
   </template>
