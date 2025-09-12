@@ -1,10 +1,16 @@
-{%- assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' -%}
-{%- assign enable_cart_drawer_undo_remove = settings.enable_cart_drawer_undo_remove | default: false -%}
-{%- assign enable_cart_drawer_undo_remove_delay = settings.enable_cart_drawer_undo_remove_delay | default: false -%}
-{%- assign cart_drawer_undo_remove_delay = settings.cart_drawer_undo_remove_delay | default: 5 -%}
+{% assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' %}
+{% assign enable_cart_drawer_undo_remove = settings.enable_cart_drawer_undo_remove | default: false %}
+{% assign enable_cart_drawer_undo_remove_delay = settings.enable_cart_drawer_undo_remove_delay | default: false %}
+{% assign cart_drawer_undo_remove_delay = settings.cart_drawer_undo_remove_delay | default: 5 %}
 
 {% if cart and cart.item_count > 0 %}
-<div class="p-4 bg-gray-50 min-h-screen">
+<div class="p-4 bg-gray-50 min-h-screen"
+     x-data="cartHandler({
+        enableUndo: {{ enable_cart_drawer_undo_remove }},
+        enableDelay: {{ enable_cart_drawer_undo_remove_delay }},
+        delay: {{ cart_drawer_undo_remove_delay }}
+     })">
+
   <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6">
 
     <!-- Page Title -->
@@ -21,10 +27,12 @@
     </div>
 
     <!-- Undo Remove Bar -->
-    <div id="undo-container" class="bg-gray-800 text-white p-4 rounded shadow-lg mb-6 hidden">
+    <div x-show="showUndo" 
+         x-transition 
+         class="bg-gray-800 text-white p-4 rounded shadow-lg mb-6 flex items-center">
       Product removed
-      <button id="undo-button" aria-label="undo-button" class=" text-white px-2 py-1 ml-2 rounded">Undo</button>
-      <span id="undo-timer" class="ml-2 text-sm text-gray-300">(5s)</span>
+      <button @click="undoRemove" class="text-white px-2 py-1 ml-2 rounded">Undo</button>
+      <span class="ml-2 text-sm text-gray-300" x-text="`(${countdown}s)`"></span>
     </div>
 
     <!-- Cart Form -->
@@ -62,7 +70,9 @@
               </td>
               <td class="p-4 font-semibold">{{ item.line_price | money }}</td>
               <td class="p-4">
-                <a href="#" class="text-red-500 hover:underline" data-remove="true" data-key="{{ item.key }}" data-line="{{ forloop.index }}">
+                <a href="#"
+                   class="text-red-500 hover:underline"
+                   @click.prevent="removeItem('{{ forloop.index }}')">
                   🗑 Remove
                 </a>
               </td>
@@ -77,7 +87,7 @@
         <div class="text-lg font-semibold">
           Total: <span class="text-blue-600">{{ cart.total_price | money }}</span>
         </div>
-        <button type="submit" aria-label="checkout" name="checkout" class=" font-semibold py-2 px-6 rounded-lg">
+        <button type="submit" name="checkout" class="font-semibold py-2 px-6 rounded-lg">
           Proceed to Checkout →
         </button>
       </div>
@@ -89,7 +99,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         {% for product in collections['frontpage'].products limit:4 %}
         <a href="{{ product.url }}" class="border rounded-lg p-3 hover:shadow-lg transition">
-          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded" width="auto" height="auto">
+          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded"  width="auto" height="auto">
           <p class="mt-2 text-sm font-semibold text-gray-800">{{ product.title }}</p>
           <span class="text-blue-600">{{ product.price | money }}</span>
         </a>
@@ -110,64 +120,44 @@
 </div>
 {% endif %}
 
-<!-- Remove & Undo Script -->
+<!-- Alpine.js Component -->
 <script>
-  var enable_cart_drawer_undo_remove = {{ enable_cart_drawer_undo_remove }};
-  var enable_cart_drawer_undo_remove_delay = {{ enable_cart_drawer_undo_remove_delay }};
-  var cart_drawer_undo_remove_delay = {{ cart_drawer_undo_remove_delay | default: 5 }};
+  function cartHandler({ enableUndo, enableDelay, delay }) {
+    return {
+      showUndo: false,
+      countdown: 0,
+      removedItem: null,
+      timer: null,
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const undoContainer = document.getElementById('undo-container');
-    const undoButton = document.getElementById('undo-button');
-    const undoTimer = document.getElementById('undo-timer');
-    let undoTimeout;
-    let removedItem = null;
+      removeItem(line) {
+        if (enableUndo) {
+          this.removedItem = line;
+          this.showUndo = true;
+          this.countdown = enableDelay ? delay : 5;
 
-    document.querySelectorAll('a[data-remove]').forEach((deleteButton) => {
-      deleteButton.addEventListener('click', function (event) {
-        event.preventDefault();
-
-        const itemKey = this.getAttribute('data-key');
-        const lineIndex = this.getAttribute('data-line');
-        removedItem = { key: itemKey, line: lineIndex };
-
-        if (enable_cart_drawer_undo_remove) {
-          undoContainer.style.display = 'flex';
-
-          let countdown = enable_cart_drawer_undo_remove_delay ? cart_drawer_undo_remove_delay : 5;
-          undoTimer.textContent = `(${countdown}s)`;
-
-          undoTimeout = setInterval(() => {
-            countdown--;
-            undoTimer.textContent = `(${countdown}s)`;
-            if (countdown <= 0) {
-              clearInterval(undoTimeout);
-              finalizeRemove();
+          this.timer = setInterval(() => {
+            this.countdown--;
+            if (this.countdown <= 0) {
+              clearInterval(this.timer);
+              this.finalizeRemove();
             }
           }, 1000);
         } else {
-          finalizeRemove();
+          this.finalizeRemove(line);
         }
-      });
-    });
+      },
 
-    undoButton?.addEventListener('click', function () {
-      clearInterval(undoTimeout);
-      undoContainer.style.display = 'none';
-      removedItem = null;
-    });
+      undoRemove() {
+        clearInterval(this.timer);
+        this.showUndo = false;
+        this.removedItem = null;
+      },
 
-    function finalizeRemove() {
-      if (removedItem) {
-        window.location.href = `/cart/change?line=${removedItem.line}&quantity=0`;
+      finalizeRemove() {
+        if (this.removedItem) {
+          window.location.href = `/cart/change?line=${this.removedItem}&quantity=0`;
+        }
       }
     }
-  });
+  }
 </script>
-
-{% schema %}
-{
-  "name": "t:general.cart",
-  "settings": []
-}
-{% endschema %}
