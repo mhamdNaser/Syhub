@@ -9,6 +9,7 @@
   @param {string} [icon] - Optional icon name (uses icons snippet)
   @param {string} [bg_color] - Background color (e.g. bg-blue-500)
   @param {string} [text_color] - Text color (e.g. text-white)
+  @param {string} [font_size] - Text Size (e.g. 12 px)
   @param {string} [padding_horizontal] - padding horizontal (e.g. 15px)
   @param {string} [padding_vertical] - padding vertical (e.g. 15px)
   @param {string} [aria_label] - Optional aria-label attribute
@@ -67,6 +68,7 @@
     background-color: {{ bg_color }};
     color: {{ text_color }};
     padding: {{ padding_vertical }}px {{ padding_horizontal }}px;
+    font-size: {{ font_size }}px;
   "
 >
   {% if icon and text %}

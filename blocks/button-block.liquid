@@ -1,28 +1,26 @@
-
-
-
-<div class="w-full flex my-{{ block.settings.margin_y }} justify-{{ block.settings.button_alignment }}" {{ block.shopify_attributes }}>
+<div
+  class="w-full flex my-{{ block.settings.margin_y }} justify-{{ block.settings.button_alignment }}"
+  {{ block.shopify_attributes }}
+>
   {% assign final_link = block.settings.button_link %}
-  
+
   {% if block.settings.product != blank %}
     {% assign final_link = block.settings.product.url %}
   {% elsif block.settings.collection != blank %}
     {% assign final_link = block.settings.collection.url %}
   {% endif %}
-  
+
   {% if block.settings.button_text != blank and final_link != blank %}
-    <a 
-      href="{{ final_link }}" 
-      aria-label="{{ block.settings.button_text }}"
-      class="px-{{ block.settings.padding_x }} py-{{ block.settings.padding_y }} rounded-{{ block.settings.border_radius }} font-semibold transition"
-      style="
-        background-color: {{ block.settings.button_bg }};
-        color: {{ block.settings.button_text_color }};
-        font-size: {{ block.settings.button_font_size }}px;
-      "
-    >
-      {{ block.settings.button_text }}
-    </a>
+    {% render 'button',
+      type: 'link',
+      url: block.settings.button_text,
+      text: block.settings.button_text
+      aria_label: 'icon-facebook',
+      font_size: block.settings.button_font_size
+      bg_color: block.settings.button_bg
+      text_color: block.settings.button_text_color
+      class: 'px-{{ block.settings.padding_x }} py-{{ block.settings.padding_y }} rounded-{{ block.settings.border_radius }} font-semibold transition',
+    %}
   {% endif %}
 </div>
 
@@ -102,13 +100,13 @@
       "default": 2
     },
     {
-        "type": "range",
-        "id": "margin_y",
-        "label": "Margin Y",
-        "min": 0,
-        "max": 50,
-        "step": 2,
-        "default": 0
+      "type": "range",
+      "id": "margin_y",
+      "label": "Margin Y",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 0
     },
     {
       "type": "select",
@@ -124,8 +122,6 @@
       ]
     }
   ],
-  "presets": [
-    { "name": "Custom Button Block", "category": "Button" }
-  ]
+  "presets": [{ "name": "Custom Button Block", "category": "Button" }]
 }
 {% endschema %}

@@ -9,7 +9,7 @@
 }
 
 .custom-payment-button button {
-  @apply w-full h-full px-6 py-6 font-semibold rounded-lg bg-neutral-700 text-white mt-3;
+  @apply w-full h-full px-6 py-6 font-semibold rounded-lg bg-neutral-700 text-white mt-3 cursor-pointer;
 }
 
 .custom-payment-button button:hover {
