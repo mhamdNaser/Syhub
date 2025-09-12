@@ -2,108 +2,121 @@
 {% assign free_shipping_threshold = 20000 %}
 
 {% if cart and cart.item_count > 0 %}
-<div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
+  <div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left: Cart Items -->
+      <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
 
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="space-y-6">
+          {% for item in cart.items %}
+            <div class="flex items-center justify-between border-b pb-4">
+              <!-- Product -->
+              <div class="flex items-center gap-4">
+                <a href="{{ item.url }}">
+                  {% if item.image %}
+                    <img
+                      src="{{ item.image | image_url: width: 100 }}"
+                      alt="{{ item.title }}"
+                      class="w-20 h-20 object-cover rounded"
+                    >
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover rounded' }}
+                  {% endif %}
+                </a>
+                <div>
+                  <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-pink-600">
+                    {{- item.product.title -}}
+                  </a>
+                  <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
+                  <p class="text-pink-600 font-semibold mt-1">{{ item.price | money }}</p>
+                </div>
+              </div>
 
-    <!-- Left: Cart Items -->
-    <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
-      <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
-
-      <div class="space-y-6">
-        {% for item in cart.items %}
-        <div class="flex items-center justify-between border-b pb-4">
-          <!-- Product -->
-          <div class="flex items-center gap-4">
-            <a href="{{ item.url }}">
-              {% if item.image %}
-              <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" class="w-20 h-20 object-cover rounded">
-              {% else %}
-              {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover rounded' }}
-              {% endif %}
-            </a>
-            <div>
-              <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-pink-600">{{ item.product.title }}</a>
-              <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
-              <p class="text-pink-600 font-semibold mt-1">{{ item.price | money }}</p>
+              <!-- Quantity & Total -->
+              <div class="flex items-center gap-4">
+                <input
+                  type="number"
+                  min="1"
+                  :value="quantities[{{ forloop.index0 }}]"
+                  @change="updateQuantity({{ forloop.index }}, $event.target.value)"
+                  class="w-16 border rounded text-center"
+                >
+                <p class="font-semibold text-gray-800" x-text="formatMoney(totals[{{ forloop.index0 }}])"></p>
+                <button @click.prevent="removeItem({{ forloop.index }})" class="text-red-500 hover:underline">🗑</button>
+              </div>
             </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Right: Summary -->
+      <div class="bg-white rounded-lg shadow-lg p-6 space-y-6">
+        <!-- Free Shipping Progress -->
+        <div>
+          <p
+            class="text-sm font-medium"
+            x-html="shippingMessage()"
+            :class="cartTotal >= {{ free_shipping_threshold }} ? 'text-green-600' : 'text-pink-600'"
+          ></p>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+            <div
+              class="h-2 rounded-full"
+              :class="shippingBarColor()"
+              :style="'width:' + shippingProgress() + '%'"
+            ></div>
           </div>
+        </div>
 
-          <!-- Quantity & Total -->
-          <div class="flex items-center gap-4">
-            <input type="number" min="1" :value="quantities[{{ forloop.index0 }}]" 
-                   @change="updateQuantity({{ forloop.index }}, $event.target.value)" 
-                   class="w-16 border rounded text-center">
-            <p class="font-semibold text-gray-800" x-text="formatMoney(totals[{{ forloop.index0 }}])"></p>
-            <button @click.prevent="removeItem({{ forloop.index }})" class="text-red-500 hover:underline">🗑</button>
+        <!-- Discount Code -->
+        <details class="border rounded-lg p-3">
+          <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
+          <div class="mt-2 flex gap-2">
+            <input type="text" id="discount" class="flex-1 border rounded-lg p-2" placeholder="Enter code">
+            <button type="button" @click="applyDiscount()" class="bg-pink-600 text-white px-4 rounded-lg">Apply</button>
+          </div>
+        </details>
+
+        <!-- Totals -->
+        <div class="border-t pt-4 text-lg font-semibold">
+          <div class="flex justify-between">
+            <span>Total</span>
+            <span class="text-pink-600" x-text="formatMoney(cartTotal)"></span>
           </div>
         </div>
-        {% endfor %}
-      </div>
-    </div>
 
-    <!-- Right: Summary -->
-    <div class="bg-white rounded-lg shadow-lg p-6 space-y-6">
-      <!-- Free Shipping Progress -->
-      {% assign free_shipping_threshold = 60.00 | times: 100 %}
-      {% assign cart_total = cart.total_price %}
-      {% assign remaining = free_shipping_threshold | minus: cart_total %}
-      <div>
-        {% if remaining > 0 %}
-          <p class="text-sm font-medium text-pink-600">
-            Order for <span class="font-bold">{{ remaining | money }}</span> more and your order will be shipped for <span class="font-bold">FREE</span>!
-          </p>
-        {% else %}
-          <p class="text-sm font-medium text-green-600">🎉 You unlocked FREE shipping!</p>
-        {% endif %}
-        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-          <div class="bg-pink-600 h-2 rounded-full" style="width: {{ cart_total | times: 100 | divided_by: free_shipping_threshold | at_most: 100 }}%"></div>
+        <!-- Checkout Button -->
+        <form action="/cart" method="post">
+          <button
+            type="submit"
+            name="checkout"
+            class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full transition"
+          >
+            Checkout →
+          </button>
+        </form>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+          <div class="flex items-center gap-2">💳 Secure Payment</div>
+          <div class="flex items-center gap-2">🚚 Fast Delivery</div>
+          <div class="flex items-center gap-2">🔄 Easy Returns</div>
         </div>
-      </div>
-
-      <!-- Discount Code -->
-      <details class="border rounded-lg p-3">
-        <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
-        <div class="mt-2 flex gap-2">
-          <input type="text" id="discount" class="flex-1 border rounded-lg p-2" placeholder="Enter code">
-          <button type="button" @click="applyDiscount()" class="bg-pink-600 text-white px-4 rounded-lg">Apply</button>
-        </div>
-      </details>
-
-      <!-- Totals -->
-      <div class="border-t pt-4 text-lg font-semibold">
-        <div class="flex justify-between">
-          <span>Total</span>
-          <span class="text-pink-600" x-text="formatMoney(cartTotal)"></span>
-        </div>
-      </div>
-
-      <!-- Checkout Button -->
-      <form action="/cart" method="post">
-        <button type="submit" name="checkout"
-          class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full transition">
-          Checkout →
-        </button>
-      </form>
-
-      <!-- Trust Badges -->
-      <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-        <div class="flex items-center gap-2">💳 Secure Payment</div>
-        <div class="flex items-center gap-2">🚚 Fast Delivery</div>
-        <div class="flex items-center gap-2">🔄 Easy Returns</div>
       </div>
     </div>
   </div>
-</div>
 {% else %}
-<div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
-  <div class="text-center">
-    <h1 class="text-3xl my-4">{{ cart_text }}</h1>
-    <a href="{{ routes.all_products_collection_url }}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">
-      Continue Shopping
-    </a>
+  <div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-3xl my-4">{{ cart_text }}</h1>
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
+      >
+        Continue Shopping
+      </a>
+    </div>
   </div>
-</div>
 {% endif %}
 
 <!-- Alpine.js Component -->
