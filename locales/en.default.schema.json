@@ -162,6 +162,7 @@
       },
       "blocks": {
         "html": {
+          "name": "Custom HTML",
           "settings": {
             "html": {
               "label": "Custom HTML"
