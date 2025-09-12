@@ -1,116 +1,97 @@
 {% assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' %}
 
 {% if cart and cart.item_count > 0 %}
-<div class="p-4 bg-gray-50 min-h-screen"
-     x-data="cartHandler()">
+<div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
 
-  <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-    <!-- Page Title -->
-    <div class="flex flex-col md:flex-row items-center justify-between mb-6">
-      <h1 class="text-3xl font-bold text-gray-800 flex items-center gap-2">🛒 Your Shopping Cart</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="text-pink-600 hover:underline">
-        ← Continue Shopping
-      </a>
-    </div>
+    <!-- Left: Cart Items -->
+    <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
 
-    <!-- Free Shipping Progress -->
-    {% assign free_shipping_threshold = 60.00 | times: 100 %}
-    {% assign cart_total = cart.total_price %}
-    {% assign remaining = free_shipping_threshold | minus: cart_total %}
-    <div class="mb-6">
-      {% if remaining > 0 %}
-        <p class="text-sm font-medium text-pink-600">
-          Order for <span class="font-bold">{{ remaining | money }}</span> more and your order will be shipped for <span class="font-bold">FREE</span>!
-        </p>
-      {% else %}
-        <p class="text-sm font-medium text-green-600">🎉 You unlocked FREE shipping!</p>
-      {% endif %}
-      <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-        <div class="bg-pink-600 h-2 rounded-full" style="width: {{ cart_total | times: 100 | divided_by: free_shipping_threshold | at_most: 100 }}%"></div>
-      </div>
-    </div>
+      <div class="space-y-6">
+        {% for item in cart.items %}
+        <div class="flex items-center justify-between border-b pb-4">
+          <!-- Product -->
+          <div class="flex items-center gap-4">
+            <a href="{{ item.url }}">
+              {% if item.image %}
+              <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" class="w-20 h-20 object-cover rounded">
+              {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover rounded' }}
+              {% endif %}
+            </a>
+            <div>
+              <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-pink-600">{{ item.product.title }}</a>
+              <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
+              <p class="text-pink-600 font-semibold mt-1">{{ item.price | money }}</p>
+            </div>
+          </div>
 
-    <!-- Cart Form -->
-    <form action="/cart" method="post" novalidate class="space-y-10">
-      <div class="overflow-x-auto mb-8">
-        <table class="w-full border-collapse border border-gray-200 rounded-lg overflow-hidden">
-          <thead class="bg-gray-800 text-white">
-            <tr>
-              <th class="p-4 text-left">Product</th>
-              <th class="p-4 text-left">Price</th>
-              <th class="p-4 text-left">Quantity</th>
-              <th class="p-4 text-left">Total</th>
-              <th class="p-4 text-left">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in cart.items %}
-            <tr class="border-b hover:bg-gray-50">
-              <td class="p-4 flex items-center gap-4">
-                <a href="{{ item.url }}">
-                  {% if item.image %}
-                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" class="w-16 h-16 object-cover rounded" width="auto" height="auto">
-                  {% else %}
-                  {{ 'product-1' | placeholder_svg_tag: 'w-16 h-16 object-cover rounded' }}
-                  {% endif %}
-                </a>
-                <div>
-                  <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-pink-600">{{ item.product.title }}</a>
-                  <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
-                </div>
-              </td>
-              <td class="p-4">{{ item.price | money }}</td>
-              <td class="p-4">
-                <input type="number" name="updates[]" value="{{ item.quantity }}" min="1" class="w-16 border rounded text-center">
-              </td>
-              <td class="p-4 font-semibold">{{ item.line_price | money }}</td>
-              <td class="p-4">
-                <a href="#"
-                   class="text-red-500 hover:underline"
-                   @click.prevent="removeItem('{{ forloop.index }}')">
-                  🗑 Remove
-                </a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Checkout Summary -->
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="text-lg font-semibold">
-          Total: <span class="text-pink-600">{{ cart.total_price | money }}</span>
+          <!-- Quantity & Total -->
+          <div class="flex items-center gap-4">
+            <input type="number" min="1" :value="quantities[{{ forloop.index0 }}]" 
+                   @change="updateQuantity({{ forloop.index }}, $event.target.value)" 
+                   class="w-16 border rounded text-center">
+            <p class="font-semibold text-gray-800" x-text="formatMoney(totals[{{ forloop.index0 }}])"></p>
+            <button @click.prevent="removeItem({{ forloop.index }})" class="text-red-500 hover:underline">🗑</button>
+          </div>
         </div>
-        <button type="submit" name="checkout"
-          class="w-full md:w-auto bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full transition">
-          Checkout →
-        </button>
-      </div>
-    </form>
-
-    <!-- Trust Badges -->
-    <div class="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-600">
-      <div class="flex items-center gap-2">💳 Secure Payment</div>
-      <div class="flex items-center gap-2">🚚 Fast Delivery</div>
-      <div class="flex items-center gap-2">🔄 Easy Returns</div>
-    </div>
-
-    <!-- Product Recommendations -->
-    <div class="mt-10">
-      <h2 class="text-xl font-bold mb-4">You May Also Like</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {% for product in collections['frontpage'].products limit:4 %}
-        <a href="{{ product.url }}" class="border rounded-lg p-3 hover:shadow-lg transition">
-          <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-40 object-cover rounded" width="auto" height="auto">
-          <p class="mt-2 text-sm font-semibold text-gray-800">{{ product.title }}</p>
-          <span class="text-pink-600">{{ product.price | money }}</span>
-        </a>
         {% endfor %}
       </div>
     </div>
 
+    <!-- Right: Summary -->
+    <div class="bg-white rounded-lg shadow-lg p-6 space-y-6">
+      <!-- Free Shipping Progress -->
+      {% assign free_shipping_threshold = 60.00 | times: 100 %}
+      {% assign cart_total = cart.total_price %}
+      {% assign remaining = free_shipping_threshold | minus: cart_total %}
+      <div>
+        {% if remaining > 0 %}
+          <p class="text-sm font-medium text-pink-600">
+            Order for <span class="font-bold">{{ remaining | money }}</span> more and your order will be shipped for <span class="font-bold">FREE</span>!
+          </p>
+        {% else %}
+          <p class="text-sm font-medium text-green-600">🎉 You unlocked FREE shipping!</p>
+        {% endif %}
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+          <div class="bg-pink-600 h-2 rounded-full" style="width: {{ cart_total | times: 100 | divided_by: free_shipping_threshold | at_most: 100 }}%"></div>
+        </div>
+      </div>
+
+      <!-- Discount Code -->
+      <details class="border rounded-lg p-3">
+        <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
+        <div class="mt-2 flex gap-2">
+          <input type="text" id="discount" class="flex-1 border rounded-lg p-2" placeholder="Enter code">
+          <button type="button" @click="applyDiscount()" class="bg-pink-600 text-white px-4 rounded-lg">Apply</button>
+        </div>
+      </details>
+
+      <!-- Totals -->
+      <div class="border-t pt-4 text-lg font-semibold">
+        <div class="flex justify-between">
+          <span>Total</span>
+          <span class="text-pink-600" x-text="formatMoney(cartTotal)"></span>
+        </div>
+      </div>
+
+      <!-- Checkout Button -->
+      <form action="/cart" method="post">
+        <button type="submit" name="checkout"
+          class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full transition">
+          Checkout →
+        </button>
+      </form>
+
+      <!-- Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+        <div class="flex items-center gap-2">💳 Secure Payment</div>
+        <div class="flex items-center gap-2">🚚 Fast Delivery</div>
+        <div class="flex items-center gap-2">🔄 Easy Returns</div>
+      </div>
+    </div>
   </div>
 </div>
 {% else %}
@@ -128,8 +109,35 @@
 <script>
   function cartHandler() {
     return {
+      quantities: {{ cart.items | map: 'quantity' | json }},
+      totals: {{ cart.items | map: 'line_price' | json }},
+      cartTotal: {{ cart.total_price }},
+      
+      formatMoney(cents) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: '{{ shop.currency }}' }).format(cents / 100);
+      },
+
+      updateQuantity(line, qty) {
+        fetch(`/cart/change.js`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ line: line, quantity: qty })
+        })
+        .then(res => res.json())
+        .then(data => {
+          this.cartTotal = data.total_price;
+          this.quantities = data.items.map(i => i.quantity);
+          this.totals = data.items.map(i => i.line_price);
+        });
+      },
+
       removeItem(line) {
-        window.location.href = `/cart/change?line=${line}&quantity=0`;
+        this.updateQuantity(line, 0);
+      },
+
+      applyDiscount() {
+        const code = document.getElementById('discount').value;
+        if (code) window.location.href = `/discount/${code}?redirect=/cart`;
       }
     }
   }
