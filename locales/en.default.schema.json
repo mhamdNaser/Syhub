@@ -221,11 +221,8 @@
             "enable_follow_on_shop": {
               "label": "Enable follow on shop"
             },
-            "newsletter": {
-              "header": "Newsletter",
-              "show_newsletter": {
-                "label": "Show newsletter form"
-              }
+            "show_newsletter": {
+              "label": "Show newsletter form"
             },
             "footer_button_style": {
               "label": "Button style"
