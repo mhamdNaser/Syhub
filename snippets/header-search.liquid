@@ -1,4 +1,4 @@
-<details-modal class="header__search relative">
+{% comment %} <details-modal class="header__search relative">
   <details>
     <!-- زر الأيقونة فقط -->
     <summary
@@ -98,6 +98,169 @@
       </div>
     </div>
   </details>
-</details-modal>
+</details-modal> {% endcomment %}
 
-<script src="{{ 'plugin-search.js' | asset_url }}" defer></script>
+{% comment %} <script src="{{ 'plugin-search.js' | asset_url }}" defer></script> {% endcomment %}
+
+
+<div 
+  x-data="searchComponent()" 
+  class="relative w-full max-w-3xl"
+>
+  <form
+    action="{{ routes.search_url }}"
+    method="get"
+    role="search"
+    class="flex items-center border border-gray-200 rounded-md p-4 gap-2 relative"
+    @submit="open = false"
+  >
+    <input
+      type="search"
+      name="q"
+      x-model="query"
+      placeholder="{{ 'general.search.search' | t }}"
+      class="flex-grow px-4 text-lg border-0 outline-none"
+      @input.debounce.300ms="fetchResults"
+      @focus="open = true"
+    >
+
+    <button
+      type="submit"
+      class="text-gray-600 hover:text-blue-600"
+      aria-label="{{ 'general.search.search' | t }}"
+    >
+      <span class="w-5 h-5">{% render 'icons' , icon: 'icon-search' , icon_size: '24' %}</span>
+    </button>
+  </form>
+
+  <!-- النتائج -->
+  <div
+    x-show="open && (results.products.length > 0 || results.collections.length > 0)"
+    x-transition
+    class="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 px-6 py-4 max-h-[480px] overflow-y-auto"
+    @click.away="open = false"
+  >
+    <!-- Suggestions -->
+    <template x-if="results.collections.length > 0">
+      <div class="mb-4">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Suggestions</h3>
+        <div class="flex flex-wrap gap-3">
+          <template x-for="coll in results.collections" :key="coll.id">
+            <button 
+              type="button"
+              class="px-4 py-2 bg-[#f2bed2] text-[#c42764] rounded-lg hover:bg-[#c42764] hover:text-white transition shadow-sm font-medium"
+              @click="query = coll.title; fetchResults()"
+              x-html="highlight(coll.title)"
+            ></button>
+          </template>
+        </div>
+      </div>
+    </template>
+
+    <!-- Products -->
+    <template x-if="results.products.length > 0">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b border-gray-200 pb-1">Products</h3>
+        <template x-for="product in results.products" :key="product.id">
+          <a
+            :href="product.url"
+            class="flex items-center justify-between hover:bg-gray-50 p-3 rounded transition"
+          >
+            <div class="flex items-center space-x-3 overflow-hidden">
+              <img :src="product.featured_image" :alt="product.title"
+                   class="w-12 h-12 rounded-md object-cover flex-shrink-0" >
+              <div class="flex flex-col min-w-0">
+                <p class="text-sm text-gray-500 truncate" x-html="highlight(product.vendor)"></p>
+                <span class="text-gray-900 font-semibold" x-html="highlight(product.title)"></span>
+                <!-- الوصف -->
+                <p class="text-xs text-gray-400 mt-1 line-clamp-2" x-text="product.excerpt"></p>
+              </div>
+            </div>
+            <div class="text-right min-w-[80px] flex-shrink-0">
+              <span class="text-gray-800 font-bold text-base" x-text="product.price"></span>
+            </div>
+          </a>
+        </template>
+      </div>
+    </template>
+  </div>
+</div>
+
+<script>
+  function searchComponent() {
+    return {
+      query: "",
+      results: { products: [], collections: [] },
+      open: false,
+
+      highlight(text) {
+        if (!text) return "";
+        const regex = new RegExp(`(${this.query})`, "gi");
+        return text.replace(regex, `<span class='bg-[#f2bed2]'>$1</span>`);
+      },
+
+      async fetchResults() {
+        if (!this.query.trim()) {
+          this.results = { products: [], collections: [] };
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `/search/suggest.json?q=${encodeURIComponent(this.query)}&resources[type]=product,collection`
+          );
+          const data = await response.json();
+
+          // أول نجلب المنتجات بدون وصف
+          this.results = {
+            products: (data.resources.results.products || []).map(p => ({
+              id: p.id,
+              handle: p.handle,
+              title: p.title,
+              vendor: p.vendor || "",
+              url: p.url,
+              featured_image: p.featured_image?.url,
+              price: `${(p.price.amount || p.price).toLocaleString()}${p.price.currency_symbol || "$"}`,
+              excerpt: "Loading description..." // مؤقت
+            })),
+            collections: data.resources.results.collections || []
+          };
+
+          // بعدين نجيب الوصف لكل منتج
+          this.results.products.forEach(async (prod, i) => {
+            const desc = await this.fetchDescription(prod.handle);
+            this.results.products[i].excerpt = this.extractSentence(desc, this.query);
+          });
+
+        } catch (err) {
+          console.error("Search error:", err);
+          this.results = { products: [], collections: [] };
+        }
+      },
+
+      async fetchDescription(handle) {
+        try {
+          const res = await fetch(`/products/${handle}.json`);
+          if (!res.ok) return "";
+          const data = await res.json();
+          let desc = data.product?.body_html || "";
+          return desc.replace(/<[^>]*>/g, ""); // إزالة HTML
+        } catch {
+          return "";
+        }
+      },
+
+      extractSentence(text, query) {
+        const sentences = text.split(/(?<=[.?!])\s+/);
+        const lowerQuery = query.toLowerCase();
+        for (let s of sentences) {
+          if (s.toLowerCase().includes(lowerQuery)) {
+            return s.trim();
+          }
+        }
+        return text.length > 80 ? text.slice(0, 80) + "..." : text;
+      }
+    };
+  }
+</script>
+
