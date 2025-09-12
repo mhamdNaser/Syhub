@@ -164,15 +164,15 @@
                     </div>
                   {%- elsif form.posted_successfully? -%}
                     <div class="text-green-500 mb-2">
-                      {{ 'newsletter.form.success' | t }}
+                      {{ 'footer.newsletter.form.success' | t }}
                     </div>
                   {%- endif -%}
 
                   <fieldset>
-                    <legend class="sr-only">{{ 'newsletter.title_html' | t }}</legend>
+                    <legend class="sr-only">{{ 'footer.newsletter.title_html' | t }}</legend>
                     
                     <label for="email-{{ section.id }}" class="block mb-2 font-semibold">
-                      {{ 'newsletter.subtitle_html' | t }}
+                      {{ 'footer.newsletter.subtitle_html' | t }}
                     </label>
                     
                     <div class="flex gap-2 mb-4">
@@ -180,12 +180,12 @@
                         type="email"
                         name="contact[email]"
                         id="email-{{ section.id }}"
-                        placeholder="{{ 'newsletter.form.email_placeholder' | t }}"
+                        placeholder="{{ 'footer.newsletter.form.email_placeholder' | t }}"
                         class="flex-1 px-3 py-2 border border-gray-300 rounded-md"
                         required
                       >
                       <button type="submit" class="bg-{{ button_color }} text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity">
-                        {{ 'newsletter.form.submit_button' | t }}
+                        {{ 'footer.newsletter.form.submit_button' | t }}
                       </button>
                     </div>
 
@@ -678,168 +678,3 @@
   }
 }
 {% endschema %}
-
-{% comment %} {% assign background = section.settings.color_scheme.settings.background %}
-
-{% assign background = section.settings.color_scheme.settings.background %}
-
-{% liquid
-  if settings.social_facebook != blank
-    assign facebook_url = settings.social_facebook
-  else
-    assign facebook_url = routes.root_url
-  endif
-  if settings.social_instagram != blank
-    assign instagram_url = settings.social_instagram
-  else
-    assign instagram_url = routes.root_url
-  endif
-  if settings.social_whatsapp != blank
-    assign whatsapp_url = settings.social_whatsapp
-  else
-    assign whatsapp_url = routes.root_url
-  endif
-%}
-
-<footer
-  class="hidden w-0 xl:w-full xl:flex xl:justify-between m-auto py-8 px-8 xl:px-24 color-{{ section.settings.color_scheme }}"
-  style="background-color: {{ background }};"
->
-  <div class="w-full mx-auto max-w-7xl">
-    <div class="flex flex-wrap justify-between gap-16">
-      <!-- العمود الأول: Follow us + Subscribe -->
-      <div class="flex-1 min-w-[250px]">
-        <h3 class="font-bold mb-2">Follow us</h3>
-        <div class="flex space-x-4 mb-4">
-          {% render 'button',
-            type: 'link',
-            url: facebook_url,
-            aria_label: 'icon-facebook',
-            target: '_blank',
-            class: 'hover:text-blue-600 transition inline-block',
-            icon: 'icon-facebook',
-            icon_size: '20',
-            icon_color: 'white'
-          %}
-          {% render 'button',
-            type: 'link',
-            url: instagram_url,
-            aria_label: 'icon-instagram',
-            target: '_blank',
-            class: 'hover:text-blue-600 transition inline-block',
-            icon: 'icon-instagram',
-            icon_size: '20',
-            icon_color: 'white'
-          %}
-          {% render 'button',
-            type: 'link',
-            url: whatsapp_url,
-            aria_label: 'icon-whatsapp',
-            target: '_blank',
-            class: 'hover:text-blue-600 transition inline-block',
-            icon: 'icon-whatsapp',
-            icon_size: '20',
-            icon_color: 'white'
-          %}
-        </div>
-
-        <h4 class="font-semibold">Subscribe to our emails</h4>
-        <form method="post" action="{{ routes.newsletter_url }}">
-          <input
-            type="email"
-            name="contact[email]"
-            placeholder="Email"
-            class="w-full p-2 border border-gray-300 rounded-md mb-2"
-            required
-          >
-          <button type="submit" aria-label="submit" class="w-full bg-headerLightColor text-white py-2 rounded-md">
-            Subscribe
-          </button>
-        </form>
-      </div>
-
-      <!-- العمود الثاني: Company -->
-      <div class="flex-1 min-w-[250px]">
-        <h3 class="font-bold mb-2">Company</h3>
-        <ul class="space-y-2">
-          <li><a href="/pages/about-us" aria-label="about-us" class="text-gray-400 hover:text-black">About Us</a></li>
-          <li>
-            <a href="/pages/contact-us" aria-label="contact-us" class="text-gray-400 hover:text-black">Contact Us</a>
-          </li>
-          <li><a href="/pages/faqs" aria-label="faqs" class="text-gray-400 hover:text-black">FAQS</a></li>
-          <li>
-            <a href="/pages/our-brands" aria-label="our-brands" class="text-gray-400 hover:text-black">Our Brands</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- العمود الثالث: Policies -->
-      <div class="flex-1 min-w-[250px]">
-        <h3 class="font-bold mb-2">Policies</h3>
-        <ul class="space-y-2">
-          <li><a href="/pages/privacy-policy" class="text-gray-400 hover:text-black">Privacy Policy</a></li>
-          <li><a href="/pages/refund-returns" class="text-gray-400 hover:text-black">Returns and Refunds Policy</a></li>
-          <li><a href="/pages/terms-conditions" class="text-gray-400 hover:text-black">Terms of service</a></li>
-          <li><a href="/pages/shipping-policy" class="text-gray-400 hover:text-black">Shipping policy</a></li>
-          <li><a href="/pages/contact-us" class="text-gray-400 hover:text-black">Contact Us</a></li>
-        </ul>
-      </div>
-
-      <!-- العمود الرابع: Customer support -->
-      <div class="flex-1 min-w-[250px]">
-        <h3 class="font-bold mb-2">Customer support</h3>
-        <p>
-          Available between 11AM to 11PM.<br>
-          Ready to answer your questions.
-        </p>
-
-        <p class="mt-2">
-          📞 <a href="tel:{{ shop.phone }}" aria-label="phone" class="text-headerLightColor">{{ shop.phone }}</a>
-        </p>
-        <p>
-          ✉️ <a href="mailto:{{ shop.email }}" aria-label="e-mail" class="text-headerLightColor">{{ shop.email }}</a>
-        </p>
-        <p class="mt-2">💬 Ask your questions on <span class="font-bold">WhatsApp</span></p>
-      </div>
-    </div>
-
-    <div class="flex justify-between items-center mt-8 border-t border-gray-100 pt-4 text-sm text-gray-100">
-      <p class="text-left">
-        © {{ 'now' | date: '%Y' }}
-        {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-      </p>
-      <div class="footer__payment text-right flex items-center gap-6">
-        {% if section.settings.show_payment_icons %}
-          {% for type in shop.enabled_payment_types %}
-            {{ type | payment_type_svg_tag }}
-          {% endfor %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</footer>
-
-{% schema %}
-{
-  "name": "t:general.footer",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
-    }
-  ]
-}
-{% endschema %} {% endcomment %}
