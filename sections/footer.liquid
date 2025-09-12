@@ -1,4 +1,170 @@
-{% assign background = section.settings.color_scheme.settings.background %}
+<footer
+  id="shopify-section-footer"
+  class="palette-{{ section.settings.footer_color }} w-full xl:flex xl:justify-between m-auto py-8 px-8 xl:px-24 color-{{ section.settings.color_scheme }}"
+  style="background-color: {{ background }};"
+>
+  <div class="w-full mx-auto max-w-7xl">
+    <div class="flex flex-wrap justify-between gap-16">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {# --- عمود السوشال + النشرة --- #}
+          {%- when 'socials_newsletter' -%}
+            <div class="flex-1 min-w-[250px]" {{ block.shopify_attributes }}>
+              {% if block.settings.show_socials %}
+                <h3 class="font-bold mb-2">{{ 'footer.follow_us' | t }}</h3>
+                <ul class="flex space-x-4 mb-4">
+                  {%- if settings.social_facebook -%}
+                    <li><a href="{{ settings.social_facebook }}" target="_blank" aria-label="Facebook" class="hover:text-blue-600 transition"><i class="icon-facebook"></i></a></li>
+                  {%- endif -%}
+                  {%- if settings.social_instagram -%}
+                    <li><a href="{{ settings.social_instagram }}" target="_blank" aria-label="Instagram" class="hover:text-pink-500 transition"><i class="icon-instagram"></i></a></li>
+                  {%- endif -%}
+                  {%- if settings.whatsapp -%}
+                    <li><a href="https://wa.me/{{ settings.whatsapp }}" target="_blank" aria-label="WhatsApp" class="hover:text-green-500 transition"><i class="icon-whatsapp"></i></a></li>
+                  {%- endif -%}
+                </ul>
+              {% endif %}
+
+              {% if block.settings.show_newsletter %}
+                <h4 class="font-semibold">{{ 'newsletter.title_html' | t }}</h4>
+                {%- form 'customer', id: 'newsletter-footer' -%}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <input
+                    type="email"
+                    name="contact[email]"
+                    placeholder="{{ 'newsletter.form.email_placeholder' | t }}"
+                    class="w-full p-2 border border-gray-300 rounded-md mb-2"
+                    required
+                  >
+                  <button type="submit" aria-label="submit" class="w-full bg-headerLightColor text-white py-2 rounded-md">
+                    {{ 'newsletter.form.submit_button' | t }}
+                  </button>
+                {%- endform -%}
+              {% endif %}
+            </div>
+
+          {# --- عمود قائمة (Company أو Policies) --- #}
+          {%- when 'menu' -%}
+            <div class="flex-1 min-w-[250px]" {{ block.shopify_attributes }}>
+              {% if block.settings.menu_title != blank %}
+                <h3 class="font-bold mb-2">{{ block.settings.menu_title }}</h3>
+              {% endif %}
+              <ul class="space-y-2">
+                {%- for link in linklists[block.settings.menu].links -%}
+                  <li><a href="{{ link.url }}" class="text-gray-400 hover:text-black">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+
+          {# --- عمود دعم العملاء --- #}
+          {%- when 'customer_support' -%}
+            <div class="flex-1 min-w-[250px]" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h3 class="font-bold mb-2">{{ block.settings.title }}</h3>
+              {% endif %}
+              {{ block.settings.extra_customer_support }}
+              <ul class="space-y-2 mt-2">
+                {% if shop.phone and block.settings.show_phone_link %}
+                  <li>📞 <a href="tel:{{ shop.phone }}" class="text-headerLightColor">{{ shop.phone }}</a></li>
+                {% endif %}
+                {% if shop.email and block.settings.show_mail_link %}
+                  <li>✉️ <a href="mailto:{{ shop.email }}" class="text-headerLightColor">{{ shop.email }}</a></li>
+                {% endif %}
+                {% if settings.whatsapp and block.settings.show_whatsapp_link %}
+                  <li>💬 <a href="https://wa.me/{{ settings.whatsapp }}" class="text-headerLightColor">WhatsApp</a></li>
+                {% endif %}
+              </ul>
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- الجزء السفلي -->
+    <div class="flex justify-between items-center mt-8 border-t border-gray-100 pt-4 text-sm text-gray-500">
+      <p class="text-left">
+        © {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
+      </p>
+      <div class="footer__payment text-right flex items-center gap-6">
+        {% if section.settings.show_payment_icons %}
+          {% for type in shop.enabled_payment_types %}
+            {{ type | payment_type_svg_tag }}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "select",
+      "id": "footer_color",
+      "label": "Footer color scheme",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "socials_newsletter",
+      "name": "Socials + Newsletter",
+      "settings": [
+        { "type": "checkbox", "id": "show_socials", "label": "Show social icons", "default": true },
+        { "type": "checkbox", "id": "show_newsletter", "label": "Show newsletter signup", "default": true }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        { "type": "text", "id": "menu_title", "label": "Menu title", "default": "Menu" },
+        { "type": "link_list", "id": "menu", "label": "Choose menu" }
+      ]
+    },
+    {
+      "type": "customer_support",
+      "name": "Customer support",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Customer support" },
+        { "type": "richtext", "id": "extra_customer_support", "label": "Extra info", "default": "<p>Available 11AM to 11PM</p>" },
+        { "type": "checkbox", "id": "show_phone_link", "label": "Show phone", "default": true },
+        { "type": "checkbox", "id": "show_mail_link", "label": "Show email", "default": true },
+        { "type": "checkbox", "id": "show_whatsapp_link", "label": "Show WhatsApp", "default": true }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "socials_newsletter" },
+        { "type": "menu", "settings": { "menu_title": "Company" } },
+        { "type": "menu", "settings": { "menu_title": "Policies" } },
+        { "type": "customer_support" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+{% comment %} {% assign background = section.settings.color_scheme.settings.background %}
 
 {% assign background = section.settings.color_scheme.settings.background %}
 
@@ -18,9 +184,10 @@
   else
     assign whatsapp_url = routes.root_url
   endif
-%}
+%} {% endcomment %}
 
-<footer
+
+{% comment %} <footer
   class="hidden w-0 xl:w-full xl:flex xl:justify-between m-auto py-8 px-8 xl:px-24 color-{{ section.settings.color_scheme }}"
   style="background-color: {{ background }};"
 >
@@ -161,4 +328,4 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}
