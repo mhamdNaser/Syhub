@@ -11,17 +11,17 @@
     <div class="flex items-center gap-2">
       <!-- LANGUAGE SELECTOR -->
       <div class="relative">
-        <button class="p-0 m-0 flex items-center gap-2" id="language-toggle" type="button">
-          <span id="selected-language">
+        <button class="p-0 m-0 flex items-center gap-2" id="footer-language-toggle" type="button">
+          <span id="footer-selected-language">
             {%- render 'icons', icon: language_icon, icon_size: '20' -%}
           </span>
-          <span id="selected-flag">
+          <span id="footer-selected-flag">
             {{- localization.language.iso_code | upcase }}
           </span>
         </button>
         <div
-          class="absolute h-fit bg-white z-50 mt-2 w-48 rounded shadow-lg hidden text-start"
-          id="language-menu"
+          class="absolute h-fit bg-white z-50 -top-40 w-48 rounded shadow-lg hidden text-start"
+          id="footer-language-menu"
           dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
         >
           <ul class="py-1">
@@ -49,71 +49,6 @@
           </ul>
         </div>
       </div>
-
-      <!-- CURRENCY SELECTOR -->
-      {% comment %}
-        <div class="relative">
-          <button class="p-0 m-0 flex items-center" id="currency-toggle" type="button">
-            <span id="selected-currency" class="mx-1">
-              {{ localization.country.currency.iso_code }}
-            </span>
-          </button>
-          <div
-            class="absolute bg-white z-50 mt-2 w-48 rounded shadow-lg hidden text-start"
-            id="currency-menu"
-            style="max-height: 300px; overflow-y: auto;"
-          >
-            <ul class="py-1">
-              {% form 'localization', class: 'localization-form' %}
-                {% for country in form.available_countries %}
-                  <li>
-                    <button
-                      name="country_code"
-                      value="{{ country.iso_code }}"
-                      class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onclick="this.form.submit()"
-                    >
-                      {{ country.currency.iso_code }} — {{ country.currency.symbol }}
-                    </button>
-                  </li>
-                {% endfor %}
-              {% endform %}
-            </ul>
-          </div>
-        </div>
-      {% endcomment %}
-
-      <!-- COUNTRY / CURRENCY SELECTOR -->
-      {% comment %}
-        <div class="relative">
-          <button class="p-0 m-0 flex items-center" id="country-toggle" type="button">
-            <span id="selected-country" class="mx-1">
-              {{ localization.country.name }} | {{ localization.country.iso_code }}
-            </span>
-          </button>
-          <div
-            class="absolute bg-white z-50 mt-2 w-64 rounded shadow-lg hidden text-start"
-            id="country-menu"
-            dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
-            style="max-height: 300px; overflow-y: auto;"
-          >
-            <ul class="py-1">
-              {% for country in form.available_countries %}
-                <li>
-                  <button
-                    name="country_code"
-                    value="{{ country.iso_code }}"
-                    class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                    onclick="this.form.submit()"
-                  >
-                    {{ country.name }} | {{ country.iso_code }}
-                  </button>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-      {% endcomment %}
     </div>
   {% endform %}
 </div>
@@ -121,8 +56,8 @@
 <!-- TOGGLE SCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const toggleLanguage = document.getElementById('language-toggle');
-    const menuLanguage = document.getElementById('language-menu');
+    const toggleLanguage = document.getElementById('footer-language-toggle');
+    const menuLanguage = document.getElementById('footer-language-menu');
     const toggleCountry = document.getElementById('country-toggle');
     const toggleCurrency = document.getElementById('currency-toggle');
     const menuCountry = document.getElementById('country-menu');
@@ -140,7 +75,7 @@
       });
     }
 
-    if (toggleLanguage && menuLanguage) {
+     if (toggleLanguage && menuLanguage) {
       toggleLanguage.addEventListener('click', function () {
         menuLanguage.classList.toggle('hidden');
       });
