@@ -31,6 +31,10 @@
     --color-pink-500: oklch(65.6% 0.241 354.308);
     --color-pink-600: oklch(59.2% 0.249 0.584);
     --color-pink-700: oklch(52.5% 0.223 3.958);
+    --color-rose-100: oklch(94.1% 0.03 12.58);
+    --color-rose-700: oklch(51.4% 0.222 16.935);
+    --color-rose-800: oklch(45.5% 0.188 13.697);
+    --color-rose-900: oklch(41% 0.159 10.272);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
@@ -1323,6 +1327,12 @@
   .bg-red-950 {
     background-color: var(--color-red-950);
   }
+  .bg-rose-100 {
+    background-color: var(--color-rose-100);
+  }
+  .bg-rose-800 {
+    background-color: var(--color-rose-800);
+  }
   .bg-white {
     background-color: var(--color-white);
   }
@@ -1655,6 +1665,9 @@
   .text-red-700 {
     color: var(--color-red-700);
   }
+  .text-rose-800 {
+    color: var(--color-rose-800);
+  }
   .text-white {
     color: var(--color-white);
   }
@@ -1961,6 +1974,13 @@
       }
     }
   }
+  .hover\:bg-rose-900 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-rose-900);
+      }
+    }
+  }
   .hover\:\!text-black {
     &:hover {
       @media (hover: hover) {
@@ -2049,6 +2069,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-pink-600);
+      }
+    }
+  }
+  .hover\:text-rose-700 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-rose-700);
       }
     }
   }

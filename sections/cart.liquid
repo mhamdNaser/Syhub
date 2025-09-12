@@ -2,180 +2,180 @@
 {% assign free_shipping_threshold = 20000 %}
 
 {% if cart and cart.item_count > 0 %}
-  <div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Left: Cart Items -->
-      <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
+<div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+    
+    <!-- Left: Cart Items -->
+    <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
 
-        <div class="space-y-6">
-          {% for item in cart.items %}
-            <div class="flex items-center justify-between border-b pb-4">
-              <!-- Product -->
-              <div class="flex items-center gap-4">
-                <a href="{{ item.url }}">
-                  {% if item.image %}
-                    <img
-                      src="{{ item.image | image_url: width: 100 }}"
-                      alt="{{ item.title }}"
-                      class="w-20 h-20 object-cover rounded"
-                    >
-                  {% else %}
-                    {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover rounded' }}
-                  {% endif %}
-                </a>
-                <div>
-                  <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-pink-600">
-                    {{- item.product.title -}}
-                  </a>
-                  <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
-                  <p class="text-pink-600 font-semibold mt-1">{{ item.price | money }}</p>
-                </div>
-              </div>
-
-              <!-- Quantity & Total -->
-              <div class="flex items-center gap-4">
-                <input
-                  type="number"
-                  min="1"
-                  :value="quantities[{{ forloop.index0 }}]"
-                  @change="updateQuantity({{ forloop.index }}, $event.target.value)"
-                  class="w-16 border rounded text-center"
-                >
-                <p class="font-semibold text-gray-800" x-text="formatMoney(totals[{{ forloop.index0 }}])"></p>
-                <button @click.prevent="removeItem({{ forloop.index }})" class="text-red-500 hover:underline">🗑</button>
-              </div>
+      <div class="space-y-6">
+        {% for item in cart.items %}
+        <div class="flex items-center justify-between border-b pb-4">
+          <!-- Product -->
+          <div class="flex items-center gap-4">
+            <a href="{{ item.url }}">
+              {% if item.image %}
+              <img
+                src="{{ item.image | image_url: width: 100 }}"
+                alt="{{ item.title }}"
+                class="w-20 h-20 object-cover rounded"
+              >
+              {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover rounded' }}
+              {% endif %}
+            </a>
+            <div>
+              <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-rose-700">
+                {{- item.product.title -}}
+              </a>
+              <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
+              <p class="text-rose-800 font-semibold mt-1">{{ item.price | money }}</p>
             </div>
-          {% endfor %}
+          </div>
+
+          <!-- Quantity & Total -->
+          <div class="flex items-center gap-4">
+            <input
+              type="number"
+              min="1"
+              :value="quantities[{{ forloop.index0 }}]"
+              @change="updateQuantity({{ forloop.index }}, $event.target.value)"
+              class="w-16 border rounded text-center"
+            >
+            <p class="font-semibold text-gray-800" x-text="formatMoney(totals[{{ forloop.index0 }}])"></p>
+            <button @click.prevent="removeItem({{ forloop.index }})" class="text-red-600 hover:underline">🗑</button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right: Summary -->
+    <div class="bg-white rounded-lg shadow p-6 space-y-6">
+      <!-- Free Shipping Progress -->
+      <div>
+        <p
+          class="text-sm font-medium"
+          x-html="shippingMessage()"
+          :class="cartTotal >= {{ free_shipping_threshold }} ? 'text-green-600' : 'text-rose-800'"
+        ></p>
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+          <div
+            class="h-2 rounded-full"
+            :class="shippingBarColor()"
+            :style="'width:' + shippingProgress() + '%'"
+          ></div>
         </div>
       </div>
 
-      <!-- Right: Summary -->
-      <div class="bg-white rounded-lg shadow-lg p-6 space-y-6">
-        <!-- Free Shipping Progress -->
-        <div>
-          <p
-            class="text-sm font-medium"
-            x-html="shippingMessage()"
-            :class="cartTotal >= {{ free_shipping_threshold }} ? 'text-green-600' : 'text-pink-600'"
-          ></p>
-          <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-            <div
-              class="h-2 rounded-full"
-              :class="shippingBarColor()"
-              :style="'width:' + shippingProgress() + '%'"
-            ></div>
-          </div>
+      <!-- Discount Code -->
+      <details class="border rounded p-3">
+        <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
+        <div class="mt-2 flex gap-2">
+          <input type="text" id="discount" class="flex-1 border rounded p-2" placeholder="Enter code">
+          <button type="button" @click="applyDiscount()" class="bg-rose-800 text-white px-4 rounded hover:bg-rose-900">Apply</button>
         </div>
+      </details>
 
-        <!-- Discount Code -->
-        <details class="border rounded-lg p-3">
-          <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
-          <div class="mt-2 flex gap-2">
-            <input type="text" id="discount" class="flex-1 border rounded-lg p-2" placeholder="Enter code">
-            <button type="button" @click="applyDiscount()" class="bg-pink-600 text-white px-4 rounded-lg">Apply</button>
-          </div>
-        </details>
-
-        <!-- Totals -->
-        <div class="border-t pt-4 text-lg font-semibold">
-          <div class="flex justify-between">
-            <span>Total</span>
-            <span class="text-pink-600" x-text="formatMoney(cartTotal)"></span>
-          </div>
+      <!-- Totals -->
+      <div class="border-t pt-4 text-lg font-semibold">
+        <div class="flex justify-between">
+          <span>Total</span>
+          <span class="text-rose-800" x-text="formatMoney(cartTotal)"></span>
         </div>
+      </div>
 
-        <!-- Checkout Button -->
-        <form action="/cart" method="post">
-          <button
-            type="submit"
-            name="checkout"
-            class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full transition"
-          >
-            Checkout →
-          </button>
-        </form>
+      <!-- Checkout Button -->
+      <form action="/cart" method="post">
+        <button
+          type="submit"
+          name="checkout"
+          class="w-full bg-rose-800 hover:bg-rose-900 text-white font-semibold py-3 px-8 rounded-full transition"
+        >
+          Checkout →
+        </button>
+      </form>
 
-        <!-- Trust Badges -->
-        <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-          <div class="flex items-center gap-2">💳 Secure Payment</div>
-          <div class="flex items-center gap-2">🚚 Fast Delivery</div>
-          <div class="flex items-center gap-2">🔄 Easy Returns</div>
-        </div>
+      <!-- Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+        <div class="flex items-center gap-2">💳 Secure Payment</div>
+        <div class="flex items-center gap-2">🚚 Fast Delivery</div>
+        <div class="flex items-center gap-2">🔄 Easy Returns</div>
       </div>
     </div>
   </div>
+</div>
+
 {% else %}
-  <div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
-    <div class="text-center">
-      <h1 class="text-3xl my-4">{{ cart_text }}</h1>
-      <a
-        href="{{ routes.all_products_collection_url }}"
-        class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
-      >
-        Continue Shopping
-      </a>
-    </div>
+<div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
+  <div class="text-center">
+    <h1 class="text-3xl my-4">{{ cart_text }}</h1>
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
+    >
+      Continue Shopping
+    </a>
   </div>
+</div>
 {% endif %}
 
 <!-- Alpine.js Component -->
 <script>
-  function cartHandler() {
-    return {
-      quantities: {{ cart.items | map: 'quantity' | json }},
-      totals: {{ cart.items | map: 'line_price' | json }},
-      cartTotal: {{ cart.total_price }},
+function cartHandler() {
+  return {
+    quantities: {{ cart.items | map: 'quantity' | json }},
+    totals: {{ cart.items | map: 'line_price' | json }},
+    cartTotal: {{ cart.total_price }},
 
-      formatMoney(cents) {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: '{{ shop.currency }}' }).format(cents / 100);
-      },
+    formatMoney(cents) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: '{{ shop.currency }}' }).format(cents / 100);
+    },
 
-      updateQuantity(line, qty) {
-        fetch(`/cart/change.js`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ line: line, quantity: qty })
-        })
-        .then(res => res.json())
-        .then(data => {
-          this.cartTotal = data.total_price;
-          this.quantities = data.items.map(i => i.quantity);
-          this.totals = data.items.map(i => i.line_price);
+    updateQuantity(line, qty) {
+      fetch(`/cart/change.js`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ line: line, quantity: qty })
+      })
+      .then(res => res.json())
+      .then(data => {
+        this.cartTotal = data.total_price;
+        this.quantities = data.items.map(i => i.quantity);
+        this.totals = data.items.map(i => i.line_price);
 
-          // إعادة توجيه إذا السلة فارغة
-          if (data.item_count === 0) {
-            window.location.reload(); // يعيد تحميل الصفحة لتظهر صفحة السلة الفارغة
-          }
-        });
-      },
-
-      removeItem(line) {
-        this.updateQuantity(line, 0);
-      },
-
-      applyDiscount() {
-        const code = document.getElementById('discount').value;
-        if (code) window.location.href = `/discount/${code}?redirect=/cart`;
-      },
-
-      // دالة لحساب نسبة شريط التوصيل المجاني
-      shippingProgress() {
-        return Math.min(100, (this.cartTotal / {{ free_shipping_threshold }}) * 100);
-      },
-
-      shippingMessage() {
-        if (this.cartTotal >= {{ free_shipping_threshold }}) {
-          return "🎉 You unlocked FREE shipping!";
-        } else {
-          let remaining = {{ free_shipping_threshold }} - this.cartTotal;
-          return `Order for <span class="font-bold">${this.formatMoney(remaining)}</span> more and get FREE shipping!`;
+        if (data.item_count === 0) {
+          window.location.reload();
         }
-      },
+      });
+    },
 
-      shippingBarColor() {
-        return this.cartTotal >= {{ free_shipping_threshold }} ? 'bg-pink-500' : 'bg-pink-200';
+    removeItem(line) {
+      this.updateQuantity(line, 0);
+    },
+
+    applyDiscount() {
+      const code = document.getElementById('discount').value;
+      if (code) window.location.href = `/discount/${code}?redirect=/cart`;
+    },
+
+    shippingProgress() {
+      return Math.min(100, (this.cartTotal / {{ free_shipping_threshold }}) * 100);
+    },
+
+    shippingMessage() {
+      if (this.cartTotal >= {{ free_shipping_threshold }}) {
+        return "🎉 You unlocked FREE shipping!";
+      } else {
+        let remaining = {{ free_shipping_threshold }} - this.cartTotal;
+        return `Order for <span class="font-bold">${this.formatMoney(remaining)}</span> more and get FREE shipping!`;
       }
+    },
+
+    shippingBarColor() {
+      return this.cartTotal >= {{ free_shipping_threshold }} ? 'bg-rose-800' : 'bg-rose-100';
     }
   }
+}
 </script>
