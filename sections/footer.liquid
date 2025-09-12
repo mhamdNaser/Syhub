@@ -149,15 +149,17 @@
                   <div class="flex gap-4 mb-6">
                     {%- for social in socials -%}
                       {%- if social != blank -%}
-                        {%- assign social_info = social | split: '|' -%}
-                        {{ social_info[0] | strip }}
-                        {% render 'button',
+                        {%- assign social_info = social | strip | split: '|' -%}
+                        {%- assign icon_name = social_info[0] | strip -%}
+                        {%- assign icon_url = social_info[1] | strip -%}
+                        {%
+                          render 'button',
                           type: 'link',
-                          url: social_info[1],
-                          aria_label: 'icon-{{ social_info[0] }}',
+                          url: icon_url,
+                          aria_label: 'icon-' | append: icon_name,
                           target: '_blank',
                           class: 'hover:text-blue-600 transition inline-block',
-                          icon: 'icon-{{ social_info[0] }}',
+                          icon: 'icon-' | append: icon_name,
                           icon_size: '20',
                           icon_color: 'white'
                         %}
