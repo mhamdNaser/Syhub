@@ -121,7 +121,7 @@
   "names": {
     "section": "Section"
   },
-   "static_sections": {
+  "static_sections": {
     "footer": {
       "name": "Footer",
       "settings": {
@@ -161,6 +161,13 @@
         }
       },
       "blocks": {
+        "html": {
+          "settings": {
+            "html": {
+              "label": "Custom HTML"
+            }
+          }
+        },
         "menu": {
           "name": "Menu",
           "settings": {
