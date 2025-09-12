@@ -1,0 +1,175 @@
+{% liquid
+  if localization.language.iso_code == 'ar'
+    assign language_icon = 'icon-ar-flag'
+  elsif localization.language.iso_code == 'en'
+    assign language_icon = 'icon-en-flag'
+  endif
+%}
+
+<div class="flex items-center gap-2 " {{ block.shopify_attributes }}>
+  {% form 'localization' %}
+    <div class="flex items-center gap-2">
+      <!-- LANGUAGE SELECTOR -->
+      <div class="relative">
+        <button class="p-0 m-0 flex items-center gap-2" id="language-toggle" type="button">
+          <span id="selected-language">
+            {%- render 'icons', icon: language_icon, icon_size: '20' -%}
+          </span>
+          <span id="selected-flag">
+            {{- localization.language.iso_code | upcase }}
+          </span>
+        </button>
+        <div
+          class="absolute h-fit bg-white z-50 mt-2 w-48 rounded shadow-lg hidden text-start"
+          id="language-menu"
+          dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+        >
+          <ul class="py-1">
+            {% form 'localization', class: 'localization-form' %}
+              {% assign querystring = '' %}
+              {% if request.query_string != blank %}
+                {% assign querystring = '?' | append: request.query_string %}
+              {% endif %}
+
+              {% for language in localization.available_languages %}
+                <li>
+                  <button
+                    type="submit"
+                    name="locale_code"
+                    value="{{ language.iso_code }}"
+                    class="flex w-full gap-2 px-4 py-2 text-gray-800 hover:bg-gray-200 language-option {% if language.iso_code == localization.language.iso_code %}active{% endif %}"
+                  >
+                    {%- assign lang_flag = 'icon-' | append: language.iso_code | append: '-flag' -%}
+                    <span>{%- render 'icons', icon: lang_flag, icon_size: '20' -%}</span>
+                    <span>{{ language.endonym_name }}</span>
+                  </button>
+                </li>
+              {% endfor %}
+            {% endform %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- CURRENCY SELECTOR -->
+      {% comment %}
+        <div class="relative">
+          <button class="p-0 m-0 flex items-center" id="currency-toggle" type="button">
+            <span id="selected-currency" class="mx-1">
+              {{ localization.country.currency.iso_code }}
+            </span>
+          </button>
+          <div
+            class="absolute bg-white z-50 mt-2 w-48 rounded shadow-lg hidden text-start"
+            id="currency-menu"
+            style="max-height: 300px; overflow-y: auto;"
+          >
+            <ul class="py-1">
+              {% form 'localization', class: 'localization-form' %}
+                {% for country in form.available_countries %}
+                  <li>
+                    <button
+                      name="country_code"
+                      value="{{ country.iso_code }}"
+                      class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onclick="this.form.submit()"
+                    >
+                      {{ country.currency.iso_code }} — {{ country.currency.symbol }}
+                    </button>
+                  </li>
+                {% endfor %}
+              {% endform %}
+            </ul>
+          </div>
+        </div>
+      {% endcomment %}
+
+      <!-- COUNTRY / CURRENCY SELECTOR -->
+      {% comment %}
+        <div class="relative">
+          <button class="p-0 m-0 flex items-center" id="country-toggle" type="button">
+            <span id="selected-country" class="mx-1">
+              {{ localization.country.name }} | {{ localization.country.iso_code }}
+            </span>
+          </button>
+          <div
+            class="absolute bg-white z-50 mt-2 w-64 rounded shadow-lg hidden text-start"
+            id="country-menu"
+            dir="{% if localization.language.iso_code == 'ar' %} rtl {% else %} ltr {% endif %}"
+            style="max-height: 300px; overflow-y: auto;"
+          >
+            <ul class="py-1">
+              {% for country in form.available_countries %}
+                <li>
+                  <button
+                    name="country_code"
+                    value="{{ country.iso_code }}"
+                    class="w-full text-start block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                    onclick="this.form.submit()"
+                  >
+                    {{ country.name }} | {{ country.iso_code }}
+                  </button>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endcomment %}
+    </div>
+  {% endform %}
+</div>
+
+<!-- TOGGLE SCRIPT -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleLanguage = document.getElementById('language-toggle');
+    const menuLanguage = document.getElementById('language-menu');
+    const toggleCountry = document.getElementById('country-toggle');
+    const toggleCurrency = document.getElementById('currency-toggle');
+    const menuCountry = document.getElementById('country-menu');
+    const menuCurrency = document.getElementById('currency-menu');
+
+    if (toggleCurrency && menuCurrency) {
+      toggleCurrency.addEventListener('click', function () {
+        menuCurrency.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuCurrency.contains(e.target) && !toggleCurrency.contains(e.target)) {
+          menuCurrency.classList.add('hidden');
+        }
+      });
+    }
+
+    if (toggleLanguage && menuLanguage) {
+      toggleLanguage.addEventListener('click', function () {
+        menuLanguage.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuLanguage.contains(e.target) && !toggleLanguage.contains(e.target)) {
+          menuLanguage.classList.add('hidden');
+        }
+      });
+    }
+
+    if (toggleCountry && menuCountry) {
+      toggleCountry.addEventListener('click', function () {
+        menuCountry.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menuCountry.contains(e.target) && !toggleCountry.contains(e.target)) {
+          menuCountry.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "language currency block",
+  "settings": [],
+  "presets": [{ "name": "language currency block", "category": "Header" }]
+}
+{% endschema %}
