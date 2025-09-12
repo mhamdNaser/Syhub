@@ -59,10 +59,41 @@
     "results_for_html": "{{ count }} results found for {{ terms }}"
   },
   "general": {
+    "footer": "Footer",
     "search": {
       "search": "Search",
       "reset": "Reset",
     }
+  },
+  "footer": {
+    "whatsapp_html": "WhatsApp",
+    "newsletter": {
+      "title_html": "Subscribe to our newsletter",
+      "subtitle_html": "Subscribe to get the latest updates and special offers",
+      "form": {
+        "email_placeholder": "Your email",
+        "submit_button": "Subscribe",
+        "success": "Successfully subscribed! Thank you",
+        "error": "An error occurred. Please try again"
+      }
+    },
+    "customer_service": {
+      "img_default_alt": "Customer service"
+    },
+    "socials": {
+      "instagram": "Instagram",
+      "pinterest": "Pinterest",
+      "youtube": "YouTube",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "tiktok": "TikTok",
+      "tumblr": "Tumblr",
+      "snapchat": "Snapchat"
+    }
+  },
+  "labels": {
+    "menu": "Menu",
+    "show_payment_icons": "Show payment icons"
   },
   "accessibility": {
     "close": "Close",
