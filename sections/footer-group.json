@@ -13,10 +13,55 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "socials_newsletter_KUmDTd": {
+          "type": "socials_newsletter",
+          "settings": {
+            "title": "Follow us",
+            "show_socials": true,
+            "enable_follow_on_shop": false,
+            "show_newsletter": true,
+            "footer_button_style": "primary plain",
+            "enable_newsletter_terms_checkbox": false,
+            "newsletter_terms_text": ""
+          }
+        },
+        "menu_MXpj6H": {
+          "type": "menu",
+          "settings": {
+            "menu": "footer",
+            "split_menu": true
+          }
+        },
+        "customer_support_DiBB6z": {
+          "type": "customer_support",
+          "settings": {
+            "title": "Customer service",
+            "title_underline_style": "none",
+            "extra_customer_support": "<p>Give your customers more details about your online store.</p>",
+            "show_phone_link": true,
+            "show_mail_link": true,
+            "show_whatsapp_link": true
+          }
+        }
+      },
+      "block_order": [
+        "socials_newsletter_KUmDTd",
+        "menu_MXpj6H",
+        "customer_support_DiBB6z"
+      ],
       "settings": {
-        "menu": "",
-        "color_scheme": "scheme-4",
-        "show_payment_icons": true
+        "color_scheme": "",
+        "title_font": "primary",
+        "title_size_blocks": "h4",
+        "bottom_img_width": 125,
+        "bottom_img_link": "",
+        "enable_country_selector": false,
+        "enable_language_selector": true,
+        "enable_follow_on_shop": false,
+        "show_payment_methods": true,
+        "spacing_desktop": 32,
+        "spacing_mobile": 24
       }
     }
   },
