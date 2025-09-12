@@ -177,6 +177,11 @@ function cartHandler() {
         this.cartTax = data.total_tax;
         this.cartTotal = data.total_price;
 
+        if (qty == 0) {
+          this.quantities.splice(line - 1, 1);
+          this.totals.splice(line - 1, 1);
+        }
+
         if (data.item_count === 0) {
           window.location.reload();
         }
