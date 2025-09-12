@@ -121,6 +121,173 @@
   "names": {
     "section": "Section"
   },
+   "static_sections": {
+    "footer": {
+      "name": "Footer",
+      "settings": {
+        "footer_color": {
+          "label": "Footer color"
+        },
+        "bottom_bar": {
+          "header": "Bottom bar",
+          "bottom_img": {
+            "label": "Bottom image",
+            "info": "Image shown in the bottom bar"
+          },
+          "bottom_img_width": {
+            "label": "Bottom image width"
+          },
+          "bottom_img_link": {
+            "label": "Bottom image link"
+          },
+          "enable_country_selector": {
+            "label": "Enable country selector",
+            "info": "Show country selector in footer"
+          },
+          "enable_language_selector": {
+            "label": "Enable language selector",
+            "info": "Show language selector in footer"
+          },
+          "enable_follow_on_shop": {
+            "label": "Enable follow on shop",
+            "info": "Display follow us section in the footer"
+          }
+        },
+        "payment_methods": {
+          "header": "Payment methods",
+          "show_payment_methods": {
+            "label": "Show payment methods"
+          }
+        }
+      },
+      "blocks": {
+        "menu": {
+          "name": "Menu",
+          "settings": {
+            "menu": {
+              "label": "Menu"
+            },
+            "split_menu": {
+              "label": "Split menu",
+              "info": "Split menu into columns"
+            }
+          }
+        },
+        "text": {
+          "name": "Text",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "customer_support": {
+          "name": "Customer support",
+          "settings": {
+            "customer_support_img": {
+              "label": "Customer support image"
+            },
+            "extra_customer_support": {
+              "label": "Extra customer support"
+            },
+            "show_phone_link": {
+              "label": "Show phone link"
+            },
+            "show_mail_link": {
+              "label": "Show email link"
+            },
+            "show_whatsapp_link": {
+              "label": "Show WhatsApp link"
+            }
+          }
+        },
+        "socials_newsletter": {
+          "name": "Socials & Newsletter",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "show_socials": {
+              "label": "Show social icons"
+            },
+            "enable_follow_on_shop": {
+              "label": "Enable follow on shop"
+            },
+            "newsletter": {
+              "header": "Newsletter",
+              "show_newsletter": {
+                "label": "Show newsletter form"
+              }
+            },
+            "footer_button_style": {
+              "label": "Button style"
+            },
+            "checkbox": {
+              "header": "Checkbox",
+              "enable_newsletter_terms_checkbox": {
+                "label": "Enable terms checkbox"
+              },
+              "newsletter_terms_text": {
+                "label": "Terms text"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "global": {
+    "typography": {
+      "title_font": {
+        "label": "Title font",
+        "primary": {
+          "label": "Primary"
+        },
+        "secondary": {
+          "label": "Secondary"
+        }
+      },
+      "title_size": {
+        "label": "Title size",
+        "h1": {
+          "label": "H1"
+        },
+        "h2": {
+          "label": "H2"
+        },
+        "h3": {
+          "label": "H3"
+        },
+        "h4": {
+          "label": "H4"
+        },
+        "h5": {
+          "label": "H5"
+        }
+      },
+      "title_underline_style": {
+        "label": "Underline style",
+        "none": {
+          "label": "None"
+        },
+        "accent": {
+          "label": "Accent"
+        }
+      }
+    },
+    "color_palette": {
+      "label": "Color scheme"
+    },
+    "spacing": {
+      "header": "Spacing",
+      "spacing_desktop": {
+        "label": "Desktop spacing"
+      },
+      "spacing_mobile": {
+        "label": "Mobile spacing"
+      }
+    }
+  },
   "settings_schema": {
     "logo_and_favicon": {
       "name": "Logo and favicon",
