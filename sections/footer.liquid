@@ -150,6 +150,7 @@
                     {%- for social in socials -%}
                       {%- if social != blank -%}
                         {%- assign social_info = social | split: '|' -%}
+                        {{ social_info[0] }}
                         {% render 'button',
                           type: 'link',
                           url: social_info[1],
