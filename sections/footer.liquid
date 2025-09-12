@@ -142,7 +142,7 @@
                   if settings.social_tiktok
                     assign socials = socials | append: 'tiktok|' | append: settings.social_tiktok | append: '->'
                   endif
-                  assign socials = socials | split: '->'
+                  assign socials = socials | strip | split: '->'
                 -%}
 
                 {%- if socials.size > 0 -%}
