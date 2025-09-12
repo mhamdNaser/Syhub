@@ -246,6 +246,9 @@
   },
   "global": {
     "typography": {
+      "title": {
+        "label": "Title"
+      },
       "title_font": {
         "label": "Title font",
         "primary": {
