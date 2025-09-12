@@ -1,52 +1,42 @@
 {% assign cart_text = settings.empty_cart_text | default: 'Your cart is empty.' %}
 {% assign free_shipping_threshold = 20000 %}
 
-{% if cart and cart.item_count > 0 %}
-  <div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
+<div class="p-4 bg-gray-50 min-h-screen" x-data="cartHandler()">
+
+  <template x-if="items.length > 0">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+
       <!-- Left: Cart Items -->
       <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">🛒 Your Shopping Cart</h1>
 
         <div class="space-y-6">
-          {% for item in cart.items %}
+          <template x-for="(item, index) in items" :key="item.key">
             <div class="flex items-center justify-between border-b pb-4">
               <!-- Product -->
               <div class="flex items-center gap-4">
-                <a href="{{ item.url }}">
-                  {% if item.image %}
-                    <img
-                      src="{{ item.image | image_url: width: 100 }}"
-                      alt="{{ item.title }}"
-                      class="w-20 h-20 object-cover rounded"
-                    >
-                  {% else %}
-                    {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover rounded' }}
-                  {% endif %}
+                <a :href="item.url">
+                  <img :src="item.image || 'https://via.placeholder.com/100'" 
+                       class="w-20 h-20 object-cover rounded" 
+                       :alt="item.title">
                 </a>
                 <div>
-                  <a href="{{ item.url }}" class="font-semibold text-gray-800 hover:text-rose-700">
-                    {{- item.product.title -}}
-                  </a>
-                  <p class="text-sm text-gray-500">{{ item.variant.title }}</p>
-                  <p class="text-rose-800 font-semibold mt-1">{{ item.price | money }}</p>
+                  <a :href="item.url" class="font-semibold text-gray-800 hover:text-rose-700" x-text="item.title"></a>
+                  <p class="text-sm text-gray-500" x-text="item.variant_title"></p>
+                  <p class="text-rose-800 font-semibold mt-1" x-text="formatMoney(item.line_price)"></p>
                 </div>
               </div>
 
               <!-- Quantity & Total -->
               <div class="flex items-center gap-4">
-                <input
-                  type="number"
-                  min="1"
-                  :value="quantities[{{ forloop.index0 }}]"
-                  @change="updateQuantity({{ forloop.index }}, $event.target.value)"
-                  class="w-16 border rounded text-center"
-                >
-                <p class="font-semibold text-gray-800" x-text="formatMoney(totals[{{ forloop.index0 }}])"></p>
-                <button @click.prevent="removeItem({{ forloop.index }})" class="text-red-600 hover:underline">🗑</button>
+                <input type="number" min="1" class="w-16 border rounded text-center"
+                       :value="item.quantity"
+                       @change="updateQuantity(index, $event.target.value)">
+                <p class="font-semibold text-gray-800" x-text="formatMoney(item.line_price)"></p>
+                <button @click.prevent="removeItem(index)" class="text-red-600 hover:underline">🗑</button>
               </div>
             </div>
-          {% endfor %}
+          </template>
         </div>
       </div>
 
@@ -54,17 +44,11 @@
       <div class="bg-white rounded-lg shadow p-6 space-y-6">
         <!-- Free Shipping Progress -->
         <div>
-          <p
-            class="text-sm font-medium"
-            x-html="shippingMessage()"
-            :class="cartTotal >= {{ free_shipping_threshold }} ? 'text-green-600' : 'text-rose-800'"
-          ></p>
+          <p class="text-sm font-medium" x-html="shippingMessage()" 
+             :class="cartTotal >= freeShippingThreshold ? 'text-green-600' : 'text-rose-800'">
+          </p>
           <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-            <div
-              class="h-2 rounded-full"
-              :class="shippingBarColor()"
-              :style="'width:' + shippingProgress() + '%'"
-            ></div>
+            <div class="h-2 rounded-full" :class="shippingBarColor()" :style="'width:' + shippingProgress() + '%'"></div>
           </div>
         </div>
 
@@ -73,52 +57,25 @@
           <summary class="cursor-pointer font-medium text-gray-700">Have a discount code?</summary>
           <div class="mt-2 flex flex-col sm:flex-row gap-2 w-full">
             <input type="text" id="discount" class="flex-1 border rounded p-2 w-full" placeholder="Enter code">
-            <button
-              type="button"
-              @click="applyDiscount()"
-              class="bg-rose-800 text-white px-4 rounded hover:bg-rose-900 w-full sm:w-auto"
-            >
-              Apply
-            </button>
+            <button type="button" @click="applyDiscount()" class="bg-rose-800 text-white px-4 rounded hover:bg-rose-900 w-full sm:w-auto">Apply</button>
           </div>
         </details>
 
         <!-- Totals -->
         <div class="border-t pt-4 text-lg font-semibold space-y-2">
-          <!-- Subtotal -->
-          <div class="flex justify-between">
-            <span>Subtotal</span>
-            <span x-text="formatMoney(cartSubtotal)"></span>
-          </div>
-
-          <!-- Tax -->
-          <div class="flex justify-between" x-show="cartTax > 0">
-            <span>Tax</span>
-            <span x-text="formatMoney(cartTax)"></span>
-          </div>
-
-          <!-- Discount -->
+          <div class="flex justify-between"><span>Subtotal</span><span x-text="formatMoney(cartSubtotal)"></span></div>
+          <div class="flex justify-between" x-show="cartTax > 0"><span>Tax</span><span x-text="formatMoney(cartTax)"></span></div>
           <div class="flex justify-between text-green-600" x-show="cartDiscount > 0">
-            <span>Discount</span>
-            <span>-<span x-text="formatMoney(cartDiscount)"></span></span>
+            <span>Discount</span><span>-<span x-text="formatMoney(cartDiscount)"></span></span>
           </div>
-
-          <!-- Total -->
           <div class="flex justify-between text-rose-800 border-t pt-2 font-bold">
-            <span>Total</span>
-            <span x-text="formatMoney(cartTotal)"></span>
+            <span>Total</span><span x-text="formatMoney(cartTotal)"></span>
           </div>
         </div>
 
         <!-- Checkout Button -->
         <form action="/cart" method="post">
-          <button
-            type="submit"
-            name="checkout"
-            class="w-full bg-rose-800 hover:bg-rose-900 text-white font-semibold py-3 px-8 rounded-full transition"
-          >
-            Checkout →
-          </button>
+          <button type="submit" name="checkout" class="w-full bg-rose-800 hover:bg-rose-900 text-white font-semibold py-3 px-8 rounded-full transition">Checkout →</button>
         </form>
 
         <!-- Trust Badges -->
@@ -128,40 +85,37 @@
           <div class="flex items-center gap-2">🔄 Easy Returns</div>
         </div>
       </div>
-    </div>
-  </div>
 
-{% else %}
-  <div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
-    <div class="text-center">
-      <h1 class="text-3xl my-4">{{ cart_text }}</h1>
-      <a
-        href="{{ routes.all_products_collection_url }}"
-        class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
-      >
-        Continue Shopping
-      </a>
     </div>
-  </div>
-{% endif %}
+  </template>
 
-<!-- Alpine.js Component -->
+  <!-- Empty Cart Message -->
+  <template x-if="items.length === 0">
+    <div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
+      <div class="text-center">
+        <h1 class="text-3xl my-4">{{ cart_text }}</h1>
+        <a href="{{ routes.all_products_collection_url }}" class="border border-gray-600 text-white bg-gray-600 px-8 py-3">Continue Shopping</a>
+      </div>
+    </div>
+  </template>
+</div>
+
 <script>
 function cartHandler() {
   return {
-    quantities: {{ cart.items | map: 'quantity' | json }},
-    totals: {{ cart.items | map: 'line_price' | json }},
-    
+    items: {{ cart.items | json }},
     cartSubtotal: {{ cart.items_subtotal_price | default: 0 }},
     cartDiscount: {{ cart.total_discount | default: 0 }},
     cartTax: {{ cart.total_tax | default: 0 }},
     cartTotal: {{ cart.total_price | default: 0 }},
+    freeShippingThreshold: {{ free_shipping_threshold }},
 
     formatMoney(cents) {
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: '{{ shop.currency }}' }).format(cents / 100);
     },
 
-    updateQuantity(line, qty) {
+    updateQuantity(index, qty) {
+      const line = index + 1;
       fetch(`/cart/change.js`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -169,27 +123,16 @@ function cartHandler() {
       })
       .then(res => res.json())
       .then(data => {
-        this.quantities = data.items.map(i => i.quantity);
-        this.totals = data.items.map(i => i.line_price);
-
+        this.items = data.items;
         this.cartSubtotal = data.items_subtotal_price;
         this.cartDiscount = data.total_discount;
         this.cartTax = data.total_tax;
         this.cartTotal = data.total_price;
-
-        if (qty == 0) {
-          this.quantities.splice(line - 1, 1);
-          this.totals.splice(line - 1, 1);
-        }
-
-        if (data.item_count === 0) {
-          window.location.reload();
-        }
       });
     },
 
-    removeItem(line) {
-      this.updateQuantity(line, 0);
+    removeItem(index) {
+      this.updateQuantity(index, 0);
     },
 
     applyDiscount() {
@@ -198,20 +141,20 @@ function cartHandler() {
     },
 
     shippingProgress() {
-      return Math.min(100, (this.cartTotal / {{ free_shipping_threshold }}) * 100);
+      return Math.min(100, (this.cartTotal / this.freeShippingThreshold) * 100);
     },
 
     shippingMessage() {
-      if (this.cartTotal >= {{ free_shipping_threshold }}) {
+      if (this.cartTotal >= this.freeShippingThreshold) {
         return "🎉 You unlocked FREE shipping!";
       } else {
-        let remaining = {{ free_shipping_threshold }} - this.cartTotal;
+        let remaining = this.freeShippingThreshold - this.cartTotal;
         return `Order for <span class="font-bold">${this.formatMoney(remaining)}</span> more and get FREE shipping!`;
       }
     },
 
     shippingBarColor() {
-      return this.cartTotal >= {{ free_shipping_threshold }} ? 'bg-rose-800' : 'bg-rose-100';
+      return this.cartTotal >= this.freeShippingThreshold ? 'bg-rose-800' : 'bg-rose-100';
     }
   }
 }
