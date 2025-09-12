@@ -14,7 +14,7 @@
       "settings": {}
     },
     "vendors_list_WVgc9N": {
-      "type": "vendors-list",
+      "type": "page-vendors",
       "name": "Vendors List",
       "settings": {
         "title": "",

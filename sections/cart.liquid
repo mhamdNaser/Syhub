@@ -118,17 +118,18 @@
 
   <!-- Empty Cart Message -->
   <template x-if="items.length === 0">
-    <div class="max-w-6xl min-h-screen flex mx-auto items-center justify-center">
-      <div class="text-center">
-        <h1 class="text-3xl my-4">{{ cart_text }}</h1>
-        <a
-          href="{{ routes.all_products_collection_url }}"
-          class="border border-gray-600 text-white bg-gray-600 px-8 py-3"
-          >Continue Shopping</a
-        >
-      </div>
+  <div class="max-w-6xl min-h-screen flex items-center justify-center mx-auto p-6">
+    <div class="bg-white rounded-lg shadow-lg p-8 text-center w-full sm:w-3/4 md:w-1/2">
+      <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ cart_text }}</h1>
+      <p class="text-gray-500 mb-6">Your shopping cart is currently empty. Start exploring our products and add items to your cart!</p>
+      <a href="{{ routes.all_products_collection_url }}"
+         class="inline-block bg-rose-800 text-white font-semibold px-6 py-3 rounded-full hover:bg-rose-900 transition">
+         Continue Shopping
+      </a>
     </div>
-  </template>
+  </div>
+</template>
+
 </div>
 
 <script>
