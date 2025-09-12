@@ -150,14 +150,16 @@
                     {%- for social in socials -%}
                       {%- if social != blank -%}
                         {%- assign social_info = social | split: '|' -%}
-                        <a
-                          href="{{ social_info[1] }}"
-                          class="hover:text-{{ section.settings.footer_color }}-fg_hover transition-colors"
-                          target="_blank"
-                          rel="noopener"
-                        >
-                          {{ social_info[0] | capitalize }}
-                        </a>
+                        {% render 'button',
+                          type: 'link',
+                          url: social_info[1],
+                          aria_label: 'icon-{{ social_info[0] }}',
+                          target: '_blank',
+                          class: 'hover:text-blue-600 transition inline-block',
+                          icon: 'icon-{{ social_info[0] }}',
+                          icon_size: '20',
+                          icon_color: 'white'
+                        %}
                       {%- endif -%}
                     {%- endfor -%}
                   </div>
