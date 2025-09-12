@@ -298,11 +298,11 @@
 
         <div class="flex items-center gap-4">
           {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-            {% render 'language-country-selector', display: 'country', origin: 'footer' %}
+            {% render 'language-country-selector' %}
           {%- endif -%}
           
           {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-            {% render 'language-country-selector', display: 'language', origin: 'footer' %}
+            {% render 'language-country-selector' %}
           {%- endif -%}
         </div>
 
