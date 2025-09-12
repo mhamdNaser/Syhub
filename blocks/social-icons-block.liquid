@@ -7,12 +7,12 @@
 
 {% liquid
   if settings.facebook_url != blank
-    assign facebook_url = block.settings.facebook_url
+    assign facebook_url = settings.social_facebook
   else
     assign facebook_url = routes.root_url
   endif
-  if block.settings.instagram_url != blank
-    assign instagram_url = block.settings.instagram_url
+  if settings.instagram_url != blank
+    assign instagram_url = settings.social_instagram
   else
     assign instagram_url = routes.root_url
   endif

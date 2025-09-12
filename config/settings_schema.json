@@ -1030,6 +1030,12 @@
     "settings": [
       {
         "type": "url",
+        "id": "social_whatsapp",
+        "label": "t:settings_schema.social_icons.whatsapp.label",
+        "info": "t:settings_schema.social_icons.whatsapp.info"
+      },
+      {
+        "type": "url",
         "id": "social_facebook",
         "label": "t:settings_schema.social_icons.facebook.label",
         "info": "t:settings_schema.social_icons.facebook.info"
@@ -1075,12 +1081,6 @@
         "id": "social_pinterest",
         "label": "t:settings_schema.social_icons.pinterest.label",
         "info": "t:settings_schema.social_icons.pinterest.info"
-      },
-      {
-        "type": "url",
-        "id": "social_whatsapp",
-        "label": "t:settings_schema.social_icons.whatsapp.label",
-        "info": "t:settings_schema.social_icons.whatsapp.info"
       },
       {
         "type": "url",
