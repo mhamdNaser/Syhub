@@ -3,10 +3,12 @@
     <h1 class="text-3xl font-bold mb-4">{{ section.settings.heading }}</h1>
     <p class="text-gray-600 max-w-2xl mx-auto">{{ section.settings.intro_text }}</p>
     {% if section.settings.main_image != blank %}
-      <img 
-        src="{{ section.settings.main_image | image_url: width: 1000 }}" 
-        alt="About us" 
+      <img
+        src="{{ section.settings.main_image | image_url: width: 1000 }}"
+        alt="About us"
         class="mx-auto mt-6 rounded-2xl shadow-lg"
+        width=""
+        height=""
       >
     {% endif %}
   </div>
@@ -25,10 +27,12 @@
         {% when 'image_block' %}
           {% if block.settings.image != blank %}
             <div>
-              <img 
-                src="{{ block.settings.image | image_url: width: 800 }}" 
-                alt="About image" 
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="About image"
                 class="rounded-2xl shadow-lg"
+                width=""
+                height=""
               >
             </div>
           {% endif %}
@@ -36,10 +40,12 @@
         {% when 'team_block' %}
           <div class="bg-gray-50 rounded-2xl shadow p-6 text-center">
             {% if block.settings.photo != blank %}
-              <img 
-                src="{{ block.settings.photo | image_url: width: 300 }}" 
-                alt="{{ block.settings.name }}" 
+              <img
+                src="{{ block.settings.photo | image_url: width: 300 }}"
+                alt="{{ block.settings.name }}"
                 class="w-32 h-32 mx-auto rounded-full object-cover mb-4"
+                width=""
+                height=""
               >
             {% endif %}
             <h3 class="text-lg font-semibold">{{ block.settings.name }}</h3>
