@@ -31,7 +31,7 @@
 
           {%- when 'text' -%}
             {%- if block.settings.title != empty or block.settings.text != empty -%}
-              <div class="flex-1 ps-8" {{ block.shopify_attributes }}>
+              <div class="flex-1 w-1/3 ps-8" {{ block.shopify_attributes }}>
                 {%- if block.settings.title != empty -%}
                   <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4 {% if block.settings.title_underline_style != 'none' %}underline underline-offset-4{% endif %}">
                     {{ block.settings.title }}
@@ -47,13 +47,13 @@
 
           {%- when 'html' -%}
             {%- if block.settings.html != empty -%}
-              <div class="flex-1 ps-8 font-bold" {{ block.shopify_attributes }}>
+              <div class="flex-1 w-1/3 ps-8 font-bold" {{ block.shopify_attributes }}>
                 {{ block.settings.html }}
               </div>
             {%- endif -%}
 
           {%- when 'customer_support' -%}
-            <div class="flex-1 ps-8 relative" {{ block.shopify_attributes }}>
+            <div class="flex-1 w-1/3 ps-8 relative" {{ block.shopify_attributes }}>
               {%- if block.settings.title != empty -%}
                 <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4 {% if block.settings.title_underline_style != 'none' %}underline underline-offset-4{% endif %}">
                   {{ block.settings.title }}
@@ -114,7 +114,7 @@
             </div>
 
           {%- when 'socials_newsletter' -%}
-            <div class="flex-1 ps-8" {{ block.shopify_attributes }}>
+            <div class="flex-1 w-1/3 ps-8" {{ block.shopify_attributes }}>
               {% if block.settings.show_socials %}
                 {%- if block.settings.title != empty -%}
                   <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4 {% if block.settings.title_underline_style != 'none' %}underline underline-offset-4{% endif %}">
@@ -286,7 +286,7 @@
               {%- endfor -%}
             {%- else -%}
               {%- for link in linklists[block.settings.menu].links -%}
-                <div class="flex-1 min-w-[200px]" {{ block.shopify_attributes }}>
+                <div class="flex-1" {{ block.shopify_attributes }}>
                   <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4">
                     <a
                       href="{{ link.url }}"
