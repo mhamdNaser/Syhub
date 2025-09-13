@@ -17,6 +17,16 @@ body .shopify-policy__container {
   max-width: 80rem !important;
 }
 
+html[lang="en"] .shopify-policy__body {
+  @apply text-left;
+  direction: ltr;
+}
+
+html[lang="ar"] .shopify-policy__body {
+  @apply text-right;
+  direction: rtl;
+}
+
 .shopify-policy__container h1,
 .shopify-policy__container h2,
 .shopify-policy__container h3 {
