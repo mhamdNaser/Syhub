@@ -13,7 +13,7 @@
 }
 
 body .shopify-policy__container {
-  @apply mx-auto p-8 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700;
+  @apply mx-auto p-8 my-3 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700;
   max-width: 80rem !important;
 }
 
