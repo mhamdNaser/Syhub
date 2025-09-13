@@ -13,7 +13,7 @@
 }
 
 body .shopify-policy__container {
-  @apply mx-auto p-8 my-3 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700;
+  @apply mx-auto p-8 my-6 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700;
   max-width: 80rem !important;
 }
 
@@ -34,13 +34,32 @@ body .shopify-policy__container {
 .shopify-policy__container p {
   @apply mb-4;
 }
-
-.shopify-policy__container ul {
-  @apply list-disc list-inside space-y-2 pl-4;
-}
-
 .shopify-policy__container a {
   @apply text-blue-600 underline hover:text-blue-800;
+}
+
+.shopify-policy__container table {
+  @apply w-full border-collapse rounded-lg overflow-hidden shadow-md my-8;
+}
+
+.shopify-policy__container th {
+  @apply bg-gray-100 text-left px-6 py-3 text-sm font-semibold text-gray-700 border-b;
+}
+
+.shopify-policy__container td {
+  @apply align-top px-6 py-4 text-gray-700 border-b;
+}
+
+.shopify-policy__container tr:last-child td {
+  @apply border-b-0;
+}
+
+.shopify-policy__container ul {
+  @apply list-disc list-inside space-y-2;
+}
+
+.shopify-policy__container li {
+  @apply leading-relaxed;
 }
 
 .custom-payment-button button:hover {
