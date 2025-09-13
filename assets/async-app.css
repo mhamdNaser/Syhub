@@ -786,6 +786,9 @@
   .max-w-1\/5 {
     max-width: calc(1/5 * 100%);
   }
+  .max-w-1\/6 {
+    max-width: calc(1/6 * 100%);
+  }
   .max-w-2 {
     max-width: calc(var(--spacing) * 2);
   }

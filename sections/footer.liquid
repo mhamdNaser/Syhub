@@ -244,7 +244,7 @@
               -%}
 
               {%- for link in linklists[block.settings.menu].links limit: first_menu_items_limit -%}
-                <div class="flex-1 ps-8" {{ block.shopify_attributes }}>
+                <div class="flex-1 max-w-1/6 ps-8" {{ block.shopify_attributes }}>
                   <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4">
                     <a
                       href="{{ link.url }}"
@@ -286,7 +286,7 @@
               {%- endfor -%}
             {%- else -%}
               {%- for link in linklists[block.settings.menu].links -%}
-                <div class="flex-1" {{ block.shopify_attributes }}>
+                <div class="flex-1 max-w-1/6  ps-8" {{ block.shopify_attributes }}>
                   <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4">
                     <a
                       href="{{ link.url }}"
