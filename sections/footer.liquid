@@ -21,7 +21,7 @@
 >
   <div class="max-w-7xl mx-auto">
     <!-- Main Footer Content -->
-    <div class="flex flex-wrap justify-between gap-8 mb-8">
+    <div class="grid grid-cols-5 gap-8 mb-8">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
@@ -53,7 +53,7 @@
             {%- endif -%}
 
           {%- when 'customer_support' -%}
-            <div class="flex-1 min-w-[250px] relative" {{ block.shopify_attributes }}>
+            <div class="flex-1 col-span-2 min-w-[250px] relative" {{ block.shopify_attributes }}>
               {%- if block.settings.title != empty -%}
                 <{{ section.settings.title_size_blocks }} class="font-{{ section.settings.title_font }} font-bold mb-4 {% if block.settings.title_underline_style != 'none' %}underline underline-offset-4{% endif %}">
                   {{ block.settings.title }}
