@@ -2504,7 +2504,7 @@
 }
 .shopify-policy__container {
   margin-inline: auto;
-  max-width: var(--container-4xl);
+  max-width: var(--container-7xl);
   border-radius: var(--radius-2xl);
   background-color: var(--color-white);
   padding: calc(var(--spacing) * 8);
