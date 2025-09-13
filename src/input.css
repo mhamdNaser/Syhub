@@ -65,7 +65,7 @@ html[lang="ar"] .shopify-policy__body {
 }
 
 .shopify-policy__container ul {
-  @apply list-disc list-inside space-y-2 ms-4;
+  @apply list-disc list-inside space-y-2 ms-8;
 }
 
 .shopify-policy__container li {
