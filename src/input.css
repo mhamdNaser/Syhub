@@ -12,8 +12,8 @@
   @apply w-full h-full px-6 py-6 font-semibold rounded-lg bg-neutral-700 text-white mt-3 cursor-pointer;
 }
 
-body .shopify-policy {
-  @apply max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700 !important;
+body .shopify-policy__container {
+  @apply max-w-7xl mx-auto p-8 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700 !important;
 }
 
 .shopify-policy__container h1,
