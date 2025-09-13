@@ -2502,9 +2502,8 @@
   font-weight: var(--font-weight-semibold);
   color: var(--color-white);
 }
-.shopify-policy__container {
+body .shopify-policy__container {
   margin-inline: auto;
-  max-width: var(--container-7xl);
   border-radius: var(--radius-2xl);
   background-color: var(--color-white);
   padding: calc(var(--spacing) * 8);
@@ -2513,6 +2512,7 @@
   color: var(--color-gray-700);
   --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  max-width: 80rem !important;
 }
 .shopify-policy__container h1, .shopify-policy__container h2, .shopify-policy__container h3 {
   margin-bottom: calc(var(--spacing) * 4);
