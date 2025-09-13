@@ -11,10 +11,51 @@
   "sections": {
     "main": {
       "type": "page-about-us",
-      "settings": {}
-    },
+      "blocks": {
+        "image_block_LnHqrD": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/mens_perfumes_-_Edited.webp"
+          }
+        },
+        "team_block_zEFekN": {
+          "type": "team_block",
+          "settings": {
+            "photo": "shopify://shop_images/arabian_oud_-_Edited.avif",
+            "name": "John Doe",
+            "role": "Founder & CEO",
+            "bio": "Passionate about building great experiences for our customers."
+          }
+        },
+        "team_block_Wj6QAt": {
+          "type": "team_block",
+          "settings": {
+            "photo": "shopify://shop_images/womens_perfumes_-_Edited.webp",
+            "name": "John Doe",
+            "role": "Founder & CEO",
+            "bio": "Passionate about building great experiences for our customers."
+          }
+        },
+        "image_block_YxXHEU": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/02ea4590-7f33-45f4-baab-44acadab7e21.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_LnHqrD",
+        "team_block_zEFekN",
+        "team_block_Wj6QAt",
+        "image_block_YxXHEU"
+      ],
+      "settings": {
+        "heading": "About Us",
+        "intro_text": "Welcome to our store! We believe in quality and innovation."
+      }
+    }
   },
   "order": [
-    "main",
+    "main"
   ]
 }

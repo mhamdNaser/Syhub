@@ -11,10 +11,29 @@
   "sections": {
     "main": {
       "type": "page-contact-us",
-      "settings": {}
-    },
+      "blocks": {
+        "image_block_pkWT4g": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/womens_perfumes_-_Edited.webp"
+          }
+        },
+        "contact_block_dhyfd7": {
+          "type": "contact_block",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_block_pkWT4g",
+        "contact_block_dhyfd7"
+      ],
+      "settings": {
+        "heading": "Contact Us",
+        "intro_text": "We are here to help with orders, delivery, returns, and product questions. Reach us by phone, email, or WhatsApp during our working hours."
+      }
+    }
   },
   "order": [
-    "main",
+    "main"
   ]
 }
