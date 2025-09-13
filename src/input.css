@@ -12,6 +12,36 @@
   @apply w-full h-full px-6 py-6 font-semibold rounded-lg bg-neutral-700 text-white mt-3 cursor-pointer;
 }
 
+.shopify-policy__container {
+  @apply max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-lg leading-relaxed text-gray-700;
+}
+
+.shopify-policy__container h1,
+.shopify-policy__container h2,
+.shopify-policy__container h3 {
+  @apply font-bold text-gray-900 mb-4;
+}
+
+.shopify-policy__container h1 {
+  @apply text-3xl border-b pb-4 mb-6;
+}
+
+.shopify-policy__container h2 {
+  @apply text-2xl mt-6;
+}
+
+.shopify-policy__container p {
+  @apply mb-4;
+}
+
+.shopify-policy__container ul {
+  @apply list-disc list-inside space-y-2 pl-4;
+}
+
+.shopify-policy__container a {
+  @apply text-blue-600 underline hover:text-blue-800;
+}
+
 .custom-payment-button button:hover {
   background-color: var(--color-neutral-900) !important;
 }
