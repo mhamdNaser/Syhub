@@ -1,14 +1,12 @@
 <section class="max-w-6xl mx-auto px-4 py-12">
-  <div class="text-center mb-8">
+  <div class="text-center mb-12">
     <h1 class="text-3xl font-bold mb-4">{{ section.settings.heading }}</h1>
     <p class="text-gray-600 max-w-2xl mx-auto">{{ section.settings.intro_text }}</p>
     {% if section.settings.main_image != blank %}
-      <img
-        src="{{ section.settings.main_image | image_url: width: 800 }}"
-        alt="about"
+      <img 
+        src="{{ section.settings.main_image | image_url: width: 1000 }}" 
+        alt="About us" 
         class="mx-auto mt-6 rounded-2xl shadow-lg"
-        width=""
-        height=""
       >
     {% endif %}
   </div>
@@ -18,26 +16,35 @@
       {% case block.type %}
         {% when 'text_block' %}
           <div class="bg-white rounded-2xl shadow p-6">
-            <h2 class="text-xl font-semibold mb-2">{{ block.settings.title }}</h2>
+            {% if block.settings.title != blank %}
+              <h2 class="text-xl font-semibold mb-3">{{ block.settings.title }}</h2>
+            {% endif %}
             <p class="text-gray-700">{{ block.settings.content }}</p>
           </div>
 
         {% when 'image_block' %}
           {% if block.settings.image != blank %}
             <div>
-              <img
-                src="{{ block.settings.image | image_url: width: 600 }}"
-                alt="about image"
+              <img 
+                src="{{ block.settings.image | image_url: width: 800 }}" 
+                alt="About image" 
                 class="rounded-2xl shadow-lg"
-                width=""
-                height=""
               >
             </div>
           {% endif %}
 
-        {% when 'contact_block' %}
-          <div class="bg-gray-50 rounded-2xl shadow p-6">
-            {% render 'contact-form' %}
+        {% when 'team_block' %}
+          <div class="bg-gray-50 rounded-2xl shadow p-6 text-center">
+            {% if block.settings.photo != blank %}
+              <img 
+                src="{{ block.settings.photo | image_url: width: 300 }}" 
+                alt="{{ block.settings.name }}" 
+                class="w-32 h-32 mx-auto rounded-full object-cover mb-4"
+              >
+            {% endif %}
+            <h3 class="text-lg font-semibold">{{ block.settings.name }}</h3>
+            <p class="text-sm text-gray-600">{{ block.settings.role }}</p>
+            <p class="mt-2 text-gray-700">{{ block.settings.bio }}</p>
           </div>
       {% endcase %}
     {% endfor %}
@@ -95,9 +102,33 @@
       ]
     },
     {
-      "type": "contact_block",
-      "name": "Contact Form Block",
-      "settings": []
+      "type": "team_block",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "John Doe"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Founder & CEO"
+        },
+        {
+          "type": "textarea",
+          "id": "bio",
+          "label": "Short Bio",
+          "default": "Passionate about building great experiences for our customers."
+        }
+      ]
     }
   ],
   "presets": [
