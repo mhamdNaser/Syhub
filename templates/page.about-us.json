@@ -13,16 +13,6 @@
       "type": "page",
       "settings": {}
     },
-    "vendors_list_WVgc9N": {
-      "type": "page-about-us",
-      "name": "Vendors List",
-      "settings": {
-        "title": "",
-        "show_title": false,
-        "show_group_title": true,
-        "item_in_row": 3
-      }
-    }
   },
   "order": [
     "main",
